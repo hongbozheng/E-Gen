@@ -21,8 +21,8 @@ eclass.append({'id':3,
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--loglevel', '-l', type=str, default='info', help='Log Level', required=False)
-    parser.add_argument('--csg', '-c', type=int, default=1, help='Context-sensitive Grammar', required=False)
+    parser.add_argument('--loglevel', '-l', type=str, default='info', help='log-level', required=False)
+    parser.add_argument('--csg', '-c', type=int, default=1, help='context-Sensitive grammar flag', required=False)
     args = parser.parse_args()
     csg = args.csg
 
