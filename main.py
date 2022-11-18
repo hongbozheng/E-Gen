@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-import config
+import context_grammar
 import logger
-import rewrite
 import argparse
 
 eclass = []
@@ -34,7 +33,7 @@ def main():
     logger.log_info_raw('\n\n')
 
     init_rw = '* e0 e1'
-    ctx_g = rewrite.ContextGrammer(eclass=eclass, init_rw=init_rw)
+    ctx_g = context_grammar.ContextGrammer(eclass=eclass, init_rw=init_rw)
 
     logger.log_info('$$$$$$$$$$ Eclass $$$$$$$$$$\n')
     for e in ctx_g.eclass:
