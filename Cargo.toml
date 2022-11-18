@@ -32,6 +32,8 @@ vectorize = { version = "0.2.0", optional = true }
 # for the reports feature
 serde_json = { version = "1.0.81", optional = true }
 
+# temporarily add ordered-float under dependencies
+ordered-float = "3.0.0"
 
 [dev-dependencies]
 ordered-float = "3.0.0"
