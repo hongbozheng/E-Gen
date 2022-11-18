@@ -43,6 +43,7 @@ mod egraph;
 mod explain;
 mod extract;
 mod language;
+mod equiv_expr_extract;
 #[cfg(feature = "lp")]
 mod lp_extract;
 mod machine;
