@@ -27,11 +27,11 @@ class ContextGrammer:
             self.grammar['e'+str(e['id'])] = enode
         return
 
-    def get_rw(self) -> list:
-        return self.rw
-
     def get_grammer(self) -> dict:
         return self.grammar
+
+    def get_rw(self) -> list:
+        return self.rw
 
     def is_operator(self, op: str) -> bool:
         if op in config.operator_list:
