@@ -1,22 +1,20 @@
-use egg::{RecExpr, Runner, Extractor, AstSize, Language};
+use egg::{ContextGrammar, Language, Math, math_rule, MathEGraph, RecExpr, Runner};
 
-mod math;
 
 pub fn main() {
-    println!("Hello World!");
-    let expression: &str = "(* x y)";
-    let expr: RecExpr<math::Math> = expression.parse().unwrap();
-    let runner = Runner::default().with_expr(&expr).run(&math::math_rule());
-    let egraph = runner.egraph;
-    let iterations = runner.iterations;
+    let expr: &str = "(* x y)";
+    println!("[INFO]: Initial expression {}", expr);
+    let recexpr: RecExpr<Math> = expr.parse().unwrap();
+    let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
+    let egraph: MathEGraph = runner.egraph;
+    let iters = runner.iterations;
     let roots = runner.roots;
     let stop_reason = runner.stop_reason;
-    println!("Total Size of {}",egraph.total_size());
-    println!("{} node(s)",egraph.total_number_of_nodes());
-    println!("{} class(es)",egraph.number_of_classes());
+    println!("[INFO]: EGraph total size {}", egraph.total_size());
+    println!("[INFO]: EGraph contains {} node(s)", egraph.total_number_of_nodes());
+    println!("[INFO]: EGraph contains {} eclass(es)\n", egraph.number_of_classes());
     let eclasses = egraph.classes();
-    println!("\nEClass");
-    // equiv_expr::get_equiv_expr(eclasses);
+    println!("[INFO]: EClass Information");
     for eclass in eclasses {
         println!("{:?}\n",eclass);
         let id = &eclass.id;
@@ -30,18 +28,32 @@ pub fn main() {
         }
         println!("\n");
     }
-    println!("Iterations");
-    for iteration in &iterations {
-        println!("{:?}",iteration);
-    }
-    print!("\nRoots ");
+    // println!("Iterations");
+    // for iter in &iters {
+    //     println!("{:?}",iter);
+    // }
+
+    print!("\n[INFO]: Runner Root(s)");
     for root in &roots {
-        print!("{:?}",root);
+        print!(" {:?}",root);
     }
-    println!("\nRoot Eclass ID = {}",roots[0]);
-    println!("\nStop Reason {:?}",stop_reason.unwrap());
-    let extractor = Extractor::new(&egraph,AstSize);
-    //let find_cost = extractor.find_costs();
-    let (best_cost,simplified_expr) = extractor.find_best(roots[0]);
-    println!("Simplified Expression {} to {} with Cost {}",expr,simplified_expr,best_cost);
+    println!("\n[INFO]: Root EClass ID {}\n", roots[0]);
+    // println!("\n[INFO]: Stop Reason {:?}",stop_reason.unwrap());
+    // let extractor = Extractor::new(&egraph,AstSize);
+    // //let find_cost = extractor.find_costs();
+    // let (best_cost,simplified_expr) = extractor.find_best(roots[0]);
+    // println!("Simplified Expression {} to {} with Cost {}",expr,simplified_expr,best_cost);
+    //
+    // println!("--------------------------------------------------\n");
+
+    let mut ctx_g = ContextGrammar::new(egraph);
+    println!("[INFO]: Creating grammar...");
+    ctx_g.set_grammar();
+    println!("[INFO]: Finish creating grammar\n");
+
+    println!("[INFO]: ----- Grammar -----");
+    let grammar = ctx_g.get_grammar();
+    for (eclass, rewrite) in grammar {
+        println!("[INFO]: {} -> {:?}", eclass, rewrite);
+    }
 }

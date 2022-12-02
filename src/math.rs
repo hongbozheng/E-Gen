@@ -1,8 +1,8 @@
-use egg::{rewrite as rw, *};
+use crate::{rewrite as rw, *};
 use ordered_float::NotNan;
 
-pub type EGraph = egg::EGraph<Math, ConstantFold>;
-pub type Rewrite = egg::Rewrite<Math, ConstantFold>;
+pub type MathEGraph = crate::EGraph<Math, ConstantFold>;
+pub type Rewrite = crate::Rewrite<Math, ConstantFold>;
 
 pub type Constant = NotNan<f64>;
 
@@ -33,7 +33,7 @@ pub struct ConstantFold;
 impl Analysis<Math> for ConstantFold {
     type Data = Option<(Constant, PatternAst<Math>)>;
 
-    fn make(egraph: &EGraph, enode: &Math) -> Self::Data {
+    fn make(egraph: &MathEGraph, enode: &Math) -> Self::Data {
         let x = |i: &Id| egraph[*i].data.as_ref().map(|d| d.0);
         Some(match enode {
             Math::Constant(c) => (*c, format!("{}", c).parse().unwrap()),
@@ -73,7 +73,7 @@ impl Analysis<Math> for ConstantFold {
         // cmp
     }
 
-    fn modify(egraph: &mut EGraph, id: Id) {
+    fn modify(egraph: &mut MathEGraph, id: Id) {
         let class = egraph[id].clone();
         if let Some((c, pat)) = class.data {
             if egraph.are_explanations_enabled() {
@@ -96,7 +96,7 @@ impl Analysis<Math> for ConstantFold {
     }
 }
 
-fn not_zero(var: &str) -> impl Fn(&mut EGraph, Id, &Subst) -> bool {
+fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
     let var = var.parse().unwrap();
     move |egraph, _, subst| {
         if let Some(n) = &egraph[subst[var]].data {

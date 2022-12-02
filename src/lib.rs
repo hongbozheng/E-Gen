@@ -43,7 +43,10 @@ mod egraph;
 mod explain;
 mod extract;
 mod language;
+/* need to put both files in lib */
 mod equiv_expr_extract;
+mod math;
+/* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
 mod machine;
@@ -55,7 +58,7 @@ mod subst;
 mod unionfind;
 mod util;
 
-/// A key to identify [`EClass`]es within an
+/// A key to identify [`EClass`]es  within an
 /// [`EGraph`].
 #[derive(Clone, Copy, Default, Ord, PartialOrd, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde-1", derive(serde::Serialize, serde::Deserialize))]
@@ -104,6 +107,9 @@ pub use {
     run::*,
     subst::{Subst, Var},
     util::*,
+    /* need to make this struct public to be visible by main */
+    math::{Math, math_rule, MathEGraph},
+    equiv_expr_extract::ContextGrammar
 };
 
 #[cfg(feature = "lp")]
