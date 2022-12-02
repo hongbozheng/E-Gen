@@ -16,17 +16,17 @@ pub fn main() {
     let eclasses = egraph.classes();
     println!("[INFO]: EClass Information");
     for eclass in eclasses {
-        println!("{:?}\n",eclass);
-        let id = &eclass.id;
-        let enodes = &eclass.nodes;
-        println!("enodes in eclass id: {}",id);
-        for enode in enodes {
-            println!("{}",enode);
-            let children = enode.children();
-            if children.is_empty() {println!("children node(s): None");}
-            else {println!("children node(s): {:?}",children);}
-        }
-        println!("\n");
+        println!("[INFO]: {:?}",eclass);
+        // let id = &eclass.id;
+        // let enodes = &eclass.nodes;
+        // println!("enodes in eclass id: {}",id);
+        // for enode in enodes {
+        //     println!("{}",enode);
+        //     let children = enode.children();
+        //     if children.is_empty() {println!("children node(s): None");}
+        //     else {println!("children node(s): {:?}",children);}
+        // }
+        // println!("\n");
     }
     // println!("Iterations");
     // for iter in &iters {
@@ -46,14 +46,24 @@ pub fn main() {
     //
     // println!("--------------------------------------------------\n");
 
-    let mut ctx_g = ContextGrammar::new(egraph);
+    let mut ctx_g = ContextGrammar::new(egraph, roots);
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
-    println!("[INFO]: Finish creating grammar\n");
+    println!("[INFO]: Finish creating grammar");
 
-    println!("[INFO]: ----- Grammar -----");
+    println!("[INFO]: Setting initial expression...");
+    ctx_g.set_init_expr();
+    println!("[INFO]: Finish setting inital expression\n");
+
+    println!("[INFO]: ---------- Grammar ----------");
     let grammar = ctx_g.get_grammar();
     for (eclass, rewrite) in grammar {
         println!("[INFO]: {} -> {:?}", eclass, rewrite);
     }
+    println!("[INFO]: -----------------------------\n");
+
+    println!("[INFO]: ----- Initial Expression ----");
+    let init_expr = ctx_g.get_init_expr();
+    println!("[INFO]: {}", init_expr);
+    println!("[INFO]: -----------------------------\n");
 }

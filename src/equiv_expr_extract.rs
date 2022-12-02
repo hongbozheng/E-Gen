@@ -1,18 +1,21 @@
+use std::ops::Index;
 use crate::*;
 
 pub struct ContextGrammar {
     egraph: MathEGraph,
-    init_expr: &'static str,    /* maybe use String ? idk */
+    root_classes: Vec<Id>,
     grammar: HashMap<String, Vec<String>>, /* cannot use &str same reason as below */
-    rw: Vec<&'static str>
+    init_expr: String,    /* maybe use String ? idk */
+    rw: Vec<String>
 }
 
 impl ContextGrammar {
-    pub fn new(egraph: MathEGraph) -> Self {
+    pub fn new(egraph: MathEGraph, root_classes: Vec<Id>) -> Self {
         ContextGrammar {
             egraph,
-            init_expr: "",
+            root_classes,
             grammar: Default::default(),
+            init_expr: "".to_string(),
             rw: vec![],
         }
     }
@@ -29,7 +32,7 @@ impl ContextGrammar {
             for enode in enodes {
                 let mut rewrite = enode.to_string();
                 let children = enode.children();
-                println!("children {:?}", children);
+                // println!("children {:?}", children);
                 // let mut rewrite = children.
                 for child in children {
                     rewrite = format!("{} {}{}", rewrite, "e", child);
@@ -47,5 +50,24 @@ impl ContextGrammar {
 
     pub fn get_grammar(&self) -> HashMap<String, Vec<String>>{
         return self.grammar.clone();
+    }
+
+    pub fn set_init_expr(&mut self) {
+        let root_eclass_id = self.root_classes[0];
+        let eclasses = self.egraph.classes();
+        for eclass in eclasses {
+            if eclass.id == root_eclass_id {
+                let root_eclass = format!("{}{}", "e", root_eclass_id);
+                self.init_expr = self.grammar.get(&*root_eclass).unwrap().index(1).clone();
+            }
+        }
+    }
+
+    pub fn get_init_expr(&self) -> String {
+        return self.init_expr.clone();
+    }
+
+    pub fn cfg_extract(&self) {
+        /* TODO: Implement Context-Free Grammar */
     }
 }
