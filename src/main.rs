@@ -46,13 +46,13 @@ pub fn main() {
     //
     // println!("--------------------------------------------------\n");
 
-    let mut ctx_g = ContextGrammar::new(egraph, roots);
+    let mut ctx_g = ContextGrammar::new(egraph, expr, roots);
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
     println!("[INFO]: Finish creating grammar");
 
     println!("[INFO]: Setting initial expression...");
-    ctx_g.set_init_expr();
+    ctx_g.set_init_rw();
     println!("[INFO]: Finish setting inital expression\n");
 
     println!("[INFO]: ---------- Grammar ----------");
@@ -63,7 +63,10 @@ pub fn main() {
     println!("[INFO]: -----------------------------\n");
 
     println!("[INFO]: ----- Initial Expression ----");
-    let init_expr = ctx_g.get_init_expr();
-    println!("[INFO]: {}", init_expr);
+    let init_rw = ctx_g.get_init_rw();
+    println!("[INFO]: {}", init_rw);
     println!("[INFO]: -----------------------------\n");
+
+    ctx_g.cfg_extract(init_rw, 0);
+    // ctx_g.set_operator();
 }
