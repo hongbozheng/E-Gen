@@ -15,9 +15,9 @@ pub struct ContextGrammar {
 }
 
 impl ContextGrammar {
-    /// default constructor
+    /// ## default constructor
     ///
-    /// # Arguments
+    /// ## Arguments
     /// * `MathEGraph` - egraph after running rewrite rules
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
@@ -39,8 +39,8 @@ impl ContextGrammar {
     //     }
     // }
 
-    /// member function to set grammar from egraph
-    /// # Argument
+    /// ## member function to set grammar from egraph
+    /// ## Argument
     /// * `self`
     pub fn set_grammar(&mut self) {
         let eclasses = self.egraph.classes();
@@ -70,15 +70,15 @@ impl ContextGrammar {
 
     }
 
-    /// member function to get grammar from self
-    /// # Argument
+    /// ## member function to get grammar from self
+    /// ## Argument
     /// * `self`
     pub fn get_grammar(&self) -> HashMap<String, Vec<String>>{
         return self.grammar.clone();
     }
 
-    /// member function to set variables from self
-    /// # Argument
+    /// ## member function to set variables from self
+    /// ## Argument
     /// * `self`
     pub fn set_var(&mut self) {
         for char in self.init_expr.chars() {
@@ -86,8 +86,8 @@ impl ContextGrammar {
         }
     }
 
-    /// member function to set the initial rewrite from self
-    /// # Argument
+    /// ## member function to set the initial rewrite from self
+    /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
         let root_eclass_id = self.root_classes[0];
@@ -100,15 +100,15 @@ impl ContextGrammar {
         }
     }
 
-    /// member function to get the initial rewrite from self
-    /// # Argument
+    /// ## member function to get the initial rewrite from self
+    /// ## Argument
     /// * `self`
     pub fn get_init_rw(&self) -> String {
         return self.init_rw.clone();
     }
 
-    /// member function to check if the current operand is const
-    /// # Argument
+    /// ## member function to check if the current operand is const
+    /// ## Argument
     /// * `self`
     /// TODO: may have to change to String since the reference issue
     /// * `str` - current checking operand
@@ -121,8 +121,8 @@ impl ContextGrammar {
         return true;
     }
 
-    /// member function to extract all equivalent mathematical expressions
-    /// # Argument
+    /// ## member function to extract all equivalent mathematical expressions
+    /// ## Argument
     /// * `self`
     /// * `str` - rewrite expression
     /// * `idx` - fn call idx for debugging purpose
