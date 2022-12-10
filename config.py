@@ -1,6 +1,6 @@
 import logger
 
-log_level = logger.LogLevel.debug
+log_level = logger.LogLevel.info
 
 operator = {'Add':'+',
             'Sub':'-',
