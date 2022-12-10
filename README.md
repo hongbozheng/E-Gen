@@ -80,6 +80,31 @@ Example:
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
 
+## Context-Grammar (Rust)
+
+#### Check Command Line Input (CLI)
+```
+cargo run -- -h
+```
+
+#### Test Context-Sensitive Grammar
+```
+cargo run -- -csg <csg flag> -de <debug flag>
+```
+* `<csg>` context-sensitive grammar flag, use `1`
+* `<de>` debug flag
+  * `1` -> enable
+  * `0` -> disable
+
+#### Test Context-Free Grammar
+```
+./main -c <csg>
+```
+* `<csg>` context-sensitive grammar flag, use `0`
+* `<de>` debug flag
+  * `1` -> enable
+  * `0` -> disable
+
 ## Context-Grammar (Python)
 
 #### Test Context-Sensitive Grammar
@@ -93,3 +118,14 @@ EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --
 ./main -c <csg>
 ```
 `<csg>` context-sensitive grammar flag, use `0`
+
+#### Log Level Flag in `config.py`
+change `log_level = logger.LogLevel.XXXXX`
+* `all = 6`
+* `trace = 5`
+* `debug = 4`
+* `info = 3`
+* `warn = 2`
+* `error = 1`
+* `fatal = 0`
+* `off = -1`
