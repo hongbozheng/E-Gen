@@ -146,7 +146,7 @@ pub fn main() {
     println!("[INFO]: -----------------------------\n");
 
     if csg {
-        
+
     } else {
         println!("[INFO]: Start context-free grammar extraction...");
         ctx_g.cfg_extract(init_rw, 0);

@@ -7,7 +7,7 @@ pub struct ContextGrammar {
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
-    /* cannot use &str same reason as below */
+    DEBUG: bool,                            /* debug flag                                   */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
     var: Vec<char>,                         /* vec storing variables to skip in extract fn  */
     init_rw: String,                        /* initial rw e.g. (* e0 e1)                    */
@@ -16,16 +16,16 @@ pub struct ContextGrammar {
 
 impl ContextGrammar {
     /// ## default constructor
-    ///
     /// ## Arguments
     /// * `MathEGraph` - egraph after running rewrite rules
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(egraph: MathEGraph, init_expr: &'static str, root_classes: Vec<Id>) -> Self {
+    pub fn new(egraph: MathEGraph, init_expr: &'static str, root_classes: Vec<Id>, DEBUG: bool) -> Self {
         ContextGrammar {
             egraph,
             init_expr,
             root_classes,
+            DEBUG,
             grammar: Default::default(),
             var: vec![],
             init_rw: "".to_string(),
@@ -80,11 +80,11 @@ impl ContextGrammar {
     /// ## member function to set variables from self
     /// ## Argument
     /// * `self`
-    pub fn set_var(&mut self) {
-        for char in self.init_expr.chars() {
-
-        }
-    }
+    // pub fn set_var(&mut self) {
+    //     for char in self.init_expr.chars() {
+    //
+    //     }
+    // }
 
     /// ## member function to set the initial rewrite from self
     /// ## Argument
@@ -107,33 +107,67 @@ impl ContextGrammar {
         return self.init_rw.clone();
     }
 
-    /// ## member function to check if the current operand is const
-    /// ## Argument
-    /// * `self`
-    /// TODO: may have to change to String since the reference issue
-    /// * `str` - current checking operand
-    pub fn is_const(&self, op: &str) -> bool {
-        for char in op.chars() {
-            if !char.is_numeric() {
-                return false;
-            }
-        }
-        return true;
-    }
-
     /// ## member function to extract all equivalent mathematical expressions
     /// ## Argument
     /// * `self`
     /// * `str` - rewrite expression
     /// * `idx` - fn call idx for debugging purpose
-    pub fn cfg_extract(&self, str: String, idx: u8) {
-        /* TODO: Implement Context-Free Grammar */
-        let expr = self.init_rw.split_whitespace();
-        for op in expr {
-            println!("{}", op);
-            if self.is_const(op) {
-                continue;
+    pub fn cfg_extract(&mut self, mut str: String, idx: u8) {
+        if self.DEBUG { println!("-----------------------------------"); }
+        if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
+        let str_tmp = str.clone();
+        let expr: Vec<&str> = str_tmp.split(" ").collect();
+        if self.DEBUG {
+            print!("[EXPR]: ");
+            for i in 0..expr.len() {
+                print!(" {:?}", expr[i]);
             }
+            println!();
         }
+
+        let mut term: bool = false;
+
+        for i in 0..expr.len() {
+            let op = expr[i];
+            if !self.grammar.contains_key(op) { continue; }
+            if self.DEBUG { println!("[ OP ]:  {}", op); }
+            let grammar = self.get_grammar();
+            let rw_list = grammar.get(op).clone().unwrap();
+            let prev_str = str.clone();
+            
+            for k in 0..rw_list.len() {
+                let rw = rw_list[k].clone();
+                if self.DEBUG { println!("[SSTR]:  {}", str); }
+                if self.DEBUG { println!("[ RW ]:  {}", rw); }
+                str = str.replacen(op, &*rw, 1);
+                if self.DEBUG { println!("[AFTER]: {}", str); }
+                if str.len() >= 20 {
+                    if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
+                    str = prev_str.clone();
+                    continue;
+                }
+                if !str.contains('e') && k == rw_list.len()-1 {
+                    self.rw.push(str.clone());
+                    println!("[FINAL]: {}", str);
+                    term = true;
+                    break;
+                } else if !str.contains('e') {
+                    self.rw.push(str.clone());
+                    str = prev_str.clone();
+                    println!("[FINAL]: {}", str);
+                } else {
+                    self.cfg_extract(str.clone(), idx+1);
+                    if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
+                    str = prev_str.clone();
+                    if k == rw_list.len()-1 {
+                        term = true;
+                        break;
+                    }
+                }
+            }
+            if term { break; }
+        }
+        if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
+        if self.DEBUG { println!("-----------------------------------"); }
     }
 }
