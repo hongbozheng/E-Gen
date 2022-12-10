@@ -1,6 +1,3 @@
-use std::ops::Index;
-use strum::IntoEnumIterator; // 0.17.1
-// use enum_iterator::{sequence};
 use crate::*;
 
 pub struct ContextGrammar {
@@ -73,7 +70,7 @@ impl ContextGrammar {
         for eclass in eclasses {
             if eclass.id == root_eclass_id {
                 let root_eclass = format!("{}{}", "e", root_eclass_id);
-                self.init_rw = self.grammar.get(&*root_eclass).unwrap().index(1).clone();
+                self.init_rw = self.grammar.get(&*root_eclass).unwrap()[1].clone();
             }
         }
     }
