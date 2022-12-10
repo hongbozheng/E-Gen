@@ -40,6 +40,23 @@ fn set_debug_flag(DEBUG: &mut bool, debug_flag: u8) {
     }
 }
 
+fn set_cli_1(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool) {
+    if args[1] == "-csg" {
+        set_csg_flag(csg, args[2].parse::<u8>().unwrap());
+    } else if args[1] == "-de" {
+        set_debug_flag(DEBUG, args[2].parse::<u8>().unwrap());
+    } else { help(); }
+}
+
+fn set_cli_2(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool) {
+    set_cli_1(args, csg, DEBUG);
+    if args[3] == "-csg" {
+        set_csg_flag(csg, args[4].parse::<u8>().unwrap());
+    } else if args[3] == "-de" {
+        set_debug_flag(DEBUG, args[4].parse::<u8>().unwrap());
+    } else { help(); }
+}
+
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
     let mut csg = false;
@@ -53,19 +70,11 @@ pub fn main() {
         },
         2 => { help(); },
         3 => {
-            if args[1] == "-csg" {
-                set_csg_flag(&mut csg, args[2].parse::<u8>().unwrap());
-            } else if args[1] == "-de" {
-                set_debug_flag(&mut DEBUG, args[2].parse::<u8>().unwrap());
-            } else { help(); }
+            set_cli_1(&args, &mut csg, &mut DEBUG);
         },
         4 => { help(); },
         5 => {
-            if args[3] == "-csg" {
-                set_csg_flag(&mut csg, args[4].parse::<u8>().unwrap());
-            } else if args[3] == "-de" {
-                set_debug_flag(&mut DEBUG, args[4].parse::<u8>().unwrap());
-            } else { help(); }
+           set_cli_2(&args, &mut csg, &mut DEBUG);
         },
         _ => {
             eprintln!("[ERROR]: INVALID COMMAND LINE ARGUMENT(S)");
@@ -146,7 +155,8 @@ pub fn main() {
     println!("[INFO]: -----------------------------\n");
 
     if csg {
-
+        println!("[INFO]: Start context-sensitive grammar extraction...");
+        ctx_g.csg_extract(init_rw, 0);
     } else {
         println!("[INFO]: Start context-free grammar extraction...");
         ctx_g.cfg_extract(init_rw, 0);
