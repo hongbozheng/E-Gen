@@ -157,8 +157,36 @@ pub fn main() {
     if csg {
         println!("[INFO]: Start context-sensitive grammar extraction...");
         ctx_g.csg_extract(init_rw, 0);
+        println!("[INFO]: Finish context-sensitive grammar extraction\n");
+        let mut rw_list = ctx_g.get_rw();
+        let orig_rw_num = rw_list.len();
+        rw_list.sort_unstable();
+        rw_list.dedup();
+        if orig_rw_num == rw_list.len() {
+            println!("[INFO]: RW are all unique");
+        } else {
+            println!("[INFO]: RW have duplicates");
+        }
+        rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+        println!("[INFO]: Total # of RW {}", rw_list.len());
+        for rw in rw_list {
+            println!("[INFO]: {}", rw);
+        }
     } else {
         println!("[INFO]: Start context-free grammar extraction...");
         ctx_g.cfg_extract(init_rw, 0);
+        println!("[INFO]: Finish context-free grammar extraction\n");
+        let mut rw_list = ctx_g.get_rw();
+        let orig_rw_num = rw_list.len();
+        if orig_rw_num == rw_list.len() {
+            println!("[INFO]: RW are all unique");
+        } else {
+            println!("[INFO]: RW have duplicates");
+        }
+        rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+        println!("[INFO]: Total # of RW {}", rw_list.len());
+        for rw in rw_list {
+            println!("[INFO]: {}", rw);
+        }
     }
 }

@@ -82,6 +82,13 @@ impl ContextGrammar {
         return self.init_rw.clone();
     }
 
+    /// ## member function to get the final rewrites from self
+    /// ## Argument
+    /// * `self`
+    pub fn get_rw(&self) -> Vec<String> {
+        return self.rw.clone();
+    }
+
     /// ## member function to extract all equivalent mathematical expressions
     /// ## Context-Sensitive Grammar
     /// ## Argument
