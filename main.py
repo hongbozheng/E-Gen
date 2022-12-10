@@ -15,7 +15,7 @@ eclass.append({'id':2,
                'node':[('Add',2,3),('Mul',0,1)],
                'parent':[('Add',2,3)]})
 eclass.append({'id':3,
-               'node':[0,1],
+               'node':[0],
                'parent':[('Add',0,3),('Add',1,3),('Add',2,3),('Add',3,3),('Add',3,3)]})
 
 def main():
@@ -50,24 +50,29 @@ def main():
     if csg:
         ctx_g.csg_extract(str_=ctx_g.init_rw, idx=0)
         csg_rw = ctx_g.get_rw()
+        logger.log_info_raw()
         if len(csg_rw) == len(set(csg_rw)):
-            print('RW are unique')
+            logger.log_info('RW are unique')
         else:
-            print('Duplicate RW')
+            logger.log_info('Duplicate RW')
             csg_rw = set(csg_rw)
-            print(len(csg_rw))
+            logger.log_info('TOTAL # of RW %d' % len(csg_rw))
+            csg_rw = sorted(csg_rw, key=len, reverse=False)
             for rw in csg_rw:
-                print('[ RW ]: %s' % rw)
+                logger.log_info('%s' % rw)
+
     else:
         ctx_g.cfg_extract(str_=ctx_g.init_rw, idx=0)
         cfg_rw = ctx_g.get_rw()
+        logger.log_info_raw()
         if len(cfg_rw) == len(set(cfg_rw)):
-            print('RW are unique')
-            print(len(cfg_rw))
+            logger.log_info('RW are unique')
+            logger.log_info('TOTAL # of RW %d' % len(cfg_rw))
+            cfg_rw.sort(key=len, reverse=False)
             for rw in cfg_rw:
-                print('[ RW ]: %s' % rw)
+                logger.log_info('%s' % rw)
         else:
-            print('Duplicate RW')
+            logger.log_info('Duplicate RW')
 
 if __name__ == '__main__':
     main()
