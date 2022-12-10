@@ -145,7 +145,10 @@ pub fn main() {
     println!("[INFO]: {}", init_rw);
     println!("[INFO]: -----------------------------\n");
 
-    println!("[INFO]: Start context-free grammar extraction...");
-    ctx_g.cfg_extract(init_rw, 0);
-    // ctx_g.set_operator();
+    if csg {
+        
+    } else {
+        println!("[INFO]: Start context-free grammar extraction...");
+        ctx_g.cfg_extract(init_rw, 0);
+    }
 }
