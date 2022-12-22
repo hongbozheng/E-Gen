@@ -101,11 +101,10 @@ type ExplainCache<L> = HashMap<(Id, Id), Rc<TreeTerm<L>>>;
 type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 
 /** A data structure representing an explanation that two terms are equivalent.
-
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.
-**/
+ **/
 pub struct Explanation<L: Language> {
     /// The tree representation of the explanation.
     pub explanation_trees: TreeExplanation<L>,
@@ -353,10 +352,10 @@ impl<L: Language> Explanation<L> {
     /// Check the validity of the explanation with respect to the given rules.
     /// This only is able to check rule applications when the rules are implement `get_pattern_ast`.
     pub fn check_proof<'a, R, N: Analysis<L>>(&mut self, rules: R)
-    where
-        R: IntoIterator<Item = &'a Rewrite<L, N>>,
-        L: 'a,
-        N: 'a,
+        where
+            R: IntoIterator<Item = &'a Rewrite<L, N>>,
+            L: 'a,
+            N: 'a,
     {
         let rules: Vec<&Rewrite<L, N>> = rules.into_iter().collect();
         let rule_table = Explain::make_rule_table(rules.as_slice());
@@ -780,18 +779,18 @@ impl<L: Language> FlatTerm<L> {
     pub fn has_rewrite_forward(&self) -> bool {
         self.forward_rule.is_some()
             || self
-                .children
-                .iter()
-                .any(|child| child.has_rewrite_forward())
+            .children
+            .iter()
+            .any(|child| child.has_rewrite_forward())
     }
 
     /// Checks if this term or any child has a [`backward_rule`](FlatTerm::backward_rule).
     pub fn has_rewrite_backward(&self) -> bool {
         self.backward_rule.is_some()
             || self
-                .children
-                .iter()
-                .any(|child| child.has_rewrite_backward())
+            .children
+            .iter()
+            .any(|child| child.has_rewrite_backward())
     }
 
     fn from_pattern(
