@@ -3,6 +3,12 @@
 ## [Unreleased] - ReleaseDate
 
 
+## [0.9.2] - 2022-12-15
+
+### Added
+
+- ([#210] https://github.com/egraphs-good/egg/pull/210) Fix crashes in proof generation due to proof size calculations overflowing.
+- ([#215] https://github.com/egraphs-good/egg/pull/215) Added a better intersection algorithms on two egraphs based on "Join Algorithms for the Theory of Uninterpreted Functions". The old intersection algorithm was not complete on the terms in both egraphs, but the new one is. Unfortunately, the new algorithm is quadratic.
 
 ## [0.9.1] - 2022-09-22
 
@@ -42,7 +48,7 @@
 - ([#168](https://github.com/egraphs-good/egg/pull/168)) Added MultiPatterns.
 
 ### Changed
-- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior. 
+- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior.
 - The tested MSRV is now 1.60.0.
 - Several small documentation enhancements.
 - ([#162](https://github.com/egraphs-good/egg/pull/162), [#163](https://github.com/egraphs-good/egg/pull/163))
@@ -58,9 +64,9 @@ This patch fixes a pretty bad e-matching bug introduced in 0.7.0. Please upgrade
 
 ## [0.7.0] - 2021-11-23
 
-It's a been a long time since a release! 
+It's been a long time since a release!
 There's a lot in this one, hopefully I can cut releases more frequently in the future,
- because there are definitely more features coming :)
+because there are definitely more features coming :)
 
 ### Added
 - The egraph now has an `EGraph::with_explanations_enabled` mode that allows for
@@ -218,7 +224,8 @@ But hopefully things will be a little more stable from here on out
 since the API is a lot nicer.
 
 <!-- next-url -->
-[Unreleased]: https://github.com/egraphs-good/egg/compare/v0.9.1...HEAD
+[Unreleased]: https://github.com/egraphs-good/egg/compare/v0.9.2...HEAD
+[0.9.2]: https://github.com/egraphs-good/egg/compare/v0.9.0...v0.9.2
 [0.9.1]: https://github.com/egraphs-good/egg/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/egraphs-good/egg/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/egraphs-good/egg/compare/v0.8.0...v0.8.1
