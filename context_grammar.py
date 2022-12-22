@@ -33,23 +33,6 @@ class ContextGrammer:
     def get_rw(self) -> list:
         return self.rw
 
-    def is_operator(self, op: str) -> bool:
-        if op in config.operator_list:
-            return True
-        return False
-
-    def is_var(self, op: str) -> bool:
-        if op in config.var_list:
-            return True
-        return False
-
-    def is_const(self, op: str) -> bool:
-        try:
-            int(op)
-            return True
-        except:
-            return False
-
     '''
     context-free grammar
     '''
@@ -63,7 +46,7 @@ class ContextGrammer:
 
         for i in range(len(expr)):
             op = expr[i]
-            if self.is_operator(op=op) or self.is_var(op=op) or self.is_const(op=op):
+            if op not in self.grammar:
                 continue
             logger.log_debug_raw('[ OP ]:  %s' % op)
             rw_list = self.grammar[str(expr[i])]
@@ -114,7 +97,7 @@ class ContextGrammer:
 
         for i in range(len(expr)):
             op = expr[i]
-            if self.is_operator(op=op) or self.is_var(op=op) or self.is_const(op=op):
+            if op not in self.grammar:
                 continue
             rw_list = self.grammar[str(expr[i])]
             for k in range(len(rw_list)):
