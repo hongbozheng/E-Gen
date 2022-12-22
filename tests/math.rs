@@ -33,8 +33,8 @@ pub struct MathCostFn;
 impl egg::CostFunction<Math> for MathCostFn {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &Math, mut costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost,
+        where
+            C: FnMut(Id) -> Self::Cost,
     {
         let op_cost = match enode {
             Math::Diff(..) => 100,
@@ -110,10 +110,10 @@ fn is_const_or_distinct_var(v: &str, w: &str) -> impl Fn(&mut EGraph, Id, &Subst
     move |egraph, _, subst| {
         egraph.find(subst[v]) != egraph.find(subst[w])
             && (egraph[subst[v]].data.is_some()
-                || egraph[subst[v]]
-                    .nodes
-                    .iter()
-                    .any(|n| matches!(n, Math::Symbol(..))))
+            || egraph[subst[v]]
+            .nodes
+            .iter()
+            .any(|n| matches!(n, Math::Symbol(..))))
     }
 }
 
