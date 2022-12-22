@@ -1,11 +1,10 @@
 use crate::*;
 
 pub struct ContextGrammar {
-    egraph: MathEGraph,                     /* egraph after running rewrite rules           */
-    /* TODO: init_expr not needed i think */
     init_expr: &'static str,                /* initial expression to run with egraph        */
-    root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
     DEBUG: bool,                            /* debug flag                                   */
+    egraph: MathEGraph,                     /* egraph after running rewrite rules           */
+    root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
     init_rw: String,                        /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
@@ -18,16 +17,38 @@ impl ContextGrammar {
     /* TODO: init_expr not needed i think */
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(egraph: MathEGraph, init_expr: &'static str, root_classes: Vec<Id>, DEBUG: bool) -> Self {
+    pub fn new(init_expr: &'static str, DEBUG: bool) -> Self {
         ContextGrammar {
-            egraph,
             init_expr,
-            root_classes,
             DEBUG,
+            egraph: Default::default(),
+            root_classes: vec![],
             grammar: Default::default(),
             init_rw: "".to_string(),
             rw: vec![],
         }
+    }
+
+    /// ## member function to set egraph and root_eclasses
+    /// ## Argument
+    /// * `self`
+    pub fn set_egraph(&mut self) {
+        let recexpr = self.init_expr.parse().unwrap();
+        let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
+        self.egraph = runner.egraph;
+        self.root_classes = runner.roots;
+    }
+
+    /// ## member function to get an reference to egraph
+    /// ## Argument
+    /// * `self`
+    pub fn get_egraph(&self) -> &MathEGraph { return &self.egraph; }
+
+    /// ## member function to get root_eclasses
+    /// ## Argument
+    /// * `self`
+    pub fn get_root_eclasses(&self) -> Vec<Id> {
+        return self.root_classes.clone();
     }
 
     /// ## member function to set grammar from egraph
@@ -51,7 +72,6 @@ impl ContextGrammar {
             }
             self.grammar.insert(ec, rewrite_rules);
         }
-
     }
 
     /// ## member function to get grammar from self
@@ -78,16 +98,12 @@ impl ContextGrammar {
     /// ## member function to get the initial rewrite from self
     /// ## Argument
     /// * `self`
-    pub fn get_init_rw(&self) -> String {
-        return self.init_rw.clone();
-    }
+    pub fn get_init_rw(&self) -> String { return self.init_rw.clone(); }
 
     /// ## member function to get the final rewrites from self
     /// ## Argument
     /// * `self`
-    pub fn get_rw(&self) -> Vec<String> {
-        return self.rw.clone();
-    }
+    pub fn get_rw(&self) -> Vec<String> { return self.rw.clone(); }
 
     /// ## member function to extract all equivalent mathematical expressions
     /// ## Context-Sensitive Grammar
@@ -187,7 +203,7 @@ impl ContextGrammar {
                 str = str.replacen(op, &*rw, 1);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
-                if str.len() >= 20 {
+                if str.len() >= 30 {
                     if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
                     str = prev_str.clone();
                     continue;

@@ -1,5 +1,3 @@
-extern crate core;
-
 use std::{env::args, process::exit};
 use egg::{ContextGrammar, Language, Math, math_rule, MathEGraph, RecExpr, Runner};
 
@@ -82,83 +80,51 @@ pub fn main() {
         },
     }
 
-    let expr: &str = "(* x y)";
-    println!("[INFO]: Initial expression {}", expr);
-    let recexpr: RecExpr<Math> = expr.parse().unwrap();
-    let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
-    let egraph: MathEGraph = runner.egraph;
-    let iters = runner.iterations;
-    let roots = runner.roots;
-    let stop_reason = runner.stop_reason;
-    println!("[INFO]: EGraph total size {}", egraph.total_size());
-    println!("[INFO]: EGraph contains {} node(s)", egraph.total_number_of_nodes());
-    println!("[INFO]: EGraph contains {} eclass(es)\n", egraph.number_of_classes());
-    let eclasses = egraph.classes();
-    println!("[INFO]: EClass Information");
-    for eclass in eclasses {
-        println!("[INFO]: {:?}",eclass);
-        // let id = &eclass.id;
-        // let enodes = &eclass.nodes;
-        // println!("enodes in eclass id: {}",id);
-        // for enode in enodes {
-        //     println!("{}",enode);
-        //     let children = enode.children();
-        //     if children.is_empty() {println!("children node(s): None");}
-        //     else {println!("children node(s): {:?}",children);}
-        // }
-        // println!("\n");
-    }
-    // println!("Iterations");
-    // for iter in &iters {
-    //     println!("{:?}",iter);
-    // }
+    let init_expr: &str = "(* (sin y) z)";
+    let mut ctx_g = ContextGrammar::new(init_expr, DEBUG);
+    println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
+    ctx_g.set_egraph();
 
-    print!("\n[INFO]: Runner Root(s)");
-    for root in &roots {
-        print!(" {:?}",root);
-    }
-    println!("\n[INFO]: Root EClass ID {}\n", roots[0]);
-    // println!("\n[INFO]: Stop Reason {:?}",stop_reason.unwrap());
-    // let extractor = Extractor::new(&egraph,AstSize);
-    // //let find_cost = extractor.find_costs();
-    // let (best_cost,simplified_expr) = extractor.find_best(roots[0]);
-    // println!("Simplified Expression {} to {} with Cost {}",expr,simplified_expr,best_cost);
-    //
-    // println!("--------------------------------------------------\n");
-    // let csg = std::env::args().nth(1);
-    // match csg.is_some() {
-    //     Ok(true) => { println!("[INFO]: Context-Sensitive Grammar Flag = {:?}", csg) }
-    //     Err(false) => {}
-    // }
-    // println!("{:?}",csg);
-    // let DEBUG = std::env::args().nth(2).expect("[CLI]: DEBUG Message Flag");
-
-    let mut ctx_g = ContextGrammar::new(egraph, expr, roots, DEBUG);
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
-    println!("[INFO]: Finish creating grammar");
 
     println!("[INFO]: Setting initial expression...");
     ctx_g.set_init_rw();
-    println!("[INFO]: Finish setting inital expression\n");
 
-    println!("[INFO]: ---------- Grammar ----------");
+    println!("\n[INFO]: Initial expression {}", init_expr);
+
+    let egraph = ctx_g.get_egraph();
+    println!("[INFO]: EGraph total size {}", egraph.total_size());
+    println!("[INFO]: EGraph contains {} node(s)", egraph.total_number_of_nodes());
+    println!("[INFO]: EGraph contains {} eclass(es)", egraph.number_of_classes());
+
+    println!("\n[INFO]: ------- Root Eclasses -------");
+    let root_eclasses = ctx_g.get_root_eclasses();
+    print!("[INFO]:");
+    for id in root_eclasses {
+        print!(" {}", id);
+    }
+    println!("\n[INFO]: -----------------------------");
+
+    println!("\n[INFO]: ---------- Grammar ----------");
     let grammar = ctx_g.get_grammar();
     for (eclass, rewrite) in grammar {
         println!("[INFO]: {} -> {:?}", eclass, rewrite);
     }
-    println!("[INFO]: -----------------------------\n");
+    println!("[INFO]: -----------------------------");
 
-    println!("[INFO]: ----- Initial Expression ----");
+    println!("\n[INFO]: ------ Initial Rewrite ------");
     let init_rw = ctx_g.get_init_rw();
     println!("[INFO]: {}", init_rw);
-    println!("[INFO]: -----------------------------\n");
+    println!("[INFO]: -----------------------------");
+
+    let mut rw_list = vec![];
 
     if csg {
-        println!("[INFO]: Start context-sensitive grammar extraction...");
+        println!("\n[INFO]: Start context-sensitive grammar extraction...");
         ctx_g.csg_extract(init_rw, 0);
         println!("[INFO]: Finish context-sensitive grammar extraction\n");
-        let mut rw_list = ctx_g.get_rw();
+        rw_list = ctx_g.get_rw();
         let orig_rw_num = rw_list.len();
         rw_list.sort_unstable();
         rw_list.dedup();
@@ -167,26 +133,21 @@ pub fn main() {
         } else {
             println!("[INFO]: RW have duplicates");
         }
-        rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-        println!("[INFO]: Total # of RW {}", rw_list.len());
-        for rw in rw_list {
-            println!("[INFO]: {}", rw);
-        }
     } else {
-        println!("[INFO]: Start context-free grammar extraction...");
+        println!("\n[INFO]: Start context-free grammar extraction...");
         ctx_g.cfg_extract(init_rw, 0);
         println!("[INFO]: Finish context-free grammar extraction\n");
-        let mut rw_list = ctx_g.get_rw();
+        rw_list = ctx_g.get_rw();
         let orig_rw_num = rw_list.len();
         if orig_rw_num == rw_list.len() {
             println!("[INFO]: RW are all unique");
         } else {
             println!("[INFO]: RW have duplicates");
         }
-        rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-        println!("[INFO]: Total # of RW {}", rw_list.len());
-        for rw in rw_list {
-            println!("[INFO]: {}", rw);
-        }
+    }
+    rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+    println!("[INFO]: Total # of RW {}", rw_list.len());
+    for rw in rw_list {
+        println!("[INFO]: {}", rw);
     }
 }
