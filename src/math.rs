@@ -22,6 +22,7 @@ define_language! {
 
         "sin" = Sin(Id),
         "cos" = Cos(Id),
+        "tan" = Tan(Id),
 
         Constant(Constant),
         Symbol(Symbol),
@@ -96,6 +97,11 @@ impl Analysis<Math> for ConstantFold {
     }
 }
 
+fn is_const(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
+    let var = var.parse().unwrap();
+    move |egraph, _, subst| egraph[subst[var]].data.is_some()
+}
+
 fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
     let var = var.parse().unwrap();
     move |egraph, _, subst| {
@@ -112,25 +118,59 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
  * https://docs.rs/egg/0.7.1/egg/macro.rewrite.html
  */
 pub fn math_rule() -> Vec<Rewrite> {
-    vec![//rw!("commutative-addition"; "(+ ?x ?y)" => "(+ ?y ?x)"),
-         //rw!("commutative-multiplication"; "(* ?x ?y)" => "(* ?y ?x)"),
-         //rw!("associative-addition"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
-         //rw!("associative-multiplication"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
-         //rw!("add-0"; "(+ ?x 0)" => "?x"),
-         rw!("add-0-expansion"; "?x" => "(+ ?x 0)"),
-         //rw!("multiply-0"; "(* ?x 0)" => "0"),
-         //rw!("multiply-1"; "(* ?x 1)" => "?x"),
-         //rw!("multiply-1-expansion"; "?x" => "(* ?x 1)"),
-         //rw!("distributive"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
-         //rw!("factorization"; "(+ (* ?x ?y) (* ?x ?z))" => "(* ?x (+ ?y ?z))"),
-         //rw!("subtraction_cancel"; "(- ?x ?x)" => "0"),
-         //rw!("division_cancel"; "(/ ?x ?x)" => "1" if not_zero("?x")),
-         //rw!("pow(1)"; "(pow ?x 1)" => "?x"),
-         //rw!("pow(1)_"; "?x" => "(pow ?x 1)"),
-         //rw!("pow(+)"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
-         //rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
-         //rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
-         //rw!("idk"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
-         //rw!("idk_"; "(+ (- ?x ?y) ?z)" => "(+ ?x (- ?z ?y))")
+    vec![
+        /* commutative rules */
+        /* does not work with commutative rules */
+        // rw!("commutative-add"; "(+ ?x ?y)" => "(+ ?y ?x)"),
+        // rw!("commutative-mul"; "(* ?x ?y)" => "(* ?y ?x)"),
+        // rw!("commutative-add_"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
+        rw!("commutative-mul_"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
+        // rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
+
+        /* expansion */
+        /* shouldn't comment the following rewrite rule since x needs to be expanded as (* x 1) */
+        rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
+        /* shouldn't comment the following rewrite rule since x needs to be expanded as (pow x 1) */
+        rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
+
+        /* simplification */
+        rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
+        rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
+        rw!("sub_cancel"; "(- ?x ?x)" => "0"),
+        rw!("div_cancel"; "(/ ?x ?x)" => "1" if not_zero("?x")),
+        rw!("mul-(-1)"; "(* -1 -1)" => "1"),
+        // rw!("recip-mul-div"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
+
+        /* distributive property & factorization */
+        rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
+        rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+
+        /* power */
+        rw!("pow(0)"; "(pow ?x 0)" => "1"),
+        rw!("pow(1)"; "(pow ?x 1)" => "?x"),
+        rw!("pow-mul"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
+        rw!("pow-div"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
+
+        /* derivative */
+        rw!("d-power-const"; "(d (pow ?x ?c) ?x)" => "(* ?c (pow ?x (- ?c 1)))"
+            if is_const("?c")),
+
+        /* integration */
+        rw!("i-one"; "(i 1 ?x)" => "?x"),
+        rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
+            if is_const("?c")),
+
+        /* trig */
+        rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
+        /* trig derivative */
+        rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
+        rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
+        /* trig integration */
+        rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
+        rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
+
+        /* useless */
+        // rw!("add-0-exp"; "?x" => "(+ ?x 0)"),
+        // rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
     ]
 }

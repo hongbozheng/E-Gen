@@ -80,7 +80,12 @@ pub fn main() {
         },
     }
 
-    let init_expr: &str = "(* (sin y) z)";
+    // let init_expr: &str = "(* (sin x) y)";
+    // let init_expr: &str = "(+ (d (* 2 x) x) y)";
+    // let init_expr: &str = "(+ x (+ x (+ x x)))";
+    // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
+    /* too complicated breaks extractor */
+    // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     let mut ctx_g = ContextGrammar::new(init_expr, DEBUG);
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();

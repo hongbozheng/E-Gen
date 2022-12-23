@@ -1,3 +1,4 @@
+use std::fmt::format;
 use crate::*;
 
 pub struct ContextGrammar {
@@ -37,6 +38,24 @@ impl ContextGrammar {
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
         self.root_classes = runner.roots;
+        for eclass in self.egraph.classes() {
+            println!("[INFO]: {:?}",eclass);
+            let id = &eclass.id;
+            let enodes = &eclass.nodes;
+            println!("enodes in eclass id: {}",id);
+            for enode in enodes {
+                println!("{}",enode);
+                let children = enode.children();
+                if children.is_empty() {println!("children node(s): None");}
+                else {println!("children node(s): {:?}",children);}
+            }
+            println!("\n");
+        }
+        print!("\n[INFO]: Runner Root(s)");
+        for root in &self.root_classes {
+            print!(" {:?}",root);
+        }
+        println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
     }
 
     /// ## member function to get an reference to egraph
@@ -87,10 +106,18 @@ impl ContextGrammar {
     pub fn set_init_rw(&mut self) {
         let root_eclass_id = self.root_classes[0];
         let eclasses = self.egraph.classes();
+        // for eclass in eclasses {
+        //     let mut tmp = 0;
+        //     let eclass_key = format!("{}{}", "e", eclass.id);
+        //     let rw_vec = self.grammar.get(&*eclass_key).unwrap();
+        //     if rw_vec.len() > tmp {
+        //         self.init_rw = rw_vec[0].clone();
+        //     }
+        // }
         for eclass in eclasses {
             if eclass.id == root_eclass_id {
                 let root_eclass = format!("{}{}", "e", root_eclass_id);
-                self.init_rw = self.grammar.get(&*root_eclass).unwrap()[1].clone();
+                self.init_rw = self.grammar.get(&*root_eclass).unwrap()[0].clone();
             }
         }
     }
@@ -203,7 +230,7 @@ impl ContextGrammar {
                 str = str.replacen(op, &*rw, 1);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
-                if str.len() >= 30 {
+                if str.len() >= 25 {
                     if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
                     str = prev_str.clone();
                     continue;
