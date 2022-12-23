@@ -5,10 +5,8 @@ use crate::util::HashMap;
 use crate::{Analysis, EClass, EGraph, Id, Language, RecExpr};
 
 /** Extracting a single [`RecExpr`] from an [`EGraph`].
-
 ```
 use egg::*;
-
 define_language! {
     enum SimpleLanguage {
         Num(i32),
@@ -16,27 +14,22 @@ define_language! {
         "*" = Mul([Id; 2]),
     }
 }
-
 let rules: &[Rewrite<SimpleLanguage, ()>] = &[
     rewrite!("commute-add"; "(+ ?a ?b)" => "(+ ?b ?a)"),
     rewrite!("commute-mul"; "(* ?a ?b)" => "(* ?b ?a)"),
-
     rewrite!("add-0"; "(+ ?a 0)" => "?a"),
     rewrite!("mul-0"; "(* ?a 0)" => "0"),
     rewrite!("mul-1"; "(* ?a 1)" => "?a"),
 ];
-
 let start = "(+ 0 (* 1 10))".parse().unwrap();
 let runner = Runner::default().with_expr(&start).run(rules);
 let (egraph, root) = (runner.egraph, runner.roots[0]);
-
 let mut extractor = Extractor::new(&egraph, AstSize);
 let (best_cost, best) = extractor.find_best(root);
 assert_eq!(best_cost, 1);
 assert_eq!(best, "10".parse().unwrap());
 ```
-
-**/
+ **/
 #[derive(Debug)]
 pub struct Extractor<'a, CF: CostFunction<L>, L: Language, N: Analysis<L>> {
     cost_function: CF,
@@ -45,11 +38,9 @@ pub struct Extractor<'a, CF: CostFunction<L>, L: Language, N: Analysis<L>> {
 }
 
 /** A cost function that can be used by an [`Extractor`].
-
 To extract an expression from an [`EGraph`], the [`Extractor`]
 requires a cost function to performs its greedy search.
 `egg` provides the simple [`AstSize`] and [`AstDepth`] cost functions.
-
 The example below illustrates a silly but realistic example of
 implementing a cost function that is essentially AST size weighted by
 the operator:
@@ -70,23 +61,19 @@ impl CostFunction<SymbolLang> for SillyCostFn {
         enode.fold(op_cost, |sum, id| sum + costs(id))
     }
 }
-
 let e: RecExpr<SymbolLang> = "(do_it foo bar baz)".parse().unwrap();
 assert_eq!(SillyCostFn.cost_rec(&e), 102.7);
 assert_eq!(AstSize.cost_rec(&e), 4);
 assert_eq!(AstDepth.cost_rec(&e), 2);
 ```
-
 If you'd like to access the [`Analysis`] data or anything else in the e-graph,
 you can put a reference to the e-graph in your [`CostFunction`]:
-
 ```
 # use egg::*;
 # type MyAnalysis = ();
 struct EGraphCostFn<'a> {
     egraph: &'a EGraph<SymbolLang, MyAnalysis>,
 }
-
 impl<'a> CostFunction<SymbolLang> for EGraphCostFn<'a> {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &SymbolLang, mut costs: C) -> Self::Cost
@@ -98,14 +85,13 @@ impl<'a> CostFunction<SymbolLang> for EGraphCostFn<'a> {
         return 1
     }
 }
-
 let mut egraph = EGraph::<SymbolLang, MyAnalysis>::default();
 let id = egraph.add_expr(&"(foo bar)".parse().unwrap());
 let cost_func = EGraphCostFn { egraph: &egraph };
 let mut extractor = Extractor::new(&egraph, cost_func);
 let _ = extractor.find_best(id);
 ```
-**/
+ **/
 pub trait CostFunction<L: Language> {
     /// The `Cost` type. It only requires `PartialOrd` so you can use
     /// floating point types, but failed comparisons (`NaN`s) will
@@ -118,8 +104,8 @@ pub trait CostFunction<L: Language> {
     /// _monotonic_, i.e. `cost` should return a `Cost` greater than
     /// any of the child costs of the given enode.
     fn cost<C>(&mut self, enode: &L, costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost;
+        where
+            C: FnMut(Id) -> Self::Cost;
 
     /// Calculates the total cost of a [`RecExpr`].
     ///
@@ -138,42 +124,38 @@ pub trait CostFunction<L: Language> {
 }
 
 /** A simple [`CostFunction`] that counts total ast size.
-
 ```
 # use egg::*;
 let e: RecExpr<SymbolLang> = "(do_it foo bar baz)".parse().unwrap();
 assert_eq!(AstSize.cost_rec(&e), 4);
 ```
-
-**/
+ **/
 #[derive(Debug)]
 pub struct AstSize;
 impl<L: Language> CostFunction<L> for AstSize {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &L, mut costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost,
+        where
+            C: FnMut(Id) -> Self::Cost,
     {
         enode.fold(1, |sum, id| sum + costs(id))
     }
 }
 
 /** A simple [`CostFunction`] that counts maximum ast depth.
-
 ```
 # use egg::*;
 let e: RecExpr<SymbolLang> = "(do_it foo bar baz)".parse().unwrap();
 assert_eq!(AstDepth.cost_rec(&e), 2);
 ```
-
-**/
+ **/
 #[derive(Debug)]
 pub struct AstDepth;
 impl<L: Language> CostFunction<L> for AstDepth {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &L, mut costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost,
+        where
+            C: FnMut(Id) -> Self::Cost,
     {
         1 + enode.fold(0, |max, id| max.max(costs(id)))
     }
@@ -190,10 +172,10 @@ fn cmp<T: PartialOrd>(a: &Option<T>, b: &Option<T>) -> Ordering {
 }
 
 impl<'a, CF, L, N> Extractor<'a, CF, L, N>
-where
-    CF: CostFunction<L>,
-    L: Language,
-    N: Analysis<L>,
+    where
+        CF: CostFunction<L>,
+        L: Language,
+        N: Analysis<L>,
 {
     /// Create a new `Extractor` given an `EGraph` and a
     /// `CostFunction`.

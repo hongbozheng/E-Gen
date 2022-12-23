@@ -65,15 +65,15 @@ struct ClassVars {
 }
 
 impl<'a, L, N> LpExtractor<'a, L, N>
-where
-    L: Language,
-    N: Analysis<L>,
+    where
+        L: Language,
+        N: Analysis<L>,
 {
     /// Create an [`LpExtractor`] using costs from the given [`LpCostFunction`].
     /// See those docs for details.
     pub fn new<CF>(egraph: &'a EGraph<L, N>, mut cost_function: CF) -> Self
-    where
-        CF: LpCostFunction<L, N>,
+        where
+            CF: LpCostFunction<L, N>,
     {
         let max_order = egraph.total_number_of_nodes() as f64 * 10.0;
 
@@ -207,9 +207,9 @@ where
 }
 
 fn find_cycles<L, N>(egraph: &EGraph<L, N>, mut f: impl FnMut(Id, usize))
-where
-    L: Language,
-    N: Analysis<L>,
+    where
+        L: Language,
+        N: Analysis<L>,
 {
     enum Color {
         White,

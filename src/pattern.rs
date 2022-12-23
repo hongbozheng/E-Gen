@@ -266,7 +266,7 @@ impl<L: Language, A: Analysis<L>> Searcher<L, A> for Pattern<L> {
         match self.ast.as_ref().last().unwrap() {
             ENodeOrVar::ENode(e) => {
                 #[allow(enum_intrinsics_non_enums)]
-                let key = std::mem::discriminant(e);
+                    let key = std::mem::discriminant(e);
                 match egraph.classes_by_op.get(&key) {
                     None => vec![],
                     Some(ids) => rewrite::search_eclasses_with_limit(
@@ -311,9 +311,9 @@ impl<L: Language, A: Analysis<L>> Searcher<L, A> for Pattern<L> {
 }
 
 impl<L, A> Applier<L, A> for Pattern<L>
-where
-    L: Language,
-    A: Analysis<L>,
+    where
+        L: Language,
+        A: Analysis<L>,
 {
     fn get_pattern_ast(&self) -> Option<&PatternAst<L>> {
         Some(&self.ast)
