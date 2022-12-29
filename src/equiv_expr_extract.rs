@@ -2,8 +2,8 @@ use std::fmt::format;
 use crate::*;
 
 pub struct ContextGrammar {
-    init_expr: &'static str,                /* initial expression to run with egraph        */
     DEBUG: bool,                            /* debug flag                                   */
+    init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
     root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
@@ -20,8 +20,8 @@ impl ContextGrammar {
     /// * `root_classes` - root classes of MathEGraph
     pub fn new(init_expr: &'static str, DEBUG: bool) -> Self {
         ContextGrammar {
-            init_expr,
             DEBUG,
+            init_expr,
             egraph: Default::default(),
             root_classes: vec![],
             grammar: Default::default(),
@@ -198,7 +198,7 @@ impl ContextGrammar {
     }
 
     /// ## member function to extract all equivalent mathematical expressions
-    /// ## ## Context-Free Grammar
+    /// ## Context-Free Grammar
     /// ## Argument
     /// * `self`
     /// * `str` - rewrite expression
