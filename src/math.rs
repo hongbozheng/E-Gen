@@ -164,7 +164,7 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* derivative distributive property */
         rw!("d-const*var-distrib"; "(d ?x (* ?c ?x))" => "(* ?c (d ?x ?x))" if is_const("?c")),
-        //- rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
+        rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
 
         /* integration */
         // rw!("i-one"; "(i 1 ?x)" => "?x"),

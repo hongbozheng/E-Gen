@@ -1,7 +1,5 @@
-use std::{env::args, process::exit};
-use std::array::from_mut;
-use std::cmp::max;
-use egg::{ContextGrammar, Language, Math, math_rule, MathEGraph, RecExpr, Runner};
+use std::{process::exit};
+use egg::{ContextGrammar, Language};
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -115,11 +113,12 @@ pub fn main() {
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
     /* partially working (rw len restricted) */
     let init_expr: &str = "(+ x (+ x (+ x x)))";
+    let init_expr: &str = "(+ (* 1 x) (* 3 x))";
     /* not working */
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* too complicated breaks extractor */
     // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
-    let mut ctx_g = ContextGrammar::new(DEBUG, max_rw_len, init_expr);
+    let mut ctx_g = ContextGrammar::new(csg, DEBUG, max_rw_len, init_expr);
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();
 
@@ -153,39 +152,39 @@ pub fn main() {
 
     println!("\n[INFO]: ------ Initial Rewrite ------");
     let init_rw = ctx_g.get_init_rw();
-    println!("[INFO]: {}", init_rw);
+    println!("[INFO]: {:?}", init_rw);
     println!("[INFO]: -----------------------------");
 
-    let mut rw_list = vec![];
+    let mut rw_list: Vec<String> = vec![];
 
-    if csg {
-        println!("\n[INFO]: Start context-sensitive grammar extraction...");
-        ctx_g.csg_extract(init_rw, 0);
-        println!("[INFO]: Finish context-sensitive grammar extraction\n");
-        rw_list = ctx_g.get_rw();
-        let orig_rw_num = rw_list.len();
-        rw_list.sort_unstable();
-        rw_list.dedup();
-        if orig_rw_num == rw_list.len() {
-            println!("[INFO]: RW are all unique");
-        } else {
-            println!("[INFO]: RW have duplicates");
-        }
-    } else {
-        println!("\n[INFO]: Start context-free grammar extraction...");
-        ctx_g.cfg_extract(init_rw, 0);
-        println!("[INFO]: Finish context-free grammar extraction\n");
-        rw_list = ctx_g.get_rw();
-        let orig_rw_num = rw_list.len();
-        if orig_rw_num == rw_list.len() {
-            println!("[INFO]: RW are all unique");
-        } else {
-            println!("[INFO]: RW have duplicates");
-        }
-    }
-    rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-    println!("[INFO]: Total # of RW {}", rw_list.len());
-    for rw in rw_list {
-        println!("[INFO]: {}", rw);
-    }
+    // if csg {
+    //     println!("\n[INFO]: Start context-sensitive grammar extraction...");
+    //     ctx_g.csg_extract(init_rw, 0);
+    //     println!("[INFO]: Finish context-sensitive grammar extraction\n");
+    //     rw_list = ctx_g.get_rw();
+    //     let orig_rw_num = rw_list.len();
+    //     rw_list.sort_unstable();
+    //     rw_list.dedup();
+    //     if orig_rw_num == rw_list.len() {
+    //         println!("[INFO]: RW are all unique");
+    //     } else {
+    //         println!("[INFO]: RW have duplicates");
+    //     }
+    // } else {
+    //     println!("\n[INFO]: Start context-free grammar extraction...");
+    //     ctx_g.cfg_extract(init_rw, 0);
+    //     println!("[INFO]: Finish context-free grammar extraction\n");
+    //     rw_list = ctx_g.get_rw();
+    //     let orig_rw_num = rw_list.len();
+    //     if orig_rw_num == rw_list.len() {
+    //         println!("[INFO]: RW are all unique");
+    //     } else {
+    //         println!("[INFO]: RW have duplicates");
+    //     }
+    // }
+    // rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+    // println!("[INFO]: Total # of RW {}", rw_list.len());
+    // for rw in rw_list {
+    //     println!("[INFO]: {}", rw);
+    // }
 }

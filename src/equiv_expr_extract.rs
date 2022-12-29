@@ -2,13 +2,14 @@ use std::fmt::format;
 use crate::*;
 
 pub struct ContextGrammar {
+    csg: bool,                              /* context-sensitive grammar flag               */
     DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
     root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
-    init_rw: String,                        /* initial rw e.g. (* e0 e1)                    */
+    init_rw: Vec<String>,                   /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
 
@@ -19,15 +20,16 @@ impl ContextGrammar {
     /* TODO: init_expr not needed i think */
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(DEBUG: bool, max_rw_len: u8, init_expr: &'static str) -> Self {
+    pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, init_expr: &'static str) -> Self {
         ContextGrammar {
+            csg,
             DEBUG,
             max_rw_len,
             init_expr,
             egraph: Default::default(),
             root_classes: vec![],
             grammar: Default::default(),
-            init_rw: "".to_string(),
+            init_rw: vec![],
             rw: vec![],
         }
     }
@@ -40,6 +42,8 @@ impl ContextGrammar {
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
         self.root_classes = runner.roots;
+
+        /* debug */
         // for eclass in self.egraph.classes() {
         //     println!("[INFO]: {:?}",eclass);
         //     let id = &eclass.id;
@@ -57,10 +61,6 @@ impl ContextGrammar {
         // for root in &self.root_classes {
         //     print!(" {:?}",root);
         // }
-        // println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
-        // let extractor = Extractor::new(&self.egraph, AstSize);
-        // let (best_cost, simpl_expr) = extractor.find_best(self.root_classes[0]);
-        // println!("Simplified Expression to {} with Cost {}",simpl_expr,best_cost);
     }
 
     /// ## member function to get an reference to egraph
@@ -81,7 +81,6 @@ impl ContextGrammar {
     pub fn set_grammar(&mut self) {
         let eclasses = self.egraph.classes();
         for eclass in eclasses {
-            /* cannot use &str, since it may reference rewrite that has already been deallocated */
             let mut rewrite_rules: Vec<String> = vec![];
             let id = eclass.id;
             let ec: String = format!("{}{}", "e", id);
@@ -109,28 +108,21 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        let root_eclass_id = self.root_classes[0];
-        let eclasses = self.egraph.classes();
-        // for eclass in eclasses {
-        //     let mut tmp = 0;
-        //     let eclass_key = format!("{}{}", "e", eclass.id);
-        //     let rw_vec = self.grammar.get(&*eclass_key).unwrap();
-        //     if rw_vec.len() > tmp {
-        //         self.init_rw = rw_vec[0].clone();
-        //     }
-        // }
-        for eclass in eclasses {
-            if eclass.id == root_eclass_id {
-                let root_eclass = format!("{}{}", "e", root_eclass_id);
-                self.init_rw = self.grammar.get(&*root_eclass).unwrap()[0].clone();
-            }
-        }
+        let root_eclass = format!("{}{}", "e", self.root_classes[0]);
+        println!("[root eclass]: {}", root_eclass);
+        self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+
+        /* debug */
+        println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
+        let extractor = Extractor::new(&self.egraph, AstSize);
+        let (best_cost, simpl_expr) = extractor.find_best(self.root_classes[0]);
+        println!("Simplified Expression to {} with Cost {}",simpl_expr,best_cost);
     }
 
     /// ## member function to get the initial rewrite from self
     /// ## Argument
     /// * `self`
-    pub fn get_init_rw(&self) -> String { return self.init_rw.clone(); }
+    pub fn get_init_rw(&self) -> Vec<String> { return self.init_rw.clone(); }
 
     /// ## member function to get the final rewrites from self
     /// ## Argument
@@ -263,5 +255,12 @@ impl ContextGrammar {
         }
         if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
         if self.DEBUG { println!("-----------------------------------"); }
+    }
+
+    pub fn extract(self) {
+        match self.csg {
+            true => {},
+            false => {},
+        }
     }
 }
