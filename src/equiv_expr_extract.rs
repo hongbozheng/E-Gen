@@ -3,6 +3,7 @@ use crate::*;
 
 pub struct ContextGrammar {
     DEBUG: bool,                            /* debug flag                                   */
+    max_rw_len: u8,                         /* maximum rewrite length                       */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
     root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
@@ -18,9 +19,10 @@ impl ContextGrammar {
     /* TODO: init_expr not needed i think */
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(init_expr: &'static str, DEBUG: bool) -> Self {
+    pub fn new(DEBUG: bool, max_rw_len: u8, init_expr: &'static str) -> Self {
         ContextGrammar {
             DEBUG,
+            max_rw_len,
             init_expr,
             egraph: Default::default(),
             root_classes: vec![],
@@ -171,7 +173,7 @@ impl ContextGrammar {
                 str = str.replacen(op, &*rw, 1);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
-                if str.len() >= 20 {
+                if str.len() >= self.max_rw_len as usize {
                     if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
                     str = prev_str.clone();
                     continue;
@@ -233,7 +235,7 @@ impl ContextGrammar {
                 str = str.replacen(op, &*rw, 1);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
-                if str.len() >= 25 {
+                if str.len() >= self.max_rw_len as usize {
                     if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
                     str = prev_str.clone();
                     continue;

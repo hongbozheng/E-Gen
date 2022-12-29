@@ -1,8 +1,10 @@
 use std::{env::args, process::exit};
+use std::array::from_mut;
+use std::cmp::max;
 use egg::{ContextGrammar, Language, Math, math_rule, MathEGraph, RecExpr, Runner};
 
 fn help() {
-    println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag>");
+    println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
     println!("[USAGE]:   <csg flag> -> context-sensitive grammar flag");
     println!("[USAGE]:   <csg flag> -> default 0");
     println!("[USAGE]:   <csg flag> -> required = false");
@@ -13,6 +15,9 @@ fn help() {
     println!("[USAGE]: <debug flag> -> required = false");
     println!("[USAGE]:            0 -> false, disable debug messages printing");
     println!("[USAGE]:            1 -> true,  enable debug messages printing");
+    println!("[USAGE]: <max rw len> -> maximum rw length");
+    println!("[USAGE]: <max rw len> -> default 25");
+    println!("[USAGE]: <max rw len> -> required = false");
     exit(1);
 }
 
@@ -38,20 +43,39 @@ fn set_debug_flag(DEBUG: &mut bool, debug_flag: u8) {
     }
 }
 
-fn set_cli_1(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool) {
+fn set_max_rw_len(max_rw_len: &mut u8, max_rw_len_usr: u8) {
+    *max_rw_len = max_rw_len_usr;
+}
+
+fn set_cli_1(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool, max_rw_len: &mut u8) {
     if args[1] == "-csg" {
         set_csg_flag(csg, args[2].parse::<u8>().unwrap());
     } else if args[1] == "-de" {
         set_debug_flag(DEBUG, args[2].parse::<u8>().unwrap());
+    } else if args[1] == "-len" {
+        set_max_rw_len(max_rw_len, args[2].parse::<u8>().unwrap());
     } else { help(); }
 }
 
-fn set_cli_2(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool) {
-    set_cli_1(args, csg, DEBUG);
+fn set_cli_2(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool, max_rw_len: &mut u8) {
+    set_cli_1(args, csg, DEBUG, max_rw_len);
     if args[3] == "-csg" {
         set_csg_flag(csg, args[4].parse::<u8>().unwrap());
     } else if args[3] == "-de" {
         set_debug_flag(DEBUG, args[4].parse::<u8>().unwrap());
+    } else if args[3] == "-len" {
+        set_max_rw_len(max_rw_len, args[4].parse::<u8>().unwrap());
+    } else { help(); }
+}
+
+fn set_cli_3(args: &Vec<String>, csg: &mut bool, DEBUG: &mut bool, max_rw_len: &mut u8) {
+    set_cli_2(args, csg, DEBUG, max_rw_len);
+    if args[5] == "-csg" {
+        set_csg_flag(csg, args[6].parse::<u8>().unwrap());
+    } else if args[5] == "-de" {
+        set_debug_flag(DEBUG, args[6].parse::<u8>().unwrap());
+    } else if args[5] == "-len" {
+        set_max_rw_len(max_rw_len, args[6].parse::<u8>().unwrap());
     } else { help(); }
 }
 
@@ -59,20 +83,26 @@ pub fn main() {
     let args: Vec<String> = std::env::args().collect();
     let mut csg = false;
     let mut DEBUG = false;
+    let mut max_rw_len = 25;
 
     match args.len() {
         1 => {
             println!("[INFO]: Executing program with the following default flags...");
             println!("[INFO]: csg flag   = false");
-            println!("[INFO]: debug flag = false\n");
+            println!("[INFO]: debug flag = false");
+            println!("[INFO]: max rw len = 25\n");
         },
         2 => { help(); },
         3 => {
-            set_cli_1(&args, &mut csg, &mut DEBUG);
+            set_cli_1(&args, &mut csg, &mut DEBUG, &mut max_rw_len);
         },
         4 => { help(); },
         5 => {
-           set_cli_2(&args, &mut csg, &mut DEBUG);
+           set_cli_2(&args, &mut csg, &mut DEBUG, &mut max_rw_len);
+        },
+        6 => { help(); },
+        7 => {
+            set_cli_3(&args, &mut csg, &mut DEBUG, &mut max_rw_len);
         },
         _ => {
             eprintln!("[ERROR]: INVALID COMMAND LINE ARGUMENT(S)");
@@ -89,7 +119,7 @@ pub fn main() {
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* too complicated breaks extractor */
     // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
-    let mut ctx_g = ContextGrammar::new(init_expr, DEBUG);
+    let mut ctx_g = ContextGrammar::new(DEBUG, max_rw_len, init_expr);
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();
 
