@@ -129,11 +129,12 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* expansion */
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (* x 1) */
-        //- rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
+        rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (pow x 1) */
         rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
 
         /* simplification (working) */
+        /// ### temporary work around for commutative rules
         rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
         rw!("0-add-simpl"; "(+ 0 ?x)" => "?x"),
         rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
@@ -149,7 +150,7 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* distributive property & factorization */
         // rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
-        // rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+        rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
         /* power */
         // rw!("pow(0)"; "(pow ?x 0)" => "1"),
