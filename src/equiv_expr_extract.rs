@@ -38,24 +38,27 @@ impl ContextGrammar {
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
         self.root_classes = runner.roots;
-        for eclass in self.egraph.classes() {
-            println!("[INFO]: {:?}",eclass);
-            let id = &eclass.id;
-            let enodes = &eclass.nodes;
-            println!("enodes in eclass id: {}",id);
-            for enode in enodes {
-                println!("{}",enode);
-                let children = enode.children();
-                if children.is_empty() {println!("children node(s): None");}
-                else {println!("children node(s): {:?}",children);}
-            }
-            println!("\n");
-        }
-        print!("\n[INFO]: Runner Root(s)");
-        for root in &self.root_classes {
-            print!(" {:?}",root);
-        }
-        println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
+        // for eclass in self.egraph.classes() {
+        //     println!("[INFO]: {:?}",eclass);
+        //     let id = &eclass.id;
+        //     let enodes = &eclass.nodes;
+        //     println!("enodes in eclass id: {}",id);
+        //     for enode in enodes {
+        //         println!("{}",enode);
+        //         let children = enode.children();
+        //         if children.is_empty() {println!("children node(s): None");}
+        //         else {println!("children node(s): {:?}",children);}
+        //     }
+        //     println!("\n");
+        // }
+        // print!("\n[INFO]: Runner Root(s)");
+        // for root in &self.root_classes {
+        //     print!(" {:?}",root);
+        // }
+        // println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
+        // let extractor = Extractor::new(&self.egraph, AstSize);
+        // let (best_cost, simpl_expr) = extractor.find_best(self.root_classes[0]);
+        // println!("Simplified Expression to {} with Cost {}",simpl_expr,best_cost);
     }
 
     /// ## member function to get an reference to egraph
