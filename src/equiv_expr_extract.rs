@@ -1,4 +1,3 @@
-use std::fmt::format;
 use crate::*;
 
 pub struct ContextGrammar {
@@ -257,10 +256,24 @@ impl ContextGrammar {
         if self.DEBUG { println!("-----------------------------------"); }
     }
 
-    pub fn extract(self) {
+    pub fn extract(&mut self) {
         match self.csg {
-            true => {},
-            false => {},
+            true => {
+                println!("\n[INFO]: Start context-sensitive grammar extraction...");
+                for i in 0..self.init_rw.len() {
+                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
+                    self.csg_extract(self.init_rw[i].clone(), 0);
+                }
+                println!("[INFO]: Finish context-sensitive grammar extraction\n");
+            },
+            false => {
+                println!("\n[INFO]: Start context-free grammar extraction...");
+                for i in 0..self.init_rw.len() {
+                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
+                    self.cfg_extract(self.init_rw[i].clone(), 0);
+                }
+                println!("\n[INFO]: Finish context-free grammar extraction\n");
+            },
         }
     }
 }
