@@ -124,50 +124,57 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("commutative-add"; "(+ ?x ?y)" => "(+ ?y ?x)"),
         // rw!("commutative-mul"; "(* ?x ?y)" => "(* ?y ?x)"),
         // rw!("commutative-add_"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
-        rw!("commutative-mul_"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
+        // rw!("commutative-mul_"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
         // rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
 
         /* expansion */
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (* x 1) */
-        rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
+        //- rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (pow x 1) */
         rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
 
         /* simplification */
         rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
         rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
+        rw!("mul-1-simpl"; "(* 1 ?x)" => "?x"),
+        rw!("pow-0-simpl"; "(pow ?x 0)" => "1"),
+        rw!("pow-1-simpl"; "(pow ?x 1)" => "?x"),
         rw!("sub_cancel"; "(- ?x ?x)" => "0"),
         rw!("div_cancel"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("mul-(-1)"; "(* -1 -1)" => "1"),
-        // rw!("recip-mul-div"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
+        rw!("recip-mul-div"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
 
         /* distributive property & factorization */
-        rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
-        rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+        // rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
+        // rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
         /* power */
-        rw!("pow(0)"; "(pow ?x 0)" => "1"),
-        rw!("pow(1)"; "(pow ?x 1)" => "?x"),
-        rw!("pow-mul"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
-        rw!("pow-div"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
+        // rw!("pow(0)"; "(pow ?x 0)" => "1"),
+        // rw!("pow(1)"; "(pow ?x 1)" => "?x"),
+        // rw!("pow-mul"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
+        // rw!("pow-div"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
 
         /* derivative */
-        rw!("d-power-const"; "(d (pow ?x ?c) ?x)" => "(* ?c (pow ?x (- ?c 1)))"
+        rw!("d-power-const"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))"
             if is_const("?c")),
+
+        /* derivative distributive property */
+        rw!("d-const*var-distrib"; "(d ?x (* ?c ?x))" => "(* ?c (d ?x ?x))" if is_const("?c")),
+        //- rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
 
         /* integration */
-        rw!("i-one"; "(i 1 ?x)" => "?x"),
-        rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
-            if is_const("?c")),
+        // rw!("i-one"; "(i 1 ?x)" => "?x"),
+        // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
+        //     if is_const("?c")),
 
         /* trig */
-        rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
+        // rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
         /* trig derivative */
-        rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
-        rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
+        // rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
+        // rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
         /* trig integration */
-        rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
-        rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
+        // rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
+        // rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
 
         /* useless */
         // rw!("add-0-exp"; "?x" => "(+ ?x 0)"),
