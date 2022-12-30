@@ -1,5 +1,5 @@
 use std::{process::exit};
-use egg::{ContextGrammar, Language};
+use egg::{ContextGrammar, Language, Extractor, AstSize};
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -120,22 +120,6 @@ pub fn main() {
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();
 
-    /* TODO: DEBUG */
-    let egraph = ctx_g.get_egraph();
-    println!("\n[DEBUG]: ------- EGraph Information -------");
-    println!("[DEBUG]: ------------- EClass -------------");
-    for eclass in egraph.classes() {
-        println!("[DEBUG]: ------------ EClass {} ------------", eclass.id);
-        for i in 0..eclass.nodes.len() {
-            print!("[DEBUG]: {}", eclass.nodes[i]);
-            for k in 0..eclass.nodes[i].children().len() {
-                print!(" {}", eclass.nodes[i].children()[k]);
-            }
-            println!();
-        }
-    }
-    println!("[DEBUG]: ----------------------------------\n");
-
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
 
@@ -149,13 +133,39 @@ pub fn main() {
     println!("[INFO]: EGraph contains {} node(s)", egraph.total_number_of_nodes());
     println!("[INFO]: EGraph contains {} eclass(es)", egraph.number_of_classes());
 
+    /* TODO: DEBUG */
+    let egraph = ctx_g.get_egraph();
+    println!("\n[DEBUG]: ------- EGraph Information -------");
+    println!("[DEBUG]: ------------- EClass -------------");
+    for eclass in egraph.classes() {
+        println!("[DEBUG]: ------------ EClass {} ------------", eclass.id);
+        for i in 0..eclass.nodes.len() {
+            print!("[DEBUG]: enode {}", eclass.nodes[i]);
+            for k in 0..eclass.nodes[i].children().len() {
+                print!(" {}", eclass.nodes[i].children()[k]);
+            }
+            println!();
+            // for k in 0..eclass.parents().len() {
+            //     println!("[DEBUG]: parents {}", eclass.parents()[k]);
+            // }
+            println!("[DEBUG]: data  {:?}", eclass.data);
+        }
+    }
+    println!("[DEBUG]: ----------------------------------\n");
+
     println!("\n[INFO]: ---------- Root Eclasses ----------");
     let root_eclasses = ctx_g.get_root_eclasses();
     print!("[INFO]:");
-    for id in root_eclasses {
-        print!(" {}", id);
+    for i in 0..root_eclasses.len() {
+        print!(" {}", root_eclasses[i]);
     }
     println!("\n[INFO]: -----------------------------------");
+
+    println!("\n[DEBUG]: ------------ Extractor -----------");
+    let extractor = Extractor::new(&egraph, AstSize);
+    let (best_cost, simpl_expr) = extractor.find_best(root_eclasses[0]);
+    println!("[DEBUG]: Simplified Expression to {} with Cost {}",simpl_expr, best_cost);
+    println!("[DEBUG]: ----------------------------------");
 
     println!("\n[INFO]: ------------- Grammar -------------");
     let grammar = ctx_g.get_grammar();

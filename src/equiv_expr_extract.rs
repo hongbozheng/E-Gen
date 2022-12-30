@@ -88,12 +88,6 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        /* TODO: DEBUG */
-        println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
-        let extractor = Extractor::new(&self.egraph, AstSize);
-        let (best_cost, simpl_expr) = extractor.find_best(self.root_classes[0]);
-        println!("Simplified Expression to {} with Cost {}",simpl_expr,best_cost);
-
         let root_eclass = format!("{}{}", "e", self.root_classes[0]);
         /* commutative rule will break program here */
         self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
