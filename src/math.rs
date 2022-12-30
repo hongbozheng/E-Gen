@@ -121,10 +121,10 @@ pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* commutative rules */
         /* does not work with commutative rules */
-        // rw!("commutative-add"; "(+ ?x ?y)" => "(+ ?y ?x)"),
-        // rw!("commutative-mul"; "(* ?x ?y)" => "(* ?y ?x)"),
-        // rw!("commutative-add_"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
-        // rw!("commutative-mul_"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
+        // rw!("commutative-add-2var"; "(+ ?x ?y)" => "(+ ?y ?x)"),
+        // rw!("commutative-mul-2var"; "(* ?x ?y)" => "(* ?y ?x)"),
+        // rw!("commutative-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
+        rw!("commutative-mul-3var"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
         // rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
 
         /* expansion */

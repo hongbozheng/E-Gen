@@ -120,11 +120,27 @@ pub fn main() {
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();
 
+    /* TODO: DEBUG */
+    let egraph = ctx_g.get_egraph();
+    println!("\n[DEBUG]: ------- EGraph Information -------");
+    println!("[DEBUG]: ------------- EClass -------------");
+    for eclass in egraph.classes() {
+        println!("[DEBUG]: ------------ EClass {} ------------", eclass.id);
+        for i in 0..eclass.nodes.len() {
+            print!("[DEBUG]: {}", eclass.nodes[i]);
+            for k in 0..eclass.nodes[i].children().len() {
+                print!(" {}", eclass.nodes[i].children()[k]);
+            }
+            println!();
+        }
+    }
+    println!("[DEBUG]: ----------------------------------\n");
+
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
 
-    println!("[INFO]: Setting initial expression...");
-    ctx_g.set_init_rw();
+    println!("[INFO]: Setting initial rewrite...");
+    // ctx_g.set_init_rw();
 
     println!("\n[INFO]: Initial expression {}", init_expr);
 
@@ -133,30 +149,30 @@ pub fn main() {
     println!("[INFO]: EGraph contains {} node(s)", egraph.total_number_of_nodes());
     println!("[INFO]: EGraph contains {} eclass(es)", egraph.number_of_classes());
 
-    println!("\n[INFO]: ------- Root Eclasses -------");
+    println!("\n[INFO]: ---------- Root Eclasses ----------");
     let root_eclasses = ctx_g.get_root_eclasses();
     print!("[INFO]:");
     for id in root_eclasses {
         print!(" {}", id);
     }
-    println!("\n[INFO]: -----------------------------");
+    println!("\n[INFO]: -----------------------------------");
 
-    println!("\n[INFO]: ---------- Grammar ----------");
+    println!("\n[INFO]: ------------- Grammar -------------");
     let grammar = ctx_g.get_grammar();
     for (eclass, rewrite) in grammar {
         println!("[INFO]: {} -> {:?}", eclass, rewrite);
     }
-    println!("[INFO]: -----------------------------");
+    println!("[INFO]: -----------------------------------");
 
-    println!("\n[INFO]: ------ Initial Rewrite ------");
+    println!("\n[INFO]: --------- Initial Rewrite ---------");
     let init_rw = ctx_g.get_init_rw();
     println!("[INFO]: {:?}", init_rw);
-    println!("[INFO]: -----------------------------");
+    println!("[INFO]: -----------------------------------");
 
     ctx_g.extract();
     let mut rw_list = ctx_g.get_rw();
     let orig_rw_num = rw_list.len();
-    // rw_list.sort_unstable();
+    /* rw_list.sort_unstable(); */
     rw_list.dedup();
     if orig_rw_num == rw_list.len() {
         println!("[INFO]: RW are all unique");

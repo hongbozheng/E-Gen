@@ -41,25 +41,6 @@ impl ContextGrammar {
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
         self.root_classes = runner.roots;
-
-        /* debug */
-        // for eclass in self.egraph.classes() {
-        //     println!("[INFO]: {:?}",eclass);
-        //     let id = &eclass.id;
-        //     let enodes = &eclass.nodes;
-        //     println!("enodes in eclass id: {}",id);
-        //     for enode in enodes {
-        //         println!("{}",enode);
-        //         let children = enode.children();
-        //         if children.is_empty() {println!("children node(s): None");}
-        //         else {println!("children node(s): {:?}",children);}
-        //     }
-        //     println!("\n");
-        // }
-        // print!("\n[INFO]: Runner Root(s)");
-        // for root in &self.root_classes {
-        //     print!(" {:?}",root);
-        // }
     }
 
     /// ## member function to get an reference to egraph
@@ -107,15 +88,15 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        let root_eclass = format!("{}{}", "e", self.root_classes[0]);
-        println!("[root eclass]: {}", root_eclass);
-        self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
-
-        /* debug */
+        /* TODO: DEBUG */
         println!("\n[INFO]: Root EClass ID {}\n", &self.root_classes[0]);
         let extractor = Extractor::new(&self.egraph, AstSize);
         let (best_cost, simpl_expr) = extractor.find_best(self.root_classes[0]);
         println!("Simplified Expression to {} with Cost {}",simpl_expr,best_cost);
+
+        let root_eclass = format!("{}{}", "e", self.root_classes[0]);
+        /* commutative rule will break program here */
+        self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
     }
 
     /// ## member function to get the initial rewrite from self
@@ -264,7 +245,7 @@ impl ContextGrammar {
                     println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
                     self.csg_extract(self.init_rw[i].clone(), 0);
                 }
-                println!("[INFO]: Finish context-sensitive grammar extraction\n");
+                println!("\n[INFO]: Finish context-sensitive grammar extraction\n");
             },
             false => {
                 println!("\n[INFO]: Start context-free grammar extraction...");
