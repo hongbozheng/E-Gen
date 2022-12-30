@@ -210,6 +210,7 @@ pub fn rules() -> Vec<Rewrite> { vec![
         "(- (* ?a (i ?b ?x)) (i (* (d ?x ?a) (i ?b ?x)) ?x))"),
 ]}
 
+/* DEBUG */
 egg::test_fn! {WHY_IS_THIS_WORKING, math_rule(), "(* x y)" => "(* y x)"}
 
 egg::test_fn! {
