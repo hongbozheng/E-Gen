@@ -141,8 +141,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("0-mul-simpl"; "(* 0 ?x)" => "0"),
         rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
         rw!("1-mul-simpl"; "(* 1 ?x)" => "?x"),
-        rw!("pow-0-simpl"; "(pow ?x 0)" => "1" if not_zero("?x")),
-        rw!("pow-1-simpl"; "(pow ?x 1)" => "?x"),
         rw!("sub_cancel"; "(- ?x ?x)" => "0"),
         rw!("div_cancel"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("mul-(-1)"; "(* -1 -1)" => "1"),
@@ -153,10 +151,13 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
         /* power */
-        // rw!("pow(0)"; "(pow ?x 0)" => "1"),
-        // rw!("pow(1)"; "(pow ?x 1)" => "?x"),
-        // rw!("pow-mul"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
-        // rw!("pow-div"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
+        /* simplification */
+        rw!("pow(0)"; "(pow ?x 0)" => "1"),
+        rw!("pow(1)"; "(pow ?x 1)" => "?x" if not_zero("?x")),
+
+        rw!("pow-of-prod"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
+        rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
+        rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
 
         /* derivative */
         rw!("d-power-const"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))"
@@ -172,10 +173,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         //     if is_const("?c")),
 
         /* trig */
-        // rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
+        rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
         /* trig derivative */
-        // rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
-        // rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
+        rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
+        rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
         /* trig integration */
         // rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
         // rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),

@@ -111,13 +111,11 @@ pub fn main() {
     /* working */
     // let init_expr: &str = "(* (sin x) y)";
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
-    /* partially working (rw len restricted) */
     let init_expr: &str = "(+ x (+ x (+ x x)))";
-    let init_expr: &str = "(+ (* 1 x) (* 3 x))";
+    let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* not working */
-    // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
-    /* too complicated breaks extractor */
-    // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
+    /* commutative rule break extraction */
+    let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     let mut ctx_g = ContextGrammar::new(csg, DEBUG, max_rw_len, init_expr);
     println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
     ctx_g.set_egraph();
@@ -158,7 +156,7 @@ pub fn main() {
     ctx_g.extract();
     let mut rw_list = ctx_g.get_rw();
     let orig_rw_num = rw_list.len();
-    rw_list.sort_unstable();
+    // rw_list.sort_unstable();
     rw_list.dedup();
     if orig_rw_num == rw_list.len() {
         println!("[INFO]: RW are all unique");
