@@ -109,24 +109,24 @@ pub fn main() {
     }
 
     /* working */
-    // let init_expr: &str = "(* (sin x) y)";
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
     let init_expr: &str = "(+ x (+ x (+ x x)))";
-    let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
+    let init_expr: &str = "(* (cos x) y)";
+    // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* not working */
+    /* haven't hard code the init_rw yet */
+    // let init_expr: &str = "(* (sin x) y)";
     /* commutative rule break extraction */
     let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
-    let mut ctx_g = ContextGrammar::new(csg, DEBUG, max_rw_len, init_expr);
-    println!("[INFO]: Creating egraph with initial expression & rewrite rules...");
-    ctx_g.set_egraph();
+    println!("[INFO]: Initial expression {}", init_expr);
 
+    let mut ctx_g = ContextGrammar::new(csg, DEBUG, max_rw_len, init_expr);
+    println!("\n[INFO]: Creating egraph with initial expression & rewrite rules...");
+    ctx_g.set_egraph();
     println!("[INFO]: Creating grammar...");
     ctx_g.set_grammar();
-
     println!("[INFO]: Setting initial rewrite...");
-    // ctx_g.set_init_rw();
-
-    println!("\n[INFO]: Initial expression {}", init_expr);
+    ctx_g.set_init_rw();
 
     let egraph = ctx_g.get_egraph();
     println!("[INFO]: EGraph total size {}", egraph.total_size());
@@ -134,7 +134,6 @@ pub fn main() {
     println!("[INFO]: EGraph contains {} eclass(es)", egraph.number_of_classes());
 
     /* TODO: DEBUG */
-    let egraph = ctx_g.get_egraph();
     println!("\n[DEBUG]: ------- EGraph Information -------");
     println!("[DEBUG]: ------------- EClass -------------");
     for eclass in egraph.classes() {
@@ -153,7 +152,7 @@ pub fn main() {
     }
     println!("[DEBUG]: ----------------------------------\n");
 
-    println!("\n[INFO]: ---------- Root Eclasses ----------");
+    println!("\n[INFO]: ---------- Root EClasses ----------");
     let root_eclasses = ctx_g.get_root_eclasses();
     print!("[INFO]:");
     for i in 0..root_eclasses.len() {
@@ -161,6 +160,7 @@ pub fn main() {
     }
     println!("\n[INFO]: -----------------------------------");
 
+    /* TODO: DEBUG */
     println!("\n[DEBUG]: ------------ Extractor -----------");
     let extractor = Extractor::new(&egraph, AstSize);
     let (best_cost, simpl_expr) = extractor.find_best(root_eclasses[0]);
