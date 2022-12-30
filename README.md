@@ -89,21 +89,23 @@ cargo run -- -h
 
 #### Test Context-Sensitive Grammar
 ```
-cargo run -- -csg <csg flag> -de <debug flag>
+cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
 ```
 * `<csg>` context-sensitive grammar flag, use `1`
 * `<de>` debug flag
   * `1` -> enable
   * `0` -> disable
+* `<max rewrite length>` maximum rewrite length, default length = `25`
 
 #### Test Context-Free Grammar
 ```
-./main -c <csg>
+cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
 ```
 * `<csg>` context-sensitive grammar flag, use `0`
 * `<de>` debug flag
   * `1` -> enable
   * `0` -> disable
+* `<max rewrite length>` maximum rewrite length, default length = `25`
 
 ## Context-Grammar (Python)
 
