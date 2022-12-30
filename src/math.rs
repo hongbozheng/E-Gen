@@ -173,16 +173,13 @@ pub fn math_rule() -> Vec<Rewrite> {
         //     if is_const("?c")),
 
         /* trig */
+        /* trig identity */
         rw!("sin/cos"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
         /* trig derivative */
         rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
         rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
         /* trig integration */
-        // rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
-        // rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
-
-        /* useless */
-        // rw!("add-0-exp"; "?x" => "(+ ?x 0)"),
-        // rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
+        rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
+        rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
     ]
 }
