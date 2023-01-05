@@ -110,7 +110,7 @@ pub fn main() {
 
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
-    let init_expr: &str = "(+ x (+ x (+ x x)))";
+    // let init_expr: &str = "(+ x (+ x (+ x x)))";
     let init_expr: &str = "(* (cos x) y)";
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* not working */
