@@ -117,7 +117,7 @@ pub fn main() {
     /* haven't hard code the init_rw yet */
     // let init_expr: &str = "(* (sin x) y)";
     /* commutative rule break extraction */
-    let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
+    // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     println!("[INFO]: Initial expression {}", init_expr);
 
     let mut ctx_g = ContextGrammar::new(csg, DEBUG, max_rw_len, init_expr);
@@ -144,11 +144,12 @@ pub fn main() {
                 print!(" {}", eclass.nodes[i].children()[k]);
             }
             println!();
-            // for k in 0..eclass.parents().len() {
-            //     println!("[DEBUG]: parents {}", eclass.parents()[k]);
-            // }
-            println!("[DEBUG]: data  {:?}", eclass.data);
         }
+        print!("[DEBUG]: parents");
+        for k in 0..eclass.parents().len() {
+            print!(" {:?}", eclass.parents().nth(k).unwrap());
+        }
+        println!("\n[DEBUG]: data  {:?}", eclass.data);
     }
     println!("[DEBUG]: ----------------------------------\n");
 
