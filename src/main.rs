@@ -115,7 +115,7 @@ pub fn main() {
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     /* not working */
     /* haven't hard code the init_rw yet */
-    // let init_expr: &str = "(* (sin x) y)";
+    let init_expr: &str = "(* (sin x) y)";
     /* commutative rule break extraction */
     // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     println!("[INFO]: Initial expression {}", init_expr);
@@ -151,7 +151,7 @@ pub fn main() {
         }
         println!("\n[DEBUG]: data  {:?}", eclass.data);
     }
-    println!("[DEBUG]: ----------------------------------\n");
+    println!("[DEBUG]: ----------------------------------");
 
     println!("\n[INFO]: ---------- Root EClasses ----------");
     let root_eclasses = ctx_g.get_root_eclasses();
