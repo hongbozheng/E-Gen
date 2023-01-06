@@ -88,9 +88,21 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        let root_eclass = format!("{}{}", "e", self.root_classes[0]);
-        /* commutative rule will break program here */
-        self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+        let mut contains_class = false;
+        for eclass in self.egraph.classes() {
+            if self.root_classes[0] == eclass.id {
+                contains_class = true;
+            }
+        }
+
+        /* commutative rule will break program here; TODO: Solved */
+        if contains_class {
+            let root_eclass = format!("{}{}", "e", self.root_classes[0]);
+            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+        } else {
+            let root_eclass = format!("{}{}", "e", self.egraph.find(self.root_classes[0]));
+            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+        }
     }
 
     /// ## member function to get the initial rewrite from self
