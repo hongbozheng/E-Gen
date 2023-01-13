@@ -133,8 +133,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (pow x 1) */
         rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
 
-        /* simplification (working) */
-        /// ### temporary work around for commutative rules
+        /* simplification */
         rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
         rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
         rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
