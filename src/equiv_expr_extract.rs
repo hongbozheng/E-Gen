@@ -137,8 +137,13 @@ impl ContextGrammar {
         let mut term: bool = false;
 
         for i in 0..expr.len() {
+            if expr.len() == 1 {
+                self.rw.push(str.clone());
+                println!("[FINAL]: {}", str);
+                return;
+            }
             let op = expr[i];
-            if !self.grammar.contains_key(op) { continue; }
+            if !self.grammar.contains_key(op) && expr.len() != 1 { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
             let grammar = self.get_grammar();
             let rw_list = grammar.get(op).clone().unwrap();
@@ -199,8 +204,13 @@ impl ContextGrammar {
         let mut term: bool = false;
 
         for i in 0..expr.len() {
+            if expr.len() == 1 {
+                self.rw.push(str.clone());
+                println!("[FINAL]: {}", str);
+                return;
+            }
             let op = expr[i];
-            if !self.grammar.contains_key(op) { continue; }
+            if !self.grammar.contains_key(op) && expr.len() != 1 { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
             let grammar = self.get_grammar();
             let rw_list = grammar.get(op).clone().unwrap();
