@@ -121,11 +121,11 @@ pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* commutative rules */
         /* does not work with commutative rules */
-        // rw!("commutative-add-2var"; "(+ ?x ?y)" => "(+ ?y ?x)"),
+        rw!("commutative-add-2var"; "(+ ?x ?y)" => "(+ ?y ?x)"),
         rw!("commutative-mul-2var"; "(* ?x ?y)" => "(* ?y ?x)"),
-        // rw!("commutative-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
+        rw!("commutative-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
         rw!("commutative-mul-3var"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
-        // rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
+        rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
 
         /* expansion */
         /* shouldn't comment the following rewrite rule since x needs to be expanded as (* x 1) */
@@ -136,18 +136,15 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* simplification (working) */
         /// ### temporary work around for commutative rules
         rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
-        rw!("0-add-simpl"; "(+ 0 ?x)" => "?x"),
         rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
-        rw!("0-mul-simpl"; "(* 0 ?x)" => "0"),
         rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
-        rw!("1-mul-simpl"; "(* 1 ?x)" => "?x"),
         rw!("sub_cancel"; "(- ?x ?x)" => "0"),
         rw!("div_cancel"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("mul-(-1)"; "(* -1 -1)" => "1"),
         rw!("recip-mul-div"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
 
         /* distributive property & factorization */
-        // rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
+        rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
         /* power */
@@ -168,9 +165,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
 
         /* integration */
-        // rw!("i-one"; "(i 1 ?x)" => "?x"),
-        // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
-        //     if is_const("?c")),
+        rw!("i-one"; "(i 1 ?x)" => "?x"),
+        rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
+            if is_const("?c")),
 
         /* trig */
         /* trig identity */
