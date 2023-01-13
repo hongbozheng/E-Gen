@@ -143,7 +143,7 @@ impl ContextGrammar {
                 return;
             }
             let op = expr[i];
-            if !self.grammar.contains_key(op) && expr.len() != 1 { continue; }
+            if !self.grammar.contains_key(op) { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
             let grammar = self.get_grammar();
             let rw_list = grammar.get(op).clone().unwrap();
@@ -210,7 +210,7 @@ impl ContextGrammar {
                 return;
             }
             let op = expr[i];
-            if !self.grammar.contains_key(op) && expr.len() != 1 { continue; }
+            if !self.grammar.contains_key(op) { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
             let grammar = self.get_grammar();
             let rw_list = grammar.get(op).clone().unwrap();
