@@ -35,6 +35,9 @@ serde_json = { version = "1.0.81", optional = true }
 # temporarily add ordered-float under dependencies #
 ordered-float = "3.0.0"
 
+# need regex to replace distinct eclass
+regex = "1.7.1"
+
 [dev-dependencies]
 ordered-float = "3.0.0"
 
