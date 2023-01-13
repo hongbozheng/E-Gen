@@ -1,4 +1,5 @@
 use crate::*;
+use regex::Regex;
 
 pub struct ContextGrammar {
     csg: bool,                              /* context-sensitive grammar flag               */
@@ -153,7 +154,8 @@ impl ContextGrammar {
                 let rw = rw_list[k].clone();
                 if self.DEBUG { println!("[SSTR]:  {}", str); }
                 if self.DEBUG { println!("[ RW ]:  {}", rw); }
-                str = str.replacen(op, &*rw, 1);
+                let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
+                str.replace_range(mat.start()..mat.end(), &rw);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
                 if str.len() >= self.max_rw_len as usize {
@@ -220,7 +222,8 @@ impl ContextGrammar {
                 let rw = rw_list[k].clone();
                 if self.DEBUG { println!("[SSTR]:  {}", str); }
                 if self.DEBUG { println!("[ RW ]:  {}", rw); }
-                str = str.replacen(op, &*rw, 1);
+                let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
+                str.replace_range(mat.start()..mat.end(), &rw);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
                 if str.len() >= self.max_rw_len as usize {
