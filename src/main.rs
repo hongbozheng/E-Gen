@@ -1,5 +1,6 @@
 use std::{process::exit};
 use egg::{ContextGrammar, Language, Extractor, AstSize};
+use regex::Regex;
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -108,16 +109,6 @@ pub fn main() {
         },
     }
 
-    // let mut text = String::from("* e32 e3");
-    // // let mat = Regex::new(r"\b\w{13}\b").unwrap().find(text).unwrap();
-    // let pat = "e3";
-    // let mat = Regex::new(format!(r"\b{}\b", pat).as_str()).unwrap().find(&text).unwrap();
-    // println!("Start {}", mat.start());
-    // println!("End {}", mat.end());
-    // text.replace_range(mat.start()..mat.end(), "35");
-    // println!("[INFO]: {}", text);
-    // exit(0);
-
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
     let init_expr: &str = "(+ x (+ x (+ x x)))";
@@ -126,6 +117,9 @@ pub fn main() {
     // let init_expr: &str = "(* (sin x) y)";
     let init_expr: &str = "(/ (d x (* x x)) 2)";
     // let init_expr: &str = "(/ (* 1 x) 1)";
+    let init_expr: &str = "(/ (* 2 x) (* 2 x))";
+    // let init_expr: &str = "(/ (/ (* 2 x) 2) x)";
+    // let init_expr: &str = "(/ x x)";
     /* commutative rule break extraction */
     // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     println!("[INFO]: Initial expression {}", init_expr);
