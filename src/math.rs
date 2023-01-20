@@ -120,7 +120,6 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* commutative rules */
-        /* does not work with commutative rules */
         rw!("commutative-add-2var"; "(+ ?x ?y)" => "(+ ?y ?x)"),
         rw!("commutative-mul-2var"; "(* ?x ?y)" => "(* ?y ?x)"),
         rw!("commutative-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
@@ -128,12 +127,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("commutative-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
 
         /* expansion */
-        /* shouldn't comment the following rewrite rule since x needs to be expanded as (* x 1) */
         rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
-        /* shouldn't comment the following rewrite rule since x needs to be expanded as (pow x 1) */
         rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
 
-        /* simplification */
+        /* basic simplification */
         rw!("add-0-simpl"; "(+ ?x 0)" => "?x"),
         rw!("mul-0-simpl"; "(* ?x 0)" => "0"),
         rw!("mul-1-simpl"; "(* ?x 1)" => "?x"),
@@ -146,11 +143,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
-        /* power */
-        /* simplification */
+        /* power simplification */
         rw!("pow(0)"; "(pow ?x 0)" => "1"),
         rw!("pow(1)"; "(pow ?x 1)" => "?x" if not_zero("?x")),
 
+        /* power */
         rw!("pow-of-prod"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
         rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
         rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
