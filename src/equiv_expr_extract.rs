@@ -1,5 +1,5 @@
 use crate::*;
-use regex::Regex;
+// use regex::Regex;
 
 pub struct ContextGrammar {
     csg: bool,                              /* context-sensitive grammar flag               */
@@ -7,7 +7,7 @@ pub struct ContextGrammar {
     max_rw_len: u8,                         /* maximum rewrite length                       */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
-    root_classes: Vec<Id>,                  /* root classes of MathEGraph                   */
+    root_eclasses: Vec<Id>,                 /* root eclasses of MathEGraph                   */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
     init_rw: Vec<String>,                   /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
@@ -27,7 +27,7 @@ impl ContextGrammar {
             max_rw_len,
             init_expr,
             egraph: Default::default(),
-            root_classes: vec![],
+            root_eclasses: vec![],
             grammar: Default::default(),
             init_rw: vec![],
             rw: vec![],
@@ -41,7 +41,7 @@ impl ContextGrammar {
         let recexpr = self.init_expr.parse().unwrap();
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
-        self.root_classes = runner.roots;
+        self.root_eclasses = runner.roots;
     }
 
     /// ## member function to get an reference to egraph
@@ -53,7 +53,7 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn get_root_eclasses(&self) -> Vec<Id> {
-        return self.root_classes.clone();
+        return self.root_eclasses.clone();
     }
 
     /// ## member function to set grammar from egraph
@@ -89,19 +89,11 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        let mut contains_class = false;
-        for eclass in self.egraph.classes() {
-            if self.root_classes[0] == eclass.id {
-                contains_class = true;
-            }
-        }
-
-        /* commutative rule will break program here; TODO: Solved */
-        if contains_class {
-            let root_eclass = format!("{}{}", "e", self.root_classes[0]);
-            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+        let mut root_eclass = format!("{}{}", "e", self.root_eclasses[0]);
+        if self.grammar.contains_key(&*root_eclass) {
+            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone()
         } else {
-            let root_eclass = format!("{}{}", "e", self.egraph.find(self.root_classes[0]));
+            root_eclass = format!("{}{}", "e", self.egraph.find(self.root_eclasses[0]));
             self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
         }
     }
