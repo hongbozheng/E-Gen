@@ -7,7 +7,7 @@ pub struct ContextGrammar {
     max_rw_len: u8,                         /* maximum rewrite length                       */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
-    root_eclasses: Vec<Id>,                 /* root eclasses of MathEGraph                   */
+    root_eclasses: Vec<Id>,                 /* root eclasses of MathEGraph                  */
     grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
     init_rw: Vec<String>,                   /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
@@ -39,8 +39,12 @@ impl ContextGrammar {
     /// * `self`
     pub fn set_egraph(&mut self) {
         let recexpr = self.init_expr.parse().unwrap();
+        let runner = Runner::default().with_expr(&recexpr);
+        self.egraph = runner.egraph;
+        pt_egraph_info(&self.egraph);
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
+        println!("\n{:?}", self.egraph.lookup_expr_ids(&recexpr));
         self.root_eclasses = runner.roots;
     }
 
@@ -96,6 +100,8 @@ impl ContextGrammar {
             root_eclass = format!("{}{}", "e", self.egraph.find(self.root_eclasses[0]));
             self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
         }
+        // let mut root_eclass = format!("{}{}", "e", "8");
+        // self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
     }
 
     /// ## member function to get the initial rewrite from self
@@ -303,12 +309,37 @@ impl ContextGrammar {
             },
             false => {
                 println!("\n[INFO]: Start context-free grammar extraction...");
-                for i in 0..self.init_rw.len() {
-                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
-                    self.cfg_extract(self.init_rw[i].clone(), 0);
-                }
+                // for i in 0..self.init_rw.len() {
+                //     println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
+                //     self.cfg_extract(self.init_rw[i].clone(), 0);
+                // }
+                self.cfg_extract("/ e2 e2".to_string().clone(), 0);
                 println!("\n[INFO]: Finish context-free grammar extraction\n");
             },
         }
     }
+}
+
+/// ## member function to print egraph information
+/// ## Argument
+/// * `egraph` - egraph
+pub fn pt_egraph_info(egraph: &MathEGraph) {
+    println!("\n[DEBUG]: ------- EGraph Information -------");
+    println!("[DEBUG]: ------------- EClass -------------");
+    for eclass in egraph.classes() {
+        println!("[DEBUG]: ------------ EClass {} ------------", eclass.id);
+        for i in 0..eclass.nodes.len() {
+            print!("[DEBUG]: enode {}", eclass.nodes[i]);
+            for k in 0..eclass.nodes[i].children().len() {
+                print!(" {}", eclass.nodes[i].children()[k]);
+            }
+            println!();
+        }
+        print!("[DEBUG]: parents");
+        for k in 0..eclass.parents().len() {
+            print!(" {:?}", eclass.parents().nth(k).unwrap());
+        }
+        println!("\n[DEBUG]: data  {:?}", eclass.data);
+    }
+    println!("[DEBUG]: ----------------------------------");
 }
