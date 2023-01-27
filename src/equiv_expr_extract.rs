@@ -297,6 +297,10 @@ impl ContextGrammar {
         if self.DEBUG { println!("-----------------------------------"); }
     }
 
+    /// ## member function to start extraction
+    /// ## Context-Free Grammar
+    /// ## Argument
+    /// * `self`
     pub fn extract(&mut self) {
         match self.csg {
             true => {
