@@ -45,7 +45,9 @@ mod extract;
 mod language;
 /* need to put both files in lib */
 mod math;
-mod equiv_expr_extract;
+mod ctx_gr;
+mod equiv_ext;
+mod utils;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -109,7 +111,9 @@ pub use {
     util::*,
     /* need to make this struct public to be visible by main */
     math::{Math, math_rule, MathEGraph},
-    equiv_expr_extract::{ContextGrammar, pt_egraph_info}
+    ctx_gr::{ContextGrammar},
+    equiv_ext::{EquivalentExtract},
+    utils::*
 };
 
 #[cfg(feature = "lp")]
