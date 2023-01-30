@@ -47,9 +47,7 @@ impl ContextGrammar {
     /// ## member function to get root_eclasses
     /// ## Argument
     /// * `self`
-    pub fn get_root_ecls(&self) -> &Vec<Id> {
-        return &self.root_ecls;
-    }
+    pub fn get_root_ecls(&self) -> &Vec<Id> { return &self.root_ecls; }
 
     /// ## member function to set grammar from egraph
     /// ## Argument
@@ -76,9 +74,7 @@ impl ContextGrammar {
     /// ## member function to get grammar from self
     /// ## Argument
     /// * `self`
-    pub fn get_grammar(&self) -> &HashMap<String, Vec<String>>{
-        return &self.grammar;
-    }
+    pub fn get_grammar(&self) -> &HashMap<String, Vec<String>> { return &self.grammar; }
 
     /// ## member function to set the initial rewrite from self
     /// ## Argument
