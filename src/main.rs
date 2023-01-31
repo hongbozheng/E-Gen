@@ -1,6 +1,6 @@
 use std::{process::exit};
-use env_logger::init;
-use egg::{ContextGrammar, Language, Extractor, AstSize, pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, EquivalentExtract};
+use egg::{ContextGrammar, EquivalentExtract, Language, Extractor, AstSize,
+          pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw};
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -111,9 +111,9 @@ pub fn main() {
 
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
-    let init_expr: &str = "(+ x (+ x (+ x x)))";
+    // let init_expr: &str = "(+ x (+ x (+ x x)))";
     // let init_expr: &str = "(* (cos x) y)";
-    // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
+    let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     // let init_expr: &str = "(* (sin x) y)";
     // let init_expr: &str = "(/ (d x (* x x)) 2)";
     // let init_expr: &str = "(/ (* 1 x) 1)";
@@ -156,21 +156,20 @@ pub fn main() {
     let init_rw = ctx_gr.get_init_rw();
     pt_init_rw(init_rw);
 
-    let mut equiv_ext = EquivalentExtract::new(csg, DEBUG, max_rw_len, grammar.clone(), ctx_gr);
-
-    // ctx_g.extract();
-    // let mut rw_list = ctx_g.get_rw();
-    // let orig_rw_num = rw_list.len();
-    // /* rw_list.sort_unstable(); */
-    // rw_list.dedup();
-    // if orig_rw_num == rw_list.len() {
-    //     println!("[INFO]: RW are all unique");
-    // } else {
-    //     println!("[INFO]: RW have duplicates");
-    // }
-    // rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-    // println!("[INFO]: Total # of RW {}", rw_list.len());
-    // for rw in rw_list {
-    //     println!("[INFO]: {}", rw);
-    // }
+    let mut equiv_ext = EquivalentExtract::new(csg, DEBUG, max_rw_len, ctx_gr);
+    equiv_ext.extract();
+    let mut rw_list = equiv_ext.get_rw().clone();
+    let orig_rw_num = rw_list.len();
+    rw_list.sort_unstable();
+    rw_list.dedup();
+    if orig_rw_num == rw_list.len() {
+        println!("[INFO]: RW are all unique");
+    } else {
+        println!("[INFO]: RW have duplicates");
+    }
+    rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+    println!("[INFO]: Total # of RW {}", rw_list.len());
+    for rw in rw_list {
+        println!("[INFO]: {}", rw);
+    }
 }
