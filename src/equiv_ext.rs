@@ -1,3 +1,4 @@
+use std::borrow::Borrow;
 use crate::*;
 // use regex::Regex;
 
@@ -7,7 +8,7 @@ pub struct EquivalentExtract {
     max_rw_len: u8,                         /* maximum rewrite length                       */
     ctx_gr: ContextGrammar,                 /* context grammar struct                       */
     // root_eclasses: Vec<Id>,                 /* root eclasses of MathEGraph                  */
-    grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
+    // grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
     // init_rw: Vec<String>,                   /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
@@ -19,13 +20,13 @@ impl EquivalentExtract {
     /* TODO: init_expr not needed i think */
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, grammar: HashMap<String, Vec<String>>, ctx_gr: ContextGrammar) -> Self {
+    pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, ctx_gr: ContextGrammar) -> Self {
         EquivalentExtract {
             csg,
             DEBUG,
             max_rw_len,
             ctx_gr,
-            grammar,
+            // grammar,
             rw: vec![],
         }
     }
@@ -33,7 +34,7 @@ impl EquivalentExtract {
     /// ## member function to get the final rewrites from self
     /// ## Argument
     /// * `self`
-    pub fn get_rw(&self) -> Vec<String> { return self.rw.clone(); }
+    pub fn get_rw(&self) -> &Vec<String> { return &self.rw; }
 
     /// ## private member function to replace distinct eclass with rewrite rule
     /// ## Argument
@@ -41,14 +42,14 @@ impl EquivalentExtract {
     /// * `op`  - operand that needs to be replaced
     /// * `rw`  - rewrite rule that is going to be replaced with
     /// * `str` - original expression
-    fn distinct_replace(&self, op: &str, rw: String, str: &mut String) {
+    fn distinct_replace(&self, op: &str, rw: &String, str: &mut String) {
         let matches: Vec<_> = str.match_indices(op).collect();
         for mat in matches {
-            let start_idx = mat.0;
-            let end_idx = start_idx + op.len();
-            if (end_idx != str.len() && str.chars().nth(end_idx).unwrap() == ' ') ||
-                end_idx == str.len() {
-                str.replace_range(start_idx..end_idx, &*rw);
+            let start_idx = &mat.0;
+            let end_idx = &(start_idx + op.len());
+            if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
+                *end_idx == str.len() {
+                str.replace_range(start_idx..end_idx,rw);
                 break;
             }
         }
@@ -63,8 +64,8 @@ impl EquivalentExtract {
     fn csg_extract(&mut self, mut str: String, idx: u8) {
         if self.DEBUG { println!("-----------------------------------"); }
         if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
-        let str_tmp = str.clone();
-        let expr: Vec<&str> = str_tmp.split(" ").collect();
+        let prev_str = &str.clone();
+        let expr: Vec<&str> = prev_str.split(" ").collect();
         if self.DEBUG {
             print!("[EXPR]: ");
             for i in 0..expr.len() {
@@ -74,7 +75,9 @@ impl EquivalentExtract {
         }
 
         let mut term: bool = false;
-        let grammar = self.grammar.clone(); // here
+
+        let grammar = self.ctx_gr.get_grammar().clone();
+
         for i in 0..expr.len() {
             if expr.len() == 1 {
                 self.rw.push(str.clone());
@@ -82,14 +85,13 @@ impl EquivalentExtract {
                 return;
             }
             let op = expr[i];
-            if !self.grammar.contains_key(op) { continue; }
+            if !grammar.contains_key(op) { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
-            // let grammar = self.grammar.clone();
-            let rw_list = grammar.get(op).clone().unwrap();
-            let prev_str = str.clone();
+            let rw_list = grammar.get(op).unwrap();
+            // let prev_str = prev_str;
 
             for k in 0..rw_list.len() {
-                let rw = rw_list[k].clone();
+                let rw = &rw_list[k];
                 if self.DEBUG { println!("[SSTR]:  {}", str); }
                 if self.DEBUG { println!("[ RW ]:  {}", rw); }
                 /**
