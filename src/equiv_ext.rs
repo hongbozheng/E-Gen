@@ -6,9 +6,6 @@ pub struct EquivalentExtract {
     DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
     ctx_gr: ContextGrammar,                 /* context grammar struct                       */
-    // root_eclasses: Vec<Id>,                 /* root eclasses of MathEGraph                  */
-    // grammar: HashMap<String, Vec<String>>,  /* hashmap storing the grammar from egraph      */
-    // init_rw: Vec<String>,                   /* initial rw e.g. (* e0 e1)                    */
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
 
@@ -16,7 +13,6 @@ impl EquivalentExtract {
     /// ## default constructor
     /// ## Arguments
     /// * `MathEGraph` - egraph after running rewrite rules
-    /* TODO: init_expr not needed i think */
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
     pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, ctx_gr: ContextGrammar) -> Self {
@@ -25,7 +21,6 @@ impl EquivalentExtract {
             DEBUG,
             max_rw_len,
             ctx_gr,
-            // grammar,
             rw: vec![],
         }
     }
