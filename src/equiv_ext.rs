@@ -1,4 +1,4 @@
-use std::borrow::Borrow;
+use std::borrow::{Borrow, BorrowMut};
 use crate::*;
 // use regex::Regex;
 
@@ -64,7 +64,7 @@ impl EquivalentExtract {
     fn csg_extract(&mut self, mut str: String, idx: u8) {
         if self.DEBUG { println!("-----------------------------------"); }
         if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
-        let prev_str = &str.clone();
+        let prev_str = str.clone();
         let expr: Vec<&str> = prev_str.split(" ").collect();
         if self.DEBUG {
             print!("[EXPR]: ");
@@ -88,7 +88,6 @@ impl EquivalentExtract {
             if !grammar.contains_key(op) { continue; }
             if self.DEBUG { println!("[ OP ]:  {}", op); }
             let rw_list = grammar.get(op).unwrap();
-            // let prev_str = prev_str;
 
             for k in 0..rw_list.len() {
                 let rw = &rw_list[k];
@@ -136,89 +135,89 @@ impl EquivalentExtract {
         if self.DEBUG { println!("-----------------------------------"); }
     }
 
-    // /// ## private member function to extract all equivalent mathematical expressions
-    // /// ## Context-Free Grammar
-    // /// ## Argument
-    // /// * `self`
-    // /// * `str` - rewrite expression
-    // /// * `idx` - fn call idx for debugging purpose
-    // fn cfg_extract(&mut self, mut str: String, idx: u8) {
-    //     if self.DEBUG { println!("-----------------------------------"); }
-    //     if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
-    //     let str_tmp = str.clone();
-    //     let expr: Vec<&str> = str_tmp.split(" ").collect();
-    //     if self.DEBUG {
-    //         print!("[EXPR]: ");
-    //         for i in 0..expr.len() {
-    //             print!(" {:?}", expr[i]);
-    //         }
-    //         println!();
-    //     }
-    //
-    //     let mut term: bool = false;
-    //
-    //     for i in 0..expr.len() {
-    //         if expr.len() == 1 {
-    //             self.rw.push(str.clone());
-    //             println!("[FINAL]: {}", str);
-    //             return;
-    //         }
-    //         let op = expr[i];
-    //         if !self.grammar.contains_key(op) { continue; }
-    //         if self.DEBUG { println!("[ OP ]:  {}", op); }
-    //         let grammar = self.get_grammar();
-    //         let rw_list = grammar.get(op).clone().unwrap();
-    //         let prev_str = str.clone();
-    //
-    //         for k in 0..rw_list.len() {
-    //             let rw = rw_list[k].clone();
-    //             if self.DEBUG { println!("[SSTR]:  {}", str); }
-    //             if self.DEBUG { println!("[ RW ]:  {}", rw); }
-    //             /**
-    //             Regex will solve indistinct eclass match in str.replacen()
-    //             Original Code
-    //             ```
-    //             str = str.replacen(op, &*rw, 1);
-    //             ```
-    //             Using Regex (has performance issue since it's slow)
-    //             ```
-    //             # use regex::Regex;
-    //             let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
-    //             str.replace_range(mat.start()..mat.end(), &rw);
-    //             ```
-    //              */
-    //             self.distinct_replace(op, rw, &mut str);
-    //             if self.DEBUG { println!("[AFTER]: {}", str); }
-    //
-    //             if str.len() >= self.max_rw_len as usize {
-    //                 if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
-    //                 str = prev_str.clone();
-    //                 continue;
-    //             }
-    //             if !str.contains('e') && k == rw_list.len()-1 {
-    //                 self.rw.push(str.clone());
-    //                 println!("[FINAL]: {}", str);
-    //                 term = true;
-    //                 break;
-    //             } else if !str.contains('e') {
-    //                 self.rw.push(str.clone());
-    //                 str = prev_str.clone();
-    //                 println!("[FINAL]: {}", str);
-    //             } else {
-    //                 self.cfg_extract(str.clone(), idx+1);
-    //                 if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
-    //                 str = prev_str.clone();
-    //                 if k == rw_list.len()-1 {
-    //                     term = true;
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //         if term { break; }
-    //     }
-    //     if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
-    //     if self.DEBUG { println!("-----------------------------------"); }
-    // }
+    /// ## private member function to extract all equivalent mathematical expressions
+    /// ## Context-Free Grammar
+    /// ## Argument
+    /// * `self`
+    /// * `str` - rewrite expression
+    /// * `idx` - fn call idx for debugging purpose
+    fn cfg_extract(&mut self, mut str: String, idx: u8) {
+        if self.DEBUG { println!("-----------------------------------"); }
+        if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
+        let prev_str = str.clone();
+        let expr: Vec<&str> = prev_str.split(" ").collect();
+        if self.DEBUG {
+            print!("[EXPR]: ");
+            for i in 0..expr.len() {
+                print!(" {:?}", expr[i]);
+            }
+            println!();
+        }
+
+        let mut term: bool = false;
+
+        let grammar = self.ctx_gr.get_grammar().clone();
+
+        for i in 0..expr.len() {
+            if expr.len() == 1 {
+                self.rw.push(str.clone());
+                println!("[FINAL]: {}", str);
+                return;
+            }
+            let op = expr[i];
+            if !grammar.contains_key(op) { continue; }
+            if self.DEBUG { println!("[ OP ]:  {}", op); }
+            let rw_list = grammar.get(op).unwrap();
+
+            for k in 0..rw_list.len() {
+                let rw = &rw_list[k];
+                if self.DEBUG { println!("[SSTR]:  {}", str); }
+                if self.DEBUG { println!("[ RW ]:  {}", rw); }
+                /**
+                Regex will solve indistinct eclass match in str.replacen()
+                Original Code
+                ```
+                str = str.replacen(op, &*rw, 1);
+                ```
+                Using Regex (has performance issue since it's slow)
+                ```
+                # use regex::Regex;
+                let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
+                str.replace_range(mat.start()..mat.end(), &rw);
+                ```
+                 */
+                self.distinct_replace(op, rw, &mut str);
+                if self.DEBUG { println!("[AFTER]: {}", str); }
+
+                if str.len() >= self.max_rw_len as usize {
+                    if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
+                    str = prev_str.clone();
+                    continue;
+                }
+                if !str.contains('e') && k == rw_list.len()-1 {
+                    self.rw.push(str.clone());
+                    println!("[FINAL]: {}", str);
+                    term = true;
+                    break;
+                } else if !str.contains('e') {
+                    self.rw.push(str.clone());
+                    str = prev_str.clone();
+                    println!("[FINAL]: {}", str);
+                } else {
+                    self.cfg_extract(str.clone(), idx+1);
+                    if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
+                    str = prev_str.clone();
+                    if k == rw_list.len()-1 {
+                        term = true;
+                        break;
+                    }
+                }
+            }
+            if term { break; }
+        }
+        if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
+        if self.DEBUG { println!("-----------------------------------"); }
+    }
 
     /// ## member function to start extraction
     /// ## Context-Free Grammar
@@ -236,12 +235,12 @@ impl EquivalentExtract {
                 println!("\n[INFO]: Finish context-sensitive grammar extraction\n");
             },
             false => {
-                // println!("\n[INFO]: Start context-free grammar extraction...");
-                // let init_rw = self.ctx_gr.get_init_rw().clone();
-                // for i in 0..init_rw.len() {
-                //     println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, self.init_rw[i]);
-                //     self.cfg_extract(init_rw[i].clone(), 0);
-                // }
+                println!("\n[INFO]: Start context-free grammar extraction...");
+                let init_rw = self.ctx_gr.get_init_rw().clone();
+                for i in 0..init_rw.len() {
+                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, init_rw[i]);
+                    self.cfg_extract(init_rw[i].clone(), 0);
+                }
                 // self.cfg_extract("/ e3 e1".to_string().clone(), 0);
                 println!("\n[INFO]: Finish context-free grammar extraction\n");
             },
