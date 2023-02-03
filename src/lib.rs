@@ -112,7 +112,7 @@ pub use {
     /* need to make this struct public to be visible by main */
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
-    equiv_ext::{EquivalentExtract},
+    equiv_ext::{ExpressionExtract},
     utils::*
 };
 
