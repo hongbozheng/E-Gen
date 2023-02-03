@@ -80,12 +80,12 @@ impl ContextGrammar {
     /// ## Argument
     /// * `self`
     pub fn set_init_rw(&mut self) {
-        let mut root_eclass = format!("{}{}", "e", self.root_ecls[0]);
-        if self.grammar.contains_key(&*root_eclass) {
-            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone()
+        let mut root_ecls = format!("{}{}", "e", self.root_ecls[0]);
+        if self.grammar.contains_key(&*root_ecls) {
+            self.init_rw = self.grammar.get(&*root_ecls).unwrap().clone();
         } else {
-            root_eclass = format!("{}{}", "e", self.egraph.find(self.root_ecls[0]));
-            self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+            root_ecls = format!("{}{}", "e", self.egraph.find(self.root_ecls[0]));
+            self.init_rw = self.grammar.get(&*root_ecls).unwrap().clone();
         }
         // let mut root_eclass = format!("{}{}", "e", "8");
         // self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
