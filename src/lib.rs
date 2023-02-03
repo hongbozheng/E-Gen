@@ -46,7 +46,7 @@ mod language;
 /* need to put both files in lib */
 mod math;
 mod ctx_gr;
-mod equiv_ext;
+mod expr_ext;
 mod utils;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
@@ -112,7 +112,7 @@ pub use {
     /* need to make this struct public to be visible by main */
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
-    equiv_ext::{ExpressionExtract},
+    expr_ext::{ExpressionExtract},
     utils::*
 };
 

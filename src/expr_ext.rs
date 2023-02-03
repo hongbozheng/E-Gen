@@ -1,7 +1,7 @@
 use crate::*;
 // use regex::Regex;
 
-pub struct EquivalentExtract {
+pub struct ExpressionExtract {
     csg: bool,                              /* context-sensitive grammar flag               */
     DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
@@ -9,14 +9,14 @@ pub struct EquivalentExtract {
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
 
-impl EquivalentExtract {
+impl ExpressionExtract {
     /// ## default constructor
     /// ## Arguments
     /// * `MathEGraph` - egraph after running rewrite rules
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
     pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, ctx_gr: ContextGrammar) -> Self {
-        EquivalentExtract {
+        ExpressionExtract {
             csg,
             DEBUG,
             max_rw_len,
