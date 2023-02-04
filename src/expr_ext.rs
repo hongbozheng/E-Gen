@@ -61,6 +61,9 @@ impl ExpressionExtract {
     //     return false;
     // }
 
+    /// ## private member function to check if eclass is in str
+    /// ## Argument
+    /// `str` - current str
     fn contain_eclass(&self, str: &String) -> bool {
         let matches: Vec<_> = str.match_indices('e').collect();
         for mat in matches {
