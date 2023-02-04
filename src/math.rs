@@ -170,12 +170,25 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
             if is_const("?c")),
 
+        /* multiplication <-> division identity */
+        rw!("x/(1/y)->x*y"; "(/ ?x (/ 1 ?y))" => "(* ?x ?y)"),
+        rw!("(1/x)*y->y/x"; "(* (/ 1 ?x) ?y)" => "(/ ?y ?x)"),
+
         /* trig */
-        /* tangent identity */
+        /* trig basic identity */
         rw!("tan->sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
+        rw!("cos->sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
+        rw!("sin->cos*tan"; "(sin ?x)" => "(* (cos ?x) (tan ?x))"),
+        /**
+        don't need these rw because trig basic identity and trig reciprocal identity cover it
+        ```
         rw!("sin/cos->tan"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
+        rw!("sin/tan->cos"; "(/ (sin ?x) (tan ?x))" => "(cos ?x)"),
+        rw!("cos*tan->sin"; "(* (cos ?x) (tan ?x))" => "(sin ?x)"),
         rw!("cot->cos/sin"; "(cot ?x)" => "(/ (cos ?x) (sin ?x))"),
         rw!("cos/sin->cot"; "(/ (cos ?x) (sin ?x))" => "(cot ?x)"),
+        ```
+         */
         /* trig reciprocal identity <-> */
         rw!("csc->1/sin"; "(csc ?x)" => "(/ 1 (sin ?x))"),
         rw!("sec->1/cos"; "(sec ?x)" => "(/ 1 (cos ?x))"),
@@ -183,12 +196,18 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("1/sin->csc"; "(/ 1 (sin ?x))" => "(csc ?x)"),
         rw!("1/cos->sec"; "(/ 1 (cos ?x))" => "(sec ?x)"),
         rw!("1/tan->cot"; "(/ 1 (tan ?x))" => "(cot ?x)"),
+        /**
+        don't need these rw because trig reciprocal identity & multiplication <-> division identity
+        cover it
+        ```
         rw!("sin->1/csc"; "(sin ?x)" => "(/ 1 (csc ?x))"),
         rw!("cos->1/sec"; "(cos ?x)" => "(/ 1 (sec ?x))"),
         rw!("tan->1/cot"; "(tan ?x)" => "(/ 1 (cot ?x))"),
         rw!("1/csc->sin"; "(/ 1 (csc ?x))" => "(sin ?x)"),
         rw!("1/sec->cos"; "(/ 1 (sec ?x))" => "(cos ?x)"),
         rw!("1/cot->tan"; "(/ 1 (cot ?x))" => "(tan ?x)"),
+        ```
+         */
         /* pythagorean identity <-> */
         rw!("sin^2+cos^2->1"; "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))" => "1"),
         rw!("tan^2+1->sec^2"; "(+ (pow (tan ?x) 2) 1)" => "(pow (sec ?x) 2)"),
@@ -215,6 +234,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("cos(2x)->2cos^2-1"; "(cos (* 2 ?x))" => "(- (* 2 (pow (cos ?x) 2)) 1)"),
         rw!("cos(2x)->1-2sin^2"; "(cos (* 2 ?x))" => "(- 1 (* 2 (pow (sin ?x) 2)))"),
         rw!("tan(2x)->2tan(x)/(1-tan^2)"; "(tan (* 2 ?x))" => "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))"),
+        rw!("2sin(x)cos(x)->sin(2x)"; "(* 2 (* (sin ?x) (cos ?x)))" => "(sin (* 2 ?x))"),
+        rw!("cos^2-sin^2->cos(2x)"; "(- (pow (cos ?x) 2) (pow (sin ?x) 2))" => "(cos (* 2 ?x))"),
+        rw!("2cos^2-1->cos(2x)"; "(- (* 2 (pow (cos ?x) 2)) 1)" => "(cos (* 2 ?x))"),
+        rw!("1-2sin^2->cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
+        rw!("2tan(x)/(1-tan^2)->tan(2x)"; "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
         // TODO: Implement Reverse rw!
         /* half angle identity */
 
