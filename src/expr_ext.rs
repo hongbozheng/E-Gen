@@ -61,6 +61,18 @@ impl ExpressionExtract {
     //     return false;
     // }
 
+    fn contain_eclass(&self, str: &String) -> bool {
+        let matches: Vec<_> = str.match_indices('e').collect();
+        for mat in matches {
+            let start_idx = &mat.0;
+            if str.chars().nth(start_idx-1).unwrap() == ' ' &&
+                str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /// ## private member function to replace distinct eclass with rewrite rule
     /// ## Argument
     /// * `self`
@@ -152,12 +164,12 @@ impl ExpressionExtract {
                     str = prev_str.clone();
                     continue;
                 }
-                if !str.contains('e') && k == rw_list.len()-1 {
+                if !self.contain_eclass(&str) && k == rw_list.len()-1 {
                     self.rw.push(str.clone());
                     println!("[FINAL]: {}", str);
                     term = true;
                     break;
-                } else if !str.contains('e') {
+                } else if !self.contain_eclass(&str) {
                     self.rw.push(str.clone());
                     str = prev_str.clone();
                     println!("[FINAL]: {}", str);
