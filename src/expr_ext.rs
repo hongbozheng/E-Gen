@@ -6,6 +6,7 @@ pub struct ExpressionExtract {
     DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
     ctx_gr: ContextGrammar,                 /* context grammar struct                       */
+    freq: HashMap<String, u16>,              /* rewrite rule frequency                       */
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
 
@@ -21,6 +22,7 @@ impl ExpressionExtract {
             DEBUG,
             max_rw_len,
             ctx_gr,
+            freq: Default::default(),
             rw: vec![],
         }
     }
@@ -29,6 +31,35 @@ impl ExpressionExtract {
     /// ## Argument
     /// * `self`
     pub fn get_rw(&self) -> &Vec<String> { return &self.rw; }
+
+    /// ## member function to update the frequency of rewrite rules
+    /// ## Argument
+    /// `self`
+    pub fn update_freq(&mut self, rw: &String, inc: bool) -> bool {
+        if inc {
+            if self.freq.contains_key(rw) && self.freq.get(rw).unwrap() < &(1 as u16) {
+                *self.freq.get_mut(rw).unwrap() += 1;
+            } else if self.freq.contains_key(rw) && self.freq.get(rw).unwrap() == &(1 as u16) {
+                return true;
+            } else {
+                self.freq.insert(rw.clone(), 1);
+            }
+        } else {
+            *self.freq.get_mut(rw).unwrap() -= 1;
+        }
+        // println!("{:?}", self.freq);
+        return false;
+    }
+
+    // pub fn update_freq(&mut self, rw: &String, inc: bool) -> bool {
+    //     if self.freq.contains_key(rw) {
+    //         *self.freq.get_mut(rw).unwrap() += 1;
+    //     } else {
+    //         self.freq.insert(rw.clone(), 1);
+    //     }
+    //     println!("{:?}", self.freq);
+    //     return false;
+    // }
 
     /// ## private member function to replace distinct eclass with rewrite rule
     /// ## Argument
@@ -100,11 +131,24 @@ impl ExpressionExtract {
                 str.replace_range(mat.start()..mat.end(), &rw);
                 ```
                  */
+                if rw.contains('*') && rw.contains("e5") {
+                    continue;
+                }
+                if rw.contains('e') {
+                    if self.update_freq(rw, true) {
+                        // println!("[INFO]:  Freq exceeds limit, Switching RW...");
+                        continue;
+                    }
+                }
                 self.distinct_replace(op, rw, &mut str);
                 if self.DEBUG { println!("[AFTER]: {}", str); }
 
                 if str.len() >= self.max_rw_len as usize {
                     if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
+                    if rw.contains('e') {
+                        // println!("[INFO]:  Freq exceeds limit, try another rw...");
+                        self.update_freq(rw, false);
+                    }
                     str = prev_str.clone();
                     continue;
                 }
@@ -120,6 +164,10 @@ impl ExpressionExtract {
                 } else {
                     self.csg_extract(str.clone(), idx+1);
                     if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
+                    if rw.contains('e') {
+                        // println!("[INFO]:  Freq exceeds limit, try another rw...");
+                        self.update_freq(rw, false);
+                    }
                     str = prev_str.clone();
                 }
             }
