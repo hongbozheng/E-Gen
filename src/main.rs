@@ -1,5 +1,5 @@
 use std::{process::exit};
-use egg::{ContextGrammar, EquivalentExtract, Language, Extractor, AstSize,
+use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize,
           pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw};
 
 fn help() {
@@ -112,7 +112,9 @@ pub fn main() {
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
     // let init_expr: &str = "(+ x (+ x (+ x x)))";
-    // let init_expr: &str = "(* (cos x) y)";
+    let init_expr: &str = "(* (cos x) y)";
+    // let init_expr: &str = "(sin (* -1 x))";
+    // let init_expr: &str = "(+ (pow (sin x) 2) (pow (cos x) 2))";
     let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     // let init_expr: &str = "(* (sin x) y)";
     // let init_expr: &str = "(/ (d x (* x x)) 2)";
@@ -156,9 +158,12 @@ pub fn main() {
     let init_rw = ctx_gr.get_init_rw();
     pt_init_rw(init_rw);
 
-    let mut equiv_ext = EquivalentExtract::new(csg, DEBUG, max_rw_len, ctx_gr);
-    equiv_ext.extract();
-    let mut rw_list = equiv_ext.get_rw().clone();
+    let mut expr_ext = ExpressionExtract::new(csg, DEBUG, max_rw_len, ctx_gr);
+    expr_ext.extract();
+    let mut rw_list = expr_ext.get_rw().clone();
+    for rw in &rw_list {
+        println!("[INFO]: {}", rw);
+    }
     let orig_rw_num = rw_list.len();
     rw_list.sort_unstable();
     rw_list.dedup();
@@ -169,7 +174,7 @@ pub fn main() {
     }
     rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
     println!("[INFO]: Total # of RW {}", rw_list.len());
-    for rw in rw_list {
+    for rw in &rw_list {
         println!("[INFO]: {}", rw);
     }
 }
