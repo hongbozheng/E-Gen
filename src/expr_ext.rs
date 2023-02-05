@@ -6,7 +6,7 @@ pub struct ExpressionExtract {
     DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
     ctx_gr: ContextGrammar,                 /* context grammar struct                       */
-    freq: HashMap<String, u16>,              /* rewrite rule frequency                       */
+    freq: HashMap<String, u16>,             /* rewrite rule frequency                       */
     rw: Vec<String>                         /* vec storing final rewrite                    */
 }
 
@@ -61,21 +61,6 @@ impl ExpressionExtract {
     //     return false;
     // }
 
-    /// ## private member function to check if eclass is in str
-    /// ## Argument
-    /// `str` - current str
-    fn contain_eclass(&self, str: &String) -> bool {
-        let matches: Vec<_> = str.match_indices('e').collect();
-        for mat in matches {
-            let start_idx = &mat.0;
-            if str.chars().nth(start_idx-1).unwrap() == ' ' &&
-                str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /// ## private member function to replace distinct eclass with rewrite rule
     /// ## Argument
     /// * `self`
@@ -93,6 +78,21 @@ impl ExpressionExtract {
                 break;
             }
         }
+    }
+
+    /// ## private member function to check if eclass is in str
+    /// ## Argument
+    /// `str` - current str
+    fn contain_eclass(&self, str: &String) -> bool {
+        let matches: Vec<_> = str.match_indices('e').collect();
+        for mat in matches {
+            let start_idx = &mat.0;
+            if str.chars().nth(start_idx-1).unwrap() == ' ' &&
+                str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
+                return true;
+            }
+        }
+        return false;
     }
 
     /// ## private member function to extract all equivalent mathematical expressions
