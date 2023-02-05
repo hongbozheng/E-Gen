@@ -45,6 +45,18 @@ pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
     println!("\n[INFO]: -----------------------------------");
 }
 
+/// ## function to print eclass(es) to skip during extraction
+/// ## Argument
+/// * `skip_ecls` - vec<String> to skip during extraction
+pub fn pt_skip_ecls(skip_ecls: &Vec<String>) {
+    println!("\n[INFO]: ---------- Skip EClasses ----------");
+    print!("[INFO]:");
+    for eclass in skip_ecls {
+        print!(" {}", eclass);
+    }
+    println!("\n[INFO]: -----------------------------------");
+}
+
 /// ## function to print grammar
 /// ## Argument
 /// * `grammar` - grammar HashMap
