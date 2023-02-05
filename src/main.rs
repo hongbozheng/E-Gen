@@ -112,10 +112,28 @@ pub fn main() {
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
     // let init_expr: &str = "(+ x (+ x (+ x x)))";
-    let init_expr: &str = "(* (cos x) y)";
+    // let init_expr: &str = "(* (cos x) y)";
     // let init_expr: &str = "(sin (* -1 x))";
     // let init_expr: &str = "(+ (pow (sin x) 2) (pow (cos x) 2))";
-    let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
+    // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
+    // let init_expr: &str = "(/ (sec x) (sin x))"; // wow...
+    let init_expr: &str = "(sin (/ x 2))";
+    // let init_expr: &str = "(* (* x 2) 2)";
+    // let init_expr: &str = "(/ 1 (sec x))";
+    let init_expr: &str = "(/ 1 (csc x))";
+    let init_expr: &str = "(+ (pow (tan x) 2) 1)";
+    // let init_expr: &str = "(cos (* 2 x))";
+    // let init_expr: &str = "(/ (sin x) (cos x))";
+    // let init_expr: &str = "(/ (cos x) (sec x))";
+    // let init_expr: &str = "(d x (pow (cos x) 2))"; // wow...
+    // let init_expr: &str = "(d x (pow (sin x) 2))";
+    // let init_expr: &str = "(- (cos x) (cos y))";
+    // let init_expr: &str = "(tan (- x y))";
+    // let init_expr: &str = "(sin (- x y))";
+    // let init_expr: &str = "(* (cos x) (sin y))";
+    // let init_expr: &str = "(- (cos x) (cos y))";
+    // let init_expr: &str = "(d x (tan x))";
+
     // let init_expr: &str = "(* (sin x) y)";
     // let init_expr: &str = "(/ (d x (* x x)) 2)";
     // let init_expr: &str = "(/ (* 1 x) 1)";
@@ -168,12 +186,12 @@ pub fn main() {
     rw_list.sort_unstable();
     rw_list.dedup();
     if orig_rw_num == rw_list.len() {
-        println!("[INFO]: RW are all unique");
+        println!("\n[INFO]: RW are all unique");
     } else {
-        println!("[INFO]: RW have duplicates");
+        println!("\n[INFO]: RW have duplicates");
     }
     rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-    println!("[INFO]: Total # of RW {}", rw_list.len());
+    println!("\n[INFO]: Total # of RW {}", rw_list.len());
     for rw in &rw_list {
         println!("[INFO]: {}", rw);
     }
