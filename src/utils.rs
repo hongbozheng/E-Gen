@@ -3,9 +3,7 @@ use crate::*;
 /// ## function to print the type of a variable
 /// ## Argument
 /// * `_` - reference of any variable
-pub fn pt_type_of<T>(_: &T) {
-    println!("[DEBUG]: Var Type {}", std::any::type_name::<T>());
-}
+pub fn pt_type_of<T>(_: &T) { println!("[DEBUG]: Var Type {}", std::any::type_name::<T>()); }
 
 /// ## function to print egraph information
 /// ## Argument
