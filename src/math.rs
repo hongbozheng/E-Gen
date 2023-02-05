@@ -129,23 +129,28 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("comm-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
         rw!("comm-mul-3var"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
         rw!("comm-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
+        rw!("x(y/z)->(xy)/z"; "(* ?x (/ ?y ?z))" => "(/ (* ?x ?y) ?z)"),
 
         /* expansion */
         rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
         rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
 
-        /* simplification */
+        /* basic arithmetic simplification */
         rw!("x+0->x"; "(+ ?x 0)" => "?x"),
         rw!("x*0->0"; "(* ?x 0)" => "0"),
         rw!("x*1->x"; "(* ?x 1)" => "?x"),
+        rw!("x/1->x"; "(/ ?x 1)" => "?x"),
         rw!("x-x->0"; "(- ?x ?x)" => "0"),
-        rw!("x/x->0"; "(/ ?x ?x)" => "1" if not_zero("?x")),
+        rw!("x/x->1"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("(-1)*(-1)->1"; "(* -1 -1)" => "1"),
         rw!("x*(1/x)->1"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
 
         /* distributive property & factorization */
         rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+
+        /* multiplication <-> division identity */
+        rw!("x/(y/z)->x(z/y)"; "(/ ?x (/ ?y ?z))" => "(* ?x (/ ?z ?y))"),
 
         /* power simplification */
         rw!("pow(0)"; "(pow ?x 0)" => "1"),
@@ -169,10 +174,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("i-one"; "(i 1 ?x)" => "?x"),
         rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
             if is_const("?c")),
-
-        /* multiplication <-> division identity */
-        rw!("x/(1/y)->x*y"; "(/ ?x (/ 1 ?y))" => "(* ?x ?y)"),
-        rw!("(1/x)*y->y/x"; "(* (/ 1 ?x) ?y)" => "(/ ?y ?x)"),
 
         /* trig */
         /* trig basic identity */
@@ -215,7 +216,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
         rw!("sec^2->tan^2+1->"; "(pow (sec ?x) 2)" => "(+ (pow (tan ?x) 2) 1)"),
         rw!("csc^2->cot^2+1"; "(pow (csc ?x) 2)" => "(+ (pow (cot ?x) 2) 1)"),
-        /* even-odd identity <-> */
+        /* even-odd identity <-> doesn't work */
         rw!("sin(-x)->-sin(x)"; "(sin (* -1 ?x))" => "(* -1 (sin ?x))"),
         rw!("cos(-x)->cos(x)"; "(cos (* -1 ?x))" => "(cos ?x)"),
         rw!("tan(-x)->-tan(x)"; "(tan (* -1 ?x))" => "(* -1 (tan ?x))"),
@@ -228,7 +229,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
         rw!("sec(x)->sec(-x)"; "(sec ?x)" => "(sec (* -1 ?x))"),
         rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
-        /* double angle identity */
+        /* double angle identity doesn't work */
         rw!("sin(2x)->2sin(x)cos(x)"; "(sin (* 2 ?x))" => "(* 2 (* (sin ?x) (cos ?x)))"),
         rw!("cos(2x)->cos^2-sin^2"; "(cos (* 2 ?x))" => "(- (pow (cos ?x) 2) (pow (sin ?x) 2))"),
         rw!("cos(2x)->2cos^2-1"; "(cos (* 2 ?x))" => "(- (* 2 (pow (cos ?x) 2)) 1)"),
@@ -239,12 +240,52 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("2cos^2-1->cos(2x)"; "(- (* 2 (pow (cos ?x) 2)) 1)" => "(cos (* 2 ?x))"),
         rw!("1-2sin^2->cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
         rw!("2tan(x)/(1-tan^2)->tan(2x)"; "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
-        // TODO: Implement Reverse rw!
-        /* half angle identity */
-
+        /* half angle identity doesn't work */
+        rw!("sin(x/2)=sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) 2))"),
+        // rw!("sin(x/2)=-sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos ?x)) 2)))"),
+        rw!("cos(x/2)=sqrt((1+cos(x))/2)"; "(cos (/ ?x 2))" => "(sqrt (/ (+ 1 (cos ?x)) 2))"),
+        // rw!("cos(x/2)=-sqrt((1+cos(x))/2)"; "(cos (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos ?x)) 2)))"),
+        rw!("tan(x/2)=sqrt((1-cos(x))/(1+cos(x)))"; "(tan (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))"),
+        // rw!("tan(x/2)=-sqrt((1-cos(x))/(1+cos(x)))"; "(tan (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x)))))"),
+        /* product to sum identity */
+        rw!("sin(a)sin(b)->(1/2)(cos(a-b)-cos(a+b))";
+            "(* (sin ?x) (sin ?y))" => "(* (/ 1 2) (- (cos (- ?x ?y)) (cos (+ ?x ?y))))"),
+        rw!("cos(a)cos(b)->(1/2)(cos(a-b)+cos(a+b))";
+            "(* (cos ?x) (cos ?y))" => "(* (/ 1 2) (+ (cos (- ?x ?y)) (cos (+ ?x ?y))))"),
+        rw!("sin(a)cos(b)->(1/2)(sin(a+b)+sin(a-b))";
+            "(* (sin ?x) (cos ?y))" => "(* (/ 1 2) (+ (sin (+ ?x ?y)) (sin (- ?x ?y))))"),
+        rw!("cos(a)sin(b)->(1/2)(sin(a+b)-sin(a-b))";
+            "(* (cos ?x) (sin ?y))" => "(* (/ 1 2) (- (sin (+ ?x ?y)) (sin (- ?x ?y))))"),
+        /* sum to product identity */
+        rw!("sin(a)+sin(b)->2sin((a+b)/2)cos((a-b)/2)";
+            "(+ (sin ?x) (sin ?y))" => "(* 2 (* (sin (/ (+ ?x ?y) 2)) (cos (/ (- ?x ?y) 2))))"),
+        rw!("sin(a)-sin(b)->2cos((a+b)/2)sin((a-b)/2)";
+            "(- (sin ?x) (sin ?y))" => "(* 2 (* (cos (/ (+ ?x ?y) 2)) (sin (/ (- ?x ?y) 2))))"),
+        rw!("cos(a)+cos(b)->2cos((a+b)/2)cos((a-b)/2)";
+            "(+ (cos ?x) (cos ?y))" => "(* 2 (* (cos (/ (+ ?x ?y) 2)) (cos (/ (- ?x ?y) 2))))"),
+        rw!("cos(a)-cos(b)->2sin((a+b)/2)sin((a-b)/2)";
+            "(- (cos ?x) (cos ?y))" => "(* -2 (* (sin (/ (+ ?x ?y) 2)) (sin (/ (- ?x ?y) 2))))"),
+        /* sum/difference identity */
+        rw!("sin(a+b)->sin(a)cos(b)+cos(a)sin(b)";
+            "(sin (+ ?x ?y))" => "(+ (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
+        rw!("sin(a-b)->sin(a)cos(b)-cos(a)sin(b)";
+            "(sin (- ?x ?y))" => "(- (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
+        rw!("cos(a+b)->cos(a)cos(b)-sin(a)sin(b)";
+            "(cos (+ ?x ?y))" => "(- (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
+        rw!("cos(a-b)->cos(a)cos(b)+sin(a)sin(b)";
+            "(cos (- ?x ?y))" => "(+ (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
+        rw!("tan(a+b)->((tan(a)+tan(b))/(1-tan(a)tan(b)))";
+            "(tan (+ ?x ?y))" => "(/ (+ (tan ?x) (tan ?y)) (- 1 (* (tan ?x) (tan ?y))))"),
+        rw!("tan(a-b)->((tan(a)-tan(b))/(1+tan(a)tan(b)))";
+            "(tan (- ?x ?y))" => "(/ (- (tan ?x) (tan ?y)) (+ 1 (* (tan ?x) (tan ?y))))"),
         /* trig derivative */
+        rw!("d(sin(x))"; "(d ?x (pow (sin ?x) ?c))" => "(* ?c (* (pow (sin ?x) (- ?c 1)) (d ?x (sin ?x))))"
+            if is_const("?c")),
+        rw!("d(cos(x))"; "(d ?x (pow (cos ?x) ?c))" => "(* ?c (* (pow (cos ?x) (- ?c 1)) (d ?x (cos ?x))))"
+            if is_const("?c")),
         rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
         rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
+        rw!("d(tan)"; "(d ?x (tan ?x))" => "(pow (sec ?x) 2)"),
         /* trig integration */
         rw!("i-sin"; "(i (sin ?x) ?x)" => "(* -1 (cos ?x))"),
         rw!("i-cos"; "(i (cos ?x) ?x)" => "(sin ?x)"),
