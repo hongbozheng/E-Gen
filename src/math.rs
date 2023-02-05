@@ -216,7 +216,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
         rw!("sec^2->tan^2+1->"; "(pow (sec ?x) 2)" => "(+ (pow (tan ?x) 2) 1)"),
         rw!("csc^2->cot^2+1"; "(pow (csc ?x) 2)" => "(+ (pow (cot ?x) 2) 1)"),
-        /* even-odd identity <-> doesn't work */
+        /* even-odd identity <-> */
         rw!("sin(-x)->-sin(x)"; "(sin (* -1 ?x))" => "(* -1 (sin ?x))"),
         rw!("cos(-x)->cos(x)"; "(cos (* -1 ?x))" => "(cos ?x)"),
         rw!("tan(-x)->-tan(x)"; "(tan (* -1 ?x))" => "(* -1 (tan ?x))"),
@@ -229,7 +229,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
         rw!("sec(x)->sec(-x)"; "(sec ?x)" => "(sec (* -1 ?x))"),
         rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
-        /* double angle identity doesn't work */
+        /* double angle identity */
         rw!("sin(2x)->2sin(x)cos(x)"; "(sin (* 2 ?x))" => "(* 2 (* (sin ?x) (cos ?x)))"),
         rw!("cos(2x)->cos^2-sin^2"; "(cos (* 2 ?x))" => "(- (pow (cos ?x) 2) (pow (sin ?x) 2))"),
         rw!("cos(2x)->2cos^2-1"; "(cos (* 2 ?x))" => "(- (* 2 (pow (cos ?x) 2)) 1)"),
@@ -241,11 +241,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("1-2sin^2->cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
         rw!("2tan(x)/(1-tan^2)->tan(2x)"; "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
         /* half angle identity doesn't work */
-        rw!("sin(x/2)=sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) 2))"),
+        // rw!("sin(x/2)=sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) 2))"),
         // rw!("sin(x/2)=-sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos ?x)) 2)))"),
-        rw!("cos(x/2)=sqrt((1+cos(x))/2)"; "(cos (/ ?x 2))" => "(sqrt (/ (+ 1 (cos ?x)) 2))"),
+        // rw!("cos(x/2)=sqrt((1+cos(x))/2)"; "(cos (/ ?x 2))" => "(sqrt (/ (+ 1 (cos ?x)) 2))"),
         // rw!("cos(x/2)=-sqrt((1+cos(x))/2)"; "(cos (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos ?x)) 2)))"),
-        rw!("tan(x/2)=sqrt((1-cos(x))/(1+cos(x)))"; "(tan (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))"),
+        // rw!("tan(x/2)=sqrt((1-cos(x))/(1+cos(x)))"; "(tan (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))"),
         // rw!("tan(x/2)=-sqrt((1-cos(x))/(1+cos(x)))"; "(tan (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x)))))"),
         /* product to sum identity */
         rw!("sin(a)sin(b)->(1/2)(cos(a-b)-cos(a+b))";
