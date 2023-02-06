@@ -1,7 +1,6 @@
 use crate::*;
 
 pub struct ContextGrammar {
-    DEBUG: bool,                            /* debug flag                                   */
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
     root_ecls: Vec<Id>,                     /* root eclasses of MathEGraph                  */
@@ -13,11 +12,9 @@ pub struct ContextGrammar {
 impl ContextGrammar {
     /// ## default constructor
     /// ## Arguments
-    /// * `DEBUG` - debug print flag
     /// * `init_expr` - initial expression for rewriting
-    pub fn new(DEBUG: bool, init_expr: &'static str) -> Self {
+    pub fn new(init_expr: &'static str) -> Self {
         ContextGrammar {
-            DEBUG,
             init_expr,
             egraph: Default::default(),
             root_ecls: vec![],
@@ -72,7 +69,7 @@ impl ContextGrammar {
             let id = eclass.id;
             let ec: String = format!("{}{}", "e", id);
             let enodes = &eclass.nodes;
-            if self.ecls_skip(enodes) { self.skip_ecls.push(ec.clone()); }
+            // if self.ecls_skip(enodes) { self.skip_ecls.push(ec.clone()); }
             for enode in enodes {
                 let mut rewrite = enode.to_string();
                 let children = enode.children();
@@ -85,10 +82,10 @@ impl ContextGrammar {
         }
     }
 
-    /// ## member function to get ecls_skip from self
+    /// ## member function to get skip_ecls from self
     /// ## Argument
     /// * `self`
-    pub fn get_ecls_skip(&self) -> &Vec<String> { return &self.skip_ecls; }
+    pub fn get_skip_ecls(&self) -> &Vec<String> { return &self.skip_ecls; }
 
     /// ## member function to get grammar from self
     /// ## Argument
