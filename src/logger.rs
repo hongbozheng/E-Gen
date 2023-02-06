@@ -20,14 +20,19 @@ impl PartialEq for LogLevel {
     /// * `self` - LogLevel set by user
     /// * `other` - other LogLevel
     #[inline]
-    fn eq(&self, other: &Self) -> bool { *self == *other }
-
-    /// ## function to check unequal
-    /// ## Argument
-    /// * `self` - LogLevel set by user
-    /// * `other` - other LogLevel
-    #[inline]
-    fn ne(&self, other: &Self) -> bool { *self != *other }
+    fn eq(&self, other: &Self) -> bool {
+        match (self, other) {
+            (LogLevel::All, LogLevel::All) => true,
+            (LogLevel::Trace, LogLevel::Trace) => true,
+            (LogLevel::Debug, LogLevel::Debug) => true,
+            (LogLevel::Info, LogLevel::Info) => true,
+            (LogLevel::Warn, LogLevel::Warn) => true,
+            (LogLevel::Error, LogLevel::Error) => true,
+            (LogLevel::Fatal, LogLevel::Fatal) => true,
+            (LogLevel::Off, LogLevel::Off) => true,
+            (_, _) => false,
+        }
+    }
 }
 
 /* implement PartialOrd Trait for LogLevel */
