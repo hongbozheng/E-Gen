@@ -44,10 +44,12 @@ mod explain;
 mod extract;
 mod language;
 /* need to put both files in lib */
+mod config;
+mod logger;
+mod utils;
 mod math;
 mod ctx_gr;
 mod expr_ext;
-mod utils;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -110,10 +112,12 @@ pub use {
     subst::{Subst, Var},
     util::*,
     /* need to make this struct public to be visible by main */
+    config::*,
+    logger::*,
+    utils::*,
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
     expr_ext::{ExpressionExtract},
-    utils::*
 };
 
 #[cfg(feature = "lp")]
