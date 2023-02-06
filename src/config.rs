@@ -1,3 +1,3 @@
 use crate::*;
 
-pub static LOG_LEVEL: LogLevel= LogLevel::Error;
+pub static LOG_LEVEL: LogLevel= LogLevel::Debug;
