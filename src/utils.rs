@@ -38,10 +38,7 @@ pub fn pt_egraph_info(egraph: &MathEGraph) {
 /// * `root_eclasses` - root eclass vec<Id>
 pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
     println!("\n[INFO]: ---------- Root EClasses ----------");
-    print!("[INFO]:");
-    for i in 0..root_ecls.len() {
-        print!(" {}", root_ecls[i]);
-    }
+    print!("[INFO]: {:?}", root_ecls);
     println!("\n[INFO]: -----------------------------------");
 }
 
@@ -50,11 +47,8 @@ pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
 /// * `skip_ecls` - vec<String> to skip during extraction
 pub fn pt_skip_ecls(skip_ecls: &Vec<String>) {
     println!("\n[INFO]: ---------- Skip EClasses ----------");
-    print!("[INFO]:");
-    for eclass in skip_ecls {
-        print!(" {}", eclass);
-    }
-    println!("\n[INFO]: -----------------------------------");
+    println!("[INFO]: {:?}", skip_ecls);
+    println!("[INFO]: -----------------------------------");
 }
 
 /// ## function to print grammar
