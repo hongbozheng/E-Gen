@@ -1,3 +1,4 @@
+use std::fmt::format;
 use crate::*;
 
 /// ## function to print the type of a variable
@@ -9,64 +10,70 @@ pub fn pt_type_of<T>(_: &T) { println!("[DEBUG]: Var Type {}", std::any::type_na
 /// ## Argument
 /// * `egraph` - egraph
 pub fn pt_egraph_info(egraph: &MathEGraph) {
-    println!("\n[DEBUG]: ------- EGraph Information -------");
-    println!("[DEBUG]: ------------- EClass -------------");
+    log_debug_raw("\n");
+    log_debug("------- EGraph Information -------\n");
+    log_debug("------------- EClass -------------\n");
     for eclass in egraph.classes() {
-        println!("[DEBUG]: ------------ EClass {} ------------", eclass.id);
+        log_debug(format!("------------ EClass {} ------------\n", eclass.id).as_str());
         for i in 0..eclass.nodes.len() {
             if eclass.nodes[i].to_string().parse::<f64>().is_ok() {
-                print!("[DEBUG]: <f64> {:?}", eclass.nodes[i]);
+                log_debug(format!("<f64> {}", eclass.nodes[i]).as_str());
             } else {
-                print!("[DEBUG]: enode {}", eclass.nodes[i]);
+                log_debug(format!("enode {}", eclass.nodes[i]).as_str());
                 for k in 0..eclass.nodes[i].children().len() {
-                    print!(" {}", eclass.nodes[i].children()[k]);
+                    log_debug_raw(format!(" {}", eclass.nodes[i].children()[k]).as_str());
                 }
             }
-            println!();
+            log_debug_raw("\n");
         }
-        print!("[DEBUG]: parents");
+        log_debug("parents");
         for k in 0..eclass.parents().len() {
-            print!(" {:?}", eclass.parents().nth(k).unwrap());
+            log_debug_raw(format!(" {:?}", eclass.parents().nth(k).unwrap()).as_str());
         }
-        println!("\n[DEBUG]: data  {:?}", eclass.data);
+        log_debug_raw("\n");
+        log_debug(format!("data {:?}\n", eclass.data).as_str());
     }
-    println!("[DEBUG]: ----------------------------------");
+    log_debug("----------------------------------\n");
 }
 
 /// ## function to print root eclasses
 /// ## Argument
 /// * `root_eclasses` - root eclass vec<Id>
 pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
-    println!("\n[INFO]: ---------- Root EClasses ----------");
-    print!("[INFO]: {:?}", root_ecls);
-    println!("\n[INFO]: -----------------------------------");
+    log_debug_raw("\n");
+    log_debug("---------- Root EClasses ----------\n");
+    log_debug(format!("{:?}\n", root_ecls).as_str());
+    log_debug("-----------------------------------\n");
 }
 
 /// ## function to print eclass(es) to skip during extraction
 /// ## Argument
 /// * `skip_ecls` - vec<String> to skip during extraction
 pub fn pt_skip_ecls(skip_ecls: &Vec<String>) {
-    println!("\n[INFO]: ---------- Skip EClasses ----------");
-    println!("[INFO]: {:?}", skip_ecls);
-    println!("[INFO]: -----------------------------------");
+    log_debug_raw("\n");
+    log_debug("---------- Skip EClasses ----------\n");
+    log_debug(format!("{:?}\n", skip_ecls).as_str());
+    log_debug("-----------------------------------\n");
 }
 
 /// ## function to print grammar
 /// ## Argument
 /// * `grammar` - grammar HashMap
 pub fn pt_grammar(grammar: &HashMap<String, Vec<String>>){
-    println!("\n[INFO]: ------------- Grammar -------------");
+    log_debug_raw("\n");
+    log_debug("------------- Grammar -------------\n");
     for (eclass, rewrite) in grammar {
-        println!("[INFO]: {} -> {:?}", eclass, rewrite);
+        log_debug(format!("{} -> {:?}\n", eclass, rewrite).as_str());
     }
-    println!("[INFO]: -----------------------------------");
+    log_debug("-----------------------------------\n");
 }
 
 /// ## function to print initial rewrites
 /// ## Argument
 /// * `init_rw` - init_rw Vec<String>
 pub fn pt_init_rw(init_rw: &Vec<String>) {
-    println!("\n[INFO]: --------- Initial Rewrite ---------");
-    println!("[INFO]: {:?}", init_rw);
-    println!("[INFO]: -----------------------------------");
+    log_debug_raw("\n");
+    log_debug("--------- Initial Rewrite ---------\n");
+    log_debug(format!("{:?}\n", init_rw).as_str());
+    log_debug("-----------------------------------\n");
 }
