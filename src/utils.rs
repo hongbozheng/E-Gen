@@ -1,10 +1,11 @@
-use std::fmt::format;
 use crate::*;
 
 /// ## function to print the type of a variable
 /// ## Argument
 /// * `_` - reference of any variable
-pub fn pt_type_of<T>(_: &T) { println!("[DEBUG]: Var Type {}", std::any::type_name::<T>()); }
+pub fn pt_type_of<T>(_: &T) {
+    log_debug(format!("Var Type {}", std::any::type_name::<T>()).as_str());
+}
 
 /// ## function to print egraph information
 /// ## Argument
@@ -49,7 +50,7 @@ pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
 /// ## function to print eclass(es) to skip during extraction
 /// ## Argument
 /// * `skip_ecls` - vec<String> to skip during extraction
-pub fn pt_skip_ecls(skip_ecls: &Vec<String>) {
+pub fn pt_skip_ecls(skip_ecls: &HashMap<String, f64>) {
     log_debug_raw("\n");
     log_debug("---------- Skip EClasses ----------\n");
     log_debug(format!("{:?}\n", skip_ecls).as_str());
