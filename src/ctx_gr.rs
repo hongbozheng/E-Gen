@@ -1,6 +1,9 @@
-use std::borrow::BorrowMut;
 use crate::*;
 
+/// Context Grammar Struct
+/// store information about initial expression,
+/// egraph, root eclass(es), skip eclass(es),
+/// grammar, initial rewrite
 pub struct ContextGrammar {
     init_expr: &'static str,                /* initial expression to run with egraph        */
     egraph: MathEGraph,                     /* egraph after running rewrite rules           */
