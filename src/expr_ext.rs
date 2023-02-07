@@ -1,9 +1,11 @@
 use crate::*;
 // use regex::Regex;
 
+/// Expression Extract Struct
+/// extract equivalent mathematical expressions with
+/// context-sensitive grammar / context-free grammar
 pub struct ExpressionExtract {
     csg: bool,                              /* context-sensitive grammar flag               */
-    DEBUG: bool,                            /* debug flag                                   */
     max_rw_len: u8,                         /* maximum rewrite length                       */
     ctx_gr: ContextGrammar,                 /* context grammar struct                       */
     freq: HashMap<String, u16>,             /* rewrite rule frequency                       */
@@ -16,10 +18,9 @@ impl ExpressionExtract {
     /// * `MathEGraph` - egraph after running rewrite rules
     /// * `init_expr`  - initial expression to run with egraph
     /// * `root_classes` - root classes of MathEGraph
-    pub fn new(csg: bool, DEBUG: bool, max_rw_len: u8, ctx_gr: ContextGrammar) -> Self {
+    pub fn new(csg: bool, max_rw_len: u8, ctx_gr: ContextGrammar) -> Self {
         ExpressionExtract {
             csg,
-            DEBUG,
             max_rw_len,
             ctx_gr,
             freq: Default::default(),
@@ -31,6 +32,10 @@ impl ExpressionExtract {
     /// ## Argument
     /// * `self`
     pub fn get_rw(&self) -> &Vec<String> { return &self.rw; }
+
+    // fn skip_rw(&self, rw: &String) -> bool {
+    //
+    // }
 
     /// ## member function to update the frequency of rewrite rules
     /// ## Argument
@@ -102,17 +107,10 @@ impl ExpressionExtract {
     /// * `str` - rewrite expression
     /// * `idx` - fn call idx for debugging purpose
     fn csg_extract(&mut self, mut str: String, idx: u8) {
-        if self.DEBUG { println!("-----------------------------------"); }
-        if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
+        log_trace("-----------------------------------\n");
+        log_trace(format!("Function Call {}\n", idx).as_str());
         let prev_str = str.clone();
         let expr: Vec<&str> = prev_str.split(" ").collect();
-        if self.DEBUG {
-            print!("[EXPR]: ");
-            for i in 0..expr.len() {
-                print!(" {:?}", expr[i]);
-            }
-            println!();
-        }
 
         let mut term: bool = false;
 
@@ -121,34 +119,28 @@ impl ExpressionExtract {
         for i in 0..expr.len() {
             if expr.len() == 1 {
                 self.rw.push(str.clone());
-                println!("[FINAL]: {}", str);
+                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 return;
             }
             let op = expr[i];
             if !grammar.contains_key(op) { continue; }
-            if self.DEBUG { println!("[ OP ]:  {}", op); }
+            log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
             let rw_list = grammar.get(op).unwrap();
 
             for k in 0..rw_list.len() {
                 let rw = &rw_list[k];
-                if self.DEBUG { println!("[SSTR]:  {}", str); }
-                if self.DEBUG { println!("[ RW ]:  {}", rw); }
-                /**
-                Regex will solve indistinct eclass match in str.replacen()
-                Original Code
-                ```
-                str = str.replacen(op, &*rw, 1);
-                ```
-                Using Regex (has performance issue since it's slow)
-                ```
-                # use regex::Regex;
-                let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
-                str.replace_range(mat.start()..mat.end(), &rw);
-                ```
-                 */
-                if rw.contains('*') && rw.contains("e5") {
-                    continue;
-                }
+                log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
+                log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+                #[warn(unused_doc_comments)]
+                /// ```rust
+                /// /* Regex will solve indistinct eclass match in str.replacen() */
+                /// /* Original Code */
+                /// str = str.replacen(op, &*rw, 1);
+                /// /* Using Regex (has performance issue since it's slow) */
+                /// use regex::Regex;
+                /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
+                /// str.replace_range(mat.start()..mat.end(), &rw);
+                /// ```
                 if rw.contains('e') {
                     if self.update_freq(rw, true) {
                         // println!("[INFO]:  Freq exceeds limit, Switching RW...");
@@ -156,10 +148,10 @@ impl ExpressionExtract {
                     }
                 }
                 self.distinct_replace(op, rw, &mut str);
-                if self.DEBUG { println!("[AFTER]: {}", str); }
+                log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
 
                 if str.len() >= self.max_rw_len as usize {
-                    if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
+                    log_trace("STR exceeds length limit, Try another RW...\n");
                     if rw.contains('e') {
                         // println!("[INFO]:  Freq exceeds limit, try another rw...");
                         self.update_freq(rw, false);
@@ -169,16 +161,16 @@ impl ExpressionExtract {
                 }
                 if !self.contain_eclass(&str) && k == rw_list.len()-1 {
                     self.rw.push(str.clone());
-                    println!("[FINAL]: {}", str);
+                    log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                     term = true;
                     break;
                 } else if !self.contain_eclass(&str) {
                     self.rw.push(str.clone());
                     str = prev_str.clone();
-                    println!("[FINAL]: {}", str);
+                    log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 } else {
                     self.csg_extract(str.clone(), idx+1);
-                    if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
+                    log_trace(format!("Back to Function Call {}\n", idx).as_str());
                     if rw.contains('e') {
                         // println!("[INFO]:  Freq exceeds limit, try another rw...");
                         self.update_freq(rw, false);
@@ -188,8 +180,8 @@ impl ExpressionExtract {
             }
             if term { break; }
         }
-        if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
-        if self.DEBUG { println!("-----------------------------------"); }
+        log_trace(format!("Finish Function Call {}\n", idx).as_str());
+        log_trace("-----------------------------------\n");
     }
 
     /// ## private member function to extract all equivalent mathematical expressions
@@ -199,17 +191,10 @@ impl ExpressionExtract {
     /// * `str` - rewrite expression
     /// * `idx` - fn call idx for debugging purpose
     fn cfg_extract(&mut self, mut str: String, idx: u8) {
-        if self.DEBUG { println!("-----------------------------------"); }
-        if self.DEBUG { println!("[DEBUG]: Function Call {}", idx); }
+        log_trace("-----------------------------------\n");
+        log_trace(format!("Function Call {}\n", idx).as_str());
         let prev_str = str.clone();
         let expr: Vec<&str> = prev_str.split(" ").collect();
-        if self.DEBUG {
-            print!("[EXPR]: ");
-            for i in 0..expr.len() {
-                print!(" {:?}", expr[i]);
-            }
-            println!();
-        }
 
         let mut term: bool = false;
 
@@ -218,51 +203,47 @@ impl ExpressionExtract {
         for i in 0..expr.len() {
             if expr.len() == 1 {
                 self.rw.push(str.clone());
-                println!("[FINAL]: {}", str);
+                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 return;
             }
             let op = expr[i];
             if !grammar.contains_key(op) { continue; }
-            if self.DEBUG { println!("[ OP ]:  {}", op); }
+            log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
             let rw_list = grammar.get(op).unwrap();
 
             for k in 0..rw_list.len() {
                 let rw = &rw_list[k];
-                if self.DEBUG { println!("[SSTR]:  {}", str); }
-                if self.DEBUG { println!("[ RW ]:  {}", rw); }
-                /**
-                Regex will solve indistinct eclass match in str.replacen()
-                Original Code
-                ```
-                str = str.replacen(op, &*rw, 1);
-                ```
-                Using Regex (has performance issue since it's slow)
-                ```
-                # use regex::Regex;
-                let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();
-                str.replace_range(mat.start()..mat.end(), &rw);
-                ```
-                 */
+                log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
+                log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+                /// ```rust
+                /// /* Regex will solve indistinct eclass match in str.replacen() */
+                /// /* Original Code */
+                /// str = str.replacen(op, &*rw, 1);
+                /// /* Using Regex (has performance issue since it's slow) */
+                /// use regex::Regex;
+                /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
+                /// str.replace_range(mat.start()..mat.end(), &rw);
+                /// ```
                 self.distinct_replace(op, rw, &mut str);
-                if self.DEBUG { println!("[AFTER]: {}", str); }
+                log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
 
                 if str.len() >= self.max_rw_len as usize {
-                    if self.DEBUG { println!("[DEBUG]: STR exceeds length limit, Try another RW..."); }
+                    log_trace("STR exceeds length limit, Try another RW...\n");
                     str = prev_str.clone();
                     continue;
                 }
                 if !str.contains('e') && k == rw_list.len()-1 {
                     self.rw.push(str.clone());
-                    println!("[FINAL]: {}", str);
+                    log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                     term = true;
                     break;
                 } else if !str.contains('e') {
                     self.rw.push(str.clone());
                     str = prev_str.clone();
-                    println!("[FINAL]: {}", str);
+                    log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 } else {
                     self.cfg_extract(str.clone(), idx+1);
-                    if self.DEBUG { println!("[DEBUG]: Back to Function Call {}", idx); }
+                    log_trace(format!("Back to Function Call {}\n", idx).as_str());
                     str = prev_str.clone();
                     if k == rw_list.len()-1 {
                         term = true;
@@ -272,8 +253,8 @@ impl ExpressionExtract {
             }
             if term { break; }
         }
-        if self.DEBUG { println!("[DEBUG]: Finish Function Call {}", idx); }
-        if self.DEBUG { println!("-----------------------------------"); }
+        log_trace(format!("Finish Function Call {}\n", idx).as_str());
+        log_trace("-----------------------------------\n");
     }
 
     /// ## member function to start extraction
@@ -283,23 +264,28 @@ impl ExpressionExtract {
     pub fn extract(&mut self) {
         match self.csg {
             true => {
-                println!("\n[INFO]: Start context-sensitive grammar extraction...");
+                log_info_raw("\n");
+                log_info("Start context-sensitive grammar extraction...\n");
                 let init_rw = self.ctx_gr.get_init_rw().clone();
                 for i in 0..init_rw.len() {
-                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, init_rw[i]);
+                    log_info_raw("\n");
+                    log_info(format!("Extracting with No.{} initial rewrite {}...\n", i+1, init_rw[i]).as_str());
                     self.csg_extract(init_rw[i].clone(), 0);
                 }
-                println!("\n[INFO]: Finish context-sensitive grammar extraction\n");
+                log_info_raw("\n");
+                log_info("Finish context-sensitive grammar extraction\n");
             },
             false => {
-                println!("\n[INFO]: Start context-free grammar extraction...");
+                log_info_raw("\n");
+                log_info("Start context-free grammar extraction...\n");
                 let init_rw = self.ctx_gr.get_init_rw().clone();
                 for i in 0..init_rw.len() {
-                    println!("\n[INFO]: Extracting with No.{} initial rewrite {}...", i+1, init_rw[i]);
+                    log_info(format!("Extracting with No.{} initial rewrite {}...\n", i+1, init_rw[i]).as_str());
                     self.cfg_extract(init_rw[i].clone(), 0);
                 }
                 // self.cfg_extract("/ e3 e1".to_string().clone(), 0);
-                println!("\n[INFO]: Finish context-free grammar extraction\n");
+                log_info_raw("\n");
+                log_info("Finish context-free grammar extraction\n");
             },
         }
     }
