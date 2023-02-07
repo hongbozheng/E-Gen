@@ -1,6 +1,7 @@
 use std::{process::exit};
-use std::fmt::format;
-use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize, pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls, log_trace, log_debug, log_info, log_warn, log_error, log_fatal, log_info_raw, log_debug_raw};
+use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize};
+use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls};
+use egg::{log_info, log_debug, log_info_raw, log_debug_raw};
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -147,7 +148,7 @@ pub fn main() {
     // let init_expr: &str = "(/ (* (* (d x (sin x)) (/ 1 (cos x))) (sin x)) (* -1 (d x (cos x))))";
     log_info(format!("Initial expression {}\n", init_expr).as_str());
 
-    let mut ctx_gr = ContextGrammar::new(DEBUG, init_expr);
+    let mut ctx_gr = ContextGrammar::new(init_expr);
     log_info("Creating egraph with initial expression & rewrite rules...\n");
     ctx_gr.set_egraph();
     log_info("Creating grammar...\n");
@@ -185,10 +186,11 @@ pub fn main() {
 
     log_info_raw("\n");
     log_info(format!("Total # of grammar {}\n", grammar.len()).as_str());
-
-    let mut expr_ext = ExpressionExtract::new(csg, DEBUG, max_rw_len, ctx_gr);
+// exit(1);
+    let mut expr_ext = ExpressionExtract::new(csg, max_rw_len, ctx_gr);
     expr_ext.extract();
     let mut rw_list = expr_ext.get_rw().clone();
+    log_info_raw("\n");
     for rw in &rw_list {
         log_info(format!("{}\n", rw).as_str());
     }
