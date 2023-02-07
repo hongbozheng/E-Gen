@@ -1,15 +1,23 @@
 use crate::*;
 use std::cmp::Ordering;
 
-/* enumerate log level */
+/// log level for the environment
 pub enum LogLevel {
+    /// All -> print everything
     All = 6,
+    /// Trace -> verbose (extraction details)
     Trace = 5,
+    /// Debug -> information of all var
     Debug = 4,
+    /// Info -> information of progress
     Info = 3,
+    /// Warn -> warning(s)
     Warn = 2,
+    /// Error -> error(s)
     Error = 1,
+    /// Fatal -> fatal error(s)
     Fatal = 0,
+    /// Off -> turn off printing
     Off = -1
 }
 
