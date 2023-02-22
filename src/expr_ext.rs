@@ -58,7 +58,7 @@ pub fn extract(csg: bool,
     // for (ecls, rw_list) in grammar {
     //     hashmap.insert(ecls, rw_list);
     // }
-// exit(0);
+exit(0);
     match csg {
         true => unsafe {
             log_info_raw("\n");
