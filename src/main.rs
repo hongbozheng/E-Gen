@@ -1,7 +1,9 @@
 use std::{process::exit};
 use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize};
-use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls};
+/* import log level & logger functions */
 use egg::{log_info, log_debug, log_info_raw, log_debug_raw};
+/* import utils functions */
+use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls};
 
 fn help() {
     println!("[USAGE]: cargo run -csg <csg flag> -de <debug flag> -len <max rw len>");
@@ -118,8 +120,8 @@ pub fn main() {
     // let init_expr: &str = "(sin (* -1 x))";
     // let init_expr: &str = "(+ (pow (sin x) 2) (pow (cos x) 2))";
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
-    // let init_expr: &str = "(/ (sec x) (sin x))"; // wow...
-    let init_expr: &str = "(+ (* (cos (/ x 2)) 1) 0)";
+    // let init_expr: &str = "(/ (sec x) (sin x))";
+    // let init_expr: &str = "(+ (* (cos (/ x 2)) 1) 0)";
     // let init_expr: &str = "(sqrt (/ x 2))";
     // let init_expr: &str = "(* (* x 2) 2)";
     // let init_expr: &str = "(/ 1 (sec x))";
@@ -129,7 +131,7 @@ pub fn main() {
     // let init_expr: &str = "(- (pow (cos x) 2) (pow (sin x) 2))";
     // let init_expr: &str = "(/ (sin x) (cos x))";
     // let init_expr: &str = "(/ (cos x) (sec x))";
-    // let init_expr: &str = "(d x (pow (cos x) 2))"; // wow...
+    let init_expr: &str = "(d x (pow (cos x) 2))";
     // let init_expr: &str = "(d x (pow (sin x) 2))";
     // let init_expr: &str = "(- (cos x) (cos y))";
     // let init_expr: &str = "(tan (- x y))";

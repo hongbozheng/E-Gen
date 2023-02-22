@@ -1,6 +1,7 @@
 use crate::{rewrite as rw, *};
 use ordered_float::NotNan;
 
+/// mathematical expression egraph
 pub type MathEGraph = crate::EGraph<Math, ConstantFold>;
 pub type Rewrite = crate::Rewrite<Math, ConstantFold>;
 
@@ -117,10 +118,14 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
     }
 }
 
-/*
- * Documentation of rewrite
- * https://docs.rs/egg/0.7.1/egg/macro.rewrite.html
- */
+/// mathematical rules including:
+/// 1. basic arithmetic
+/// 2. simplification
+/// 3. expansion
+/// 4. exponent
+/// 5. trigonometry
+/// 6. derivative
+/// 7. integration
 pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* commutative rules */
@@ -132,8 +137,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x(y/z)->(xy)/z"; "(* ?x (/ ?y ?z))" => "(/ (* ?x ?y) ?z)"),
 
         /* expansion */
-        rw!("mul-1-exp"; "?x" => "(* 1 ?x)"),
-        rw!("pow(1)-exp"; "?x" => "(pow ?x 1)"),
+        rw!("x->x*1"; "?x" => "(* 1 ?x)"),
+        rw!("x->x^1"; "?x" => "(pow ?x 1)"),
 
         /* basic arithmetic simplification */
         rw!("x+0->x"; "(+ ?x 0)" => "?x"),
@@ -152,11 +157,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* multiplication <-> division identity */
         rw!("x/(y/z)->x(z/y)"; "(/ ?x (/ ?y ?z))" => "(* ?x (/ ?z ?y))"),
 
-        /* power simplification */
+        /* exponent rules */
+        /* simplification */
         rw!("pow(0)"; "(pow ?x 0)" => "1"),
-        rw!("pow(1)"; "(pow ?x 1)" => "?x" if not_zero("?x")),
-
-        /* power */
+        rw!("pow(1)"; "(pow ?x 1)" => "?x"),
+        /* basic rule */
         rw!("pow-of-prod"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
         rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
         rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
@@ -165,7 +170,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* derivative */
         rw!("d-power-const"; "(d ?x (pow ?x ?c))" => "(* ?c (* (pow ?x (- ?c 1)) (d ?x ?x)))"
             if is_const("?c")),
-
         /* derivative distributive property */
         rw!("d-const*var-distrib"; "(d ?x (* ?c ?x))" => "(* ?c (d ?x ?x))" if is_const("?c")),
         rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
@@ -266,22 +270,24 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("cos(a)-cos(b)->2sin((a+b)/2)sin((a-b)/2)";
             "(- (cos ?x) (cos ?y))" => "(* -2 (* (sin (/ (+ ?x ?y) 2)) (sin (/ (- ?x ?y) 2))))"),
         /* sum/difference identity */
-        rw!("sin(a+b)->sin(a)cos(b)+cos(a)sin(b)";
-            "(sin (+ ?x ?y))" => "(+ (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
-        rw!("sin(a-b)->sin(a)cos(b)-cos(a)sin(b)";
-            "(sin (- ?x ?y))" => "(- (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
-        rw!("cos(a+b)->cos(a)cos(b)-sin(a)sin(b)";
-            "(cos (+ ?x ?y))" => "(- (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
-        rw!("cos(a-b)->cos(a)cos(b)+sin(a)sin(b)";
-            "(cos (- ?x ?y))" => "(+ (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
-        rw!("tan(a+b)->((tan(a)+tan(b))/(1-tan(a)tan(b)))";
-            "(tan (+ ?x ?y))" => "(/ (+ (tan ?x) (tan ?y)) (- 1 (* (tan ?x) (tan ?y))))"),
-        rw!("tan(a-b)->((tan(a)-tan(b))/(1+tan(a)tan(b)))";
-            "(tan (- ?x ?y))" => "(/ (- (tan ?x) (tan ?y)) (+ 1 (* (tan ?x) (tan ?y))))"),
+        // rw!("sin(a+b)->sin(a)cos(b)+cos(a)sin(b)";
+        //     "(sin (+ ?x ?y))" => "(+ (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
+        // rw!("sin(a-b)->sin(a)cos(b)-cos(a)sin(b)";
+        //     "(sin (- ?x ?y))" => "(- (* (sin ?x) (cos ?y)) (* (cos ?x) (sin ?y)))"),
+        // rw!("cos(a+b)->cos(a)cos(b)-sin(a)sin(b)";
+        //     "(cos (+ ?x ?y))" => "(- (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
+        // rw!("cos(a-b)->cos(a)cos(b)+sin(a)sin(b)";
+        //     "(cos (- ?x ?y))" => "(+ (* (cos ?x) (cos ?y)) (* (sin ?x) (sin ?y)))"),
+        // rw!("tan(a+b)->((tan(a)+tan(b))/(1-tan(a)tan(b)))";
+        //     "(tan (+ ?x ?y))" => "(/ (+ (tan ?x) (tan ?y)) (- 1 (* (tan ?x) (tan ?y))))"),
+        // rw!("tan(a-b)->((tan(a)-tan(b))/(1+tan(a)tan(b)))";
+        //     "(tan (- ?x ?y))" => "(/ (- (tan ?x) (tan ?y)) (+ 1 (* (tan ?x) (tan ?y))))"),
         /* trig derivative */
         rw!("d(sin(x))"; "(d ?x (pow (sin ?x) ?c))" => "(* ?c (* (pow (sin ?x) (- ?c 1)) (d ?x (sin ?x))))"
             if is_const("?c")),
         rw!("d(cos(x))"; "(d ?x (pow (cos ?x) ?c))" => "(* ?c (* (pow (cos ?x) (- ?c 1)) (d ?x (cos ?x))))"
+            if is_const("?c")),
+        rw!("d(tan(x))"; "(d ?x (pow (tan ?x) ?c))" => "(* ?c (* (pow (tan ?x) (- ?c 1)) (d ?x (tan ?x))))"
             if is_const("?c")),
         rw!("d(sin)"; "(d ?x (sin ?x))" => "(cos ?x)"),
         rw!("d(cos)"; "(d ?x (cos ?x))" => "(* -1 (sin ?x))"),
