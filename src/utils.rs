@@ -1,4 +1,27 @@
+use std::process::Command;
 use crate::*;
+
+/// ## function to set max # of threads for extraction
+/// ## MAX_NUM_THREADS = floor(MAX # of THREADS of the OS x MAX_NUM_THREADS_PCT)
+pub unsafe fn set_max_num_threads() {
+    let output = Command::new("cat").arg("/proc/sys/kernel/threads-max")
+        .output().expect("Failed to get MAX OS Threads!");
+    let mut max_os_threads_str = String::from_utf8_lossy(&output.stdout).to_string();
+    max_os_threads_str.pop();
+    let max_os_threads = match max_os_threads_str.parse::<u32>() {
+        Ok(max_os_threads) => max_os_threads,
+        Err(e) => {
+            log_error(format!("Failed to parse {}: {}", max_os_threads_str, e).as_str());
+            return;
+        }
+    };
+    MAX_NUM_THREADS = (max_os_threads as f32 * MAX_NUM_THREADS_PCT).floor() as u32;
+}
+
+/// ## function to set max str len of rewrite
+pub unsafe fn set_max_rw_len(max_rw_len: u8) {
+    MAX_RW_LEN = max_rw_len;
+}
 
 /// ## function to print the type of a variable
 /// ## Argument
