@@ -117,7 +117,7 @@ pub use {
     utils::*,
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
-    expr_ext::{ExpressionExtract},
+    expr_ext::{RW_VEC, extract},
 };
 
 #[cfg(feature = "lp")]
