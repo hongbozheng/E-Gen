@@ -1,5 +1,7 @@
-use std::{process::exit};
-use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize};
+use std::{process::exit, thread, process};
+use std::process::Command;
+use std::sync::Arc;
+use egg::{ContextGrammar, ExpressionExtract, Language, Extractor, AstSize, extract, set_max_num_threads, MAX_NUM_THREADS, RW_VEC};
 /* import log level & logger functions */
 use egg::{log_info, log_debug, log_info_raw, log_debug_raw};
 /* import utils functions */
@@ -181,34 +183,67 @@ pub fn main() {
     pt_skip_ecls(skip_ecls);
 
     let grammar = ctx_gr.get_grammar();
-    pt_grammar(grammar);
+
+    // let mut gmr ;
+    // for (eclass, rw_list) in grammar {
+    //     gmr.insert(eclass.clone(), rw_list.clone());
+    // }
+
+    // pt_grammar(&grammar);
 
     let init_rw = ctx_gr.get_init_rw();
     pt_init_rw(init_rw);
 
     log_info_raw("\n");
     log_info(format!("Total # of grammar {}\n", grammar.len()).as_str());
+
+    // unsafe { set_max_num_threads();
+    //     println!("-----{}", MAX_NUM_THREADS);
+    // }
+
+    extract(csg, &ctx_gr, skip_ecls, grammar, init_rw);
+    log_info_raw("\n");
+
+    unsafe {
+        log_info(format!("Total # of RW {}\n", RW_VEC.as_ref().unwrap().lock().unwrap().len()).as_str());
+
+        for s in RW_VEC.as_ref().unwrap().lock().unwrap().iter() {
+            println!("{}", s);
+        }
+    }
+
+    // let result = Arc::try_unwrap(unsafe { RW_VEC.clone() }.unwrap()).unwrap().into_inner().unwrap();
+    // unsafe { log_info(format!("Total # of RW {}\n", result.len()).as_str()); }
+    // unsafe {
+    //     for rw in &result {
+    //         log_info(format!("{}\n", rw).as_str());
+    //     }
+    // }
+
 // exit(1);
-    let mut expr_ext = ExpressionExtract::new(csg, max_rw_len, ctx_gr);
-    expr_ext.extract();
-    let mut rw_list = expr_ext.get_rw().clone();
-    log_info_raw("\n");
-    for rw in &rw_list {
-        log_info(format!("{}\n", rw).as_str());
-    }
-    let orig_rw_num = rw_list.len();
-    rw_list.sort_unstable();
-    rw_list.dedup();
-    log_info_raw("\n");
-    if orig_rw_num == rw_list.len() {
-        log_info("RW are all unique\n");
-    } else {
-        log_info("RW have duplicates\n");
-    }
-    rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
-    log_info_raw("\n");
-    log_info(format!("Total # of RW {}\n", rw_list.len()).as_str());
-    for rw in &rw_list {
-        log_info(format!("{}\n", rw).as_str());
-    }
+    // extraction starts here -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    // let mut expr_ext = ExpressionExtract::new(csg, max_rw_len, ctx_gr);
+    // expr_ext.extract();
+    // let mut rw_list = expr_ext.get_rw().clone();
+    // log_info_raw("\n");
+    // for rw in &rw_list {
+    //     log_info(format!("{}\n", rw).as_str());
+    // }
+    // let orig_rw_num = rw_list.len();
+    // rw_list.sort_unstable();
+    // rw_list.dedup();
+    // log_info_raw("\n");
+    // if orig_rw_num == rw_list.len() {
+    //     log_info("RW are all unique\n");
+    // } else {
+    //     log_info("RW have duplicates\n");
+    // }
+    // rw_list.sort_by(|rw1, rw2| rw1.len().cmp(&rw2.len()));
+    // log_info_raw("\n");
+    // log_info(format!("Total # of RW {}\n", rw_list.len()).as_str());
+    // for rw in &rw_list {
+    //     log_info(format!("{}\n", rw).as_str());
+    // }
+
+
 }

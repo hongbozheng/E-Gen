@@ -1,5 +1,5 @@
 use std::process::exit;
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use std::thread;
 use crate::*;
 // use regex::Regex;
@@ -8,12 +8,30 @@ use crate::*;
 // static init_expr: &'static str = "(d x (pow (cos x) 2))";
 // static mut ctx_gmr: ContextGrammar = ContextGrammar::new(init_expr);
 // static mut gmr: HashMap<String, Vec<String>> = HashMap::new("e0": vec!["+ e0 e0"]);
-pub static mut rw_vec: Vec<String> = vec![];
+// pub static mut rw_vec: Vec<String> = vec![];
+pub static mut RW_VEC: Option<Arc<Mutex<Vec<String>>>> = None;
 static mut max_rw_len: u8 = 20;
 static mut num_threads: u8 = 50;
 
-static mut gmr: Option<HashMap<String, Vec<String>>> = None;
+static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
+
+// static mut gmr: Option<HashMap<String, Vec<String>>> = None;
 static mut init_rewrite: Vec<String> = vec![];
+
+unsafe fn set_glob_gr(grammar: &HashMap<String, Vec<String>>) {
+    let glob_grammar = GRAMMAR.get_or_insert(HashMap::default());
+    for (ecls, rw_rules) in grammar {
+        glob_grammar.insert(ecls.clone(), rw_rules.clone());
+    }
+}
+
+unsafe fn set_rw_vec() {
+    let rw_vec = RW_VEC.get_or_insert(Arc::new(Mutex::new(Vec::new())));
+}
+
+// unsafe fn set_init_rw()
+
+// static mut
 
 // lazy_static! {
 //     static ref GRAMMAR: Mutex<HashMap<String, Vec<String>>> = Mutex::new(HashMap::default());
@@ -39,27 +57,30 @@ pub fn extract(csg: bool,
                init_rw: &Vec<String>) {
     // let grammar = Arc::new(grammar);
 
+    // unsafe {
+    //     // gmr = Some(HashMap::default());
+    //     let global_hm = GRAMMAR.get_or_insert(HashMap::default());
+    //     for (ecls, rw_list) in grammar {
+    //         // if let Some(ref mut hashmap) = gmr {
+    //         //     hashmap.insert(ecls.clone(), rw_list.clone());
+    //         // }
+    //         global_hm.insert(ecls.clone(), rw_list.clone());
+    //     }
+    //
+    //     // for rw in init_rw {
+    //     //     init_rewrite.push(rw.clone());
+    //     // }
+    //
+    //     // println!("{:?}", gmr);
+    //
+    //     // for (ecls, rw_list) in &gmr.unwrap() {
+    //     //     println!("{} {:?}", ecls, rw_list);
+    //     // }
+    // }
     unsafe {
-        // gmr = Some(HashMap::default());
-        let global_hm = gmr.get_or_insert(HashMap::default());
-        for (ecls, rw_list) in grammar {
-            // if let Some(ref mut hashmap) = gmr {
-            //     hashmap.insert(ecls.clone(), rw_list.clone());
-            // }
-            global_hm.insert(ecls.clone(), rw_list.clone());
-        }
-
-        for rw in init_rw {
-            init_rewrite.push(rw.clone());
-        }
-
-        // println!("{:?}", gmr);
-
-        // for (ecls, rw_list) in &gmr.unwrap() {
-        //     println!("{} {:?}", ecls, rw_list);
-        // }
+        set_glob_gr(grammar);
+        set_rw_vec();
     }
-
     // let mut hashmap = GRAMMAR.lock().unwrap();
     // for (ecls, rw_list) in grammar {
     //     hashmap.insert(ecls, rw_list);
@@ -73,6 +94,7 @@ pub fn extract(csg: bool,
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
                 thread::spawn(move || {
+                    log_info(format!("Extracting with No.{} initial rewrite {}...\n", 0, rw).as_str());
                     csg_extract(rw, 0);
                 })
             }).collect();
@@ -239,13 +261,29 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
     for i in 0..expr.len() {
         if expr.len() == 1 {
-            rw_vec.push(str.clone());
+            // let vec_ref = RW_VEC.as_ref().unwrap();
+            // let mut vec = vec_ref.lock().unwrap();
+            // vec.push(str.clone());
+
+            // if let Some(vec) = RW_VEC.take() {
+            //     vec.lock().unwrap().push(str.clone());
+            //     // mutex_vec.push(str.clone());
+            //     RW_VEC = Some(vec);
+            // }
+
+            let mut vec = RW_VEC.take().unwrap();
+            vec.lock().unwrap().push(str.clone());
+            RW_VEC = Some(vec);
+
+            // let mut result = RW_VEC.unwrap().lock().unwrap();
+            // result.push(str.clone());
+            // rw_vec.push(str.clone());
             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             return;
         }
         let op = expr[i];
 
-        if let Some(ref mut hm) = gmr {
+        if let Some(ref mut hm) = GRAMMAR {
             if !hm.contains_key(op) {continue;}
         }
 
@@ -253,7 +291,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
         // let rw_list = gmr.unwrap().get(op).unwrap();
 
-        if let Some(ref mut hm) = gmr {
+        if let Some(ref mut hm) = GRAMMAR {
             // println!("{:?}", hm);
             let rw_list = hm.get(op).unwrap();
 
@@ -284,7 +322,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 replace_distinct_ecls(op, rw, &mut str);
                 log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
 
-                if str.len() >= max_rw_len as usize {
+                if str.len() >= MAX_RW_LEN as usize {
                     log_trace("STR exceeds length limit, Try another RW...\n");
                     // if rw.contains('e') {
                     //     // println!("[INFO]:  Freq exceeds limit, try another rw...");
@@ -294,27 +332,57 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                     continue;
                 }
                 if !contain_ecls(&str) && k == rw_list.len()-1 {
-                    rw_vec.push(str.clone());
+                    // if let Some(vec) = RW_VEC.take() {
+                    //     vec.lock().unwrap().push(str.clone());
+                    //     // mutex_vec.push(str.clone());
+                    //     RW_VEC = Some(vec);
+                    // }
+
+                    let mut vec = RW_VEC.take().unwrap();
+                    vec.lock().unwrap().push(str.clone());
+                    RW_VEC = Some(vec);
+
+                    // let mut result = RW_VEC.unwrap().lock().unwrap();
+                    // result.push(str.clone());
+                    // rw_vec.push(str.clone());
                     log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                     term = true;
                     break;
                 } else if !contain_ecls(&str) {
-                    rw_vec.push(str.clone());
+                    // if let Some(vec) = RW_VEC.take() {
+                    //     vec.lock().unwrap().push(str.clone());
+                    //     // mutex_vec.push(str.clone());
+                    //     RW_VEC = Some(vec);
+                    // }
+
+                    let mut vec = RW_VEC.take().unwrap();
+                    vec.lock().unwrap().push(str.clone());
+                    RW_VEC = Some(vec);
+
+                    // let mut result = RW_VEC.unwrap().lock().unwrap();
+                    // result.push(str.clone());
+                    // rw_vec.push(str.clone());
                     str = prev_str.clone();
                     log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 } else {
                     // let grammar = Arc::clone(&grammar).deref();
 
-                    if num_threads > 0 {
-                        num_threads -= 1;
-                        println!("New Thread Spawn {}", 50-num_threads);
-                        let thread = thread::spawn(move || {
-                            csg_extract(str.clone(),  idx+1);
-                        });
-                        thread.join().unwrap();
-                    } else { csg_extract(str.clone(), idx+1); }
+                    // println!("New Thread Spawn {}", 50-num_threads);
+                    // let thread = thread::spawn(move || {
+                    //     csg_extract(str.clone(),  idx+1);
+                    // });
+                    // thread.join().unwrap();
 
-                    // csg_extract(str.clone(), idx+1);
+                    // if num_threads > 0 {
+                    //     num_threads -= 1;
+                    //     println!("New Thread Spawn {}", 50-num_threads);
+                    //     let thread = thread::spawn(move || {
+                    //         csg_extract(str.clone(),  idx+1);
+                    //     });
+                    //     thread.join().unwrap();
+                    // } else { csg_extract(str.clone(), idx+1); }
+
+                    csg_extract(str.clone(), idx+1);
 
                     log_trace(format!("Back to Function Call {}\n", idx).as_str());
                     // if rw.contains('e') {
