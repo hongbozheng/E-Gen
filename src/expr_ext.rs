@@ -1,7 +1,6 @@
 use std::process::exit;
 use std::sync::Mutex;
 use std::thread;
-use lazy_static::lazy_static;
 use crate::*;
 // use regex::Regex;
 
@@ -11,9 +10,10 @@ use crate::*;
 // static mut gmr: HashMap<String, Vec<String>> = HashMap::new("e0": vec!["+ e0 e0"]);
 pub static mut rw_vec: Vec<String> = vec![];
 static mut max_rw_len: u8 = 20;
-static mut num_threads: u8 = 10;
+static mut num_threads: u8 = 50;
 
 static mut gmr: Option<HashMap<String, Vec<String>>> = None;
+static mut init_rewrite: Vec<String> = vec![];
 
 // lazy_static! {
 //     static ref GRAMMAR: Mutex<HashMap<String, Vec<String>>> = Mutex::new(HashMap::default());
@@ -40,11 +40,17 @@ pub fn extract(csg: bool,
     // let grammar = Arc::new(grammar);
 
     unsafe {
-        gmr = Some(HashMap::default());
+        // gmr = Some(HashMap::default());
+        let global_hm = gmr.get_or_insert(HashMap::default());
         for (ecls, rw_list) in grammar {
-            if let Some(ref mut hashmap) = gmr {
-                hashmap.insert(ecls.clone(), rw_list.clone());
-            }
+            // if let Some(ref mut hashmap) = gmr {
+            //     hashmap.insert(ecls.clone(), rw_list.clone());
+            // }
+            global_hm.insert(ecls.clone(), rw_list.clone());
+        }
+
+        for rw in init_rw {
+            init_rewrite.push(rw.clone());
         }
 
         // println!("{:?}", gmr);
@@ -58,18 +64,40 @@ pub fn extract(csg: bool,
     // for (ecls, rw_list) in grammar {
     //     hashmap.insert(ecls, rw_list);
     // }
-exit(0);
+// exit(0);
     match csg {
         true => unsafe {
             log_info_raw("\n");
             log_info("Start context-sensitive grammar extraction...\n");
             let init_rw = ctx_gr.get_init_rw().clone();
-            for i in 0..init_rw.len() {
-                log_info_raw("\n");
-                log_info(format!("Extracting with No.{} initial rewrite {}...\n", i+1, init_rw[i]).as_str());
-                // let grammar = Arc::clone(&grammar).deref();
-                csg_extract(init_rw[i].clone(), 0);
+
+            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+                thread::spawn(move || {
+                    csg_extract(rw, 0);
+                })
+            }).collect();
+
+            for handle in handles {
+                println!("new thread spawn");
+                handle.join().unwrap();
             }
+
+            // for i in 0..init_rewrite.len() {
+            //     log_info_raw("\n");
+            //     log_info(format!("Extracting with No.{} initial rewrite {}...\n", i+1, init_rw[i]).as_str());
+            //     // let grammar = Arc::clone(&grammar).deref();
+            //
+            //     if num_threads > 0 {
+            //         num_threads -= 1;
+            //         println!("New Thread Spawn {}", 50-num_threads);
+            //         let thread = thread::spawn(move || {
+            //             csg_extract(init_rewrite[i].clone(), 0);
+            //         });
+            //         thread.join().unwrap();
+            //     } else { csg_extract(init_rewrite[i].clone(), 0); }
+            //
+            //     // csg_extract(init_rw[i].clone(), 0);
+            // }
             log_info_raw("\n");
             log_info("Finish context-sensitive grammar extraction\n");
         },
@@ -276,13 +304,17 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                     log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 } else {
                     // let grammar = Arc::clone(&grammar).deref();
+
                     if num_threads > 0 {
                         num_threads -= 1;
+                        println!("New Thread Spawn {}", 50-num_threads);
                         let thread = thread::spawn(move || {
                             csg_extract(str.clone(),  idx+1);
                         });
                         thread.join().unwrap();
                     } else { csg_extract(str.clone(), idx+1); }
+
+                    // csg_extract(str.clone(), idx+1);
 
                     log_trace(format!("Back to Function Call {}\n", idx).as_str());
                     // if rw.contains('e') {
