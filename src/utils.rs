@@ -1,7 +1,7 @@
 use std::process::Command;
 use crate::*;
 
-/// ## function to set max # of threads for extraction
+/// ## function to set global max # of threads for extraction
 /// ## MAX_NUM_THREADS = floor(MAX # of THREADS of the OS x MAX_NUM_THREADS_PCT)
 pub unsafe fn set_max_num_threads() {
     let output = Command::new("cat").arg("/proc/sys/kernel/threads-max")
@@ -18,10 +18,8 @@ pub unsafe fn set_max_num_threads() {
     MAX_NUM_THREADS = (max_os_threads as f32 * MAX_NUM_THREADS_PCT).floor() as u32;
 }
 
-/// ## function to set max str len of rewrite
-pub unsafe fn set_max_rw_len(max_rw_len: u8) {
-    MAX_RW_LEN = max_rw_len;
-}
+/// ## function to set global max str len of rewrite
+pub unsafe fn set_max_rw_len(max_rw_len: u8) { MAX_RW_LEN = max_rw_len; }
 
 /// ## function to print the type of a variable
 /// ## Argument
