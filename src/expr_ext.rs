@@ -22,9 +22,7 @@ unsafe fn set_glob_gr(grammar: &HashMap<String, Vec<String>>) {
 
 /// ## function to initialize global variable RW_VEC
 /// ## to store rewrite results from all threads
-unsafe fn set_rw_vec() {
-    RW_VEC.get_or_insert(Arc::new(Mutex::new(Vec::new())));
-}
+unsafe fn set_rw_vec() { RW_VEC.get_or_insert(Arc::new(Mutex::new(Vec::new()))); }
 
 /// ## function to perform rewrite extraction from egraph
 /// ## Argument
@@ -40,12 +38,12 @@ pub fn extract(csg: bool, ctx_gr: &ContextGrammar) {
     }
 
     match csg {
-        true => unsafe {
+        true => {
             log_info_raw("\n");
             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::spawn(move || {
+                thread::spawn(move || unsafe {
                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
                     csg_extract(rw, 0);
                 })
@@ -61,16 +59,22 @@ pub fn extract(csg: bool, ctx_gr: &ContextGrammar) {
         },
         false => {
             log_info_raw("\n");
-            // log_info("Start context-free grammar extraction...\n");
-            // let init_rw = self.ctx_gr.get_init_rw().clone();
-            // for i in 0..init_rw.len() {
-            //     log_info_raw("\n");
-            //     log_info(format!("Extracting with No.{} initial rewrite {}...\n", i+1, init_rw[i]).as_str());
-            //     self.cfg_extract(init_rw[i].clone(), 0);
-            // }
-            // self.cfg_extract("/ e3 e1".to_string().clone(), 0);
-            // log_info_raw("\n");
-            // log_info("Finish context-free grammar extraction\n");
+            log_info("Start context-free grammar extraction...\n");
+
+            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+                thread::spawn(move || unsafe {
+                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
+                    cfg_extract(rw, 0);
+                })
+            }).collect();
+
+            log_info("Waiting for all threads to finish execution...\n");
+            for handle in handles {
+                handle.join().unwrap();
+            }
+
+            log_info_raw("\n");
+            log_info("Finish context-free grammar extraction\n");
         },
     }
 }
@@ -189,7 +193,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let prev_str = str.clone();
-    let expr: Vec<&str> = prev_str.split(" ").collect();
+    let expr: Vec<&str> = prev_str.split_whitespace().collect();
 
     let mut term: bool = false;
 
@@ -201,8 +205,8 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             return;
         }
-        let op = expr[i];
 
+        let op = expr[i];
         let grammar = GRAMMAR.as_ref().unwrap();
         if !grammar.contains_key(op) {continue;}
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
@@ -299,69 +303,75 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 /// * `self`
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
-// fn cfg_extract(&mut self, mut str: String, idx: u8) {
-//     log_trace("-----------------------------------\n");
-//     log_trace(format!("Function Call {}\n", idx).as_str());
-//     let prev_str = str.clone();
-//     let expr: Vec<&str> = prev_str.split(" ").collect();
-//
-//     let mut term: bool = false;
-//
-//     let grammar = self.ctx_gr.get_grammar().clone();
-//
-//     for i in 0..expr.len() {
-//         if expr.len() == 1 {
-//             self.rw.push(str.clone());
-//             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
-//             return;
-//         }
-//         let op = expr[i];
-//         if !grammar.contains_key(op) { continue; }
-//         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
-//         let rw_list = grammar.get(op).unwrap();
-//
-//         for k in 0..rw_list.len() {
-//             let rw = &rw_list[k];
-//             log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
-//             log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
-//             /// ```rust
-//             /// /* Regex will solve indistinct eclass match in str.replacen() */
-//             /// /* Original Code */
-//             /// str = str.replacen(op, &*rw, 1);
-//             /// /* Using Regex (has performance issue since it's slow) */
-//             /// use regex::Regex;
-//             /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
-//             /// str.replace_range(mat.start()..mat.end(), &rw);
-//             /// ```
-//             self.replace_distinct_ecls(op, rw, &mut str);
-//             log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
-//
-//             if str.len() >= self.max_rw_len as usize {
-//                 log_trace("STR exceeds length limit, Try another RW...\n");
-//                 str = prev_str.clone();
-//                 continue;
-//             }
-//             if !str.contains('e') && k == rw_list.len()-1 {
-//                 self.rw.push(str.clone());
-//                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
-//                 term = true;
-//                 break;
-//             } else if !str.contains('e') {
-//                 self.rw.push(str.clone());
-//                 str = prev_str.clone();
-//                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
-//             } else {
-//                 self.cfg_extract(str.clone(), idx+1);
-//                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
-//                 str = prev_str.clone();
-//                 if k == rw_list.len()-1 {
-//                     term = true;
-//                     break;
-//                 }
-//             }
-//         }
-//         if term { break; }
-//     }
-//     log_trace(format!("Finish Function Call {}\n", idx).as_str());
-//     log_trace("-----------------------------------\n");
-// }
+unsafe fn cfg_extract(mut str: String, idx: u8) {
+    log_trace("-----------------------------------\n");
+    log_trace(format!("Function Call {}\n", idx).as_str());
+    let prev_str = str.clone();
+    let expr: Vec<&str> = prev_str.split(" ").collect();
+
+    let mut term: bool = false;
+
+    for i in 0..expr.len() {
+        if expr.len() == 1 {
+            let vec = RW_VEC.take().unwrap();
+            vec.lock().unwrap().push(str.clone());
+            RW_VEC = Some(vec);
+            log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+            return;
+        }
+
+        let op = expr[i];
+        let grammar = GRAMMAR.as_ref().unwrap();
+        if !grammar.contains_key(op) { continue; }
+        log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
+        let rw_list = grammar.get(op).unwrap();
+
+        for k in 0..rw_list.len() {
+            let rw = &rw_list[k];
+            log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
+            log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+            /// ```rust
+            /// /* Regex will solve indistinct eclass match in str.replacen() */
+            /// /* Original Code */
+            /// str = str.replacen(op, &*rw, 1);
+            /// /* Using Regex (has performance issue since it's slow) */
+            /// use regex::Regex;
+            /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
+            /// str.replace_range(mat.start()..mat.end(), &rw);
+            /// ```
+            replace_distinct_ecls(op, rw, &mut str);
+            log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
+
+            if str.len() >= MAX_RW_LEN as usize {
+                log_trace("STR exceeds length limit, Try another RW...\n");
+                str = prev_str.clone();
+                continue;
+            }
+            if !contain_ecls(&str) && k == rw_list.len()-1 {
+                let vec = RW_VEC.take().unwrap();
+                vec.lock().unwrap().push(str.clone());
+                RW_VEC = Some(vec);
+                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+                term = true;
+                break;
+            } else if !str.contains('e') {
+                let vec = RW_VEC.take().unwrap();
+                vec.lock().unwrap().push(str.clone());
+                RW_VEC = Some(vec);
+                str = prev_str.clone();
+                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+            } else {
+                cfg_extract(str.clone(), idx+1);
+                log_trace(format!("Back to Function Call {}\n", idx).as_str());
+                str = prev_str.clone();
+                if k == rw_list.len()-1 {
+                    term = true;
+                    break;
+                }
+            }
+        }
+        if term { break; }
+    }
+    log_trace(format!("Finish Function Call {}\n", idx).as_str());
+    log_trace("-----------------------------------\n");
+}
