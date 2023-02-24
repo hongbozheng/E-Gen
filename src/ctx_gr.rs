@@ -65,10 +65,14 @@ impl ContextGrammar {
 
             if enodes.len() == 1 {
                 match enodes[0].to_string().parse::<f64>() {
-                    Ok(1.0) => { self.skip_ecls.insert(ecls.clone(), 1.0 as f64); },
-                    Ok(0.0) => { self.skip_ecls.insert(ecls.clone(), 0.0 as f64); },
-                    Ok(_) => {},
-                    Err(_) => {},
+                    Ok(float64) => {
+                        if float64 == 1.0 || float64 == 0.0 {
+                            self.skip_ecls.insert(ecls.clone(), float64);
+                        }
+                    },
+                    Err(_) => {
+                        log_error(format!("[fn set_grammar] Failed to convert {} to var type f64", enodes[0].to_string()).as_str());
+                    },
                 }
             }
 
