@@ -28,7 +28,7 @@ impl PartialEq for LogLevel {
     /// * `self` - LogLevel set by user
     /// * `other` - other LogLevel
     /// ## Return
-    /// * `bool` 2 loglevels are equal or not
+    /// * `bool` - 2 loglevels are equal or not
     #[inline]
     fn eq(&self, other: &Self) -> bool {
         match (self, other) {

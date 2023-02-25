@@ -24,7 +24,7 @@ pub unsafe fn set_max_num_threads() {
 
 /// ## function to set global max str len of rewrite
 /// ## Argument
-/// * `max_rw_len` maximum rewrite length limit
+/// * `max_rw_len` - maximum rewrite length limit
 /// ## Return
 /// * `None`
 pub unsafe fn set_max_rw_len(max_rw_len: u8) { MAX_RW_LEN = max_rw_len; }
