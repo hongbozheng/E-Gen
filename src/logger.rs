@@ -27,6 +27,8 @@ impl PartialEq for LogLevel {
     /// ## Argument
     /// * `self` - LogLevel set by user
     /// * `other` - other LogLevel
+    /// ## Return
+    /// * `bool` 2 loglevels are equal or not
     #[inline]
     fn eq(&self, other: &Self) -> bool {
         match (self, other) {
@@ -49,6 +51,8 @@ impl PartialOrd for LogLevel {
     /// ## Argument
     /// * `self` - LogLevel set by user
     /// * `other` - other LogLevel
+    /// ## Return
+    /// * `Option<Ordering>` enum Option
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
         match (self, other) {
             (LogLevel::All, _) => Some(Ordering::Greater),
@@ -82,59 +86,83 @@ impl PartialOrd for LogLevel {
 /// ## function to print log level - trace
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_trace(str: &str) { if LOG_LEVEL >= LogLevel::Trace { print!("[TRACE]: {}", str); } }
 
 /// ## function to print log level - debug
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_debug(str: &str) { if LOG_LEVEL >= LogLevel::Debug { print!("[DEBUG]: {}", str); } }
 
 /// ## function to print log level - info
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_info(str: &str) { if LOG_LEVEL >= LogLevel::Info { print!("[INFO]: {}", str); } }
 
 /// ## function to print log level - warn
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_warn(str: &str) { if LOG_LEVEL >= LogLevel::Warn { print!("[WARN]: {}", str); } }
 
 /// ## function to print log level - error
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_error(str: &str) { if LOG_LEVEL >= LogLevel::Error { print!("[ERROR]: {}", str); } }
 
 /// ## function to print log level - fatal
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_fatal(str: &str) { if LOG_LEVEL >= LogLevel::Fatal { print!("[FATAL]: {}", str); } }
 
 /// ## function to print log level - trace
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_trace_raw(str: &str) { if LOG_LEVEL >= LogLevel::Trace { print!("{}", str); } }
 
 /// ## function to print log level - debug
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_debug_raw(str: &str) { if LOG_LEVEL >= LogLevel::Debug { print!("{}", str); } }
 
 /// ## function to print log level - info
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_info_raw(str: &str) { if LOG_LEVEL >= LogLevel::Info { print!("{}", str); } }
 
 /// ## function to print log level - warn
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_warn_raw(str: &str) { if LOG_LEVEL >= LogLevel::Warn { print!("{}", str); } }
 
 /// ## function to print log level - error
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_error_raw(str: &str) { if LOG_LEVEL >= LogLevel::Error { print!("{}", str); } }
 
 /// ## function to print log level - fatal
 /// ## Argument
 /// * `str` - msg to print
+/// ## Return
+/// * `None`
 pub fn log_fatal_raw(str: &str) { if LOG_LEVEL >= LogLevel::Fatal { print!("{:?}", str); } }
