@@ -13,7 +13,7 @@ pub static mut RW_VEC: Option<Arc<Mutex<Vec<String>>>> = None;
 /// ## private function to set global variable GRAMMAR & SKIP_ECLS from MathEGraph
 /// ## make GRAMMAR & SKIP_ECLS visible by all threads
 /// ## Argument
-/// * `math_egraph` math_egraph
+/// * `math_egraph` - math_egraph
 /// ## Return
 /// * `None`
 fn set_global_grammar(math_egraph: &MathEGraph) {
@@ -60,7 +60,7 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
 
 /// ## private function to set the initial rewrite from self
 /// ## Argument
-/// `ctx_gr` context grammar struct
+/// `ctx_gr` - context grammar struct
 /// ## Return
 /// * `None`
 unsafe fn set_init_rw(ctx_gr: &mut ContextGrammar) {
@@ -94,7 +94,7 @@ fn set_rw_vec() {
 /// ## Argument
 /// * `None`
 /// ## Return
-/// * `SKIP_ECLS` immutable reference of global variable SKIP_ECLS
+/// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
 pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
     return SKIP_ECLS.as_ref().unwrap();
 }
@@ -103,7 +103,7 @@ pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
 /// ## Argument
 /// * `None`
 /// ## Return
-/// * `GRAMMAR` immutable reference of global variable GRAMMAR
+/// * `GRAMMAR` - immutable reference of global variable GRAMMAR
 pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
     return GRAMMAR.as_ref().unwrap();
 }
@@ -112,7 +112,7 @@ pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
 /// ## Argument
 /// * `None`
 /// ## Return
-/// * `RW_VEC` immutable reference of global variable RW_VEC
+/// * `RW_VEC` - immutable reference of global variable RW_VEC
 pub unsafe fn get_global_rw_vec() -> &'static Arc<Mutex<Vec<String>>> {
     return RW_VEC.as_ref().unwrap();
 }
@@ -233,7 +233,7 @@ pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
 
 /// ## function to perform rewrite extraction from egraph
 /// ## Argument
-/// `csg` context-sentitive grammar flag
+/// `csg` - context-sentitive grammar flag
 /// ## Return
 /// * `None`
 pub fn extract(csg: bool, init_rw: Vec<String>) {
