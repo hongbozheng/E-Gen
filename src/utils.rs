@@ -3,6 +3,10 @@ use crate::*;
 
 /// ## function to set global max # of threads for extraction
 /// ## MAX_NUM_THREADS = floor(MAX # of THREADS of the OS x MAX_NUM_THREADS_PCT)
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `None`
 pub unsafe fn set_max_num_threads() {
     let output = Command::new("cat").arg("/proc/sys/kernel/threads-max")
         .output().expect("Failed to get MAX OS Threads!");
@@ -19,11 +23,17 @@ pub unsafe fn set_max_num_threads() {
 }
 
 /// ## function to set global max str len of rewrite
+/// ## Argument
+/// * `max_rw_len` maximum rewrite length limit
+/// ## Return
+/// * `None`
 pub unsafe fn set_max_rw_len(max_rw_len: u8) { MAX_RW_LEN = max_rw_len; }
 
 /// ## function to print the type of a variable
 /// ## Argument
 /// * `_` - reference of any variable
+/// ## Return
+/// * `None`
 pub fn pt_type_of<T>(_: &T) {
     log_debug(format!("Var Type {}", std::any::type_name::<T>()).as_str());
 }
@@ -31,6 +41,8 @@ pub fn pt_type_of<T>(_: &T) {
 /// ## function to print egraph information
 /// ## Argument
 /// * `egraph` - egraph
+/// ## Return
+/// * `None`
 pub fn pt_egraph_info(egraph: &MathEGraph) {
     log_debug_raw("\n");
     log_debug("------- EGraph Information -------\n");
@@ -61,6 +73,8 @@ pub fn pt_egraph_info(egraph: &MathEGraph) {
 /// ## function to print root eclasses
 /// ## Argument
 /// * `root_eclasses` - root eclass vec<Id>
+/// ## Return
+/// * `None`
 pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
     log_debug_raw("\n");
     log_debug("---------- Root EClasses ----------\n");
@@ -71,6 +85,8 @@ pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
 /// ## function to print eclass(es) to skip during extraction
 /// ## Argument
 /// * `skip_ecls` - vec<String> to skip during extraction
+/// ## Return
+/// * `None`
 pub fn pt_skip_ecls(skip_ecls: &HashMap<String, f64>) {
     log_debug_raw("\n");
     log_debug("---------- Skip EClasses ----------\n");
@@ -81,6 +97,8 @@ pub fn pt_skip_ecls(skip_ecls: &HashMap<String, f64>) {
 /// ## function to print grammar
 /// ## Argument
 /// * `grammar` - grammar HashMap
+/// ## Return
+/// * `None`
 pub fn pt_grammar(grammar: &HashMap<String, Vec<String>>){
     log_debug_raw("\n");
     log_debug("------------- Grammar -------------\n");
@@ -93,6 +111,8 @@ pub fn pt_grammar(grammar: &HashMap<String, Vec<String>>){
 /// ## function to print initial rewrites
 /// ## Argument
 /// * `init_rw` - init_rw Vec<String>
+/// ## Return
+/// * `None`
 pub fn pt_init_rw(init_rw: &Vec<String>) {
     log_debug_raw("\n");
     log_debug("--------- Initial Rewrite ---------\n");
