@@ -3,40 +3,240 @@ use std::thread;
 use crate::*;
 // use regex::Regex;
 
-/// global variable to store grammar from ctx_gr so that it is visible by all threads
+/// private global variable to store eclass(es) to skip during extraction
+static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
+/// private global variable to store grammar from MathEGraph
 static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
-/// global variable visible by all threads to store rewrite results
+/// global variable to store rewrite results
 pub static mut RW_VEC: Option<Arc<Mutex<Vec<String>>>> = None;
 
-/// ## function to set global variable GRAMMAR
-/// ## to be identical to grammar in ctx_gr
-/// ## so that GRAMMAR is visible by all threads
+/// ## private function to set global variable GRAMMAR & SKIP_ECLS from MathEGraph
+/// ## make GRAMMAR & SKIP_ECLS visible by all threads
 /// ## Argument
-/// * `grammar` grammar from ctx_gr
-unsafe fn set_glob_gr(grammar: &HashMap<String, Vec<String>>) {
-    let glob_grammar = GRAMMAR.get_or_insert(HashMap::default());
-    for (ecls, rw_rules) in grammar {
-        glob_grammar.insert(ecls.clone(), rw_rules.clone());
+/// * `math_egraph` math_egraph
+/// ## Return
+/// * `None`
+fn set_global_grammar(math_egraph: &MathEGraph) {
+    log_info("Creating grammar...\n");
+    let mut global_grammar = HashMap::default();
+    let mut global_skip_ecls = HashMap::default();
+
+    let eclasses = math_egraph.classes();
+
+    for eclass in eclasses {
+        let mut rewrite_rules: Vec<String> = vec![];
+        let ecls: String = format!("{}{}", "e", eclass.id);
+        let enodes = &eclass.nodes;
+
+        if enodes.len() == 1 {
+            match enodes[0].to_string().parse::<f64>() {
+                Ok(float64) => {
+                    if float64 == 1.0 || float64 == 0.0 {
+                        global_skip_ecls.insert(ecls.clone(), float64);
+                    }
+                },
+                Err(_) => {
+                    log_error(format!("[fn set_global_grammar] Failed to convert {} to var type f64", enodes[0].to_string()).as_str());
+                },
+            }
+        }
+
+        for enode in enodes {
+            let mut rewrite = enode.to_string();
+            let children = enode.children();
+            for child in children {
+                rewrite = format!("{} {}{}", rewrite, "e", child);
+            }
+            rewrite_rules.push(rewrite);
+        }
+        global_grammar.insert(ecls, rewrite_rules);
+    }
+
+    unsafe {
+        SKIP_ECLS = Some(global_skip_ecls);
+        GRAMMAR = Some(global_grammar);
     }
 }
 
-/// ## function to initialize global variable RW_VEC
+/// ## private function to set the initial rewrite from self
+/// ## Argument
+/// `ctx_gr` context grammar struct
+/// ## Return
+/// * `None`
+unsafe fn set_init_rw(ctx_gr: &mut ContextGrammar) {
+    log_info("Setting initial rewrite...\n");
+    for rc in &ctx_gr.root_ecls {
+        let mut root_ecls = format!("{}{}", "e", rc);
+        if GRAMMAR.as_ref().unwrap().contains_key(&*root_ecls) {
+            ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
+        } else {
+            root_ecls = format!("{}{}", "e", ctx_gr.egraph.find(*rc));
+            ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
+        }
+    }
+    /* TODO: May still have to fix simplified to const issue here !!!!! */
+    // let mut root_eclass = format!("{}{}", "e", "8");
+    // self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
+}
+
+/// ## private function to initialize global variable RW_VEC
 /// ## to store rewrite results from all threads
-unsafe fn set_rw_vec() { RW_VEC.get_or_insert(Arc::new(Mutex::new(Vec::new()))); }
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `None`
+fn set_rw_vec() {
+    let rw_vec = Arc::new(Mutex::new(vec![]));
+    unsafe { RW_VEC = Some(rw_vec); }
+}
+
+/// ## public function to get private global variable SKIP_ECLS
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `SKIP_ECLS` immutable reference of global variable SKIP_ECLS
+pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
+    return SKIP_ECLS.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable GRAMMAR
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `GRAMMAR` immutable reference of global variable GRAMMAR
+pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
+    return GRAMMAR.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable RW_VEC
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `RW_VEC` immutable reference of global variable RW_VEC
+pub unsafe fn get_global_rw_vec() -> &'static Arc<Mutex<Vec<String>>> {
+    return RW_VEC.as_ref().unwrap();
+}
+
+/// ## private member function to check if an eclass appears in str
+/// ## Argument
+/// * `self`
+/// * `eclass` - eclass index to search for
+/// * `str`    - str to search
+fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
+    let matches: Vec<_> = str.match_indices(eclass).collect();
+    for mat in matches {
+        let start_idx = &mat.0;
+        let end_idx = &(start_idx + eclass.len());
+        if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
+            *end_idx == str.len() {
+            return true;
+        }
+    }
+    return false;
+}
+
+/// ## private member function to skip meaningless rewrite rule(s)
+/// ## Argument
+/// * `self`
+/// * `rw` - rewrite rule
+fn skip_rw(skip_ecls: &HashMap<String, f64>, rw: &String) -> bool {
+    for (eclass, constant) in skip_ecls {
+        if contain_distinct_ecls(eclass, rw) {
+            if constant == &1.0f64 {
+                if rw.contains('+') { return true; }
+            } else if constant == &0.0f64 {
+                if rw.contains('*') { return true; }
+                else if rw.contains("pow") { return true; }
+            } else {
+                log_fatal("Invalid Pattern in fn skip_rw !\n");
+            }
+        }
+    }
+    return false;
+}
+
+/// ## private member function to update the frequency of rewrite rules
+/// ## and check if it needs to skip the rewrite rule
+/// ## Argument
+/// `self`
+// unsafe fn update_freq(rw: &String, inc: bool) -> bool {
+//     if inc {
+//         if freq.contains_key(rw) && freq.get(rw).unwrap() < &FREQ_MAX {
+//             *freq.get_mut(rw).unwrap() += 1;
+//         } else if freq.contains_key(rw) && freq.get(rw).unwrap() == &FREQ_MAX {
+//             return true;
+//         } else {
+//             freq.insert(rw.clone(), 1);
+//         }
+//     } else {
+//         *freq.get_mut(rw).unwrap() -= 1;
+//     }
+//     return false;
+// }
+
+// pub fn update_freq(&mut self, rw: &String, inc: bool) -> bool {
+//     if self.freq.contains_key(rw) {
+//         *self.freq.get_mut(rw).unwrap() += 1;
+//     } else {
+//         self.freq.insert(rw.clone(), 1);
+//     }
+//     println!("{:?}", self.freq);
+//     return false;
+// }
+
+/// ## private function to replace distinct eclass with rewrite rule
+/// ## Argument
+/// * `self`
+/// * `op`  - operand that needs to be replaced
+/// * `rw`  - rewrite rule that is going to be replaced with
+/// * `str` - original expression
+fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
+    let matches: Vec<_> = str.match_indices(op).collect();
+    for mat in matches {
+        let start_idx = &mat.0;
+        let end_idx = &(start_idx + op.len());
+        if (end_idx != &str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
+            end_idx == &str.len() {
+            str.replace_range(start_idx..end_idx,rw);
+            break;
+        }
+    }
+}
+
+/// ## private function to check if any eclass is in str
+/// ## Argument
+/// `str` - current equation str
+fn contain_ecls(str: &String) -> bool {
+    let matches: Vec<_> = str.match_indices('e').collect();
+    for mat in matches {
+        let start_idx = &mat.0;
+        if str.chars().nth(start_idx-1).unwrap() == ' ' &&
+            str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
+            return true;
+        }
+    }
+    return false;
+}
+
+/// ## public function to setup for extraction
+/// ## SKIP_ECLS, GRAMMAR, RW_VEC
+/// ## Argument
+/// `ctx_gr` context grammar struct
+/// ## Return
+/// * `None`
+pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
+    let math_egraph = ctx_gr.get_egraph();
+    set_global_grammar(math_egraph);
+    set_init_rw(ctx_gr);
+    set_rw_vec();
+}
 
 /// ## function to perform rewrite extraction from egraph
 /// ## Argument
 /// `csg` context-sentitive grammar flag
-/// `ctx_gr` context grammar struct
-pub fn extract(csg: bool, ctx_gr: &ContextGrammar) {
-    let grammar = ctx_gr.get_grammar();
-    let init_rw = ctx_gr.get_init_rw().clone();
-
-    unsafe {
-        set_glob_gr(grammar);
-        set_rw_vec();
-    }
-
+/// ## Return
+/// * `None`
+pub fn extract(csg: bool, init_rw: Vec<String>) {
     match csg {
         true => {
             log_info_raw("\n");
@@ -79,117 +279,12 @@ pub fn extract(csg: bool, ctx_gr: &ContextGrammar) {
     }
 }
 
-/// ## private member function to check if an eclass appears in str
-/// ## Argument
-/// * `self`
-/// * `eclass` - eclass index to search for
-/// * `str`    - str to search
-fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
-    let matches: Vec<_> = str.match_indices(eclass).collect();
-    for mat in matches {
-        let start_idx = &mat.0;
-        let end_idx = &(start_idx + eclass.len());
-        if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
-            *end_idx == str.len() {
-            return true;
-        }
-    }
-    return false;
-}
-
-/// ## private member function to skip meaningless rewrite rule(s)
-/// ## Argument
-/// * `self`
-/// * `rw` - rewrite rule
-fn skip_rw(skip_ecls: &HashMap<String, f64>, rw: &String) -> bool {
-    for (eclass, constant) in skip_ecls {
-        if contain_distinct_ecls(eclass, rw) {
-            match constant {
-                0.0 => {
-                    if rw.contains('+') { return true; }
-                }
-                1.0 => {
-                    if rw.contains('*') { return true; }
-                    else if rw.contains("pow") { return true; }
-                }
-                _ => { log_fatal("Invalid Pattern in fn skip_rw !\n"); }
-            }
-        }
-    }
-    return false;
-}
-
-/// ## private member function to update the frequency of rewrite rules
-/// ## and check if it needs to skip the rewrite rule
-/// ## Argument
-/// `self`
-// unsafe fn update_freq(rw: &String, inc: bool) -> bool {
-//     if inc {
-//         if freq.contains_key(rw) && freq.get(rw).unwrap() < &FREQ_MAX {
-//             *freq.get_mut(rw).unwrap() += 1;
-//         } else if freq.contains_key(rw) && freq.get(rw).unwrap() == &FREQ_MAX {
-//             return true;
-//         } else {
-//             freq.insert(rw.clone(), 1);
-//         }
-//     } else {
-//         *freq.get_mut(rw).unwrap() -= 1;
-//     }
-//     return false;
-// }
-
-// pub fn update_freq(&mut self, rw: &String, inc: bool) -> bool {
-//     if self.freq.contains_key(rw) {
-//         *self.freq.get_mut(rw).unwrap() += 1;
-//     } else {
-//         self.freq.insert(rw.clone(), 1);
-//     }
-//     println!("{:?}", self.freq);
-//     return false;
-// }
-
-/// ## private member function to replace distinct eclass with rewrite rule
-/// ## Argument
-/// * `self`
-/// * `op`  - operand that needs to be replaced
-/// * `rw`  - rewrite rule that is going to be replaced with
-/// * `str` - original expression
-fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
-    let matches: Vec<_> = str.match_indices(op).collect();
-    for mat in matches {
-        let start_idx = &mat.0;
-        let end_idx = &(start_idx + op.len());
-        if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
-            *end_idx == str.len() {
-            str.replace_range(start_idx..end_idx,rw);
-            break;
-        }
-    }
-}
-
-/// ## private member function to check if any eclass is in str
-/// ## Argument
-/// `str` - current str
-fn contain_ecls(str: &String) -> bool {
-    let matches: Vec<_> = str.match_indices('e').collect();
-    for mat in matches {
-        let start_idx = &mat.0;
-        if str.chars().nth(start_idx-1).unwrap() == ' ' &&
-            str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
-            return true;
-        }
-    }
-    return false;
-}
-
-/// ## private member function to extract all equivalent mathematical expressions
+/// ## private function to extract all equivalent mathematical expressions
 /// ## Context-Sensitive Grammar
 /// ## Argument
-/// * `self`
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
 unsafe fn csg_extract(mut str: String, idx: u8) {
-    // let grammar = Arc::new(grammar);
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let prev_str = str.clone();
@@ -297,10 +392,9 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
-/// ## private member function to extract all equivalent mathematical expressions
+/// ## private function to extract all equivalent mathematical expressions
 /// ## Context-Free Grammar
 /// ## Argument
-/// * `self`
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
 unsafe fn cfg_extract(mut str: String, idx: u8) {
