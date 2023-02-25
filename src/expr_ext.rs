@@ -20,7 +20,6 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
     log_info("Creating grammar...\n");
     let mut global_grammar = HashMap::default();
     let mut global_skip_ecls = HashMap::default();
-
     let eclasses = math_egraph.classes();
 
     for eclass in eclasses {
@@ -237,9 +236,9 @@ pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
 /// ## Return
 /// * `None`
 pub fn extract(csg: bool, init_rw: Vec<String>) {
+    log_info_raw("\n");
     match csg {
         true => {
-            log_info_raw("\n");
             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
@@ -258,7 +257,6 @@ pub fn extract(csg: bool, init_rw: Vec<String>) {
             log_info("Finish context-sensitive grammar extraction\n");
         },
         false => {
-            log_info_raw("\n");
             log_info("Start context-free grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
