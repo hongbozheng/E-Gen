@@ -43,7 +43,7 @@ mod egraph;
 mod explain;
 mod extract;
 mod language;
-/* need to put both files in lib */
+/* visible to all module in the crate */
 mod config;
 mod logger;
 mod utils;
@@ -111,13 +111,13 @@ pub use {
     run::*,
     subst::{Subst, Var},
     util::*,
-    /* need to make this struct public to be visible by main */
+    /*  public to the whole crate */
     config::*,
     logger::*,
     utils::*,
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
-    expr_ext::{RW_VEC, extract},
+    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_extract, extract},
 };
 
 #[cfg(feature = "lp")]
