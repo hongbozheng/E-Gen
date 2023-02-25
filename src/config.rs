@@ -1,8 +1,9 @@
 use crate::*;
 
-/// percentage of max # of threads
+/* global variables */
+/// percentage of max # of OS threads
 pub static MAX_NUM_THREADS_PCT: f32 = 0.50;
-/// max # of threads can be used (not max # of threads of OS)
+/// max # of threads can be used (not max # of OS threads)
 pub static mut MAX_NUM_THREADS: u32 = 0;
 /// log level for the entire environment
 pub static LOG_LEVEL: LogLevel = LogLevel::Info;
