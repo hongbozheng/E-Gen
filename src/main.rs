@@ -1,5 +1,7 @@
 use std::process::exit;
-use egg::{ContextGrammar, Language, Extractor, AstSize, extract, RW_VEC};
+use egg::{ContextGrammar, Language, Extractor, AstSize};
+/* import extraction functions */
+use egg::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_extract, extract};
 /* import log level & logger functions */
 use egg::{log_info, log_debug, log_info_raw, log_debug_raw};
 /* import utils functions */
@@ -153,12 +155,9 @@ pub fn main() {
     let mut ctx_gr = ContextGrammar::new(init_expr);
     log_info("Creating egraph with initial expression & rewrite rules...\n");
     ctx_gr.set_egraph();
-    log_info("Creating grammar...\n");
-    ctx_gr.set_grammar();
-    log_info("Setting initial rewrite...\n");
-    ctx_gr.set_init_rw();
 
     let egraph = ctx_gr.get_egraph();
+    log_info_raw("\n");
     log_info(format!("EGraph total size {}\n", egraph.total_size()).as_str());
     log_info(format!("EGraph contains {} node(s)\n", egraph.total_number_of_nodes()).as_str());
     log_info(format!("EGraph contains {} eclass(es)\n", egraph.number_of_classes()).as_str());
@@ -170,33 +169,33 @@ pub fn main() {
     pt_root_ecls_info(&root_ecls);
 
     /* TODO: DEBUG */
-    log_debug_raw("\n");
-    log_debug("------------ Extractor -----------\n");
-    let extractor = Extractor::new(&egraph, AstSize);
-    let (best_cost, simpl_expr) = extractor.find_best(root_ecls[0]);
-    log_debug(format!("Simplified Expression to {} with Cost {}\n",simpl_expr, best_cost).as_str());
-    log_debug("----------------------------------\n");
+    // log_debug_raw("\n");
+    // log_debug("------------ Extractor -----------\n");
+    // let extractor = Extractor::new(&egraph, AstSize);
+    // let (best_cost, simpl_expr) = extractor.find_best(root_ecls[0]);
+    // log_debug(format!("Simplified Expression to {} with Cost {}\n",simpl_expr, best_cost).as_str());
+    // log_debug("----------------------------------\n");
 
-    let skip_ecls = ctx_gr.get_skip_ecls();
-    pt_skip_ecls(skip_ecls);
+    unsafe {
+        setup_extract(&mut ctx_gr);
 
-    let grammar = ctx_gr.get_grammar();
+        let skip_ecls = get_global_skip_ecls();
+        pt_skip_ecls(skip_ecls);
 
-    // pt_grammar(&grammar);
+        let grammar = get_global_grammar();
+        pt_grammar(grammar);
+        log_info_raw("\n");
+        log_info(format!("Total # of grammar {}\n", grammar.len()).as_str());
+    }
 
     let init_rw = ctx_gr.get_init_rw();
     pt_init_rw(init_rw);
-
-    log_info_raw("\n");
-    log_info(format!("Total # of grammar {}\n", grammar.len()).as_str());
-
-    extract(csg, &ctx_gr);
-    log_info_raw("\n");
+    extract(csg, init_rw.clone());
 
     unsafe {
-        log_info(format!("Total # of RW {}\n", RW_VEC.as_ref().unwrap().lock().unwrap().len()).as_str());
-
-        for rw in RW_VEC.as_ref().unwrap().lock().unwrap().iter() {
+        let results = get_global_rw_vec();
+        log_info(format!("Total # of RW {}\n", results.lock().unwrap().len()).as_str());
+        for rw in results.lock().unwrap().iter() {
             log_info(format!("{}\n", rw).as_str());
         }
     }
