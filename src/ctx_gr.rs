@@ -15,6 +15,8 @@ impl ContextGrammar {
     /// ## default constructor
     /// ## Arguments
     /// * `init_expr` - initial expression for rewriting
+    /// ## Return
+    /// * `None`
     pub fn new(init_expr: &'static str) -> Self {
         ContextGrammar {
             init_expr,
@@ -27,6 +29,8 @@ impl ContextGrammar {
     /// ## member function to set egraph and root_eclasses
     /// ## Argument
     /// * `self`
+    /// ## Return
+    /// * `None`
     pub fn set_egraph(&mut self) {
         let recexpr = self.init_expr.parse().unwrap();
         let runner = Runner::default().with_expr(&recexpr);
@@ -41,15 +45,21 @@ impl ContextGrammar {
     /// ## member function to get an reference to egraph
     /// ## Argument
     /// * `self`
+    /// ## Return
+    /// * `egraph` - egraph
     pub fn get_egraph(&self) -> &MathEGraph { return &self.egraph; }
 
     /// ## member function to get root_eclasses
     /// ## Argument
     /// * `self`
+    /// ## Return
+    /// * `root_ecls` - root eclass(es) from egraph
     pub fn get_root_ecls(&self) -> &Vec<Id> { return &self.root_ecls; }
 
     /// ## member function to get the initial rewrite from self
     /// ## Argument
     /// * `self`
+    /// ## Return
+    /// * `init_rw` - initial rewrite rule(s)
     pub fn get_init_rw(&self) -> &Vec<String> { return &self.init_rw; }
 }
