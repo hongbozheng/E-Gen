@@ -59,7 +59,7 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
 
 /// ## private function to set the initial rewrite from self
 /// ## Argument
-/// `ctx_gr` - context grammar struct
+/// * `ctx_gr` - context grammar struct
 /// ## Return
 /// * `None`
 unsafe fn set_init_rw(ctx_gr: &mut ContextGrammar) {
@@ -157,7 +157,7 @@ fn skip_rw(skip_ecls: &HashMap<String, f64>, rw: &String) -> bool {
 /// ## private member function to update the frequency of rewrite rules
 /// ## and check if it needs to skip the rewrite rule
 /// ## Argument
-/// `self`
+/// * `self`
 // unsafe fn update_freq(rw: &String, inc: bool) -> bool {
 //     if inc {
 //         if freq.contains_key(rw) && freq.get(rw).unwrap() < &FREQ_MAX {
@@ -204,7 +204,7 @@ fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
 
 /// ## private function to check if any eclass is in str
 /// ## Argument
-/// `str` - current equation str
+/// * `str` - current equation str
 fn contain_ecls(str: &String) -> bool {
     let matches: Vec<_> = str.match_indices('e').collect();
     for mat in matches {
@@ -220,7 +220,7 @@ fn contain_ecls(str: &String) -> bool {
 /// ## public function to setup for extraction
 /// ## SKIP_ECLS, GRAMMAR, RW_VEC
 /// ## Argument
-/// `ctx_gr` context grammar struct
+/// * `ctx_gr` context grammar struct
 /// ## Return
 /// * `None`
 pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
@@ -232,7 +232,7 @@ pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
 
 /// ## function to perform rewrite extraction from egraph
 /// ## Argument
-/// `csg` - context-sentitive grammar flag
+/// * `csg` - context-sentitive grammar flag
 /// ## Return
 /// * `None`
 pub fn extract(csg: bool, init_rw: Vec<String>) {
