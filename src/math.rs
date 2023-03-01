@@ -2,7 +2,7 @@ use crate::{rewrite as rw, *};
 use ordered_float::NotNan;
 
 /// mathematical expression egraph
-pub type MathEGraph = crate::EGraph<Math, ConstantFold>;
+pub type MathEGraph = EGraph<Math, ConstantFold>;
 pub type Rewrite = crate::Rewrite<Math, ConstantFold>;
 
 pub type Constant = NotNan<f64>;
