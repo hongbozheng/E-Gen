@@ -34,9 +34,7 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
                         global_skip_ecls.insert(ecls.clone(), float64);
                     }
                 },
-                Err(_) => {
-                    log_error(format!("[fn set_global_grammar] Failed to convert {} to var type f64", enodes[0].to_string()).as_str());
-                },
+                Err(_) => {},
             }
         }
 
