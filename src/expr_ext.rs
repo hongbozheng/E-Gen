@@ -240,10 +240,10 @@ pub fn extract(csg: bool, init_rw: Vec<String>) {
             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::spawn(move || unsafe {
+                thread::Builder::new().name(rw.clone()).spawn(move || unsafe {
                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
                     csg_extract(rw, 0);
-                })
+                }).unwrap()
             }).collect();
 
             log_info("Waiting for all threads to finish execution...\n");
@@ -258,10 +258,10 @@ pub fn extract(csg: bool, init_rw: Vec<String>) {
             log_info("Start context-free grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::spawn(move || unsafe {
+                thread::Builder::new().name(rw.clone()).spawn(move || unsafe {
                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
                     cfg_extract(rw, 0);
-                })
+                }).unwrap()
             }).collect();
 
             log_info("Waiting for all threads to finish execution...\n");
@@ -290,9 +290,11 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
     for i in 0..expr.len() {
         if expr.len() == 1 {
-            let vec = RW_VEC.take().unwrap();
-            vec.lock().unwrap().push(str.clone());
-            RW_VEC = Some(vec);
+            let global_rw_vec = RW_VEC.as_ref().unwrap();
+            let mut mutex = global_rw_vec.lock().unwrap();
+            mutex.push(str.clone());
+            drop(mutex);
+
             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             return;
         }
@@ -340,16 +342,23 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 continue;
             }
             if !contain_ecls(&str) && k == rw_list.len()-1 {
-                let vec = RW_VEC.take().unwrap();
-                vec.lock().unwrap().push(str.clone());
-                RW_VEC = Some(vec);
+                // let mut global_rw_vec = RW_VEC.as_ref().unwrap().lock().unwrap();
+                // global_rw_vec.push(str.clone());
+
+                let global_rw_vec = RW_VEC.as_ref().unwrap();
+                let mut mutex = global_rw_vec.lock().unwrap();
+                mutex.push(str.clone());
+                drop(mutex);
+
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 term = true;
                 break;
             } else if !contain_ecls(&str) {
-                let vec = RW_VEC.take().unwrap();
-                vec.lock().unwrap().push(str.clone());
-                RW_VEC = Some(vec);
+                let global_rw_vec = RW_VEC.as_ref().unwrap();
+                let mut mutex = global_rw_vec.lock().unwrap();
+                mutex.push(str.clone());
+                drop(mutex);
+
                 str = prev_str.clone();
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             } else {
