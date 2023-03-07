@@ -7,7 +7,7 @@ use crate::*;
 /// * `None`
 /// ## Return
 /// * `None`
-pub unsafe fn set_max_num_threads() {
+pub fn set_max_num_threads() {
     let output = Command::new("cat").arg("/proc/sys/kernel/threads-max")
         .output().expect("Failed to get MAX OS Threads!");
     let mut max_os_threads_str = String::from_utf8_lossy(&output.stdout).to_string();
@@ -19,7 +19,7 @@ pub unsafe fn set_max_num_threads() {
             return;
         }
     };
-    MAX_NUM_THREADS = (max_os_threads as f32 * MAX_NUM_THREADS_PCT).floor() as u32;
+    unsafe { MAX_NUM_THREADS = (max_os_threads as f32 * THREAD_PCT).floor() as u32; }
 }
 
 /// ## function to set global max str len of rewrite
@@ -28,6 +28,13 @@ pub unsafe fn set_max_num_threads() {
 /// ## Return
 /// * `None`
 pub unsafe fn set_max_rw_len(max_rw_len: u8) { MAX_RW_LEN = max_rw_len; }
+
+/// ## function to set global csg (context-sensitive grammar flag)
+/// ## Argument
+/// * `max_rw_len` - maximum rewrite length limit
+/// ## Return
+/// * `None`
+pub unsafe fn set_csg(csg: bool) { CSG = csg; }
 
 /// ## function to print the type of a variable
 /// ## Argument
