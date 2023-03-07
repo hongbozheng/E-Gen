@@ -1,4 +1,5 @@
 use std::process::Command;
+use std::sync::{Arc, Mutex};
 use crate::*;
 
 /// ## function to set global max # of threads for extraction
@@ -125,4 +126,18 @@ pub fn pt_init_rw(init_rw: &Vec<String>) {
     log_debug("--------- Initial Rewrite ---------\n");
     log_debug(format!("{:?}\n", init_rw).as_str());
     log_debug("-----------------------------------\n");
+}
+
+/// ## function to print final rw
+/// ## Argument
+/// * `mutex` - mutex of global variable rw_vec
+/// ## Return
+/// * `None`
+pub fn pt_rw(mutex: &Arc<Mutex<Vec<String>>>) {
+    let mut rw_vec = mutex.lock().unwrap();
+    rw_vec.sort_unstable();
+    rw_vec.dedup();
+    for rw in rw_vec.iter() {
+        log_info(format!("{}\n", rw).as_str());
+    }
 }
