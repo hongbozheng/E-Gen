@@ -150,7 +150,8 @@ pub fn main() {
     // let init_expr: &str = "(/ (* 2 x) (* 2 1))";
     // let init_expr: &str = "(/ (/ (* 2 x) 2) x)";
     // let init_expr: &str = "(/ x x)";
-    // let init_expr: &str = "(+ (csch x) (cosh x))";
+    let init_expr: &str = "(+ (sinh x) (cosh x))";
+    let init_expr: &str = "(sinh (+ x y))";
     // let init_expr: &str = "(d x (+ (pow x 2) (pow (sin x) 2)))";
 
     /* commutative rule break extraction */
