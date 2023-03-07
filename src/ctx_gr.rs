@@ -5,10 +5,10 @@ use crate::*;
 /// egraph, root eclass(es), skip eclass(es),
 /// grammar, initial rewrite
 pub struct ContextGrammar {
-    init_expr: &'static str,            /* initial expression to run with egraph        */
-    pub(crate) egraph: MathEGraph,      /* egraph after running rewrite rules           */
-    pub(crate) root_ecls: Vec<Id>,      /* root eclasses of MathEGraph                  */
-    pub(crate) init_rw: Vec<String>,    /* initial rw e.g. (* e0 e1)                    */
+    init_expr: &'static str,    /* initial expression to run with egraph        */
+    pub egraph: MathEGraph,     /* egraph after running rewrite rules           */
+    pub root_ecls: Vec<Id>,     /* root eclasses of MathEGraph                  */
+    pub init_rw: Vec<String>,   /* initial rw e.g. (* e0 e1)                    */
 }
 
 impl ContextGrammar {
