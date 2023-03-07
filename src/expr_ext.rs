@@ -17,7 +17,6 @@ pub static mut RW_VEC: Option<Arc<Mutex<Vec<String>>>> = None;
 /// ## Return
 /// * `None`
 fn set_global_grammar(math_egraph: &MathEGraph) {
-    log_info("Creating grammar...\n");
     let mut global_grammar = HashMap::default();
     let mut global_skip_ecls = HashMap::default();
     let eclasses = math_egraph.classes();
@@ -60,15 +59,16 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
 /// * `ctx_gr` - context grammar struct
 /// ## Return
 /// * `None`
-unsafe fn set_init_rw(ctx_gr: &mut ContextGrammar) {
-    log_info("Setting initial rewrite...\n");
+fn set_init_rw(ctx_gr: &mut ContextGrammar) {
     for rc in &ctx_gr.root_ecls {
         let mut root_ecls = format!("{}{}", "e", rc);
-        if GRAMMAR.as_ref().unwrap().contains_key(&*root_ecls) {
-            ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
-        } else {
-            root_ecls = format!("{}{}", "e", ctx_gr.egraph.find(*rc));
-            ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
+        unsafe {
+            if GRAMMAR.as_ref().unwrap().contains_key(&*root_ecls) {
+                ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
+            } else {
+                root_ecls = format!("{}{}", "e", ctx_gr.egraph.find(*rc));
+                ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
+            }
         }
     }
     /* TODO: May still have to fix simplified to const issue here !!!!! */
@@ -112,6 +112,19 @@ pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
 /// * `RW_VEC` - immutable reference of global variable RW_VEC
 pub unsafe fn get_global_rw_vec() -> &'static Arc<Mutex<Vec<String>>> {
     return RW_VEC.as_ref().unwrap();
+}
+
+/// ## public function to setup for extraction
+/// ## SKIP_ECLS, GRAMMAR, RW_VEC
+/// ## Argument
+/// * `ctx_gr` context grammar struct
+/// ## Return
+/// * `None`
+pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
+    let math_egraph = ctx_gr.get_egraph();
+    set_global_grammar(math_egraph);
+    set_init_rw(ctx_gr);
+    set_rw_vec();
 }
 
 /// ## private member function to check if an eclass appears in str
@@ -215,32 +228,19 @@ fn contain_ecls(str: &String) -> bool {
     return false;
 }
 
-/// ## public function to setup for extraction
-/// ## SKIP_ECLS, GRAMMAR, RW_VEC
-/// ## Argument
-/// * `ctx_gr` context grammar struct
-/// ## Return
-/// * `None`
-pub unsafe fn setup_extract(ctx_gr: &mut ContextGrammar) {
-    let math_egraph = ctx_gr.get_egraph();
-    set_global_grammar(math_egraph);
-    set_init_rw(ctx_gr);
-    set_rw_vec();
-}
-
 /// ## function to perform rewrite extraction from egraph
 /// ## Argument
 /// * `csg` - context-sentitive grammar flag
 /// ## Return
 /// * `None`
-pub fn extract(csg: bool, init_rw: Vec<String>) {
+pub unsafe fn extract(init_rw: Vec<String>) {
     log_info_raw("\n");
-    match csg {
+    match CSG {
         true => {
             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || unsafe {
+                thread::Builder::new().name(rw.clone()).spawn(move || {
                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
                     csg_extract(rw, 0);
                 }).unwrap()
@@ -258,7 +258,7 @@ pub fn extract(csg: bool, init_rw: Vec<String>) {
             log_info("Start context-free grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || unsafe {
+                thread::Builder::new().name(rw.clone()).spawn(move || {
                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
                     cfg_extract(rw, 0);
                 }).unwrap()
