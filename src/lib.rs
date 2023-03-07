@@ -50,6 +50,7 @@ mod utils;
 mod math;
 mod ctx_gr;
 mod expr_ext;
+mod cli;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -118,6 +119,7 @@ pub use {
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
     expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_extract, extract},
+    cli::{set_hyperparam},
 };
 
 #[cfg(feature = "lp")]
