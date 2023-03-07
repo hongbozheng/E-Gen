@@ -6,7 +6,7 @@ use egg::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_ext
 /* import log level & logger functions */
 use egg::{log_info, log_info_raw};
 /* import utils functions */
-use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls};
+use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls, pt_rw};
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -102,10 +102,7 @@ pub fn main() {
     unsafe { extract(init_rw.clone());}
 
     unsafe {
-        let results = get_global_rw_vec();
-        log_info(format!("Total # of RW {}\n", results.lock().unwrap().len()).as_str());
-        for rw in results.lock().unwrap().iter() {
-            log_info(format!("{}\n", rw).as_str());
-        }
+        let mutex = get_global_rw_vec();
+        pt_rw(mutex);
     }
 }
