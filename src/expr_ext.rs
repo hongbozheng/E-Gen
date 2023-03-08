@@ -129,9 +129,10 @@ pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
 
 /// ## private member function to check if an eclass appears in str
 /// ## Argument
-/// * `self`
 /// * `eclass` - eclass index to search for
 /// * `str`    - str to search
+/// ## Return
+/// * `bool` - whether distinct eclass exits in str or not
 fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
     let matches: Vec<_> = str.match_indices(eclass).collect();
     for mat in matches {
@@ -147,16 +148,15 @@ fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
 
 /// ## private member function to skip meaningless rewrite rule(s)
 /// ## Argument
-/// * `self`
 /// * `rw` - rewrite rule
-fn skip_rw(skip_ecls: &HashMap<String, f64>, rw: &String) -> bool {
-    for (eclass, constant) in skip_ecls {
+unsafe fn skip_rw(rw: &String) -> bool {
+    for (eclass, constant) in SKIP_ECLS.as_ref().unwrap() {
         if contain_distinct_ecls(eclass, rw) {
             if constant == &1.0f64 {
-                if rw.contains('+') { return true; }
-            } else if constant == &0.0f64 {
                 if rw.contains('*') { return true; }
                 else if rw.contains("pow") { return true; }
+            } else if constant == &0.0f64 {
+                if rw.contains('+') { return true; }
             } else {
                 log_fatal("Invalid Pattern in fn skip_rw !\n");
             }
@@ -196,7 +196,6 @@ fn skip_rw(skip_ecls: &HashMap<String, f64>, rw: &String) -> bool {
 
 /// ## private function to replace distinct eclass with rewrite rule
 /// ## Argument
-/// * `self`
 /// * `op`  - operand that needs to be replaced
 /// * `rw`  - rewrite rule that is going to be replaced with
 /// * `str` - original expression
@@ -226,53 +225,6 @@ fn contain_ecls(str: &String) -> bool {
         }
     }
     return false;
-}
-
-/// ## function to perform rewrite extraction from egraph
-/// ## Argument
-/// * `csg` - context-sentitive grammar flag
-/// ## Return
-/// * `None`
-pub unsafe fn extract(init_rw: Vec<String>) {
-    log_info_raw("\n");
-    match CSG {
-        true => {
-            log_info("Start multithreaded context-sensitive grammar extraction...\n");
-
-            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || {
-                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-                    csg_extract(rw, 0);
-                }).unwrap()
-            }).collect();
-
-            log_info("Waiting for all threads to finish execution...\n");
-            for handle in handles {
-                handle.join().unwrap();
-            }
-
-            log_info_raw("\n");
-            log_info("Finish context-sensitive grammar extraction\n");
-        },
-        false => {
-            log_info("Start context-free grammar extraction...\n");
-
-            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || {
-                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-                    cfg_extract(rw, 0);
-                }).unwrap()
-            }).collect();
-
-            log_info("Waiting for all threads to finish execution...\n");
-            for handle in handles {
-                handle.join().unwrap();
-            }
-
-            log_info_raw("\n");
-            log_info("Finish context-free grammar extraction\n");
-        },
-    }
 }
 
 /// ## private function to extract all equivalent mathematical expressions
@@ -310,7 +262,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
             log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
             log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
 
-            // if SUPPRESS { if skip_rw(rw) { continue; } }
+            if SUPPRESS { if skip_rw(rw) { continue; } }
 
             // if rw.contains('e') {
             //     if self.update_freq(rw, true) {
@@ -473,4 +425,51 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
     }
     log_trace(format!("Finish Function Call {}\n", idx).as_str());
     log_trace("-----------------------------------\n");
+}
+
+/// ## function to perform rewrite extraction from egraph
+/// ## Argument
+/// * `csg` - context-sentitive grammar flag
+/// ## Return
+/// * `None`
+pub unsafe fn extract(init_rw: Vec<String>) {
+    log_info_raw("\n");
+    match CSG {
+        true => {
+            log_info("Start multithreaded context-sensitive grammar extraction...\n");
+
+            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+                thread::Builder::new().name(rw.clone()).spawn(move || {
+                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
+                    csg_extract(rw, 0);
+                }).unwrap()
+            }).collect();
+
+            log_info("Waiting for all threads to finish execution...\n");
+            for handle in handles {
+                handle.join().unwrap();
+            }
+
+            log_info_raw("\n");
+            log_info("Finish context-sensitive grammar extraction\n");
+        },
+        false => {
+            log_info("Start context-free grammar extraction...\n");
+
+            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+                thread::Builder::new().name(rw.clone()).spawn(move || {
+                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
+                    cfg_extract(rw, 0);
+                }).unwrap()
+            }).collect();
+
+            log_info("Waiting for all threads to finish execution...\n");
+            for handle in handles {
+                handle.join().unwrap();
+            }
+
+            log_info_raw("\n");
+            log_info("Finish context-free grammar extraction\n");
+        },
+    }
 }
