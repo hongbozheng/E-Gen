@@ -51,6 +51,7 @@ mod math;
 mod ctx_gr;
 mod expr_ext;
 mod cli;
+mod refactor;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -120,6 +121,7 @@ pub use {
     ctx_gr::{ContextGrammar},
     expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_extract, extract},
     cli::{set_hyperparam},
+    refactor::{refactor},
 };
 
 #[cfg(feature = "lp")]
