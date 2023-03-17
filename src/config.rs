@@ -15,4 +15,3 @@ pub static mut CSG: bool = true;
 pub static SUPPRESS: bool = true;
 /// maximum limit of rewrite rule frequency
 pub static FREQ_MAX: u8 = 1;
-/* may put max_rw_len here as global ver */
