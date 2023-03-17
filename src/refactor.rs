@@ -24,7 +24,7 @@ pub fn refactor(input_filename: &str, output_filename: &str) -> std::io::Result<
         // Replace spaces between digits with no space
         let mut words = line.split_whitespace().peekable();
         let mut new_line = String::new();
-        let mut prev_is_digit = false;
+
         while let Some(word) = words.next() {
             if let Some(next_word) = words.peek() {
                 if word.len() == 1 && next_word.len() == 1 &&
