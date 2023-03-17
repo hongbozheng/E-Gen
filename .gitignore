@@ -1,4 +1,5 @@
 .idea/
 target/
 __pycache__/
+data/
 output.txt
