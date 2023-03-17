@@ -271,7 +271,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
             //     }
             // }
 
-            #[warn(unused_doc_comments)]
+            #[allow(unused_doc_comments)]
             /// ```rust
             /// /* Regex will solve indistinct eclass match in str.replacen() */
             /// /* Original Code */
@@ -381,6 +381,8 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
             let rw = &rw_list[k];
             log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
             log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+
+            #[allow(unused_doc_comments)]
             /// ```rust
             /// /* Regex will solve indistinct eclass match in str.replacen() */
             /// /* Original Code */
