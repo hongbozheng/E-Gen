@@ -4,7 +4,7 @@ use crate::*;
 /// log level for the entire environment
 pub static LOG_LEVEL: LogLevel = LogLevel::Debug;
 /// percentage of max # of OS threads
-pub static mut THREAD_PCT: f32 = 1.00;
+pub static mut THREAD_PCT: f32 = 0.80;
 /// max rewrite str len
 pub static mut MAX_RW_LEN: u8 = 25;
 /// context-sensitive grammar flag (csg flag)

@@ -197,11 +197,12 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d(lnx)"; "(d ?x (ln ?x))" => "(/ 1 ?x)"),
 
         /* derivative */
-        rw!("d-power-const"; "(d ?x (pow ?x ?c))" => "(* ?c (* (pow ?x (- ?c 1)) (d ?x ?x)))"
-            if is_const("?c")),
+        rw!("d-const"; "(d ?x ?c)" => "0" if is_const("?c")),
+        rw!("d(x^b)"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if is_const("?c")),
         /* derivative distributive property */
-        rw!("d-const*var-distrib"; "(d ?x (* ?c ?x))" => "(* ?c (d ?x ?x))" if is_const("?c")),
+        rw!("d(cx^y)->cd(x^y)"; "(d ?x (* ?c (pow ?x ?y)))" => "(* ?c (d ?x (pow ?x ?y)))"),
         rw!("d-add-distrib"; "(d ?x (+ ?y ?z))" => "(+ (d ?x ?y) (d ?x ?z))"),
+        rw!("d-sub-distrib"; "(d ?x (- ?y ?z))" => "(- (d ?x ?y) (d ?x ?z))"),
 
         /* integration */
         rw!("i-one"; "(i 1 ?x)" => "?x"),
