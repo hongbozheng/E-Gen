@@ -192,7 +192,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
         rw!("pow-of-(-1)"; "(pow ?x -1)" => "(/ 1 ?x)" if not_zero("?x")),
         /* ln */
-        rw!("ln(x^y)->yln(x)"; "(ln (pow ?x ?y))" => "(* ?y (ln ?x))");
+        rw!("ln(x^y)->yln(x)"; "(ln (pow ?x ?y))" => "(* ?y (ln ?x))"),
         /* exponent derivative */
         rw!("d(lnx)"; "(d ?x (ln ?x))" => "(/ 1 ?x)"),
 
@@ -301,12 +301,12 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* trig derivative */
 
         /* inverse trig derivative */
-        rw!("d(arsinh)"; "(d ?x (asinh ?x))" => "(/ 1 (sqrt (- 1 (pow ?x 2))))"),
-        rw!("d(arcosh)"; "(d ?x (acosh ?x))" => "(/ -1 (sqrt (- 1 (pow ?x 2))))"),
-        rw!("d(artanh)"; "(d ?x (atanh ?x))" => "(/ 1 (+ 1 (pow ?x 2)))"),
-        rw!("d(arcoth)"; "(d ?x (acoth ?x))" => "(/ -1 (+ 1 (pow ?x 2)))"),
-        rw!("d(arsech)"; "(d ?x (asech ?x))" => "(/ 1 (* (pow x 2) (sqrt (- 1 (/ 1 (pow x 2))))))"),
-        rw!("d(arcsch)"; "(d ?x (acsch ?x))" => "(/ -1 (* (pow x 2) (sqrt (- 1 (/ 1 (pow x 2))))))"),
+        rw!("d(arsin)"; "(d ?x (asin ?x))" => "(/ 1 (sqrt (- 1 (pow ?x 2))))"),
+        rw!("d(arcos)"; "(d ?x (acos ?x))" => "(/ -1 (sqrt (- 1 (pow ?x 2))))"),
+        rw!("d(artan)"; "(d ?x (atan ?x))" => "(/ 1 (+ 1 (pow ?x 2)))"),
+        rw!("d(arcot)"; "(d ?x (acot ?x))" => "(/ -1 (+ 1 (pow ?x 2)))"),
+        rw!("d(arsec)"; "(d ?x (asec ?x))" => "(/ 1 (* (pow x 2) (sqrt (- 1 (/ 1 (pow x 2))))))"),
+        rw!("d(arcsc)"; "(d ?x (acsc ?x))" => "(/ -1 (* (pow x 2) (sqrt (- 1 (/ 1 (pow x 2))))))"),
 
         /* hyperbolic identity */
         /* basic identity */
@@ -372,7 +372,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d(sech)"; "(d ?x (sech ?x))" => "(* -1 (* (tanh ?x) (sech ?x)))"),
 
         /* inverse hyperbolic */
-        /* hyperbolic inverse derivative */
+        /* inverse hyperbolic derivative */
         rw!("d(arsinh)"; "(d ?x (asinh ?x))" => "(/ 1 (sqrt (+ (pow ?x 2) 1)))"),
         rw!("d(arcosh)"; "(d ?x (acosh ?x))" => "(/ 1 (sqrt (- (pow ?x 2) 1)))"),
         rw!("d(artanh)"; "(d ?x (atanh ?x))" => "(/ 1 (- 1 (pow ?x 2)))"),
