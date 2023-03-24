@@ -101,6 +101,7 @@ type ExplainCache<L> = HashMap<(Id, Id), Rc<TreeTerm<L>>>;
 type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 
 /** A data structure representing an explanation that two terms are equivalent.
+
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.
