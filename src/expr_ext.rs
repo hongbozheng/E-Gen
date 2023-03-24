@@ -3,6 +3,8 @@ use std::thread;
 use crate::*;
 // use regex::Regex;
 
+/// max # of threads can be used (not max # of OS threads)
+pub static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
 /// private global variable to store eclass(es) to skip during extraction
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
@@ -121,6 +123,7 @@ pub unsafe fn get_global_rw_vec() -> &'static Arc<Mutex<Vec<String>>> {
 /// ## Return
 /// * `None`
 pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
+    unsafe { set_max_num_threads(&mut MAX_NUM_THREADS); }
     let math_egraph = ctx_gr.get_egraph();
     set_global_grammar(math_egraph);
     set_init_rw(ctx_gr);
@@ -253,7 +256,10 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
         let op = expr[i];
         let grammar = GRAMMAR.as_ref().unwrap();
-        if !grammar.contains_key(op) {continue;}
+        // TODO: THIS LINE IS EXTREMELY SLOW, WHEN !KEY, IT'S O(N)
+        // probably it's still good idea to check
+        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
+            !grammar.contains_key(op) { continue; }
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
         let rw_list = grammar.get(op).unwrap();
 
@@ -331,8 +337,19 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 //     thread.join().unwrap();
                 // } else { csg_extract(str.clone(), idx+1); }
 
-                // TODO: PROBABLY IMPLEMENT MULTI-THREAD HERE TOO TO INC EFFICIENCY
-                csg_extract(str.clone(), idx+1);
+                let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+                let mut mutex = global_max_num_threads.lock().unwrap();
+                if *mutex > 0 {
+                    *mutex -= 1;
+                    drop(mutex);
+                    let handle = thread::Builder::new().name(rw.clone()).spawn(move || {
+                        csg_extract(str.clone(), idx+1);
+                    }).unwrap();
+                    handle.join().unwrap();
+                } else {
+                    drop(mutex);
+                    csg_extract(str.clone(), idx+1);
+                }
 
                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
                 // if rw.contains('e') {
@@ -364,16 +381,20 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
 
     for i in 0..expr.len() {
         if expr.len() == 1 {
-            let vec = RW_VEC.take().unwrap();
-            vec.lock().unwrap().push(str.clone());
-            RW_VEC = Some(vec);
+            let global_rw_vec = RW_VEC.as_ref().unwrap();
+            let mut mutex = global_rw_vec.lock().unwrap();
+            mutex.push(str.clone());
+            drop(mutex);
             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             return;
         }
 
         let op = expr[i];
         let grammar = GRAMMAR.as_ref().unwrap();
-        if !grammar.contains_key(op) { continue; }
+        // TODO: THIS LINE IS EXTREMELY SLOW, WHENEVER !KEY, IT'S O(N)
+        // probably it's still good idea to check
+        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
+            !grammar.contains_key(op) { continue; }
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
         let rw_list = grammar.get(op).unwrap();
 
@@ -401,20 +422,35 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
                 continue;
             }
             if !contain_ecls(&str) && k == rw_list.len()-1 {
-                let vec = RW_VEC.take().unwrap();
-                vec.lock().unwrap().push(str.clone());
-                RW_VEC = Some(vec);
+                let global_rw_vec = RW_VEC.as_ref().unwrap();
+                let mut mutex = global_rw_vec.lock().unwrap();
+                mutex.push(str.clone());
+                drop(mutex);
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 term = true;
                 break;
             } else if !str.contains('e') {
-                let vec = RW_VEC.take().unwrap();
-                vec.lock().unwrap().push(str.clone());
-                RW_VEC = Some(vec);
+                let global_rw_vec = RW_VEC.as_ref().unwrap();
+                let mut mutex = global_rw_vec.lock().unwrap();
+                mutex.push(str.clone());
+                drop(mutex);
                 str = prev_str.clone();
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             } else {
-                cfg_extract(str.clone(), idx+1);
+                let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+                let mut mutex = global_max_num_threads.lock().unwrap();
+                if *mutex > 0 {
+                    *mutex -= 1;
+                    drop(mutex);
+                    let handle = thread::Builder::new().name(rw.clone()).spawn(move || {
+                        csg_extract(str.clone(), idx+1);
+                    }).unwrap();
+                    handle.join().unwrap();
+                } else {
+                    drop(mutex);
+                    csg_extract(str.clone(), idx+1);
+                }
+
                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
                 str = prev_str.clone();
                 if k == rw_list.len()-1 {
@@ -438,6 +474,10 @@ pub unsafe fn extract(init_rw: Vec<String>) {
     log_info_raw("\n");
     match CSG {
         true => {
+            let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+            let mutex = global_max_num_threads.lock().unwrap();
+            log_info(&format!("MAX NUM THREADS {}\n", mutex));
+            drop(mutex);
             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
@@ -456,7 +496,11 @@ pub unsafe fn extract(init_rw: Vec<String>) {
             log_info("Finish context-sensitive grammar extraction\n");
         },
         false => {
-            log_info("Start context-free grammar extraction...\n");
+            let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+            let mutex = global_max_num_threads.lock().unwrap();
+            log_info(&format!("MAX NUM THREADS {}\n", mutex));
+            drop(mutex);
+            log_info("Start multithreaded context-free grammar extraction...\n");
 
             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
                 thread::Builder::new().name(rw.clone()).spawn(move || {
