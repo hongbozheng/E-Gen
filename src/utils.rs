@@ -8,7 +8,7 @@ use crate::*;
 /// * `None`
 /// ## Return
 /// * `None`
-pub fn set_max_num_threads() {
+pub fn set_max_num_threads(max_num_threads: &mut Option<Arc<Mutex<u32>>>) {
     let output = Command::new("cat").arg("/proc/sys/kernel/threads-max")
         .output().expect("Failed to get MAX OS Threads!");
     let mut max_os_threads_str = String::from_utf8_lossy(&output.stdout).to_string();
@@ -20,7 +20,20 @@ pub fn set_max_num_threads() {
             return;
         }
     };
-    unsafe { MAX_NUM_THREADS = (max_os_threads as f32 * THREAD_PCT).floor() as u32; }
+    unsafe {
+        match max_num_threads {
+            None => {
+                let global_max_num_threads = max_num_threads
+                    .get_or_insert_with(|| Arc::new(Mutex::new(0)));
+                let mut mutex = global_max_num_threads.lock().unwrap();
+                *mutex = (max_os_threads as f32 * THREAD_PCT).floor() as u32;
+                drop(mutex);
+            },
+            Some(_) => {
+                log_error("[utils.rs] MAX_NUM_THREADS HAS ALREADY BEEN SET !\n");
+            }
+        }
+    }
 }
 
 /// ## function to set global max str len of rewrite
