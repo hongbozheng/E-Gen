@@ -37,7 +37,6 @@ fn set_thread_pct(usr_input: &String) {
     };
     if 0.0 < thread_pct && thread_pct <= 1.0 {
         unsafe { THREAD_PCT = thread_pct; }
-        set_max_num_threads();
     } else {
         log_error("Invalid input value for OS threads percentage, needs to be in (0.0, 1.0]\n");
         exit(1);
@@ -147,12 +146,11 @@ fn set_cli_3(args: &Vec<String>) {
 pub fn set_hyperparam(args: &Vec<String>) {
     match args.len() {
         1 => {
-            log_info("Executing program with the following default values...\n");
-            log_info("os threads = 1.00 [100%]\n");
-            log_info("max rw len = 25\n");
-            log_info("csg flag   = false\n");
-            log_info_raw("\n");
-            set_max_num_threads();
+            // log_info("Executing program with the following default values...\n");
+            // log_info("os threads = 1.00 [100%]\n");
+            // log_info("max rw len = 25\n");
+            // log_info("csg flag   = false\n");
+            // log_info_raw("\n");
         },
         2 => { help(); },
         3 => {
@@ -171,4 +169,12 @@ pub fn set_hyperparam(args: &Vec<String>) {
             log_error("Run `cargo run -h` or `cargo run --help` to check CLI\n");
         },
     }
+
+    log_info("Executing program with the following hyper-parameter values...\n");
+    unsafe {
+        log_info(&format!("OS THREADS PCT {}%\n", THREAD_PCT*100.0));
+        log_info(&format!("MAX RW LEN     {}\n", MAX_RW_LEN));
+        log_info(&format!("CSG FLAG       {}\n", CSG));
+    }
+    log_info_raw("\n");
 }
