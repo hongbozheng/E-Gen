@@ -5,8 +5,6 @@ use crate::*;
 pub static LOG_LEVEL: LogLevel = LogLevel::Debug;
 /// percentage of max # of OS threads
 pub static mut THREAD_PCT: f32 = 1.00;
-/// max # of threads can be used (not max # of OS threads)
-pub static mut MAX_NUM_THREADS: u32 = 0;
 /// max rewrite str len
 pub static mut MAX_RW_LEN: u8 = 25;
 /// context-sensitive grammar flag (csg flag)
