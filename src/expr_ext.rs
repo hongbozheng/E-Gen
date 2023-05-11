@@ -358,9 +358,8 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 // }
                 str = prev_str.clone();
             }
-            if term { break; }
         }
-
+        if term { break; }
     }
     log_trace(format!("Finish Function Call {}\n", idx).as_str());
     log_trace("-----------------------------------\n");
