@@ -1,3 +1,5 @@
+use std::process::exit;
+
 use egg::{ContextGrammar, Language, Extractor, AstSize};
 /* import hyperparameter set up */
 use egg::{set_hyperparam};
@@ -7,11 +9,16 @@ use egg::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_ext
 use egg::{log_info, log_info_raw};
 /* import utils functions */
 use egg::{pt_egraph_info, pt_root_ecls_info, pt_grammar, pt_init_rw, pt_skip_ecls, pt_rw};
+use egg::{refactor};
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     set_hyperparam(&args);
+
+    let _res = refactor("../data/equivexp_5_ops.test", "../data/refactor.test");
+    // let _res = refactor("../data/test.test", "../data/refactor.test");
+    exit(0);
 
     /* working */
     // let init_expr: &str = "(+ (d x (* 2 x)) y)";
@@ -20,7 +27,7 @@ pub fn main() {
     // let init_expr: &str = "(sin (* -1 x))";
     // let init_expr: &str = "(+ (pow (sin x) 2) (pow (cos x) 2))";
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
-    // let init_expr: &str = "(/ (sec x) (sin x))";
+    let init_expr: &str = "(/ (sec x) (sin x))";
     // let init_expr: &str = "(+ (* (cos (/ x 2)) 1) 0)";
     // let init_expr: &str = "(sqrt (/ x 2))";
     // let init_expr: &str = "(* (* x 2) 2)";
@@ -49,7 +56,7 @@ pub fn main() {
     // let init_expr: &str = "(/ (/ (* 2 x) 2) x)";
     // let init_expr: &str = "(/ x x)";
     // let init_expr: &str = "(+ (sinh x) (cosh x))";
-    let init_expr: &str = "(sinh (+ x y))";
+    // let init_expr: &str = "(sinh (+ x y))";
     // let init_expr: &str = "(d x (+ (pow x 2) (pow (sin x) 2)))";
 
     /* commutative rule break extraction */
