@@ -101,7 +101,6 @@ type ExplainCache<L> = HashMap<(Id, Id), Rc<TreeTerm<L>>>;
 type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 
 /** A data structure representing an explanation that two terms are equivalent.
-
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.
@@ -1596,7 +1595,8 @@ impl<L: Language> Explain<L> {
 
             let parent_parent = distance_memo.parent_distance[usize::from(parent)].0;
             if parent_parent != parent {
-                let new_dist = dist + distance_memo.parent_distance[usize::from(parent)].1;
+                let new_dist =
+                    dist.saturating_add(distance_memo.parent_distance[usize::from(parent)].1);
                 distance_memo.parent_distance[usize::from(enode)] = (parent_parent, new_dist);
             } else {
                 if ancestor == Id::from(usize::MAX) {
@@ -1747,7 +1747,7 @@ impl<L: Language> Explain<L> {
             for other in congruence_neighbors[usize::from(current)].iter() {
                 let next = other;
                 let distance = self.congruence_distance(current, *next, distance_memo);
-                let next_cost = cost_so_far + distance;
+                let next_cost = cost_so_far.saturating_add(distance);
                 todo.push(HeapState {
                     item: Connection {
                         current,
@@ -1820,7 +1820,7 @@ impl<L: Language> Explain<L> {
             if fuel < eclass_size {
                 continue;
             }
-            fuel -= eclass_size;
+            fuel = fuel.saturating_sub(eclass_size);
 
             let (left_connections, right_connections) = self
                 .shortest_path_modulo_congruence(start, end, congruence_neighbors, distance_memo)

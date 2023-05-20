@@ -1,5 +1,4 @@
 /*! Utilities for testing / benchmarking egg.
-
 These are not considered part of the public api.
  */
 
