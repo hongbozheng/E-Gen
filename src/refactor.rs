@@ -58,6 +58,13 @@ pub fn refactor(input_filename: &str, output_filename: &str) -> std::io::Result<
     Ok(())
 }
 
+/// public function to add parentheses recursively
+/// for each expression
+/// ## Argument
+/// * `tokens` - tokens from expression
+/// ## Return
+/// * `String` - expression or sub-expression
+///              in Polish notation with parentheses
 pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
     if tokens.is_empty() {
         return String::new();
@@ -69,33 +76,18 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
         return token.to_string();
     }
 
-    if token.starts_with('+') ||
-       token.starts_with('-') && token.len() == 1 ||
-       token.starts_with('*') ||
-       token.starts_with('/') ||
-       token.starts_with("ln") ||
-       token.starts_with("exp") ||
-       token.starts_with("pow") ||
-       token.starts_with("sqrt") ||
-       token.starts_with("sin") ||
-       token.starts_with("cos") ||
-       token.starts_with("tan") ||
-       token.starts_with("sinh") ||
-       token.starts_with("cosh") ||
-       token.starts_with("tanh") ||
-       token.starts_with("asin") ||
-       token.starts_with("acos") ||
-       token.starts_with("atan") ||
-       token.starts_with("asinh") ||
-       token.starts_with("acosh") ||
-       token.starts_with("atanh") {
+    if token == "+" || token == "-" || token == "*" || token == "/" ||
+        token == "ln" || token == "exp" || token == "pow" || token == "sqrt" ||
+        token == "sin" || token == "cos" || token == "tan" ||
+        token == "sinh" || token == "cosh" || token == "tanh" ||
+        token == "asin" || token == "acos" || token == "atan" ||
+        token == "asinh" || token == "acosh" || token == "atanh" {
+
         let operator = token;
 
-        if operator.starts_with('+') ||
-           operator.starts_with('-') && token.len() == 1 ||
-           operator.starts_with('*') ||
-           operator.starts_with('/') ||
-           operator.starts_with("pow") {
+        if operator == "+" || operator == "-" || operator == "*" ||
+            operator == "/" || operator == "pow" {
+
             let operand_1 = add_paren_recursive(tokens);
             let operand_2 = add_paren_recursive(tokens);
             return format!("({} {} {})", operator, operand_1, operand_2);
@@ -108,6 +100,10 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
     token.to_string()
 }
 
+/// public function to add parenthese to expressions
+/// ## Argument
+/// * `expr` - expression to add parenthese
+/// * `string` - expression in Polish notation with parenthese
 pub fn add_paren(expr: &str) -> String {
     let mut tokens: Vec<&str> = expr.split_whitespace().collect();
     add_paren_recursive(&mut tokens)
