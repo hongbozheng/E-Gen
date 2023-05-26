@@ -27,7 +27,8 @@ pub fn main() {
     // let init_expr: &str = "(/ (d x (sin x)) (* -1 (d x (cos x))))";
     // let init_expr: &str = "(/ (sec x) (sin x))";
     let init_expr: &str = "(acos (+ 5 (* x (exp -2))))";
-    let init_expr: &str = "(d x (pow (sin (* 2 x)) 2))";
+    // let init_expr: &str = "(d x (pow (sin (* 2 x)) 2))";
+    // let init_expr: &str = "(d x (pow x 2))";
     // let init_expr: &str = "(+ (* (cos (/ x 2)) 1) 0)";
     // let init_expr: &str = "(sqrt (/ x 2))";
     // let init_expr: &str = "(* (* x 2) 2)";
