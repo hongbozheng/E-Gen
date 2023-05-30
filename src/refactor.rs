@@ -9,7 +9,7 @@ use std::io::{BufRead, BufReader, BufWriter, Write};
 /// ## Return
 /// * `std::io::Result<()>`
 pub fn refactor(input_filename: &str, output_filename: &str) -> std::io::Result<()> {
-    // Open the input and output files
+    // Open the input file and create output file
     let input_file = File::open(input_filename)?;
     let output_file = File::create(output_filename)?;
 
