@@ -44,7 +44,8 @@ pub fn refactor(input_filename: &str, output_filename: &str) -> std::io::Result<
             .replace("mul", "*")
             .replace("div", "/")
             .replace("INT+ ", "")
-            .replace("INT- ", "-");
+            .replace("INT- ", "-")
+            .replace("pi", "3.14");
 
         new_expr = add_paren(&new_expr);
 

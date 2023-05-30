@@ -294,47 +294,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("cos(a)-cos(b)->2sin((a+b)/2)sin((a-b)/2)";
         //     "(- (cos ?x) (cos ?y))" => "(* -2 (* (sin (/ (+ ?x ?y) 2)) (sin (/ (- ?x ?y) 2))))"),
 
-        /* =========================== derivative =========================== */
-        /* basic derivative */
-        rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
-        /* generalized chain rule */
-        rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
-        /* distributive property */
-        rw!("d/dx c*f(x)"; "(d ?x (* ?c ?f))" => "(* ?c (d ?x ?f))" if is_const("?c")),
-        rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?y ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
-        rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
-        /* polynomial */
-        rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if is_const("?c")),
-        /* generalized trig (chain rule) */
-        rw!("d/dx sin(u)"; "(d ?x (sin ?u))" => "(* (cos ?u) (d ?x ?u))"),
-        rw!("d/dx cos(u)"; "(d ?x (cos ?u))" => "(* (* -1 (sin ?u)) (d ?x ?u))"),
-        rw!("d/dx tan(u)"; "(d ?x (tan ?u))" => "(* (pow (sec ?u) 2) (d ?x ?u))"),
-        rw!("d/dx csc(u)"; "(d ?x (csc ?u))" => "(* (* -1 (* (csc ?u) (cot ?u))) (d ?x ?u))"),
-        rw!("d/dx sec(u)"; "(d ?x (sec ?u))" => "(* (* (sec ?u) (tan ?u)) (d ?x ?u))"),
-        rw!("d/dx cot(u)"; "(d ?x (cot ?u))" => "(* (* -1 (pow (csc ?x) 2)) (d ?x ?u))"),
-        /* generalized inv trig (chain rule) */
-        rw!("d/dx asin(u)"; "(d ?x (asin ?u))" => "(* (/ 1 (sqrt (- 1 (pow ?u 2)))) (d ?x ?u))"),
-        rw!("d/dx acos(u)"; "(d ?x (acos ?u))" => "(* (/ -1 (sqrt (- 1 (pow ?u 2)))) (d ?x ?u))"),
-        rw!("d/dx atan(u)"; "(d ?x (atan ?u))" => "(* (/ 1 (+ 1 (pow ?u 2))) (d ?x ?u))"),
-        rw!("d/dx acsc(u)"; "(d ?x (acsc ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
-        rw!("d/dx asec(u)"; "(d ?x (asec ?u))" => "(* (/ 1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
-        rw!("d/dx acot(u)"; "(d ?x (acot ?u))" => "(* (/ -1 (+ 1 (pow ?u 2))) (d ?x ?u))"),
-        /* generalized hyperbolic (chain rule) */
-        rw!("d/dx sinh(u)"; "(d ?x (sinh ?u))" => "(* (cosh ?u) (d ?x ?u))"),
-        rw!("d/dx cosh(u)"; "(d ?x (cosh ?u))" => "(*  (sinh ?u) (d ?x ?u))"),
-        rw!("d/dx tanh(u)"; "(d ?x (tanh ?u))" => "(* (pow (sech ?u) 2) (d ?x ?u))"),
-        rw!("d/dx csch(u)"; "(d ?x (csch ?u))" => "(* (* -1 (* (csch ?u) (coth ?u))) (d ?x ?u))"),
-        rw!("d/dx sech(u)"; "(d ?x (sech ?u))" => "(* (* -1 (* (sech ?u) (tanh ?u))) (d ?x ?u))"),
-        rw!("d/dx coth(u)"; "(d ?x (coth ?u))" => "(* (* -1 (pow (csch ?u) 2)) (d ?x ?u))"),
-        /* generalized inv hyperbolic (chain rule) */
-        rw!("d/dx asinh(u)"; "(d ?x (asinh ?u))" => "(* (/ 1 (sqrt (+ (pow ?u 2) 1))) (d ?x ?u))"),
-        rw!("d/dx acosh(u)"; "(d ?x (acosh ?u))" => "(* (/ 1 (sqrt (- (pow ?u 2) 1))) (d ?x ?u))"),
-        rw!("d/dx atanh(u)"; "(d ?x (atanh ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
-        rw!("d/dx acsch(u)"; "(d ?x (acsch ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (+ 1 (pow ?u 2))))) (d ?x ?u))"),
-        rw!("d/dx asech(u)"; "(d ?x (asech ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
-        rw!("d/dx acoth(u)"; "(d ?x (acoth ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
-        /* ================================================================== */
-
         /* hyperbolic identity */
         /* basic identity */
         rw!("cosh(x)+sinh(x)->e^x"; "(+ (cosh ?x) (sinh ?x))" => "(exp ?x)"),
@@ -384,5 +343,46 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(tanh (+ ?x ?y))" => "(/ (+ (tanh ?x) (tanh ?y)) (+ 1 (* (tan ?x) (tan ?y))))"),
         rw!("tanh(a-b)->((tanh(a)-tanh(b))/(1-tanh(a)tanh(b)))";
             "(tanh (- ?x ?y))" => "(/ (- (tanh ?x) (tanh ?y)) (- 1 (* (tanh ?x) (tanh ?y))))"),
+
+        /* =========================== derivative =========================== */
+        /* basic derivative */
+        rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
+        /* generalized chain rule */
+        rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
+        /* distributive property */
+        rw!("d/dx c*f(x)"; "(d ?x (* ?c ?f))" => "(* ?c (d ?x ?f))" if is_const("?c")),
+        rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?y ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
+        rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
+        /* polynomial */
+        rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if is_const("?c")),
+        /* generalized trig (chain rule) */
+        rw!("d/dx sin(u)"; "(d ?x (sin ?u))" => "(* (cos ?u) (d ?x ?u))"),
+        rw!("d/dx cos(u)"; "(d ?x (cos ?u))" => "(* (* -1 (sin ?u)) (d ?x ?u))"),
+        rw!("d/dx tan(u)"; "(d ?x (tan ?u))" => "(* (pow (sec ?u) 2) (d ?x ?u))"),
+        rw!("d/dx csc(u)"; "(d ?x (csc ?u))" => "(* (* -1 (* (csc ?u) (cot ?u))) (d ?x ?u))"),
+        rw!("d/dx sec(u)"; "(d ?x (sec ?u))" => "(* (* (sec ?u) (tan ?u)) (d ?x ?u))"),
+        rw!("d/dx cot(u)"; "(d ?x (cot ?u))" => "(* (* -1 (pow (csc ?x) 2)) (d ?x ?u))"),
+        /* generalized inv trig (chain rule) */
+        rw!("d/dx asin(u)"; "(d ?x (asin ?u))" => "(* (/ 1 (sqrt (- 1 (pow ?u 2)))) (d ?x ?u))"),
+        rw!("d/dx acos(u)"; "(d ?x (acos ?u))" => "(* (/ -1 (sqrt (- 1 (pow ?u 2)))) (d ?x ?u))"),
+        rw!("d/dx atan(u)"; "(d ?x (atan ?u))" => "(* (/ 1 (+ 1 (pow ?u 2))) (d ?x ?u))"),
+        rw!("d/dx acsc(u)"; "(d ?x (acsc ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
+        rw!("d/dx asec(u)"; "(d ?x (asec ?u))" => "(* (/ 1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
+        rw!("d/dx acot(u)"; "(d ?x (acot ?u))" => "(* (/ -1 (+ 1 (pow ?u 2))) (d ?x ?u))"),
+        /* generalized hyperbolic (chain rule) */
+        rw!("d/dx sinh(u)"; "(d ?x (sinh ?u))" => "(* (cosh ?u) (d ?x ?u))"),
+        rw!("d/dx cosh(u)"; "(d ?x (cosh ?u))" => "(*  (sinh ?u) (d ?x ?u))"),
+        rw!("d/dx tanh(u)"; "(d ?x (tanh ?u))" => "(* (pow (sech ?u) 2) (d ?x ?u))"),
+        rw!("d/dx csch(u)"; "(d ?x (csch ?u))" => "(* (* -1 (* (csch ?u) (coth ?u))) (d ?x ?u))"),
+        rw!("d/dx sech(u)"; "(d ?x (sech ?u))" => "(* (* -1 (* (sech ?u) (tanh ?u))) (d ?x ?u))"),
+        rw!("d/dx coth(u)"; "(d ?x (coth ?u))" => "(* (* -1 (pow (csch ?u) 2)) (d ?x ?u))"),
+        /* generalized inv hyperbolic (chain rule) */
+        rw!("d/dx asinh(u)"; "(d ?x (asinh ?u))" => "(* (/ 1 (sqrt (+ (pow ?u 2) 1))) (d ?x ?u))"),
+        rw!("d/dx acosh(u)"; "(d ?x (acosh ?u))" => "(* (/ 1 (sqrt (- (pow ?u 2) 1))) (d ?x ?u))"),
+        rw!("d/dx atanh(u)"; "(d ?x (atanh ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
+        rw!("d/dx acsch(u)"; "(d ?x (acsch ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (+ 1 (pow ?u 2))))) (d ?x ?u))"),
+        rw!("d/dx asech(u)"; "(d ?x (asech ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
+        rw!("d/dx acoth(u)"; "(d ?x (acoth ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
+        /* ================================================================== */
     ]
 }
