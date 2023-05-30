@@ -1,8 +1,10 @@
 use std::process::Command;
 use std::sync::{Arc, Mutex};
+use std::fs::File;
+use std::io::{BufRead, BufReader, BufWriter, Write};
 use crate::*;
 
-/// ## function to set global max # of threads for extraction
+/// ## public function to set global max # of threads for extraction
 /// ## MAX_NUM_THREADS = floor(MAX # of THREADS of the OS x MAX_NUM_THREADS_PCT)
 /// ## Argument
 /// * `None`
@@ -36,21 +38,21 @@ pub fn set_max_num_threads(max_num_threads: &mut Option<Arc<Mutex<u32>>>) {
     }
 }
 
-/// ## function to set global max str len of rewrite
+/// ## public function to set global max str len of rewrite
 /// ## Argument
 /// * `max_rw_len` - maximum rewrite length limit
 /// ## Return
 /// * `None`
 pub unsafe fn set_max_rw_len(max_rw_len: u8) { MAX_RW_LEN = max_rw_len; }
 
-/// ## function to set global csg (context-sensitive grammar flag)
+/// ## public function to set global csg (context-sensitive grammar flag)
 /// ## Argument
 /// * `max_rw_len` - maximum rewrite length limit
 /// ## Return
 /// * `None`
 pub unsafe fn set_csg(csg: bool) { CSG = csg; }
 
-/// ## function to print the type of a variable
+/// ## public function to print the type of a variable
 /// ## Argument
 /// * `_` - reference of any variable
 /// ## Return
@@ -59,7 +61,27 @@ pub fn pt_type_of<T>(_: &T) {
     log_debug(&format!("Var Type {}", std::any::type_name::<T>()));
 }
 
-/// ## function to print egraph information
+/// ## public function to generate new dataset of
+/// ## mathematical expressions
+/// * `input_filename` - input filename
+/// * `output_filename` - output filename
+/// ## Return
+/// * `std::io::Result<()>`
+pub fn generate_dataset(input_filename: &str, output_filename: &str) -> std::io::Result<()> {
+    // Open the input file and create output file
+    let input_file = File::open(input_filename)?;
+    let output_file = File::create(output_filename)?;
+
+    // Create buffered reader and writer for the input and output files
+    let reader = BufReader::new(input_file);
+    let mut writer = BufWriter::new(output_file);
+
+    // TODO: Finish Implementation
+
+    Ok(())
+}
+
+/// ## public function to print egraph information
 /// ## Argument
 /// * `egraph` - egraph
 /// ## Return
@@ -91,7 +113,7 @@ pub fn pt_egraph_info(egraph: &MathEGraph) {
     log_debug("----------------------------------\n");
 }
 
-/// ## function to print root eclasses
+/// ## public function to print root eclasses
 /// ## Argument
 /// * `root_eclasses` - root eclass vec<Id>
 /// ## Return
@@ -103,7 +125,7 @@ pub fn pt_root_ecls_info(root_ecls: &Vec<Id>) {
     log_debug("-----------------------------------\n");
 }
 
-/// ## function to print eclass(es) to skip during extraction
+/// ## public function to print eclass(es) to skip during extraction
 /// ## Argument
 /// * `skip_ecls` - vec<String> to skip during extraction
 /// ## Return
@@ -115,7 +137,7 @@ pub fn pt_skip_ecls(skip_ecls: &HashMap<String, f64>) {
     log_debug("-----------------------------------\n");
 }
 
-/// ## function to print grammar
+/// ## public function to print grammar
 /// ## Argument
 /// * `grammar` - grammar HashMap
 /// ## Return
@@ -129,7 +151,7 @@ pub fn pt_grammar(grammar: &HashMap<String, Vec<String>>){
     log_debug("-----------------------------------\n");
 }
 
-/// ## function to print initial rewrites
+/// ## public function to print initial rewrites
 /// ## Argument
 /// * `init_rw` - init_rw Vec<String>
 /// ## Return
@@ -141,7 +163,7 @@ pub fn pt_init_rw(init_rw: &Vec<String>) {
     log_debug("-----------------------------------\n");
 }
 
-/// ## function to print final rw
+/// ## public function to print final rw
 /// ## Argument
 /// * `mutex` - mutex of global variable rw_vec
 /// ## Return
