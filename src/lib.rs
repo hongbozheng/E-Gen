@@ -119,7 +119,7 @@ pub use {
     utils::*,
     math::{Math, math_rule, MathEGraph},
     ctx_gr::{ContextGrammar},
-    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_rw_vec, setup_extract, extract},
+    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
     cli::{set_hyperparam},
     refactor::{refactor},
 };

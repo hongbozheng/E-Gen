@@ -9,8 +9,8 @@ pub static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
 static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
-/// global variable to store rewrite results
-pub static mut RW_VEC: Option<Arc<Mutex<Vec<String>>>> = None;
+/// global variable to store equivalent expression results
+pub static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
 
 /// ## private function to set global variable GRAMMAR & SKIP_ECLS from MathEGraph
 /// ## make GRAMMAR & SKIP_ECLS visible by all threads
@@ -78,15 +78,15 @@ fn set_init_rw(ctx_gr: &mut ContextGrammar) {
     // self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
 }
 
-/// ## private function to initialize global variable RW_VEC
+/// ## private function to initialize global variable EQUIV_EXPRS
 /// ## to store rewrite results from all threads
 /// ## Argument
 /// * `None`
 /// ## Return
 /// * `None`
-fn set_rw_vec() {
-    let rw_vec = Arc::new(Mutex::new(vec![]));
-    unsafe { RW_VEC = Some(rw_vec); }
+fn set_equiv_exprs() {
+    let equiv_exprs = Arc::new(Mutex::new(vec![]));
+    unsafe { EQUIV_EXPRS = Some(equiv_exprs); }
 }
 
 /// ## public function to get private global variable SKIP_ECLS
@@ -107,17 +107,17 @@ pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
     return GRAMMAR.as_ref().unwrap();
 }
 
-/// ## public function to get private global variable RW_VEC
+/// ## public function to get private global variable EQUIV_EXPRS
 /// ## Argument
 /// * `None`
 /// ## Return
-/// * `RW_VEC` - immutable reference of global variable RW_VEC
-pub unsafe fn get_global_rw_vec() -> &'static Arc<Mutex<Vec<String>>> {
-    return RW_VEC.as_ref().unwrap();
+/// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
+pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
+    return EQUIV_EXPRS.as_ref().unwrap();
 }
 
 /// ## public function to setup for extraction
-/// ## SKIP_ECLS, GRAMMAR, RW_VEC
+/// ## SKIP_ECLS, GRAMMAR, EQUIV_EXPRS
 /// ## Argument
 /// * `ctx_gr` context grammar struct
 /// ## Return
@@ -127,7 +127,7 @@ pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
     let math_egraph = ctx_gr.get_egraph();
     set_global_grammar(math_egraph);
     set_init_rw(ctx_gr);
-    set_rw_vec();
+    set_equiv_exprs();
 }
 
 /// ## private member function to check if an eclass appears in str
@@ -245,8 +245,8 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
     for i in 0..expr.len() {
         if expr.len() == 1 {
-            let global_rw_vec = RW_VEC.as_ref().unwrap();
-            let mut mutex = global_rw_vec.lock().unwrap();
+            let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+            let mut mutex = global_equiv_exprs.lock().unwrap();
             mutex.push(str.clone());
             drop(mutex);
 
@@ -300,11 +300,11 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 continue;
             }
             if !contain_ecls(&str) && k == rw_list.len()-1 {
-                // let mut global_rw_vec = RW_VEC.as_ref().unwrap().lock().unwrap();
-                // global_rw_vec.push(str.clone());
+                // let mut global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap().lock().unwrap();
+                // global_equiv_exprs.push(str.clone());
 
-                let global_rw_vec = RW_VEC.as_ref().unwrap();
-                let mut mutex = global_rw_vec.lock().unwrap();
+                let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+                let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
                 drop(mutex);
 
@@ -312,8 +312,8 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 term = true;
                 break;
             } else if !contain_ecls(&str) {
-                let global_rw_vec = RW_VEC.as_ref().unwrap();
-                let mut mutex = global_rw_vec.lock().unwrap();
+                let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+                let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
                 drop(mutex);
 
@@ -380,8 +380,8 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
 
     for i in 0..expr.len() {
         if expr.len() == 1 {
-            let global_rw_vec = RW_VEC.as_ref().unwrap();
-            let mut mutex = global_rw_vec.lock().unwrap();
+            let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+            let mut mutex = global_equiv_exprs.lock().unwrap();
             mutex.push(str.clone());
             drop(mutex);
             log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
@@ -421,16 +421,16 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
                 continue;
             }
             if !contain_ecls(&str) && k == rw_list.len()-1 {
-                let global_rw_vec = RW_VEC.as_ref().unwrap();
-                let mut mutex = global_rw_vec.lock().unwrap();
+                let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+                let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
                 drop(mutex);
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 term = true;
                 break;
             } else if !str.contains('e') {
-                let global_rw_vec = RW_VEC.as_ref().unwrap();
-                let mut mutex = global_rw_vec.lock().unwrap();
+                let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
+                let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
                 drop(mutex);
                 str = prev_str.clone();
