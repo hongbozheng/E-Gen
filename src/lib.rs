@@ -118,10 +118,10 @@ pub use {
     logger::*,
     utils::*,
     math::{Math, math_rule, MathEGraph},
-    ctx_gr::{ContextGrammar},
-    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
-    cli::{set_hyperparam},
-    refactor::{refactor},
+    ctx_gr::ContextGrammar,
+    expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
+    cli::set_hyperparam,
+    refactor::refactor,
 };
 
 #[cfg(feature = "lp")]
