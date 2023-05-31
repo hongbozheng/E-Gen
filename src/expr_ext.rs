@@ -123,7 +123,6 @@ pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
 /// ## Return
 /// * `None`
 pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
-    unsafe { set_max_num_threads(&mut MAX_NUM_THREADS); }
     let math_egraph = ctx_gr.get_egraph();
     set_global_grammar(math_egraph);
     set_init_rw(ctx_gr);

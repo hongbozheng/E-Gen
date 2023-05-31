@@ -170,6 +170,8 @@ pub fn set_hyperparam(args: &Vec<String>) {
         },
     }
 
+    unsafe { set_max_num_threads(&mut MAX_NUM_THREADS); }
+
     log_info("Executing program with the following hyper-parameter values...\n");
     unsafe {
         log_info(&format!("OS THREADS PCT {}%\n", THREAD_PCT*100.0));
