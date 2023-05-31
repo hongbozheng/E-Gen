@@ -4,9 +4,9 @@ use crate::*;
 /// store information about initial expression,
 /// egraph, root eclass(es), skip eclass(es),
 /// grammar, initial rewrite
-pub struct ContextGrammar {
+pub struct ContextGrammar<'a> {
     /// initial expression to run with egraph
-    init_expr: &'static str,
+    init_expr: &'a str,
     /// egraph after running rewrite rules
     pub egraph: MathEGraph,
     /// root eclasses of MathEGraph
@@ -15,13 +15,13 @@ pub struct ContextGrammar {
     pub init_rw: Vec<String>,
 }
 
-impl ContextGrammar {
+impl<'a> ContextGrammar<'a> {
     /// ## default constructor
     /// ## Arguments
     /// * `init_expr` - initial expression for rewriting
     /// ## Return
     /// * `None`
-    pub fn new(init_expr: &'static str) -> Self {
+    pub fn new(init_expr: &'a str) -> Self {
         ContextGrammar {
             init_expr,
             egraph: Default::default(),
