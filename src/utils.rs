@@ -1,6 +1,6 @@
 use std::process::Command;
 use std::sync::{Arc, Mutex};
-use std::fs::File;
+use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use crate::*;
 
@@ -76,7 +76,78 @@ pub fn generate_dataset(input_filename: &str, output_filename: &str) -> std::io:
     let reader = BufReader::new(input_file);
     let mut writer = BufWriter::new(output_file);
 
-    // TODO: Finish Implementation
+    for expr in reader.lines() {
+        let expr = expr?;
+
+        log_info(format!("Initial expression {}\n", expr).as_str());
+
+        let mut ctx_gr = ContextGrammar::new(&expr);
+        log_info("Creating egraph with initial expression & rewrite rules...\n");
+        ctx_gr.set_egraph();
+
+        let egraph = ctx_gr.get_egraph();
+        log_info_raw("\n");
+        log_info(format!("EGraph total size {}\n", egraph.total_size()).as_str());
+        log_info(format!("EGraph contains {} node(s)\n", egraph.total_number_of_nodes()).as_str());
+        log_info(format!("EGraph contains {} eclass(es)\n", egraph.number_of_classes()).as_str());
+
+        /* TODO: DEBUG */
+        // pt_egraph_info(&egraph);
+
+        let root_ecls = ctx_gr.get_root_ecls();
+        pt_root_ecls_info(&root_ecls);
+
+        /* TODO: DEBUG */
+        // log_debug_raw("\n");
+        // log_debug("------------ Extractor -----------\n");
+        // let extractor = Extractor::new(&egraph, AstSize);
+        // let (best_cost, simpl_expr) = extractor.find_best(root_ecls[0]);
+        // log_debug(format!("Simplified Expression to {} with Cost {}\n",simpl_expr, best_cost).as_str());
+        // log_debug("----------------------------------\n");
+
+        unsafe {
+            log_info_raw("\n");
+            log_info("Creating grammar & setting initial rewrite...\n");
+            setup_extract(&mut ctx_gr);
+    
+            let skip_ecls = get_global_skip_ecls();
+            pt_skip_ecls(skip_ecls);
+    
+            let grammar = get_global_grammar();
+            pt_grammar(grammar);
+    
+            log_info_raw("\n");
+            log_info(format!("Total # of grammar {}\n", grammar.len()).as_str());
+        }
+    
+        let init_rw = ctx_gr.get_init_rw();
+        pt_init_rw(init_rw);
+        log_info_raw("\n");
+        log_info(format!("Total # of initial rw {}\n", init_rw.len()).as_str());
+        unsafe { extract(init_rw.clone());}
+    
+        unsafe {
+            let mutex = get_global_equiv_exprs();
+            pt_rw(mutex);
+            let mut equiv_exprs = mutex.lock().unwrap();
+            equiv_exprs.sort_unstable();
+            equiv_exprs.dedup();
+            writeln!(writer, "{}", expr)?;
+            for expr in equiv_exprs.iter() {
+                writeln!(writer, "{}", expr)?;
+            }
+            writeln!(writer, "\n")?;
+        }
+
+        // Flush the writer to ensure that all data is written to the output file
+        writer.flush()?;
+        log_info_raw("==================================================\n\n");
+
+        // break;
+    }
+
+    // Flush the writer to ensure that all data is written to the output file
+    writer.flush()?;
 
     Ok(())
 }
@@ -169,10 +240,10 @@ pub fn pt_init_rw(init_rw: &Vec<String>) {
 /// ## Return
 /// * `None`
 pub fn pt_rw(mutex: &Arc<Mutex<Vec<String>>>) {
-    let mut rw_vec = mutex.lock().unwrap();
-    rw_vec.sort_unstable();
-    rw_vec.dedup();
-    for rw in rw_vec.iter() {
-        log_info(&format!("{}\n", rw));
+    let mut equiv_exprs = mutex.lock().unwrap();
+    equiv_exprs.sort_unstable();
+    equiv_exprs.dedup();
+    for expr in equiv_exprs.iter() {
+        log_info(&format!("{}\n", expr));
     }
 }
