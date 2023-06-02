@@ -24,6 +24,7 @@ define_language! {
         /* log & exponential */
         "exp"=Exp(Id),
         "ln"=Ln(Id),
+        "log"=Log([Id;2]),
 
         /* trig operator */
         "sin"=Sin(Id),
@@ -156,33 +157,35 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* commutative rules */
-        // rw!("x+y->y+x"; "(+ ?x ?y)" => "(+ ?y ?x)"),
-        // rw!("x*y->y*x"; "(* ?x ?y)" => "(* ?y ?x)"),
-        // rw!("comm-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
-        // rw!("comm-mul-3var"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
-        // rw!("comm-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
-        // rw!("x(y/z)->(xy)/z"; "(* ?x (/ ?y ?z))" => "(/ (* ?x ?y) ?z)"),
+        rw!("x+y->y+x"; "(+ ?x ?y)" => "(+ ?y ?x)"),
+        rw!("x*y->y*x"; "(* ?x ?y)" => "(* ?y ?x)"),
+        rw!("comm-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
+        rw!("comm-mul-3var"; "(* ?x (* ?y ?z))" => "(* (* ?x ?y) ?z)"),
+        rw!("comm-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
+        rw!("x(y/z)->(xy)/z"; "(* ?x (/ ?y ?z))" => "(/ (* ?x ?y) ?z)"),
+        rw!("x(y/z)->(x/z)y"; "(* ?x (/ ?y ?z))" => "(* (/ ?x ?z) ?y)"),
 
-        // /* expansion */
+        /* expansion */
         // rw!("x->x*1"; "?x" => "(* 1 ?x)"),
         rw!("x->x^1"; "?x" => "(pow ?x 1)"),
 
-        // /* basic arithmetic simplification */
-        // rw!("x+0->x"; "(+ ?x 0)" => "?x"),
-        // rw!("x*0->0"; "(* ?x 0)" => "0"),
-        // rw!("x*1->x"; "(* ?x 1)" => "?x"),
-        // rw!("x/1->x"; "(/ ?x 1)" => "?x"),
-        // rw!("x-x->0"; "(- ?x ?x)" => "0"),
-        // rw!("x/x->1"; "(/ ?x ?x)" => "1" if not_zero("?x")),
-        // rw!("(-1)*(-1)->1"; "(* -1 -1)" => "1"),
-        // rw!("x*(1/x)->1"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
+        /* basic arithmetic simplification */
+        rw!("x+0->x"; "(+ ?x 0)" => "?x"),
+        rw!("x*0->0"; "(* ?x 0)" => "0"),
+        rw!("x*1->x"; "(* ?x 1)" => "?x"),
+        rw!("x/1->x"; "(/ ?x 1)" => "?x"),
+        rw!("x-x->0"; "(- ?x ?x)" => "0"),
+        rw!("x/x->1"; "(/ ?x ?x)" => "1" if not_zero("?x")),
+        rw!("(-1)*(-1)->1"; "(* -1 -1)" => "1"),
+        rw!("x*(1/x)->1"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
 
-        // /* distributive property & factorization */
-        // rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
-        // rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+        /* distributive property & factorization */
+        rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
+        rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
 
-        // /* multiplication <-> division identity */
-        // rw!("x/(y/z)->x(z/y)"; "(/ ?x (/ ?y ?z))" => "(* ?x (/ ?z ?y))"),
+        /* multiplication <-> division identity */
+        rw!("x(z/y)->x/(y/z)"; "(* ?x (/ ?y ?z))" => "(/ ?x (/ ?z ?y))"),
+        rw!("x/(y/z)->x(z/y)"; "(/ ?x (/ ?z ?y))" => "(* ?x (/ ?y ?z))"),
 
         /* exponent rules */
         /* simplification */
@@ -193,70 +196,83 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
         rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
         rw!("pow-of-(-1)"; "(pow ?x -1)" => "(/ 1 ?x)" if not_zero("?x")),
-        /* ln */
-        rw!("ln(x^y)->yln(x)"; "(ln (pow ?x ?y))" => "(* ?y (ln ?x))"),
         /* exponent derivative */
         rw!("d(lnx)"; "(d ?x (ln ?x))" => "(/ 1 ?x)"),
 
+        /* logarithm rule */
+        /* ln */
+        rw!("ln(ab)->ln(a)+ln(b)"; "(ln (* ?a ?b))" => "(+ (ln ?a) (ln ?b))"),
+        rw!("ln(a)+ln(b)->ln(ab)"; "(+ (ln ?a) (ln ?b))" => "(ln (* ?a ?b))"),
+        rw!("ln(a/b)->ln(a)-ln(b)"; "(ln (/ ?a ?b))" => "(- (ln ?a) (ln ?b))"),
+        rw!("ln(a)-ln(b)->ln(a/b)"; "(- (ln ?a) (ln ?b))" => "(ln (/ ?a ?b))"),
+        rw!("ln(x^a)->aln(x)"; "(ln (pow ?x ?a))" => "(* ?a (ln ?x))"),
+        /* log */
+        rw!("log(xy)->log(x)+log(y)"; "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))"),
+        rw!("log(x)+log(y)->log(xy)"; "(+ (log ?b ?x) (log ?b ?y))" => "(log ?b (+ ?x ?y))"),
+        rw!("log(x/y)->log(x)-log(y)"; "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))"),
+        rw!("log(x)-log(y)->log(x/y)"; "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (- ?x ?y))"),
+        rw!("log(x^a)->alog(x)"; "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))"),
+        rw!("log(b)->1"; "(log ?b ?b)" => "1"),
+
         /* integration */
-        rw!("i-one"; "(i 1 ?x)" => "?x"),
-        rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
-            if is_const("?c")),
+        // rw!("i-one"; "(i 1 ?x)" => "?x"),
+        // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
+        //     if is_const("?c")),
 
         /* trig */
         /* trig basic identity */
-        // rw!("tan->sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
-        // rw!("cos->sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
-        // rw!("sin->cos*tan"; "(sin ?x)" => "(* (cos ?x) (tan ?x))"),
-        // /*
-        // don't need these rw because trig basic identity and trig reciprocal identity cover it
-        // ```
-        // rw!("sin/cos->tan"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
-        // rw!("sin/tan->cos"; "(/ (sin ?x) (tan ?x))" => "(cos ?x)"),
-        // rw!("cos*tan->sin"; "(* (cos ?x) (tan ?x))" => "(sin ?x)"),
-        // rw!("cot->cos/sin"; "(cot ?x)" => "(/ (cos ?x) (sin ?x))"),
-        // rw!("cos/sin->cot"; "(/ (cos ?x) (sin ?x))" => "(cot ?x)"),
-        // ```
-        //  */
-        // /* trig reciprocal identity <-> */
-        // rw!("csc->1/sin"; "(csc ?x)" => "(/ 1 (sin ?x))"),
-        // rw!("sec->1/cos"; "(sec ?x)" => "(/ 1 (cos ?x))"),
-        // rw!("cot->1/tan"; "(cot ?x)" => "(/ 1 (tan ?x))"),
-        // rw!("1/sin->csc"; "(/ 1 (sin ?x))" => "(csc ?x)"),
-        // rw!("1/cos->sec"; "(/ 1 (cos ?x))" => "(sec ?x)"),
-        // rw!("1/tan->cot"; "(/ 1 (tan ?x))" => "(cot ?x)"),
-        // /*
-        // don't need these rw because trig reciprocal identity & multiplication <-> division identity
-        // cover it
-        // ```
-        // rw!("sin->1/csc"; "(sin ?x)" => "(/ 1 (csc ?x))"),
-        // rw!("cos->1/sec"; "(cos ?x)" => "(/ 1 (sec ?x))"),
-        // rw!("tan->1/cot"; "(tan ?x)" => "(/ 1 (cot ?x))"),
-        // rw!("1/csc->sin"; "(/ 1 (csc ?x))" => "(sin ?x)"),
-        // rw!("1/sec->cos"; "(/ 1 (sec ?x))" => "(cos ?x)"),
-        // rw!("1/cot->tan"; "(/ 1 (cot ?x))" => "(tan ?x)"),
-        // ```
-        //  */
-        // /* pythagorean identity <-> */
-        // rw!("sin^2+cos^2->1"; "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))" => "1"),
-        // rw!("tan^2+1->sec^2"; "(+ (pow (tan ?x) 2) 1)" => "(pow (sec ?x) 2)"),
-        // rw!("cot^2+1->csc^2"; "(+ (pow (cot ?x) 2) 1)" => "(pow (csc ?x) 2)"),
-        // // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
-        // rw!("sec^2->tan^2+1->"; "(pow (sec ?x) 2)" => "(+ (pow (tan ?x) 2) 1)"),
-        // rw!("csc^2->cot^2+1"; "(pow (csc ?x) 2)" => "(+ (pow (cot ?x) 2) 1)"),
-        // /* even-odd identity <-> */
-        // rw!("sin(-x)->-sin(x)"; "(sin (* -1 ?x))" => "(* -1 (sin ?x))"),
-        // rw!("cos(-x)->cos(x)"; "(cos (* -1 ?x))" => "(cos ?x)"),
-        // rw!("tan(-x)->-tan(x)"; "(tan (* -1 ?x))" => "(* -1 (tan ?x))"),
-        // rw!("csc(-x)->-csc(x)"; "(csc (* -1 ?x))" => "(* -1 (csc ?x))"),
-        // rw!("sec(-x)->sec(x)"; "(sec (* -1 ?x))" => "(sec ?x)"),
-        // rw!("cot(-x)->-cot(x)"; "(cot (* -1 ?x))" => "(* -1 (cot ?x))"),
-        // rw!("-sin(x)->sin(-x)"; "(* -1 (sin ?x))" => "(sin (* -1 ?x))"),
-        // rw!("cos(x)->cos(-x)"; "(cos ?x)" => "(cos (* -1 ?x))"),
-        // rw!("-tan(x)->tan(-x)"; "(* -1 (tan ?x))" => "(tan (* -1 ?x))"),
-        // rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
-        // rw!("sec(x)->sec(-x)"; "(sec ?x)" => "(sec (* -1 ?x))"),
-        // rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
+        rw!("tan->sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
+        rw!("cos->sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
+        rw!("sin->cos*tan"; "(sin ?x)" => "(* (cos ?x) (tan ?x))"),
+        /*
+        don't need these rw because trig basic identity and trig reciprocal identity cover it
+        ```
+        rw!("sin/cos->tan"; "(/ (sin ?x) (cos ?x))" => "(tan ?x)"),
+        rw!("sin/tan->cos"; "(/ (sin ?x) (tan ?x))" => "(cos ?x)"),
+        rw!("cos*tan->sin"; "(* (cos ?x) (tan ?x))" => "(sin ?x)"),
+        rw!("cot->cos/sin"; "(cot ?x)" => "(/ (cos ?x) (sin ?x))"),
+        rw!("cos/sin->cot"; "(/ (cos ?x) (sin ?x))" => "(cot ?x)"),
+        ```
+         */
+        /* trig reciprocal identity <-> */
+        rw!("csc->1/sin"; "(csc ?x)" => "(/ 1 (sin ?x))"),
+        rw!("sec->1/cos"; "(sec ?x)" => "(/ 1 (cos ?x))"),
+        rw!("cot->1/tan"; "(cot ?x)" => "(/ 1 (tan ?x))"),
+        rw!("1/sin->csc"; "(/ 1 (sin ?x))" => "(csc ?x)"),
+        rw!("1/cos->sec"; "(/ 1 (cos ?x))" => "(sec ?x)"),
+        rw!("1/tan->cot"; "(/ 1 (tan ?x))" => "(cot ?x)"),
+        /*
+        don't need these rw because trig reciprocal identity & multiplication <-> division identity
+        cover it
+        ```
+        rw!("sin->1/csc"; "(sin ?x)" => "(/ 1 (csc ?x))"),
+        rw!("cos->1/sec"; "(cos ?x)" => "(/ 1 (sec ?x))"),
+        rw!("tan->1/cot"; "(tan ?x)" => "(/ 1 (cot ?x))"),
+        rw!("1/csc->sin"; "(/ 1 (csc ?x))" => "(sin ?x)"),
+        rw!("1/sec->cos"; "(/ 1 (sec ?x))" => "(cos ?x)"),
+        rw!("1/cot->tan"; "(/ 1 (cot ?x))" => "(tan ?x)"),
+        ```
+         */
+        /* pythagorean identity <-> */
+        rw!("sin^2+cos^2->1"; "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))" => "1"),
+        rw!("tan^2+1->sec^2"; "(+ (pow (tan ?x) 2) 1)" => "(pow (sec ?x) 2)"),
+        rw!("cot^2+1->csc^2"; "(+ (pow (cot ?x) 2) 1)" => "(pow (csc ?x) 2)"),
+        // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
+        rw!("sec^2->tan^2+1->"; "(pow (sec ?x) 2)" => "(+ (pow (tan ?x) 2) 1)"),
+        rw!("csc^2->cot^2+1"; "(pow (csc ?x) 2)" => "(+ (pow (cot ?x) 2) 1)"),
+        /* even-odd identity <-> */
+        rw!("sin(-x)->-sin(x)"; "(sin (* -1 ?x))" => "(* -1 (sin ?x))"),
+        rw!("cos(-x)->cos(x)"; "(cos (* -1 ?x))" => "(cos ?x)"),
+        rw!("tan(-x)->-tan(x)"; "(tan (* -1 ?x))" => "(* -1 (tan ?x))"),
+        rw!("csc(-x)->-csc(x)"; "(csc (* -1 ?x))" => "(* -1 (csc ?x))"),
+        rw!("sec(-x)->sec(x)"; "(sec (* -1 ?x))" => "(sec ?x)"),
+        rw!("cot(-x)->-cot(x)"; "(cot (* -1 ?x))" => "(* -1 (cot ?x))"),
+        rw!("-sin(x)->sin(-x)"; "(* -1 (sin ?x))" => "(sin (* -1 ?x))"),
+        rw!("cos(x)->cos(-x)"; "(cos ?x)" => "(cos (* -1 ?x))"),
+        rw!("-tan(x)->tan(-x)"; "(* -1 (tan ?x))" => "(tan (* -1 ?x))"),
+        rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
+        rw!("sec(x)->sec(-x)"; "(sec ?x)" => "(sec (* -1 ?x))"),
+        rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
         // /* double angle identity */
         // rw!("sin(2x)->2sin(x)cos(x)"; "(sin (* 2 ?x))" => "(* 2 (* (sin ?x) (cos ?x)))"),
         // rw!("cos(2x)->cos^2-sin^2"; "(cos (* 2 ?x))" => "(- (pow (cos ?x) 2) (pow (sin ?x) 2))"),
