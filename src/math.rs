@@ -156,7 +156,7 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 /// 8. integration
 pub fn math_rule() -> Vec<Rewrite> {
     vec![
-        /* commutative rules */
+        /* ========================== commutative ========================== */
         rw!("x+y->y+x"; "(+ ?x ?y)" => "(+ ?y ?x)"),
         rw!("x*y->y*x"; "(* ?x ?y)" => "(* ?y ?x)"),
         rw!("comm-add-3var"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
@@ -164,12 +164,14 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("comm-mul-div"; "(/ (* ?x ?y) ?z)" => "(* ?x (/ ?y ?z))"),
         rw!("x(y/z)->(xy)/z"; "(* ?x (/ ?y ?z))" => "(/ (* ?x ?y) ?z)"),
         rw!("x(y/z)->(x/z)y"; "(* ?x (/ ?y ?z))" => "(* (/ ?x ?z) ?y)"),
+        /* ================================================================== */
 
-        /* expansion */
+        /* =========================== expansion ============================ */
         // rw!("x->x*1"; "?x" => "(* 1 ?x)"),
         rw!("x->x^1"; "?x" => "(pow ?x 1)"),
+        /* ================================================================== */
 
-        /* basic arithmetic simplification */
+        /* ================ basic arithmetic simplification ================= */
         rw!("x+0->x"; "(+ ?x 0)" => "?x"),
         rw!("x*0->0"; "(* ?x 0)" => "0"),
         rw!("x*1->x"; "(* ?x 1)" => "?x"),
@@ -178,10 +180,12 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x/x->1"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("(-1)*(-1)->1"; "(* -1 -1)" => "1"),
         rw!("x*(1/x)->1"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
+        /* ================================================================== */
 
-        /* distributive property & factorization */
+        /* ============= distributive property & factorization ============== */
         rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+        /* ================================================================== */
 
         /* multiplication <-> division identity */
         rw!("x(z/y)->x/(y/z)"; "(* ?x (/ ?y ?z))" => "(/ ?x (/ ?z ?y))"),
@@ -199,7 +203,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* exponent derivative */
         rw!("d(lnx)"; "(d ?x (ln ?x))" => "(/ 1 ?x)"),
 
-        /* logarithm rule */
+        /* =========================== logarithm ============================ */
         /* ln */
         rw!("ln(ab)->ln(a)+ln(b)"; "(ln (* ?a ?b))" => "(+ (ln ?a) (ln ?b))"),
         rw!("ln(a)+ln(b)->ln(ab)"; "(+ (ln ?a) (ln ?b))" => "(ln (* ?a ?b))"),
@@ -208,18 +212,19 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("ln(x^a)->aln(x)"; "(ln (pow ?x ?a))" => "(* ?a (ln ?x))"),
         /* log */
         rw!("log(xy)->log(x)+log(y)"; "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))"),
-        rw!("log(x)+log(y)->log(xy)"; "(+ (log ?b ?x) (log ?b ?y))" => "(log ?b (+ ?x ?y))"),
-        rw!("log(x/y)->log(x)-log(y)"; "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))"),
-        rw!("log(x)-log(y)->log(x/y)"; "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (- ?x ?y))"),
+        rw!("log(x)+log(y)->log(xy)"; "(+ (log ?b ?x) (log ?b ?y))" => "(log ?b (* ?x ?y))"),
+        rw!("log(x/y)->log(x)-log(y)"; "(log ?b (/ ?x ?y))" => "(- (log ?b ?x) (log ?b ?y))"),
+        rw!("log(x)-log(y)->log(x/y)"; "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (/ ?x ?y))"),
         rw!("log(x^a)->alog(x)"; "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))"),
         rw!("log(b)->1"; "(log ?b ?b)" => "1"),
+        /* ================================================================== */
 
         /* integration */
         // rw!("i-one"; "(i 1 ?x)" => "?x"),
         // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
         //     if is_const("?c")),
 
-        /* trig */
+        /* ============================= trig =============================== */
         /* trig basic identity */
         rw!("tan->sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
         rw!("cos->sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
@@ -309,9 +314,12 @@ pub fn math_rule() -> Vec<Rewrite> {
         //     "(+ (cos ?x) (cos ?y))" => "(* 2 (* (cos (/ (+ ?x ?y) 2)) (cos (/ (- ?x ?y) 2))))"),
         // rw!("cos(a)-cos(b)->2sin((a+b)/2)sin((a-b)/2)";
         //     "(- (cos ?x) (cos ?y))" => "(* -2 (* (sin (/ (+ ?x ?y) 2)) (sin (/ (- ?x ?y) 2))))"),
+        /* ================================================================== */
 
-        /* hyperbolic identity */
+        /* ========================== hyperbolic ============================ */
         /* basic identity */
+        rw!("sinh(x)->((e^x-e^-x)/2)"; "(sinh ?x)" => "(/ (- (exp ?x) (exp (* -1 ?x))) 2)"),
+        rw!("cosh(x)->((e^x+e^-x)/2)"; "(cosh ?x)" => "(/ (+ (exp ?x) (exp (* -1 ?x))) 2)"),
         rw!("cosh(x)+sinh(x)->e^x"; "(+ (cosh ?x) (sinh ?x))" => "(exp ?x)"),
         rw!("cosh(x)-sinh(x)->e^(-x)"; "(- (cosh ?x) (sinh ?x))" => "(exp (* -1 ?x))"),
         /* pythagorean identity <-> */
@@ -359,6 +367,14 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(tanh (+ ?x ?y))" => "(/ (+ (tanh ?x) (tanh ?y)) (+ 1 (* (tan ?x) (tan ?y))))"),
         rw!("tanh(a-b)->((tanh(a)-tanh(b))/(1-tanh(a)tanh(b)))";
             "(tanh (- ?x ?y))" => "(/ (- (tanh ?x) (tanh ?y)) (- 1 (* (tanh ?x) (tanh ?y))))"),
+        /* ================================================================== */
+
+        /* ======================== inv hyperbolic ========================== */
+        /* basic identity */
+        rw!("asinh(x)->ln(x+sqrt(x^2+1))"; "(asinh ?x)" => "(ln (+ ?x (sqrt (+ (pow ?x 2) 1))))"),
+        rw!("acosh(x)->ln(x+sqrt(x^2-1))"; "(acosh ?x)" => "(ln (+ ?x (sqrt (- (pow ?x 2) 1))))"),
+        rw!("atanh(x)->((1/2)ln((1+x)/(1-x)))"; "(atanh ?x)" => "(ln (/ (+ 1 x) (- 1 x)))"),
+        /* ================================================================== */
 
         /* =========================== derivative =========================== */
         /* basic derivative */
