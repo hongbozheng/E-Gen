@@ -104,7 +104,7 @@ type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.
- **/
+**/
 pub struct Explanation<L: Language> {
     /// The tree representation of the explanation.
     pub explanation_trees: TreeExplanation<L>,
@@ -356,10 +356,10 @@ impl<L: Language> Explanation<L> {
     /// Check the validity of the explanation with respect to the given rules.
     /// This only is able to check rule applications when the rules are implement `get_pattern_ast`.
     pub fn check_proof<'a, R, N: Analysis<L>>(&mut self, rules: R)
-        where
-            R: IntoIterator<Item = &'a Rewrite<L, N>>,
-            L: 'a,
-            N: 'a,
+    where
+        R: IntoIterator<Item = &'a Rewrite<L, N>>,
+        L: 'a,
+        N: 'a,
     {
         let rules: Vec<&Rewrite<L, N>> = rules.into_iter().collect();
         let rule_table = Explain::make_rule_table(rules.as_slice());
@@ -783,18 +783,18 @@ impl<L: Language> FlatTerm<L> {
     pub fn has_rewrite_forward(&self) -> bool {
         self.forward_rule.is_some()
             || self
-            .children
-            .iter()
-            .any(|child| child.has_rewrite_forward())
+                .children
+                .iter()
+                .any(|child| child.has_rewrite_forward())
     }
 
     /// Checks if this term or any child has a [`backward_rule`](FlatTerm::backward_rule).
     pub fn has_rewrite_backward(&self) -> bool {
         self.backward_rule.is_some()
             || self
-            .children
-            .iter()
-            .any(|child| child.has_rewrite_backward())
+                .children
+                .iter()
+                .any(|child| child.has_rewrite_backward())
     }
 
     fn from_pattern(
@@ -1765,15 +1765,16 @@ impl<L: Language> Explain<L> {
         let left_connections;
         let mut right_connections = vec![];
 
-        // assert that we found a path better than the normal one
-        let dist = self.distance_between(start, end, distance_memo);
+        // we would like to assert that we found a path better than the normal one
+        // but since proof sizes are saturated (saturating_add) this is not true
+        /*let dist = self.distance_between(start, end, distance_memo);
         if *total_cost.unwrap() > dist {
             panic!(
                 "Found cost greater than baseline {} vs {}",
                 total_cost.unwrap(),
                 dist
             );
-        }
+        }*/
         if *total_cost.unwrap() == self.distance_between(start, end, distance_memo) {
             let (a_left_connections, a_right_connections) = self.get_path_unoptimized(start, end);
             left_connections = a_left_connections;

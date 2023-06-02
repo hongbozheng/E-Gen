@@ -20,7 +20,7 @@ In `egg`, the main types associated with e-graphs are
 egraph are all user-defined.
 In particular, the e-nodes are elements of your [`Language`].
 [`EGraph`]s and [`EClass`]es are additionally parameterized by some
-[`Analysis`], arbitrary data associated with each e-class.
+[`Analysis`], abritrary data associated with each e-class.
 Many methods of [`EGraph`] deal with [`Id`]s, which represent e-classes.
 Because eclasses are frequently merged, many [`Id`]s will refer to the
 same e-class.
@@ -40,7 +40,7 @@ You must call [`EGraph::rebuild`] after deserializing an e-graph!
 [dot]: Dot
 [extract]: Extractor
 [sound]: https://itinerarium.github.io/phoneme-synthesis/?w=/'igraf/
- **/
+**/
 #[derive(Clone)]
 #[cfg_attr(feature = "serde-1", derive(Serialize, Deserialize))]
 pub struct EGraph<L: Language, N: Analysis<L>> {
@@ -59,11 +59,11 @@ pub struct EGraph<L: Language, N: Analysis<L>> {
     pending: Vec<(L, Id)>,
     analysis_pending: UniqueQueue<(L, Id)>,
     #[cfg_attr(
-    feature = "serde-1",
-    serde(bound(
-    serialize = "N::Data: Serialize",
-    deserialize = "N::Data: for<'a> Deserialize<'a>",
-    ))
+        feature = "serde-1",
+        serde(bound(
+            serialize = "N::Data: Serialize",
+            deserialize = "N::Data: for<'a> Deserialize<'a>",
+        ))
     )]
     pub(crate) classes: HashMap<Id, EClass<L, N::Data>>,
     #[cfg_attr(feature = "serde-1", serde(skip))]
@@ -640,15 +640,15 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
     /// assert_eq!(node_f_ab, SymbolLang::new("f", vec![a, a]));
     /// ```
     pub fn lookup<B>(&self, enode: B) -> Option<Id>
-        where
-            B: BorrowMut<L>,
+    where
+        B: BorrowMut<L>,
     {
         self.lookup_internal(enode).map(|id| self.find(id))
     }
 
     fn lookup_internal<B>(&self, mut enode: B) -> Option<Id>
-        where
-            B: BorrowMut<L>,
+    where
+        B: BorrowMut<L>,
     {
         let enode = enode.borrow_mut();
         enode.update_children(|id| self.find(id));

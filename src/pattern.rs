@@ -61,7 +61,7 @@ use crate::*;
 /// ```
 ///
 /// [`FromStr`]: std::str::FromStr
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Pattern<L> {
     /// The actual pattern as a [`RecExpr`]
     pub ast: PatternAst<L>,
@@ -214,6 +214,12 @@ impl<'a, L: Language> From<&'a [L]> for Pattern<L> {
     }
 }
 
+impl<L: Language> From<&RecExpr<L>> for Pattern<L> {
+    fn from(expr: &RecExpr<L>) -> Self {
+        Self::from(expr.as_ref())
+    }
+}
+
 impl<L: Language> From<PatternAst<L>> for Pattern<L> {
     fn from(ast: PatternAst<L>) -> Self {
         Self::new(ast)
@@ -243,7 +249,7 @@ impl<L: Language + Display> Display for Pattern<L> {
 /// The result of searching a [`Searcher`] over one eclass.
 ///
 /// Note that one [`SearchMatches`] can contain many found
-/// substititions. So taking the length of a list of [`SearchMatches`]
+/// substitutions. So taking the length of a list of [`SearchMatches`]
 /// tells you how many eclasses something was matched in, _not_ how
 /// many matches were found total.
 ///
@@ -266,7 +272,7 @@ impl<L: Language, A: Analysis<L>> Searcher<L, A> for Pattern<L> {
         match self.ast.as_ref().last().unwrap() {
             ENodeOrVar::ENode(e) => {
                 #[allow(enum_intrinsics_non_enums)]
-                    let key = std::mem::discriminant(e);
+                let key = std::mem::discriminant(e);
                 match egraph.classes_by_op.get(&key) {
                     None => vec![],
                     Some(ids) => rewrite::search_eclasses_with_limit(
@@ -311,9 +317,9 @@ impl<L: Language, A: Analysis<L>> Searcher<L, A> for Pattern<L> {
 }
 
 impl<L, A> Applier<L, A> for Pattern<L>
-    where
-        L: Language,
-        A: Analysis<L>,
+where
+    L: Language,
+    A: Analysis<L>,
 {
     fn get_pattern_ast(&self) -> Option<&PatternAst<L>> {
         Some(&self.ast)

@@ -30,6 +30,9 @@ impl<L: Language, N: Analysis<L>> LpCostFunction<L, N> for AstSize {
 /// | Ubuntu / Debian  | `sudo apt-get install coinor-libcbc-dev` |
 /// | macOS            | `brew install cbc`                       |
 ///
+/// On macOS, you might also need the following in your `.zshrc` file:
+/// `export LIBRARY_PATH=$LIBRARY_PATH:$(brew --prefix)/lib`
+///
 /// # Example
 /// ```
 /// use egg::*;
@@ -65,15 +68,15 @@ struct ClassVars {
 }
 
 impl<'a, L, N> LpExtractor<'a, L, N>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Create an [`LpExtractor`] using costs from the given [`LpCostFunction`].
     /// See those docs for details.
     pub fn new<CF>(egraph: &'a EGraph<L, N>, mut cost_function: CF) -> Self
-        where
-            CF: LpCostFunction<L, N>,
+    where
+        CF: LpCostFunction<L, N>,
     {
         let max_order = egraph.total_number_of_nodes() as f64 * 10.0;
 
@@ -207,9 +210,9 @@ impl<'a, L, N> LpExtractor<'a, L, N>
 }
 
 fn find_cycles<L, N>(egraph: &EGraph<L, N>, mut f: impl FnMut(Id, usize))
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     enum Color {
         White,
