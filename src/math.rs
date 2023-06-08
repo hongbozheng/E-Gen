@@ -154,6 +154,7 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 /// 6. hyperbolic
 /// 7. derivative
 /// 8. integration
+#[rustfmt::skip]
 pub fn math_rule() -> Vec<Rewrite> {
     vec![
         /* ========================== commutative ========================== */

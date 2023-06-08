@@ -12,16 +12,45 @@ static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
 /// global variable to store equivalent expression results
 pub static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
 
-/// ## private function to set global variable GRAMMAR & SKIP_ECLS from MathEGraph
-/// ## make GRAMMAR & SKIP_ECLS visible by all threads
+/// ## public function to get private global variable SKIP_ECLS
 /// ## Argument
-/// * `math_egraph` - math_egraph
+/// * `None`
+/// ## Return
+/// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
+pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
+    return SKIP_ECLS.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable GRAMMAR
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `GRAMMAR` - immutable reference of global variable GRAMMAR
+pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
+    return GRAMMAR.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable EQUIV_EXPRS
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
+pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
+    return EQUIV_EXPRS.as_ref().unwrap();
+}
+
+/// ## public function to setup extraction
+/// ## SKIP_ECLS, GRAMMAR, INIT_RW, EQUIV_EXPRS
+/// ## Argument
+/// * `ctx_gr` context grammar struct
 /// ## Return
 /// * `None`
-fn set_global_grammar(math_egraph: &MathEGraph) {
+pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
+    /* setup global SKIP_ECLS and GRAMMAR variables */
+    let math_egraph = ctx_gr.get_egraph();
+    let eclasses = math_egraph.classes();
     let mut global_grammar = HashMap::default();
     let mut global_skip_ecls = HashMap::default();
-    let eclasses = math_egraph.classes();
 
     for eclass in eclasses {
         let mut rewrite_rules: Vec<String> = vec![];
@@ -54,14 +83,8 @@ fn set_global_grammar(math_egraph: &MathEGraph) {
         SKIP_ECLS = Some(global_skip_ecls);
         GRAMMAR = Some(global_grammar);
     }
-}
 
-/// ## private function to set the initial rewrite from self
-/// ## Argument
-/// * `ctx_gr` - context grammar struct
-/// ## Return
-/// * `None`
-fn set_init_rw(ctx_gr: &mut ContextGrammar) {
+    /* setup the member variable init_rw of struct ctx_gr */
     for rc in &ctx_gr.root_ecls {
         let mut root_ecls = format!("{}{}", "e", rc);
         unsafe {
@@ -73,60 +96,10 @@ fn set_init_rw(ctx_gr: &mut ContextGrammar) {
             }
         }
     }
-    /* TODO: May still have to fix simplified to const issue here !!!!! */
-    // let mut root_eclass = format!("{}{}", "e", "8");
-    // self.init_rw = self.grammar.get(&*root_eclass).unwrap().clone();
-}
 
-/// ## private function to initialize global variable EQUIV_EXPRS
-/// ## to store rewrite results from all threads
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `None`
-fn set_equiv_exprs() {
+    /* setup global EQUIV_EXPRS variable */
     let equiv_exprs = Arc::new(Mutex::new(vec![]));
     unsafe { EQUIV_EXPRS = Some(equiv_exprs); }
-}
-
-/// ## public function to get private global variable SKIP_ECLS
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
-pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
-    return SKIP_ECLS.as_ref().unwrap();
-}
-
-/// ## public function to get private global variable GRAMMAR
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `GRAMMAR` - immutable reference of global variable GRAMMAR
-pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
-    return GRAMMAR.as_ref().unwrap();
-}
-
-/// ## public function to get private global variable EQUIV_EXPRS
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
-pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
-    return EQUIV_EXPRS.as_ref().unwrap();
-}
-
-/// ## public function to setup for extraction
-/// ## SKIP_ECLS, GRAMMAR, EQUIV_EXPRS
-/// ## Argument
-/// * `ctx_gr` context grammar struct
-/// ## Return
-/// * `None`
-pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
-    let math_egraph = ctx_gr.get_egraph();
-    set_global_grammar(math_egraph);
-    set_init_rw(ctx_gr);
-    set_equiv_exprs();
 }
 
 /// ## private member function to check if an eclass appears in str
@@ -151,6 +124,8 @@ fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
 /// ## private member function to skip meaningless rewrite rule(s)
 /// ## Argument
 /// * `rw` - rewrite rule
+/// ## Return
+/// * `bool` - whether skip the current rewrite or not
 unsafe fn skip_rw(rw: &String) -> bool {
     for (eclass, constant) in SKIP_ECLS.as_ref().unwrap() {
         if contain_distinct_ecls(eclass, rw) {
@@ -166,35 +141,6 @@ unsafe fn skip_rw(rw: &String) -> bool {
     }
     return false;
 }
-
-/// ## private member function to update the frequency of rewrite rules
-/// ## and check if it needs to skip the rewrite rule
-/// ## Argument
-/// * `self`
-// unsafe fn update_freq(rw: &String, inc: bool) -> bool {
-//     if inc {
-//         if freq.contains_key(rw) && freq.get(rw).unwrap() < &FREQ_MAX {
-//             *freq.get_mut(rw).unwrap() += 1;
-//         } else if freq.contains_key(rw) && freq.get(rw).unwrap() == &FREQ_MAX {
-//             return true;
-//         } else {
-//             freq.insert(rw.clone(), 1);
-//         }
-//     } else {
-//         *freq.get_mut(rw).unwrap() -= 1;
-//     }
-//     return false;
-// }
-
-// pub fn update_freq(&mut self, rw: &String, inc: bool) -> bool {
-//     if self.freq.contains_key(rw) {
-//         *self.freq.get_mut(rw).unwrap() += 1;
-//     } else {
-//         self.freq.insert(rw.clone(), 1);
-//     }
-//     println!("{:?}", self.freq);
-//     return false;
-// }
 
 /// ## private function to replace distinct eclass with rewrite rule
 /// ## Argument
@@ -269,13 +215,6 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
             if SUPPRESS { if skip_rw(rw) { continue; } }
 
-            // if rw.contains('e') {
-            //     if self.update_freq(rw, true) {
-            //         // println!("[INFO]:  Freq exceeds limit, Switching RW...");
-            //         continue;
-            //     }
-            // }
-
             #[allow(unused_doc_comments)]
             /// ```rust
             /// /* Regex will solve indistinct eclass match in str.replacen() */
@@ -291,17 +230,10 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 
             if str.len() >= MAX_RW_LEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
-                // if rw.contains('e') {
-                //     // println!("[INFO]:  Freq exceeds limit, try another rw...");
-                //     self.update_freq(rw, false);
-                // }
                 str = prev_str.clone();
                 continue;
             }
             if !contain_ecls(&str) && k == rw_list.len()-1 {
-                // let mut global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap().lock().unwrap();
-                // global_equiv_exprs.push(str.clone());
-
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
@@ -319,23 +251,6 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 str = prev_str.clone();
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
             } else {
-                // let grammar = Arc::clone(&grammar).deref();
-
-                // println!("New Thread Spawn {}", 50-num_threads);
-                // let thread = thread::spawn(move || {
-                //     csg_extract(str.clone(),  idx+1);
-                // });
-                // thread.join().unwrap();
-
-                // if num_threads > 0 {
-                //     num_threads -= 1;
-                //     println!("New Thread Spawn {}", 50-num_threads);
-                //     let thread = thread::spawn(move || {
-                //         csg_extract(str.clone(),  idx+1);
-                //     });
-                //     thread.join().unwrap();
-                // } else { csg_extract(str.clone(), idx+1); }
-
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
                 if *mutex > 0 {
@@ -351,10 +266,6 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                 }
 
                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
-                // if rw.contains('e') {
-                //     // println!("[INFO]:  Freq exceeds limit, try another rw...");
-                //     self.update_freq(rw, false);
-                // }
                 str = prev_str.clone();
             }
         }

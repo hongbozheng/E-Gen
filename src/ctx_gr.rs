@@ -37,9 +37,9 @@ impl<'a> ContextGrammar<'a> {
     /// * `None`
     pub fn set_egraph(&mut self) {
         let recexpr = self.init_expr.parse().unwrap();
-        let runner = Runner::default().with_expr(&recexpr);
-        self.egraph = runner.egraph;
-        // pt_egraph_info(&self.egraph);
+        // let runner = Runner::default().with_expr(&recexpr);
+        // self.egraph = runner.egraph;
+        // // pt_egraph_info(&self.egraph);
         let runner = Runner::default().with_expr(&recexpr).run(&math_rule());
         self.egraph = runner.egraph;
         // println!("\n{:?}\n", self.egraph.lookup_expr_ids(&recexpr));
