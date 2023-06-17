@@ -1,47 +1,5 @@
 use crate::*;
-use std::fmt;
 use std::process::exit;
-
-/// store different datatypes in HashMap
-pub enum Value<'a> {
-    /// represents a boolean value (true or false)
-    Bool(bool),
-    /// represents a 64-bit floating-point value
-    Float64(f64),
-    /// represents a string slice (reference to a string)
-    Str(&'a str),
-    /// represents an 8-bit unsigned integer value
-    Uint8(u8),
-}
-
-/// Implements the `fmt::Debug` trait for the `Value` enum.
-///
-/// This allows instances of the `Value` enum to be formatted using the `{:?}` or `{:#?}` format specifiers.
-///
-/// The `fmt::Debug` trait provides a way to format a value for debugging purposes. It is commonly used for printing
-/// values in a human-readable format.
-///
-/// The implementation includes a `fmt` function, which takes a reference to `self` (the enum instance) and a mutable
-/// reference to a `fmt::Formatter`. It returns a `fmt::Result` indicating whether the formatting operation was
-/// successful.
-///
-/// Inside the `fmt` function, a `match` expression is used to handle each variant of the `Value` enum. For each
-/// variant, the corresponding value is passed to the `write!` macro to write it to the formatter. The `write!` macro
-/// uses the specified format string to format the value.
-///
-/// By implementing `fmt::Debug`, the code enables the use of `println!` or `format!` macros with the `{:?}` or
-/// `{:#?}` format specifiers to print `Value` instances in a debug-friendly format. This allows developers to inspect
-/// and analyze the values stored in the `Value` enum during debugging and development.
-impl<'a> fmt::Debug for Value<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        match self {
-            Value::Bool(value) => write!(f, "{}", value),
-            Value::Float64(value) => write!(f, "{}", value),
-            Value::Str(value) => write!(f, "{}", value),
-            Value::Uint8(value) => write!(f, "{}", value),
-        }
-    }
-}
 
 /// ## private function to print command line input help information
 /// ## Argument
@@ -85,16 +43,16 @@ fn help() {
 /// * `usr_input` - user input
 /// ## Return
 /// * `f64` OS thread percentage
-fn set_thd_pct(usr_input: &str) -> f64{
+fn set_thd_pct(usr_input: &str) {
     let thd_pct = match usr_input.parse::<f64>() {
-        Ok(thd_pct) => thd_pct,
+        Ok(thd_pct) => { thd_pct },
         Err(_) => {
             log_error(format!("Invalid input value \"{}\" for OS threads percentage, expect f64.\n", usr_input).as_str());
             exit(0);
         }
     };
     if 0.0 < thd_pct && thd_pct <= 1.0 {
-        return thd_pct;
+        unsafe { THD_PCT = thd_pct; }
     } else {
         log_error(format!("Invalid input value \"{}\" for OS threads percentage, needs to be in (0.0, 1.0]\n", thd_pct).as_str());
         exit(0);
@@ -106,7 +64,7 @@ fn set_thd_pct(usr_input: &str) -> f64{
 /// * `usr_input` - user input
 /// ## Return
 /// * `u8` - maximum expression rewrite length
-fn set_max_rw_len(usr_input: &str) -> u8 {
+fn set_max_rw_len(usr_input: &str) {
     let max_rw_len = match usr_input.parse::<u8>(){
         Ok(max_rw_len) => max_rw_len,
         Err(_) => {
@@ -115,7 +73,7 @@ fn set_max_rw_len(usr_input: &str) -> u8 {
         }
     };
     if max_rw_len > 0 {
-        return max_rw_len;
+        unsafe { MAX_RW_LEN = max_rw_len; }
     } else {
         log_error(format!("Invalid input value \"{}\" for max rw length, expect to u8 in (0, 2^8].\n", usr_input).as_str());
         exit(0);
@@ -127,17 +85,17 @@ fn set_max_rw_len(usr_input: &str) -> u8 {
 /// * `usr_input` - user input
 /// ## Return
 /// * `bool` - exhaustive extraction flag
-fn set_flag(usr_input: &str) -> bool {
-    let csg = match usr_input.parse::<u8>(){
-        Ok(csg) => csg,
+fn set_exhaustive_flag(usr_input: &str) {
+    let exhaustive = match usr_input.parse::<u8>(){
+        Ok(exhaustive) => exhaustive,
         Err(_) => {
             log_error(format!("Invalid input value \"{}\" for exhaustive extraction flag, expect u8.\n", usr_input).as_str());
             exit(0);
         }
     };
-    match csg {
-        0 => {return false;},
-        1 => {return true;},
+    match exhaustive {
+        0u8 => { unsafe { EXHAUSTIVE = false; } },
+        1u8 => { unsafe { EXHAUSTIVE = true; } },
         _ => {
             log_error(format!("Invalid input value \"{}\" for exhaustive extraction flag, expect either 0 || 1.\n", usr_input).as_str());
             exit(0);
@@ -147,11 +105,11 @@ fn set_flag(usr_input: &str) -> bool {
 
 /// ## public function to set hyper-parameters
 /// ## Argument
-/// * `args` - command line arguments
+/// * `args` - command line argument(s)
 /// ## Return
 /// * `None`
-pub fn parse_args(args: Vec<&str>) -> HashMap<&str, Value> {
-    println!("{:?}", args);
+pub fn parse_args(args: &Vec<String>) -> HashMap<&str, &str> {
+    let args: Vec<&str> = args.iter().map(|arg| arg.as_str()).collect();
 
     if (!args.contains(&"-e") && !(args.contains(&"-i") && args.contains(&"-o"))) ||
        (args.contains(&"-e") && args.contains(&"-i")) ||
@@ -161,47 +119,29 @@ pub fn parse_args(args: Vec<&str>) -> HashMap<&str, Value> {
         help();
     }
 
-    let mut cli: HashMap<&str, Value> = Default::default();
+    let mut cli: HashMap<&str, &str> = Default::default();
 
     match args.len() {
         2 | 4 | 6 | 8 | 10 | 12 => { help(); },
         3 => {
-            cli.insert("expr", Value::Str(args[2]));
+            cli.insert("expr", args[2]);
         },
         5 => {
             match args[1] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[2]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[2]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[2]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-e" => { cli.insert("expr", Value::Str(args[2])); },
+                "-t" => { set_thd_pct(args[2]); },
+                "-l" => { set_max_rw_len(args[2]); },
+                "-f" => { set_exhaustive_flag(args[2]); },
+                "-e" => { cli.insert("expr", args[2]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
                     help();
                 },
             }
             match args[3] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[4]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[4]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[4]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-e" => { cli.insert("expr", Value::Str(args[4])); },
+                "-t" => { set_thd_pct(args[4]); },
+                "-l" => { set_max_rw_len(args[4]); },
+                "-f" => { set_exhaustive_flag(args[4]); },
+                "-e" => { cli.insert("expr", args[4]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
                     help();
@@ -211,382 +151,198 @@ pub fn parse_args(args: Vec<&str>) -> HashMap<&str, Value> {
         7 => {
             if args.contains(&"-e") {
                 match args[1] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[2]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[2]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[2]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[2])); },
+                    "-t" => { set_thd_pct(args[2]); },
+                    "-l" => { set_max_rw_len(args[2]); },
+                    "-f" => { set_exhaustive_flag(args[2]); },
+                    "-e" => { cli.insert("expr", args[2]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[3] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[4]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[4]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[4]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[4])); },
+                    "-t" => { set_thd_pct(args[4]); },
+                    "-l" => { set_max_rw_len(args[4]); },
+                    "-f" => { set_exhaustive_flag(args[4]); },
+                    "-e" => { cli.insert("expr", args[4]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[5] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[6]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[6]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[6]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[6])); },
+                    "-t" => { set_thd_pct(args[6]) },
+                    "-l" => { set_max_rw_len(args[6]); },
+                    "-f" => { set_exhaustive_flag(args[6]); },
+                    "-e" => { cli.insert("expr", args[6]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[6]).as_str());
-                        help();
-                    },
+                        help() },
                 }
             } else {
                 match args[1] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[2]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[2]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[2]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[2])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[2])); },
+                    "-t" => { set_thd_pct(args[2]); },
+                    "-l" => { set_max_rw_len(args[2]); },
+                    "-f" => { set_exhaustive_flag(args[2]); },
+                    "-i" => { cli.insert("input filepath", args[2]); },
+                    "-o" => { cli.insert("output filepath", args[2]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[3] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[4]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[4]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[4]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[4])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[4])); },
+                    "-t" => { set_thd_pct(args[4]); },
+                    "-l" => { set_max_rw_len(args[4]); },
+                    "-f" => { set_exhaustive_flag(args[4]); },
+                    "-i" => { cli.insert("input filepath", args[4]); },
+                    "-o" => { cli.insert("output filepath", args[4]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[5] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[6]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[6]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[6]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[6])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[6])); },
+                    "-t" => { set_thd_pct(args[6]); },
+                    "-l" => { set_max_rw_len(args[6]); },
+                    "-f" => { set_exhaustive_flag(args[6]); },
+                    "-i" => { cli.insert("input filepath", args[6]); },
+                    "-o" => { cli.insert("output filepath", args[6]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
             }
         },
         9 => {
             if args.contains(&"-e") {
                 match args[1] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[2]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[2]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[2]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[2])); },
+                    "-t" => { set_thd_pct(args[2]); },
+                    "-l" => { set_max_rw_len(args[2]); },
+                    "-f" => { set_exhaustive_flag(args[2]); },
+                    "-e" => { cli.insert("expr", args[2]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[3] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[4]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[4]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[4]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[4])); },
+                    "-t" => { set_thd_pct(args[4]); },
+                    "-l" => { set_max_rw_len(args[4]); },
+                    "-f" => { set_exhaustive_flag(args[4]); },
+                    "-e" => { cli.insert("expr", args[4]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[5] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[6]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[6]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[6]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[6])); },
+                    "-t" => { set_thd_pct(args[6]); },
+                    "-l" => { set_max_rw_len(args[6]); },
+                    "-f" => { set_exhaustive_flag(args[6]); },
+                    "-e" => { cli.insert("expr", args[6]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[7] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[8]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[8]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[8]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-e" => { cli.insert("expr", Value::Str(args[8])); },
+                    "-t" => { set_thd_pct(args[8]); },
+                    "-l" => { set_max_rw_len(args[8]); },
+                    "-f" => { set_exhaustive_flag(args[8]); },
+                    "-e" => { cli.insert("expr", args[8]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
             } else {
                 match args[1] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[2]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[2]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[2]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[2])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[2])); },
+                    "-t" => { set_thd_pct(args[2]); },
+                    "-l" => { set_max_rw_len(args[2]); },
+                    "-f" => { set_exhaustive_flag(args[2]); },
+                    "-i" => { cli.insert("input filepath", args[2]); },
+                    "-o" => { cli.insert("output filepath", args[2]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[3] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[4]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[4]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[4]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[4])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[4])); },
+                    "-t" => { set_thd_pct(args[4]); },
+                    "-l" => { set_max_rw_len(args[4]); },
+                    "-f" => { set_exhaustive_flag(args[4]); },
+                    "-i" => { cli.insert("input filepath", args[4]); },
+                    "-o" => { cli.insert("output filepath", args[4]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[5] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[6]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[6]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[6]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[6])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[6])); },
+                    "-t" => { set_thd_pct(args[6]); },
+                    "-l" => { set_max_rw_len(args[6]); },
+                    "-f" => { set_exhaustive_flag(args[6]); },
+                    "-i" => { cli.insert("input filepath", args[6]); },
+                    "-o" => { cli.insert("output filepath", args[6]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[5]).as_str());
-                        help();
-                    },
+                        help() },
                 }
                 match args[7] {
-                    "-t" => {
-                        let thd_pct = set_thd_pct(args[8]);
-                        cli.insert("thd pct", Value::Float64(thd_pct));
-                    },
-                    "-l" => {
-                        let max_rw_len = set_max_rw_len(args[8]);
-                        cli.insert("max rw len", Value::Uint8(max_rw_len));
-                    },
-                    "-f" => {
-                        let flag = set_flag(args[8]);
-                        cli.insert("csg", Value::Bool(flag));
-                    },
-                    "-i" => { cli.insert("input filepath", Value::Str(args[8])); },
-                    "-o" => { cli.insert("output filepath", Value::Str(args[8])); },
+                    "-t" => { set_thd_pct(args[8]); },
+                    "-l" => { set_max_rw_len(args[8]); },
+                    "-f" => { set_exhaustive_flag(args[8]); },
+                    "-i" => { cli.insert("input filepath", args[8]); },
+                    "-o" => { cli.insert("output filepath", args[8]); },
                     _ => {
                         log_error(format!("Invalid command line argument \"{}\"\n", &args[7]).as_str());
-                        help();
-                    },
+                        help() },
                 }
             }
         },
         11 => {
             match args[1] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[2]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
+                "-t" => { set_thd_pct(args[2]);
                 },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[2]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[2]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-i" => { cli.insert("input filepath", Value::Str(args[2])); },
-                "-o" => { cli.insert("output filepath", Value::Str(args[2])); },
+                "-l" => { set_max_rw_len(args[2]); },
+                "-f" => { set_exhaustive_flag(args[2]); },
+                "-i" => { cli.insert("input filepath", args[2]); },
+                "-o" => { cli.insert("output filepath", args[2]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
                     help();
                 },
             }
             match args[3] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[4]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[4]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[4]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-i" => { cli.insert("input filepath", Value::Str(args[4])); },
-                "-o" => { cli.insert("output filepath", Value::Str(args[4])); },
+                "-t" => { set_thd_pct(args[4]); },
+                "-l" => { set_max_rw_len(args[4]); },
+                "-f" => { set_exhaustive_flag(args[4]); },
+                "-i" => { cli.insert("input filepath", args[4]); },
+                "-o" => { cli.insert("output filepath", args[4]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
                     help();
                 },
             }
             match args[5] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[6]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[6]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[6]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-i" => { cli.insert("input filepath", Value::Str(args[6])); },
-                "-o" => { cli.insert("output filepath", Value::Str(args[6])); },
+                "-t" => { set_thd_pct(args[6]); },
+                "-l" => { set_max_rw_len(args[6]); },
+                "-f" => { set_exhaustive_flag(args[6]); },
+                "-i" => { cli.insert("input filepath", args[6]); },
+                "-o" => { cli.insert("output filepath", args[6]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[5]).as_str());
                     help();
                 },
             }
             match args[7] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[8]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[8]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[8]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-i" => { cli.insert("input filepath", Value::Str(args[8])); },
-                "-o" => { cli.insert("output filepath", Value::Str(args[8])); },
+                "-t" => { set_thd_pct(args[8]); },
+                "-l" => { set_max_rw_len(args[8]); },
+                "-f" => { set_exhaustive_flag(args[8]); },
+                "-i" => { cli.insert("input filepath", args[8]); },
+                "-o" => { cli.insert("output filepath", args[8]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\"\n", &args[7]).as_str());
                     help();
                 },
             }
             match args[9] {
-                "-t" => {
-                    let thd_pct = set_thd_pct(args[10]);
-                    cli.insert("thd pct", Value::Float64(thd_pct));
-                },
-                "-l" => {
-                    let max_rw_len = set_max_rw_len(args[10]);
-                    cli.insert("max rw len", Value::Uint8(max_rw_len));
-                },
-                "-f" => {
-                    let flag = set_flag(args[10]);
-                    cli.insert("csg", Value::Bool(flag));
-                },
-                "-i" => { cli.insert("input filepath", Value::Str(args[10])); },
-                "-o" => { cli.insert("output filepath", Value::Str(args[10])); },
+                "-t" => { set_thd_pct(args[10]); },
+                "-l" => { set_max_rw_len(args[10]); },
+                "-f" => { set_exhaustive_flag(args[10]);  },
+                "-i" => { cli.insert("input filepath", args[10]); },
+                "-o" => { cli.insert("output filepath", args[10]); },
                 _ => {
                     log_error(format!("Invalid command line argument \"{}\".\n", &args[9]).as_str());
                     help();
@@ -598,8 +354,6 @@ pub fn parse_args(args: Vec<&str>) -> HashMap<&str, Value> {
             help();
         },
     }
-
-    println!("{:?}", cli);
 
     return cli;
 }

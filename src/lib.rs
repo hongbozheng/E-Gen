@@ -44,16 +44,16 @@ mod explain;
 mod extract;
 mod language;
 /* visible to all module in the crate */
+mod cli;
 mod config;
-mod logger;
-mod utils;
-mod math;
 mod ctx_gr;
 mod expr_ext;
-mod cli;
-mod refactor;
-mod multiproc_ext;
 mod generate;
+mod logger;
+mod math;
+mod multiproc_ext;
+mod refactor;
+mod utils;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
