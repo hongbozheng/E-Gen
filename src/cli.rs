@@ -2,13 +2,36 @@ use crate::*;
 use std::fmt;
 use std::process::exit;
 
+/// store different datatypes in HashMap
 pub enum Value<'a> {
+    /// represents a boolean value (true or false)
     Bool(bool),
+    /// represents a 64-bit floating-point value
     Float64(f64),
+    /// represents a string slice (reference to a string)
     Str(&'a str),
+    /// represents an 8-bit unsigned integer value
     Uint8(u8),
 }
 
+/// Implements the `fmt::Debug` trait for the `Value` enum.
+///
+/// This allows instances of the `Value` enum to be formatted using the `{:?}` or `{:#?}` format specifiers.
+///
+/// The `fmt::Debug` trait provides a way to format a value for debugging purposes. It is commonly used for printing
+/// values in a human-readable format.
+///
+/// The implementation includes a `fmt` function, which takes a reference to `self` (the enum instance) and a mutable
+/// reference to a `fmt::Formatter`. It returns a `fmt::Result` indicating whether the formatting operation was
+/// successful.
+///
+/// Inside the `fmt` function, a `match` expression is used to handle each variant of the `Value` enum. For each
+/// variant, the corresponding value is passed to the `write!` macro to write it to the formatter. The `write!` macro
+/// uses the specified format string to format the value.
+///
+/// By implementing `fmt::Debug`, the code enables the use of `println!` or `format!` macros with the `{:?}` or
+/// `{:#?}` format specifiers to print `Value` instances in a debug-friendly format. This allows developers to inspect
+/// and analyze the values stored in the `Value` enum during debugging and development.
 impl<'a> fmt::Debug for Value<'a> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
