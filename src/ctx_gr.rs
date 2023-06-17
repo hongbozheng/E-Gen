@@ -105,15 +105,25 @@ impl<'a> ContextGrammar<'a> {
     /// * `egraph` - egraph
     pub fn get_egraph(&self) -> &MathEGraph { return &self.egraph; }
 
-    /// ## member function to get root_eclasses
+    /// ## member function to get root eclasses
     /// ## Argument
     /// * `self`
     /// ## Return
     /// * `root_ecls` - root eclass(es) from egraph
     pub fn get_root_ecls(&self) -> &Vec<Id> { return &self.root_ecls; }
 
+    /// ## member function to get skip eclasses
+    /// ## Argument
+    /// * `self`
+    /// ## Return
+    /// * `skip_ecls` - skip eclass(es) from egraph
     pub fn get_skip_ecls(&self) -> &HashMap<String, f64> { return &self.skip_ecls; }
 
+    /// ## member function to get grammars
+    /// ## Argument
+    /// * `self`
+    /// ## Return
+    /// * `grammar` - grammars created from egraph
     pub fn get_grammar(&self) -> &HashMap<String, Vec<String>> { return &self.grammar; }
 
     /// ## member function to get the initial rewrite from self
