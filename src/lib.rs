@@ -52,6 +52,8 @@ mod ctx_gr;
 mod expr_ext;
 mod cli;
 mod refactor;
+mod multiproc_ext;
+mod generate;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -113,15 +115,16 @@ pub use {
     run::*,
     subst::{Subst, Var},
     util::*,
-    /*  public to the whole crate */
+    /* public to the whole crate */
+    cli::{Value, parse_args},
     config::*,
-    logger::*,
-    utils::*,
-    math::{Math, math_rule, MathEGraph},
     ctx_gr::ContextGrammar,
     expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
-    cli::set_hyperparam,
+    generate::{generate, generate_expr, generate_file},
+    logger::*,
+    math::{MathEGraph, Math, math_rule},
     refactor::refactor,
+    utils::*,
 };
 
 #[cfg(feature = "lp")]
