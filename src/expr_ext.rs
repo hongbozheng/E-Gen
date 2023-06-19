@@ -1,7 +1,6 @@
+use crate::*;
 use std::sync::{Arc, Mutex};
 use std::thread;
-use crate::*;
-// use regex::Regex;
 
 /// max # of threads can be used (not max # of OS threads)
 pub static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
@@ -381,7 +380,7 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
 /// * `None`
 pub unsafe fn extract(init_rw: Vec<String>) {
     log_info_raw("\n");
-    match CSG {
+    match EXHAUSTIVE {
         true => {
             let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
             let mutex = global_max_num_threads.lock().unwrap();

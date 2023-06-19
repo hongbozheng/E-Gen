@@ -51,7 +51,7 @@ mod expr_ext;
 mod generate;
 mod logger;
 mod math;
-mod multiproc_ext;
+// mod multiproc_ext;
 mod refactor;
 mod utils;
 /* ----------------------------- */
@@ -116,11 +116,11 @@ pub use {
     subst::{Subst, Var},
     util::*,
     /* public to the whole crate */
-    cli::{Value, parse_args},
+    cli::{CmdLineArg, parse_args},
     config::*,
     ctx_gr::ContextGrammar,
     expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
-    generate::{generate, generate_expr, generate_file},
+    generate::{Data, generate, generate_file},
     logger::*,
     math::{MathEGraph, Math, math_rule},
     refactor::refactor,

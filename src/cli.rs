@@ -15,6 +15,41 @@ pub enum CmdLineArg {
     String(String),
 }
 
+impl CmdLineArg {
+    /// public function to convert member variables
+    /// in struct CmdLineArg to type String
+    /// ## Argument
+    /// * `self`
+    /// ## Return
+    /// * `String`
+    pub fn to_string(&self) -> String {
+        match self {
+            CmdLineArg::Bool(value) => value.to_string(),
+            CmdLineArg::Float(value) => value.to_string(),
+            CmdLineArg::UInt(value) => value.to_string(),
+            CmdLineArg::String(value) => value.clone(),
+        }
+    }
+
+    /// public function to convert String variables to type CmdLineArg
+    /// ## Argument
+    /// * `s` - &str type variable
+    /// ## Return
+    /// * `Result` - whether conversion is successfully or not
+    pub fn from_string(s: &str) -> Result<Self, &'static str> {
+        if let Ok(value) = s.parse::<bool>() {
+            return Ok(CmdLineArg::Bool(value));
+        }
+        if let Ok(value) = s.parse::<f64>() {
+            return Ok(CmdLineArg::Float(value));
+        }
+        if let Ok(value) = s.parse::<u8>() {
+            return Ok(CmdLineArg::UInt(value));
+        }
+        Ok(CmdLineArg::String(s.to_string()))
+    }
+}
+
 /// ## private function to print command line input help information
 /// ## Argument
 /// * `None`
