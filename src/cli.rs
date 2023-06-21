@@ -84,7 +84,7 @@ fn help() {
     log_info_raw("[USAGE]:  type             -> &str\n");
     log_info_raw("[USAGE]:  default           = None\n");
     log_info_raw("[USAGE]:  required         -> True if [-e] not provided\n");
-    exit(0);
+    exit(1);
 }
 
 /// ### private function to set OS thread percentage
@@ -96,15 +96,15 @@ fn set_thd_pct(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let thd_pct = match usr_input.parse::<f64>() {
         Ok(thd_pct) => { thd_pct },
         Err(_) => {
-            log_error(format!("Invalid input value \"{}\" for OS threads percentage, expect f64.\n", usr_input).as_str());
-            exit(0);
+            log_error(&format!("Invalid input value \"{}\" for OS threads percentage, expect f64.\n", usr_input));
+            exit(1);
         }
     };
     if 0.0 < thd_pct && thd_pct <= 1.0 {
         cli[0] = CmdLineArg::Float(thd_pct);
     } else {
-        log_error(format!("Invalid input value \"{}\" for OS threads percentage, needs to be in (0.0, 1.0]\n", thd_pct).as_str());
-        exit(0);
+        log_error(&format!("Invalid input value \"{}\" for OS threads percentage, needs to be in (0.0, 1.0]\n", thd_pct));
+        exit(1);
     }
 }
 
@@ -117,15 +117,15 @@ fn set_max_rw_len(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let max_rw_len = match usr_input.parse::<u8>(){
         Ok(max_rw_len) => { max_rw_len },
         Err(_) => {
-            log_error(format!("Invalid input value \"{}\" for max rw length, expect u8.\n", usr_input).as_str());
-            exit(0);
+            log_error(&format!("Invalid input value \"{}\" for max rw length, expect u8.\n", usr_input));
+            exit(1);
         }
     };
     if max_rw_len > 0 {
         cli[1] = CmdLineArg::UInt(max_rw_len);
     } else {
-        log_error(format!("Invalid input value \"{}\" for max rw length, expect to u8 in (0, 2^8].\n", usr_input).as_str());
-        exit(0);
+        log_error(&format!("Invalid input value \"{}\" for max rw length, expect to u8 in (0, 2^8].\n", usr_input));
+        exit(1);
     }
 }
 
@@ -138,16 +138,16 @@ fn set_exhaustive_flag(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let exhaustive = match usr_input.parse::<u8>(){
         Ok(exhaustive) => { exhaustive },
         Err(_) => {
-            log_error(format!("Invalid input value \"{}\" for exhaustive extraction flag, expect u8.\n", usr_input).as_str());
-            exit(0);
+            log_error(&format!("Invalid input value \"{}\" for exhaustive extraction flag, expect u8.\n", usr_input));
+            exit(1);
         }
     };
     match exhaustive {
         0u8 => { cli[2] = CmdLineArg::Bool(false); },
         1u8 => { cli[2] = CmdLineArg::Bool(true); },
         _ => {
-            log_error(format!("Invalid input value \"{}\" for exhaustive extraction flag, expect either 0 || 1.\n", usr_input).as_str());
-            exit(0);
+            log_error(&format!("Invalid input value \"{}\" for exhaustive extraction flag, expect either 0 || 1.\n", usr_input));
+            exit(1);
         },
     }
 }
@@ -184,7 +184,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                 "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
                     help();
                 },
             }
@@ -194,7 +194,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                 "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                     help();
                 },
             }
@@ -207,7 +207,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[3] {
@@ -216,7 +216,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[5] {
@@ -225,7 +225,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[6]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[6]));
                         help() },
                 }
             } else {
@@ -236,7 +236,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[3] {
@@ -246,7 +246,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[5] {
@@ -256,7 +256,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
             }
@@ -269,7 +269,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
                         help() },
                 }
                 match args[3] {
@@ -278,7 +278,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[5] {
@@ -287,7 +287,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[7] {
@@ -296,7 +296,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
                     "-e" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
             } else {
@@ -307,7 +307,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
                         help() },
                 }
                 match args[3] {
@@ -317,7 +317,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                         help() },
                 }
                 match args[5] {
@@ -327,7 +327,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[5]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[5]));
                         help() },
                 }
                 match args[7] {
@@ -337,7 +337,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                     "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                     _ => {
-                        log_error(format!("Invalid command line argument \"{}\"\n", &args[7]).as_str());
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[7]));
                         help() },
                 }
             }
@@ -350,7 +350,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[1]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
                     help();
                 },
             }
@@ -361,7 +361,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[3]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
                     help();
                 },
             }
@@ -372,7 +372,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[5]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[5]));
                     help();
                 },
             }
@@ -383,7 +383,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\"\n", &args[7]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[7]));
                     help();
                 },
             }
@@ -394,7 +394,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 "-i" => { cli.push(CmdLineArg::String(args[10].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[10].to_string())); },
                 _ => {
-                    log_error(format!("Invalid command line argument \"{}\".\n", &args[9]).as_str());
+                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[9]));
                     help();
                 },
             }
