@@ -31,10 +31,10 @@ impl CmdLineArg {
         }
     }
 
-    /// public function to convert String variables to type CmdLineArg
-    /// ## Argument
+    /// ### public function to convert String variables to type CmdLineArg
+    /// #### Argument
     /// * `s` - &str type variable
-    /// ## Return
+    /// #### Return
     /// * `Result` - whether conversion is successfully or not
     pub fn from_string(s: &str) -> Result<Self, &'static str> {
         if let Ok(value) = s.parse::<bool>() {
@@ -50,10 +50,10 @@ impl CmdLineArg {
     }
 }
 
-/// ## private function to print command line input help information
-/// ## Argument
+/// ### private function to print command line input help information
+/// #### Argument
 /// * `None`
-/// ## Return
+/// #### Return
 /// * `None`
 fn help() {
     log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <max rw len>     [-f] <csg flag>\n");
@@ -87,10 +87,10 @@ fn help() {
     exit(0);
 }
 
-/// ## private function to set OS thread percentage
-/// ## Argument
+/// ### private function to set OS thread percentage
+/// #### Argument
 /// * `usr_input` - user input
-/// ## Return
+/// #### Return
 /// * `f64` OS thread percentage
 fn set_thd_pct(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let thd_pct = match usr_input.parse::<f64>() {
@@ -108,10 +108,10 @@ fn set_thd_pct(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     }
 }
 
-/// ## private function to set maximum expression rewrite length
-/// ## Argument
+/// ### private function to set maximum expression rewrite length
+/// #### Argument
 /// * `usr_input` - user input
-/// ## Return
+/// #### Return
 /// * `u8` - maximum expression rewrite length
 fn set_max_rw_len(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let max_rw_len = match usr_input.parse::<u8>(){
@@ -129,10 +129,10 @@ fn set_max_rw_len(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     }
 }
 
-/// ## private function to set exhaustive extraction flag
-/// ## Argument
+/// ### private function to set exhaustive extraction flag
+/// #### Argument
 /// * `usr_input` - user input
-/// ## Return
+/// #### Return
 /// * `bool` - exhaustive extraction flag
 fn set_exhaustive_flag(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     let exhaustive = match usr_input.parse::<u8>(){
@@ -152,10 +152,10 @@ fn set_exhaustive_flag(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
     }
 }
 
-/// ## public function to set hyper-parameters
-/// ## Argument
+/// ### public function to set hyper-parameters
+/// #### Argument
 /// * `args` - command line argument(s)
-/// ## Return
+/// #### Return
 /// * `None`
 pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
     let args: Vec<&str> = args.iter().map(|arg| arg.as_str()).collect();

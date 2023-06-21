@@ -2,8 +2,8 @@ use crate::*;
 use libc::{c_int, cpu_set_t, CPU_SET, CPU_SETSIZE, sched_setaffinity, pid_t, listen};
 use num_cpus;
 use std::mem;
-use std::net::TcpListener;
-use std::process::{Command, exit, Stdio};
+use std::net::{TcpListener, SocketAddrV6};
+use std::process::{Command, exit, Stdio, Child};
 use std::thread;
 // use thread_affinity::ThreaadAffinity;
 use std::fs::{File, OpenOptions};
@@ -80,44 +80,102 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
 
     let num_proc = init_rw.len();
     let num_logical_cores = num_cpus::get();
+
+    let mut listeners: Vec<TcpListener> = vec![];
+    let mut child_procs: Vec<Child> = vec![];
+
     cli.push(CmdLineArg::String("".to_string()));
 
-    let handles: Vec<_> = (0..num_proc).map(|proc_idx| {
+    for proc_idx in 0..num_proc {
         let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
-        let listener = TcpListener::bind(&addr)
-            .expect(format!("[ERROR]: Failed to bind TCP listener with address {}.", &addr).as_str());
-        let listener_addr = listener.local_addr().expect("[ERROR]: Failed to get local address.");
+        let listener = TcpListener::bind(&addr).expect(format!("Failed to bind ip addr {}", addr).as_str());
+        listeners.push(listener);
 
-        let processor_id = proc_idx % num_logical_cores;
-
-        cli[4] = CmdLineArg::String(listener_addr.to_string());
+        cli[3] = CmdLineArg::String(init_rw[proc_idx].clone());
+        cli[4] = CmdLineArg::String(addr);
         let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
-        let skip_ecls_clone = Arc::clone(&skip_ecls);
-        let grammar_clone = Arc::clone(&grammar);
+        let mut child_proc = Command::new("../target/debug/multiproc")
+            .args(&args)
+            .spawn()
+            .expect("[ERROR]: Failed to spawn process.");
+        child_procs.push(child_proc);
+    }
 
+    
+
+    // println!("hello world!");
+    let handles: Vec<_> = listeners.into_iter().map(|listener| {
         thread::spawn(move || {
-            let mut child_proc = Command::new("../target/debug/multiproc").args(&args).spawn()
-                .expect("[ERROR]: Failed to spawn process.");
-
-            let pid = child_proc.id();
-
-            if let Err(err) = set_proc_affinity(pid as pid_t, processor_id) {
-                println!("Error setting affinity for process {}: {}", pid, err);
-            } else {
-                println!("Process {} affinity set to core {}", pid, processor_id);
+            for stream in listener.incoming() {
+                match stream {
+                    Ok(mut stream) => {
+                        println!("New connection: {}", stream.peer_addr().unwrap());
+                        thread::spawn(move|| {
+                            // connection succeeded
+                            // for i in (0..1000000).step_by(10) {
+                                stream.write(b"Hello World!");
+                                println!("send hello world!");
+                            // }
+                        });
+                    }
+                    Err(e) => {
+                        println!("Error: {}", e);
+                        /* connection failed */
+                    }
+                }
             }
-
-            send_data(&skip_ecls_clone, &grammar_clone);
-
-            let exit_status = child_proc.wait().expect("Failed to wait for child process.");
-            let exit_code = exit_status.code().unwrap_or(1);
-            println!("Process {} finished with exit code {}", pid, exit_code);
         })
     }).collect();
 
-    for handle in handles {
-        handle.join().unwrap();
+    // for handle in handles {
+    //     handle.join().unwrap();
+    // }
+
+    for child_proc in &mut child_procs {
+        child_proc.wait().expect("Failed to wait for child process.");
     }
+
+    // for listener in listeners {
+        
+    // }
+
+    // let handles: Vec<_> = (0..num_proc).map(|proc_idx| {
+    //     let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
+    //     let listener = TcpListener::bind(&addr)
+    //         .expect(format!("[ERROR]: Failed to bind TCP listener with address {}.", &addr).as_str());
+    //     let listener_addr = listener.local_addr().expect("[ERROR]: Failed to get local address.");
+
+
+    //     let processor_id = proc_idx % num_logical_cores;
+
+    //     cli[4] = CmdLineArg::String(listener_addr.to_string());
+    //     let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
+    //     let skip_ecls_clone = Arc::clone(&skip_ecls);
+    //     let grammar_clone = Arc::clone(&grammar);
+
+    //     thread::spawn(move || {
+    //         let mut child_proc = Command::new("../target/debug/multiproc").args(&args).spawn()
+    //             .expect("[ERROR]: Failed to spawn process.");
+
+    //         let pid = child_proc.id();
+
+    //         if let Err(err) = set_proc_affinity(pid as pid_t, processor_id) {
+    //             println!("Error setting affinity for process {}: {}", pid, err);
+    //         } else {
+    //             println!("Process {} affinity set to core {}", pid, processor_id);
+    //         }
+
+    //         send_data(&skip_ecls_clone, &grammar_clone);
+
+    //         let exit_status = child_proc.wait().expect("Failed to wait for child process.");
+    //         let exit_code = exit_status.code().unwrap_or(1);
+    //         println!("Process {} finished with exit code {}", pid, exit_code);
+    //     })
+    // }).collect();
+
+    // for handle in handles {
+    //     handle.join().unwrap();
+    // }
 
     println!("Generate Finished");
 }
