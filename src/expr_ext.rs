@@ -1,105 +1,4 @@
 use crate::*;
-use std::sync::{Arc, Mutex};
-use std::thread;
-
-/// max # of threads can be used (not max # of OS threads)
-pub static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
-/// private global variable to store eclass(es) to skip during extraction
-static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
-/// private global variable to store grammar from MathEGraph
-static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
-/// global variable to store equivalent expression results
-pub static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
-
-/// ## public function to get private global variable SKIP_ECLS
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
-pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
-    return SKIP_ECLS.as_ref().unwrap();
-}
-
-/// ## public function to get private global variable GRAMMAR
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `GRAMMAR` - immutable reference of global variable GRAMMAR
-pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
-    return GRAMMAR.as_ref().unwrap();
-}
-
-/// ## public function to get private global variable EQUIV_EXPRS
-/// ## Argument
-/// * `None`
-/// ## Return
-/// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
-pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
-    return EQUIV_EXPRS.as_ref().unwrap();
-}
-
-/// ## public function to setup extraction
-/// ## SKIP_ECLS, GRAMMAR, INIT_RW, EQUIV_EXPRS
-/// ## Argument
-/// * `ctx_gr` context grammar struct
-/// ## Return
-/// * `None`
-pub fn setup_extract(ctx_gr: &mut ContextGrammar) {
-    /* setup global SKIP_ECLS and GRAMMAR variables */
-    let math_egraph = ctx_gr.get_egraph();
-    let eclasses = math_egraph.classes();
-    let mut global_grammar = HashMap::default();
-    let mut global_skip_ecls = HashMap::default();
-
-    for eclass in eclasses {
-        let mut rewrite_rules: Vec<String> = vec![];
-        let ecls: String = format!("{}{}", "e", eclass.id);
-        let enodes = &eclass.nodes;
-
-        if enodes.len() == 1 {
-            match enodes[0].to_string().parse::<f64>() {
-                Ok(float64) => {
-                    if float64 == 1.0 || float64 == 0.0 {
-                        global_skip_ecls.insert(ecls.clone(), float64);
-                    }
-                },
-                Err(_) => {},
-            }
-        }
-
-        for enode in enodes {
-            let mut rewrite = enode.to_string();
-            let children = enode.children();
-            for child in children {
-                rewrite = format!("{} {}{}", rewrite, "e", child);
-            }
-            rewrite_rules.push(rewrite);
-        }
-        global_grammar.insert(ecls, rewrite_rules);
-    }
-
-    unsafe {
-        SKIP_ECLS = Some(global_skip_ecls);
-        GRAMMAR = Some(global_grammar);
-    }
-
-    /* setup the member variable init_rw of struct ctx_gr */
-    for rc in &ctx_gr.root_ecls {
-        let mut root_ecls = format!("{}{}", "e", rc);
-        unsafe {
-            if GRAMMAR.as_ref().unwrap().contains_key(&*root_ecls) {
-                ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
-            } else {
-                root_ecls = format!("{}{}", "e", ctx_gr.egraph.find(*rc));
-                ctx_gr.init_rw = GRAMMAR.as_ref().unwrap().get(&*root_ecls).unwrap().clone();
-            }
-        }
-    }
-
-    /* setup global EQUIV_EXPRS variable */
-    let equiv_exprs = Arc::new(Mutex::new(vec![]));
-    unsafe { EQUIV_EXPRS = Some(equiv_exprs); }
-}
 
 /// ## private member function to check if an eclass appears in str
 /// ## Argument
@@ -179,7 +78,7 @@ fn contain_ecls(str: &String) -> bool {
 /// ## Argument
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
-unsafe fn csg_extract(mut str: String, idx: u8) {
+unsafe fn exhaustive_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let prev_str = str.clone();
@@ -256,12 +155,12 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
                     *mutex -= 1;
                     drop(mutex);
                     let handle = thread::Builder::new().name(rw.clone()).spawn(move || {
-                        csg_extract(str.clone(), idx+1);
+                        exhaustive_extract(str.clone(), idx+1);
                     }).unwrap();
                     handle.join().unwrap();
                 } else {
                     drop(mutex);
-                    csg_extract(str.clone(), idx+1);
+                    exhaustive_extract(str.clone(), idx+1);
                 }
 
                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
@@ -279,7 +178,7 @@ unsafe fn csg_extract(mut str: String, idx: u8) {
 /// ## Argument
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
-unsafe fn cfg_extract(mut str: String, idx: u8) {
+unsafe fn optimized_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let prev_str = str.clone();
@@ -351,12 +250,12 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
                     *mutex -= 1;
                     drop(mutex);
                     let handle = thread::Builder::new().name(rw.clone()).spawn(move || {
-                        csg_extract(str.clone(), idx+1);
+                        optimized_extract(str.clone(), idx+1);
                     }).unwrap();
                     handle.join().unwrap();
                 } else {
                     drop(mutex);
-                    csg_extract(str.clone(), idx+1);
+                    optimized_extract(str.clone(), idx+1);
                 }
 
                 log_trace(format!("Back to Function Call {}\n", idx).as_str());
@@ -373,57 +272,57 @@ unsafe fn cfg_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
-/// ## function to perform rewrite extraction from egraph
-/// ## Argument
-/// * `csg` - context-sentitive grammar flag
-/// ## Return
-/// * `None`
-pub unsafe fn extract(init_rw: Vec<String>) {
-    log_info_raw("\n");
-    match EXHAUSTIVE {
-        true => {
-            let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
-            let mutex = global_max_num_threads.lock().unwrap();
-            log_info(&format!("MAX NUM THREADS {}\n", mutex));
-            drop(mutex);
-            log_info("Start multithreaded context-sensitive grammar extraction...\n");
+// /// ## function to perform rewrite extraction from egraph
+// /// ## Argument
+// /// * `csg` - context-sentitive grammar flag
+// /// ## Return
+// /// * `None`
+// pub unsafe fn ssextract(init_rw: Vec<String>) {
+//     log_info_raw("\n");
+//     match EXHAUSTIVE {
+//         true => {
+//             let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+//             let mutex = global_max_num_threads.lock().unwrap();
+//             log_info(&format!("MAX NUM THREADS {}\n", mutex));
+//             drop(mutex);
+//             log_info("Start multithreaded context-sensitive grammar extraction...\n");
 
-            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || {
-                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-                    csg_extract(rw, 0);
-                }).unwrap()
-            }).collect();
+//             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+//                 thread::Builder::new().name(rw.clone()).spawn(move || {
+//                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
+//                     exhaustive_extract(rw, 0);
+//                 }).unwrap()
+//             }).collect();
 
-            log_info("Waiting for all threads to finish execution...\n");
-            for handle in handles {
-                handle.join().unwrap();
-            }
+//             log_info("Waiting for all threads to finish execution...\n");
+//             for handle in handles {
+//                 handle.join().unwrap();
+//             }
 
-            log_info_raw("\n");
-            log_info("Finish context-sensitive grammar extraction\n");
-        },
-        false => {
-            let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
-            let mutex = global_max_num_threads.lock().unwrap();
-            log_info(&format!("MAX NUM THREADS {}\n", mutex));
-            drop(mutex);
-            log_info("Start multithreaded context-free grammar extraction...\n");
+//             log_info_raw("\n");
+//             log_info("Finish context-sensitive grammar extraction\n");
+//         },
+//         false => {
+//             let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+//             let mutex = global_max_num_threads.lock().unwrap();
+//             log_info(&format!("MAX NUM THREADS {}\n", mutex));
+//             drop(mutex);
+//             log_info("Start multithreaded context-free grammar extraction...\n");
 
-            let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-                thread::Builder::new().name(rw.clone()).spawn(move || {
-                    log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-                    cfg_extract(rw, 0);
-                }).unwrap()
-            }).collect();
+//             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
+//                 thread::Builder::new().name(rw.clone()).spawn(move || {
+//                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
+//                     optimized_extract(rw, 0);
+//                 }).unwrap()
+//             }).collect();
 
-            log_info("Waiting for all threads to finish execution...\n");
-            for handle in handles {
-                handle.join().unwrap();
-            }
+//             log_info("Waiting for all threads to finish execution...\n");
+//             for handle in handles {
+//                 handle.join().unwrap();
+//             }
 
-            log_info_raw("\n");
-            log_info("Finish context-free grammar extraction\n");
-        },
-    }
-}
+//             log_info_raw("\n");
+//             log_info("Finish context-free grammar extraction\n");
+//         },
+//     }
+// }

@@ -47,7 +47,8 @@ mod language;
 mod cli;
 mod config;
 mod ctx_gr;
-mod expr_ext;
+// mod expr_ext;
+mod ext;
 mod generate;
 mod logger;
 mod math;
@@ -119,7 +120,8 @@ pub use {
     cli::{CmdLineArg, parse_args},
     config::*,
     ctx_gr::ContextGrammar,
-    expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
+    // expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract},
+    ext::*,
     generate::{Data, generate, generate_file},
     logger::*,
     math::{MathEGraph, Math, math_rule},

@@ -9,7 +9,7 @@ use egg::{ContextGrammar, Language, Extractor, AstSize};
 /* import hyperparameter set up */
 use egg::parse_args;
 /* import extraction functions */
-use egg::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract};
+use egg::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs};
 /* import log level & logger functions */
 use egg::{log_info, log_info_raw};
 /* import refactor function */
@@ -27,16 +27,8 @@ use egg::{generate, generate_file};
 
 pub fn main() {
     let args: Vec<String> = env::args().collect();
-
-    //let expr: &str = "(d x (+ (pow x 2) (pow (sin x) 2)))";
     
     generate(&args);
-
-    // println!("{:?}", ctx_gr.skip_ecls);
-    // println!("{:?}", ctx_gr.grammar);
-    // println!("{:?}", ctx_gr.init_rw);
-
-    // let root_ecls = ctx_gr.get_root_ecls();
     
     exit(0);
     // 

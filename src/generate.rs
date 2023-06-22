@@ -17,15 +17,10 @@ use std::error::Error;
 #[derive(Debug, Serialize, Deserialize)]
 /// data for extraction
 pub struct Data {
+    /// variable to store eclass(es) to skip during extraction
     pub skip_ecls: HashMap<String, f64>,
+    /// variable to store grammar from MathEGraph
     pub grammar: HashMap<String, Vec<String>>,
-}
-
-fn deserialize_data(serialized_data: &[u8]) -> Result<Data, Box<dyn Error>> {
-    match bincode::deserialize::<Data>(serialized_data) {
-        Ok(data) => Ok(data),
-        Err(err) => Err(Box::new(err)),
-    }
 }
 
 /// ### private unsafe function to set process affinity
@@ -53,8 +48,6 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
 
     /* create egraph, skip_ecls, grammar, init_rewrite */
     ctx_gr.setup();
-    let skip_ecls = Arc::new(ctx_gr.skip_ecls.clone());
-    let grammar = Arc::new(ctx_gr.grammar.clone());
     let init_rw = &ctx_gr.init_rw.clone();
     println!("{:?}", init_rw);
     println!("{}", init_rw.len());
@@ -77,7 +70,7 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     //     })
     // }).collect();
 
-    /* insert empty str for socket address & get CPU's number of logical cores */
+    /* insert socket address & get CPU's number of logical cores */
     cli.push(CmdLineArg::String("127.0.0.1:8080".to_string()));
     let num_logical_cores = num_cpus::get();
 
@@ -91,7 +84,10 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         let child_proc = Command::new("../target/debug/multiproc")
                                     .args(&args)
                                     .spawn()
-                                    .expect("[ERROR]: Failed to spawn child process.");
+                                    .unwrap_or_else(|_| {
+                                        log_error("[ERROR]: Failed to spawn child process.");
+                                        exit(1);
+                                    });
 
         let pid = child_proc.id() as pid_t;
         let processor_id = proc_idx % num_logical_cores;
@@ -180,8 +176,6 @@ pub fn generate_file(input_filename: &str, output_filename: &str) {
 
         let root_ecls = &ctx_gr.root_ecls.clone();
         println!("{:?}", root_ecls);
-
-
 
         /* TODO: Start multiprocessing here */
         // Step 3. get the root-eclass id
