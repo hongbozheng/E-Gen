@@ -1,7 +1,7 @@
 use crate::*;
-use libc::{c_int, cpu_set_t, CPU_SET, CPU_SETSIZE, sched_setaffinity, pid_t, listen};
+use libc::{c_int, cpu_set_t, CPU_SET, CPU_SETSIZE, sched_setaffinity, sched_getaffinity, pid_t, listen, CPU_ISSET, CPU_ZERO};
 use num_cpus;
-use std::mem;
+use std::mem::{zeroed, size_of};
 use std::net::{TcpListener, SocketAddrV6};
 use std::process::{Command, exit, Stdio, Child};
 use std::thread;
@@ -15,29 +15,10 @@ use std::sync::Arc;
 use std::error::Error;
 
 #[derive(Debug, Serialize, Deserialize)]
+/// data for extraction
 pub struct Data {
     skip_ecls: HashMap<String, f64>,
     grammar: HashMap<String, Vec<String>>,
-}
-
-fn set_proc_affinity(pid: pid_t, processor_id: usize) -> Result<(), String> {
-    let mut cpuset: cpu_set_t = unsafe { mem::zeroed() };
-
-    unsafe {
-        if processor_id >= CPU_SETSIZE as usize {
-            return Err(format!("Invalid core ID: {}", processor_id));
-        }
-
-        CPU_SET(processor_id, &mut cpuset);
-
-        let ret = sched_setaffinity(pid, mem::size_of::<cpu_set_t>(), &cpuset);
-
-        if ret == 0 {
-            Ok(())
-        } else {
-            Err("Failed to set process affinity".to_owned())
-        }
-    }
 }
 
 fn deserialize_data(serialized_data: &[u8]) -> Result<Data, Box<dyn Error>> {
@@ -61,50 +42,86 @@ fn send_data(skip_ecls: &HashMap<String, f64>, grammar: &HashMap<String, Vec<Str
     // println!("{:?}", data);
 }
 
+/// ### private unsafe function to set process affinity
+/// #### Arguments
+/// * `pid` - process id
+/// * `processor id` - processor id (CPU logic core id)
+/// #### Return
+/// * `c_int` - return 0 on success, return -1 on failure
+unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
+    let mut cpuset: cpu_set_t = zeroed();
+    CPU_SET(processor_id, &mut cpuset);
+    sched_setaffinity(pid, size_of::<cpu_set_t>(), &cpuset)
+}
+
+/// ### public function to start extraction of a single expression
+/// #### Argument
+/// `cli` - pre-processed command line arguments
+/// #### Return
+/// `None`
 pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
+    /* initialize ctx_gr struct */
     let mut expr: &str = "";
     if let CmdLineArg::String(init_expr) = &cli[3] {
         expr = init_expr;
     }
-    log_info(format!("Expression: {}\n", expr).as_str());
+    log_info(&format!("Expression: {}\n", expr));
     let mut ctx_gr = ContextGrammar::new(&expr);
 
     /* create egraph, skip_ecls, grammar, init_rewrite */
     ctx_gr.setup();
-
     let skip_ecls = Arc::new(ctx_gr.skip_ecls.clone());
     let grammar = Arc::new(ctx_gr.grammar.clone());
     let init_rw = &ctx_gr.init_rw.clone();
     println!("{:?}", init_rw);
     println!("{}", init_rw.len());
 
+    /* get number of processes */
     let num_proc = init_rw.len();
+
+    /* bind the parent process to tcp ports */
+    let tcp_listeners: Vec<TcpListener> = (0..num_proc).map(|proc_idx| {
+        let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
+        TcpListener::bind(&addr).unwrap_or_else(|_| {
+            log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", addr));
+            exit(1)
+        })
+    }).collect();
+
+    /* insert empty str for socket address & get CPU's number of logical cores */
+    cli.push(CmdLineArg::String("".to_string()));
     let num_logical_cores = num_cpus::get();
 
-    let mut listeners: Vec<TcpListener> = vec![];
-    let mut child_procs: Vec<Child> = vec![];
-
-    cli.push(CmdLineArg::String("".to_string()));
-
-    for proc_idx in 0..num_proc {
+    /* spawn children processes & set process affinity */
+    let mut child_procs: Vec<Child> = init_rw.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
         let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
-        let listener = TcpListener::bind(&addr).expect(format!("Failed to bind ip addr {}", addr).as_str());
-        listeners.push(listener);
-
-        cli[3] = CmdLineArg::String(init_rw[proc_idx].clone());
-        cli[4] = CmdLineArg::String(addr);
+        cli[3] = CmdLineArg::String(rw.clone());
+        cli[4] = CmdLineArg::String(addr.clone());
         let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
-        let mut child_proc = Command::new("../target/debug/multiproc")
-            .args(&args)
-            .spawn()
-            .expect("[ERROR]: Failed to spawn process.");
-        child_procs.push(child_proc);
-    }
 
-    
+        let child_proc = Command::new("../target/debug/multiproc")
+                                    .args(&args)
+                                    .spawn()
+                                    .expect("[ERROR]: Failed to spawn child process.");
 
-    // println!("hello world!");
-    let handles: Vec<_> = listeners.into_iter().map(|listener| {
+        let pid = child_proc.id() as pid_t;
+        let processor_id = proc_idx % num_logical_cores;
+        let ret = unsafe { set_proc_affinity(pid, processor_id) };
+        match ret {
+            0 => {
+                log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id));
+            },
+            _ => {
+                log_error(&format!("Failed to set process {}'s process affinity to processor {}.\n", pid, processor_id));
+                exit(1);
+            },
+        }
+
+        child_proc
+    }).collect();
+
+    /* send data to all children processes through sockets */
+    let handles: Vec<_> = tcp_listeners.into_iter().map(|listener| {
         thread::spawn(move || {
             for stream in listener.incoming() {
                 match stream {
@@ -132,7 +149,17 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     // }
 
     for child_proc in &mut child_procs {
-        child_proc.wait().expect("Failed to wait for child process.");
+        let pid = child_proc.id();
+        child_proc.wait().expect(&format!("[ERROR]: Failed to wait for processor {}.\n", pid));
+        let exit_status = child_proc.wait().expect("Failed to wait for child process.");
+        let exit_code = exit_status.code();
+
+        if let Some(exit_code) = exit_code {
+            match exit_code {
+                0 => { log_debug(&format!("Child process {} terminated successfully with an exit code {}.\n", pid, exit_code)); },
+                _ => { log_error(&format!("Child process {} terminated with a non-zero exit code {}.\n", pid, exit_code)); },
+            }
+        }
     }
 
     // for listener in listeners {
@@ -183,9 +210,9 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
 pub fn generate_file(input_filename: &str, output_filename: &str) {
     // Open the input file and create output file
     let input_file = File::open(input_filename)
-        .expect(format!("[ERROR]: Failed to open input file \"{}\".", input_filename).as_str());
+        .expect(&format!("[ERROR]: Failed to open input file \"{}\".", input_filename));
     let output_file = File::create(output_filename)
-        .expect(format!("[ERROR]: Failed to create output file \"{}\".", output_filename).as_str());
+        .expect(&format!("[ERROR]: Failed to create output file \"{}\".", output_filename));
 
     // Create buffered reader and writer for the input and output files
     let reader = BufReader::new(input_file);
@@ -194,7 +221,7 @@ pub fn generate_file(input_filename: &str, output_filename: &str) {
     for expr in reader.lines() {
         let expr = expr.expect("[ERROR]: Error reading line from file.");
 
-        log_info(format!("Expression: {}\n", expr).as_str());
+        log_info(&format!("Expression: {}\n", expr));
         let mut ctx_gr = ContextGrammar::new(&expr);
 
         /* create egraph, skip_ecls, grammar, init_rewrite */
