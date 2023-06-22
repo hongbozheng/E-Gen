@@ -9,11 +9,9 @@ use std::net::{TcpStream, SocketAddr};
 use std::process;
 use egg::{THD_PCT, MAX_RW_LEN, EXHAUSTIVE};
 use egg::Data;
-use ipc_channel::ipc::{self, IpcReceiver};
 use std::error::Error;
 use egg::CmdLineArg;
 use std::sync::{Arc};
-use tokio::sync::mpsc::{self, Receiver};
 // use bincode::{serialize, deserialize};
 
 // use crate::set_hyperparam;
@@ -44,6 +42,8 @@ fn main() {
 
             match stream.read_to_end(&mut data) {
                 Ok(_) => {
+                    let data = deserialize_data(&data).unwrap();
+                    // let skip_ecls = data.skip_ecls;
                     println!("{:?}", data);
                 },
                 Err(e) => {
