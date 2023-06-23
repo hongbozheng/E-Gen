@@ -1,4 +1,57 @@
 use crate::*;
+use std::net::{TcpStream, SocketAddr};
+use std::io::Read;
+use std::error::Error;
+use std::process;
+use std::sync::{Arc, Mutex};
+use std::thread;
+
+/// max # of threads can be used (not max # of OS threads)
+static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
+/// private global variable to store eclass(es) to skip during extraction
+static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
+/// private global variable to store grammar from MathEGraph
+static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
+/// global variable to store equivalent expression results
+static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
+
+pub unsafe fn get_max_num_threads() -> &'static Arc<Mutex<u32>> {
+    return MAX_NUM_THREADS.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable SKIP_ECLS
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
+pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
+    return SKIP_ECLS.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable GRAMMAR
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `GRAMMAR` - immutable reference of global variable GRAMMAR
+pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
+    return GRAMMAR.as_ref().unwrap();
+}
+
+/// ## public function to get private global variable EQUIV_EXPRS
+/// ## Argument
+/// * `None`
+/// ## Return
+/// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
+pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
+    return EQUIV_EXPRS.as_ref().unwrap();
+}
+
+fn deserialize_data(serialized_data: &[u8]) -> Result<Data, Box<dyn Error>> {
+    match bincode::deserialize::<Data>(serialized_data) {
+        Ok(data) => Ok(data),
+        Err(err) => Err(Box::new(err)),
+    }
+}
 
 /// ## private member function to check if an eclass appears in str
 /// ## Argument
@@ -99,10 +152,8 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
 
         let op = expr[i];
         let grammar = GRAMMAR.as_ref().unwrap();
-        // TODO: THIS LINE IS EXTREMELY SLOW, WHEN !KEY, IT'S O(N)
-        // probably it's still good idea to check
-        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
-            !grammar.contains_key(op) { continue; }
+
+        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") || !grammar.contains_key(op) { continue; }
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
         let rw_list = grammar.get(op).unwrap();
 
@@ -198,8 +249,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
 
         let op = expr[i];
         let grammar = GRAMMAR.as_ref().unwrap();
-        // TODO: THIS LINE IS EXTREMELY SLOW, WHENEVER !KEY, IT'S O(N)
-        // probably it's still good idea to check
+
         if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
             !grammar.contains_key(op) { continue; }
         log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
@@ -209,6 +259,8 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
             let rw = &rw_list[k];
             log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
             log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+
+            if SUPPRESS { if skip_rw(rw) { continue; } }
 
             #[allow(unused_doc_comments)]
             /// ```rust
@@ -236,7 +288,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
                 log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
                 term = true;
                 break;
-            } else if !str.contains('e') {
+            } else if !contain_ecls(&str) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
@@ -272,57 +324,69 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
-// /// ## function to perform rewrite extraction from egraph
-// /// ## Argument
-// /// * `csg` - context-sentitive grammar flag
-// /// ## Return
-// /// * `None`
-// pub unsafe fn ssextract(init_rw: Vec<String>) {
-//     log_info_raw("\n");
-//     match EXHAUSTIVE {
-//         true => {
-//             let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
-//             let mutex = global_max_num_threads.lock().unwrap();
-//             log_info(&format!("MAX NUM THREADS {}\n", mutex));
-//             drop(mutex);
-//             log_info("Start multithreaded context-sensitive grammar extraction...\n");
+pub fn extract(args: &Vec<String>) {
+    let cli: Vec<CmdLineArg> = args.iter().map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
+    println!("{:?}", cli);
 
-//             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-//                 thread::Builder::new().name(rw.clone()).spawn(move || {
-//                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-//                     exhaustive_extract(rw, 0);
-//                 }).unwrap()
-//             }).collect();
+    let mut skip_ecls: HashMap<String, f64> = Default::default();
+    let mut grammar: HashMap<String, Vec<String>> = Default::default();
 
-//             log_info("Waiting for all threads to finish execution...\n");
-//             for handle in handles {
-//                 handle.join().unwrap();
-//             }
+    match TcpStream::connect(&args[5]) {
+        Ok(mut stream) => {
+            println!("Successfully connected to server in {}", args[5]);
 
-//             log_info_raw("\n");
-//             log_info("Finish context-sensitive grammar extraction\n");
-//         },
-//         false => {
-//             let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
-//             let mutex = global_max_num_threads.lock().unwrap();
-//             log_info(&format!("MAX NUM THREADS {}\n", mutex));
-//             drop(mutex);
-//             log_info("Start multithreaded context-free grammar extraction...\n");
+            let mut data: Vec<u8> = vec![];
 
-//             let handles: Vec<_> = init_rw.into_iter().map(|rw| {
-//                 thread::Builder::new().name(rw.clone()).spawn(move || {
-//                     log_debug(format!("Extracting initial rewrite {} in a thread...\n", rw).as_str());
-//                     optimized_extract(rw, 0);
-//                 }).unwrap()
-//             }).collect();
+            match stream.read_to_end(&mut data) {
+                Ok(_) => {
+                    let data = deserialize_data(&data).unwrap();
+                    skip_ecls = data.skip_ecls.into_iter().collect();
+                    grammar = data.grammar.into_iter().collect();
+                },
+                Err(e) => {
+                    println!("Failed to receive data: {}", e);
+                }
+            }
+        },
+        Err(e) => {
+            println!("Failed to connect: {}", e);
+        },
+    }
 
-//             log_info("Waiting for all threads to finish execution...\n");
-//             for handle in handles {
-//                 handle.join().unwrap();
-//             }
+    /* setup global variables */
+    unsafe {
+        if let CmdLineArg::UInt(max_rw_len) = &cli[2] {
+            MAX_RW_LEN = *max_rw_len;
+        }
+        if let CmdLineArg::Bool(exhaustive) = &cli[3] {
+            EXHAUSTIVE = *exhaustive;
+        }
+        SKIP_ECLS = Some(skip_ecls);
+        GRAMMAR = Some(grammar);
 
-//             log_info_raw("\n");
-//             log_info("Finish context-free grammar extraction\n");
-//         },
-//     }
-// }
+        let equiv_exprs = Arc::new(Mutex::new(vec![]));
+        EQUIV_EXPRS = Some(equiv_exprs);
+
+        MAX_NUM_THREADS = Some(Arc::new(Mutex::new(100000u32)));
+
+        // println!("{:?}", SKIP_ECLS);
+        // println!("{:?}", GRAMMAR);
+        println!("{} {}", MAX_RW_LEN, EXHAUSTIVE);
+    }
+
+    let init_rw: &str = &cli[4].to_string();
+    unsafe { optimized_extract(init_rw.to_string(), 0) };
+
+    unsafe {
+        let mut equiv_exprs = EQUIV_EXPRS.as_ref().clone().unwrap().lock().unwrap();
+        equiv_exprs.sort_unstable();
+        equiv_exprs.dedup();
+        for expr in equiv_exprs.iter() {
+            log_info(&format!("{}\n", expr));
+        }
+    }
+
+    println!("Terminated.");
+    let pid = process::id();
+    println!("PID: {}", pid);
+}
