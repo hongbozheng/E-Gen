@@ -9,8 +9,8 @@ use std::thread;
 use std::fs::{File, OpenOptions};
 use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use bincode::{serialize, deserialize};
-use std::collections::HashMap;
 use serde::{Serialize, Deserialize};
+use std::collections::HashMap;
 use std::sync::Arc;
 use std::error::Error;
 
