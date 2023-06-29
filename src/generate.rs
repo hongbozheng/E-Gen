@@ -11,7 +11,7 @@ use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use bincode::{serialize, deserialize};
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::error::Error;
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -37,14 +37,14 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 
 /// ### public function to start extraction of a single expression
 /// #### Argument
-/// `cli` - pre-processed command line arguments
+/// * `cli` - pre-processed command line arguments
 /// #### Return
-/// `None`
+/// * `None`
 pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     /* initialize ctx_gr struct */
-    let expr: &str = &cli[3].to_string();
+    let expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", expr));
-    let mut ctx_gr = ContextGrammar::new(&expr);
+    let mut ctx_gr = ContextGrammar::new(expr);
 
     /* create egraph, skip_ecls, grammar, init_rewrite */
     ctx_gr.setup();
@@ -55,9 +55,14 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     /* get number of processes */
     let num_proc = init_rw.len();
 
-    let addr = "127.0.0.1:8080";
-    let listener = TcpListener::bind(&addr).unwrap_or_else(|_| {
-        log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", addr));
+    let tx_addr = "127.0.0.1:8080";
+    let tx_listener = TcpListener::bind(&tx_addr).unwrap_or_else(|_| {
+        log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", tx_addr));
+        exit(1)
+    });
+    let rx_addr = "127.0.0.1:8081";
+    let rx_listener = TcpListener::bind(&rx_addr).unwrap_or_else(|_| {
+        log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", rx_addr));
         exit(1)
     });
 
@@ -105,50 +110,103 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         child_proc
     }).collect();
 
+    let mut num_acks: u8 = 0u8;
+
     /* send data to all children processes through sockets */
-    for stream in listener.incoming() {
-        println!("listen ------");
-        match stream {
-            Ok(mut stream) => {
-                println!("New connection: {}", stream.peer_addr().unwrap());
-                let skip_ecls = ctx_gr.skip_ecls.clone();
-                let grammar = ctx_gr.grammar.clone();
-                thread::spawn(move|| {
+    let handle = thread::spawn(move || {
+        match tx_listener.set_nonblocking(true) {
+            Ok(_) => { log_debug("Non-blocking mode set successfully.\n"); },
+            Err(e) => {
+                log_error(&format!("Failed to set non-blocking mode with error {}.\n", e));
+                exit(1);
+            },
+        }
+
+        for stream in tx_listener.incoming() {
+            println!("incoming {:?}", tx_listener.incoming());
+
+            match stream {
+                Ok(mut stream) => {
+                    println!("New connection: {}", stream.peer_addr().unwrap());
+                    let skip_ecls = ctx_gr.skip_ecls.clone();
+                    let grammar = ctx_gr.grammar.clone();
+
                     let data: Data = Data {
                         skip_ecls,
                         grammar,
                     };
                 
-                    let serialized_data = bincode::serialize(&data).unwrap();
-                    if let Err(err) = stream.write_all(&serialized_data) {
-                        println!("Error sending data: {}", err);
+                    let data_serialized = bincode::serialize(&data).unwrap();
+                    match stream.write_all(&data_serialized) {
+                        Ok(_) => {
+                            num_acks += 1;
+                            log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
+                        },
+                        Err(e) => {
+                            log_error(&format!("Failed to data to child process {:?} with error {}.\n", stream.peer_addr(), e));
+                            exit(1);
+                        },
                     }
-                });
+                }
+                Err(e) => {
+                    println!("Error: {}", e);
+                    /* connection failed */
+                }
+            }
+
+            if num_acks as usize == num_proc { println!("break le"); break; }
+        }
+    });
+
+    handle.join().unwrap();
+
+    num_acks = 0u8;
+    let mut equiv_exprs: Vec<String> = vec![];
+
+    for stream in rx_listener.incoming() {
+        match stream {
+            Ok(mut stream) => {
+                let mut equiv_exprs_proc: Vec<u8> = vec![];
+                match stream.read_to_end(&mut equiv_exprs_proc) {
+                    Ok(_) => {
+                        num_acks += 1;
+                    },
+                    Err(e) => {
+                        println!("Failed to receive data: {}", e);
+                        log_error(&format!("Failed to receive data from child process with error {}", e));
+                    }
+                }
+
+                let mut equiv_exprs_proc: Vec<String> = bincode::deserialize(&equiv_exprs_proc).unwrap();
+                // println!("final results received {:?}", equiv_exprs_proc);
+                equiv_exprs.append(&mut equiv_exprs_proc);
+                // });
             }
             Err(e) => {
                 println!("Error: {}", e);
                 /* connection failed */
             }
         }
+        if num_acks as usize == num_proc { println!("break le"); break; }
+        println!("{}", num_acks);
     }
 
-    // for handle in handles {
-    //     handle.join().unwrap();
+    // for child_proc in &mut child_procs {
+    //     let pid = child_proc.id();
+    //     child_proc.wait().expect(&format!("[ERROR]: Failed to wait for processor {}.\n", pid));
+    //     let exit_status = child_proc.wait().expect("Failed to wait for child process.");
+    //     let exit_code = exit_status.code();
+
+    //     if let Some(exit_code) = exit_code {
+    //         match exit_code {
+    //             0 => { log_debug(&format!("Child process {} terminated successfully with an exit code {}.\n", pid, exit_code)); },
+    //             _ => { log_error(&format!("Child process {} terminated with a non-zero exit code {}.\n", pid, exit_code)); },
+    //         }
+    //     }
     // }
 
-    println!("here");
-    for child_proc in &mut child_procs {
-        let pid = child_proc.id();
-        child_proc.wait().expect(&format!("[ERROR]: Failed to wait for processor {}.\n", pid));
-        let exit_status = child_proc.wait().expect("Failed to wait for child process.");
-        let exit_code = exit_status.code();
-
-        if let Some(exit_code) = exit_code {
-            match exit_code {
-                0 => { log_debug(&format!("Child process {} terminated successfully with an exit code {}.\n", pid, exit_code)); },
-                _ => { log_error(&format!("Child process {} terminated with a non-zero exit code {}.\n", pid, exit_code)); },
-            }
-        }
+    for expr in equiv_exprs {
+        log_info(&format!("{}\n", expr));
     }
 
     println!("Generate Finished");
@@ -169,7 +227,7 @@ pub fn generate_file(input_filename: &str, output_filename: &str) {
         let expr = expr.expect("[ERROR]: Error reading line from file.");
 
         log_info(&format!("Expression: {}\n", expr));
-        let mut ctx_gr = ContextGrammar::new(&expr);
+        let mut ctx_gr = ContextGrammar::new(expr);
 
         /* create egraph, skip_ecls, grammar, init_rewrite */
         ctx_gr.setup();

@@ -1,10 +1,11 @@
 use crate::*;
 use std::net::{TcpStream, SocketAddr};
-use std::io::Read;
+use std::io::{Read, Write};
 use std::error::Error;
 use std::process;
 use std::sync::{Arc, Mutex};
 use std::thread;
+use bincode::{serialize, deserialize};
 
 /// max # of threads can be used (not max # of OS threads)
 static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
@@ -324,6 +325,11 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
+/// ### public function to start extracting equivalent expressions
+/// #### Argument
+/// * `args` command line arguments for hyperparameters
+/// #### Return
+/// * `None`
 pub fn extract(args: &Vec<String>) {
     let cli: Vec<CmdLineArg> = args.iter().map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
     println!("{:?}", cli);
@@ -345,8 +351,14 @@ pub fn extract(args: &Vec<String>) {
                 },
                 Err(e) => {
                     println!("Failed to receive data: {}", e);
+                    log_error(&format!("Child process {:?} failed to receive data from parent process {} with error {}", &stream.peer_addr(), &args[5], e));
                 }
             }
+
+            // println!("sending ACK back to parent");
+            // if let Err(err) = stream.write(b"ACK") {
+            //     println!("Error sending data: {}", err);
+            // }
         },
         Err(e) => {
             println!("Failed to connect: {}", e);
@@ -371,22 +383,46 @@ pub fn extract(args: &Vec<String>) {
 
         // println!("{:?}", SKIP_ECLS);
         // println!("{:?}", GRAMMAR);
-        println!("{} {}", MAX_RW_LEN, EXHAUSTIVE);
+        // println!("{} {}", MAX_RW_LEN, EXHAUSTIVE);
     }
 
     let init_rw: &str = &cli[4].to_string();
-    unsafe { optimized_extract(init_rw.to_string(), 0) };
-
     unsafe {
-        let mut equiv_exprs = EQUIV_EXPRS.as_ref().clone().unwrap().lock().unwrap();
-        equiv_exprs.sort_unstable();
-        equiv_exprs.dedup();
-        for expr in equiv_exprs.iter() {
-            log_info(&format!("{}\n", expr));
+        /* start extraction */
+        optimized_extract(init_rw.to_string(), 0);
+
+        let mut equiv_exprs = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone();
+        let mut set = HashSet::default();
+        equiv_exprs.retain(|e| set.insert(e.clone()));
+
+        /* send results back to parent process */
+        match TcpStream::connect("127.0.0.1:8081") {
+            Ok(mut stream) => {
+                println!("Successfully connected to server in {} again", args[5]);
+                let equiv_exprs_serialized = serialize(&equiv_exprs).unwrap();
+
+                if let Err(err) = stream.write_all(&equiv_exprs_serialized) {
+                    log_error(&format!("Failed to send data back to parent process with error {}.\n", err));
+                }
+            },
+            Err(e) => {
+                println!("Failed to connect: {}", e);
+            },
         }
     }
 
+    // unsafe {
+    //     let mut equiv_exprs = EQUIV_EXPRS.as_ref().clone().unwrap().lock().unwrap();
+    //     equiv_exprs.sort_unstable();
+    //     equiv_exprs.dedup();
+    //     for expr in equiv_exprs.iter() {
+    //         log_info(&format!("{}\n", expr));
+    //     }
+    // }
+
     println!("Terminated.");
     let pid = process::id();
-    println!("PID: {}", pid);
+    println!("PID: {} Terminated.", pid);
+
+    return;
 }
