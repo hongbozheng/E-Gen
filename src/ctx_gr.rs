@@ -5,9 +5,9 @@ use std::collections::HashMap;
 /// store information about initial expression,
 /// egraph, root eclass(es), skip eclass(es),
 /// grammar, initial rewrite
-pub struct ContextGrammar<'a> {
+pub struct ContextGrammar {
     /// initial expression to run with egraph
-    expr: &'a str,
+    expr: String,
     /// egraph after running rewrite rules
     pub egraph: MathEGraph,
     /// root eclasses of MathEGraph
@@ -20,13 +20,13 @@ pub struct ContextGrammar<'a> {
     pub init_rw: Vec<String>,
 }
 
-impl<'a> ContextGrammar<'a> {
+impl<'a> ContextGrammar {
     /// ## default constructor
     /// ## Arguments
     /// * `init_expr` - initial expression for rewriting
     /// ## Return
     /// * `None`
-    pub fn new(expr: &'a str) -> Self {
+    pub fn new(expr: String) -> Self {
         ContextGrammar {
             expr,
             egraph: Default::default(),
