@@ -55,42 +55,36 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     /* get number of processes */
     let num_proc = init_rw.len();
 
+    /* tx listener */
     let tx_addr = "127.0.0.1:8080";
     let tx_listener = TcpListener::bind(&tx_addr).unwrap_or_else(|_| {
         log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", tx_addr));
         exit(1)
     });
+
+    /* rx listener */
     let rx_addr = "127.0.0.1:8081";
     let rx_listener = TcpListener::bind(&rx_addr).unwrap_or_else(|_| {
         log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", rx_addr));
         exit(1)
     });
 
-    /* bind the parent process to tcp ports */
-    // let tcp_listeners: Vec<TcpListener> = (0..num_proc).map(|proc_idx| {
-    //     let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
-    //     TcpListener::bind(&addr).unwrap_or_else(|_| {
-    //         log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", addr));
-    //         exit(1)
-    //     })
-    // }).collect();
-
     /* insert socket address & get CPU's number of logical cores */
-    cli.push(CmdLineArg::String("127.0.0.1:8080".to_string()));
+    cli.push(CmdLineArg::String(tx_addr.to_string()));
+    cli.push(CmdLineArg::String(rx_addr.to_string()));
     let num_logical_cores = num_cpus::get();
 
     /* spawn children processes & set process affinity */
     let mut child_procs: Vec<Child> = init_rw.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
-        // let addr = format!("127.0.0.1:{}", 8000 + proc_idx);
         cli[3] = CmdLineArg::String(rw.clone());
-        // cli[4] = CmdLineArg::String(addr.clone());
+
         let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
 
         let child_proc = Command::new("../target/debug/multiproc")
                                     .args(&args)
                                     .spawn()
                                     .unwrap_or_else(|_| {
-                                        log_error("[ERROR]: Failed to spawn child process.");
+                                        log_error("[ERROR]: Failed to spawn child process.\n");
                                         exit(1);
                                     });
 
@@ -98,9 +92,7 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         let processor_id = proc_idx % num_logical_cores;
         let ret = unsafe { set_proc_affinity(pid, processor_id) };
         match ret {
-            0 => {
-                log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id));
-            },
+            0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },
             _ => {
                 log_error(&format!("Failed to set process {}'s process affinity to processor {}.\n", pid, processor_id));
                 exit(1);
@@ -123,11 +115,8 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         }
 
         for stream in tx_listener.incoming() {
-            println!("incoming {:?}", tx_listener.incoming());
-
             match stream {
                 Ok(mut stream) => {
-                    println!("New connection: {}", stream.peer_addr().unwrap());
                     let skip_ecls = ctx_gr.skip_ecls.clone();
                     let grammar = ctx_gr.grammar.clone();
 
@@ -135,26 +124,30 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
                         skip_ecls,
                         grammar,
                     };
-                
-                    let data_serialized = bincode::serialize(&data).unwrap();
+
+                    let data_serialized = bincode::serialize(&data).unwrap_or_else(|_| {
+                        log_error(&format!("Failed to serialize data sending to child process {:?}.\n", stream.peer_addr()));
+                        exit(1);
+                    });
+
                     match stream.write_all(&data_serialized) {
                         Ok(_) => {
                             num_acks += 1;
                             log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
                         },
                         Err(e) => {
-                            log_error(&format!("Failed to data to child process {:?} with error {}.\n", stream.peer_addr(), e));
+                            log_error(&format!("Failed to send data to child process {:?} with error {}.\n", stream.peer_addr(), e));
                             exit(1);
                         },
                     }
                 }
                 Err(e) => {
-                    println!("Error: {}", e);
-                    /* connection failed */
+                    log_error(&format!("Failed to connect to child process with error {}.\n", e));
+                    exit(1);
                 }
             }
 
-            if num_acks as usize == num_proc { println!("break le"); break; }
+            if num_acks as usize == num_proc { break; }
         }
     });
 
@@ -169,26 +162,25 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
                 let mut equiv_exprs_proc: Vec<u8> = vec![];
                 match stream.read_to_end(&mut equiv_exprs_proc) {
                     Ok(_) => {
+                        let mut equiv_exprs_proc: Vec<String> = bincode::deserialize(&equiv_exprs_proc).unwrap_or_else(|_| {
+                            log_error(&format!("Failed to deserialize data receiving from child process {:?}.\n", stream.peer_addr()));
+                        exit(1);
+                        });
+                        equiv_exprs.append(&mut equiv_exprs_proc);
                         num_acks += 1;
                     },
                     Err(e) => {
-                        println!("Failed to receive data: {}", e);
-                        log_error(&format!("Failed to receive data from child process with error {}", e));
-                    }
+                        log_error(&format!("Failed to receive data from child process {:?} with error {}.\n", stream.peer_addr(), e));
+                        exit(1);
+                    },
                 }
-
-                let mut equiv_exprs_proc: Vec<String> = bincode::deserialize(&equiv_exprs_proc).unwrap();
-                // println!("final results received {:?}", equiv_exprs_proc);
-                equiv_exprs.append(&mut equiv_exprs_proc);
-                // });
             }
             Err(e) => {
-                println!("Error: {}", e);
-                /* connection failed */
+                log_error(&format!("Failed to connect to child process with error {}.\n", e));
+                exit(1);
             }
         }
-        if num_acks as usize == num_proc { println!("break le"); break; }
-        println!("{}", num_acks);
+        if num_acks as usize == num_proc { break; }
     }
 
     // for child_proc in &mut child_procs {

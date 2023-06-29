@@ -361,7 +361,8 @@ pub fn extract(args: &Vec<String>) {
             // }
         },
         Err(e) => {
-            println!("Failed to connect: {}", e);
+            log_error(&format!("Failed to connect to parent process {} with error {}.\n", &args[5], e));
+            // exit(1);
         },
     }
 
