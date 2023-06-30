@@ -37,7 +37,7 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `None`
-pub fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
+fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", expr));
@@ -213,7 +213,7 @@ pub fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
     return;
 }
 
-pub fn generate_file(input_filename: &str, output_filename: &str) {
+fn generate_file(input_filename: &str, output_filename: &str) {
     // Open the input file and create output file
     let input_file = File::open(input_filename)
         .expect(&format!("[ERROR]: Failed to open input file \"{}\".", input_filename));

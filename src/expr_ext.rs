@@ -1,6 +1,5 @@
 use crate::*;
 use bincode::{serialize, deserialize};
-use std::error::Error;
 use std::io::{Read, Write};
 use std::net::TcpStream;
 use std::process::{self, exit};
@@ -16,42 +15,47 @@ static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
 /// global variable to store equivalent expression results
 static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
 
+/// ### public function to get private global variable MAX_NUM_THREADS
+/// #### Argument
+/// `None`
+/// #### Return
+/// `MAX_NUM_THREADS` - immutable reference of global variable MAX_NUM_THREADS
 pub unsafe fn get_max_num_threads() -> &'static Arc<Mutex<u32>> {
     return MAX_NUM_THREADS.as_ref().unwrap();
 }
 
-/// ## public function to get private global variable SKIP_ECLS
-/// ## Argument
+/// ### public function to get private global variable SKIP_ECLS
+/// #### Argument
 /// * `None`
-/// ## Return
+/// #### Return
 /// * `SKIP_ECLS` - immutable reference of global variable SKIP_ECLS
 pub unsafe fn get_global_skip_ecls() -> &'static HashMap<String, f64> {
     return SKIP_ECLS.as_ref().unwrap();
 }
 
-/// ## public function to get private global variable GRAMMAR
-/// ## Argument
+/// ### public function to get private global variable GRAMMAR
+/// #### Argument
 /// * `None`
-/// ## Return
+/// #### Return
 /// * `GRAMMAR` - immutable reference of global variable GRAMMAR
 pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
     return GRAMMAR.as_ref().unwrap();
 }
 
-/// ## public function to get private global variable EQUIV_EXPRS
-/// ## Argument
+/// ### public function to get private global variable EQUIV_EXPRS
+/// #### Argument
 /// * `None`
-/// ## Return
+/// #### Return
 /// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
 pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
     return EQUIV_EXPRS.as_ref().unwrap();
 }
 
-/// ## private member function to check if an eclass appears in str
-/// ## Argument
+/// ### private member function to check if an eclass appears in str
+/// #### Arguments
 /// * `eclass` - eclass index to search for
 /// * `str`    - str to search
-/// ## Return
+/// #### Return
 /// * `bool` - whether distinct eclass exits in str or not
 fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
     let matches: Vec<_> = str.match_indices(eclass).collect();
@@ -66,10 +70,10 @@ fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
     return false;
 }
 
-/// ## private member function to skip meaningless rewrite rule(s)
-/// ## Argument
+/// ### private member function to skip meaningless rewrite rule(s)
+/// #### Argument
 /// * `rw` - rewrite rule
-/// ## Return
+/// #### Return
 /// * `bool` - whether skip the current rewrite or not
 unsafe fn skip_rw(rw: &String) -> bool {
     for (eclass, constant) in SKIP_ECLS.as_ref().unwrap() {
@@ -87,11 +91,13 @@ unsafe fn skip_rw(rw: &String) -> bool {
     return false;
 }
 
-/// ## private function to replace distinct eclass with rewrite rule
-/// ## Argument
+/// ### private function to replace distinct eclass with rewrite rule
+/// #### Arguments
 /// * `op`  - operand that needs to be replaced
 /// * `rw`  - rewrite rule that is going to be replaced with
 /// * `str` - original expression
+/// #### Return
+/// * `None`
 fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
     let matches: Vec<_> = str.match_indices(op).collect();
     for mat in matches {
@@ -106,9 +112,11 @@ fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
     return;
 }
 
-/// ## private function to check if any eclass is in str
-/// ## Argument
+/// ### private function to check if any eclass is in str
+/// #### Argument
 /// * `str` - current equation str
+/// #### Return
+/// * `None`
 fn contain_ecls(str: &String) -> bool {
     let matches: Vec<_> = str.match_indices('e').collect();
     for mat in matches {
@@ -121,11 +129,13 @@ fn contain_ecls(str: &String) -> bool {
     return false;
 }
 
-/// ## private function to extract all equivalent mathematical expressions
-/// ## Context-Sensitive Grammar
-/// ## Argument
+/// ### private function to extract all equivalent mathematical expressions
+/// ### Context-Sensitive Grammar
+/// #### Arguments
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
+/// #### Return
+/// * `None`
 unsafe fn exhaustive_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
@@ -219,11 +229,13 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
-/// ## private function to extract all equivalent mathematical expressions
-/// ## Context-Free Grammar
-/// ## Argument
+/// ### private function to extract all equivalent mathematical expressions
+/// ### Context-Free Grammar
+/// #### Arguments
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
+/// #### Return
+/// * `None`
 unsafe fn optimized_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
