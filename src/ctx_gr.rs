@@ -92,6 +92,8 @@ impl<'a> ContextGrammar {
                 self.init_rw = self.grammar.get(&*root_ecls).unwrap().clone();
             }
         }
+
+        return;
     }
 
     /// ## member function to get an reference to egraph
