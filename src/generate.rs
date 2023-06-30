@@ -1,18 +1,14 @@
 use crate::*;
-use libc::{c_int, cpu_set_t, CPU_SET, CPU_SETSIZE, sched_setaffinity, sched_getaffinity, pid_t, listen, CPU_ISSET, CPU_ZERO};
+use libc::{c_int, cpu_set_t, CPU_SET, sched_setaffinity, pid_t};
 use num_cpus;
-use std::mem::{zeroed, size_of};
-use std::net::{TcpListener, SocketAddrV6};
-use std::process::{Command, exit, Stdio, Child};
-use std::thread;
-// use thread_affinity::ThreaadAffinity;
-use std::fs::{File, OpenOptions};
-use std::io::{BufRead, BufReader, BufWriter, Read, Write};
-use bincode::{serialize, deserialize};
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
-use std::sync::{Arc, Mutex};
-use std::error::Error;
+use std::fs::{File, OpenOptions};
+use std::io::{BufRead, BufReader, BufWriter, Read, Write};
+use std::mem::{zeroed, size_of};
+use std::net::TcpListener;
+use std::process::{Child, Command, exit};
+use std::thread;
 
 #[derive(Debug, Serialize, Deserialize)]
 /// data for extraction
