@@ -107,7 +107,7 @@ cargo run --bin egg -t <thd pct> -l <max rw len> -f <csg flag>
 ```
 * `<thd pct>` - OS thread percentage
 * `<max rw len>` - maximum rw length
-* `<exhaustive>` exhaustive extraction flag
+* `<exhaustive>` - exhaustive extraction flag
 
 ## Context-Grammar (Python)
 
