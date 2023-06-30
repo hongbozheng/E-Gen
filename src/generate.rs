@@ -41,12 +41,10 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// #### Return
 /// * `None`
 pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
-    /* initialize ctx_gr struct */
+    /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", expr));
     let mut ctx_gr = ContextGrammar::new(expr);
-
-    /* create egraph, skip_ecls, grammar, init_rewrite */
     ctx_gr.setup();
     let init_rw = &ctx_gr.init_rw.clone();
     println!("{:?}", init_rw);
@@ -80,26 +78,25 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
 
         let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
 
-        let child_proc = Command::new("../target/debug/multiproc")
-                                    .args(&args)
-                                    .spawn()
-                                    .unwrap_or_else(|_| {
-                                        log_error("[ERROR]: Failed to spawn child process.\n");
-                                        exit(1);
-                                    });
-
-        let pid = child_proc.id() as pid_t;
-        let processor_id = proc_idx % num_logical_cores;
-        let ret = unsafe { set_proc_affinity(pid, processor_id) };
-        match ret {
-            0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },
-            _ => {
-                log_error(&format!("Failed to set process {}'s process affinity to processor {}.\n", pid, processor_id));
+        match Command::new("../target/debug/multiproc").args(&args).spawn() {
+            Ok(child_proc) => {
+                let pid = child_proc.id() as pid_t;
+                let processor_id = proc_idx % num_logical_cores;
+                let ret = unsafe { set_proc_affinity(pid, processor_id) };
+                match ret {
+                    0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },
+                    _ => {
+                        log_error(&format!("Failed to set process {}'s process affinity to processor {}.\n", pid, processor_id));
+                        exit(1);
+                    },
+                }
+                child_proc
+            },
+            Err(e) => {
+                log_error(&format!("[ERROR]: Failed to spawn child process with error {}.\n", e));
                 exit(1);
             },
         }
-
-        child_proc
     }).collect();
 
     let mut num_acks: u8 = 0u8;
@@ -156,6 +153,7 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     num_acks = 0u8;
     let mut equiv_exprs: Vec<String> = vec![];
 
+    /* receive equivalent expressions from all children processes */
     for stream in rx_listener.incoming() {
         match stream {
             Ok(mut stream) => {
@@ -164,7 +162,7 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
                     Ok(_) => {
                         let mut equiv_exprs_proc: Vec<String> = bincode::deserialize(&equiv_exprs_proc).unwrap_or_else(|_| {
                             log_error(&format!("Failed to deserialize data receiving from child process {:?}.\n", stream.peer_addr()));
-                        exit(1);
+                            exit(1);
                         });
                         equiv_exprs.append(&mut equiv_exprs_proc);
                         num_acks += 1;
@@ -183,25 +181,24 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         if num_acks as usize == num_proc { break; }
     }
 
-    // for child_proc in &mut child_procs {
-    //     let pid = child_proc.id();
-    //     child_proc.wait().expect(&format!("[ERROR]: Failed to wait for processor {}.\n", pid));
-    //     let exit_status = child_proc.wait().expect("Failed to wait for child process.");
-    //     let exit_code = exit_status.code();
-
-    //     if let Some(exit_code) = exit_code {
-    //         match exit_code {
-    //             0 => { log_debug(&format!("Child process {} terminated successfully with an exit code {}.\n", pid, exit_code)); },
-    //             _ => { log_error(&format!("Child process {} terminated with a non-zero exit code {}.\n", pid, exit_code)); },
-    //         }
-    //     }
-    // }
+    /* check if all children processes exit successfully */
+    for child_proc in &mut child_procs {
+        let pid = child_proc.id();
+        match child_proc.wait() {
+            Ok(exit_status) => {
+                match exit_status.code() {
+                    Some(0) => { log_debug(&format!("Child process {} terminated successfully with an exit code 0.\n", pid)); },
+                    Some(exit_code) => { log_error(&format!("Child process {} terminated with a non-zero exit code {}.\n", pid, exit_code)); },
+                    None => { log_error(&format!("Child process {} terminated with an unknown exit code.\n", pid)); },
+                }
+            },
+            Err(e) => { log_error(&format!("Child process {} is not running with error {}.\n", pid, e)); },
+        }
+    }
 
     for expr in equiv_exprs {
         log_info(&format!("{}\n", expr));
     }
-
-    println!("Generate Finished");
 }
 
 pub fn generate_file(input_filename: &str, output_filename: &str) {
