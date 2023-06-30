@@ -20,11 +20,11 @@ pub struct ContextGrammar {
     pub init_rw: Vec<String>,
 }
 
-impl<'a> ContextGrammar {
-    /// ## default constructor
-    /// ## Arguments
+impl ContextGrammar {
+    /// ### default constructor
+    /// #### Arguments
     /// * `init_expr` - initial expression for rewriting
-    /// ## Return
+    /// #### Return
     /// * `None`
     pub fn new(expr: String) -> Self {
         ContextGrammar {
@@ -37,10 +37,10 @@ impl<'a> ContextGrammar {
         }
     }
 
-    /// ## member function to set egraph and root_eclasses
-    /// ## Argument
+    /// ### member function to set egraph and root_eclasses
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `None`
     pub fn setup(&mut self) {
         /* parse initial expression and create initial e-graph */
@@ -96,38 +96,38 @@ impl<'a> ContextGrammar {
         return;
     }
 
-    /// ## member function to get an reference to egraph
-    /// ## Argument
+    /// ### member function to get an reference to egraph
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `egraph` - egraph
     pub fn get_egraph(&self) -> &MathEGraph { return &self.egraph; }
 
-    /// ## member function to get root eclasses
-    /// ## Argument
+    /// ### member function to get root eclasses
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `root_ecls` - root eclass(es) from egraph
     pub fn get_root_ecls(&self) -> &Vec<Id> { return &self.root_ecls; }
 
-    /// ## member function to get skip eclasses
-    /// ## Argument
+    /// ### member function to get skip eclasses
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `skip_ecls` - skip eclass(es) from egraph
     pub fn get_skip_ecls(&self) -> &HashMap<String, f64> { return &self.skip_ecls; }
 
-    /// ## member function to get grammars
-    /// ## Argument
+    /// ### member function to get grammars
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `grammar` - grammars created from egraph
     pub fn get_grammar(&self) -> &HashMap<String, Vec<String>> { return &self.grammar; }
 
-    /// ## member function to get the initial rewrite from self
-    /// ## Argument
+    /// ### member function to get the initial rewrite from self
+    /// #### Argument
     /// * `self`
-    /// ## Return
+    /// #### Return
     /// * `init_rw` - initial rewrite rule(s)
     pub fn get_init_rw(&self) -> &Vec<String> { return &self.init_rw; }
 }

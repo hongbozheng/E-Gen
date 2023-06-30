@@ -2,7 +2,7 @@ use crate::*;
 use bincode::{serialize, deserialize};
 use std::io::{Read, Write};
 use std::net::TcpStream;
-use std::process::{self, exit};
+use std::process::{self, Command, exit};
 use std::sync::{Arc, Mutex};
 use std::thread;
 
@@ -331,6 +331,37 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
 }
 
+/// ### public function to set global max # of threads for extraction
+/// ### MAX_NUM_THREADS = floor(MAX # of THREADS of the OS x MAX_NUM_THREADS_PCT)
+/// #### Argument
+/// * `None`
+/// #### Return
+/// * `None`
+pub fn set_max_num_threads() {
+    let cmd_output = match Command::new("cat").arg("/proc/sys/kernel/threads-max").output() {
+        Ok(cmd_output) => { cmd_output },
+        Err(e) => {
+            log_error("Failed to get max OS threads.\n");
+            exit(1);
+        },
+    };
+
+    let mut max_os_threads_str = String::from_utf8_lossy(&cmd_output.stdout).to_string();
+    max_os_threads_str.pop();
+
+    let max_os_threads = match max_os_threads_str.parse::<u32>() {
+        Ok(max_os_threads) => max_os_threads,
+        Err(e) => {
+            log_error(&format!("Failed to parse {} with error {}.\n", max_os_threads_str, e));
+            exit(1);
+        }
+    };
+
+    unsafe { MAX_NUM_THREADS = Some(Arc::new(Mutex::new((max_os_threads as f64 * THD_PCT).floor() as u32))); }
+
+    return;
+}
+
 /// ### public function to start extracting equivalent expressions
 /// #### Argument
 /// * `args` command line arguments for hyperparameters
@@ -374,7 +405,10 @@ pub fn extract(args: &Vec<String>) {
     /* setup global variables */
     unsafe {
         /* TODO: SET MAX NUM THREADS HERE !!!!! */
-        MAX_NUM_THREADS = Some(Arc::new(Mutex::new(100000u32)));
+        if let CmdLineArg::Float(thd_pct) = &cli[1] {
+            THD_PCT = *thd_pct;
+        }
+        set_max_num_threads();
         if let CmdLineArg::UInt(max_rw_len) = &cli[2] {
             MAX_RW_LEN = *max_rw_len;
         }
