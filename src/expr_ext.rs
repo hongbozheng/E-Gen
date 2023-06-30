@@ -1,11 +1,11 @@
 use crate::*;
-use std::net::{TcpStream, SocketAddr};
-use std::io::{Read, Write};
+use bincode::{serialize, deserialize};
 use std::error::Error;
-use std::process;
+use std::io::{Read, Write};
+use std::net::TcpStream;
+use std::process::{self, exit};
 use std::sync::{Arc, Mutex};
 use std::thread;
-use bincode::{serialize, deserialize};
 
 /// max # of threads can be used (not max # of OS threads)
 static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
@@ -45,13 +45,6 @@ pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
 /// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
 pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
     return EQUIV_EXPRS.as_ref().unwrap();
-}
-
-fn deserialize_data(serialized_data: &[u8]) -> Result<Data, Box<dyn Error>> {
-    match bincode::deserialize::<Data>(serialized_data) {
-        Ok(data) => Ok(data),
-        Err(err) => Err(Box::new(err)),
-    }
 }
 
 /// ## private member function to check if an eclass appears in str
@@ -110,6 +103,7 @@ fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
             break;
         }
     }
+    return;
 }
 
 /// ## private function to check if any eclass is in str
@@ -332,42 +326,43 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
 /// * `None`
 pub fn extract(args: &Vec<String>) {
     let cli: Vec<CmdLineArg> = args.iter().map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
-    println!("{:?}", cli);
 
+    let pid = process::id();
     let mut skip_ecls: HashMap<String, f64> = Default::default();
     let mut grammar: HashMap<String, Vec<String>> = Default::default();
 
+    /* receive data from parent process */
     match TcpStream::connect(&args[5]) {
         Ok(mut stream) => {
-            println!("Successfully connected to server in {}", args[5]);
-
-            let mut data: Vec<u8> = vec![];
-
-            match stream.read_to_end(&mut data) {
+            let mut data_bytes: Vec<u8> = vec![];
+            match stream.read_to_end(&mut data_bytes) {
                 Ok(_) => {
-                    let data = deserialize_data(&data).unwrap();
+                    let data: Data = match deserialize(&data_bytes) {
+                        Ok(data) => { data },
+                        Err(e) => {
+                            log_error(&format!("Child process {} failed to deserialize data received from parent process with error {}.\n", pid, e));
+                            exit(1);
+                        },
+                    };
                     skip_ecls = data.skip_ecls.into_iter().collect();
                     grammar = data.grammar.into_iter().collect();
                 },
                 Err(e) => {
-                    println!("Failed to receive data: {}", e);
-                    log_error(&format!("Child process {:?} failed to receive data from parent process {} with error {}", &stream.peer_addr(), &args[5], e));
+                    log_error(&format!("Child process {} failed to receive data at socket address {:?} from parent process socket address {:?} with error {}.\n", pid, &stream.local_addr(), &stream.peer_addr(), e));
+                    exit(1);
                 }
             }
-
-            // println!("sending ACK back to parent");
-            // if let Err(err) = stream.write(b"ACK") {
-            //     println!("Error sending data: {}", err);
-            // }
         },
         Err(e) => {
-            log_error(&format!("Failed to connect to parent process {} with error {}.\n", &args[5], e));
-            // exit(1);
+            log_error(&format!("Child process {} failed to connect to parent process socket address {:?} with error {}.\n", pid, &args[5], e));
+            exit(1);
         },
     }
 
     /* setup global variables */
     unsafe {
+        /* TODO: SET MAX NUM THREADS HERE !!!!! */
+        MAX_NUM_THREADS = Some(Arc::new(Mutex::new(100000u32)));
         if let CmdLineArg::UInt(max_rw_len) = &cli[2] {
             MAX_RW_LEN = *max_rw_len;
         }
@@ -379,51 +374,46 @@ pub fn extract(args: &Vec<String>) {
 
         let equiv_exprs = Arc::new(Mutex::new(vec![]));
         EQUIV_EXPRS = Some(equiv_exprs);
-
-        MAX_NUM_THREADS = Some(Arc::new(Mutex::new(100000u32)));
-
-        // println!("{:?}", SKIP_ECLS);
-        // println!("{:?}", GRAMMAR);
-        // println!("{} {}", MAX_RW_LEN, EXHAUSTIVE);
     }
 
-    let init_rw: &str = &cli[4].to_string();
+    let init_rw: String = cli[4].to_string();
     unsafe {
         /* start extraction */
-        optimized_extract(init_rw.to_string(), 0);
+        if EXHAUSTIVE {
+            exhaustive_extract(init_rw, 0)
+        } else {
+            optimized_extract(init_rw, 0);
+        }
 
+        /* post-processing equivalent expressions */
         let mut equiv_exprs = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone();
         let mut set = HashSet::default();
         equiv_exprs.retain(|e| set.insert(e.clone()));
 
         /* send results back to parent process */
-        match TcpStream::connect("127.0.0.1:8081") {
+        match TcpStream::connect(&args[6]) {
             Ok(mut stream) => {
-                println!("Successfully connected to server in {} again", args[5]);
-                let equiv_exprs_serialized = serialize(&equiv_exprs).unwrap();
-
-                if let Err(err) = stream.write_all(&equiv_exprs_serialized) {
-                    log_error(&format!("Failed to send data back to parent process with error {}.\n", err));
+                let equiv_exprs_bytes = match serialize(&equiv_exprs) {
+                    Ok(equiv_exprs_bytes) => { equiv_exprs_bytes },
+                    Err(e) => {
+                        log_error(&format!("Child process {} failed to serialize equivalent expressions with error {}.\n", pid, e));
+                        exit(1);
+                    },
+                };
+                match stream.write_all(&equiv_exprs_bytes) {
+                    Ok(_) => { log_debug(&format!("Child process {} sent results at socket address {:?} to parent process socket address {:?} successfully.\n", pid, &stream.local_addr(), &stream.peer_addr())); },
+                    Err(e) => {
+                        log_error(&format!("Child process {} failed to send results at socket address {:?} to parent process socket address {:?} with error {}.\n", pid, &stream.local_addr(), &stream.peer_addr(), e));
+                        exit(1);
+                    },
                 }
             },
             Err(e) => {
-                println!("Failed to connect: {}", e);
+                log_error(&format!("Child process {} failed to connect to parent process socket address {:?} with error {}.\n", pid, &args[6], e));
+                exit(1);
             },
         }
     }
-
-    // unsafe {
-    //     let mut equiv_exprs = EQUIV_EXPRS.as_ref().clone().unwrap().lock().unwrap();
-    //     equiv_exprs.sort_unstable();
-    //     equiv_exprs.dedup();
-    //     for expr in equiv_exprs.iter() {
-    //         log_info(&format!("{}\n", expr));
-    //     }
-    // }
-
-    println!("Terminated.");
-    let pid = process::id();
-    println!("PID: {} Terminated.", pid);
 
     return;
 }

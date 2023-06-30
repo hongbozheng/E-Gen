@@ -1,5 +1,6 @@
 use crate::*;
-use libc::{c_int, cpu_set_t, CPU_SET, sched_setaffinity, pid_t};
+use bincode::{serialize, deserialize};
+use libc::{c_int, cpu_set_t, CPU_SET, pid_t, sched_setaffinity};
 use num_cpus;
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
@@ -36,32 +37,36 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `None`
-pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
+pub fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", expr));
     let mut ctx_gr = ContextGrammar::new(expr);
     ctx_gr.setup();
     let init_rw = &ctx_gr.init_rw.clone();
-    println!("{:?}", init_rw);
-    println!("{}", init_rw.len());
 
     /* get number of processes */
     let num_proc = init_rw.len();
 
     /* tx listener */
     let tx_addr = "127.0.0.1:8080";
-    let tx_listener = TcpListener::bind(&tx_addr).unwrap_or_else(|_| {
-        log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", tx_addr));
-        exit(1)
-    });
+    let tx_listener = match TcpListener::bind(&tx_addr) {
+        Ok(tx_listener) => { tx_listener },
+        Err(e) => {
+            log_error(&format!("[ERROR]: Failed to bind IP address \"{}\" with error {}.\n", tx_addr, e));
+            exit(1);
+        },
+    };
 
     /* rx listener */
     let rx_addr = "127.0.0.1:8081";
-    let rx_listener = TcpListener::bind(&rx_addr).unwrap_or_else(|_| {
-        log_error(&format!("[ERROR]: Failed to bind IP address \"{}\"\n.", rx_addr));
-        exit(1)
-    });
+    let rx_listener = match TcpListener::bind(&rx_addr) {
+        Ok(rx_listener) => { rx_listener },
+        Err(e) => {
+            log_error(&format!("Failed to bind IP address \"{}\" with error {}.\n", rx_addr, e));
+            exit(1);
+        },
+    };
 
     /* insert socket address & get CPU's number of logical cores */
     cli.push(CmdLineArg::String(tx_addr.to_string()));
@@ -118,12 +123,15 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
                         grammar,
                     };
 
-                    let data_serialized = bincode::serialize(&data).unwrap_or_else(|_| {
-                        log_error(&format!("Failed to serialize data sending to child process {:?}.\n", stream.peer_addr()));
-                        exit(1);
-                    });
+                    let data_bytes = match serialize(&data) {
+                        Ok(data_bytes) => { data_bytes },
+                        Err(e) => {
+                            log_error(&format!("Failed to serialize data with error {}.\n", e));
+                            exit(1);
+                        },
+                    };
 
-                    match stream.write_all(&data_serialized) {
+                    match stream.write_all(&data_bytes) {
                         Ok(_) => {
                             num_acks += 1;
                             log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
@@ -153,18 +161,21 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
     for stream in rx_listener.incoming() {
         match stream {
             Ok(mut stream) => {
-                let mut equiv_exprs_proc: Vec<u8> = vec![];
-                match stream.read_to_end(&mut equiv_exprs_proc) {
+                let mut equiv_exprs_bytes: Vec<u8> = vec![];
+                match stream.read_to_end(&mut equiv_exprs_bytes) {
                     Ok(_) => {
-                        let mut equiv_exprs_proc: Vec<String> = bincode::deserialize(&equiv_exprs_proc).unwrap_or_else(|_| {
-                            log_error(&format!("Failed to deserialize data receiving from child process {:?}.\n", stream.peer_addr()));
-                            exit(1);
-                        });
+                        let mut equiv_exprs_proc = match deserialize(&equiv_exprs_bytes) {
+                            Ok(equiv_exprs_proc) => { equiv_exprs_proc },
+                            Err(e) => {
+                                log_error(&format!("Failed to deserialize data received from child process with error {}.\n", e));
+                                exit(1);
+                            },
+                        };
                         equiv_exprs.append(&mut equiv_exprs_proc);
                         num_acks += 1;
                     },
                     Err(e) => {
-                        log_error(&format!("Failed to receive data from child process {:?} with error {}.\n", stream.peer_addr(), e));
+                        log_error(&format!("Failed to receive data from child process socket address {:?} with error {}.\n", stream.peer_addr(), e));
                         exit(1);
                     },
                 }
@@ -192,9 +203,14 @@ pub fn generate_expr(cli: &mut Vec<CmdLineArg>) {
         }
     }
 
+    /* post-processing equivalent expressions */
+    let mut set = HashSet::default();
+    equiv_exprs.retain(|e| set.insert(e.clone()));
     for expr in equiv_exprs {
         log_info(&format!("{}\n", expr));
     }
+
+    return;
 }
 
 pub fn generate_file(input_filename: &str, output_filename: &str) {
@@ -233,13 +249,14 @@ pub fn generate_file(input_filename: &str, output_filename: &str) {
 
 pub fn generate(args: &Vec<String>) {
     let mut cli = parse_args(&args);
-    println!("{:?}", cli);
+
     if cli.len() == 4 {
-        generate_expr(&mut cli);
+        generate_exprs(&mut cli);
     } 
     // else {
     //     let input_filename = cli.get("input_filename").unwrap();
     //     let output_filename = cli.get("output_filename").unwrap();
     //     generate_file(input_filename, output_filename);
     // }
+    return;
 }
