@@ -80,32 +80,34 @@ Example:
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
 
-## Context-Grammar (Rust)
+## Equivalent Expressions Generation (Rust)
+#### Command-Line Application
+Build the command-line application as follows:
+```
+cargo clean && cargo build
+```
+The above command will create 2 binary executable files `egg` and `multiproc` under `/target/debug`
 
-#### Check Command Line Input (CLI)
+#### Run the command-line application
+##### Check command line input help
 ```
-cargo run -- -h
+cargo run --bin egg
 ```
-
-#### Test Context-Sensitive Grammar
+##### Provide 1 input expression and equivalent expressions will be printed to terminal
 ```
-cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
+cargo run --bin egg -e <expression>
 ```
-* `<csg>` context-sensitive grammar flag, use `1`
-* `<de>` debug flag
-  * `1` -> enable
-  * `0` -> disable
-* `<max rewrite length>` maximum rewrite length, default length = `25`
-
-#### Test Context-Free Grammar
+##### Provide a file with multiple expressions and a file to store all equivalent expressions
 ```
-cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
+cargo run --bin egg -i <input filepath> -o <output filepath>
 ```
-* `<csg>` context-sensitive grammar flag, use `0`
-* `<de>` debug flag
-  * `1` -> enable
-  * `0` -> disable
-* `<max rewrite length>` maximum rewrite length, default length = `25`
+##### Other optional hyperparameters
+```
+cargo run --bin egg -t <thd pct> -l <max rw len> -f <csg flag>
+```
+* `<thd pct>` - OS thread percentage
+* `<max rw len>` - maximum rw length
+* `<exhaustive>` exhaustive extraction flag
 
 ## Context-Grammar (Python)
 
@@ -121,7 +123,7 @@ cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
 ```
 `<csg>` context-sensitive grammar flag, use `0`
 
-#### Log Level Flag in `config.py`
+## Log Level Flag in `config.rs` or `config.py`
 change `log_level = logger.LogLevel.XXXXX`
 * `all = 6`
 * `trace = 5`

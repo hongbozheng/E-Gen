@@ -55,7 +55,7 @@ impl CmdLineArg {
 /// #### Return
 /// * `None`
 fn help() {
-    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <max rw len>     [-f] <csg flag>\n");
+    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <max rw len>     [-f] <exhaustive flag>\n");
     log_info_raw("[USAGE]:           [-e] <expr>    [-i] <input filepath> [-o] <output filepath>\n");
     log_info_raw("[USAGE]: <thd pct>    -> OS thread percentage\n");
     log_info_raw("[USAGE]:  type        -> float64\n");
@@ -65,12 +65,12 @@ fn help() {
     log_info_raw("[USAGE]:  type        -> uint8\n");
     log_info_raw("[USAGE]:  default      = 25\n");
     log_info_raw("[USAGE]:  required    -> false\n");
-    log_info_raw("[USAGE]: <csg flag>   -> context-sensitive grammar flag\n");
-    log_info_raw("[USAGE]:  type        -> uint8\n");
-    log_info_raw("[USAGE]:  default      = 0\n");
-    log_info_raw("[USAGE]:  required    -> false\n");
-    log_info_raw("[USAGE]:  0 -> false, run context-free grammar\n");
-    log_info_raw("[USAGE]:  1 -> true,  run context-sensitive grammar\n");
+    log_info_raw("[USAGE]: <exhaustive flag> -> exhaustive extraction flag\n");
+    log_info_raw("[USAGE]:  type             -> uint8\n");
+    log_info_raw("[USAGE]:  default           = 0\n");
+    log_info_raw("[USAGE]:  required         -> false\n");
+    log_info_raw("[USAGE]:  0 -> false, run optimized extraction\n");
+    log_info_raw("[USAGE]:  1 -> true,  run exhaustive extraction\n");
     log_info_raw("[USAGE]: <expr>            -> initial expression\n");
     log_info_raw("[USAGE]:  type             -> &str\n");
     log_info_raw("[USAGE]:  default           = None\n");
