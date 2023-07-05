@@ -1,7 +1,7 @@
 use crate::*;
 use std::process::exit;
 
-#[derive(Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 /// Command line arguments struct
 pub enum CmdLineArg {
     /// exhaustive extraction flag
