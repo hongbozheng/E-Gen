@@ -404,7 +404,6 @@ pub fn extract(args: &Vec<String>) {
 
     /* setup global variables */
     unsafe {
-        /* TODO: SET MAX NUM THREADS HERE !!!!! */
         if let CmdLineArg::Float(thd_pct) = &cli[1] {
             THD_PCT = *thd_pct;
         }

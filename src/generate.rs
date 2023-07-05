@@ -4,9 +4,9 @@ use libc::{c_int, cpu_set_t, CPU_SET, pid_t, sched_setaffinity};
 use num_cpus;
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
-use std::fs::{File, OpenOptions};
+use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Read, Write};
-use std::mem::{zeroed, size_of};
+use std::mem::{size_of, zeroed};
 use std::net::TcpListener;
 use std::process::{Child, Command, exit};
 use std::thread;
@@ -32,12 +32,13 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
     sched_setaffinity(pid, size_of::<cpu_set_t>(), &cpuset)
 }
 
-/// ### public function to start extraction of a single expression
+/// ### private function generate equivalent expressions
+/// ### with 1 input expression
 /// #### Argument
 /// * `cli` - pre-processed command line arguments
 /// #### Return
-/// * `None`
-fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
+/// * `equiv_expr` - Vec<String> of equivalent expressions
+fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", expr));
@@ -104,13 +105,13 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
 
     /* send data to all children processes through sockets */
     let handle = thread::spawn(move || {
-        match tx_listener.set_nonblocking(true) {
-            Ok(_) => { log_debug("Non-blocking mode set successfully.\n"); },
-            Err(e) => {
-                log_error(&format!("Failed to set non-blocking mode with error {}.\n", e));
-                exit(1);
-            },
-        }
+        // match tx_listener.set_nonblocking(true) {
+        //     Ok(_) => { log_debug("Non-blocking mode set successfully.\n"); },
+        //     Err(e) => {
+        //         log_error(&format!("Failed to set non-blocking mode with error {}.\n", e));
+        //         exit(1);
+        //     },
+        // }
 
         for stream in tx_listener.incoming() {
             match stream {
@@ -148,7 +149,10 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
                 }
             }
 
-            if num_acks as usize == num_proc { break; }
+            if num_acks as usize == num_proc {
+                drop(tx_listener);
+                break;
+            }
         }
     });
 
@@ -188,6 +192,8 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
         if num_acks as usize == num_proc { break; }
     }
 
+    drop(rx_listener);
+
     /* check if all children processes exit successfully */
     for child_proc in &mut child_procs {
         let pid = child_proc.id();
@@ -206,57 +212,109 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) {
     /* post-processing equivalent expressions */
     let mut set = HashSet::default();
     equiv_exprs.retain(|e| set.insert(e.clone()));
-    for expr in equiv_exprs {
+    for expr in &equiv_exprs {
         log_info(&format!("{}\n", expr));
     }
 
-    return;
+    return equiv_exprs;
 }
 
-fn generate_file(input_filename: &str, output_filename: &str) {
+/// ### private function to generate equivalent expressions
+/// ### with expressions from an input file
+/// #### Argument
+/// * `cli` - pre-processed command line arguments
+/// #### Return
+/// * `None`
+fn generate_file(cli: &mut Vec<CmdLineArg>) {
     // Open the input file and create output file
-    let input_file = File::open(input_filename)
-        .expect(&format!("[ERROR]: Failed to open input file \"{}\".", input_filename));
-    let output_file = File::create(output_filename)
-        .expect(&format!("[ERROR]: Failed to create output file \"{}\".", output_filename));
+    let input_file = match File::open(&cli[3].to_string()) {
+        Ok(input_file) => { input_file },
+        Err(e) => {
+            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[3].to_string(), e));
+            exit(1);
+        },
+    };
+
+    let output_file = match File::create(&cli[4].to_string()) {
+        Ok(output_file) => { output_file },
+        Err(e) => {
+            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[4].to_string(), e));
+            exit(1);
+        },
+    };
 
     // Create buffered reader and writer for the input and output files
     let reader = BufReader::new(input_file);
     let mut writer = BufWriter::new(output_file);
 
+    cli.pop();
+
     for expr in reader.lines() {
-        let expr = expr.expect("[ERROR]: Error reading line from file.");
+        let expr = match expr {
+            Ok(expr) => { expr },
+            Err(e) => {
+                log_error(&format!("Error reading line from file with error {}.\n", e));
+                exit(1);
+            },
+        };
+        match writeln!(writer, "{}", &expr) {
+            Ok(_) => {},
+            Err(e) => {
+                log_error(&format!("Failed to write expr {} into output file with error {}.\n", expr, e));
+                exit(1);
+            },
+        };
 
-        log_info(&format!("Expression: {}\n", expr));
-        let mut ctx_gr = ContextGrammar::new(expr);
+        cli[3] = cli::CmdLineArg::String(expr);
+        let equiv_exprs = generate_exprs(cli);
 
-        /* create egraph, skip_ecls, grammar, init_rewrite */
-        ctx_gr.setup();
+        for expr in &equiv_exprs {
+            match writeln!(writer, "{}", expr) {
+                Ok(_) => {},
+                Err(e) => {
+                    log_error(&format!("Failed to write expr {} into output file with error {}.\n", expr, e));
+                    exit(1);
+                },
+            };
+        }
+        match writeln!(writer, "") {
+            Ok(_) => {},
+            Err(e) => {
+                log_error(&format!("Failed to write \"\" into output file with error {}.\n", e));
+                exit(1);
+            },
+        };
 
-        let root_ecls = &ctx_gr.root_ecls.clone();
-        println!("{:?}", root_ecls);
-
-        /* TODO: Start multiprocessing here */
-        // Step 3. get the root-eclass id
-        // Step 4. get all the root-enodes in root-eclass
-        // Step 5. create # of processes based on
-        //         # of root-enodes or # of CPUs
-        // Step 6. create corresponding # of socket addresses
-        // Step 7. create connections with children processes multi-threading
-        // Step 8. send hyperparameters & hashmap to all children processes
+        match writer.flush() {
+            Ok(_) => {},
+            Err(e) => {
+                log_error(&format!("Failed to flush writer with error {}.\n", e));
+                exit(1);
+            },
+        }
     }
+
+    match writer.flush() {
+        Ok(_) => {},
+        Err(e) => {
+            log_error(&format!("Failed to flush writer with error {}.\n", e));
+            exit(1);
+        },
+    }
+
+    return;
 }
 
+/// ### public function to start generating equivalent expressions
+/// #### Argument
+/// * `args` - raw command line arguments
+/// #### Return
+/// * `None`
 pub fn generate(args: &Vec<String>) {
     let mut cli = parse_args(&args);
 
-    if cli.len() == 4 {
-        generate_exprs(&mut cli);
-    } 
-    // else {
-    //     let input_filename = cli.get("input_filename").unwrap();
-    //     let output_filename = cli.get("output_filename").unwrap();
-    //     generate_file(input_filename, output_filename);
-    // }
+    if cli.len() == 4 { generate_exprs(&mut cli); }
+    else { generate_file(&mut cli); }
+
     return;
 }
