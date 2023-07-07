@@ -1,5 +1,5 @@
 use crate::*;
-use std::process::{Command, exit};
+use std::process::exit;
 use std::sync::{Arc, Mutex};
 
 /// ### public function to set global max str len of rewrite
