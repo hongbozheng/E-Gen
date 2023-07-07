@@ -341,7 +341,7 @@ pub fn set_max_num_threads() {
     let cmd_output = match Command::new("cat").arg("/proc/sys/kernel/threads-max").output() {
         Ok(cmd_output) => { cmd_output },
         Err(e) => {
-            log_error("Failed to get max OS threads.\n");
+            log_error(&format!("Failed to get max OS threads with error {}.\n", e));
             exit(1);
         },
     };
@@ -374,7 +374,7 @@ pub fn extract(args: &Vec<String>) {
     let mut skip_ecls: HashMap<String, f64> = Default::default();
     let mut grammar: HashMap<String, Vec<String>> = Default::default();
 
-    /* receive data from parent process */
+    /* receive data (skip_ecls & grammar) from parent process */
     match TcpStream::connect(&args[5]) {
         Ok(mut stream) => {
             let mut data_bytes: Vec<u8> = vec![];
@@ -436,7 +436,7 @@ pub fn extract(args: &Vec<String>) {
         equiv_exprs.retain(|e| set.insert(e.clone()));
 
         /* send results back to parent process */
-        match TcpStream::connect(&args[6]) {
+        match TcpStream::connect(&args[5]) {
             Ok(mut stream) => {
                 let equiv_exprs_bytes = match serialize(&equiv_exprs) {
                     Ok(equiv_exprs_bytes) => { equiv_exprs_bytes },

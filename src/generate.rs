@@ -9,7 +9,6 @@ use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::mem::{size_of, zeroed};
 use std::net::TcpListener;
 use std::process::{Child, Command, exit};
-use std::thread;
 
 #[derive(Debug, Serialize, Deserialize)]
 /// data for extraction
@@ -49,29 +48,18 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     /* get number of processes */
     let num_proc = init_rw.len();
 
-    /* tx listener */
-    let tx_addr = "127.0.0.1:8080";
-    let tx_listener = match TcpListener::bind(&tx_addr) {
-        Ok(tx_listener) => { tx_listener },
+    /* tx & rx listener */
+    let addr = "127.0.0.1:8080";
+    let listener = match TcpListener::bind(&addr) {
+        Ok(listener) => { listener },
         Err(e) => {
-            log_error(&format!("[ERROR]: Failed to bind IP address \"{}\" with error {}.\n", tx_addr, e));
-            exit(1);
-        },
-    };
-
-    /* rx listener */
-    let rx_addr = "127.0.0.1:8081";
-    let rx_listener = match TcpListener::bind(&rx_addr) {
-        Ok(rx_listener) => { rx_listener },
-        Err(e) => {
-            log_error(&format!("Failed to bind IP address \"{}\" with error {}.\n", rx_addr, e));
+            log_error(&format!("[ERROR]: Failed to bind IP address \"{}\" with error {}.\n", addr, e));
             exit(1);
         },
     };
 
     /* insert socket address & get CPU's number of logical cores */
-    cli.push(CmdLineArg::String(tx_addr.to_string()));
-    cli.push(CmdLineArg::String(rx_addr.to_string()));
+    cli.push(CmdLineArg::String(addr.to_string()));
     let num_logical_cores = num_cpus::get();
 
     /* spawn children processes & set process affinity */
@@ -95,7 +83,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
                 child_proc
             },
             Err(e) => {
-                log_error(&format!("[ERROR]: Failed to spawn child process with error {}.\n", e));
+                log_error(&format!("Failed to spawn child process with error {}.\n", e));
                 exit(1);
             },
         }
@@ -104,65 +92,50 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     let mut num_acks: u8 = 0u8;
 
     /* send data to all children processes through sockets */
-    let handle = thread::spawn(move || {
-        // match tx_listener.set_nonblocking(true) {
-        //     Ok(_) => { log_debug("Non-blocking mode set successfully.\n"); },
-        //     Err(e) => {
-        //         log_error(&format!("Failed to set non-blocking mode with error {}.\n", e));
-        //         exit(1);
-        //     },
-        // }
+    for stream in listener.incoming() {
+        match stream {
+            Ok(mut stream) => {
+                let skip_ecls = ctx_gr.skip_ecls.clone();
+                let grammar = ctx_gr.grammar.clone();
 
-        for stream in tx_listener.incoming() {
-            match stream {
-                Ok(mut stream) => {
-                    let skip_ecls = ctx_gr.skip_ecls.clone();
-                    let grammar = ctx_gr.grammar.clone();
+                let data: Data = Data {
+                    skip_ecls,
+                    grammar,
+                };
 
-                    let data: Data = Data {
-                        skip_ecls,
-                        grammar,
-                    };
+                let data_bytes = match serialize(&data) {
+                    Ok(data_bytes) => { data_bytes },
+                    Err(e) => {
+                        log_error(&format!("Failed to serialize data with error {}.\n", e));
+                        exit(1);
+                    },
+                };
 
-                    let data_bytes = match serialize(&data) {
-                        Ok(data_bytes) => { data_bytes },
-                        Err(e) => {
-                            log_error(&format!("Failed to serialize data with error {}.\n", e));
-                            exit(1);
-                        },
-                    };
-
-                    match stream.write_all(&data_bytes) {
-                        Ok(_) => {
-                            num_acks += 1;
-                            log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
-                        },
-                        Err(e) => {
-                            log_error(&format!("Failed to send data to child process {:?} with error {}.\n", stream.peer_addr(), e));
-                            exit(1);
-                        },
-                    }
-                }
-                Err(e) => {
-                    log_error(&format!("Failed to connect to child process with error {}.\n", e));
-                    exit(1);
+                match stream.write_all(&data_bytes) {
+                    Ok(_) => {
+                        num_acks += 1;
+                        log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
+                    },
+                    Err(e) => {
+                        log_error(&format!("Failed to send data to child process {:?} with error {}.\n", stream.peer_addr(), e));
+                        exit(1);
+                    },
                 }
             }
-
-            if num_acks as usize == num_proc {
-                drop(tx_listener);
-                break;
+            Err(e) => {
+                log_error(&format!("Failed to connect to child process with error {}.\n", e));
+                exit(1);
             }
         }
-    });
 
-    handle.join().unwrap();
+        if num_acks as usize == num_proc { break; }
+    }
 
     num_acks = 0u8;
     let mut equiv_exprs: Vec<String> = vec![];
 
     /* receive equivalent expressions from all children processes */
-    for stream in rx_listener.incoming() {
+    for stream in listener.incoming() {
         match stream {
             Ok(mut stream) => {
                 let mut equiv_exprs_bytes: Vec<u8> = vec![];
@@ -189,10 +162,11 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
                 exit(1);
             }
         }
-        if num_acks as usize == num_proc { break; }
+        if num_acks as usize == num_proc {
+            drop(listener);
+            break;
+        }
     }
-
-    drop(rx_listener);
 
     /* check if all children processes exit successfully */
     for child_proc in &mut child_procs {
@@ -212,9 +186,6 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     /* post-processing equivalent expressions */
     let mut set = HashSet::default();
     equiv_exprs.retain(|e| set.insert(e.clone()));
-    for expr in &equiv_exprs {
-        log_info(&format!("{}\n", expr));
-    }
 
     return equiv_exprs;
 }
@@ -226,15 +197,14 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
 /// #### Return
 /// * `None`
 fn generate_file(cli: &mut Vec<CmdLineArg>) {
-    // Open the input file and create output file
-    let input_file = match File::open(&cli[3].to_string()) {
+    /* Open the input file and create output file */
+    let input_file = match File::options().read(true).write(false).open(&cli[3].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
             log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[3].to_string(), e));
             exit(1);
         },
     };
-
     let output_file = match File::create(&cli[4].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
@@ -243,13 +213,14 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
         },
     };
 
-    // Create buffered reader and writer for the input and output files
-    let reader = BufReader::new(input_file);
-    let mut writer = BufWriter::new(output_file);
+    /* Create buffered reader and writer for the input and output files */
+    let reader = BufReader::new(&input_file);
+    let mut writer = BufWriter::new(&output_file);
 
     cli.pop();
 
     for expr in reader.lines() {
+        /* read 1 expression and write into output file */
         let expr = match expr {
             Ok(expr) => { expr },
             Err(e) => {
@@ -265,9 +236,11 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
             },
         };
 
+        /* start extraction and get equivalent expressions */
         cli[3] = cli::CmdLineArg::String(expr);
         let equiv_exprs = generate_exprs(cli);
 
+        /* write equivalent expressions into output file */
         for expr in &equiv_exprs {
             match writeln!(writer, "{}", expr) {
                 Ok(_) => {},
@@ -285,6 +258,7 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
             },
         };
 
+        /* flush the output stream */
         match writer.flush() {
             Ok(_) => {},
             Err(e) => {
@@ -294,6 +268,7 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
         }
     }
 
+    /* flush the output stream */
     match writer.flush() {
         Ok(_) => {},
         Err(e) => {
@@ -301,6 +276,26 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
             exit(1);
         },
     }
+
+    /* sync all OS-internal metadata to disk */
+    match input_file.sync_all() {
+        Ok(_) => {},
+        Err(e) => {
+            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[3].to_string(), e));
+            exit(1);
+        },
+    }
+    match output_file.sync_all() {
+        Ok(_) => {},
+        Err(e) => {
+            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[4].to_string(), e));
+            exit(1);
+        },
+    }
+
+    /* clean up file descriptors */
+    drop(input_file);
+    drop(&output_file);
 
     return;
 }
@@ -313,7 +308,12 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 pub fn generate(args: &Vec<String>) {
     let mut cli = parse_args(&args);
 
-    if cli.len() == 4 { generate_exprs(&mut cli); }
+    if cli.len() == 4 {
+        let equiv_exprs = generate_exprs(&mut cli);
+        for expr in &equiv_exprs {
+            log_info(&format!("{}\n", expr));
+        }
+    }
     else { generate_file(&mut cli); }
 
     return;
