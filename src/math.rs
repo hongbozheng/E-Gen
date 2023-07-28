@@ -388,10 +388,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx c"; "(d ?x c)" => "0"),
         /* generalized chain rule */
         rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
-        rw!("d/dx f(x)^c"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
+        rw!("d/dx f(x)^const"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
         /* distributive property */
         rw!("d/dx c*f(x)"; "(d ?x (* ?c ?f))" => "(* ?c (d ?x ?f))" if is_const("?c")),
-        rw!("d/dx c*f(x)"; "(d ?x (* c ?f))" => "(* c (d ?x ?f))"),
+        rw!("d/dx const*f(x)"; "(d ?x (* c ?f))" => "(* c (d ?x ?f))"),
         rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?f ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
         rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
         /* polynomial */
