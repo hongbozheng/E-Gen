@@ -27,9 +27,9 @@ pub fn rm_permutation(equiv_exprs: &mut Vec<String>) {
     let mut i = 0;
 
     while i < equiv_exprs.len() {
-        let mut tokens: Vec<String> = equiv_exprs[i].split_whitespace().collect();
+        let mut tokens: Vec<&str> = equiv_exprs[i].split_whitespace().collect();
         tokens.sort();
-        let expr: String = tokens.iter().collect();
+        let expr: String = tokens.join(" ");
 
         if !equiv_exprs_distinct.contains(&expr) {
             equiv_exprs_distinct.insert(expr);
