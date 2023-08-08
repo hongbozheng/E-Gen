@@ -22,6 +22,24 @@ pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
     return;
 }
 
+pub fn rm_permutation(equiv_exprs: &mut Vec<String>) {
+    let mut equiv_exprs_distinct = HashSet::default();
+    let mut i = 0;
+
+    while i < equiv_exprs.len() {
+        let mut tokens: Vec<String> = equiv_exprs[i].split_whitespace().collect();
+        tokens.sort();
+        let expr: String = tokens.iter().collect();
+
+        if !equiv_exprs_distinct.contains(&expr) {
+            equiv_exprs_distinct.insert(expr);
+            i += 1;
+        } else {
+            equiv_exprs.remove(i);
+        }
+    }
+}
+
 /// ### public function to print the type of a variable
 /// #### Argument
 /// * `_` - reference of any variable

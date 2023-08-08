@@ -184,8 +184,9 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     }
 
     /* post-processing equivalent expressions */
-    let mut set = HashSet::default();
-    equiv_exprs.retain(|e| set.insert(e.clone()));
+    // let mut set = HashSet::default();
+    // equiv_exprs.retain(|e| set.insert(e.clone()));
+    rm_permutation(&mut equiv_exprs);
 
     return equiv_exprs;
 }
