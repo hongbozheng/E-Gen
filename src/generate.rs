@@ -63,7 +63,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     let num_logical_cores = num_cpus::get();
 
     /* spawn children processes & set process affinity */
-    let mut child_procs: Vec<Child> = init_rw.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
+    let mut child_procs: Vec<Child> = init_exprs.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
         cli[3] = CmdLineArg::String(rw.clone());
 
         let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
