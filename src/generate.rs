@@ -39,14 +39,14 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// * `equiv_expr` - Vec<String> of equivalent expressions
 fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
-    let expr = cli[3].to_string();
-    log_info(&format!("Expression: {}\n", expr));
-    let mut ctx_gr = ContextGrammar::new(expr);
+    let input_expr = cli[3].to_string();
+    log_info(&format!("Expression: {}\n", input_expr));
+    let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
-    let init_rw = &ctx_gr.init_rw.clone();
+    let init_exprs = &ctx_gr.init_exprs.clone();
 
     /* get number of processes */
-    let num_proc = init_rw.len();
+    let num_proc = init_exprs.len();
 
     /* tx & rx listener */
     let addr = "127.0.0.1:8080";
@@ -95,7 +95,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     for stream in listener.incoming() {
         match stream {
             Ok(mut stream) => {
-                let skip_ecls = ctx_gr.skip_ecls.clone();
+                let skip_ecls = ctx_gr.skip_eclasses.clone();
                 let grammar = ctx_gr.grammar.clone();
 
                 let data: Data = Data {
@@ -220,25 +220,25 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 
     cli.pop();
 
-    for expr in reader.lines() {
+    for input_expr in reader.lines() {
         /* read 1 expression and write into output file */
-        let expr = match expr {
-            Ok(expr) => { expr },
+        let input_expr = match input_expr {
+            Ok(input_expr) => { input_expr },
             Err(e) => {
                 log_error(&format!("Error reading line from file with error {}.\n", e));
                 exit(1);
             },
         };
-        match writeln!(writer, "{}", &expr) {
+        match writeln!(writer, "{}", &input_expr) {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to write expr {} into output file with error {}.\n", expr, e));
+                log_error(&format!("Failed to write input expr {} into output file with error {}.\n", input_expr, e));
                 exit(1);
             },
         };
 
         /* start extraction and get equivalent expressions */
-        cli[3] = cli::CmdLineArg::String(expr);
+        cli[3] = CmdLineArg::String(input_expr);
         let equiv_exprs = generate_exprs(cli);
 
         /* write equivalent expressions into output file */

@@ -7,33 +7,33 @@ use std::collections::HashMap;
 /// grammar, initial rewrite
 pub struct ContextGrammar {
     /// initial expression to run with egraph
-    expr: String,
+    input_expr: String,
     /// egraph after running rewrite rules
     pub egraph: MathEGraph,
-    /// root eclasses of MathEGraph
-    pub root_ecls: Vec<Id>,
+    /// root eclass(es) of MathEGraph
+    pub root_eclasses: Vec<Id>,
     /// eclass(es) to skip during extract
-    pub skip_ecls: HashMap<String, f64>,
+    pub skip_eclasses: HashMap<String, f64>,
     /// grammar generated from e-graph
     pub grammar: HashMap<String, Vec<String>>,
     /// initial rw e.g. (* e0 e1)
-    pub init_rw: Vec<String>,
+    pub init_exprs: Vec<String>,
 }
 
 impl ContextGrammar {
     /// ### default constructor
     /// #### Arguments
-    /// * `init_expr` - initial expression for rewriting
+    /// * `input_expr` - initial expression for rewriting
     /// #### Return
     /// * `None`
-    pub fn new(expr: String) -> Self {
+    pub fn new(input_expr: String) -> Self {
         ContextGrammar {
-            expr,
+            input_expr,
             egraph: Default::default(),
-            root_ecls: vec![],
-            skip_ecls: Default::default(),
+            root_eclasses: vec![],
+            skip_eclasses: Default::default(),
             grammar: Default::default(),
-            init_rw: vec![],
+            init_exprs: vec![],
         }
     }
 
@@ -44,14 +44,14 @@ impl ContextGrammar {
     /// * `None`
     pub fn setup(&mut self) {
         /* parse initial expression and create initial e-graph */
-        let recexpr = self.expr.parse().unwrap();
+        let recexpr = self.input_expr.parse().unwrap();
         let runner = Runner::default().with_expr(&recexpr);
 
         /* equality saturation */
         let runner = runner.run(&math_rule());
 
         self.egraph = runner.egraph;
-        self.root_ecls = runner.roots;
+        self.root_eclasses = runner.roots;
         let eclasses = self.egraph.classes();
 
         /* setup member variables skip_ecls and grammar */
@@ -64,7 +64,7 @@ impl ContextGrammar {
                 match enodes[0].to_string().parse::<f64>() {
                     Ok(float64) => {
                         if float64 == 1.0 || float64 == 0.0 {
-                            self.skip_ecls.insert(ecls.clone(), float64);
+                            self.skip_eclasses.insert(ecls.clone(), float64);
                         }
                     },
                     Err(_) => {},
@@ -83,13 +83,13 @@ impl ContextGrammar {
         }
 
         /* setup the member variable init_rw */
-        for rc in &self.root_ecls {
+        for rc in &self.root_eclasses {
             let mut root_ecls = format!("{}{}", "e", rc);
             if self.grammar.contains_key(&*root_ecls) {
-                self.init_rw = self.grammar.get(&*root_ecls).unwrap().clone();
+                self.init_exprs = self.grammar.get(&*root_ecls).unwrap().clone();
             } else {
                 root_ecls = format!("{}{}", "e", self.egraph.find(*rc));
-                self.init_rw = self.grammar.get(&*root_ecls).unwrap().clone();
+                self.init_exprs = self.grammar.get(&*root_ecls).unwrap().clone();
             }
         }
 
@@ -107,15 +107,15 @@ impl ContextGrammar {
     /// #### Argument
     /// * `self`
     /// #### Return
-    /// * `root_ecls` - root eclass(es) from egraph
-    pub fn get_root_ecls(&self) -> &Vec<Id> { return &self.root_ecls; }
+    /// * `root_eclasses` - root eclass(es) from egraph
+    pub fn get_root_eclasses(&self) -> &Vec<Id> { return &self.root_eclasses; }
 
     /// ### member function to get skip eclasses
     /// #### Argument
     /// * `self`
     /// #### Return
-    /// * `skip_ecls` - skip eclass(es) from egraph
-    pub fn get_skip_ecls(&self) -> &HashMap<String, f64> { return &self.skip_ecls; }
+    /// * `skip_eclasses` - skip eclass(es) from egraph
+    pub fn get_skip_eclasses(&self) -> &HashMap<String, f64> { return &self.skip_eclasses; }
 
     /// ### member function to get grammars
     /// #### Argument
@@ -129,5 +129,5 @@ impl ContextGrammar {
     /// * `self`
     /// #### Return
     /// * `init_rw` - initial rewrite rule(s)
-    pub fn get_init_rw(&self) -> &Vec<String> { return &self.init_rw; }
+    pub fn get_init_rw(&self) -> &Vec<String> { return &self.init_exprs; }
 }

@@ -138,7 +138,7 @@ fn contain_ecls(str: &String) -> bool {
 /// * `None`
 unsafe fn exhaustive_extract(mut str: String, idx: u8) {
     log_trace("-----------------------------------\n");
-    log_trace(format!("Function Call {}\n", idx).as_str());
+    log_trace(&format!("Function Call {}\n", idx));
     let prev_str = str.clone();
     let expr: Vec<&str> = prev_str.split_whitespace().collect();
 
@@ -151,7 +151,7 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
             mutex.push(str.clone());
             drop(mutex);
 
-            log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+            log_trace_raw(&format!("[FINAL]: {}\n", str));
             return;
         }
 
@@ -159,13 +159,13 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
         let grammar = GRAMMAR.as_ref().unwrap();
 
         if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") || !grammar.contains_key(op) { continue; }
-        log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
+        log_trace_raw(&format!("[ OP ]:  {}\n", op));
         let rw_list = grammar.get(op).unwrap();
 
         for k in 0..rw_list.len() {
             let rw = &rw_list[k];
-            log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
-            log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+            log_trace_raw(&format!("[INIT]:  {}\n", str));
+            log_trace_raw(&format!("[ RW ]:  {}\n", rw));
 
             if SUPPRESS { if skip_rw(rw) { continue; } }
 
@@ -176,11 +176,11 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
             /// str = str.replacen(op, &*rw, 1);
             /// /* Using Regex (has performance issue since it's slow) */
             /// use regex::Regex;
-            /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
+            /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();                ///
             /// str.replace_range(mat.start()..mat.end(), &rw);
             /// ```
             replace_distinct_ecls(op, rw, &mut str);
-            log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
+            log_trace_raw(&format!("[AFTER]: {}\n", str));
 
             if str.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
@@ -193,7 +193,7 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
                 mutex.push(str.clone());
                 drop(mutex);
 
-                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+                log_trace_raw(&format!("[FINAL]: {}\n", str));
                 term = true;
                 break;
             } else if !contain_ecls(&str) {
@@ -203,7 +203,7 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
                 drop(mutex);
 
                 str = prev_str.clone();
-                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+                log_trace_raw(&format!("[FINAL]: {}\n", str));
             } else {
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
@@ -219,13 +219,13 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
                     exhaustive_extract(str.clone(), idx+1);
                 }
 
-                log_trace(format!("Back to Function Call {}\n", idx).as_str());
+                log_trace(&format!("Back to Function Call {}\n", idx));
                 str = prev_str.clone();
             }
         }
         if term { break; }
     }
-    log_trace(format!("Finish Function Call {}\n", idx).as_str());
+    log_trace(&format!("Finish Function Call {}\n", idx));
     log_trace("-----------------------------------\n");
 }
 
@@ -250,7 +250,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
             let mut mutex = global_equiv_exprs.lock().unwrap();
             mutex.push(str.clone());
             drop(mutex);
-            log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+            log_trace_raw(&format!("[FINAL]: {}\n", str));
             return;
         }
 
@@ -259,13 +259,13 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
 
         if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
             !grammar.contains_key(op) { continue; }
-        log_trace_raw(format!("[ OP ]:  {}\n", op).as_str());
+        log_trace_raw(&format!("[ OP ]:  {}\n", op));
         let rw_list = grammar.get(op).unwrap();
 
         for k in 0..rw_list.len() {
             let rw = &rw_list[k];
-            log_trace_raw(format!("[INIT]:  {}\n", str).as_str());
-            log_trace_raw(format!("[ RW ]:  {}\n", rw).as_str());
+            log_trace_raw(&format!("[INIT]:  {}\n", str));
+            log_trace_raw(&format!("[ RW ]:  {}\n", rw));
 
             if SUPPRESS { if skip_rw(rw) { continue; } }
 
@@ -276,11 +276,11 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
             /// str = str.replacen(op, &*rw, 1);
             /// /* Using Regex (has performance issue since it's slow) */
             /// use regex::Regex;
-            /// let mat = Regex::new(format!(r"\b{}\b", op).as_str()).unwrap().find(str.as_str()).unwrap();                ///
+            /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();                ///
             /// str.replace_range(mat.start()..mat.end(), &rw);
             /// ```
             replace_distinct_ecls(op, rw, &mut str);
-            log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
+            log_trace_raw(&format!("[AFTER]: {}\n", str));
 
             if str.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
@@ -292,7 +292,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 mutex.push(str.clone());
                 drop(mutex);
-                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+                log_trace_raw(&format!("[FINAL]: {}\n", str));
                 term = true;
                 break;
             } else if !contain_ecls(&str) {
@@ -301,7 +301,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
                 mutex.push(str.clone());
                 drop(mutex);
                 str = prev_str.clone();
-                log_trace_raw(format!("[FINAL]: {}\n", str).as_str());
+                log_trace_raw(&format!("[FINAL]: {}\n", str));
             } else {
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
@@ -317,7 +317,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
                     optimized_extract(str.clone(), idx+1);
                 }
 
-                log_trace(format!("Back to Function Call {}\n", idx).as_str());
+                log_trace(&format!("Back to Function Call {}\n", idx));
                 str = prev_str.clone();
                 if k == rw_list.len()-1 {
                     term = true;
@@ -327,7 +327,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
         }
         if term { break; }
     }
-    log_trace(format!("Finish Function Call {}\n", idx).as_str());
+    log_trace(&format!("Finish Function Call {}\n", idx));
     log_trace("-----------------------------------\n");
 }
 
@@ -421,13 +421,13 @@ pub fn extract(args: &Vec<String>) {
         EQUIV_EXPRS = Some(equiv_exprs);
     }
 
-    let init_rw: String = cli[4].to_string();
+    let init_expr = cli[4].to_string();
     unsafe {
         /* start extraction */
         if EXHAUSTIVE {
-            exhaustive_extract(init_rw, 0)
+            exhaustive_extract(init_expr, 0)
         } else {
-            optimized_extract(init_rw, 0);
+            optimized_extract(init_expr, 0);
         }
 
         /* post-processing equivalent expressions */
