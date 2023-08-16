@@ -182,7 +182,7 @@ unsafe fn exhaustive_extract(mut str: String, idx: u8) {
             replace_distinct_ecls(op, rw, &mut str);
             log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
 
-            if str.len() >= MAX_RW_LEN as usize {
+            if str.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 str = prev_str.clone();
                 continue;
@@ -282,7 +282,7 @@ unsafe fn optimized_extract(mut str: String, idx: u8) {
             replace_distinct_ecls(op, rw, &mut str);
             log_trace_raw(format!("[AFTER]: {}\n", str).as_str());
 
-            if str.len() >= MAX_RW_LEN as usize {
+            if str.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 str = prev_str.clone();
                 continue;
@@ -408,8 +408,8 @@ pub fn extract(args: &Vec<String>) {
             THD_PCT = *thd_pct;
         }
         set_max_num_threads();
-        if let CmdLineArg::UInt(max_rw_len) = &cli[2] {
-            MAX_RW_LEN = *max_rw_len;
+        if let CmdLineArg::UInt(max_num_token) = &cli[2] {
+            MAX_NUM_TOKEN = *max_num_token;
         }
         if let CmdLineArg::Bool(exhaustive) = &cli[3] {
             EXHAUSTIVE = *exhaustive;

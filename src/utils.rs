@@ -2,13 +2,13 @@ use crate::*;
 use std::process::exit;
 use std::sync::{Arc, Mutex};
 
-/// ### public function to set global max str len of rewrite
+/// ### public function to set global max number of tokens
 /// #### Argument
-/// * `max_rw_len` - maximum rewrite length limit
+/// * `max_rw_len` - maximum number of tokens
 /// #### Return
 /// * `None`
-pub unsafe fn set_max_rw_len(max_rw_len: u8) {
-    MAX_RW_LEN = max_rw_len;
+pub unsafe fn set_max_num_token(max_num_token: u8) {
+    MAX_NUM_TOKEN = max_num_token;
     return;
 }
 
@@ -22,6 +22,12 @@ pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
     return;
 }
 
+/// ### public function to remove permutations from the final results
+/// ### of equivalent expression
+/// #### Argument
+/// * `equiv_exprs` - deduplicate results of equivalent expressions
+/// #### Return
+/// * `None`
 pub fn rm_permutation(equiv_exprs: &mut Vec<String>) {
     let mut equiv_exprs_distinct = HashSet::default();
     let mut i = 0;
