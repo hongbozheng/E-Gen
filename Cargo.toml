@@ -8,7 +8,7 @@ license = "MIT"
 name = "egg"
 readme = "README.md"
 repository = "https://github.com/egraphs-good/egg"
-version = "0.9.4"
+version = "0.9.5"
 
 [[bin]]
 name = "multiproc"

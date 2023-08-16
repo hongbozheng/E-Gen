@@ -2,6 +2,10 @@
 
 ## [Unreleased] - ReleaseDate
 
+
+## [0.9.5] - 2023-06-29
+- Fixed a few edge cases in proof size optimization that caused egg to crash.
+
 ## [0.9.4] - 2023-05-23
 - [#253] Improved rebuilding algorithm using a queue.
 - [#259] Fixed another overflow bug in proof size optimization.
@@ -60,7 +64,7 @@
 - ([#168](https://github.com/egraphs-good/egg/pull/168)) Added MultiPatterns.
 
 ### Changed
-- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior. 
+- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior.
 - The tested MSRV is now 1.60.0.
 - Several small documentation enhancements.
 - ([#162](https://github.com/egraphs-good/egg/pull/162), [#163](https://github.com/egraphs-good/egg/pull/163))
@@ -76,9 +80,9 @@ This patch fixes a pretty bad e-matching bug introduced in 0.7.0. Please upgrade
 
 ## [0.7.0] - 2021-11-23
 
-It's a been a long time since a release! 
+It's a been a long time since a release!
 There's a lot in this one, hopefully I can cut releases more frequently in the future,
- because there are definitely more features coming :)
+because there are definitely more features coming :)
 
 ### Added
 - The egraph now has an `EGraph::with_explanations_enabled` mode that allows for
@@ -236,7 +240,8 @@ But hopefully things will be a little more stable from here on out
 since the API is a lot nicer.
 
 <!-- next-url -->
-[Unreleased]: https://github.com/egraphs-good/egg/compare/v0.9.4...HEAD
+[Unreleased]: https://github.com/egraphs-good/egg/compare/v0.9.5...HEAD
+[0.9.5]: https://github.com/egraphs-good/egg/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/egraphs-good/egg/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/egraphs-good/egg/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/egraphs-good/egg/compare/v0.9.1...v0.9.2
