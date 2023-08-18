@@ -130,7 +130,7 @@ fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
 // }
 fn contain_ecls(tokens: &Vec<String>) -> bool {
     for token in tokens {
-        if token.len() == 2 && token.starts_with("e") && token.chars().nth(1).unwrap().is_ascii_digit() {
+        if token.len() >= 2 && token.starts_with("e") && token.chars().nth(1).unwrap().is_ascii_digit() {
             return true;
         }
     }
@@ -188,7 +188,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             /// str.replace_range(mat.start()..mat.end(), &rw);
             /// ```
             // replace_distinct_ecls(op, rw, &mut str);
-            let rw_tokens: Vec<String> = rw_list[k].split_whitespace().map(|s| s.to_owned()).collect();
+            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
