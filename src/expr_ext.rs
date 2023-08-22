@@ -12,6 +12,7 @@ static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
 static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
+static mut STATE: Option<Arc<Mutex<HashSet<String>>>> = None;
 /// global variable to store equivalent expression results
 static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
 
@@ -249,6 +250,11 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
 unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
+    let global_state = STATE.as_ref().unwrap();
+    let mutex = global_state.lock().unwrap();
+    if *mutex.contains(&tokens.join(" ")) {
+        return;
+    }
     let prev_tokens = tokens.clone();
     // let expr: Vec<&str> = prev_str.split(" ").collect();
 
@@ -293,6 +299,11 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
+
+            let global_state = STATE.as_ref().unwrap();
+            let mut mutex = global_state.lock().unwrap();
+            *mutex.insert(tokens.join(" "));
+            drop(mutex);
 
             if tokens.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
@@ -430,9 +441,8 @@ pub fn extract(args: &Vec<String>) {
         }
         SKIP_ECLS = Some(skip_ecls);
         GRAMMAR = Some(grammar);
-
-        let equiv_exprs = Arc::new(Mutex::new(vec![]));
-        EQUIV_EXPRS = Some(equiv_exprs);
+        STATE = Some(Arc::new(Mutex::new(Default::default())));
+        EQUIV_EXPRS = Some(Arc::new(Mutex::new(Default::default())));
     }
 
     let tokens = cli[4].to_string().split_whitespace().map(|s| s.to_owned()).collect();
