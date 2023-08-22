@@ -252,7 +252,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
     log_trace(format!("Function Call {}\n", idx).as_str());
     let global_state = STATE.as_ref().unwrap();
     let mutex = global_state.lock().unwrap();
-    if *mutex.contains(&tokens.join(" ")) {
+    if mutex.contains(&tokens.join(" ")) {
         return;
     }
     let prev_tokens = tokens.clone();
@@ -302,7 +302,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
 
             let global_state = STATE.as_ref().unwrap();
             let mut mutex = global_state.lock().unwrap();
-            *mutex.insert(tokens.join(" "));
+            mutex.insert(tokens.join(" "));
             drop(mutex);
 
             if tokens.len() >= MAX_NUM_TOKEN as usize {
