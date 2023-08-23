@@ -300,11 +300,6 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
-            let global_state = STATE.as_ref().unwrap();
-            let mut mutex = global_state.lock().unwrap();
-            mutex.insert(tokens.join(" "));
-            drop(mutex);
-
             if tokens.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 tokens = prev_tokens.clone();
@@ -328,6 +323,11 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
+                let global_state = STATE.as_ref().unwrap();
+                let mut mutex = global_state.lock().unwrap();
+                mutex.insert(tokens.join(" "));
+                drop(mutex);
+
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
                 if *mutex > 0 {
