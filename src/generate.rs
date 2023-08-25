@@ -37,7 +37,7 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
-fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
+fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
@@ -132,7 +132,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     }
 
     num_acks = 0u8;
-    let mut equiv_exprs: Vec<String> = vec![];
+    let mut equiv_exprs: HashSet<String> = Default::default();
 
     /* receive equivalent expressions from all children processes */
     for stream in listener.incoming() {
@@ -141,14 +141,16 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
                 let mut equiv_exprs_bytes: Vec<u8> = vec![];
                 match stream.read_to_end(&mut equiv_exprs_bytes) {
                     Ok(_) => {
-                        let mut equiv_exprs_proc = match deserialize(&equiv_exprs_bytes) {
+                        let equiv_exprs_proc: std::collections::HashSet<String> = match deserialize(&equiv_exprs_bytes) {
                             Ok(equiv_exprs_proc) => { equiv_exprs_proc },
                             Err(e) => {
                                 log_error(&format!("Failed to deserialize data received from child process with error {}.\n", e));
                                 exit(1);
                             },
                         };
-                        equiv_exprs.append(&mut equiv_exprs_proc);
+                        let ex: HashSet<String> = equiv_exprs_proc.into_iter().collect();
+                        equiv_exprs.extend(ex.into_iter());
+                        // equiv_exprs.append(&mut equiv_exprs_proc);
                         num_acks += 1;
                     },
                     Err(e) => {
@@ -186,7 +188,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> Vec<String> {
     /* post-processing equivalent expressions */
     // let mut set = HashSet::default();
     // equiv_exprs.retain(|e| set.insert(e.clone()));
-    rm_permutation(&mut equiv_exprs);
+    // rm_permutation(&mut equiv_exprs);
 
     return equiv_exprs;
 }

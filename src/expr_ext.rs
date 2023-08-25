@@ -6,15 +6,16 @@ use std::process::{self, Command, exit};
 use std::sync::{Arc, Mutex};
 use std::thread;
 
-/// max # of threads can be used (not max # of OS threads)
+/// private max # of threads can be used (not max # of OS threads)
 static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
 /// private global variable to store eclass(es) to skip during extraction
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
 static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
+/// private global variable to store intermediate extraction states
 static mut STATE: Option<Arc<Mutex<HashSet<String>>>> = None;
-/// global variable to store equivalent expression results
-static mut EQUIV_EXPRS: Option<Arc<Mutex<Vec<String>>>> = None;
+/// private global variable to store equivalent expression results
+static mut EQUIV_EXPRS: Option<Arc<Mutex<HashSet<String>>>> = None;
 
 /// ### public function to get private global variable MAX_NUM_THREADS
 /// #### Argument
@@ -48,7 +49,7 @@ pub unsafe fn get_global_grammar() -> &'static HashMap<String, Vec<String>> {
 /// * `None`
 /// #### Return
 /// * `EQUIV_EXPRS` - immutable reference of global variable EQUIV_EXPRS
-pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<Vec<String>>> {
+pub unsafe fn get_global_equiv_exprs() -> &'static Arc<Mutex<HashSet<String>>> {
     return EQUIV_EXPRS.as_ref().unwrap();
 }
 
@@ -158,7 +159,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
             let mut mutex = global_equiv_exprs.lock().unwrap();
             let final_expr = tokens.join(" ");
-            mutex.push(final_expr.clone());
+            mutex.insert(final_expr.clone());
             drop(mutex);
             log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             return;
@@ -202,7 +203,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 let final_expr = tokens.join(" ");
-                mutex.push(final_expr.clone());
+                mutex.insert(final_expr.clone());
                 drop(mutex);
                 log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
                 term = true;
@@ -211,7 +212,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 let final_expr = tokens.join(" ");
-                mutex.push(final_expr.clone());
+                mutex.insert(final_expr.clone());
                 drop(mutex);
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
@@ -250,11 +251,11 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
 unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
-    let global_state = STATE.as_ref().unwrap();
-    let mutex = global_state.lock().unwrap();
-    if mutex.contains(&tokens.join(" ")) {
-        return;
-    }
+    // let global_state = STATE.as_ref().unwrap();
+    // let mutex = global_state.lock().unwrap();
+    // if mutex.contains(&tokens.join(" ")) {
+    //     return;
+    // }
     let prev_tokens = tokens.clone();
     // let expr: Vec<&str> = prev_str.split(" ").collect();
 
@@ -265,7 +266,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
             let mut mutex = global_equiv_exprs.lock().unwrap();
             let final_expr = tokens.join(" ");
-            mutex.push(final_expr.clone());
+            mutex.insert(final_expr.clone());
             drop(mutex);
             log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             return;
@@ -309,7 +310,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 let final_expr = tokens.join(" ");
-                mutex.push(final_expr.clone());
+                mutex.insert(final_expr.clone());
                 drop(mutex);
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
                 term = true;
@@ -318,15 +319,15 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_ref().unwrap();
                 let mut mutex = global_equiv_exprs.lock().unwrap();
                 let final_expr = tokens.join(" ");
-                mutex.push(final_expr.clone());
+                mutex.insert(final_expr.clone());
                 drop(mutex);
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
-                let global_state = STATE.as_ref().unwrap();
-                let mut mutex = global_state.lock().unwrap();
-                mutex.insert(tokens.join(" "));
-                drop(mutex);
+                // let global_state = STATE.as_ref().unwrap();
+                // let mut mutex = global_state.lock().unwrap();
+                // mutex.insert(tokens.join(" "));
+                // drop(mutex);
 
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
@@ -456,13 +457,14 @@ pub fn extract(args: &Vec<String>) {
         }
 
         /* post-processing equivalent expressions */
-        let mut equiv_exprs = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone();
-        let mut set = HashSet::default();
-        equiv_exprs.retain(|e| set.insert(e.clone()));
+        // let mut equiv_exprs = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone();
+        // let mut set = HashSet::default();
+        // equiv_exprs.retain(|e| set.insert(e.clone()));
 
         /* send results back to parent process */
         match TcpStream::connect(&args[5]) {
             Ok(mut stream) => {
+                let equiv_exprs: std::collections::HashSet<String> = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone().into_iter().collect();
                 let equiv_exprs_bytes = match serialize(&equiv_exprs) {
                     Ok(equiv_exprs_bytes) => { equiv_exprs_bytes },
                     Err(e) => {
