@@ -28,7 +28,7 @@ pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
 /// * `equiv_exprs` - deduplicate results of equivalent expressions
 /// #### Return
 /// * `None`
-pub fn rm_permutation(equiv_exprs: &mut HashSet<String>) -> HashSet<String> {
+pub fn rm_permutation(equiv_exprs: &HashSet<String>) -> HashSet<String> {
     let mut equiv_exprs_distinct = HashSet::default();
 
     for expr_orig in equiv_exprs.clone().into_iter() {
