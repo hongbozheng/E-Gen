@@ -28,22 +28,20 @@ pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
 /// * `equiv_exprs` - deduplicate results of equivalent expressions
 /// #### Return
 /// * `None`
-pub fn rm_permutation(equiv_exprs: &mut Vec<String>) {
+pub fn rm_permutation(equiv_exprs: &mut HashSet<String>) -> HashSet<String> {
     let mut equiv_exprs_distinct = HashSet::default();
-    let mut i = 0;
 
-    while i < equiv_exprs.len() {
-        let mut tokens: Vec<&str> = equiv_exprs[i].split_whitespace().collect();
+    for expr_orig in equiv_exprs.clone().into_iter() {
+        let mut tokens: Vec<&str> = expr_orig.split_whitespace().collect();
         tokens.sort();
         let expr: String = tokens.join(" ");
 
         if !equiv_exprs_distinct.contains(&expr) {
             equiv_exprs_distinct.insert(expr);
-            i += 1;
-        } else {
-            equiv_exprs.remove(i);
         }
     }
+
+    return equiv_exprs_distinct;
 }
 
 /// ### public function to print the type of a variable
