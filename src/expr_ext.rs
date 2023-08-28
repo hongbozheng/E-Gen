@@ -251,11 +251,13 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
 unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
-    // let global_state = STATE.as_ref().unwrap();
-    // let mutex = global_state.lock().unwrap();
-    // if mutex.contains(&tokens.join(" ")) {
-    //     return;
-    // }
+    let global_state = STATE.as_ref().unwrap();
+    let mut mutex = global_state.lock().unwrap();
+    if mutex.contains(&tokens.join(" ")) {
+        return;
+    }
+    mutex.insert(tokens.join(" "));
+    drop(mutex);
     let prev_tokens = tokens.clone();
     // let expr: Vec<&str> = prev_str.split(" ").collect();
 
@@ -324,11 +326,6 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
-                // let global_state = STATE.as_ref().unwrap();
-                // let mut mutex = global_state.lock().unwrap();
-                // mutex.insert(tokens.join(" "));
-                // drop(mutex);
-
                 let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
                 if *mutex > 0 {
