@@ -29,17 +29,19 @@ pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
 /// #### Return
 /// * `None`
 pub fn rm_permutation(equiv_exprs: &HashSet<String>) -> HashSet<String> {
-    let mut equiv_exprs_distinct = HashSet::default();
+    let mut expr_mapping = HashMap::default();
 
-    for expr_orig in equiv_exprs.clone().into_iter() {
-        let mut tokens: Vec<&str> = expr_orig.split_whitespace().collect();
+    for expr in equiv_exprs.clone().into_iter() {
+        let mut tokens: Vec<&str> = expr.split_whitespace().collect();
         tokens.sort();
-        let expr: String = tokens.join(" ");
+        let expr_sort: String = tokens.join(" ");
 
-        if !equiv_exprs_distinct.contains(&expr) {
-            equiv_exprs_distinct.insert(expr);
+        if !expr_mapping.contains_key(&expr_sort) {
+            expr_mapping.insert(expr_sort, expr);
         }
     }
+
+    let equiv_exprs_distinct = expr_mapping.into_values().collect();
 
     return equiv_exprs_distinct;
 }
