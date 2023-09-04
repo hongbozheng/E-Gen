@@ -1,1 +1,8 @@
 (\frac{1}{\sqrt{1 - (2 + (4)\cdot (x) + c)^{2} } } )\cdot (-4)
+\frac{\mathrm{d}\arccos((x)\cdot (\frac{\mathrm{d}(c)\cdot (x) + 5}{\mathrm{d}x} ) + 5) }{\mathrm{d}x} 
+\frac{((x)^{a} )\cdot ((x)^{b} )}{(x)^{c} } 
+\ln_{}{((\sin((x)^{2}  + 1) )^{2} )} 
+\cos(a + b)  + \cos(a - b) 
+\frac{\mathrm{d}\arccos(x + c) }{\mathrm{d}x} 
+\frac{\sin(2 - x) }{(\cos(x) )^{2} } 
+\log_{x}{(a + b)}

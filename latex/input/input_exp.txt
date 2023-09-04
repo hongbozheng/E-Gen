@@ -1,1 +1,8 @@
 * / 1 sqrt - 1 pow + + 2 * 4 x c 2 -4
+d x acos + * x d x + * c x 5 5
+/ * pow x a pow x b pow x c
+ln pow sin + pow x 2 1 2
++ cos + a b cos - a b
+d x acos + x c
+/ sin - 2 x pow cos x 2
+log x + a b
