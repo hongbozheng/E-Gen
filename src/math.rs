@@ -172,6 +172,13 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x->x^1"; "?x" => "(pow ?x 1)"),
         /* ================================================================== */
 
+        /* ========================== decomposition ========================= */
+        rw!("2x->x+x"; "(* 2 ?x)" => "(+ ?x ?x)"),
+        rw!("-2x->-x-x"; "(* -2 ?x)" => "(- (* -1 ?x) ?x)"),
+        rw!("-2x->-(x+x)"; "(* -2 ?x)" => "(* -1 (+ ?x ?x))"),
+        rw!("x^2->x*x"; "(pow ?x 2)" => "(* ?x ?x)"),
+        /* ================================================================== */
+
         /* ================ basic arithmetic simplification ================= */
         rw!("x+0->x"; "(+ ?x 0)" => "?x"),
         rw!("x*0->0"; "(* ?x 0)" => "0"),
@@ -181,6 +188,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x/x->1"; "(/ ?x ?x)" => "1" if not_zero("?x")),
         rw!("(-1)*(-1)->1"; "(* -1 -1)" => "1"),
         rw!("x*(1/x)->1"; "(* ?x (/ 1 ?x))" => "1" if not_zero("?x")),
+        rw!("x+(-1*y)->x-y"; "(+ ?x (* -1 ?y))" => "(- ?x ?y)"),
         /* ================================================================== */
 
         /* ============= distributive property & factorization ============== */
@@ -286,15 +294,15 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
         /* double angle identity */
         rw!("sin(x)->2sin(0.5x)cos(0.5x)"; "(sin ?x)" => "(* 2 (* (sin (/ ?x 2)) (cos (/ ?x 2))))"),
-        rw!("cos(x)->cos^2-sin^2"; "(cos ?x)" => "(- (pow (cos (/ ?x 2)) 2) (pow (sin (/ ?x 2)) 2))"),
-        rw!("cos(x)->2cos^2-1"; "(cos ?x)" => "(- (* 2 (pow (cos (/ ?x 2)) 2)) 1)"),
-        rw!("cos(x)->1-2sin^2"; "(cos ?x)" => "(- 1 (* 2 (pow (sin (/ ?x 2)) 2)))"),
-        rw!("tan(x)->2tan(x)/(1-tan^2)"; "(tan ?x)" => "(/ (* 2 (tan (/ ?x 2))) (- 1 (pow (tan (/ ?x 2)) 2)))"),
-        rw!("2sin(x)cos(x)->sin(2x)"; "(* 2 (* (sin ?x) (cos ?x)))" => "(sin (* 2 ?x))"),
-        rw!("cos^2-sin^2->cos(2x)"; "(- (pow (cos ?x) 2) (pow (sin ?x) 2))" => "(cos (* 2 ?x))"),
-        rw!("2cos^2-1->cos(2x)"; "(- (* 2 (pow (cos ?x) 2)) 1)" => "(cos (* 2 ?x))"),
-        rw!("1-2sin^2->cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
-        rw!("2tan(x)/(1-tan^2)->tan(2x)"; "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
+        //rw!("cos(x)->cos^2-sin^2"; "(cos ?x)" => "(- (pow (cos (/ ?x 2)) 2) (pow (sin (/ ?x 2)) 2))"),
+        //rw!("cos(x)->2cos^2-1"; "(cos ?x)" => "(- (* 2 (pow (cos (/ ?x 2)) 2)) 1)"),
+        //rw!("cos(x)->1-2sin^2"; "(cos ?x)" => "(- 1 (* 2 (pow (sin (/ ?x 2)) 2)))"),
+        //rw!("tan(x)->2tan(x)/(1-tan^2)"; "(tan ?x)" => "(/ (* 2 (tan (/ ?x 2))) (- 1 (pow (tan (/ ?x 2)) 2)))"),
+        //rw!("2sin(x)cos(x)->sin(2x)"; "(* 2 (* (sin ?x) (cos ?x)))" => "(sin (* 2 ?x))"),
+        //rw!("cos^2-sin^2->cos(2x)"; "(- (pow (cos ?x) 2) (pow (sin ?x) 2))" => "(cos (* 2 ?x))"),
+        //rw!("2cos^2-1->cos(2x)"; "(- (* 2 (pow (cos ?x) 2)) 1)" => "(cos (* 2 ?x))"),
+        //rw!("1-2sin^2->cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
+        //rw!("2tan(x)/(1-tan^2)->tan(2x)"; "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
         // /* half angle identity doesn't work */
         // // rw!("sin(x/2)=sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(sqrt (/ (- 1 (cos ?x)) 2))"),
         // // rw!("sin(x/2)=-sqrt((1-cos(x))/2)"; "(sin (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos ?x)) 2)))"),
@@ -385,7 +393,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* =========================== derivative =========================== */
         /* basic derivative */
         rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
-        rw!("d/dx c"; "(d ?x c)" => "0"),
+        rw!("d/dx const"; "(d ?x c)" => "0"),
         /* generalized chain rule */
         rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
         rw!("d/dx f(x)^const"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
@@ -395,7 +403,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?f ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
         rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
         /* polynomial */
-        rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if is_const("?c")),
+        rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))"),
         /* generalized trig (chain rule) */
         rw!("d/dx sin(u)"; "(d ?x (sin ?u))" => "(* (cos ?u) (d ?x ?u))"),
         rw!("d/dx cos(u)"; "(d ?x (cos ?u))" => "(* (* -1 (sin ?u)) (d ?x ?u))"),
