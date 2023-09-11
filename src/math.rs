@@ -204,6 +204,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* ============= distributive property & factorization ============== */
         rw!("distrib"; "(* ?x (+ ?y ?z))" => "(+ (* ?x ?y) (* ?x ?z))"),
         rw!("fact"; "(+ (* ?a ?x) (* ?b ?x))" => "(* (+ ?a ?b) ?x)"),
+        rw!("(a+b)(c+d)->ac+ad+bc+bd"; "(* (+ ?a ?b) (+ ?c ?d))" => "(+ (+ (+ (* ?a ?c) (* ?a ?d)) (* ?b ?c)) (* ?b ?d))"),
         /* ================================================================== */
 
         /* multiplication <-> division identity */
