@@ -186,6 +186,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-2x->-x-x"; "(* -2 ?x)" => "(- (* -1 ?x) ?x)"),
         rw!("-2x->-(x+x)"; "(* -2 ?x)" => "(* -1 (+ ?x ?x))"),
         rw!("x^2->x*x"; "(pow ?x 2)" => "(* ?x ?x)"),
+        rw!("x^n->x^a*x^b"; "(pow ?x n)" => "(* (pow ?x a) (pow ?x b))" if "n".parse::<i32>().unwrap()=="b".parse::<i32>().unwrap() + "a".parse::<i32>().unwrap()),
         /* ================================================================== */
 
         /* ================ basic arithmetic simplification ================= */
