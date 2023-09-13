@@ -406,7 +406,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* basic derivative */
         rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
         rw!("d/dx const"; "(d ?x c)" => "0"),
-        rw!("dy/dx"; "(d x y" => "0"),
+        rw!("dy/dx"; "(d x y)" => "0"),
         /* generalized chain rule */
         rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
         rw!("d/dx f(x)^const"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
