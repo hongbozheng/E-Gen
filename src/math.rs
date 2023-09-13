@@ -186,6 +186,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-2x->-x-x"; "(* -2 ?x)" => "(- (* -1 ?x) ?x)"),
         rw!("-2x->-(x+x)"; "(* -2 ?x)" => "(* -1 (+ ?x ?x))"),
         rw!("x^2->x*x"; "(pow ?x 2)" => "(* ?x ?x)"),
+        rw!("x^even"; "(pow ?x ?c)" => "(* (pow ?x (/ ?c 2)) (pow ?x (/ ?c 2)))" if not_zero("(+ (pow -1 ?c) 1)")),
         //rw!("x^n->x^a*x^b"; "(pow ?x n)" => "(* (pow ?x a) (pow ?x b))" if "n".parse::<i32>().unwrap() == "b".parse::<i32>().unwrap() + "a".parse::<i32>().unwrap()),
         /* ================================================================== */
 
