@@ -407,6 +407,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
         rw!("d/dx const"; "(d ?x c)" => "0"),
         rw!("dy/dx"; "(d x y)" => "0"),
+        rw!("dz/dx"; "(d x z)" => "0"),
+        rw!("dx/dy"; "(d y x)" => "0"),
+        rw!("dz/dy"; "(d y z)" => "0"),
+        rw!("dx/dz"; "(d z x)" => "0"),
+        rw!("dy/dz"; "(d z y)" => "0"),
         /* generalized chain rule */
         rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
         rw!("d/dx f(x)^const"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
@@ -446,7 +451,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx asech(u)"; "(d ?x (asech ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
         rw!("d/dx acoth(u)"; "(d ?x (acoth ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
         /* generalized log (chain rule) */
-        rw!("d/dx ln(u)"; "(d ?x (ln ?u))" => "(* (/ 1 ?x) (d ?x ?u))"),
+        rw!("d/dx ln(u)"; "(d ?x (ln ?u))" => "(* (/ 1 ?u) (d ?x ?u))"),
         /* ================================================================== */
     ]
 }
