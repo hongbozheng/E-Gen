@@ -227,7 +227,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("exp-of-quotient"; "(/ (exp ?x) (exp ?y))" => "(exp (- ?x ?y))"),
         rw!("pow-of-exp"; "(pow (exp ?x) ?y)" => "(exp (* ?x ?y))"),
         /* exponent derivative */
-        rw!("d(lnx)"; "(d ?x (ln ?x))" => "(/ 1 ?x)" if not_zero("?x")),
+        
 
         /* =========================== logarithm ============================ */
         /* ln */
@@ -406,6 +406,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* basic derivative */
         rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
         rw!("d/dx const"; "(d ?x c)" => "0"),
+        rw!("dy/dx"; "(d x y" => "0"),
         /* generalized chain rule */
         rw!("d/dx f(x)^c"; "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
         rw!("d/dx f(x)^const"; "(d ?x (pow ?f c))" => "(* (* c (pow ?f (- c 1))) (d ?x ?f))"),
@@ -444,6 +445,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx acsch(u)"; "(d ?x (acsch ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (+ 1 (pow ?u 2))))) (d ?x ?u))"),
         rw!("d/dx asech(u)"; "(d ?x (asech ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
         rw!("d/dx acoth(u)"; "(d ?x (acoth ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
+        /* generalized log (chain rule) */
+        rw!("d/dx ln(u)"; "(d ?x (ln ?u))" => "(* (/ 1 ?x) (d ?x ?u))"),
         /* ================================================================== */
     ]
 }
