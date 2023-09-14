@@ -145,6 +145,7 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
     }
 }
 
+
 /// mathematical rules including:
 /// 1. basic arithmetic
 /// 2. simplification
@@ -421,6 +422,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx const*f(x)"; "(d ?x (* c ?f))" => "(* c (d ?x ?f))"),
         rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?f ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
         rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
+        rw!("d/dx f(x)*g(x)"; "(d ?x (* ?f ?g))" => "(+ (* (d x ?f) ?g) (* (d x ?g) ?f))"),
         /* polynomial */
         rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))"),
         /* generalized trig (chain rule) */
