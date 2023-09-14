@@ -227,7 +227,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("exp-of-quotient"; "(/ (exp ?x) (exp ?y))" => "(exp (- ?x ?y))"),
         rw!("pow-of-exp"; "(pow (exp ?x) ?y)" => "(exp (* ?x ?y))"),
         /* exponent derivative */
-        
+        rw!("dx-exp"; "(d ?x (exp ?u))" => "(* (exp ?u) (d ?x ?u))"),
 
         /* =========================== logarithm ============================ */
         /* ln */
