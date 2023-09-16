@@ -188,6 +188,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-2x->-(x+x)"; "(* -2 ?x)" => "(* -1 (+ ?x ?x))"),
         rw!("x^2->x*x"; "(pow ?x 2)" => "(* ?x ?x)"),
         rw!("x^c->x^c-1*x"; "(pow ?x ?c)" => "(* (pow ?x (- ?c 1)) ?x)"),
+        rw!("cx->(c-1)x+x"; "(* ?c ?x)" => "(+ (* (- ?c 1) ?x) ?x)"),
         //rw!("x^n->x^a*x^b"; "(pow ?x n)" => "(* (pow ?x a) (pow ?x b))" if "n".parse::<i32>().unwrap() == "b".parse::<i32>().unwrap() + "a".parse::<i32>().unwrap()),
         /* ================================================================== */
 
@@ -221,7 +222,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("exp(0)"; "(exp 0)" => "1"),
         rw!("exp(1)"; "(exp 1)" => "e"),
         /* basic rule */
-        //rw!("pow*x"; "(* (pow x? c?) ?x)")
         rw!("pow-of-prod"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
         rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
         rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
