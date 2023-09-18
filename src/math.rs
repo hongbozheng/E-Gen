@@ -188,13 +188,13 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-2x->-(x+x)"; "(* -2 ?x)" => "(* -1 (+ ?x ?x))"),
         rw!("x^2->x*x"; "(pow ?x 2)" => "(* ?x ?x)"),
         rw!("x^c->x^c-1*x"; "(pow ?x ?c)" => "(* (pow ?x (- ?c 1)) ?x)"),
-        rw!("cx->(c-1)x+x"; "(* ?c ?x)" => "(+ (* (- ?c 1) ?x) ?x)" if not_zero("?c")),
+        rw!("cx->(c-1)x+x"; "(* ?c ?x)" => "(+ (* (- ?c 1) ?x) ?x)"),
         //rw!("x^n->x^a*x^b"; "(pow ?x n)" => "(* (pow ?x a) (pow ?x b))" if "n".parse::<i32>().unwrap() == "b".parse::<i32>().unwrap() + "a".parse::<i32>().unwrap()),
         /* ================================================================== */
 
         /* ================ basic arithmetic simplification ================= */
         rw!("x+0->x"; "(+ ?x 0)" => "?x"),
-        rw!("x*0->0"; "(* ?x 0)" => "0"),
+        rw!("x*0->0"; "(* 0 ?x)" => "0"),
         rw!("x*1->x"; "(* ?x 1)" => "?x"),
         rw!("x/1->x"; "(/ ?x 1)" => "?x"),
         rw!("x-x->0"; "(- ?x ?x)" => "0"),
@@ -229,8 +229,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("exp-of-prod"; "(* (exp ?x) (exp ?y))" => "(exp (+ ?x ?y))"),
         rw!("exp-of-quotient"; "(/ (exp ?x) (exp ?y))" => "(exp (- ?x ?y))"),
         rw!("pow-of-exp"; "(pow (exp ?x) ?y)" => "(exp (* ?x ?y))"),
-        /* exponent derivative */
-        rw!("dx-exp"; "(d ?x (exp ?u))" => "(* (exp ?u) (d ?x ?u))"),
 
         /* =========================== logarithm ============================ */
         /* ln */
@@ -454,6 +452,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx acsch(u)"; "(d ?x (acsch ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (+ 1 (pow ?u 2))))) (d ?x ?u))"),
         rw!("d/dx asech(u)"; "(d ?x (asech ?u))" => "(* (/ -1 (* (abs ?u) (sqrt (- 1 (pow ?u 2))))) (d ?x ?u))"),
         rw!("d/dx acoth(u)"; "(d ?x (acoth ?u))" => "(* (/ 1 (- 1 (pow ?u 2))) (d ?x ?u))"),
+        /* generalized exponential (chain rule) */
+        rw!("dx-exp"; "(d ?x (exp ?u))" => "(* (exp ?u) (d ?x ?u))"),
         /* generalized log (chain rule) */
         rw!("d/dx ln(u)"; "(d ?x (ln ?u))" => "(* (/ 1 ?u) (d ?x ?u))"),
         /* ================================================================== */
