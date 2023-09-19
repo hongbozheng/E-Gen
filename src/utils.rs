@@ -148,7 +148,7 @@ pub fn pt_init_rw(init_rw: &Vec<String>) {
 /// * `mutex` - mutex of global variable rw_vec
 /// #### Return
 /// * `None`
-pub fn pt_equiv_exprs(equiv_exprs_option: Option<Arc<Mutex<Vec<String>>>>) {
+pub fn pt_equiv_exprs(equiv_exprs_option: Option<Arc<Mutex<HashSet<String>>>>) {
     let equiv_exprs_arc = match equiv_exprs_option {
         Some(equiv_exprs_arc) => { equiv_exprs_arc },
         None => {
