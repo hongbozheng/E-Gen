@@ -463,5 +463,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("4x^2->(2x)^2";"(* 4 (pow ?x 2))" => "(pow (* 2 ?x) 2)"),
         /* multi decomposition */
         rw!("4=2x2";"(* 4 ?x)" => "(* 2 (* 2 ?x))"),
+        rw!("4=2x2";"(* 4 ?x)" => "(* 2 (* 2 ?x))"),
+        /* addition decomposition*/
+        rw!("3x=2x+x"; "(* 3 ?x)" => "(+ (* 2 ?x) ?x)"),
     ]
 }
