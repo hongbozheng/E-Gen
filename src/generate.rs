@@ -72,7 +72,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
             Ok(child_proc) => {
                 let pid = child_proc.id() as pid_t;
                 let mut processor_id = proc_idx % num_logical_cores;
-                if processor_id == 9 || processor_id == 11 || processor_id ==13 {
+                if processor_id == 9 || processor_id == 10 || processor_id ==11 {
                     processor_id = 0;
                 }
                 let ret = unsafe { set_proc_affinity(pid, processor_id) };
