@@ -482,6 +482,11 @@ pub fn extract(args: &Vec<String>) {
                 exit(1);
             },
         }
+        /* temporarily print all exprs here */
+        unsafe { pt_equiv_exprs(EQUIV_EXPRS.clone()); }
+
+        return;
+
     }
 
     /* temporarily print all exprs here */
