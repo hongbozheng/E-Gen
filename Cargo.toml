@@ -10,9 +10,9 @@ readme = "README.md"
 repository = "https://github.com/egraphs-good/egg"
 version = "0.9.5"
 
-[[bin]]
-name = "multiproc"
-path = "src/multiproc_ext.rs"
+#[[bin]]
+#name = "multiproc"
+#path = "src/multiproc_ext.rs"
 
 [dependencies]
 env_logger = {version = "0.9.0", default-features = false}
