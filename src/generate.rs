@@ -22,6 +22,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     log_info(&format!("Expression: {}\n", input_expr));
     let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
+    let grammar = &ctx_gr.grammar;
     let init_exprs = &ctx_gr.init_exprs.clone();
     let levels = match &cli[1] {
         CmdLineArg::UInt(levels) => levels,
@@ -32,7 +33,11 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     };
 
     let mut equiv_exprs: HashSet<String> = HashSet::default();
-    equiv_exprs = bfs_ext(levels, init_exprs);
+    equiv_exprs = bfs_ext(grammar, levels, init_exprs);
+
+    for expr in &equiv_exprs {
+        log_info(&format!("{}\n", expr));
+    }
 
     return equiv_exprs;
 }
