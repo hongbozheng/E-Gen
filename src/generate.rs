@@ -3,6 +3,7 @@ use bincode::{serialize, deserialize};
 use num_cpus;
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
+use std::fmt::format;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::mem::{size_of, zeroed};
@@ -22,7 +23,13 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
     let init_exprs = &ctx_gr.init_exprs.clone();
-    let CmdLineArg::UInt(levels) = &cli[2]
+    let levels = match &cli[1] {
+        CmdLineArg::UInt(levels) => levels,
+        _ => {
+            log_error(&format!("Failed to convert {:?} into u8 type.", &cli[1]));
+            exit(1);
+        }
+    };
 
     let mut equiv_exprs: HashSet<String> = HashSet::default();
     equiv_exprs = bfs_ext(levels, init_exprs);
