@@ -114,22 +114,11 @@ fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
     return;
 }
 
-/// ### private function to check if any eclass is in str
-/// #### Argument
-/// * `str` - current equation str
+/// ### private function to check whether tokens contain eclass
+/// #### Arguments
+/// * `tokens` - tokens (expression)
 /// #### Return
-/// * `None`
-// fn contain_ecls(str: &String) -> bool {
-//     let matches: Vec<_> = str.match_indices('e').collect();
-//     for mat in matches {
-//         let start_idx = &mat.0;
-//         if str.chars().nth(start_idx-1).unwrap() == ' ' &&
-//             str.chars().nth(start_idx+1).unwrap().is_ascii_digit() {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
+/// * `bool` - whether eclass exists in tokens or not
 fn contain_ecls(tokens: &Vec<String>) -> bool {
     for token in tokens {
         if token.len() >= 2 && token.starts_with("e") && token.chars().nth(1).unwrap().is_ascii_digit() {
