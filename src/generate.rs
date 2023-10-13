@@ -71,10 +71,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
         match Command::new("../target/debug/multiproc").args(&args).spawn() {
             Ok(child_proc) => {
                 let pid = child_proc.id() as pid_t;
-                let mut processor_id = proc_idx % num_logical_cores;
-                if processor_id == 9 || processor_id == 11 || processor_id == 13 || processor_id == 15{
-                    processor_id = 0;
-                }
+                let processor_id = proc_idx % num_logical_cores;
                 let ret = unsafe { set_proc_affinity(pid, processor_id) };
                 match ret {
                     0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },

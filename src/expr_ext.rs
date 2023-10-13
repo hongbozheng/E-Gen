@@ -277,7 +277,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             log_trace_raw(&format!("[ RW ]:  {:?}\n", rw));
             if SUPPRESS { 
                 if skip_rw(&rw) {
-                    if k == rw_list.len()-1{
+                    if k == rw_list.len()-1 {
                         term = true;
                         break;
                     }
@@ -302,11 +302,11 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
 
             if tokens.len() >= MAX_NUM_TOKEN as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
-                tokens = prev_tokens.clone();
-		if k == rw_list.len()-1{
+                if k == rw_list.len()-1 {
                     term = true;
                     break;
                 }
+                tokens = prev_tokens.clone();
                 continue;
             }
             if !contain_ecls(&tokens) && k == rw_list.len()-1 {

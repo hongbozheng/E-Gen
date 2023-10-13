@@ -59,7 +59,7 @@ impl ContextGrammar {
             let mut rewrite_rules: Vec<String> = vec![];
             let ecls: String = format!("{}{}", "e", eclass.id);
             let enodes = &eclass.nodes;
-    
+
             if enodes.len() == 1 {
                 match enodes[0].to_string().parse::<f64>() {
                     Ok(float64) => {
@@ -70,7 +70,7 @@ impl ContextGrammar {
                     Err(_) => {},
                 }
             }
-    
+
             for enode in enodes {
                 let mut rewrite = enode.to_string();
                 let children = enode.children();
@@ -92,12 +92,6 @@ impl ContextGrammar {
                 self.init_exprs = self.grammar.get(&*root_ecls).unwrap().clone();
             }
         }
-	log_debug_raw("\n");
-        log_debug("------------- Grammar -------------\n");
-        for (eclass, rewrite) in &self.grammar {
-            log_debug(&format!("{} -> {:?}\n", eclass, rewrite));
-        }
-        log_debug("-----------------------------------\n");
 
         return;
     }

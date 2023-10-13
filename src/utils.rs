@@ -1,7 +1,7 @@
 use crate::*;
 use std::process::exit;
 use std::sync::{Arc, Mutex};
-//use std::collections::HashMap;
+
 /// ### public function to set global max number of tokens
 /// #### Argument
 /// * `max_rw_len` - maximum number of tokens
