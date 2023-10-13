@@ -92,6 +92,12 @@ impl ContextGrammar {
                 self.init_exprs = self.grammar.get(&*root_ecls).unwrap().clone();
             }
         }
+	log_debug_raw("\n");
+        log_debug("------------- Grammar -------------\n");
+        for (eclass, rewrite) in &self.grammar {
+            log_debug(&format!("{} -> {:?}\n", eclass, rewrite));
+        }
+        log_debug("-----------------------------------\n");
 
         return;
     }
