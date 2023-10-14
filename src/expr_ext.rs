@@ -238,6 +238,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
 /// #### Return
 /// * `None`
 unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
+    if idx == 8 { return; }
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let global_state = STATE.as_ref().unwrap();
