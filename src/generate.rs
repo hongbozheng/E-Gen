@@ -9,6 +9,7 @@ use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::mem::{size_of, zeroed};
 use std::net::TcpListener;
 use std::process::{Child, Command, exit};
+use std::time::Instant;
 
 #[derive(Debug, Serialize, Deserialize)]
 /// data for extraction
@@ -38,6 +39,7 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
 fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
+    let start_time = Instant::now();
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
@@ -187,6 +189,9 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
 
     /* post-processing equivalent expressions */
     equiv_exprs = rm_permutation(&equiv_exprs);
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    log_info(&format!("Expression Extraction {}s", elapsed_time));
 
     return equiv_exprs;
 }
