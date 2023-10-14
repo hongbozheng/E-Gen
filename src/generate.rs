@@ -39,7 +39,6 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
 fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
-    let start_time = Instant::now();
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[3].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
@@ -64,6 +63,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     cli.push(CmdLineArg::String(addr.to_string()));
     let num_logical_cores = num_cpus::get();
 
+    let start_time = Instant::now();
     /* spawn children processes & set process affinity */
     let mut child_procs: Vec<Child> = init_exprs.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
         cli[3] = CmdLineArg::String(rw.clone());
@@ -312,6 +312,7 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 /// #### Return
 /// * `None`
 pub fn generate(args: &Vec<String>) {
+    let start_time = Instant::now();
     let mut cli = parse_args(&args);
 
     if cli.len() == 4 {
@@ -321,6 +322,9 @@ pub fn generate(args: &Vec<String>) {
         }
     }
     else { generate_file(&mut cli); }
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    log_info(&format!("Total run time {}s\n", elapsed_time));
 
     return;
 }
