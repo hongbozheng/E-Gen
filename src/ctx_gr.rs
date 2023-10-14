@@ -53,7 +53,7 @@ impl ContextGrammar {
         let runner = runner.run(&math_rule());
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
-        log_info(&format!("E-graph Saturation {}s", elapsed_time));
+        log_info(&format!("E-graph Saturation {}s\n", elapsed_time));
 
         self.egraph = runner.egraph;
         self.root_eclasses = runner.roots;
@@ -98,6 +98,7 @@ impl ContextGrammar {
             }
         }
 
+        log_info(&format!("Total # of grammars {}\n", self.grammar.len()));
         return;
     }
 

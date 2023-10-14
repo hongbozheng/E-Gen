@@ -191,7 +191,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     equiv_exprs = rm_permutation(&equiv_exprs);
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
-    log_info(&format!("Expression Extraction {}s", elapsed_time));
+    log_info(&format!("Expression Extraction {}s\n", elapsed_time));
 
     return equiv_exprs;
 }
