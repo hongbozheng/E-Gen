@@ -25,7 +25,7 @@ impl Analysis<Prop> for ConstantFold {
         })
     }
 
-    fn make(egraph: &EGraph, enode: &Prop) -> Self::Data {
+    fn make(egraph: &mut EGraph, enode: &Prop) -> Self::Data {
         let x = |i: &Id| egraph[*i].data.as_ref().map(|c| c.0);
         let result = match enode {
             Prop::Bool(c) => Some((*c, c.to_string().parse().unwrap())),
@@ -40,7 +40,7 @@ impl Analysis<Prop> for ConstantFold {
                 format!("(| {} {})", x(a)?, x(b)?).parse().unwrap(),
             )),
             Prop::Implies([a, b]) => Some((
-                x(a)? || !x(b)?,
+                !x(a)? || x(b)?,
                 format!("(-> {} {})", x(a)?, x(b)?).parse().unwrap(),
             )),
         };
