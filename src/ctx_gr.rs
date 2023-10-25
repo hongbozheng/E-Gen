@@ -1,5 +1,4 @@
 use crate::*;
-use std::collections::HashMap;
 use std::time::Instant;
 
 /// Context Grammar Struct
