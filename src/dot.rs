@@ -1,6 +1,8 @@
 /*!
 EGraph visualization with [GraphViz]
+
 Use the [`Dot`] struct to visualize an [`EGraph`]
+
 [GraphViz]: https://graphviz.gitlab.io/
 !*/
 
@@ -14,31 +16,40 @@ use crate::{egraph::EGraph, Analysis, Language};
 /**
 A wrapper for an [`EGraph`] that can output [GraphViz] for
 visualization.
+
 The [`EGraph::dot`](EGraph::dot()) method creates `Dot`s.
+
 # Example
+
 ```no_run
 use egg::{*, rewrite as rw};
+
 let rules = &[
     rw!("mul-commutes"; "(* ?x ?y)" => "(* ?y ?x)"),
     rw!("mul-two";      "(* ?x 2)" => "(<< ?x 1)"),
 ];
+
 let mut egraph: EGraph<SymbolLang, ()> = Default::default();
 egraph.add_expr(&"(/ (* 2 a) 2)".parse().unwrap());
 let egraph = Runner::default().with_egraph(egraph).run(rules).egraph;
+
 // Dot implements std::fmt::Display
 println!("My egraph dot file: {}", egraph.dot());
+
 // create a Dot and then compile it assuming `dot` is on the system
 egraph.dot().to_svg("target/foo.svg").unwrap();
 egraph.dot().to_png("target/foo.png").unwrap();
 egraph.dot().to_pdf("target/foo.pdf").unwrap();
 egraph.dot().to_dot("target/foo.dot").unwrap();
 ```
+
 Note that self-edges (from an enode to its containing eclass) will be
 rendered improperly due to a deficiency in GraphViz.
 So the example above will render with an from the "+" enode to itself
 instead of to its own eclass.
+
 [GraphViz]: https://graphviz.gitlab.io/
- **/
+**/
 pub struct Dot<'a, L: Language, N: Analysis<L>> {
     pub(crate) egraph: &'a EGraph<L, N>,
     /// A list of strings to be output top part of the dot file.
@@ -49,9 +60,9 @@ pub struct Dot<'a, L: Language, N: Analysis<L>> {
 }
 
 impl<'a, L, N> Dot<'a, L, N>
-    where
-        L: Language + Display,
-        N: Analysis<L>,
+where
+    L: Language + Display,
+    N: Analysis<L>,
 {
     /// Writes the `Dot` to a .dot file with the given filename.
     /// Does _not_ require a `dot` binary.
@@ -94,9 +105,9 @@ impl<'a, L, N> Dot<'a, L, N>
     /// Invokes `dot` with the given arguments, piping this formatted
     /// `Dot` into stdin.
     pub fn run_dot<S, I>(&self, args: I) -> Result<()>
-        where
-            S: AsRef<OsStr>,
-            I: IntoIterator<Item = S>,
+    where
+        S: AsRef<OsStr>,
+        I: IntoIterator<Item = S>,
     {
         self.run("dot", args)
     }
@@ -114,10 +125,10 @@ impl<'a, L, N> Dot<'a, L, N>
     /// ).unwrap();
     /// ```
     pub fn run<S1, S2, I>(&self, program: S1, args: I) -> Result<()>
-        where
-            S1: AsRef<OsStr>,
-            S2: AsRef<OsStr>,
-            I: IntoIterator<Item = S2>,
+    where
+        S1: AsRef<OsStr>,
+        S2: AsRef<OsStr>,
+        I: IntoIterator<Item = S2>,
     {
         use std::process::{Command, Stdio};
         let mut child = Command::new(program)
@@ -166,9 +177,9 @@ impl<'a, L: Language, N: Analysis<L>> Debug for Dot<'a, L, N> {
 }
 
 impl<'a, L, N> Display for Dot<'a, L, N>
-    where
-        L: Language + Display,
-        N: Analysis<L>,
+where
+    L: Language + Display,
+    N: Analysis<L>,
 {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         writeln!(f, "digraph egraph {{")?;

@@ -10,8 +10,8 @@ use std::rc::Rc;
 
 use symbolic_expressions::Sexp;
 
-const CONGRUENCE_LIMIT: usize = 10;
-const GREEDY_NUM_ITERS: usize = 10;
+const CONGRUENCE_LIMIT: usize = 2;
+const GREEDY_NUM_ITERS: usize = 2;
 
 /// A justification for a union, either via a rule or congruence.
 /// A direct union with a justification is also stored as a rule.
@@ -101,6 +101,7 @@ type ExplainCache<L> = HashMap<(Id, Id), Rc<TreeTerm<L>>>;
 type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 
 /** A data structure representing an explanation that two terms are equivalent.
+
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.

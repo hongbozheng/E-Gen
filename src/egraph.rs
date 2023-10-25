@@ -10,28 +10,36 @@ use ::serde::{Deserialize, Serialize};
 use log::*;
 
 /** A data structure to keep track of equalities between expressions.
+
 Check out the [background tutorial](crate::tutorials::_01_background)
 for more information on e-graphs in general.
+
 # E-graphs in `egg`
+
 In `egg`, the main types associated with e-graphs are
 [`EGraph`], [`EClass`], [`Language`], and [`Id`].
+
 [`EGraph`] and [`EClass`] are all generic over a
 [`Language`], meaning that types actually floating around in the
 egraph are all user-defined.
 In particular, the e-nodes are elements of your [`Language`].
 [`EGraph`]s and [`EClass`]es are additionally parameterized by some
 [`Analysis`], abritrary data associated with each e-class.
+
 Many methods of [`EGraph`] deal with [`Id`]s, which represent e-classes.
 Because eclasses are frequently merged, many [`Id`]s will refer to the
 same e-class.
+
 You can use the `egraph[id]` syntax to get an [`EClass`] from an [`Id`], because
 [`EGraph`] implements
 [`Index`](struct.EGraph.html#impl-Index<Id>)
 and
 [`IndexMut`](struct.EGraph.html#impl-IndexMut<Id>).
+
 Enabling the `serde-1` feature on this crate will allow you to
 de/serialize [`EGraph`]s using [`serde`](https://serde.rs/).
 You must call [`EGraph::rebuild`] after deserializing an e-graph!
+
 [`add`]: EGraph::add()
 [`union`]: EGraph::union()
 [`rebuild`]: EGraph::rebuild()

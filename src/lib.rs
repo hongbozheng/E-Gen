@@ -43,16 +43,6 @@ mod egraph;
 mod explain;
 mod extract;
 mod language;
-/* visible to all module in the crate */
-mod config;
-mod logger;
-mod utils;
-mod math;
-mod ctx_gr;
-mod expr_ext;
-mod cli;
-mod refactor;
-/* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
 mod machine;
@@ -64,7 +54,7 @@ mod subst;
 mod unionfind;
 mod util;
 
-/// A key to identify [`EClass`]es  within an
+/// A key to identify [`EClass`]es within an
 /// [`EGraph`].
 #[derive(Clone, Copy, Default, Ord, PartialOrd, Eq, PartialEq, Hash)]
 #[cfg_attr(feature = "serde-1", derive(serde::Serialize, serde::Deserialize))]
@@ -113,15 +103,6 @@ pub use {
     run::*,
     subst::{Subst, Var},
     util::*,
-    /*  public to the whole crate */
-    config::*,
-    logger::*,
-    utils::*,
-    math::{Math, math_rule, MathEGraph},
-    ctx_gr::ContextGrammar,
-    expr_ext::{MAX_NUM_THREADS, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, setup_extract, extract},
-    cli::set_hyperparam,
-    refactor::refactor,
 };
 
 #[cfg(feature = "lp")]
