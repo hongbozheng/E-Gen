@@ -55,16 +55,16 @@ impl CmdLineArg {
 /// #### Return
 /// * `None`
 fn help() {
-    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <max num token>  [-f] <exhaustive flag>\n");
+    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-n] <num tokens>     [-f] <exhaustive flag>\n");
     log_info_raw("[USAGE]:           [-e] <expr>    [-i] <input filepath> [-o] <output filepath>\n");
-    log_info_raw("[USAGE]: <thd pct>    -> OS thread percentage\n");
-    log_info_raw("[USAGE]:  type        -> float64\n");
-    log_info_raw("[USAGE]:  default      = 1.0 [100%]\n");
-    log_info_raw("[USAGE]:  required    -> false\n");
-    log_info_raw("[USAGE]: <max num token> -> maximum token length\n");
-    log_info_raw("[USAGE]:  type        -> uint8\n");
-    log_info_raw("[USAGE]:  default      = 8\n");
-    log_info_raw("[USAGE]:  required    -> false\n");
+    log_info_raw("[USAGE]: <thd pct>         -> OS thread percentage\n");
+    log_info_raw("[USAGE]:  type             -> float64\n");
+    log_info_raw("[USAGE]:  default           = 1.0 [100%]\n");
+    log_info_raw("[USAGE]:  required         -> false\n");
+    log_info_raw("[USAGE]: <num tokens>      -> number of tokens limit\n");
+    log_info_raw("[USAGE]:  type             -> uint8\n");
+    log_info_raw("[USAGE]:  default           = 8\n");
+    log_info_raw("[USAGE]:  required         -> false\n");
     log_info_raw("[USAGE]: <exhaustive flag> -> exhaustive extraction flag\n");
     log_info_raw("[USAGE]:  type             -> uint8\n");
     log_info_raw("[USAGE]:  default           = 0\n");
@@ -112,18 +112,18 @@ fn set_thd_pct(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
 /// * `usr_input` - user input
 /// #### Return
 /// * `u8` - maximum expression rewrite length
-fn set_max_num_token(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
-    let max_num_token = match usr_input.parse::<u8>(){
-        Ok(max_num_token) => { max_num_token },
+fn set_num_tokens(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
+    let num_tokens = match usr_input.parse::<u8>(){
+        Ok(num_tokens) => { num_tokens },
         Err(_) => {
-            log_error(&format!("Invalid input value \"{}\" for max number of tokens, expect u8.\n", usr_input));
+            log_error(&format!("Invalid input value \"{}\" for number of tokens limit, expect u8.\n", usr_input));
             exit(1);
         }
     };
-    if max_num_token > 0 {
-        cli[1] = CmdLineArg::UInt(max_num_token);
+    if num_tokens > 0 {
+        cli[1] = CmdLineArg::UInt(num_tokens);
     } else {
-        log_error(&format!("Invalid input value \"{}\" for max number of tokens, expect to u8 in (0, 2^8].\n", usr_input));
+        log_error(&format!("Invalid input value \"{}\" for number of tokens limit, expect to u8 in (0, 2^8].\n", usr_input));
         exit(1);
     }
 }
@@ -179,7 +179,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
         5 => {
             match args[1] {
                 "-t" => { set_thd_pct(&mut cli, args[2]); },
-                "-l" => { set_max_num_token(&mut cli, args[2]); },
+                "-n" => { set_num_tokens(&mut cli, args[2]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                 "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                 _ => {
@@ -189,7 +189,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             }
             match args[3] {
                 "-t" => { set_thd_pct(&mut cli, args[4]); },
-                "-l" => { set_max_num_token(&mut cli, args[4]); },
+                "-n" => { set_num_tokens(&mut cli, args[4]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                 "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                 _ => {
@@ -202,7 +202,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             if args.contains(&"-e") {
                 match args[1] {
                     "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_max_num_token(&mut cli, args[2]); },
+                    "-n" => { set_num_tokens(&mut cli, args[2]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
@@ -211,7 +211,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[3] {
                     "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_max_num_token(&mut cli, args[4]); },
+                    "-n" => { set_num_tokens(&mut cli, args[4]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
@@ -220,7 +220,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[5] {
                     "-t" => { set_thd_pct(&mut cli, args[6]) },
-                    "-l" => { set_max_num_token(&mut cli, args[6]); },
+                    "-n" => { set_num_tokens(&mut cli, args[6]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
@@ -230,7 +230,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             } else {
                 match args[1] {
                     "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_max_num_token(&mut cli, args[2]); },
+                    "-n" => { set_num_tokens(&mut cli, args[2]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
@@ -240,7 +240,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[3] {
                     "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_max_num_token(&mut cli, args[4]); },
+                    "-n" => { set_num_tokens(&mut cli, args[4]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
@@ -250,7 +250,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[5] {
                     "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_max_num_token(&mut cli, args[6]); },
+                    "-n" => { set_num_tokens(&mut cli, args[6]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
@@ -264,7 +264,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             if args.contains(&"-e") {
                 match args[1] {
                     "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_max_num_token(&mut cli, args[2]); },
+                    "-n" => { set_num_tokens(&mut cli, args[2]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     _ => {
@@ -273,7 +273,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[3] {
                     "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_max_num_token(&mut cli, args[4]); },
+                    "-n" => { set_num_tokens(&mut cli, args[4]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     _ => {
@@ -282,7 +282,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[5] {
                     "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_max_num_token(&mut cli, args[6]); },
+                    "-n" => { set_num_tokens(&mut cli, args[6]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     _ => {
@@ -291,7 +291,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[7] {
                     "-t" => { set_thd_pct(&mut cli, args[8]); },
-                    "-l" => { set_max_num_token(&mut cli, args[8]); },
+                    "-n" => { set_num_tokens(&mut cli, args[8]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
                     "-e" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                     _ => {
@@ -301,7 +301,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             } else {
                 match args[1] {
                     "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_max_num_token(&mut cli, args[2]); },
+                    "-n" => { set_num_tokens(&mut cli, args[2]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                     "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
@@ -311,7 +311,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[3] {
                     "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_max_num_token(&mut cli, args[4]); },
+                    "-n" => { set_num_tokens(&mut cli, args[4]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                     "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
@@ -321,7 +321,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[5] {
                     "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_max_num_token(&mut cli, args[6]); },
+                    "-n" => { set_num_tokens(&mut cli, args[6]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                     "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
@@ -331,7 +331,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
                 }
                 match args[7] {
                     "-t" => { set_thd_pct(&mut cli, args[8]); },
-                    "-l" => { set_max_num_token(&mut cli, args[8]); },
+                    "-n" => { set_num_tokens(&mut cli, args[8]); },
                     "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
                     "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                     "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
@@ -344,7 +344,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
         11 => {
             match args[1] {
                 "-t" => { set_thd_pct(&mut cli, args[2]); },
-                "-l" => { set_max_num_token(&mut cli, args[2]); },
+                "-n" => { set_num_tokens(&mut cli, args[2]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
                 "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
@@ -355,7 +355,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             }
             match args[3] {
                 "-t" => { set_thd_pct(&mut cli, args[4]); },
-                "-l" => { set_max_num_token(&mut cli, args[4]); },
+                "-n" => { set_num_tokens(&mut cli, args[4]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
                 "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
@@ -366,7 +366,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             }
             match args[5] {
                 "-t" => { set_thd_pct(&mut cli, args[6]); },
-                "-l" => { set_max_num_token(&mut cli, args[6]); },
+                "-n" => { set_num_tokens(&mut cli, args[6]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
                 "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
@@ -377,7 +377,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             }
             match args[7] {
                 "-t" => { set_thd_pct(&mut cli, args[8]); },
-                "-l" => { set_max_num_token(&mut cli, args[8]); },
+                "-n" => { set_num_tokens(&mut cli, args[8]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
                 "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
@@ -388,7 +388,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             }
             match args[9] {
                 "-t" => { set_thd_pct(&mut cli, args[10]); },
-                "-l" => { set_max_num_token(&mut cli, args[10]); },
+                "-n" => { set_num_tokens(&mut cli, args[10]); },
                 "-f" => { set_exhaustive_flag(&mut cli, args[10]);  },
                 "-i" => { cli.push(CmdLineArg::String(args[10].to_string())); },
                 "-o" => { cli.push(CmdLineArg::String(args[10].to_string())); },
