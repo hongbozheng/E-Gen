@@ -7,8 +7,8 @@
 
 Are you using egg?
 Please cite using the BibTeX below and
- add your project to the `egg`
- [website](https://github.com/egraphs-good/egraphs-good.github.io)!
+add your project to the `egg`
+[website](https://github.com/egraphs-good/egraphs-good.github.io)!
 
 <details class="bibtex">
     <summary>BibTeX</summary>
@@ -52,10 +52,10 @@ Typically, you install Rust using [`rustup`](https://www.rust-lang.org/tools/ins
 
 Run `cargo doc --open` to build and open the documentation in a browser.
 
-Before committing/pushing, make sure to run `make`, 
- which runs all the tests and lints that CI will (including those under feature flags).
+Before committing/pushing, make sure to run `make`,
+which runs all the tests and lints that CI will (including those under feature flags).
 This requires the [`cbc`](https://projects.coin-or.org/Cbc) solver
- due to the `lp` feature.
+due to the `lp` feature.
 
 ### Tests
 
@@ -103,18 +103,18 @@ cargo run --bin egg -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens> -f <exhaustive flag>
+cargo run --bin egg -t <thd pct> -l <token limit> -f <exhaustive flag>
 ```
 * `<thd pct>` - OS thread percentage
-* `<num tokens>` - number of tokens limit
+* `<token limit>` - token limit
 * `<exhaustive>` - exhaustive extraction flag
 
 ##### Example command line inputs
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens> -f <csg flag> -e <expression>
+cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
 ```
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
 ```
 
 ## Context-Grammar (Python)
