@@ -55,13 +55,13 @@ impl CmdLineArg {
 /// #### Return
 /// * `None`
 fn help() {
-    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-n] <num tokens>     [-f] <exhaustive flag>\n");
+    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <token limit>    [-f] <exhaustive flag>\n");
     log_info_raw("[USAGE]:           [-e] <expr>    [-i] <input filepath> [-o] <output filepath>\n");
     log_info_raw("[USAGE]: <thd pct>         -> OS thread percentage\n");
     log_info_raw("[USAGE]:  type             -> float64\n");
     log_info_raw("[USAGE]:  default           = 1.0 [100%]\n");
     log_info_raw("[USAGE]:  required         -> false\n");
-    log_info_raw("[USAGE]: <token limit>     -> number of tokens limit\n");
+    log_info_raw("[USAGE]: <token limit>     -> tokens limit\n");
     log_info_raw("[USAGE]:  type             -> uint8\n");
     log_info_raw("[USAGE]:  default           = 8\n");
     log_info_raw("[USAGE]:  required         -> false\n");
