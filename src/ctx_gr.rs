@@ -1,5 +1,6 @@
 use crate::*;
 use std::collections::HashMap;
+use std::time::Instant;
 
 /// Context Grammar Struct
 /// store information about initial expression,
@@ -44,12 +45,15 @@ impl ContextGrammar {
     /// * `None`
     pub fn setup(&mut self) {
         /* parse initial expression and create initial e-graph */
+        let start_time = Instant::now();
         let recexpr = self.input_expr.parse().unwrap();
         let runner = Runner::default().with_expr(&recexpr);
 
         /* equality saturation */
         let runner = runner.run(&math_rule());
-
+        let end_time = Instant::now();
+        let elapsed_time = end_time.duration_since(start_time).as_secs();
+        log_info(&format!("E-graph Saturation {}s\n", elapsed_time));
         self.egraph = runner.egraph;
         self.root_eclasses = runner.roots;
         let eclasses = self.egraph.classes();
@@ -92,7 +96,14 @@ impl ContextGrammar {
                 self.init_exprs = self.grammar.get(&*root_ecls).unwrap().clone();
             }
         }
+        log_debug_raw("\n");
+        log_debug("------------- Grammar -------------\n");
+        for (eclass, rewrite) in &self.grammar {
+            log_debug(&format!("{} -> {:?}\n", &eclass, rewrite));
+        }
+        log_debug("-----------------------------------\n");
 
+        log_info(&format!("Total # of grammars {}\n", self.grammar.len()));
         return;
     }
 

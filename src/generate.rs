@@ -9,6 +9,7 @@ use std::io::{BufRead, BufReader, BufWriter, Read, Write};
 use std::mem::{size_of, zeroed};
 use std::net::TcpListener;
 use std::process::{Child, Command, exit};
+use std::time::Instant;
 
 /// ### private function generate equivalent expressions
 /// ### with 1 input expression
@@ -24,6 +25,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     ctx_gr.setup();
     let grammar = &ctx_gr.grammar;
     let init_exprs = &ctx_gr.init_exprs.clone();
+    let start_time = Instant::now();
     let levels = match &cli[1] {
         CmdLineArg::UInt(levels) => levels,
         _ => {
@@ -38,7 +40,9 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     for expr in &equiv_exprs {
         log_info(&format!("{}\n", expr));
     }
-
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    log_info(&format!("Expression Extraction {}s\n", elapsed_time));
     return equiv_exprs;
 }
 

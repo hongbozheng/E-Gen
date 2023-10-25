@@ -24,25 +24,25 @@ pub fn bfs_ext(grammar: &HashMap<String, Vec<String>>, levels: &u8, init_exprs: 
                 let final_expr = tokens.join(" ");
                 equiv_exprs.insert(final_expr);
             }
-            log_debug(&format!("[INIT EXPR]: {:?}", tokens));
+            log_debug(&format!("[INIT EXPR]: {:?}\n", tokens));
             for (i, op) in tokens.iter().enumerate() {
-                log_debug(&format!("[OP]: {}", op));
+                log_debug(&format!("[OP]: {}\n", op));
                 if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
                     !grammar.contains_key(op) { continue; }
                 let rw_vec = grammar.get(op).unwrap();
 
-                log_debug(&format!("[RWVEC]: {:?}", rw_vec));
+                log_debug(&format!("[RWVEC]: {:?}\n", rw_vec));
                 for (k, rw) in rw_vec.iter().enumerate() {
-                    log_debug(&format!("[RW]: {}", rw));
+                    log_debug(&format!("[RW]: {}\n", rw));
                     let rw_tokens: Vec<String> = rw.split_whitespace().map(String::from).collect();
                     /* context-free of context-sensitive, change here */
                     let mut new_tokens = tokens.clone();
                     new_tokens.splice(i..i+1, rw_tokens);
-                    log_debug(&format!("[NEW TOKEN]: {:?}", new_tokens));
+                    log_debug(&format!("[NEW TOKEN]: {:?}\n", new_tokens));
 
                     if !contain_ecls(&new_tokens) {
                         let final_expr = new_tokens.join(" ");
-                        log_debug(&format!("[FINAL]: {}", final_expr));
+                        log_debug(&format!("[FINAL]: {}\n", final_expr));
                         equiv_exprs.insert(final_expr);
                     } else {
                         tokens_level.insert(new_tokens);
