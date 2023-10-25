@@ -119,7 +119,7 @@ pub use {
     cli::{CmdLineArg, parse_args},
     config::*,
     ctx_gr::ContextGrammar,
-    expr_ext::{get_max_num_threads, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
+    expr_ext::{get_thd_limit, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
     generate::{Data, generate},
     logger::*,
     math::{MathEGraph, Math, math_rule},

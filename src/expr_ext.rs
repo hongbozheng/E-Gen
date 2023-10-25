@@ -7,7 +7,7 @@ use std::sync::{Arc, Mutex};
 use std::thread;
 
 /// private max # of threads can be used (not max # of OS threads)
-static mut MAX_NUM_THREADS: Option<Arc<Mutex<u32>>> = None;
+static mut THD_LIMIT: Option<Arc<Mutex<u32>>> = None;
 /// private global variable to store eclass(es) to skip during extraction
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
@@ -22,8 +22,8 @@ static mut EQUIV_EXPRS: Option<Arc<Mutex<HashSet<String>>>> = None;
 /// `None`
 /// #### Return
 /// `MAX_NUM_THREADS` - immutable reference of global variable MAX_NUM_THREADS
-pub unsafe fn get_max_num_threads() -> &'static Arc<Mutex<u32>> {
-    return MAX_NUM_THREADS.as_ref().unwrap();
+pub unsafe fn get_thd_limit() -> &'static Arc<Mutex<u32>> {
+    return THD_LIMIT.as_ref().unwrap();
 }
 
 /// ### public function to get private global variable SKIP_ECLS
@@ -206,7 +206,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
             } else {
-                let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+                let global_max_num_threads = THD_LIMIT.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
                 if *mutex > 0 {
                     *mutex -= 1;
@@ -331,7 +331,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
-                let global_max_num_threads = MAX_NUM_THREADS.as_ref().unwrap();
+                let global_max_num_threads = THD_LIMIT.as_ref().unwrap();
                 let mut mutex = global_max_num_threads.lock().unwrap();
                 if *mutex > 0 {
                     *mutex -= 1;
@@ -385,7 +385,7 @@ pub fn set_max_num_threads() {
         }
     };
 
-    unsafe { MAX_NUM_THREADS = Some(Arc::new(Mutex::new((max_os_threads as f64 * THD_PCT).floor() as u32))); }
+    unsafe { THD_LIMIT = Some(Arc::new(Mutex::new((max_os_threads as f64 * THD_PCT).floor() as u32))); }
 
     return;
 }

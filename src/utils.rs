@@ -7,8 +7,8 @@ use std::sync::{Arc, Mutex};
 /// * `max_rw_len` - maximum number of tokens
 /// #### Return
 /// * `None`
-pub unsafe fn set_max_num_token(max_num_token: u8) {
-    MAX_NUM_TOKEN = max_num_token;
+pub unsafe fn set_token_limit(token_limit: u8) {
+    TOKEN_LIMIT = token_limit;
     return;
 }
 
