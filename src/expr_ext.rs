@@ -57,12 +57,3 @@ pub fn bfs_ext(grammar: &HashMap<String, Vec<String>>, levels: &u8, init_exprs: 
 
     return equiv_exprs;
 }
-
-// pub fn check_no_eclass(new_expr: &Vec<String>){//check is there eclass in new_exprs
-//     for token in new_expr{
-//         if grammar.contains(&token) {
-//             return false
-//         }
-//     }
-//     return true
-// }

@@ -37,12 +37,14 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     let mut equiv_exprs: HashSet<String> = HashSet::default();
     equiv_exprs = bfs_ext(grammar, levels, init_exprs);
 
-    for expr in &equiv_exprs {
-        log_info(&format!("{}\n", expr));
-    }
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
     log_info(&format!("Expression Extraction {}s\n", elapsed_time));
+
+    for expr in &equiv_exprs {
+        log_info(&format!("{}\n", expr));
+    }
+
     return equiv_exprs;
 }
 
@@ -162,6 +164,7 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 /// #### Return
 /// * `None`
 pub fn generate(args: &Vec<String>) {
+    let start_time = Instant::now();
     let mut cli = parse_args(&args);
 
     if cli.len() == 4 {
@@ -171,6 +174,12 @@ pub fn generate(args: &Vec<String>) {
         }
     }
     else { generate_file(&mut cli); }
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    log_info(&format!("Total run time {}s\n", elapsed_time));
+
+    return;
+
 
     return;
 }
