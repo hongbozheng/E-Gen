@@ -103,18 +103,18 @@ cargo run --bin egg -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens limit> -f <exhaustive flag>
+cargo run --bin egg -t <thd pct> -n <num tokens> -f <exhaustive flag>
 ```
 * `<thd pct>` - OS thread percentage
-* `<num tokens limit>` - number of tokens limit
+* `<num tokens>` - number of tokens limit
 * `<exhaustive>` - exhaustive extraction flag
 
 ##### Example command line inputs
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens limit> -f <csg flag> -e <expression>
+cargo run --bin egg -t <thd pct> -n <num tokens> -f <csg flag> -e <expression>
 ```
 ```
-cargo run --bin egg -t <thd pct> -n <num tokens limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run --bin egg -t <thd pct> -n <num tokens> -f <csg flag> -i <input filepath> -o <output filepath>
 ```
 
 ## Context-Grammar (Python)
