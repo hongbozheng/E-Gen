@@ -183,7 +183,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
-            if tokens.len() >= MAX_NUM_TOKEN as usize {
+            if tokens.len() >= TOKEN_LIMIT as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 tokens = prev_tokens.clone();
                 continue;
@@ -304,7 +304,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
-            if tokens.len() >= MAX_NUM_TOKEN as usize {
+            if tokens.len() >= TOKEN_LIMIT as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 if k == rw_list.len()-1 {
                     term = true;
@@ -436,8 +436,8 @@ pub fn extract(args: &Vec<String>) {
             THD_PCT = *thd_pct;
         }
         set_max_num_threads();
-        if let CmdLineArg::UInt(max_num_token) = &cli[2] {
-            MAX_NUM_TOKEN = *max_num_token;
+        if let CmdLineArg::UInt(token_limit) = &cli[2] {
+            TOKEN_LIMIT = *token_limit;
         }
         if let CmdLineArg::Bool(exhaustive) = &cli[3] {
             EXHAUSTIVE = *exhaustive;
