@@ -91,19 +91,19 @@ The above command will create 2 binary executable files `egg` and `multiproc` un
 #### Run the command-line application
 ##### Check command line input help
 ```
-cargo run --bin egg
+cargo run
 ```
 ##### Provide 1 input expression and equivalent expressions will be printed to terminal
 ```
-cargo run --bin egg -e <expression>
+cargo run -- -e <expression>
 ```
 ##### Provide a file with multiple expressions and a file to store all equivalent expressions
 ```
-cargo run --bin egg -i <input filepath> -o <output filepath>
+cargo run -- -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <exhaustive flag>
+cargo run -- -t <thd pct> -l <token limit> -f <exhaustive flag>
 ```
 * `<thd pct>` - OS thread percentage
 * `<token limit>` - token limit
@@ -111,10 +111,10 @@ cargo run --bin egg -t <thd pct> -l <token limit> -f <exhaustive flag>
 
 ##### Example command line inputs
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
+cargo run -- -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
 ```
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run -- -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
 ```
 
 ## Context-Grammar (Python)
