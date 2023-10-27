@@ -57,11 +57,24 @@ pub fn pt_type_of<T>(_: &T) {
 }
 
 /// ### public function to print egraph information
+/// ### total # of e-class(es) & total # of e-node(s)
 /// #### Argument
 /// * `egraph` - egraph
 /// #### Return
 /// * `None`
 pub fn pt_egraph_info(egraph: &MathEGraph) {
+    log_info(&format!("Total # of e-class(es): {}\n", &egraph.number_of_classes()));
+    log_info(&format!("Total # of e-node(s):   {}\n", &egraph.total_number_of_nodes()));
+
+    return;
+}
+
+/// ### public function to print egraph information
+/// #### Argument
+/// * `egraph` - egraph
+/// #### Return
+/// * `None`
+pub fn pt_egraph(egraph: &MathEGraph) {
     log_debug_raw("\n");
     log_debug("------- EGraph Information -------\n");
     log_debug("------------- EClass -------------\n");

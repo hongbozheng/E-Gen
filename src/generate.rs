@@ -16,21 +16,29 @@ fn generate_exprs(cli: &Vec<CmdLineArg>) -> HashSet<String> {
     log_info(&format!("Expression: {}\n", input_expr));
     let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
+    pt_egraph_info(&ctx_gr.egraph);
     let skip_ecls = &ctx_gr.skip_eclasses.clone();
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
     let start_time = Instant::now();
-
     extract(cli, skip_ecls, grammar, init_exprs);
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    log_info(&format!("Expression extraction time: {}s\n", elapsed_time));
 
     unsafe {
+        let start_time = Instant::now();
         let mut equiv_exprs: HashSet<String> = get_global_equiv_exprs().clone();
+        let orig_num_exprs = equiv_exprs.len();
         /* post-processing equivalent expressions */
         equiv_exprs = rm_permutation(&equiv_exprs);
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
-        log_info(&format!("Expression Extraction {}s\n", elapsed_time));
+        let num_exprs = equiv_exprs.len();
+        log_info(&format!("Expression postprocessing time: {}s\n", elapsed_time));
+        log_info(&format!("Total # of expression(s) before postprocessing: {}\n", orig_num_exprs));
+        log_info(&format!("Total # of expression(s) after  postprocessing: {}\n", num_exprs));
 
         return equiv_exprs;
     }
@@ -84,7 +92,11 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 
         /* start extraction and get equivalent expressions */
         cli[3] = CmdLineArg::String(input_expr);
+        let start_time = Instant::now();
         let equiv_exprs = generate_exprs(cli);
+        let end_time = Instant::now();
+        let elapsed_time = end_time.duration_since(start_time).as_secs();
+        log_info(&format!("Total run time: {}s\n\n", elapsed_time));
 
         /* write equivalent expressions into output file */
         for expr in &equiv_exprs {
@@ -152,19 +164,19 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 /// #### Return
 /// * `None`
 pub fn generate(args: &Vec<String>) {
-    let start_time = Instant::now();
     let mut cli = parse_args(&args);
 
     if cli.len() == 4 {
+        let start_time = Instant::now();
         let equiv_exprs = generate_exprs(&cli);
         for expr in &equiv_exprs {
             log_info(&format!("{}\n", expr));
         }
+        let end_time = Instant::now();
+        let elapsed_time = end_time.duration_since(start_time).as_secs();
+        log_info(&format!("Total run time: {}s\n", elapsed_time));
     }
     else { generate_file(&mut cli); }
-    let end_time = Instant::now();
-    let elapsed_time = end_time.duration_since(start_time).as_secs();
-    log_info(&format!("Total run time {}s\n", elapsed_time));
 
     return;
 }

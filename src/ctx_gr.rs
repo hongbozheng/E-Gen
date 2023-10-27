@@ -52,13 +52,14 @@ impl ContextGrammar {
         let runner = runner.run(&math_rule());
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
-        log_info(&format!("E-graph Saturation {}s\n", elapsed_time));
+        log_info(&format!("E-graph saturation time: {}s\n", elapsed_time));
 
         self.egraph = runner.egraph;
         self.root_eclasses = runner.roots;
         let eclasses = self.egraph.classes();
 
         /* setup member variables skip_ecls and grammar */
+        let start_time = Instant::now();
         for eclass in eclasses {
             let mut rewrite_rules: Vec<String> = vec![];
             let ecls: String = format!("{}{}", "e", eclass.id);
@@ -85,6 +86,9 @@ impl ContextGrammar {
             }
             self.grammar.insert(ecls, rewrite_rules);
         }
+        let end_time = Instant::now();
+        let elapsed_time = end_time.duration_since(start_time).as_secs();
+        log_info(&format!("Grammar  creation  time: {}s\n", elapsed_time));
 
         /* setup the member variable init_rw */
         for rc in &self.root_eclasses {
@@ -97,7 +101,6 @@ impl ContextGrammar {
             }
         }
 
-        log_info(&format!("Total # of grammars {}\n", self.grammar.len()));
         return;
     }
 
