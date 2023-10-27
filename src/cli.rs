@@ -59,7 +59,7 @@ fn help() {
     log_info_raw("[USAGE]:           [-e] <expr>    [-i] <input filepath> [-o] <output filepath>\n");
     log_info_raw("[USAGE]: <thd pct>         -> OS thread percentage\n");
     log_info_raw("[USAGE]:  type             -> float64\n");
-    log_info_raw("[USAGE]:  default           = 1.0 [100%]\n");
+    log_info_raw("[USAGE]:  default           = 0.8 [80%]\n");
     log_info_raw("[USAGE]:  required         -> false\n");
     log_info_raw("[USAGE]: <token limit>     -> tokens limit\n");
     log_info_raw("[USAGE]:  type             -> uint8\n");
@@ -177,25 +177,30 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
             cli.push(CmdLineArg::String(args[2].to_string()));
         },
         5 => {
-            match args[1] {
-                "-t" => { set_thd_pct(&mut cli, args[2]); },
-                "-l" => { set_token_limit(&mut cli, args[2]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
-                    help();
-                },
-            }
-            match args[3] {
-                "-t" => { set_thd_pct(&mut cli, args[4]); },
-                "-l" => { set_token_limit(&mut cli, args[4]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                    help();
-                },
+            if args.contains(&"-e") {
+                match args[1] {
+                    "-t" => { set_thd_pct(&mut cli, args[2]); },
+                    "-l" => { set_token_limit(&mut cli, args[2]); },
+                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
+                    "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
+                    _ => {
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
+                        help();
+                    },
+                }
+                match args[3] {
+                    "-t" => { set_thd_pct(&mut cli, args[4]); },
+                    "-l" => { set_token_limit(&mut cli, args[4]); },
+                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
+                    "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
+                    _ => {
+                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
+                        help();
+                    },
+                }
+            } else {
+                cli.push(CmdLineArg::String(args[2].to_string()));
+                cli.push(CmdLineArg::String(args[4].to_string()));
             }
         },
         7 => {
