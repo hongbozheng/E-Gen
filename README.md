@@ -105,9 +105,9 @@ cargo run -- -i <input filepath> -o <output filepath>
 ```
 cargo run -- -t <thd pct> -l <token limit> -f <exhaustive flag>
 ```
-* `<thd pct>` - OS thread percentage
-* `<token limit>` - token limit
-* `<exhaustive>` - exhaustive extraction flag
+* `<thd pct>` - OS thread percentage, default = 0.8 (80%)
+* `<token limit>` - token limit, default = 8
+* `<exhaustive>` - exhaustive extraction flag, default = 0 (False)
 
 ##### Example command line inputs
 ```
