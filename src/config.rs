@@ -9,5 +9,7 @@ pub static mut THD_PCT: f64 = 0.80;
 pub static mut TOKEN_LIMIT: u8 = 8;
 /// exhaustive extraction flag
 pub static mut EXHAUSTIVE: bool = false;
+/// time limit in sec
+pub static TIME_LIMIT: u64 = 300;
 /// suppress meaningless rewrite rules (e.g. * 1, pow 1, + 0)
 pub static SUPPRESS: bool = true;

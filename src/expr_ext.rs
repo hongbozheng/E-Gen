@@ -1,4 +1,5 @@
 use crate::*;
+use std::time::Instant;
 
 /// private max # of threads can be used (not max # of OS threads)
 static mut THD_LIMIT: Option<u32> = None;
@@ -108,7 +109,13 @@ fn contain_ecls(tokens: &Vec<String>) -> bool {
 /// * `idx` - fn call idx for debugging purpose
 /// #### Return
 /// * `None`
-unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
+unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    if elapsed_time >= TIME_LIMIT {
+        return;
+    }
+
     log_trace("-----------------------------------\n");
     log_trace(&format!("Function Call {}\n", idx));
     let prev_tokens = tokens.clone();
@@ -173,7 +180,12 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
             } else {
-                exhaustive_extract(tokens.clone(), idx+1);
+                exhaustive_extract(tokens.clone(), idx+1, start_time);
+                let end_time = Instant::now();
+                let elapsed_time = end_time.duration_since(start_time).as_secs();
+                if elapsed_time >= TIME_LIMIT {
+                    return;
+                }
 
                 log_trace(&format!("Back to Function Call {}\n", idx));
                 tokens = prev_tokens.clone();
@@ -183,6 +195,8 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
     }
     log_trace(&format!("Finish Function Call {}\n", idx));
     log_trace("-----------------------------------\n");
+
+    return;
 }
 
 /// ### private function to extract all equivalent mathematical expressions
@@ -192,7 +206,13 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
 /// * `idx` - fn call idx for debugging purpose
 /// #### Return
 /// * `None`
-unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
+unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    if elapsed_time >= TIME_LIMIT {
+        return;
+    }
+
     log_trace("-----------------------------------\n");
     log_trace(format!("Function Call {}\n", idx).as_str());
     let global_state = STATE.as_mut().unwrap();
@@ -273,7 +293,12 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
-                optimized_extract(tokens.clone(), idx+1);
+                optimized_extract(tokens.clone(), idx+1, start_time);
+                let end_time = Instant::now();
+                let elapsed_time = end_time.duration_since(start_time).as_secs();
+                if elapsed_time >= TIME_LIMIT {
+                    return;
+                }
 
                 log_trace(&format!("Back to Function Call {}\n", idx));
                 tokens = prev_tokens.clone();
@@ -287,6 +312,8 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
     }
     log_trace(&format!("Finish Function Call {}\n", idx));
     log_trace("-----------------------------------\n");
+
+    return;
 }
 
 /// ### public function to start extracting equivalent expressions
@@ -318,14 +345,15 @@ pub fn extract(cli: &Vec<CmdLineArg>, skip_ecls: &HashMap<String, f64>, grammar:
         .collect();
 
     unsafe {
+        let start_time = Instant::now();
         /* start extraction */
         if EXHAUSTIVE {
             for init_token_expr in init_token_exprs {
-                exhaustive_extract(init_token_expr, 0);
+                exhaustive_extract(init_token_expr, 0, start_time);
             }
         } else {
             for init_token_expr in init_token_exprs {
-                optimized_extract(init_token_expr, 0);
+                optimized_extract(init_token_expr, 0, start_time);
             }
         }
     }
