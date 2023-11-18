@@ -396,14 +396,15 @@ pub fn set_max_num_threads() {
 /// #### Return
 /// * `None`
 pub fn extract(args: &Vec<String>) {
-    let cli: Vec<CmdLineArg> = args.iter().map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
+    let cli: Vec<CmdLineArg> = args.iter().skip(1).take(3).map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
+    println!("received cli {:?}", cli);
 
     let pid = process::id();
     let mut skip_ecls: HashMap<String, f64> = Default::default();
     let mut grammar: HashMap<String, Vec<String>> = Default::default();
 
     /* receive data (skip_ecls & grammar) from parent process */
-    match TcpStream::connect(&args[5]) {
+    match TcpStream::connect(&args[4]) {
         Ok(mut stream) => {
             let mut data_bytes: Vec<u8> = vec![];
             match stream.read_to_end(&mut data_bytes) {
@@ -432,14 +433,14 @@ pub fn extract(args: &Vec<String>) {
 
     /* setup global variables */
     unsafe {
-        if let CmdLineArg::Float(thd_pct) = &cli[1] {
+        if let CmdLineArg::Float(thd_pct) = &cli[0] {
             THD_PCT = *thd_pct;
         }
         set_max_num_threads();
-        if let CmdLineArg::UInt(token_limit) = &cli[2] {
+        if let CmdLineArg::UInt(token_limit) = &cli[1] {
             TOKEN_LIMIT = *token_limit;
         }
-        if let CmdLineArg::Bool(exhaustive) = &cli[3] {
+        if let CmdLineArg::Bool(exhaustive) = &cli[2] {
             EXHAUSTIVE = *exhaustive;
         }
         SKIP_ECLS = Some(skip_ecls);
@@ -448,14 +449,22 @@ pub fn extract(args: &Vec<String>) {
         EQUIV_EXPRS = Some(Arc::new(Mutex::new(Default::default())));
     }
 
-    let tokens = cli[4].to_string().split_whitespace().map(|s| s.to_owned()).collect();
+    let init_exprs: Vec<Vec<String>> = args[5..].to_vec()
+        .iter()
+        .map(|s| s.split_whitespace().map(|token| token.to_string()).collect())
+        .collect();
+    println!("init exprs {:?}", init_exprs);
 
     unsafe {
         /* start extraction */
         if EXHAUSTIVE {
-            exhaustive_extract(tokens, 0)
+            for init_expr in init_exprs {
+                exhaustive_extract(init_expr, 0);
+            }
         } else {
-            optimized_extract(tokens, 0);
+            for init_expr in init_exprs {
+                optimized_extract(init_expr, 0);
+            }
         }
 
         /* post-processing equivalent expressions */
@@ -464,7 +473,7 @@ pub fn extract(args: &Vec<String>) {
         // equiv_exprs.retain(|e| set.insert(e.clone()));
 
         /* send results back to parent process */
-        match TcpStream::connect(&args[5]) {
+        match TcpStream::connect(&args[4]) {
             Ok(mut stream) => {
                 let equiv_exprs: std::collections::HashSet<String> = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone().into_iter().collect();
                 let equiv_exprs_bytes = match serialize(&equiv_exprs) {

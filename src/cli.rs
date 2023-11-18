@@ -168,7 +168,7 @@ pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
     }
 
     let mut cli: Vec<CmdLineArg> = vec![CmdLineArg::Float(0.8f64),
-                                        CmdLineArg::UInt(25),
+                                        CmdLineArg::UInt(8),
                                         CmdLineArg::Bool(false),];
 
     match args.len() {

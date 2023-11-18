@@ -32,6 +32,20 @@ unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
     sched_setaffinity(pid, size_of::<cpu_set_t>(), &cpuset)
 }
 
+fn dist_tasks(init_exprs: &Vec<String>, num_logical_cores: &usize) -> Vec<Vec<String>> {
+    let num_init_exprs = init_exprs.len();
+    let num_exprs_per_core = num_init_exprs / num_logical_cores;
+
+    let mut tasks: Vec<Vec<String>> = vec![];
+
+    for core_idx in 0..num_logical_cores-1 {
+        tasks.push(init_exprs[core_idx*num_exprs_per_core..(core_idx+1)*num_exprs_per_core].to_vec());
+    }
+    tasks.push(init_exprs[(num_logical_cores-1)*num_exprs_per_core..].to_vec());
+
+    return tasks;
+}
+
 /// ### private function generate equivalent expressions
 /// ### with 1 input expression
 /// #### Argument
@@ -46,8 +60,10 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
     ctx_gr.setup();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
-    /* get number of processes */
-    let num_proc = init_exprs.len();
+    /* get number of logical cores & distribute init exprs to each logical core */
+    let num_logical_cores = num_cpus::get();
+    let tasks = dist_tasks(&init_exprs, &num_logical_cores);
+    tasks.iter().for_each(|task| println!("Length: {}", task.len()));
 
     /* tx & rx listener */
     let addr = "127.0.0.1:8080";
@@ -59,21 +75,20 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
         },
     };
 
-    /* insert socket address & get CPU's number of logical cores */
-    cli.push(CmdLineArg::String(addr.to_string()));
-    let num_logical_cores = num_cpus::get();
+    /* insert socket address */
+    cli[3] = CmdLineArg::String(addr.to_string());
+    
 
     let start_time = Instant::now();
     /* spawn children processes & set process affinity */
-    let mut child_procs: Vec<Child> = init_exprs.into_iter().zip(0..num_proc).map(|(rw, proc_idx)| {
-        cli[3] = CmdLineArg::String(rw.clone());
-
-        let args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
+    let mut child_procs: Vec<Child> = tasks.into_iter().zip(0..num_logical_cores).map(|(init_exprs, processor_id)| {
+        let mut args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
+        args.extend(init_exprs);
+        println!("{:?}", args);
 
         match Command::new("../target/debug/multiproc").args(&args).spawn() {
             Ok(child_proc) => {
                 let pid = child_proc.id() as pid_t;
-                let processor_id = proc_idx % num_logical_cores;
                 let ret = unsafe { set_proc_affinity(pid, processor_id) };
                 match ret {
                     0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },
@@ -130,7 +145,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
             }
         }
 
-        if num_acks as usize == num_proc { break; }
+        if num_acks as usize == num_logical_cores { break; }
     }
 
     num_acks = 0u8;
@@ -166,7 +181,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
                 exit(1);
             }
         }
-        if num_acks as usize == num_proc {
+        if num_acks as usize == num_logical_cores {
             drop(listener);
             break;
         }
