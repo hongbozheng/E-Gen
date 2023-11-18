@@ -1,10 +1,28 @@
 use crate::*;
-use std::process::exit;
-use std::sync::{Arc, Mutex};
 
-/// ### public function to set global max number of tokens
+/// ### public function to set global variable optimized (optimized extraction flag)
 /// #### Argument
-/// * `max_rw_len` - maximum number of tokens
+/// * `optimized` - optimized extraction flag
+/// #### Return
+/// * `None`
+pub unsafe fn set_optimized_flag(optimized: bool) {
+    OPTIMIZED = optimized;
+    return;
+}
+
+/// ### public function to set global variable num_equiv_exprs
+/// #### Argument
+/// * `token_limit` - token limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_num_equiv_exprs(num_equiv_exprs: u8) {
+    NUM_EQUIV_EXPRS = num_equiv_exprs;
+    return;
+}
+
+/// ### public function to set global variable token limit
+/// #### Argument
+/// * `token_limit` - token limit
 /// #### Return
 /// * `None`
 pub unsafe fn set_token_limit(token_limit: u8) {
@@ -12,13 +30,13 @@ pub unsafe fn set_token_limit(token_limit: u8) {
     return;
 }
 
-/// ### public function to set global exhaustive (exhaustive extraction flag)
+/// ### public function to set global variable time limit
 /// #### Argument
-/// * `exhaustive` - exhaustive extraction flag
+/// * `time_limit` - token limit
 /// #### Return
 /// * `None`
-pub unsafe fn set_exhaustive_flag(optimized: bool) {
-    OPTIMIZED = optimized;
+pub unsafe fn set_time_limit(time_limit: u16) {
+    TIME_LIMIT = time_limit;
     return;
 }
 
@@ -28,7 +46,7 @@ pub unsafe fn set_exhaustive_flag(optimized: bool) {
 /// * `equiv_exprs` - deduplicate results of equivalent expressions
 /// #### Return
 /// * `None`
-pub fn rm_permutation(equiv_exprs: &HashSet<String>) -> HashSet<String> {
+pub fn rm_permu(equiv_exprs: &HashSet<String>) -> HashSet<String> {
     let mut expr_mapping = HashMap::default();
 
     for expr in equiv_exprs.clone().into_iter() {
@@ -153,29 +171,5 @@ pub fn pt_init_rw(init_rw: &Vec<String>) {
     log_debug("--------- Initial Rewrite ---------\n");
     log_debug(&format!("{:?}\n", init_rw));
     log_debug("-----------------------------------\n");
-    return;
-}
-
-/// ### public function to print equivalent expressions
-/// #### Argument
-/// * `mutex` - mutex of global variable rw_vec
-/// #### Return
-/// * `None`
-pub fn pt_equiv_exprs(equiv_exprs_option: Option<Arc<Mutex<HashSet<String>>>>) {
-    let equiv_exprs_arc = match equiv_exprs_option {
-        Some(equiv_exprs_arc) => { equiv_exprs_arc },
-        None => {
-            log_error("The variable equiv_exprs is None.\n");
-            exit(1);
-        },
-    };
-
-    let mut equiv_exprs = equiv_exprs_arc.lock().unwrap().clone();
-    let mut set = HashSet::default();
-    equiv_exprs.retain(|e| set.insert(e.clone()));
-    for expr in equiv_exprs {
-        log_info(&format!("{}\n", expr));
-    }
-
     return;
 }

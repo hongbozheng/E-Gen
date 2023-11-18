@@ -10,7 +10,7 @@ use std::time::Instant;
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
-fn generate_exprs(cli: &Vec<CliDtype>) -> HashSet<String> {
+fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[4].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
@@ -21,27 +21,51 @@ fn generate_exprs(cli: &Vec<CliDtype>) -> HashSet<String> {
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
-    let start_time = Instant::now();
-    extract(cli, skip_ecls, grammar, init_exprs);
-    let end_time = Instant::now();
-    let elapsed_time = end_time.duration_since(start_time).as_secs();
-    log_info(&format!("Expression extraction time: {}s\n", elapsed_time));
+    let mut equiv_exprs: HashSet<String> = HashSet::default();
 
-    unsafe {
+    loop {
         let start_time = Instant::now();
-        let mut equiv_exprs: HashSet<String> = get_global_equiv_exprs().clone();
-        let orig_num_exprs = equiv_exprs.len();
-        /* post-processing equivalent expressions */
-        equiv_exprs = rm_permutation(&equiv_exprs);
+        extract(cli, skip_ecls, grammar, init_exprs);
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
-        let num_exprs = equiv_exprs.len();
-        log_info(&format!("Expression postprocessing time: {}s\n", elapsed_time));
-        log_info(&format!("Total # of expression(s) before postprocessing: {}\n", orig_num_exprs));
-        log_info(&format!("Total # of expression(s) after  postprocessing: {}\n", num_exprs));
+        log_info(&format!("Expression extraction time: {}s\n", elapsed_time));
 
-        return equiv_exprs;
+        unsafe {
+            let start_time = Instant::now();
+            equiv_exprs = get_global_equiv_exprs().clone();
+            let orig_num_exprs = equiv_exprs.len();
+            /* post-processing equivalent expressions */
+            equiv_exprs = rm_permu(&equiv_exprs);
+            let end_time = Instant::now();
+            let elapsed_time = end_time.duration_since(start_time).as_secs();
+            let num_exprs = equiv_exprs.len();
+            log_info(&format!("Expression postprocessing time: {}s\n", elapsed_time));
+            log_info(&format!("Total # of expression(s) before postprocessing: {}\n", orig_num_exprs));
+            log_info(&format!("Total # of expression(s) after  postprocessing: {}\n", num_exprs));
+
+            if equiv_exprs.len() >= NUM_EQUIV_EXPRS as usize {
+                break;
+            }
+
+            log_info("-----------------------------------\n");
+            match cli[2] {
+                CliDtype::UInt8(ref mut token_limit) => {
+                    *token_limit += 2;
+                    log_info(&format!("Increase token limit to {}\n", token_limit));
+                },
+                _ => { log_error(&format!("Failed to convert cli[2] to u8 datatype\n")); },
+            }
+            match cli[3] {
+                CliDtype::UInt16(ref mut  time_limit) => {
+                    *time_limit += 900;
+                    log_info(&format!("Increase time limit to {}\n", time_limit));
+                },
+                _ => { log_error(&format!("Failed to convert cli[3] to u16 datatype\n")); },
+            }
+        }
     }
+
+    return equiv_exprs;
 }
 
 /// ### private function to generate equivalent expressions
@@ -168,7 +192,7 @@ pub fn generate() {
 
     if cli.len() == 5 {
         let start_time = Instant::now();
-        let equiv_exprs = generate_exprs(&cli);
+        let equiv_exprs = generate_exprs(&mut cli);
         for expr in &equiv_exprs {
             log_info(&format!("{}\n", expr));
         }
