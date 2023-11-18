@@ -10,9 +10,9 @@ use std::time::Instant;
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
-fn generate_exprs(cli: &Vec<CmdLineArg>) -> HashSet<String> {
+fn generate_exprs(cli: &Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
-    let input_expr = cli[3].to_string();
+    let input_expr = cli[4].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
     let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
@@ -50,19 +50,19 @@ fn generate_exprs(cli: &Vec<CmdLineArg>) -> HashSet<String> {
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `None`
-fn generate_file(cli: &mut Vec<CmdLineArg>) {
+fn generate_file(cli: &mut Vec<CliDtype>) {
     /* Open the input file and create output file */
-    let input_file = match File::options().read(true).write(false).open(&cli[3].to_string()) {
+    let input_file = match File::options().read(true).write(false).open(&cli[4].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[3].to_string(), e));
+            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[4].to_string(), e));
             exit(1);
         },
     };
-    let output_file = match File::create(&cli[4].to_string()) {
+    let output_file = match File::create(&cli[5].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
-            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[4].to_string(), e));
+            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[5].to_string(), e));
             exit(1);
         },
     };
@@ -91,7 +91,7 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
         };
 
         /* start extraction and get equivalent expressions */
-        cli[3] = CmdLineArg::String(input_expr);
+        cli[4] = CliDtype::String(input_expr);
         let start_time = Instant::now();
         let equiv_exprs = generate_exprs(cli);
         let end_time = Instant::now();
@@ -163,10 +163,10 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
 /// * `args` - raw command line arguments
 /// #### Return
 /// * `None`
-pub fn generate(args: &Vec<String>) {
-    let mut cli = parse_args(&args);
+pub fn generate() {
+    let mut cli = parse_args();
 
-    if cli.len() == 4 {
+    if cli.len() == 5 {
         let start_time = Instant::now();
         let equiv_exprs = generate_exprs(&cli);
         for expr in &equiv_exprs {

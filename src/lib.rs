@@ -116,7 +116,7 @@ pub use {
     subst::{Subst, Var},
     util::*,
     /* public to the whole crate */
-    cli::{CmdLineArg, parse_args},
+    cli::{Cli, CliDtype, parse_args},
     config::*,
     ctx_gr::ContextGrammar,
     expr_ext::{get_thd_limit, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},

@@ -17,8 +17,8 @@ pub unsafe fn set_token_limit(token_limit: u8) {
 /// * `exhaustive` - exhaustive extraction flag
 /// #### Return
 /// * `None`
-pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
-    EXHAUSTIVE = exhaustive;
+pub unsafe fn set_exhaustive_flag(optimized: bool) {
+    OPTIMIZED = optimized;
     return;
 }
 

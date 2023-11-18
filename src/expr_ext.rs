@@ -112,7 +112,7 @@ fn contain_ecls(tokens: &Vec<String>) -> bool {
 unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
-    if elapsed_time >= TIME_LIMIT {
+    if elapsed_time >= TIME_LIMIT as u64 {
         return;
     }
 
@@ -183,7 +183,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Insta
                 exhaustive_extract(tokens.clone(), idx+1, start_time);
                 let end_time = Instant::now();
                 let elapsed_time = end_time.duration_since(start_time).as_secs();
-                if elapsed_time >= TIME_LIMIT {
+                if elapsed_time >= TIME_LIMIT.into() {
                     return;
                 }
 
@@ -209,7 +209,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Insta
 unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
-    if elapsed_time >= TIME_LIMIT {
+    if elapsed_time >= TIME_LIMIT as u64 {
         return;
     }
 
@@ -296,7 +296,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instan
                 optimized_extract(tokens.clone(), idx+1, start_time);
                 let end_time = Instant::now();
                 let elapsed_time = end_time.duration_since(start_time).as_secs();
-                if elapsed_time >= TIME_LIMIT {
+                if elapsed_time >= TIME_LIMIT as u64 {
                     return;
                 }
 
@@ -324,14 +324,20 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instan
 /// * `init_exprs` - initial expressions
 /// #### Return
 /// * `None`
-pub fn extract(cli: &Vec<CmdLineArg>, skip_ecls: &HashMap<String, f64>, grammar: &HashMap<String, Vec<String>>, init_exprs: &Vec<String>) {
+pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &HashMap<String, Vec<String>>, init_exprs: &Vec<String>) {
     /* setup global variables */
     unsafe {
-        if let CmdLineArg::UInt(token_limit) = &cli[1] {
-            TOKEN_LIMIT = *token_limit;
+        if let CliDtype::Bool(optimized) = &cli[0] {
+            OPTIMIZED = *optimized;
         }
-        if let CmdLineArg::Bool(exhaustive) = &cli[2] {
-            EXHAUSTIVE = *exhaustive;
+        if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
+            NUM_EQUIV_EXPRS = *num_equiv_exprs;
+        }
+        if let CliDtype::UInt8(init_token_limit) = &cli[2] {
+            TOKEN_LIMIT = *init_token_limit;
+        }
+        if let CliDtype::UInt16(init_time_limit) = &cli[3] {
+            TIME_LIMIT = *init_time_limit;
         }
         SKIP_ECLS = Some(skip_ecls.clone());
         GRAMMAR = Some(grammar.clone());
@@ -347,13 +353,13 @@ pub fn extract(cli: &Vec<CmdLineArg>, skip_ecls: &HashMap<String, f64>, grammar:
     unsafe {
         let start_time = Instant::now();
         /* start extraction */
-        if EXHAUSTIVE {
+        if OPTIMIZED {
             for init_token_expr in init_token_exprs {
-                exhaustive_extract(init_token_expr, 0, start_time);
+                optimized_extract(init_token_expr, 0, start_time);
             }
         } else {
             for init_token_expr in init_token_exprs {
-                optimized_extract(init_token_expr, 0, start_time);
+                exhaustive_extract(init_token_expr, 0, start_time);
             }
         }
     }

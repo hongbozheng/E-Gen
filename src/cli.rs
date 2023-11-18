@@ -1,52 +1,195 @@
 use crate::*;
+use clap::{ArgAction, Parser};
 use std::process::exit;
 
-#[derive(Clone, Debug, PartialEq)]
-/// Command line arguments struct
-pub enum CmdLineArg {
+#[derive(Parser, Clone, Debug)]
+#[command(
+    about = "Equivalent Expressions Generation",
+    long_about = None,
+    version = "0.0.1",
+    author = "Hongbo Zheng",
+)]
+/// Command line inputs
+pub struct Cli {
+    #[arg(
+        short = 'f',
+        long = "flag",
+        required = false,
+        default_value_t = false,
+        action = ArgAction::SetTrue
+    )]
     /// exhaustive extraction flag
+    pub flag: bool,
+
+    #[arg(
+        short = 'n',
+        long = "num_equiv_exprs",
+        required = false,
+        default_value_t = 10,
+        value_parser = check_num_equiv_exprs
+    )]
+    /// number of equivalent expressions
+    pub num_equiv_exprs: u8,
+
+    #[arg(
+        short = 'l',
+        long = "token_limit",
+        required = false,
+        default_value_t = 8,
+        value_parser = check_init_token_limit
+    )]
+    /// initial token limit
+    pub init_token_limit: u8,
+
+    #[arg(
+        short = 't',
+        long = "time_limit",
+        required = false,
+        default_value_t = 350,
+        value_parser = check_time_limit,
+    )]
+    /// initial time limit
+    pub init_time_limit: u16,
+
+    #[arg(
+        short = 'e',
+        long = "input_expr",
+        // required_unless_present_all = &["input_fpath", "output_fpath"],
+        conflicts_with_all = &["input_fpath", "output_fpath"]
+    )]
+    /// input expression
+    pub input_expr: Option<String>,
+
+    #[arg(
+        short = 'i',
+        long = "input_fpath",
+        required_unless_present = "input_expr",
+        requires = "output_fpath",
+        conflicts_with = "input_expr"
+    )]
+    /// input filepath
+    pub input_fpath: Option<String>,
+
+    #[arg(
+        short = 'o',
+        long = "output_fpath",
+        required_unless_present = "input_expr",
+        requires = "input_fpath",
+        conflicts_with = "input_expr",
+    )]
+    /// output filepath
+    pub output_fpath: Option<String>,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+/// Argument datatype struct
+pub enum CliDtype {
+    /// boolean
     Bool(bool),
-    /// maximum expression rewrite length
-    UInt(u8),
-    /// percentage of max # of OS threads
+    /// unsigned integer 8-bit
+    UInt8(u8),
+    /// unsigned integer 16-bit
+    UInt16(u16),
+    /// floating point 64-bit
     Float(f64),
-    /// expressions || input filename & output filename
+    /// string
     String(String),
 }
 
-impl CmdLineArg {
+impl CliDtype {
     /// public function to convert member variables
-    /// in struct CmdLineArg to type String
+    /// in struct ArgDtype to type String
     /// ## Argument
     /// * `self`
     /// ## Return
     /// * `String`
     pub fn to_string(&self) -> String {
         match self {
-            CmdLineArg::Bool(value) => value.to_string(),
-            CmdLineArg::UInt(value) => value.to_string(),
-            CmdLineArg::Float(value) => value.to_string(),
-            CmdLineArg::String(value) => value.clone(),
+            CliDtype::Bool(value) => value.to_string(),
+            CliDtype::UInt8(value) => value.to_string(),
+            CliDtype::UInt16(value) => value.to_string(),
+            CliDtype::Float(value) => value.to_string(),
+            CliDtype::String(value) => value.clone(),
         }
     }
 
-    /// ### public function to convert String variables to type CmdLineArg
+    /// ### public function to convert String variables to type ArgDtype
     /// #### Argument
     /// * `s` - &str type variable
     /// #### Return
     /// * `Result` - whether conversion is successfully or not
     pub fn from_string(s: &str) -> Result<Self, &'static str> {
         if let Ok(value) = s.parse::<bool>() {
-            return Ok(CmdLineArg::Bool(value));
+            return Ok(CliDtype::Bool(value));
         }
         if let Ok(value) = s.parse::<u8>() {
-            return Ok(CmdLineArg::UInt(value));
+            return Ok(CliDtype::UInt8(value));
+        }
+        if let Ok(value) = s.parse::<u16>() {
+            return Ok(CliDtype::UInt16(value));
         }
         if let Ok(value) = s.parse::<f64>() {
-            return Ok(CmdLineArg::Float(value));
+            return Ok(CliDtype::Float(value));
         }
-        Ok(CmdLineArg::String(s.to_string()))
+        Ok(CliDtype::String(s.to_string()))
     }
+}
+
+/// ### private function to check if user's input for number of equivalent expressions variable
+/// ### num_equiv_exprs is valid
+/// #### Argument
+/// * `s` - user's input
+/// #### Return
+/// * `Result` valid u8 input, or error message
+fn check_num_equiv_exprs(s: &str) -> Result<u8, String> {
+    match s.parse::<u8>() {
+        Ok(num_equiv_exprs) => { return Ok(num_equiv_exprs); },
+        Err(_) => {
+            return Err(format!("\n[ERROR]: Invalid value '{}' for number of equivalent expressions, expect u8.", s));
+        },
+    };
+}
+
+/// ### private function to check if user's input for initial token limit variable
+/// ### init_token_limit is valid
+/// #### Argument
+/// * `s` - user's input
+/// #### Return
+/// * `Result` valid u8 input, or error message
+fn check_init_token_limit(s: &str) -> Result<u8, String> {
+    match s.parse::<u8>() {
+        Ok(init_token_limit) => {
+            if init_token_limit > 0 && init_token_limit <= u8::MAX {
+                return Ok(init_token_limit);
+            } else {
+                return Err(format!("\n[ERROR]: Invalid input value '{}' for initial token limit, expect to u8 in (0, 2^8].", s));
+            }
+        },
+        Err(_) => {
+            return Err(format!("\n[ERROR]: Invalid value '{}' for initial token limit, expect u8.", s));
+        },
+    };
+}
+
+/// ### private function to check if user's input for initial time limit variable
+/// ### init_time_limit is valid
+/// #### Argument
+/// * `s` - user's input
+/// #### Return
+/// * `Result` valid u16 input, or error message
+fn check_time_limit(s: &str) -> Result<u16, String> {
+    match s.parse::<u16>() {
+        Ok(time_limit) => {
+            if time_limit > 0 && time_limit <= u16::MAX {
+                return Ok(time_limit);
+            } else {
+                return Err(format!("\n[ERROR]: Invalid input value '{}' for time limit, expect to u16 in (0, 2^16].", s));
+            }
+        },
+        Err(_) => {
+            return Err(format!("\n[ERROR]: Invalid value '{}' for time limit, expect u16.", s));
+        },
+    };
 }
 
 /// ### private function to print command line input help information
@@ -54,360 +197,80 @@ impl CmdLineArg {
 /// * `None`
 /// #### Return
 /// * `None`
-fn help() {
-    log_info_raw("[USAGE]: cargo run [-t] <thd pct> [-l] <token limit>    [-f] <exhaustive flag>\n");
-    log_info_raw("[USAGE]:           [-e] <expr>    [-i] <input filepath> [-o] <output filepath>\n");
-    log_info_raw("[USAGE]: <thd pct>         -> OS thread percentage\n");
-    log_info_raw("[USAGE]:  type             -> float64\n");
-    log_info_raw("[USAGE]:  default           = 0.8 [80%]\n");
-    log_info_raw("[USAGE]:  required         -> false\n");
-    log_info_raw("[USAGE]: <token limit>     -> tokens limit\n");
-    log_info_raw("[USAGE]:  type             -> uint8\n");
-    log_info_raw("[USAGE]:  default           = 8\n");
-    log_info_raw("[USAGE]:  required         -> false\n");
-    log_info_raw("[USAGE]: <exhaustive flag> -> exhaustive extraction flag\n");
-    log_info_raw("[USAGE]:  type             -> uint8\n");
-    log_info_raw("[USAGE]:  default           = 0\n");
-    log_info_raw("[USAGE]:  required         -> false\n");
-    log_info_raw("[USAGE]:  0 -> false, run optimized extraction\n");
-    log_info_raw("[USAGE]:  1 -> true,  run exhaustive extraction\n");
-    log_info_raw("[USAGE]: <expr>            -> initial expression\n");
-    log_info_raw("[USAGE]:  type             -> &str\n");
-    log_info_raw("[USAGE]:  default           = None\n");
-    log_info_raw("[USAGE]:  required         -> True if [-i] & [-o] not provided\n");
-    log_info_raw("[USAGE]: <input filepath>  -> input expressions filepath\n");
-    log_info_raw("[USAGE]:  type             -> &str\n");
-    log_info_raw("[USAGE]:  default           = None\n");
-    log_info_raw("[USAGE]:  required         -> True if [-e] not provided\n");
-    log_info_raw("[USAGE]: <output filepath> -> output expressions filepath\n");
-    log_info_raw("[USAGE]:  type             -> &str\n");
-    log_info_raw("[USAGE]:  default           = None\n");
-    log_info_raw("[USAGE]:  required         -> True if [-e] not provided\n");
-    exit(1);
+pub fn help() {
+    log_info_raw("[USAGE]: cargo run [-f] <exhaustive flag>  [-n] <num equiv exprs>\n");
+    log_info_raw("[USAGE]:           [-l] <init token limit> [-t] <init time limit>\n");
+    log_info_raw("[USAGE]:           [-e] <expr> or\n");
+    log_info_raw("[USAGE]:           [-i] <input filepath> & [-o] <output filepath>\n");
+    log_info_raw("[USAGE]:\n");
+    log_info_raw("[USAGE]: <exhaustive flag>  -> exhaustive extraction flag\n");
+    log_info_raw("[USAGE]:  false             -> run exhaustive extraction\n");
+    log_info_raw("[USAGE]:  true              -> run optimized extraction\n");
+    log_info_raw("[USAGE]:  datatype          -> bool\n");
+    log_info_raw("[USAGE]:  default            = false\n");
+    log_info_raw("[USAGE]:  required          -> false\n");
+    log_info_raw("[USAGE]: <num equiv exprs>  -> number of equivalent expressions\n");
+    log_info_raw("[USAGE]:  datatype          -> uint8\n");
+    log_info_raw("[USAGE]:  default            = 10\n");
+    log_info_raw("[USAGE]:  required          -> false\n");
+    log_info_raw("[USAGE]: <init token limit> -> initial tokens limit\n");
+    log_info_raw("[USAGE]:  datatype          -> uint8\n");
+    log_info_raw("[USAGE]:  default            = 8\n");
+    log_info_raw("[USAGE]:  required          -> false\n");
+    log_info_raw("[USAGE]: <init time limit>  -> initial time limit in sec\n");
+    log_info_raw("[USAGE]:  datatype          -> uint16\n");
+    log_info_raw("[USAGE]:  default            = 350\n");
+    log_info_raw("[USAGE]:  required          -> false\n");
+    log_info_raw("[USAGE]: <expr>             -> initial expression\n");
+    log_info_raw("[USAGE]:  datatype          -> &str\n");
+    log_info_raw("[USAGE]:  default            = None\n");
+    log_info_raw("[USAGE]:  required          -> True if [-i] & [-o] not provided\n");
+    log_info_raw("[USAGE]: <input filepath>   -> input expressions filepath\n");
+    log_info_raw("[USAGE]:  type              -> &str\n");
+    log_info_raw("[USAGE]:  default            = None\n");
+    log_info_raw("[USAGE]:  required          -> True if [-e] not provided\n");
+    log_info_raw("[USAGE]: <output filepath>  -> output expressions filepath\n");
+    log_info_raw("[USAGE]:  type              -> &str\n");
+    log_info_raw("[USAGE]:  default            = None\n");
+    log_info_raw("[USAGE]:  required          -> True if [-e] not provided\n");
 }
 
-/// ### private function to set OS thread percentage
+/// ### public function to parse command line input(s)
 /// #### Argument
-/// * `usr_input` - user input
-/// #### Return
-/// * `f64` OS thread percentage
-fn set_thd_pct(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
-    let thd_pct = match usr_input.parse::<f64>() {
-        Ok(thd_pct) => { thd_pct },
-        Err(_) => {
-            log_error(&format!("Invalid input value \"{}\" for OS threads percentage, expect f64.\n", usr_input));
-            exit(1);
-        }
-    };
-    if 0.0 < thd_pct && thd_pct <= 1.0 {
-        cli[0] = CmdLineArg::Float(thd_pct);
-    } else {
-        log_error(&format!("Invalid input value \"{}\" for OS threads percentage, needs to be in (0.0, 1.0]\n", thd_pct));
-        exit(1);
-    }
-}
-
-/// ### private function to set maximum expression rewrite length
-/// #### Argument
-/// * `usr_input` - user input
-/// #### Return
-/// * `u8` - maximum expression rewrite length
-fn set_token_limit(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
-    let token_limit = match usr_input.parse::<u8>(){
-        Ok(token_limit) => { token_limit },
-        Err(_) => {
-            log_error(&format!("Invalid input value \"{}\" for token limit, expect u8.\n", usr_input));
-            exit(1);
-        }
-    };
-    if token_limit > 0 {
-        cli[1] = CmdLineArg::UInt(token_limit);
-    } else {
-        log_error(&format!("Invalid input value \"{}\" for token limit, expect to u8 in (0, 2^8].\n", usr_input));
-        exit(1);
-    }
-}
-
-/// ### private function to set exhaustive extraction flag
-/// #### Argument
-/// * `usr_input` - user input
-/// #### Return
-/// * `bool` - exhaustive extraction flag
-fn set_exhaustive_flag(cli: &mut Vec<CmdLineArg>, usr_input: &str) {
-    let exhaustive = match usr_input.parse::<u8>(){
-        Ok(exhaustive) => { exhaustive },
-        Err(_) => {
-            log_error(&format!("Invalid input value \"{}\" for exhaustive extraction flag, expect u8.\n", usr_input));
-            exit(1);
-        }
-    };
-    match exhaustive {
-        0u8 => { cli[2] = CmdLineArg::Bool(false); },
-        1u8 => { cli[2] = CmdLineArg::Bool(true); },
-        _ => {
-            log_error(&format!("Invalid input value \"{}\" for exhaustive extraction flag, expect either 0 || 1.\n", usr_input));
-            exit(1);
-        },
-    }
-}
-
-/// ### public function to set hyper-parameters
-/// #### Argument
-/// * `args` - command line argument(s)
+/// * `cli` - command line input(s)
 /// #### Return
 /// * `None`
-pub fn parse_args(args: &Vec<String>) -> Vec<CmdLineArg> {
-    let args: Vec<&str> = args.iter().map(|arg| arg.as_str()).collect();
-
-    if (!args.contains(&"-e") && !(args.contains(&"-i") && args.contains(&"-o"))) ||
-        (args.contains(&"-e") && args.contains(&"-i")) ||
-        (args.contains(&"-e") && args.contains(&"-o")) ||
-        (args.contains(&"-i") ^ args.contains(&"-o")) {
-        log_error("Either an initial expression or input & output filepaths is accepted.\n");
-        help();
-    }
-
-    let mut cli: Vec<CmdLineArg> = vec![CmdLineArg::Float(0.8f64),
-                                        CmdLineArg::UInt(25),
-                                        CmdLineArg::Bool(false),];
-
-    match args.len() {
-        2 | 4 | 6 | 8 | 10 | 12 => { help(); },
-        3 => {
-            cli.push(CmdLineArg::String(args[2].to_string()));
-        },
-        5 => {
-            if args.contains(&"-e") {
-                match args[1] {
-                    "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_token_limit(&mut cli, args[2]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
-                        help();
-                    },
-                }
-                match args[3] {
-                    "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_token_limit(&mut cli, args[4]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help();
-                    },
-                }
-            } else {
-                cli.push(CmdLineArg::String(args[2].to_string()));
-                cli.push(CmdLineArg::String(args[4].to_string()));
-            }
-        },
-        7 => {
-            if args.contains(&"-e") {
-                match args[1] {
-                    "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_token_limit(&mut cli, args[2]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[3] {
-                    "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_token_limit(&mut cli, args[4]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[5] {
-                    "-t" => { set_thd_pct(&mut cli, args[6]) },
-                    "-l" => { set_token_limit(&mut cli, args[6]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[6]));
-                        help() },
-                }
-            } else {
-                match args[1] {
-                    "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_token_limit(&mut cli, args[2]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[3] {
-                    "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_token_limit(&mut cli, args[4]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[5] {
-                    "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_token_limit(&mut cli, args[6]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-            }
-        },
-        9 => {
-            if args.contains(&"-e") {
-                match args[1] {
-                    "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_token_limit(&mut cli, args[2]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
-                        help() },
-                }
-                match args[3] {
-                    "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_token_limit(&mut cli, args[4]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[5] {
-                    "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_token_limit(&mut cli, args[6]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[7] {
-                    "-t" => { set_thd_pct(&mut cli, args[8]); },
-                    "-l" => { set_token_limit(&mut cli, args[8]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
-                    "-e" => { cli.push(CmdLineArg::String(args[8].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-            } else {
-                match args[1] {
-                    "-t" => { set_thd_pct(&mut cli, args[2]); },
-                    "-l" => { set_token_limit(&mut cli, args[2]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
-                        help() },
-                }
-                match args[3] {
-                    "-t" => { set_thd_pct(&mut cli, args[4]); },
-                    "-l" => { set_token_limit(&mut cli, args[4]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                        help() },
-                }
-                match args[5] {
-                    "-t" => { set_thd_pct(&mut cli, args[6]); },
-                    "-l" => { set_token_limit(&mut cli, args[6]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[5]));
-                        help() },
-                }
-                match args[7] {
-                    "-t" => { set_thd_pct(&mut cli, args[8]); },
-                    "-l" => { set_token_limit(&mut cli, args[8]); },
-                    "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
-                    "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
-                    "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
-                    _ => {
-                        log_error(&format!("Invalid command line argument \"{}\".\n", &args[7]));
-                        help() },
-                }
-            }
-        },
-        11 => {
-            match args[1] {
-                "-t" => { set_thd_pct(&mut cli, args[2]); },
-                "-l" => { set_token_limit(&mut cli, args[2]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[2]); },
-                "-i" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                "-o" => { cli.push(CmdLineArg::String(args[2].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[1]));
-                    help();
-                },
-            }
-            match args[3] {
-                "-t" => { set_thd_pct(&mut cli, args[4]); },
-                "-l" => { set_token_limit(&mut cli, args[4]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[4]); },
-                "-i" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                "-o" => { cli.push(CmdLineArg::String(args[4].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[3]));
-                    help();
-                },
-            }
-            match args[5] {
-                "-t" => { set_thd_pct(&mut cli, args[6]); },
-                "-l" => { set_token_limit(&mut cli, args[6]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[6]); },
-                "-i" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                "-o" => { cli.push(CmdLineArg::String(args[6].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[5]));
-                    help();
-                },
-            }
-            match args[7] {
-                "-t" => { set_thd_pct(&mut cli, args[8]); },
-                "-l" => { set_token_limit(&mut cli, args[8]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[8]); },
-                "-i" => { cli.push(CmdLineArg::String(args[8].to_string())); },
-                "-o" => { cli.push(CmdLineArg::String(args[8].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[7]));
-                    help();
-                },
-            }
-            match args[9] {
-                "-t" => { set_thd_pct(&mut cli, args[10]); },
-                "-l" => { set_token_limit(&mut cli, args[10]); },
-                "-f" => { set_exhaustive_flag(&mut cli, args[10]);  },
-                "-i" => { cli.push(CmdLineArg::String(args[10].to_string())); },
-                "-o" => { cli.push(CmdLineArg::String(args[10].to_string())); },
-                _ => {
-                    log_error(&format!("Invalid command line argument \"{}\".\n", &args[9]));
-                    help();
-                },
-            }
-        },
-        _ => {
-            log_error("Invalid command line arguments.\n");
+pub fn parse_args() -> Vec<CliDtype> {
+    let cli: Cli = match Cli::try_parse() {
+        Ok(cli) => { cli },
+        Err(e) => {
+            log_error(&format!("Error encountered while trying to parse command line input(s)\n"));
+            log_error_raw(&format!("{}", e));
             help();
+            exit(1);
         },
-    }
+    };
 
-    return cli;
+    let mut cli_dtype: Vec<CliDtype> = vec![CliDtype::Bool(cli.flag),
+                                            CliDtype::UInt8(cli.num_equiv_exprs),
+                                            CliDtype::UInt8(cli.init_token_limit),
+                                            CliDtype::UInt16(cli.init_time_limit),];
+
+    match cli.input_expr {
+        Some(input_expr) => {
+            cli_dtype.push(CliDtype::String(input_expr));
+            return cli_dtype;
+        },
+        None => { },
+    };
+    match cli.input_fpath {
+        Some(input_fpath) => { cli_dtype.push(CliDtype::String(input_fpath)); },
+        None => { },
+    };
+    match cli.output_fpath {
+        Some(output_fpath) => { cli_dtype.push(CliDtype::String(output_fpath)); },
+        None => { },
+    };
+
+    return cli_dtype;
 }
