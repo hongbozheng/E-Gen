@@ -35,17 +35,8 @@ serde_json = {version = "1.0.81", optional = true}
 # temporarily add ordered-float under dependencies #
 ordered-float = "3.0.0"
 
-# serialize to Vec<u8>
-# bincode = "1.3.3"
-
-# multiprocess set processor id
-# libc = "0.2"
-
-# get CPU's number of processor
-# num_cpus = "1.13.0"
-
-# serialize & deserialize
-# serde = {version = "1.0.137", features = ["derive"]}
+# command line input(s) parser
+clap = { version = "4.4.8", features = ["derive"] }
 
 [dev-dependencies]
 ordered-float = "3.0.0"
