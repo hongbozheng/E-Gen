@@ -119,7 +119,7 @@ pub use {
     cli::{Cli, CliDtype, parse_args},
     config::*,
     ctx_gr::ContextGrammar,
-    expr_ext::{get_thd_limit, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
+    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
     generate::generate,
     logger::*,
     math::{MathEGraph, Math, math_rule},

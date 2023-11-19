@@ -10,7 +10,7 @@ use std::time::Instant;
 /// * `cli` - pre-processed command line arguments
 /// #### Return
 /// * `equiv_expr` - Vec<String> of equivalent expressions
-fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
+fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[5].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
@@ -21,13 +21,11 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
-    let token_limit = cli[2].clone();
-    let time_limit = cli[4].clone();
     let mut equiv_exprs: HashSet<String> = HashSet::default();
 
     loop {
         let start_time = Instant::now();
-        extract(cli, skip_ecls, grammar, init_exprs);
+        extract(&cli, skip_ecls, grammar, init_exprs);
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
         log_info(&format!("Expression extraction time: {}s\n", elapsed_time));
@@ -53,7 +51,7 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
             match cli[2] {
                 CliDtype::UInt8(ref mut token_limit) => {
                     *token_limit += 2;
-                    if token_limit > &mut (MAX_TOKEN_LIMIT as u8) {
+                    if *token_limit > MAX_TOKEN_LIMIT {
                         log_info(&format!("Token limit {} reaches max token limit {}\n", token_limit, MAX_TOKEN_LIMIT));
                         break;
                     }
@@ -70,9 +68,6 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
             }
         }
     }
-
-    cli[2] = token_limit;
-    cli[4] = time_limit;
 
     return equiv_exprs;
 }
@@ -126,7 +121,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         /* start extraction and get equivalent expressions */
         cli[5] = CliDtype::String(input_expr);
         let start_time = Instant::now();
-        let equiv_exprs = generate_exprs(cli);
+        let equiv_exprs = generate_exprs(cli.clone());
         let end_time = Instant::now();
         let elapsed_time = end_time.duration_since(start_time).as_secs();
         log_info(&format!("Total run time: {}s\n\n", elapsed_time));
@@ -172,14 +167,14 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match input_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[3].to_string(), e));
+            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[5].to_string(), e));
             exit(1);
         },
     }
     match output_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[4].to_string(), e));
+            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[6].to_string(), e));
             exit(1);
         },
     }
@@ -201,7 +196,7 @@ pub fn generate() {
 
     if cli.len() == 6 {
         let start_time = Instant::now();
-        let equiv_exprs = generate_exprs(&mut cli);
+        let equiv_exprs = generate_exprs(cli.clone());
         for expr in &equiv_exprs {
             log_info(&format!("{}\n", expr));
         }

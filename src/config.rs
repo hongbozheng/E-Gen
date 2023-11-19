@@ -11,6 +11,8 @@ pub static mut TOKEN_LIMIT: u8 = 8;
 pub static mut MAX_TOKEN_LIMIT: u8 = 12;
 /// time limit in sec
 pub static mut TIME_LIMIT: u16 = 350;
+/// start time
+pub static mut START_TIME: Option<Instant> = None;
 /// log level for the entire environment
 pub static LOG_LEVEL: LogLevel = LogLevel::Info;
 /// suppress meaningless rewrite rules (e.g. * 1, pow 1, + 0)

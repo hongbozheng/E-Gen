@@ -1,8 +1,6 @@
 use crate::*;
 use std::time::Instant;
 
-/// private max # of threads can be used (not max # of OS threads)
-static mut THD_LIMIT: Option<u32> = None;
 /// private global variable to store eclass(es) to skip during extraction
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;
 /// private global variable to store grammar from MathEGraph
@@ -11,15 +9,6 @@ static mut GRAMMAR: Option<HashMap<String, Vec<String>>> = None;
 static mut STATE: Option<HashSet<String>> = None;
 /// private global variable to store equivalent expression results
 static mut EQUIV_EXPRS: Option<HashSet<String>> = None;
-
-/// ### public function to get private global variable THD_LIMIT
-/// #### Argument
-/// `None`
-/// #### Return
-/// `THD_LIMIT` - immutable reference of global variable THD_LIMIT
-pub unsafe fn get_thd_limit() -> &'static u32 {
-    return THD_LIMIT.as_ref().unwrap();
-}
 
 /// ### public function to get private global variable SKIP_ECLS
 /// #### Argument
@@ -103,13 +92,133 @@ fn contain_ecls(tokens: &Vec<String>) -> bool {
 }
 
 /// ### private function to extract all equivalent mathematical expressions
+/// ### Context-Free Grammar
+/// #### Arguments
+/// * `str` - rewrite expression
+/// * `idx` - fn call idx for debugging purpose
+/// #### Return
+/// * `None`
+unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
+    let start_time = get_start_time();
+    let end_time = Instant::now();
+    let elapsed_time = end_time.duration_since(start_time).as_secs();
+    if elapsed_time >= TIME_LIMIT as u64 {
+        return;
+    }
+
+    log_trace("-----------------------------------\n");
+    log_trace(&format!("Function Call {}\n", idx));
+    let global_state = STATE.as_mut().unwrap();
+    if global_state.contains(&tokens.join(" ")) {
+        return;
+    }
+    global_state.insert(tokens.join(" "));
+    let prev_tokens = tokens.clone();
+
+    let mut term: bool = false;
+
+    for i in 0..tokens.len() {
+        if tokens.len() == 1 {
+            let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
+            let final_expr = tokens.join(" ");
+            global_equiv_exprs.insert(final_expr.clone());
+            log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
+            return;
+        }
+
+        let op = &tokens[i];
+        let grammar = GRAMMAR.as_ref().unwrap();
+
+        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
+            !grammar.contains_key(op) { continue; }
+        log_trace_raw(&format!("[ OP ]:  {}\n", op));
+        let rw_list = grammar.get(op).unwrap();
+
+        for k in 0..rw_list.len() {
+            let rw = &rw_list[k];
+            log_trace_raw(&format!("[INIT]:  {:?}\n", tokens));
+            log_trace_raw(&format!("[ RW ]:  {:?}\n", rw));
+            if SUPPRESS {
+                if skip_rw(&rw) {
+                    if k == rw_list.len()-1 {
+                        term = true;
+                        break;
+                    }
+                    continue;
+                }
+            }
+
+            #[allow(unused_doc_comments)]
+                /// ```rust
+                /// /* Regex will solve indistinct eclass match in str.replacen() */
+                /// /* Original Code */
+                /// str = str.replacen(op, &*rw, 1);
+                /// /* Using Regex (has performance issue since it's slow) */
+                /// use regex::Regex;
+                /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();
+                /// str.replace_range(mat.start()..mat.end(), &rw);
+                /// ```
+                // replace_distinct_ecls(op, rw, &mut str);
+                let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
+            tokens.splice(i..i+1, rw_tokens);
+            log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
+
+            if tokens.len() >= TOKEN_LIMIT as usize {
+                log_trace("STR exceeds length limit, Try another RW...\n");
+                if k == rw_list.len()-1 {
+                    term = true;
+                    break;
+                }
+                tokens = prev_tokens.clone();
+                continue;
+            }
+            if !contain_ecls(&tokens) && k == rw_list.len()-1 {
+                let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
+                let final_expr = tokens.join(" ");
+                global_equiv_exprs.insert(final_expr.clone());
+                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
+                term = true;
+                break;
+            } else if !contain_ecls(&tokens) {
+                let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
+                let final_expr = tokens.join(" ");
+                global_equiv_exprs.insert(final_expr.clone());
+                tokens = prev_tokens.clone();
+                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
+            } else {
+                optimized_extract(tokens.clone(), idx+1);
+                let start_time = get_start_time();
+                let end_time = Instant::now();
+                let elapsed_time = end_time.duration_since(start_time).as_secs();
+                if elapsed_time >= TIME_LIMIT as u64 {
+                    return;
+                }
+
+                log_trace(&format!("Back to Function Call {}\n", idx));
+                tokens = prev_tokens.clone();
+                if k == rw_list.len()-1 {
+                    term = true;
+                    break;
+                }
+            }
+        }
+        if term { break; }
+    }
+    log_trace(&format!("Finish Function Call {}\n", idx));
+    log_trace("-----------------------------------\n");
+
+    return;
+}
+
+/// ### private function to extract all equivalent mathematical expressions
 /// ### Context-Sensitive Grammar
 /// #### Arguments
 /// * `str` - rewrite expression
 /// * `idx` - fn call idx for debugging purpose
 /// #### Return
 /// * `None`
-unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
+unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
+    let start_time = get_start_time();
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
     if elapsed_time >= TIME_LIMIT as u64 {
@@ -180,120 +289,8 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8, start_time: Insta
                 tokens = prev_tokens.clone();
                 log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
             } else {
-                exhaustive_extract(tokens.clone(), idx+1, start_time);
-                let end_time = Instant::now();
-                let elapsed_time = end_time.duration_since(start_time).as_secs();
-                if elapsed_time >= TIME_LIMIT.into() {
-                    return;
-                }
-
-                log_trace(&format!("Back to Function Call {}\n", idx));
-                tokens = prev_tokens.clone();
-            }
-        }
-        if term { break; }
-    }
-    log_trace(&format!("Finish Function Call {}\n", idx));
-    log_trace("-----------------------------------\n");
-
-    return;
-}
-
-/// ### private function to extract all equivalent mathematical expressions
-/// ### Context-Free Grammar
-/// #### Arguments
-/// * `str` - rewrite expression
-/// * `idx` - fn call idx for debugging purpose
-/// #### Return
-/// * `None`
-unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instant) {
-    let end_time = Instant::now();
-    let elapsed_time = end_time.duration_since(start_time).as_secs();
-    if elapsed_time >= TIME_LIMIT as u64 {
-        return;
-    }
-
-    log_trace("-----------------------------------\n");
-    log_trace(format!("Function Call {}\n", idx).as_str());
-    let global_state = STATE.as_mut().unwrap();
-    if global_state.contains(&tokens.join(" ")) {
-        return;
-    }
-    global_state.insert(tokens.join(" "));
-    let prev_tokens = tokens.clone();
-
-    let mut term: bool = false;
-
-    for i in 0..tokens.len() {
-        if tokens.len() == 1 {
-            let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
-            let final_expr = tokens.join(" ");
-            global_equiv_exprs.insert(final_expr.clone());
-            log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
-            return;
-        }
-
-        let op = &tokens[i];
-        let grammar = GRAMMAR.as_ref().unwrap();
-
-        if op.len() == 1 || !op.starts_with('e') || op.starts_with("exp") ||
-            !grammar.contains_key(op) { continue; }
-        log_trace_raw(&format!("[ OP ]:  {}\n", op));
-        let rw_list = grammar.get(op).unwrap();
-
-        for k in 0..rw_list.len() {
-            let rw = &rw_list[k];
-            log_trace_raw(&format!("[INIT]:  {:?}\n", tokens));
-            log_trace_raw(&format!("[ RW ]:  {:?}\n", rw));
-            if SUPPRESS { 
-                if skip_rw(&rw) {
-                    if k == rw_list.len()-1 {
-                        term = true;
-                        break;
-                    }
-                    continue;
-                } 
-            }
-
-            #[allow(unused_doc_comments)]
-            /// ```rust
-            /// /* Regex will solve indistinct eclass match in str.replacen() */
-            /// /* Original Code */
-            /// str = str.replacen(op, &*rw, 1);
-            /// /* Using Regex (has performance issue since it's slow) */
-            /// use regex::Regex;
-            /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();
-            /// str.replace_range(mat.start()..mat.end(), &rw);
-            /// ```
-            // replace_distinct_ecls(op, rw, &mut str);
-            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
-            tokens.splice(i..i+1, rw_tokens);
-            log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
-
-            if tokens.len() >= TOKEN_LIMIT as usize {
-                log_trace("STR exceeds length limit, Try another RW...\n");
-                if k == rw_list.len()-1 {
-                    term = true;
-                    break;
-                }
-                tokens = prev_tokens.clone();
-                continue;
-            }
-            if !contain_ecls(&tokens) && k == rw_list.len()-1 {
-                let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
-                let final_expr = tokens.join(" ");
-                global_equiv_exprs.insert(final_expr.clone());
-                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
-                term = true;
-                break;
-            } else if !contain_ecls(&tokens) {
-                let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
-                let final_expr = tokens.join(" ");
-                global_equiv_exprs.insert(final_expr.clone());
-                tokens = prev_tokens.clone();
-                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
-            } else {
-                optimized_extract(tokens.clone(), idx+1, start_time);
+                exhaustive_extract(tokens.clone(), idx+1);
+                let start_time = get_start_time();
                 let end_time = Instant::now();
                 let elapsed_time = end_time.duration_since(start_time).as_secs();
                 if elapsed_time >= TIME_LIMIT as u64 {
@@ -302,10 +299,6 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instan
 
                 log_trace(&format!("Back to Function Call {}\n", idx));
                 tokens = prev_tokens.clone();
-                if k == rw_list.len()-1 {
-                    term = true;
-                    break;
-                }
             }
         }
         if term { break; }
@@ -327,9 +320,13 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8, start_time: Instan
 pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &HashMap<String, Vec<String>>, init_exprs: &Vec<String>) {
     /* setup global variables */
     unsafe {
-        if let CliDtype::Bool(optimized) = &cli[0] {
-            OPTIMIZED = *optimized;
+        match &cli[0] {
+            CliDtype::Bool(optimized) => { OPTIMIZED = *optimized; },
+            _ => {},
         }
+        // if let CliDtype::Bool(optimized) = &cli[0] {
+        //     OPTIMIZED = *optimized;
+        // }
         if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
             NUM_EQUIV_EXPRS = *num_equiv_exprs;
         }
@@ -354,15 +351,15 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
         .collect();
 
     unsafe {
-        let start_time = Instant::now();
+        START_TIME = Some(Instant::now());
         /* start extraction */
         if OPTIMIZED {
             for init_token_expr in init_token_exprs {
-                optimized_extract(init_token_expr, 0, start_time);
+                optimized_extract(init_token_expr, 0);
             }
         } else {
             for init_token_expr in init_token_exprs {
-                exhaustive_extract(init_token_expr, 0, start_time);
+                exhaustive_extract(init_token_expr, 0);
             }
         }
     }

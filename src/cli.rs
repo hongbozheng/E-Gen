@@ -91,7 +91,7 @@ pub struct Cli {
     pub output_fpath: Option<String>,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug)]
 /// Argument datatype struct
 pub enum CliDtype {
     /// boolean

@@ -1,4 +1,5 @@
 use crate::*;
+use std::process::exit;
 
 /// ### public function to set global variable optimized (optimized extraction flag)
 /// #### Argument
@@ -48,6 +49,33 @@ pub unsafe fn set_max_token_limit(max_token_limit: u8) {
 pub unsafe fn set_time_limit(time_limit: u16) {
     TIME_LIMIT = time_limit;
     return;
+}
+
+/// ### public function to set global variable start_time
+/// #### Argument
+/// * `start_time` - start time
+/// #### Return
+/// * `None`
+pub unsafe fn set_start_time(start_time: Instant) {
+    START_TIME = Some(start_time);
+    return;
+}
+
+/// ### public function to get global variable start_time
+/// #### Argument
+/// * `None`
+/// #### Return
+/// * `None`
+pub unsafe fn get_start_time() -> Instant {
+    let start_time = match START_TIME {
+        Some(start_time) => { start_time },
+        _ => {
+            log_error(&format!("Failed to unwrap global variable START_TIME \"{:?}\".\n", START_TIME));
+            exit(1);
+        },
+    };
+
+    return start_time;
 }
 
 /// ### public function to remove permutations from the final results
