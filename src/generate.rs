@@ -21,9 +21,12 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
+    let token_limit = cli[2].clone();
+    let time_limit = cli[4].clone();
     let mut equiv_exprs: HashSet<String> = HashSet::default();
 
     loop {
+        println!("{:?}", cli);
         let start_time = Instant::now();
         extract(cli, skip_ecls, grammar, init_exprs);
         let end_time = Instant::now();
@@ -68,6 +71,9 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
             }
         }
     }
+
+    cli[2] = token_limit;
+    cli[4] = time_limit;
 
     return equiv_exprs;
 }
