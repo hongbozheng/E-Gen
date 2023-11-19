@@ -26,7 +26,6 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
     let mut equiv_exprs: HashSet<String> = HashSet::default();
 
     loop {
-        println!("{:?}", cli);
         let start_time = Instant::now();
         extract(cli, skip_ecls, grammar, init_exprs);
         let end_time = Instant::now();
