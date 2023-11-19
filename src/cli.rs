@@ -33,13 +33,23 @@ pub struct Cli {
 
     #[arg(
         short = 'l',
-        long = "token_limit",
+        long = "init_token_limit",
         required = false,
         default_value_t = 8,
-        value_parser = check_init_token_limit
+        value_parser = check_token_limit
     )]
     /// initial token limit
     pub init_token_limit: u8,
+
+    #[arg(
+        short = 'm',
+        long = "max_token_limit",
+        required = false,
+        default_value_t = 12,
+        value_parser = check_token_limit
+    )]
+    /// maximum token limit
+    pub max_token_limit: u8,
 
     #[arg(
         short = 't',
@@ -150,23 +160,23 @@ fn check_num_equiv_exprs(s: &str) -> Result<u8, String> {
     };
 }
 
-/// ### private function to check if user's input for initial token limit variable
-/// ### init_token_limit is valid
+/// ### private function to check if user's input for token limit variable
+/// ### token_limit is valid
 /// #### Argument
 /// * `s` - user's input
 /// #### Return
 /// * `Result` valid u8 input, or error message
-fn check_init_token_limit(s: &str) -> Result<u8, String> {
+fn check_token_limit(s: &str) -> Result<u8, String> {
     match s.parse::<u8>() {
         Ok(init_token_limit) => {
             if init_token_limit > 0 && init_token_limit <= u8::MAX {
                 return Ok(init_token_limit);
             } else {
-                return Err(format!("\n[ERROR]: Invalid input value '{}' for initial token limit, expect to u8 in (0, 2^8].", s));
+                return Err(format!("\n[ERROR]: Invalid input value '{}' for token limit, expect to u8 in (0, 2^8].", s));
             }
         },
         Err(_) => {
-            return Err(format!("\n[ERROR]: Invalid value '{}' for initial token limit, expect u8.", s));
+            return Err(format!("\n[ERROR]: Invalid value '{}' for token limit, expect u8.", s));
         },
     };
 }
@@ -199,8 +209,8 @@ fn check_time_limit(s: &str) -> Result<u16, String> {
 /// * `None`
 pub fn help() {
     log_info_raw("[USAGE]: cargo run [-f] <exhaustive flag>  [-n] <num equiv exprs>\n");
-    log_info_raw("[USAGE]:           [-l] <init token limit> [-t] <init time limit>\n");
-    log_info_raw("[USAGE]:           [-e] <expr> or\n");
+    log_info_raw("[USAGE]:           [-l] <init token limit> [-m] <max token limit>\n");
+    log_info_raw("[USAGE]:           [-t] <init time limit>  [-e] <expr>\n");
     log_info_raw("[USAGE]:           [-i] <input filepath> & [-o] <output filepath>\n");
     log_info_raw("[USAGE]:\n");
     log_info_raw("[USAGE]: <exhaustive flag>  -> exhaustive extraction flag\n");
@@ -216,6 +226,10 @@ pub fn help() {
     log_info_raw("[USAGE]: <init token limit> -> initial tokens limit\n");
     log_info_raw("[USAGE]:  datatype          -> uint8\n");
     log_info_raw("[USAGE]:  default            = 8\n");
+    log_info_raw("[USAGE]:  required          -> false\n");
+    log_info_raw("[USAGE]: <max token limit>  -> maximum tokens limit\n");
+    log_info_raw("[USAGE]:  datatype          -> uint8\n");
+    log_info_raw("[USAGE]:  default            = 12\n");
     log_info_raw("[USAGE]:  required          -> false\n");
     log_info_raw("[USAGE]: <init time limit>  -> initial time limit in sec\n");
     log_info_raw("[USAGE]:  datatype          -> uint16\n");
@@ -254,6 +268,7 @@ pub fn parse_args() -> Vec<CliDtype> {
     let mut cli_dtype: Vec<CliDtype> = vec![CliDtype::Bool(cli.flag),
                                             CliDtype::UInt8(cli.num_equiv_exprs),
                                             CliDtype::UInt8(cli.init_token_limit),
+                                            CliDtype::UInt8(cli.max_token_limit),
                                             CliDtype::UInt16(cli.init_time_limit),];
 
     match cli.input_expr {

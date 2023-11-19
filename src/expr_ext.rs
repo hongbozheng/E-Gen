@@ -333,10 +333,13 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
         if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
             NUM_EQUIV_EXPRS = *num_equiv_exprs;
         }
-        if let CliDtype::UInt8(init_token_limit) = &cli[2] {
-            TOKEN_LIMIT = *init_token_limit;
+        if let CliDtype::UInt8(token_limit) = &cli[2] {
+            TOKEN_LIMIT = *token_limit;
         }
-        if let CliDtype::UInt16(init_time_limit) = &cli[3] {
+        if let CliDtype::UInt8(max_token_limit) = &cli[3] {
+            MAX_TOKEN_LIMIT = *max_token_limit;
+        }
+        if let CliDtype::UInt16(init_time_limit) = &cli[4] {
             TIME_LIMIT = *init_time_limit;
         }
         SKIP_ECLS = Some(skip_ecls.clone());

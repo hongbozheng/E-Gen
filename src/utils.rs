@@ -20,13 +20,23 @@ pub unsafe fn set_num_equiv_exprs(num_equiv_exprs: u8) {
     return;
 }
 
-/// ### public function to set global variable token limit
+/// ### public function to set global variable token_limit
 /// #### Argument
-/// * `token_limit` - token limit
+/// * `token_limit` - token_limit
 /// #### Return
 /// * `None`
 pub unsafe fn set_token_limit(token_limit: u8) {
     TOKEN_LIMIT = token_limit;
+    return;
+}
+
+/// ### public function to set global variable max_token_limit
+/// #### Argument
+/// * `max_token_limit` - maximum token limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_max_token_limit(max_token_limit: u8) {
+    MAX_TOKEN_LIMIT = max_token_limit;
     return;
 }
 

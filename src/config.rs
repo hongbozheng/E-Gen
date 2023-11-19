@@ -7,6 +7,8 @@ pub static mut OPTIMIZED: bool = false;
 pub static mut NUM_EQUIV_EXPRS: u8 = 10;
 /// token limit
 pub static mut TOKEN_LIMIT: u8 = 8;
+/// max token limit
+pub static mut MAX_TOKEN_LIMIT: u8 = 12;
 /// time limit in sec
 pub static mut TIME_LIMIT: u16 = 350;
 /// log level for the entire environment

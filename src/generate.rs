@@ -12,7 +12,7 @@ use std::time::Instant;
 /// * `equiv_expr` - Vec<String> of equivalent expressions
 fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
-    let input_expr = cli[4].to_string();
+    let input_expr = cli[5].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
     let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
@@ -51,16 +51,20 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
             match cli[2] {
                 CliDtype::UInt8(ref mut token_limit) => {
                     *token_limit += 2;
+                    if token_limit > &mut (MAX_TOKEN_LIMIT as u8) {
+                        log_info(&format!("Token limit {} reaches max token limit {}\n", token_limit, MAX_TOKEN_LIMIT));
+                        break;
+                    }
                     log_info(&format!("Increase token limit to {}\n", token_limit));
                 },
-                _ => { log_error(&format!("Failed to convert cli[2] to u8 datatype\n")); },
+                _ => { log_error(&format!("Failed to convert cli[3] to u8 datatype\n")); },
             }
-            match cli[3] {
+            match cli[4] {
                 CliDtype::UInt16(ref mut  time_limit) => {
                     *time_limit += 900;
                     log_info(&format!("Increase time limit to {}\n", time_limit));
                 },
-                _ => { log_error(&format!("Failed to convert cli[3] to u16 datatype\n")); },
+                _ => { log_error(&format!("Failed to convert cli[4] to u16 datatype\n")); },
             }
         }
     }
@@ -76,17 +80,17 @@ fn generate_exprs(cli: &mut Vec<CliDtype>) -> HashSet<String> {
 /// * `None`
 fn generate_file(cli: &mut Vec<CliDtype>) {
     /* Open the input file and create output file */
-    let input_file = match File::options().read(true).write(false).open(&cli[4].to_string()) {
+    let input_file = match File::options().read(true).write(false).open(&cli[5].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[4].to_string(), e));
+            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[5].to_string(), e));
             exit(1);
         },
     };
-    let output_file = match File::create(&cli[5].to_string()) {
+    let output_file = match File::create(&cli[6].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
-            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[5].to_string(), e));
+            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[6].to_string(), e));
             exit(1);
         },
     };
@@ -115,7 +119,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         };
 
         /* start extraction and get equivalent expressions */
-        cli[4] = CliDtype::String(input_expr);
+        cli[5] = CliDtype::String(input_expr);
         let start_time = Instant::now();
         let equiv_exprs = generate_exprs(cli);
         let end_time = Instant::now();
@@ -190,7 +194,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
 pub fn generate() {
     let mut cli = parse_args();
 
-    if cli.len() == 5 {
+    if cli.len() == 6 {
         let start_time = Instant::now();
         let equiv_exprs = generate_exprs(&mut cli);
         for expr in &equiv_exprs {
