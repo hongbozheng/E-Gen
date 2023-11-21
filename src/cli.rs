@@ -12,14 +12,24 @@ use std::process::exit;
 /// Command line inputs
 pub struct Cli {
     #[arg(
-    short = 'f',
-    long = "flag",
-    required = false,
-    default_value_t = false,
-    action = ArgAction::SetTrue
+        short = 'f',
+        long = "flag",
+        required = false,
+        requires = "op",
+        default_value_t = false,
+        action = ArgAction::SetTrue
     )]
     /// extra operator flag
     pub flag: bool,
+
+    #[arg(
+        short = 'o',
+        long = "operator",
+        required = false,
+        requires = "flag"
+    )]
+    /// operator
+    pub op: Option<String>,
 
     #[arg(
         short = 'i',
@@ -46,15 +56,18 @@ pub struct Cli {
 /// #### Return
 /// * `None`
 pub fn help() {
-    log_info_raw("[USAGE]: cargo run [-f] <operator flag>\n");
+    log_info_raw("[USAGE]: cargo run [-f] <operator flag>   [-o] <operator>\n");
     log_info_raw("[USAGE]:           [-i] <input filepath>  [-r] <refactor filepath>\n");
     log_info_raw("[USAGE]:\n");
     log_info_raw("[USAGE]: <operator flag>     -> operator flag\n");
-    log_info_raw("[USAGE]:  false              -> no extra operator\n");
-    log_info_raw("[USAGE]:  true               -> with extra operator\n");
+    log_info_raw("[USAGE]:  false              -> no  extra operator\n");
+    log_info_raw("[USAGE]:  true               -> add extra operator\n");
     log_info_raw("[USAGE]:  datatype           -> bool\n");
     log_info_raw("[USAGE]:  default             = false\n");
-    log_info_raw("[USAGE]:  required           -> false\n");
+    log_info_raw("[USAGE]:  required           -> true if [-o] provided\n");
+    log_info_raw("[USAGE]: <operator>          -> operator\n");
+    log_info_raw("[USAGE]:  datatype           -> String\n");
+    log_info_raw("[USAGE]:  required           -> True if [-f] provided\n");
     log_info_raw("[USAGE]: <input filepath>    -> input filepath\n");
     log_info_raw("[USAGE]:  datatype           -> String\n");
     log_info_raw("[USAGE]:  required           -> true\n");
@@ -72,7 +85,7 @@ pub fn parse_args() -> Cli {
     let cli: Cli = match Cli::try_parse() {
         Ok(cli) => { cli },
         Err(e) => {
-            log_error(&format!("Error encountered while trying to parse command line input(s)\n"));
+            log_error(&format!("Error encountered while trying to parse command line input(s).\n"));
             log_error_raw(&format!("{}\n", e));
             help();
             exit(1);

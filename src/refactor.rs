@@ -111,7 +111,11 @@ pub fn add_paren(expr: &str) -> String {
 /// * `std::io::Result<()>`
 pub fn refactor() {
     let cli = parse_args();
-    let op = &cli.flag;
+    let add_op = &cli.flag;
+    let op = match &cli.op {
+        Some(op) => { op },
+        None => { "" },
+    };
     let input_filepath = &cli.input_filepath;
     let ref_filepath = &cli.ref_filepath;
 
@@ -183,9 +187,9 @@ pub fn refactor() {
         new_expr = add_paren(&new_expr);
 
         // Write the updated line to the output file
-        if *op {
+        if *add_op {
             // modify this line to add (extra op {expr})
-            new_expr = format!("(d x {})", new_expr);
+            new_expr = format!("({} {})", op, new_expr);
         } else {
             new_expr = format!("{}", new_expr);
         }
