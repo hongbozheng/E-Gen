@@ -25,7 +25,7 @@ The simplest way to enable `env_logger` is to put the following line near the to
 Then, set the environment variable `RUST_LOG=egg=info`, or use `warn` or `debug` instead of info
 for less or more logging.
 
-*/
+ */
 #![doc = "## Simple Example\n```"]
 #![doc = include_str!("../tests/simple.rs")]
 #![doc = "\n```"]
@@ -37,17 +37,21 @@ pub mod test;
 
 pub mod tutorials;
 
+mod cli;
+mod config;
 mod dot;
 mod eclass;
 mod egraph;
 mod explain;
 mod extract;
 mod language;
+mod logger;
 #[cfg(feature = "lp")]
 mod lp_extract;
 mod machine;
 mod multipattern;
 mod pattern;
+mod refactor;
 mod rewrite;
 mod run;
 mod subst;
@@ -88,6 +92,8 @@ impl std::fmt::Display for Id {
 pub(crate) use {explain::Explain, unionfind::UnionFind};
 
 pub use {
+    cli::*,
+    config::*,
     dot::Dot,
     eclass::EClass,
     egraph::EGraph,
@@ -97,8 +103,10 @@ pub use {
     },
     extract::*,
     language::*,
+    logger::*,
     multipattern::*,
     pattern::{ENodeOrVar, Pattern, PatternAst, SearchMatches},
+    refactor::refactor,
     rewrite::{Applier, Condition, ConditionEqual, ConditionalApplier, Rewrite, Searcher},
     run::*,
     subst::{Subst, Var},
