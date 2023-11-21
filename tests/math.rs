@@ -33,8 +33,8 @@ pub struct MathCostFn;
 impl egg::CostFunction<Math> for MathCostFn {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &Math, mut costs: C) -> Self::Cost
-        where
-            C: FnMut(Id) -> Self::Cost,
+    where
+        C: FnMut(Id) -> Self::Cost,
     {
         let op_cost = match enode {
             Math::Diff(..) => 100,
@@ -50,7 +50,7 @@ pub struct ConstantFold;
 impl Analysis<Math> for ConstantFold {
     type Data = Option<(Constant, PatternAst<Math>)>;
 
-    fn make(egraph: &EGraph, enode: &Math) -> Self::Data {
+    fn make(egraph: &mut EGraph, enode: &Math) -> Self::Data {
         let x = |i: &Id| egraph[*i].data.as_ref().map(|d| d.0);
         Some(match enode {
             Math::Constant(c) => (*c, format!("{}", c).parse().unwrap()),
@@ -110,10 +110,10 @@ fn is_const_or_distinct_var(v: &str, w: &str) -> impl Fn(&mut EGraph, Id, &Subst
     move |egraph, _, subst| {
         egraph.find(subst[v]) != egraph.find(subst[w])
             && (egraph[subst[v]].data.is_some()
-            || egraph[subst[v]]
-            .nodes
-            .iter()
-            .any(|n| matches!(n, Math::Symbol(..))))
+                || egraph[subst[v]]
+                    .nodes
+                    .iter()
+                    .any(|n| matches!(n, Math::Symbol(..))))
     }
 }
 
@@ -209,9 +209,6 @@ pub fn rules() -> Vec<Rewrite> { vec![
     rw!("i-parts"; "(i (* ?a ?b) ?x)" =>
         "(- (* ?a (i ?b ?x)) (i (* (d ?x ?a) (i ?b ?x)) ?x))"),
 ]}
-
-/* TODO: DEBUG */
-egg::test_fn! {WHY_IS_THIS_WORKING, math_rule(), "(* x y)" => "(* y x)"}
 
 egg::test_fn! {
     math_associate_adds, [
@@ -440,8 +437,7 @@ fn test_basic_egraph_union_intersect() {
         "",
     );
 
-    let mut egraph3 = EGraph::new(ConstantFold {}).with_explanations_enabled();
-    egraph1.egraph_intersect_incomplete(&mut egraph2, &mut egraph3);
+    let mut egraph3 = egraph1.egraph_intersect(&egraph2, ConstantFold {});
 
     egraph2.egraph_union(&egraph1);
 
@@ -497,9 +493,10 @@ fn test_intersect_basic() {
         &Default::default(),
         "",
     );
+    egraph2.add_expr(&"(+ x 0)".parse().unwrap());
+    egraph2.add_expr(&"(+ y 0)".parse().unwrap());
 
-    let mut egraph3 = EGraph::new(ConstantFold {}).with_explanations_enabled();
-    egraph1.egraph_intersect_incomplete(&mut egraph2, &mut egraph3);
+    let mut egraph3 = egraph1.egraph_intersect(&egraph2, ConstantFold {});
 
     assert_ne!(
         egraph3.add_expr(&"x".parse().unwrap()),
@@ -508,5 +505,52 @@ fn test_intersect_basic() {
     assert_eq!(
         egraph3.add_expr(&"(+ x 0)".parse().unwrap()),
         egraph3.add_expr(&"(+ y 0)".parse().unwrap())
+    );
+}
+
+#[test]
+fn test_medium_intersect() {
+    let mut egraph1 = egg::EGraph::<Math, ()>::new(());
+
+    egraph1.add_expr(&"(sqrt (ln 1))".parse().unwrap());
+    let ln = egraph1.add_expr(&"(ln 1)".parse().unwrap());
+    let a = egraph1.add_expr(&"(sqrt (sin pi))".parse().unwrap());
+    let b = egraph1.add_expr(&"(* 1 pi)".parse().unwrap());
+    let pi = egraph1.add_expr(&"pi".parse().unwrap());
+    egraph1.union(a, b);
+    egraph1.union(a, pi);
+    let c = egraph1.add_expr(&"(+ pi pi)".parse().unwrap());
+    egraph1.union(ln, c);
+    let k = egraph1.add_expr(&"k".parse().unwrap());
+    let one = egraph1.add_expr(&"1".parse().unwrap());
+    egraph1.union(k, one);
+    egraph1.rebuild();
+
+    assert_eq!(
+        egraph1.add_expr(&"(ln k)".parse().unwrap()),
+        egraph1.add_expr(&"(+ (* k pi) (* k pi))".parse().unwrap())
+    );
+
+    let mut egraph2 = egg::EGraph::<Math, ()>::new(());
+    let ln = egraph2.add_expr(&"(ln 2)".parse().unwrap());
+    let k = egraph2.add_expr(&"k".parse().unwrap());
+    let mk1 = egraph2.add_expr(&"(* k 1)".parse().unwrap());
+    egraph2.union(mk1, k);
+    let two = egraph2.add_expr(&"2".parse().unwrap());
+    egraph2.union(mk1, two);
+    let mul2pi = egraph2.add_expr(&"(+ (* 2 pi) (* 2 pi))".parse().unwrap());
+    egraph2.union(ln, mul2pi);
+    egraph2.rebuild();
+
+    assert_eq!(
+        egraph2.add_expr(&"(ln k)".parse().unwrap()),
+        egraph2.add_expr(&"(+ (* k pi) (* k pi))".parse().unwrap())
+    );
+
+    let mut egraph3 = egraph1.egraph_intersect(&egraph2, ());
+
+    assert_eq!(
+        egraph3.add_expr(&"(ln k)".parse().unwrap()),
+        egraph3.add_expr(&"(+ (* k pi) (* k pi))".parse().unwrap())
     );
 }

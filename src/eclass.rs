@@ -51,8 +51,8 @@ impl<L: Language, D> EClass<L, D> {
 
     /// Asserts that the childless enodes in this eclass are unique.
     pub fn assert_unique_leaves(&self)
-        where
-            L: Language,
+    where
+        L: Language,
     {
         let mut leaves = self.leaves();
         if let Some(first) = leaves.next() {

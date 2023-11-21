@@ -39,8 +39,8 @@ fn for_each_matching_node<L, D>(
     node: &L,
     mut f: impl FnMut(&L) -> Result,
 ) -> Result
-    where
-        L: Language,
+where
+    L: Language,
 {
     #[allow(enum_intrinsics_non_enums)]
     if eclass.nodes.len() < 50 {
@@ -96,9 +96,9 @@ impl Machine {
         subst: &Subst,
         yield_fn: &mut impl FnMut(&Self, &Subst) -> Result,
     ) -> Result
-        where
-            L: Language,
-            N: Analysis<L>,
+    where
+        L: Language,
+        N: Analysis<L>,
     {
         let mut instructions = instructions.iter();
         while let Some(instruction) = instructions.next() {
@@ -348,8 +348,8 @@ impl<L: Language> Program<L> {
         eclass: Id,
         mut limit: usize,
     ) -> Vec<Subst>
-        where
-            A: Analysis<L>,
+    where
+        A: Analysis<L>,
     {
         assert!(egraph.clean, "Tried to search a dirty e-graph!");
 
