@@ -9,6 +9,8 @@ pub type Constant = NotNan<f64>;
 
 /* math operators */
 define_language! {
+    #[allow(missing_docs)]
+    /// enum representing mathematical operations
     pub enum Math {
         "+"=Add([Id;2]),
         "-"=Sub([Id;2]),

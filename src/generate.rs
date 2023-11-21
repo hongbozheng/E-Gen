@@ -21,6 +21,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
 
+    #[allow(unused_assignments)]
     let mut equiv_exprs: HashSet<String> = HashSet::default();
 
     loop {
@@ -180,8 +181,9 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     }
 
     /* clean up file descriptors */
+    drop(writer);
     drop(input_file);
-    drop(&output_file);
+    drop(output_file);
 
     return;
 }
