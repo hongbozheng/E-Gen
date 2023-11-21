@@ -70,7 +70,7 @@ pub unsafe fn get_start_time() -> Instant {
     let start_time = match START_TIME {
         Some(start_time) => { start_time },
         _ => {
-            log_error(&format!("Failed to unwrap global variable START_TIME \"{:?}\".\n", START_TIME));
+            log_error(&format!("Failed to unwrap global variable START_TIME '{:?}'.\n", START_TIME));
             exit(1);
         },
     };

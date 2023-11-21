@@ -2,7 +2,7 @@ use crate::*;
 use clap::{ArgAction, Parser};
 use std::process::exit;
 
-#[derive(Parser, Clone, Debug)]
+#[derive(Parser, Debug)]
 #[command(
     about = "Equivalent Expressions Generation",
     long_about = None,

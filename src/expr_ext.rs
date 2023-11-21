@@ -1,4 +1,5 @@
 use crate::*;
+use std::process::exit;
 use std::time::Instant;
 
 /// private global variable to store eclass(es) to skip during extraction
@@ -322,23 +323,39 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
     unsafe {
         match &cli[0] {
             CliDtype::Bool(optimized) => { OPTIMIZED = *optimized; },
-            _ => {},
+            _ => {
+                log_error(&format!("Failed to cast '{:?}' into boolean variable.\n", cli[0]));
+                exit(1);
+            },
         }
-        if let CliDtype::Bool(optimized) = &cli[0] {
-            OPTIMIZED = *optimized;
-        }
-        if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
-            NUM_EQUIV_EXPRS = *num_equiv_exprs;
-        }
-        if let CliDtype::UInt8(token_limit) = &cli[2] {
-            TOKEN_LIMIT = *token_limit;
-        }
-        if let CliDtype::UInt8(max_token_limit) = &cli[3] {
-            MAX_TOKEN_LIMIT = *max_token_limit;
-        }
-        if let CliDtype::UInt16(init_time_limit) = &cli[4] {
-            TIME_LIMIT = *init_time_limit;
-        }
+        match &cli[1] {
+            CliDtype::UInt8(num_equiv_exprs) => { NUM_EQUIV_EXPRS = *num_equiv_exprs },
+            _ => {
+                log_error(&format!("Failed to cast '{:?}' into uint8 variable.\n", cli[1]));
+                exit(1);
+            },
+        };
+        match &cli[2] {
+            CliDtype::UInt8(token_limit) => { TOKEN_LIMIT = *token_limit },
+            _ => {
+                log_error(&format!("Failed to cast '{:?}' into uint8 variable.\n", cli[2]));
+                exit(1);
+            },
+        };
+        match &cli[3] {
+            CliDtype::UInt8(max_token_limit) => { MAX_TOKEN_LIMIT = *max_token_limit },
+            _ => {
+                log_error(&format!("Failed to cast '{:?}' into uint8 variable.\n", cli[3]));
+                exit(1);
+            },
+        };
+        match &cli[4] {
+            CliDtype::UInt16(time_limit) => { TIME_LIMIT = *time_limit },
+            _ => {
+                log_error(&format!("Failed to cast '{:?}' into uint16 variable.", cli[4]));
+                exit(1);
+            },
+        };
         SKIP_ECLS = Some(skip_ecls.clone());
         GRAMMAR = Some(grammar.clone());
         STATE = Some(Default::default());

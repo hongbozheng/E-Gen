@@ -84,14 +84,16 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     let input_file = match File::options().read(true).write(false).open(&cli[5].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open input file \"{}\" with error {}.\n", &cli[5].to_string(), e));
+            log_error(&format!("Failed to open input file '{:?}'.\n", &cli[5]));
+            log_error(&format!("{}", e));
             exit(1);
         },
     };
     let output_file = match File::create(&cli[6].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
-            log_error(&format!("Failed to create output file \"{}\" with error {}.\n", &cli[6].to_string(), e));
+            log_error(&format!("Failed to create output file '{:?}'.\n", &cli[6]));
+            log_error(&format!("{}", e));
             exit(1);
         },
     };
@@ -107,14 +109,16 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         let input_expr = match input_expr {
             Ok(input_expr) => { input_expr },
             Err(e) => {
-                log_error(&format!("Error reading line from file with error {}.\n", e));
+                log_error(&format!("Failed to read line from input file '{:?}'.\n", input_file));
+                log_error(&format!("{}", e));
                 exit(1);
             },
         };
         match writeln!(writer, "{}", &input_expr) {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to write input expr {} into output file with error {}.\n", input_expr, e));
+                log_error(&format!("Failed to write input expr '{}' into output file '{:?}'.\n", input_expr, output_file));
+                log_error(&format!("{}", e));
                 exit(1);
             },
         };
@@ -132,7 +136,8 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             match writeln!(writer, "{}", expr) {
                 Ok(_) => {},
                 Err(e) => {
-                    log_error(&format!("Failed to write expr {} into output file with error {}.\n", expr, e));
+                    log_error(&format!("Failed to write expr '{}' into output file {:?}.\n", expr, output_file));
+                    log_error(&format!("{}", e));
                     exit(1);
                 },
             };
@@ -140,7 +145,8 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         match writeln!(writer, "") {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to write \"\" into output file with error {}.\n", e));
+                log_error(&format!("Failed to write '' into output file '{:?}'.\n", output_file));
+                log_error(&format!("{}", e));
                 exit(1);
             },
         };
@@ -149,7 +155,8 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         match writer.flush() {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to flush writer with error {}.\n", e));
+                log_error("Failed to flush buffer.\n");
+                log_error(&format!("{}", e));
                 exit(1);
             },
         }
@@ -159,7 +166,8 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match writer.flush() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to flush writer with error {}.\n", e));
+            log_error("Failed to flush buffer.\n");
+            log_error(&format!("{}", e));
             exit(1);
         },
     }
@@ -168,14 +176,16 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match input_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[5].to_string(), e));
+            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", input_file));
+            log_error(&format!("{}", e));
             exit(1);
         },
     }
     match output_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync input file {} with error {}.\n", &cli[6].to_string(), e));
+            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", output_file));
+            log_error(&format!("{}", e));
             exit(1);
         },
     }
