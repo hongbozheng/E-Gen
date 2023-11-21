@@ -115,14 +115,14 @@ pub fn refactor() {
     let input_filepath = &cli.input_filepath;
     let ref_filepath = &cli.ref_filepath;
 
-    log_info(&format!("Start refactoring expressions from file {}.\n", input_filepath));
+    log_info(&format!("Start refactoring expressions from file '{}'.\n", input_filepath));
 
     // Open the input file and create output file
     let input_file = match File::open(input_filepath.clone()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open file \"{}\".\n", input_filepath));
-            log_error(&format!("{}\n", e));
+            log_error(&format!("Failed to open file '{}'.\n", input_filepath));
+            log_error(&format!("{}", e));
             exit(1);
         },
     };
@@ -130,8 +130,8 @@ pub fn refactor() {
     let ref_file = match File::create(ref_filepath.clone()) {
         Ok(ref_file) => { ref_file },
         Err(e) => {
-            log_error(&format!("Failed to create file \"{}\".\n", ref_filepath));
-            log_error(&format!("{}\n", e));
+            log_error(&format!("Failed to create refactor file '{}'.\n", ref_filepath));
+            log_error(&format!("{}", e));
             exit(1);
         },
     };
@@ -147,8 +147,8 @@ pub fn refactor() {
         let expr = match expr {
             Ok(expr) => { expr },
             Err(e) => {
-                log_error(&format!("Failed to read expression.\n"));
-                log_error(&format!("{}\n", e));
+                log_error("Failed to read expression from reader.\n");
+                log_error(&format!("{}", e));
                 exit(1);
             },
         };
@@ -199,7 +199,7 @@ pub fn refactor() {
             Ok(_) => {},
             Err(e) => {
                 log_error("Failed to write new expression into buffer.\n");
-                log_error(&format!("{}\n", e));
+                log_error(&format!("{}", e));
                 exit(1);
             },
         };
@@ -209,11 +209,11 @@ pub fn refactor() {
     match writer.flush() {
         Ok(_) => {},
         Err(e) => {
-            log_error("Failed to write buffer into refactor file.\n");
-            log_error(&format!("{}\n", e));
+            log_error(&format!("Failed to flush buffer to refactor file '{}'.\n", ref_filepath));
+            log_error(&format!("{}", e));
             exit(1);
         },
     };
 
-    log_info(&format!("Finish refactoring expressions, results saved to {}.\n", ref_filepath));
+    log_info(&format!("Finish refactoring expressions, results saved to '{}'.\n", ref_filepath));
 }
