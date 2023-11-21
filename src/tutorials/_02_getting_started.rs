@@ -189,4 +189,4 @@ assert_eq!(best_cost, 1);
 [`Runner`]: super::super::Runner
 [`Extractor`]: super::super::Extractor
 
- */
+*/

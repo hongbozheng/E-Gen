@@ -100,11 +100,11 @@ In `egg`, these are represented by the [`EGraph`], [`EClass`], and
 Even small e-graphs can represent a large number of expressions, exponential in
 the number of e-nodes.
 This compactness is what makes e-graphs a compelling data structure.
-We can define what it means for _represent_ (or _contain_) a term as follows:
+We can define what it means to _represent_ (or _contain_) a term as follows:
 
 - An e-graph represents a term if any of its e-classes do.
 - An e-class represents a term if any of its e-nodes do.
-- An e-node `f(n1, n2, ...)` represents a term `f(t1, t2, ...)` if e-node `ni` represents term `ti`.
+- An e-node `f(n1, n2, ...)` represents a term `f(t1, t2, ...)` if e-class `ni` represents term `ti`.
 
 Here are some e-graphs.
 We picture e-classes as dotted boxes surrounding the equivalent e-nodes.
@@ -203,7 +203,7 @@ which calls [`union`]) may not be reflected immediately.
 To restore the e-graph invariants and make these effects visible, the
 user *must* call the [`rebuild`] method.
 
-`egg`'s choice here allows for a higher performance implementation
+`egg`'s choice here allows for a higher performance implementation.
 Maintaining the congruence relation complicates the core e-graph data
 structure and requires an expensive traversal through the e-graph on
 every [`union`].

@@ -5,6 +5,7 @@ use log::*;
 use crate::*;
 
 /** Faciliates running rewrites over an [`EGraph`].
+
 One use for [`EGraph`]s is as the basis of a rewriting system.
 Since an egraph never "forgets" state when applying a [`Rewrite`], you
 can apply many rewrites many times quite efficiently.
@@ -14,49 +15,68 @@ many, many equivalent expressions.
 At this point, the egraph is ready for extraction (see [`Extractor`])
 which can pick the represented expression that's best according to
 some cost function.
+
 This technique is called
 [equality saturation](https://www.cs.cornell.edu/~ross/publications/eqsat/)
 in general.
 However, there can be many challenges in implementing this "outer
 loop" of applying rewrites, mostly revolving around which rules to run
 and when to stop.
+
 [`Runner`] is `egg`'s provided equality saturation engine that has
 reasonable defaults and implements many useful things like saturation
 checking, egraph size limits, and customizable rule
 [scheduling](RewriteScheduler).
 Consider using [`Runner`] before rolling your own outer loop.
+
 Here are some of the things [`Runner`] does for you:
+
 - Saturation checking
+
   [`Runner`] checks to see if any of the rules added anything
   new to the [`EGraph`]. If none did, then it stops, returning
   [`StopReason::Saturated`].
+
 - Iteration limits
+
   You can set a upper limit of iterations to do in case the search
   doesn't stop for some other reason. If this limit is hit, it stops with
   [`StopReason::IterationLimit`].
+
 - [`EGraph`] size limit
+
   You can set a upper limit on the number of enodes in the egraph.
   If this limit is hit, it stops with
   [`StopReason::NodeLimit`].
+
 - Time limit
+
   You can set a time limit on the runner.
   If this limit is hit, it stops with
   [`StopReason::TimeLimit`].
+
 - Rule scheduling
+
   Some rules enable themselves, blowing up the [`EGraph`] and
   preventing other rewrites from running as many times.
   To prevent this, you can provide your own [`RewriteScheduler`] to
   govern when to run which rules.
+
   [`BackoffScheduler`] is the default scheduler.
+
 [`Runner`] generates [`Iteration`]s that record some data about
 each iteration.
 You can add your own data to this by implementing the
 [`IterationData`] trait.
 [`Runner`] is generic over the [`IterationData`] that it will be in the
 [`Iteration`]s, but by default it uses `()`.
+
+
 # Example
+
 ```
 use egg::{*, rewrite as rw};
+
 define_language! {
     enum SimpleLanguage {
         Num(i32),
@@ -65,17 +85,22 @@ define_language! {
         Symbol(Symbol),
     }
 }
+
 let rules: &[Rewrite<SimpleLanguage, ()>] = &[
     rw!("commute-add"; "(+ ?a ?b)" => "(+ ?b ?a)"),
     rw!("commute-mul"; "(* ?a ?b)" => "(* ?b ?a)"),
+
     rw!("add-0"; "(+ ?a 0)" => "?a"),
     rw!("mul-0"; "(* ?a 0)" => "0"),
     rw!("mul-1"; "(* ?a 1)" => "?a"),
 ];
+
 pub struct MyIterData {
     smallest_so_far: usize,
 }
+
 type MyRunner = Runner<SimpleLanguage, (), MyIterData>;
+
 impl IterationData<SimpleLanguage, ()> for MyIterData {
     fn make(runner: &MyRunner) -> Self {
         let root = runner.roots[0];
@@ -85,6 +110,7 @@ impl IterationData<SimpleLanguage, ()> for MyIterData {
         }
     }
 }
+
 let start = "(+ 0 (* 1 foo))".parse().unwrap();
 // Runner is customizable in the builder pattern style.
 let runner = MyRunner::new(Default::default())
@@ -93,18 +119,21 @@ let runner = MyRunner::new(Default::default())
     .with_expr(&start)
     .with_scheduler(SimpleScheduler)
     .run(rules);
+
 // Now we can check our iteration data to make sure that the cost only
 // got better over time
 for its in runner.iterations.windows(2) {
     assert!(its[0].data.smallest_so_far >= its[1].data.smallest_so_far);
 }
+
 println!(
     "Stopped after {} iterations, reason: {:?}",
     runner.iterations.len(),
     runner.stop_reason
 );
+
 ```
- */
+*/
 pub struct Runner<L: Language, N: Analysis<L>, IterData = ()> {
     /// The [`EGraph`] used.
     pub egraph: EGraph<L, N>,
@@ -132,9 +161,9 @@ pub struct Runner<L: Language, N: Analysis<L>, IterData = ()> {
 }
 
 impl<L, N> Default for Runner<L, N, ()>
-    where
-        L: Language,
-        N: Analysis<L> + Default,
+where
+    L: Language,
+    N: Analysis<L> + Default,
 {
     fn default() -> Self {
         Runner::new(N::default())
@@ -142,10 +171,10 @@ impl<L, N> Default for Runner<L, N, ()>
 }
 
 impl<L, N, IterData> Debug for Runner<L, N, IterData>
-    where
-        L: Language,
-        N: Analysis<L>,
-        IterData: Debug,
+where
+    L: Language,
+    N: Analysis<L>,
+    IterData: Debug,
 {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         // Use an exhaustive pattern match to ensure the Debug implementation and the struct stay in sync.
@@ -277,10 +306,10 @@ pub struct Iteration<IterData> {
 type RunnerResult<T> = std::result::Result<T, StopReason>;
 
 impl<L, N, IterData> Runner<L, N, IterData>
-    where
-        L: Language,
-        N: Analysis<L>,
-        IterData: IterationData<L, N>,
+where
+    L: Language,
+    N: Analysis<L>,
+    IterData: IterationData<L, N>,
 {
     /// Create a new `Runner` with the given analysis and default parameters.
     pub fn new(analysis: N) -> Self {
@@ -339,8 +368,8 @@ impl<L, N, IterData> Runner<L, N, IterData>
     ///     .run(rules);
     /// ```
     pub fn with_hook<F>(mut self, hook: F) -> Self
-        where
-            F: FnMut(&mut Self) -> Result<(), String> + 'static,
+    where
+        F: FnMut(&mut Self) -> Result<(), String> + 'static,
     {
         self.hooks.push(Box::new(hook));
         self
@@ -375,10 +404,10 @@ impl<L, N, IterData> Runner<L, N, IterData>
     /// [`stop_reason`](Runner::stop_reason) is guaranteed to be
     /// set.
     pub fn run<'a, R>(mut self, rules: R) -> Self
-        where
-            R: IntoIterator<Item = &'a Rewrite<L, N>>,
-            L: 'a,
-            N: 'a,
+    where
+        R: IntoIterator<Item = &'a Rewrite<L, N>>,
+        L: 'a,
+        N: 'a,
     {
         let rules: Vec<&Rewrite<L, N>> = rules.into_iter().collect();
         check_rules(&rules);
@@ -628,15 +657,17 @@ fn check_rules<L, N>(rules: &[&Rewrite<L, N>]) {
 }
 
 /** A way to customize how a [`Runner`] runs [`Rewrite`]s.
+
 This gives you a way to prevent certain [`Rewrite`]s from exploding
 the [`EGraph`] and dominating how much time is spent while running the
 [`Runner`].
- */
+
+*/
 #[allow(unused_variables)]
 pub trait RewriteScheduler<L, N>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Whether or not the [`Runner`] is allowed
     /// to say it has saturated.
@@ -693,9 +724,9 @@ pub trait RewriteScheduler<L, N>
 pub struct SimpleScheduler;
 
 impl<L, N> RewriteScheduler<L, N> for SimpleScheduler
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
 }
 
@@ -786,9 +817,9 @@ impl Default for BackoffScheduler {
 }
 
 impl<L, N> RewriteScheduler<L, N> for BackoffScheduler
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     fn can_stop(&mut self, iteration: usize) -> bool {
         let n_stats = self.stats.len();
@@ -886,9 +917,9 @@ impl<L, N> RewriteScheduler<L, N> for BackoffScheduler
 /// [`Iteration`]s, but by default it uses `()`.
 ///
 pub trait IterationData<L, N>: Sized
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Given the current [`Runner`], make the
     /// data to be put in this [`Iteration`].
@@ -896,9 +927,9 @@ pub trait IterationData<L, N>: Sized
 }
 
 impl<L, N> IterationData<L, N> for ()
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     fn make(_: &Runner<L, N, Self>) -> Self {}
 }

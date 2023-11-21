@@ -1,6 +1,7 @@
 # Changes
 
 ## [Unreleased] - ReleaseDate
+- Change the API of `make` to have mutable access to the e-graph for some [advanced uses cases](https://github.com/egraphs-good/egg/pull/277).
 
 
 ## [0.9.5] - 2023-06-29
@@ -64,7 +65,7 @@
 - ([#168](https://github.com/egraphs-good/egg/pull/168)) Added MultiPatterns.
 
 ### Changed
-- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior.
+- ([#165](https://github.com/egraphs-good/egg/pull/165)) Unions now happen "instantly", restoring the pre-0.7 behavior. 
 - The tested MSRV is now 1.60.0.
 - Several small documentation enhancements.
 - ([#162](https://github.com/egraphs-good/egg/pull/162), [#163](https://github.com/egraphs-good/egg/pull/163))
@@ -80,9 +81,9 @@ This patch fixes a pretty bad e-matching bug introduced in 0.7.0. Please upgrade
 
 ## [0.7.0] - 2021-11-23
 
-It's a been a long time since a release!
+It's a been a long time since a release! 
 There's a lot in this one, hopefully I can cut releases more frequently in the future,
-because there are definitely more features coming :)
+ because there are definitely more features coming :)
 
 ### Added
 - The egraph now has an `EGraph::with_explanations_enabled` mode that allows for
