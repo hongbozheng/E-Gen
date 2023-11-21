@@ -73,7 +73,7 @@ pub fn parse_args() -> Cli {
         Ok(cli) => { cli },
         Err(e) => {
             log_error(&format!("Error encountered while trying to parse command line input(s)\n"));
-            log_error_raw(&format!("{}", e));
+            log_error_raw(&format!("{}\n", e));
             help();
             exit(1);
         },
