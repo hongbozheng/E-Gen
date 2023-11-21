@@ -323,8 +323,8 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
         if let CliDtype::Bool(optimized) = &cli[0] {
             OPTIMIZED = *optimized;
         }
-        if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
-            NUM_EQUIV_EXPRS = *num_equiv_exprs;
+        if let CliDtype::UInt8(n_equiv_exprs) = &cli[1] {
+            N_EQUIV_EXPRS = *n_equiv_exprs;
         }
         if let CliDtype::UInt8(token_limit) = &cli[2] {
             TOKEN_LIMIT = *token_limit;

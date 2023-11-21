@@ -44,7 +44,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
             log_info(&format!("Total # of expression(s) before postprocessing: {}\n", orig_num_exprs));
             log_info(&format!("Total # of expression(s) after  postprocessing: {}\n", num_exprs));
 
-            if equiv_exprs.len() >= NUM_EQUIV_EXPRS as usize {
+            if equiv_exprs.len() >= N_EQUIV_EXPRS as usize {
                 break;
             }
 

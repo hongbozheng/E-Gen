@@ -23,13 +23,13 @@ pub struct Cli {
 
     #[arg(
         short = 'n',
-        long = "num_equiv_exprs",
+        long = "n_equiv_exprs",
         required = false,
         default_value_t = 10,
-        value_parser = check_num_equiv_exprs
+        value_parser = check_n_equiv_exprs
     )]
     /// number of equivalent expressions
-    pub num_equiv_exprs: u8,
+    pub n_equiv_exprs: u8,
 
     #[arg(
         short = 'l',
@@ -149,14 +149,14 @@ impl CliDtype {
 }
 
 /// ### private function to check if user's input for number of equivalent expressions variable
-/// ### num_equiv_exprs is valid
+/// ### n_equiv_exprs is valid
 /// #### Argument
 /// * `s` - user's input
 /// #### Return
 /// * `Result` valid u8 input, or error message
-fn check_num_equiv_exprs(s: &str) -> Result<u8, String> {
+fn check_n_equiv_exprs(s: &str) -> Result<u8, String> {
     match s.parse::<u8>() {
-        Ok(num_equiv_exprs) => { return Ok(num_equiv_exprs); },
+        Ok(n_equiv_exprs) => { return Ok(n_equiv_exprs); },
         Err(_) => {
             return Err(format!("\n[ERROR]: Invalid value '{}' for number of equivalent expressions, expect u8.", s));
         },
@@ -211,7 +211,7 @@ fn check_time_limit(s: &str) -> Result<u16, String> {
 /// #### Return
 /// * `None`
 pub fn help() {
-    log_info_raw("[USAGE]: cargo run [-f] <optim ext flag>   [-n] <num equiv exprs>\n");
+    log_info_raw("[USAGE]: cargo run [-f] <optim ext flag>   [-n] <n equiv exprs>\n");
     log_info_raw("[USAGE]:           [-l] <init token limit> [-m] <max token limit>\n");
     log_info_raw("[USAGE]:           [-t] <init time limit>  [-e] <expr>\n");
     log_info_raw("[USAGE]:           [-i] <input filepath> & [-o] <output filepath>\n");
@@ -274,7 +274,7 @@ pub fn parse_args() -> Vec<CliDtype> {
     }
 
     let mut cli_dtype: Vec<CliDtype> = vec![CliDtype::Bool(cli.flag),
-                                            CliDtype::UInt8(cli.num_equiv_exprs),
+                                            CliDtype::UInt8(cli.n_equiv_exprs),
                                             CliDtype::UInt8(cli.init_token_limit),
                                             CliDtype::UInt8(cli.max_token_limit),
                                             CliDtype::UInt16(cli.init_time_limit),];

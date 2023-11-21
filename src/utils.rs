@@ -16,8 +16,8 @@ pub unsafe fn set_optimized_flag(optimized: bool) {
 /// * `token_limit` - token limit
 /// #### Return
 /// * `None`
-pub unsafe fn set_num_equiv_exprs(num_equiv_exprs: u8) {
-    NUM_EQUIV_EXPRS = num_equiv_exprs;
+pub unsafe fn set_n_equiv_exprs(n_equiv_exprs: u8) {
+    N_EQUIV_EXPRS = n_equiv_exprs;
     return;
 }
 

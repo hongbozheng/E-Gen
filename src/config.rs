@@ -4,7 +4,7 @@ use crate::*;
 /// optimized extraction flag
 pub static mut OPTIMIZED: bool = false;
 /// number of equivalent expressions
-pub static mut NUM_EQUIV_EXPRS: u8 = 10;
+pub static mut N_EQUIV_EXPRS: u8 = 10;
 /// token limit
 pub static mut TOKEN_LIMIT: u8 = 8;
 /// max token limit
