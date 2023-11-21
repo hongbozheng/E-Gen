@@ -126,7 +126,7 @@ pub fn refactor() {
         Ok(input_file) => { input_file },
         Err(e) => {
             log_error(&format!("Failed to open file '{}'.\n", input_filepath));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     };
@@ -135,7 +135,7 @@ pub fn refactor() {
         Ok(ref_file) => { ref_file },
         Err(e) => {
             log_error(&format!("Failed to create refactor file '{}'.\n", ref_filepath));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     };
@@ -152,7 +152,7 @@ pub fn refactor() {
             Ok(expr) => { expr },
             Err(e) => {
                 log_error("Failed to read expression from reader.\n");
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         };
@@ -188,7 +188,6 @@ pub fn refactor() {
 
         // Write the updated line to the output file
         if *add_op {
-            // modify this line to add (extra op {expr})
             new_expr = format!("({} {})", op, new_expr);
         } else {
             new_expr = format!("{}", new_expr);
@@ -203,7 +202,7 @@ pub fn refactor() {
             Ok(_) => {},
             Err(e) => {
                 log_error("Failed to write new expression into buffer.\n");
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         };
@@ -214,7 +213,7 @@ pub fn refactor() {
         Ok(_) => {},
         Err(e) => {
             log_error(&format!("Failed to flush buffer to refactor file '{}'.\n", ref_filepath));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     };
