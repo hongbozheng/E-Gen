@@ -86,7 +86,7 @@ Example:
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
 
-## Equivalent Expressions Generation (Rust)
+## Refactor Dataset (Rust)
 #### Command-Line Application
 Build the command-line application as follows:
 ```
@@ -112,7 +112,7 @@ cargo run -- -f <operator flag> -i <input filepath> -r <refactor filepath>
 cargo run -- -f -i <input filepath> -r <refactor filepath>
 ```
 
-#### Create Dataset
+## Refactor Dataset (Python)
 #### Run the command-line application
 ##### Check command line input help
 ```
