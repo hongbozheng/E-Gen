@@ -85,3 +85,43 @@ Example:
 ```bash
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
+
+## Equivalent Expressions Generation (Rust)
+#### Command-Line Application
+Build the command-line application as follows:
+```
+cargo clean && cargo build
+```
+The above command will create a binary executable files `egg` under `/target/debug`
+
+#### Run the command-line application
+##### Check command line input help
+```
+cargo run
+```
+##### Provide operator flag, input filepath and refactor filepath
+```
+cargo run -- -f <operator flag> -i <input filepath> -r <refactor filepath>
+```
+* `<operator flag>` - optimized extraction flag
+* `<input filepath>` - input filepath
+* `<refactor filepath>` - refactor filepath
+
+##### Example command line inputs
+```
+cargo run -- -f -i <input filepath> -r <refactor filepath>
+```
+
+#### Create Dataset
+#### Run the command-line application
+##### Check command line input help
+```
+./preproc_exprs.py -h
+```
+##### Provide input filepath, refactor filepath, and dataset filepath
+```
+./preproc_exprs.py -i <input filepath> -r <refactor filepath> -d <dataset filepath>
+```
+* `<input filepath>` - input filepath
+* `<refactor filepath>` - refactor filepath
+* `<dataset filepath>` - dataset filepath
