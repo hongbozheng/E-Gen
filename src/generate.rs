@@ -84,16 +84,16 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     let input_file = match File::options().read(true).write(false).open(&cli[5].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open input file '{:?}'.\n", &cli[5]));
-            log_error(&format!("{}", e));
+            log_error(&format!("Failed to open input file '{}'.\n", &cli[5].to_string()));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     };
     let output_file = match File::create(&cli[6].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
-            log_error(&format!("Failed to create output file '{:?}'.\n", &cli[6]));
-            log_error(&format!("{}", e));
+            log_error(&format!("Failed to create output file '{}'.\n", &cli[6].to_string()));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     };
@@ -110,7 +110,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             Ok(input_expr) => { input_expr },
             Err(e) => {
                 log_error(&format!("Failed to read line from input file '{:?}'.\n", input_file));
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         };
@@ -118,7 +118,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             Ok(_) => {},
             Err(e) => {
                 log_error(&format!("Failed to write input expr '{}' into output file '{:?}'.\n", input_expr, output_file));
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         };
@@ -137,7 +137,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
                 Ok(_) => {},
                 Err(e) => {
                     log_error(&format!("Failed to write expr '{}' into output file '{:?}'.\n", expr, output_file));
-                    log_error(&format!("{}", e));
+                    log_error(&format!("{}\n", e));
                     exit(1);
                 },
             };
@@ -146,7 +146,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             Ok(_) => {},
             Err(e) => {
                 log_error(&format!("Failed to write '' into output file '{:?}'.\n", output_file));
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         };
@@ -156,7 +156,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             Ok(_) => {},
             Err(e) => {
                 log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
-                log_error(&format!("{}", e));
+                log_error(&format!("{}\n", e));
                 exit(1);
             },
         }
@@ -167,7 +167,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         Ok(_) => {},
         Err(e) => {
             log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     }
@@ -177,7 +177,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         Ok(_) => {},
         Err(e) => {
             log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", input_file));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     }
@@ -185,7 +185,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         Ok(_) => {},
         Err(e) => {
             log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", output_file));
-            log_error(&format!("{}", e));
+            log_error(&format!("{}\n", e));
             exit(1);
         },
     }
