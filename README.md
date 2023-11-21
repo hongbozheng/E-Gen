@@ -5,10 +5,16 @@
 [![Main branch docs](https://img.shields.io/badge/docs-main-blue)](https://egraphs-good.github.io/egg/egg/)
 [![Zulip](https://img.shields.io/badge/zulip-join%20chat-blue)](https://egraphs.zulipchat.com)
 
+Also check out the [egglog](https://github.com/egraphs-good/egglog) 
+ system that provides an alternative approach to 
+ equality saturation based on Datalog.
+It features a language-based design, incremental execution, and composable analyses.
+See also the [paper](//mwillsey.com/papers/egglog) and the [web demo](https://egraphs-good.github.io/egglog).
+
 Are you using egg?
 Please cite using the BibTeX below and
-add your project to the `egg`
-[website](https://github.com/egraphs-good/egraphs-good.github.io)!
+ add your project to the `egg`
+ [website](https://github.com/egraphs-good/egraphs-good.github.io)!
 
 <details class="bibtex">
     <summary>BibTeX</summary>
@@ -40,7 +46,7 @@ Check out the [web demo](https://egraphs-good.github.io/egg-web-demo) for some q
 Add `egg` to your `Cargo.toml` like this:
 ```toml
 [dependencies]
-egg = "0.9.3"
+egg = "0.9.5"
 ```
 
 Make sure to compile with `--release` if you are measuring performance!
@@ -52,10 +58,10 @@ Typically, you install Rust using [`rustup`](https://www.rust-lang.org/tools/ins
 
 Run `cargo doc --open` to build and open the documentation in a browser.
 
-Before committing/pushing, make sure to run `make`,
-which runs all the tests and lints that CI will (including those under feature flags).
+Before committing/pushing, make sure to run `make`, 
+ which runs all the tests and lints that CI will (including those under feature flags).
 This requires the [`cbc`](https://projects.coin-or.org/Cbc) solver
-due to the `lp` feature.
+ due to the `lp` feature.
 
 ### Tests
 
@@ -79,55 +85,3 @@ Example:
 ```bash
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
-
-## Context-Grammar (Rust)
-
-#### Check Command Line Input (CLI)
-```
-cargo run -- -h
-```
-
-#### Test Context-Sensitive Grammar
-```
-cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
-```
-* `<csg>` context-sensitive grammar flag, use `1`
-* `<de>` debug flag
-  * `1` -> enable
-  * `0` -> disable
-* `<max rewrite length>` maximum rewrite length, default length = `25`
-
-#### Test Context-Free Grammar
-```
-cargo run -- -csg <csg flag> -de <debug flag> -len <max rewrite length>
-```
-* `<csg>` context-sensitive grammar flag, use `0`
-* `<de>` debug flag
-  * `1` -> enable
-  * `0` -> disable
-* `<max rewrite length>` maximum rewrite length, default length = `25`
-
-## Context-Grammar (Python)
-
-#### Test Context-Sensitive Grammar
-```
-./main -c <csg>
-```
-`<csg>` context-sensitive grammar flag, use `1`
-
-#### Test Context-Free Grammar
-```
-./main -c <csg>
-```
-`<csg>` context-sensitive grammar flag, use `0`
-
-#### Log Level Flag in `config.py`
-change `log_level = logger.LogLevel.XXXXX`
-* `all = 6`
-* `trace = 5`
-* `debug = 4`
-* `info = 3`
-* `warn = 2`
-* `error = 1`
-* `fatal = 0`
-* `off = -1`

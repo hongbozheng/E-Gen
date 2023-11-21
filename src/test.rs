@@ -1,7 +1,7 @@
 /*! Utilities for testing / benchmarking egg.
 
 These are not considered part of the public api.
- */
+*/
 
 use std::{fmt::Display, fs::File, io::Write, path::PathBuf};
 
@@ -10,9 +10,9 @@ use saturating::Saturating;
 use crate::*;
 
 pub fn env_var<T>(s: &str) -> Option<T>
-    where
-        T: std::str::FromStr,
-        T::Err: std::fmt::Debug,
+where
+    T: std::str::FromStr,
+    T::Err: std::fmt::Debug,
 {
     use std::env::VarError;
     match std::env::var(s) {
@@ -136,9 +136,9 @@ pub fn bench_egraph<L, N>(
     exprs: &[&str],
     extra_patterns: &[&str],
 ) -> EGraph<L, N>
-    where
-        L: Language + FromOp + 'static + Display,
-        N: Analysis<L> + Default + 'static,
+where
+    L: Language + FromOp + 'static + Display,
+    N: Analysis<L> + Default + 'static,
 {
     let mut patterns: Vec<Pattern<L>> = vec![];
     for rule in &rules {
