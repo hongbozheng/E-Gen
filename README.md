@@ -86,7 +86,7 @@ Build the command-line application as follows:
 ```
 cargo clean && cargo build
 ```
-The above command will create 2 binary executable files `egg` and `multiproc` under `/target/debug`
+The above command will create a binary executable files `egg` under `/target/debug`
 
 #### Run the command-line application
 ##### Check command line input help
@@ -103,18 +103,20 @@ cargo run -- -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run -- -t <thd pct> -l <token limit> -f <exhaustive flag>
+cargo run -- -f <optim ext flag> -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
 ```
-* `<thd pct>` - OS thread percentage, default = 0.8 (80%)
-* `<token limit>` - token limit, default = 8
-* `<exhaustive>` - exhaustive extraction flag, default = 0 (False)
+* `<optim ext flag>` - optimized extraction flag
+* `<num equiv exprs>` - number of equivalent expressions
+* `<token limit>` - token limit
+* `<max token limit>` - maximum token limit
+* `<time limit>` - time limit
 
 ##### Example command line inputs
 ```
-cargo run -- -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
+cargo run -- -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression>
 ```
 ```
-cargo run -- -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run -- -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression> -i <input filepath> -o <output filepath>
 ```
 
 ## Context-Grammar (Python)
