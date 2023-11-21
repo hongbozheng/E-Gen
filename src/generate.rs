@@ -58,14 +58,14 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
                     }
                     log_info(&format!("Increase token limit to {}\n", token_limit));
                 },
-                _ => { log_error(&format!("Failed to convert cli[3] to u8 datatype\n")); },
+                _ => { log_error(&format!("Failed to convert '{:?}' to u8 datatype\n", cli[3])); },
             }
             match cli[4] {
                 CliDtype::UInt16(ref mut  time_limit) => {
                     *time_limit += 900;
                     log_info(&format!("Increase time limit to {}\n", time_limit));
                 },
-                _ => { log_error(&format!("Failed to convert cli[4] to u16 datatype\n")); },
+                _ => { log_error(&format!("Failed to convert '{:?}' to u16 datatype\n", cli[4])); },
             }
         }
     }
@@ -136,7 +136,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
             match writeln!(writer, "{}", expr) {
                 Ok(_) => {},
                 Err(e) => {
-                    log_error(&format!("Failed to write expr '{}' into output file {:?}.\n", expr, output_file));
+                    log_error(&format!("Failed to write expr '{}' into output file '{:?}'.\n", expr, output_file));
                     log_error(&format!("{}", e));
                     exit(1);
                 },
@@ -155,7 +155,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         match writer.flush() {
             Ok(_) => {},
             Err(e) => {
-                log_error("Failed to flush buffer.\n");
+                log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
                 log_error(&format!("{}", e));
                 exit(1);
             },
@@ -166,7 +166,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match writer.flush() {
         Ok(_) => {},
         Err(e) => {
-            log_error("Failed to flush buffer.\n");
+            log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
             log_error(&format!("{}", e));
             exit(1);
         },

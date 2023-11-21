@@ -50,7 +50,6 @@ mod generate;
 mod language;
 mod logger;
 mod math;
-mod refactor;
 mod utils;
 #[cfg(feature = "lp")]
 mod lp_extract;
@@ -97,6 +96,9 @@ impl std::fmt::Display for Id {
 pub(crate) use {explain::Explain, unionfind::UnionFind};
 
 pub use {
+    cli::{Cli, CliDtype, parse_args},
+    config::*,
+    ctx_gr::ContextGrammar,
     dot::Dot,
     eclass::EClass,
     egraph::EGraph,
@@ -104,23 +106,18 @@ pub use {
         Explanation, FlatExplanation, FlatTerm, Justification, TreeExplanation, TreeTerm,
         UnionEqualities,
     },
+    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
     extract::*,
+    generate::generate,
     language::*,
+    logger::*,
+    math::{MathEGraph, Math, math_rule},
     multipattern::*,
     pattern::{ENodeOrVar, Pattern, PatternAst, SearchMatches},
     rewrite::{Applier, Condition, ConditionEqual, ConditionalApplier, Rewrite, Searcher},
     run::*,
     subst::{Subst, Var},
     util::*,
-    /* public to the whole crate */
-    cli::{Cli, CliDtype, parse_args},
-    config::*,
-    ctx_gr::ContextGrammar,
-    expr_ext::{get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
-    generate::generate,
-    logger::*,
-    math::{MathEGraph, Math, math_rule},
-    refactor::refactor,
     utils::*,
 };
 
