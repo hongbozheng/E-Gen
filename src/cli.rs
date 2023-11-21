@@ -18,7 +18,7 @@ pub struct Cli {
         default_value_t = false,
         action = ArgAction::SetTrue
     )]
-    /// exhaustive extraction flag
+    /// optimized extraction flag
     pub flag: bool,
 
     #[arg(
@@ -64,31 +64,31 @@ pub struct Cli {
     #[arg(
         short = 'e',
         long = "input_expr",
-        // required_unless_present_all = &["input_fpath", "output_fpath"],
-        conflicts_with_all = &["input_fpath", "output_fpath"]
+        // required_unless_present_all = &["input_filepath", "output_filepath"],
+        conflicts_with_all = &["input_filepath", "output_filepath"]
     )]
     /// input expression
     pub input_expr: Option<String>,
 
     #[arg(
         short = 'i',
-        long = "input_fpath",
+        long = "input_filepath",
         required_unless_present = "input_expr",
-        requires = "output_fpath",
+        requires = "output_filepath",
         conflicts_with = "input_expr"
     )]
     /// input filepath
-    pub input_fpath: Option<String>,
+    pub input_filepath: Option<String>,
 
     #[arg(
         short = 'o',
-        long = "output_fpath",
+        long = "output_filepath",
         required_unless_present = "input_expr",
-        requires = "input_fpath",
+        requires = "input_filepath",
         conflicts_with = "input_expr",
     )]
     /// output filepath
-    pub output_fpath: Option<String>,
+    pub output_filepath: Option<String>,
 }
 
 #[derive(Clone, Debug)]
@@ -208,7 +208,7 @@ fn check_time_limit(s: &str) -> Result<u16, String> {
 /// #### Return
 /// * `None`
 pub fn help() {
-    log_info_raw("[USAGE]: cargo run [-f] <exhaustive flag>  [-n] <num equiv exprs>\n");
+    log_info_raw("[USAGE]: cargo run [-f] <optim ext flag>   [-n] <num equiv exprs>\n");
     log_info_raw("[USAGE]:           [-l] <init token limit> [-m] <max token limit>\n");
     log_info_raw("[USAGE]:           [-t] <init time limit>  [-e] <expr>\n");
     log_info_raw("[USAGE]:           [-i] <input filepath> & [-o] <output filepath>\n");
@@ -259,7 +259,7 @@ pub fn parse_args() -> Vec<CliDtype> {
         Ok(cli) => { cli },
         Err(e) => {
             log_error(&format!("Error encountered while trying to parse command line input(s)\n"));
-            log_error_raw(&format!("{}", e));
+            log_error_raw(&format!("{}\n", e));
             help();
             exit(1);
         },
@@ -278,11 +278,11 @@ pub fn parse_args() -> Vec<CliDtype> {
         },
         None => { },
     };
-    match cli.input_fpath {
+    match cli.input_filepath {
         Some(input_fpath) => { cli_dtype.push(CliDtype::String(input_fpath)); },
         None => { },
     };
-    match cli.output_fpath {
+    match cli.output_filepath {
         Some(output_fpath) => { cli_dtype.push(CliDtype::String(output_fpath)); },
         None => { },
     };

@@ -324,9 +324,9 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
             CliDtype::Bool(optimized) => { OPTIMIZED = *optimized; },
             _ => {},
         }
-        // if let CliDtype::Bool(optimized) = &cli[0] {
-        //     OPTIMIZED = *optimized;
-        // }
+        if let CliDtype::Bool(optimized) = &cli[0] {
+            OPTIMIZED = *optimized;
+        }
         if let CliDtype::UInt8(num_equiv_exprs) = &cli[1] {
             NUM_EQUIV_EXPRS = *num_equiv_exprs;
         }

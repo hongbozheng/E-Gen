@@ -37,24 +37,21 @@ pub mod test;
 
 pub mod tutorials;
 
+mod cli;
+mod config;
+mod ctx_gr;
 mod dot;
 mod eclass;
 mod egraph;
 mod explain;
-mod extract;
-mod language;
-/* visible to all module in the crate */
-mod cli;
-mod config;
-mod ctx_gr;
 mod expr_ext;
+mod extract;
 mod generate;
+mod language;
 mod logger;
 mod math;
-// mod multiproc_ext;
 mod refactor;
 mod utils;
-/* ----------------------------- */
 #[cfg(feature = "lp")]
 mod lp_extract;
 mod machine;
