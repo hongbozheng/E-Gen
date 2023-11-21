@@ -33,6 +33,10 @@ vectorize = { version = "0.2.0", optional = true }
 serde_json = { version = "1.0.81", optional = true }
 saturating = "0.1.0"
 
+# command line input(s) parser
+clap = { version = "4.4.8", features = ["derive"] }
+
+
 [dev-dependencies]
 ordered-float = "3.0.0"
 
