@@ -53,19 +53,19 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
                 CliDtype::UInt8(ref mut token_limit) => {
                     *token_limit += 2;
                     if *token_limit > MAX_TOKEN_LIMIT {
-                        log_info(&format!("Token limit {} reaches max token limit {}\n", token_limit, MAX_TOKEN_LIMIT));
+                        log_info(&format!("Token limit {} reaches max token limit {}.\n", token_limit, MAX_TOKEN_LIMIT));
                         break;
                     }
                     log_info(&format!("Increase token limit to {}\n", token_limit));
                 },
-                _ => { log_error(&format!("Failed to convert '{:?}' to u8 datatype\n", cli[3])); },
+                _ => { log_error(&format!("Failed to convert '{:?}' to u8 datatype.\n", cli[3])); },
             }
             match cli[4] {
-                CliDtype::UInt16(ref mut  time_limit) => {
+                CliDtype::UInt16(ref mut time_limit) => {
                     *time_limit += 900;
                     log_info(&format!("Increase time limit to {}\n", time_limit));
                 },
-                _ => { log_error(&format!("Failed to convert '{:?}' to u16 datatype\n", cli[4])); },
+                _ => { log_error(&format!("Failed to convert '{:?}' to u16 datatype.\n", cli[4])); },
             }
         }
     }

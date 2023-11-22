@@ -149,17 +149,17 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             }
 
             #[allow(unused_doc_comments)]
-                /// ```rust
-                /// /* Regex will solve indistinct eclass match in str.replacen() */
-                /// /* Original Code */
-                /// str = str.replacen(op, &*rw, 1);
-                /// /* Using Regex (has performance issue since it's slow) */
-                /// use regex::Regex;
-                /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();
-                /// str.replace_range(mat.start()..mat.end(), &rw);
-                /// ```
-                // replace_distinct_ecls(op, rw, &mut str);
-                let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
+            /// ```rust
+            /// /* Regex will solve indistinct eclass match in str.replacen() */
+            /// /* Original Code */
+            /// str = str.replacen(op, &*rw, 1);
+            /// /* Using Regex (has performance issue since it's slow) */
+            /// use regex::Regex;
+            /// let mat = Regex::new(&format!(r"\b{}\b", op)).unwrap().find(&str).unwrap();
+            /// str.replace_range(mat.start()..mat.end(), &rw);
+            /// ```
+            // replace_distinct_ecls(op, rw, &mut str);
+            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
