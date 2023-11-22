@@ -2,17 +2,7 @@ use crate::*;
 use std::process::exit;
 use std::sync::{Arc, Mutex};
 
-/// ### public function to set global max number of tokens
-/// #### Argument
-/// * `max_rw_len` - maximum number of tokens
-/// #### Return
-/// * `None`
-pub unsafe fn set_token_limit(token_limit: u8) {
-    TOKEN_LIMIT = token_limit;
-    return;
-}
-
-/// ### public function to set global optimized (optimized extraction flag)
+/// ### public function to set global variable optimized (optimized extraction flag)
 /// #### Argument
 /// * `optimized` - optimized extraction flag
 /// #### Return
@@ -22,13 +12,80 @@ pub unsafe fn set_optimized_flag(optimized: bool) {
     return;
 }
 
-/// ### public function to remove permutations from the final results
+/// ### public function to set global variable num_equiv_exprs
+/// #### Argument
+/// * `token_limit` - token limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_n_equiv_exprs(n_equiv_exprs: u8) {
+    N_EQUIV_EXPRS = n_equiv_exprs;
+    return;
+}
+
+/// ### public function to set global variable token_limit
+/// #### Argument
+/// * `token_limit` - token_limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_token_limit(token_limit: u8) {
+    TOKEN_LIMIT = token_limit;
+    return;
+}
+
+/// ### public function to set global variable max_token_limit
+/// #### Argument
+/// * `max_token_limit` - maximum token limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_max_token_limit(max_token_limit: u8) {
+    MAX_TOKEN_LIMIT = max_token_limit;
+    return;
+}
+
+/// ### public function to set global variable time limit
+/// #### Argument
+/// * `time_limit` - token limit
+/// #### Return
+/// * `None`
+pub unsafe fn set_time_limit(time_limit: u16) {
+    TIME_LIMIT = time_limit;
+    return;
+}
+
+/// ### public function to set global variable start_time
+/// #### Argument
+/// * `start_time` - start time
+/// #### Return
+/// * `None`
+pub unsafe fn set_start_time(start_time: Instant) {
+    START_TIME = Some(start_time);
+    return;
+}
+
+/// ### public function to get global variable start_time
+/// #### Argument
+/// * `None`
+/// #### Return
+/// * `Instant` - current time
+pub unsafe fn get_start_time() -> Instant {
+    let start_time = match START_TIME {
+        Some(start_time) => { start_time },
+        _ => {
+            log_error(&format!("Failed to unwrap global variable START_TIME '{:?}'.\n", START_TIME));
+            exit(1);
+        },
+    };
+
+    return start_time;
+}
+
+/// ### public function to remove permu from the final results
 /// ### of equivalent expression
 /// #### Argument
 /// * `equiv_exprs` - deduplicate results of equivalent expressions
 /// #### Return
-/// * `None`
-pub fn rm_permutation(equiv_exprs: &HashSet<String>) -> HashSet<String> {
+/// * `HashSet<String>` - distinct equivalent expressions
+pub fn rm_permu(equiv_exprs: &HashSet<String>) -> HashSet<String> {
     let mut expr_mapping = HashMap::default();
 
     for expr in equiv_exprs.clone().into_iter() {

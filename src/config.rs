@@ -14,7 +14,7 @@ pub static mut TOKEN_LIMIT: u8 = 8;
 /// max token limit
 pub static mut MAX_TOKEN_LIMIT: u8 = 12;
 /// time limit in sec
-pub static mut TIME_LIMIT: u16 = 350;
+pub static mut TIME_LIMIT: u16 = 300;
 /// start time
 pub static mut START_TIME: Option<Instant> = None;
 /// log level for the entire environment

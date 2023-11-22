@@ -1,12 +1,12 @@
 use crate::*;
 use bincode::{serialize, deserialize};
-use libc::{c_int, cpu_set_t, CPU_SET, pid_t, sched_setaffinity};
-use num_cpus;
+// use libc::{c_int, cpu_set_t, CPU_SET, pid_t, sched_setaffinity};
+// use num_cpus;
 use serde::{Serialize, Deserialize};
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Read, Write};
-use std::mem::{size_of, zeroed};
+// use std::mem::{size_of, zeroed};
 use std::net::TcpListener;
 use std::process::{Child, Command, exit};
 use std::time::Instant;
@@ -20,21 +20,26 @@ pub struct Data {
     pub grammar: HashMap<String, Vec<String>>,
 }
 
-/// ### private unsafe function to set process affinity
-/// #### Arguments
-/// * `pid` - process id
-/// * `processor id` - processor id (CPU logic core id)
-/// #### Return
-/// * `c_int` - return 0 on success, return -1 on failure
-unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
-    let mut cpuset: cpu_set_t = zeroed();
-    CPU_SET(processor_id, &mut cpuset);
-    sched_setaffinity(pid, size_of::<cpu_set_t>(), &cpuset)
-}
+// /// ### private unsafe function to set process affinity
+// /// #### Arguments
+// /// * `pid` - process id
+// /// * `processor id` - processor id (CPU logic core id)
+// /// #### Return
+// /// * `c_int` - return 0 on success, return -1 on failure
+// unsafe fn set_proc_affinity(pid: pid_t, processor_id: usize) -> c_int {
+//     let mut cpuset: cpu_set_t = zeroed();
+//     CPU_SET(processor_id, &mut cpuset);
+//     sched_setaffinity(pid, size_of::<cpu_set_t>(), &cpuset)
+// }
 
+/// ### private function to distribute tasks to each process
+/// #### Arguments
+/// * `init_exprs` - initial expressions
+/// * `n_proc` - number of processes
+/// #### Return
+/// * `Vec<Vec<String>>` - n_proc tasks
 fn dist_tasks(init_exprs: &Vec<String>, n_proc: &u8) -> Vec<Vec<String>> {
     let n_init_exprs = init_exprs.len();
-    println!("total len: {}", n_init_exprs);
     let n_exprs_per_proc = n_init_exprs / *n_proc as usize;
 
     let mut tasks: Vec<Vec<String>> = vec![];
@@ -71,7 +76,6 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 
     /* distribute init exprs to each process */
     let tasks = dist_tasks(&init_exprs, &n_proc);
-    tasks.iter().for_each(|task| println!("Length: {}", task.len()));
 
     #[allow(unused_assignments)]
     let mut equiv_exprs: HashSet<String> = HashSet::default();
@@ -93,14 +97,14 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 
         let start_time = Instant::now();
         /* spawn children processes */
-        let mut child_procs: Vec<Child> = tasks.clone().into_iter().zip(0..n_proc).map(|(init_exprs, proc_idx)| {
+        // let mut child_procs: Vec<Child> = tasks.clone().into_iter().zip(0..n_proc).map(|(init_exprs, proc_idx)| {
+        let mut child_procs: Vec<Child> = tasks.clone().into_iter().map(|init_exprs| {
             let mut args: Vec<String> = cli.iter().map(|arg| arg.to_string()).collect();
             args.extend(init_exprs);
-            // println!("{:?}", args);
 
             match Command::new("../target/debug/multiproc").args(&args).spawn() {
                 Ok(child_proc) => {
-                    let pid = child_proc.id() as pid_t;
+                    // let pid = child_proc.id() as pid_t;
                     // let ret = unsafe { set_proc_affinity(pid, processor_id) };
                     // match ret {
                     //     0 => { log_debug(&format!("Set process {}'s process affinity to processor {}.\n", pid, processor_id)); },
@@ -136,7 +140,8 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
                     let data_bytes = match serialize(&data) {
                         Ok(data_bytes) => { data_bytes },
                         Err(e) => {
-                            log_error(&format!("Failed to serialize data with error {}.\n", e));
+                            log_error("Failed to serialize data.\n");
+                            log_error(&format!("{}\n", e));
                             exit(1);
                         },
                     };
@@ -147,13 +152,15 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
                             log_debug(&format!("Data send to child process {:?} successfully.\n", stream.peer_addr()));
                         },
                         Err(e) => {
-                            log_error(&format!("Failed to send data to child process {:?} with error {}.\n", stream.peer_addr(), e));
+                            log_error(&format!("Failed to send data to child process {:?}.\n", stream.peer_addr()));
+                            log_error(&format!("{}\n", e));
                             exit(1);
                         },
                     }
                 }
                 Err(e) => {
-                    log_error(&format!("Failed to connect to child process with error {}.\n", e));
+                    log_error("Failed to connect to child process.\n");
+                    log_error(&format!("{}\n", e));
                     exit(1);
                 }
             }
@@ -173,23 +180,25 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
                             let equiv_exprs_proc: std::collections::HashSet<String> = match deserialize(&equiv_exprs_bytes) {
                                 Ok(equiv_exprs_proc) => { equiv_exprs_proc },
                                 Err(e) => {
-                                    log_error(&format!("Failed to deserialize data received from child process with error {}.\n", e));
+                                    log_error("Failed to deserialize data received from child process.\n");
+                                    log_error(&format!("{}\n", e));
                                     exit(1);
                                 },
                             };
                             let ex: HashSet<String> = equiv_exprs_proc.into_iter().collect();
                             equiv_exprs.extend(ex.into_iter());
-                            // equiv_exprs.append(&mut equiv_exprs_proc);
                             n_acks += 1;
                         },
                         Err(e) => {
-                            log_error(&format!("Failed to receive data from child process socket address {:?} with error {}.\n", stream.peer_addr(), e));
+                            log_error(&format!("Failed to receive data from child process socket address {:?}.\n", stream.peer_addr()));
+                            log_error(&format!("{}\n", e));
                             exit(1);
                         },
                     }
                 }
                 Err(e) => {
-                    log_error(&format!("Failed to connect to child process with error {}.\n", e));
+                    log_error("Failed to connect to child process.\n");
+                    log_error(&format!("{}\n", e));
                     exit(1);
                 }
             }
@@ -221,7 +230,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
         let start_time = Instant::now();
         let orig_n_exprs = equiv_exprs.len();
         /* post-processing equivalent expressions */
-        equiv_exprs = rm_permutation(&equiv_exprs);
+        equiv_exprs = rm_permu(&equiv_exprs);
         let elapsed_time = end_time.duration_since(start_time).as_secs();
         let n_exprs = equiv_exprs.len();
         log_info(&format!("Expression postprocessing time: {}s\n", elapsed_time));
@@ -230,7 +239,6 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 
         unsafe {
             if equiv_exprs.len() >= N_EQUIV_EXPRS as usize {
-                println!(" return {:?}", equiv_exprs);
                 break;
             }
 
@@ -248,14 +256,14 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
             }
             match cli[5] {
                 CliDtype::UInt16(ref mut time_limit) => {
-                    *time_limit += 900;
+                    *time_limit += 300;
                     log_info(&format!("Increase time limit to {}\n", time_limit));
                 },
                 _ => { log_error(&format!("Failed to convert '{:?}' to u16 datatype\n", cli[5])); },
             }
         }
     }
-    println!(" return {:?}", equiv_exprs);
+
     return equiv_exprs;
 }
 
@@ -267,18 +275,18 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 /// * `None`
 fn generate_file(cli: &mut Vec<CliDtype>) {
     /* Open the input file and create output file */
-    let input_file = match File::options().read(true).write(false).open(&cli[3].to_string()) {
+    let input_file = match File::options().read(true).write(false).open(&cli[7].to_string()) {
         Ok(input_file) => { input_file },
         Err(e) => {
-            log_error(&format!("Failed to open input file '{}'.\n", &cli[3].to_string()));
+            log_error(&format!("Failed to open input file '{}'.\n", &cli[7].to_string()));
             log_error(&format!("{}\n", e));
             exit(1);
         },
     };
-    let output_file = match File::create(&cli[4].to_string()) {
+    let output_file = match File::create(&cli[8].to_string()) {
         Ok(output_file) => { output_file },
         Err(e) => {
-            log_error(&format!("Failed to create output file '{}'.\n", &cli[4].to_string()));
+            log_error(&format!("Failed to create output file '{}'.\n", &cli[8].to_string()));
             log_error(&format!("{}\n", e));
             exit(1);
         },
@@ -310,15 +318,19 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         };
 
         /* start extraction and get equivalent expressions */
-        cli[3] = CliDtype::String(input_expr);
+        cli[7] = CliDtype::String(input_expr);
+        let start_time = Instant::now();
         let equiv_exprs = generate_exprs(cli.clone());
+        let end_time = Instant::now();
+        let elapsed_time = end_time.duration_since(start_time).as_secs();
+        log_info(&format!("Total run time: {}s\n\n", elapsed_time));
 
         /* write equivalent expressions into output file */
         for expr in &equiv_exprs {
             match writeln!(writer, "{}", expr) {
                 Ok(_) => {},
                 Err(e) => {
-                    log_error(&format!("Failed to write expr '{}' into output file '{:?}'.\n", expr, &cli[4].to_string()));
+                    log_error(&format!("Failed to write expr '{}' into output file '{:?}'.\n", expr, output_file));
                     log_error(&format!("{}\n", e));
                     exit(1);
                 },
@@ -327,7 +339,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         match writeln!(writer, "") {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", &cli[4].to_string()));
+                log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
                 log_error(&format!("{}\n", e));
                 exit(1);
             },
@@ -337,7 +349,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
         match writer.flush() {
             Ok(_) => {},
             Err(e) => {
-                log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", &cli[4].to_string()));
+                log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
                 log_error(&format!("{}\n", e));
                 exit(1);
             },
@@ -348,7 +360,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match writer.flush() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to flush buffer to output file '{:?}'.\n",  &cli[4].to_string()));
+            log_error(&format!("Failed to flush buffer to output file '{:?}'.\n", output_file));
             log_error(&format!("{}\n", e));
             exit(1);
         },
@@ -358,7 +370,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match input_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", &cli[3].to_string()));
+            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", input_file));
             log_error(&format!("{}\n", e));
             exit(1);
         },
@@ -366,7 +378,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
     match output_file.sync_all() {
         Ok(_) => {},
         Err(e) => {
-            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", &cli[4].to_string()));
+            log_error(&format!("Failed to sync all OS-internal metadata to '{:?}' in filesystem.\n", output_file));
             log_error(&format!("{}\n", e));
             exit(1);
         },
@@ -391,7 +403,6 @@ pub fn generate() {
     if cli.len() == 8 {
         let start_time = Instant::now();
         let equiv_exprs = generate_exprs(cli.clone());
-        println!("why {:?}", equiv_exprs);
         for expr in &equiv_exprs {
             log_info(&format!("{}\n", expr));
         }
