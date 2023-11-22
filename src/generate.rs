@@ -62,7 +62,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
             }
             match cli[4] {
                 CliDtype::UInt16(ref mut time_limit) => {
-                    *time_limit += 900;
+                    *time_limit += 300;
                     log_info(&format!("Increase time limit to {}\n", time_limit));
                 },
                 _ => { log_error(&format!("Failed to convert '{:?}' to u16 datatype.\n", cli[4])); },

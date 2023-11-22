@@ -254,9 +254,9 @@ pub fn help() {
 
 /// ### public function to parse command line input(s)
 /// #### Argument
-/// * `cli` - command line input(s)
-/// #### Return
 /// * `None`
+/// #### Return
+/// * `None` - command line input(s)
 pub fn parse_args() -> Vec<CliDtype> {
     let cli: Cli = match Cli::try_parse() {
         Ok(cli) => { cli },

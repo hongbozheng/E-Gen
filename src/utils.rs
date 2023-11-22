@@ -65,7 +65,7 @@ pub unsafe fn set_start_time(start_time: Instant) {
 /// #### Argument
 /// * `None`
 /// #### Return
-/// * `None`
+/// * `Instant` - current time
 pub unsafe fn get_start_time() -> Instant {
     let start_time = match START_TIME {
         Some(start_time) => { start_time },
@@ -83,7 +83,7 @@ pub unsafe fn get_start_time() -> Instant {
 /// #### Argument
 /// * `equiv_exprs` - deduplicate results of equivalent expressions
 /// #### Return
-/// * `None`
+/// * `HashSet<String>` - distinct equivalent expressions
 pub fn rm_permu(equiv_exprs: &HashSet<String>) -> HashSet<String> {
     let mut expr_mapping = HashMap::default();
 

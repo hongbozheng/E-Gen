@@ -94,7 +94,7 @@ fn contain_ecls(tokens: &Vec<String>) -> bool {
 /// ### private function to extract all equivalent mathematical expressions
 /// ### Context-Free Grammar
 /// #### Arguments
-/// * `str` - rewrite expression
+/// * `tokens` - tokenized expression
 /// * `idx` - fn call idx for debugging purpose
 /// #### Return
 /// * `None`
@@ -213,7 +213,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
 /// ### private function to extract all equivalent mathematical expressions
 /// ### Context-Sensitive Grammar
 /// #### Arguments
-/// * `str` - rewrite expression
+/// * `tokens` - tokenized expression
 /// * `idx` - fn call idx for debugging purpose
 /// #### Return
 /// * `None`
