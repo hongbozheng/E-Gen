@@ -93,27 +93,6 @@ unsafe fn skip_rw(rw: &String) -> bool {
     return false;
 }
 
-/// ### private function to replace distinct eclass with rewrite rule
-/// #### Arguments
-/// * `op`  - operand that needs to be replaced
-/// * `rw`  - rewrite rule that is going to be replaced with
-/// * `str` - original expression
-/// #### Return
-/// * `None`
-fn replace_distinct_ecls(op: &str, rw: &String, str: &mut String) {
-    let matches: Vec<_> = str.match_indices(op).collect();
-    for mat in matches {
-        let start_idx = &mat.0;
-        let end_idx = &(start_idx + op.len());
-        if (end_idx != &str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
-            end_idx == &str.len() {
-            str.replace_range(start_idx..end_idx,rw);
-            break;
-        }
-    }
-    return;
-}
-
 /// ### private function to check whether tokens contain eclass
 /// #### Arguments
 /// * `tokens` - tokens (expression)
@@ -385,7 +364,7 @@ pub fn set_max_num_threads() {
         }
     };
 
-    unsafe { THD_LIMIT = Some(Arc::new(Mutex::new((max_os_threads as f64 * THD_PCT).floor() as u32))); }
+    unsafe { THD_LIMIT = Some(Arc::new(Mutex::new((max_os_threads as f32 * THD_PCT).floor() as u32))); }
 
     return;
 }
@@ -396,15 +375,18 @@ pub fn set_max_num_threads() {
 /// #### Return
 /// * `None`
 pub fn extract(args: &Vec<String>) {
-    let cli: Vec<CmdLineArg> = args.iter().skip(1).take(3).map(|arg| CmdLineArg::from_string(arg).unwrap()).collect();
-    println!("received cli {:?}", cli);
-
+    let cli: Vec<CliDtype> = args.iter().skip(1).take(6).map(|arg| CliDtype::from_string(arg).unwrap()).collect();
+    // println!("received cli {:?}", cli);
+    
     let pid = process::id();
+    #[allow(unused_assignments)]
     let mut skip_ecls: HashMap<String, f64> = Default::default();
+    #[allow(unused_assignments)]
     let mut grammar: HashMap<String, Vec<String>> = Default::default();
-
+    
+    // println!("received args {:?}", args);
     /* receive data (skip_ecls & grammar) from parent process */
-    match TcpStream::connect(&args[4]) {
+    match TcpStream::connect(&args[7]) {
         Ok(mut stream) => {
             let mut data_bytes: Vec<u8> = vec![];
             match stream.read_to_end(&mut data_bytes) {
@@ -426,22 +408,31 @@ pub fn extract(args: &Vec<String>) {
             }
         },
         Err(e) => {
-            log_error(&format!("Child process {} failed to connect to parent process socket address {:?} with error {}.\n", pid, &args[5], e));
+            log_error(&format!("Child process {} failed to connect to parent process socket address {:?} with error {}.\n", pid, &args[7], e));
             exit(1);
         },
     }
 
     /* setup global variables */
     unsafe {
-        if let CmdLineArg::Float(thd_pct) = &cli[0] {
+        if let CliDtype::Float32(thd_pct) = &cli[0] {
             THD_PCT = *thd_pct;
         }
         set_max_num_threads();
-        if let CmdLineArg::UInt(token_limit) = &cli[1] {
+        if let CliDtype::Bool(optimized) = &cli[1] {
+            OPTIMIZED = *optimized;
+        }
+        if let CliDtype::UInt8(n_equiv_exprs) = &cli[2] {
+            N_EQUIV_EXPRS = *n_equiv_exprs;
+        }
+        if let CliDtype::UInt8(token_limit) = &cli[3] {
             TOKEN_LIMIT = *token_limit;
         }
-        if let CmdLineArg::Bool(exhaustive) = &cli[2] {
-            EXHAUSTIVE = *exhaustive;
+        if let CliDtype::UInt8(max_token_limit) = &cli[4] {
+            MAX_TOKEN_LIMIT = *max_token_limit;
+        }
+        if let CliDtype::UInt16(time_limit) = &cli[5] {
+            TIME_LIMIT = *time_limit;
         }
         SKIP_ECLS = Some(skip_ecls);
         GRAMMAR = Some(grammar);
@@ -449,21 +440,21 @@ pub fn extract(args: &Vec<String>) {
         EQUIV_EXPRS = Some(Arc::new(Mutex::new(Default::default())));
     }
 
-    let init_exprs: Vec<Vec<String>> = args[5..].to_vec()
+    let init_exprs: Vec<Vec<String>> = args[8..].to_vec()
         .iter()
         .map(|s| s.split_whitespace().map(|token| token.to_string()).collect())
         .collect();
-    println!("init exprs {:?}", init_exprs);
+    // println!("init exprs {:?}", init_exprs);
 
     unsafe {
         /* start extraction */
-        if EXHAUSTIVE {
+        if OPTIMIZED {
             for init_expr in init_exprs {
-                exhaustive_extract(init_expr, 0);
+                optimized_extract(init_expr, 0);
             }
         } else {
             for init_expr in init_exprs {
-                optimized_extract(init_expr, 0);
+                exhaustive_extract(init_expr, 0);
             }
         }
 
@@ -473,7 +464,7 @@ pub fn extract(args: &Vec<String>) {
         // equiv_exprs.retain(|e| set.insert(e.clone()));
 
         /* send results back to parent process */
-        match TcpStream::connect(&args[4]) {
+        match TcpStream::connect(&args[7]) {
             Ok(mut stream) => {
                 let equiv_exprs: std::collections::HashSet<String> = (EQUIV_EXPRS.as_ref().unwrap().lock().unwrap()).clone().into_iter().collect();
                 let equiv_exprs_bytes = match serialize(&equiv_exprs) {
@@ -492,7 +483,7 @@ pub fn extract(args: &Vec<String>) {
                 }
             },
             Err(e) => {
-                log_error(&format!("Child process {} failed to connect to parent process socket address {:?} with error {}.\n", pid, &args[6], e));
+                log_error(&format!("Child process {} failed to connect to parent process socket address {} with error {}.\n", pid, &args[7], e));
                 exit(1);
             },
         }

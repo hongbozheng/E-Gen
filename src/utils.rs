@@ -12,13 +12,13 @@ pub unsafe fn set_token_limit(token_limit: u8) {
     return;
 }
 
-/// ### public function to set global exhaustive (exhaustive extraction flag)
+/// ### public function to set global optimized (optimized extraction flag)
 /// #### Argument
-/// * `exhaustive` - exhaustive extraction flag
+/// * `optimized` - optimized extraction flag
 /// #### Return
 /// * `None`
-pub unsafe fn set_exhaustive_flag(exhaustive: bool) {
-    EXHAUSTIVE = exhaustive;
+pub unsafe fn set_optimized_flag(optimized: bool) {
+    OPTIMIZED = optimized;
     return;
 }
 

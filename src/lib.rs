@@ -37,22 +37,19 @@ pub mod test;
 
 pub mod tutorials;
 
+mod cli;
+mod config;
+mod ctx_gr;
 mod dot;
 mod eclass;
 mod egraph;
 mod explain;
-mod extract;
-mod language;
-/* visible to all module in the crate */
-mod cli;
-mod config;
-mod ctx_gr;
 mod expr_ext;
+mod extract;
 mod generate;
+mod language;
 mod logger;
 mod math;
-// mod multiproc_ext;
-mod refactor;
 mod utils;
 /* ----------------------------- */
 #[cfg(feature = "lp")]
@@ -100,6 +97,9 @@ impl std::fmt::Display for Id {
 pub(crate) use {explain::Explain, unionfind::UnionFind};
 
 pub use {
+    cli::{CliDtype, parse_args},
+    config::*,
+    ctx_gr::ContextGrammar,
     dot::Dot,
     eclass::EClass,
     egraph::EGraph,
@@ -107,23 +107,18 @@ pub use {
         Explanation, FlatExplanation, FlatTerm, Justification, TreeExplanation, TreeTerm,
         UnionEqualities,
     },
+    expr_ext::{get_thd_limit, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
     extract::*,
+    generate::{Data, generate},
     language::*,
+    logger::*,
+    math::{MathEGraph, Math, math_rule},
     multipattern::*,
     pattern::{ENodeOrVar, Pattern, PatternAst, SearchMatches},
     rewrite::{Applier, Condition, ConditionEqual, ConditionalApplier, Rewrite, Searcher},
     run::*,
     subst::{Subst, Var},
     util::*,
-    /* public to the whole crate */
-    cli::{CmdLineArg, parse_args},
-    config::*,
-    ctx_gr::ContextGrammar,
-    expr_ext::{get_thd_limit, get_global_skip_ecls, get_global_grammar, get_global_equiv_exprs, extract},
-    generate::{Data, generate},
-    logger::*,
-    math::{MathEGraph, Math, math_rule},
-    refactor::refactor,
     utils::*,
 };
 
