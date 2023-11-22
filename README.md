@@ -86,35 +86,39 @@ Build the command-line application as follows:
 ```
 cargo clean && cargo build
 ```
-The above command will create 2 binary executable files `egg` and `multiproc` under `/target/debug`
+The above command will create a binary executable files `egg` under `/target/debug`
 
 #### Run the command-line application
 ##### Check command line input help
 ```
-cargo run --bin egg
+cargo run
 ```
 ##### Provide 1 input expression and equivalent expressions will be printed to terminal
 ```
-cargo run --bin egg -e <expression>
+cargo run -- -e <expression>
 ```
 ##### Provide a file with multiple expressions and a file to store all equivalent expressions
 ```
-cargo run --bin egg -i <input filepath> -o <output filepath>
+cargo run -- -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <exhaustive flag>
+cargo run -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
 ```
-* `<thd pct>` - OS thread percentage, default = 0.8 (80%)
-* `<token limit>` - token limit, default = 8
-* `<exhaustive>` - exhaustive extraction flag, default = 0 (False)
+* `<n proc>` - number of process
+* `<thd pct>` - thread percentage
+* `<optim ext flag>` - optimized extraction flag
+* `<num equiv exprs>` - number of equivalent expressions
+* `<token limit>` - token limit
+* `<max token limit>` - maximum token limit
+* `<time limit>` - time limit
 
 ##### Example command line inputs
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
+cargo run -- -p <n proc> -d <thd pct> -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression>
 ```
 ```
-cargo run --bin egg -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run -- -p <n proc> -d <thd pct> -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression> -i <input filepath> -o <output filepath>
 ```
 
 ## Context-Grammar (Python)
