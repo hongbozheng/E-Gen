@@ -21,7 +21,7 @@ def ref_int(s: str) -> str:
     if s[0] == '-':
         return "INT- " + ' '.join(s[1:])
     else:
-        return "INT " + ' '.join(s)
+        return "INT+ " + ' '.join(s)
 
 
 def ref_expr(expr: str) -> str:
@@ -31,19 +31,19 @@ def ref_expr(expr: str) -> str:
     expr = expr.replace("+", "add").replace("*", "mul").replace("/", "div")
 
     tokens = expr.split(sep=' ')
-    for token in tokens:
+    for i, token in enumerate(tokens):
         if not token:
             continue
+        elif token == '-':
+            tokens[i] = "sub"
         elif '.' in token:
-            idx = tokens.index(token)
             fraction = fractions.Fraction(token)
             numerator = ref_int(s=str(fraction.numerator))
             denominator = ref_int(s=str(fraction.denominator))
-            tokens[idx] = f"div {numerator} {denominator}"
+            tokens[i] = f"div {numerator} {denominator}"
         elif is_int(s=token):
-            idx = tokens.index(token)
             token = ref_int(s=token)
-            tokens[idx] = token
+            tokens[i] = token
 
     expr = ' '.join(tokens)
 
