@@ -120,7 +120,7 @@ cargo run -- -f -i <input filepath> -r <refactor filepath>
 ```
 ##### Provide input filepath, refactor filepath, and dataset filepath
 ```
-./preproc_exprs.py -i <input filepath> -r <refactor filepath> -d <dataset filepath>
+./process_exprs.py -i <input filepath> -r <refactor filepath> -d <dataset filepath>
 ```
 * `<input filepath>` - input filepath
 * `<refactor filepath>` - refactor filepath
