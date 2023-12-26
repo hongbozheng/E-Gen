@@ -83,7 +83,7 @@ def create_dataset(ref_filepath: str, dataset_filepath: str) -> None:
     return
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(prog="refactor", description="refactor expressions into training form")
     parser.add_argument("--input_filepath", "-i", type=str, required=True, help="Input filepath")
     parser.add_argument("--ref_filepath", "-r", type=str, required=True, help="Refactor filepath")
