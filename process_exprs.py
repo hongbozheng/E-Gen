@@ -6,6 +6,35 @@ import config
 import fractions
 import itertools
 import logger
+import os
+
+
+def rm_idt_expr(filepath: str, dataset_dir: str) -> None:
+    exprs_filepath = os.path.join(dataset_dir, "exprs.txt")
+
+    try:
+        with open(file=filepath, mode='r') as input_file, open(file=exprs_filepath, mode='w') as output_file:
+            for expr in input_file:
+                expr = expr.strip()
+
+                if '(' in expr:
+                    expr = expr.replace("(", "").replace(")", "")
+                    expr_orig = expr
+                    output_file.write(f"{expr}\n")
+                elif expr != expr_orig:
+                    output_file.write(f"{expr}\n")
+
+    except FileNotFoundError:
+        logger.log_error(f"Input filepath {filepath} does not exist.")
+
+    return
+
+
+def ref_int(s: str) -> str:
+    if s[0] == '-':
+        return "INT- " + ' '.join(s[1:])
+    else:
+        return "INT+ " + ' '.join(s)
 
 
 def is_int(s: str) -> bool:
@@ -17,17 +46,7 @@ def is_int(s: str) -> bool:
         return False
 
 
-def ref_int(s: str) -> str:
-    if s[0] == '-':
-        return "INT- " + ' '.join(s[1:])
-    else:
-        return "INT+ " + ' '.join(s)
-
-
 def ref_expr(expr: str) -> str:
-    if '(' in expr:
-        expr = expr.replace("(", "").replace(")", "")
-
     expr = expr.replace("+", "add").replace("*", "mul").replace("/", "div")
 
     tokens = expr.split(sep=' ')
@@ -50,23 +69,24 @@ def ref_expr(expr: str) -> str:
     return expr
 
 
-def refactor(input_filepath: str, ref_filepath: str) -> None:
+def refactor(dataset_dir: str) -> None:
+    exprs_filepath = os.path.join(dataset_dir, "exprs.txt")
+    ref_filepath = os.path.join(dataset_dir, "ref.txt")
 
-    try:
-        with open(file=input_filepath, mode='r') as input_file, open(file=ref_filepath, mode='w') as output_file:
-            for expr in input_file:
-                expr = expr.strip()
-                expr = ref_expr(expr=expr)
+    with open(file=exprs_filepath, mode='r') as exprs_file, open(file=ref_filepath, mode='w') as output_file:
+        for expr in exprs_file:
+            expr = expr.strip()
+            expr = ref_expr(expr=expr)
 
-                output_file.write(f"{expr}\n")
-
-    except FileNotFoundError:
-        logger.log_error("Input filepath does not exist")
+            output_file.write(f"{expr}\n")
 
     return
 
 
-def create_dataset(ref_filepath: str, dataset_filepath: str) -> None:
+def create_dataset(dataset_dir: str) -> None:
+    ref_filepath = os.path.join(dataset_dir, "ref.txt")
+    dataset_filepath = os.path.join(dataset_dir, "dataset.txt")
+
     with open(file=ref_filepath, mode='r') as input_file, open(file=dataset_filepath, mode='w') as output_file:
         exprs = []
 
@@ -86,16 +106,21 @@ def create_dataset(ref_filepath: str, dataset_filepath: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(prog="refactor", description="refactor expressions into training form")
     parser.add_argument("--input_filepath", "-i", type=str, required=True, help="Input filepath")
-    parser.add_argument("--ref_filepath", "-r", type=str, required=True, help="Refactor filepath")
-    parser.add_argument("--dataset_filepath", "-d", type=str, required=True, help="Dataset filepath")
+    parser.add_argument("--dataset_dir", "-d", type=str, required=True, help="Dataset directory")
 
     args = parser.parse_args()
-    input_filepath = args.input_filepath
-    ref_filepath = args.ref_filepath
-    dataset_filepath = args.dataset_filepath
+    filepath = args.input_filepath
+    dataset_dir = args.dataset_dir
 
-    refactor(input_filepath=input_filepath, ref_filepath=ref_filepath)
-    create_dataset(ref_filepath=ref_filepath, dataset_filepath=dataset_filepath)
+    logger.log_info("Removing identical expressions...")
+    rm_idt_expr(filepath=filepath, dataset_dir=dataset_dir)
+    logger.log_info("Finish removing identical expressions...")
+    logger.log_info("Refactoring expressions...")
+    refactor(dataset_dir=dataset_dir)
+    logger.log_info("Finish refactoring expressions...")
+    logger.log_info("Creating dataset ...")
+    create_dataset(dataset_dir=dataset_dir)
+    logger.log_info("Finish creating dataset ...")
 
     return
 
