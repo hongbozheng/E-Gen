@@ -116,12 +116,16 @@ cargo run -- -f -i <input filepath> -r <refactor filepath>
 #### Run the command-line application
 ##### Check command line input help
 ```
-./preproc_exprs.py -h
+./process_exprs.py -h
 ```
-##### Provide input filepath, refactor filepath, and dataset filepath
+##### Provide input filepath and dataset directory
 ```
-./process_exprs.py -i <input filepath> -r <refactor filepath> -d <dataset filepath>
+./process_exprs.py -i <input filepath> -d <dataset directory>
 ```
 * `<input filepath>` - input filepath
-* `<refactor filepath>` - refactor filepath
-* `<dataset filepath>` - dataset filepath
+* `<dataset directory>` - dataset directory
+
+The script will create `3` files under `<dataset directory>`
+* `exprs.txt` - The file contains expressions excluding those identical to the originals.
+* `ref.txt` - The file contains refactored expressions.
+* `dataset.txt` - The file contains expression pairs.
