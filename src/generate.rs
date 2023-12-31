@@ -23,7 +23,6 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 
     #[allow(unused_assignments)]
     let mut equiv_exprs: HashSet<String> = HashSet::default();
-    equiv_exprs.insert(input_expr.replace(|c| c == '(' || c == ')', ""));
 
     loop {
         let start_time = Instant::now();
