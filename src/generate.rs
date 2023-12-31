@@ -62,7 +62,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[7].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
-    let mut ctx_gr = ContextGrammar::new(input_expr);
+    let mut ctx_gr = ContextGrammar::new(input_expr.clone());
     ctx_gr.setup();
     pt_egraph_info(&ctx_gr.egraph);
     let init_exprs = &ctx_gr.init_exprs.clone();
@@ -79,6 +79,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
 
     #[allow(unused_assignments)]
     let mut equiv_exprs: HashSet<String> = HashSet::default();
+    equiv_exprs.insert(input_expr.replace(|c| c == '(' || c == ')', ""));
 
     loop {
         /* tx & rx listener */
