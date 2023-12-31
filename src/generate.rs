@@ -114,7 +114,7 @@ fn generate_file(cli: &mut Vec<CliDtype>) {
                 exit(1);
             },
         };
-        match writeln!(writer, "{}", &input_expr) {
+        match writeln!(writer, "{}", &input_expr.replace(|c| c == '(' || c == ')', "")) {
             Ok(_) => {},
             Err(e) => {
                 log_error(&format!("Failed to write input expr '{}' into output file '{:?}'.\n", input_expr, output_file));
