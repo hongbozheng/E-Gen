@@ -14,7 +14,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
     /* initialize ctx_gr struct and create egraph, skip_ecls, grammar, init_rewrite */
     let input_expr = cli[5].to_string();
     log_info(&format!("Expression: {}\n", input_expr));
-    let mut ctx_gr = ContextGrammar::new(input_expr.clone());
+    let mut ctx_gr = ContextGrammar::new(input_expr);
     ctx_gr.setup();
     pt_egraph_info(&ctx_gr.egraph);
     let skip_ecls = &ctx_gr.skip_eclasses.clone();
