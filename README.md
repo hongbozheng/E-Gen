@@ -86,7 +86,7 @@ Example:
 EGG_BENCH_CSV=math.csv cargo test --test math --release -- --nocapture --test --test-threads=1
 ```
 
-## Refactor Dataset (Rust)
+## Refactor Equivalent Expressions (Rust)
 #### Command-Line Application
 Build the command-line application as follows:
 ```
@@ -112,20 +112,54 @@ cargo run -- -f <operator flag> -i <input filepath> -r <refactor filepath>
 cargo run -- -f -i <input filepath> -r <refactor filepath>
 ```
 
-## Refactor Dataset (Python)
-#### Run the command-line application
+## Dataset (Python)
+#### Create raw dataset
 ##### Check command line input help
 ```
-./process_exprs.py -h
+./create_raw_dataset.py -h
 ```
-##### Provide input filepath and dataset directory
-```
-./process_exprs.py -i <input filepath> -d <dataset directory>
-```
-* `<input filepath>` - input filepath
-* `<dataset directory>` - dataset directory
+##### Create raw dataset by splitting all equivalent expressions into different classes & categories and removing identical expressions
+Move all generated equivalent expressions .txt files in a folder `<folder_name>`
 
-The script will create `3` files under `<dataset directory>`
-* `exprs.txt` - The file contains expressions excluding those identical to the originals.
-* `ref.txt` - The file contains refactored expressions.
-* `dataset.txt` - The file contains expression pairs.
+Then rename them to be `equiv_exprs_<index>.txt`
+
+For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`, `equiv_exprs_2.txt`, ...
+```
+./create_raw_dataset.py -d <equiv_exprs_dir>
+```
+* `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
+
+The script will create a raw dataset folder named `raw` under `data` folder with all equivalent expressions splitted
+into classes & categories
+
+#### Create dataset
+##### Check command line input help
+```
+./create_dataset.py -h
+```
+##### Create dataset by removing expressions with `0` equivalent expressions & filter them with specified limit
+```
+./create_dataset.py -d <raw_data_dir>
+```
+* `<raw_data_dir>` - raw data directory
+
+[//]: # (##### Provide input filepath and dataset directory)
+
+[//]: # (```)
+
+[//]: # (./process_exprs.py -i <input filepath> -d <dataset directory>)
+
+[//]: # (```)
+
+[//]: # (* `<input filepath>` - input filepath)
+
+[//]: # (* `<dataset directory>` - dataset directory)
+
+[//]: # ()
+[//]: # (The script will create `3` files under `<dataset directory>`)
+
+[//]: # (* `exprs.txt` - The file contains expressions excluding those identical to the originals.)
+
+[//]: # (* `ref.txt` - The file contains refactored expressions.)
+
+[//]: # (* `dataset.txt` - The file contains expression pairs.)
