@@ -193,19 +193,18 @@ pub fn refactor() {
             new_expr = format!("{}", new_expr);
         }
 
-        if exprs.contains(&new_expr) {
-            continue;
-        }
-        exprs.insert(new_expr.clone());
+        let success = exprs.insert(new_expr.clone());
 
-        match writeln!(writer, "{}", new_expr) {
-            Ok(_) => {},
-            Err(e) => {
-                log_error("Failed to write new expression into buffer.\n");
-                log_error(&format!("{}\n", e));
-                exit(1);
-            },
-        };
+        if success{
+            match writeln!(writer, "{}", new_expr) {
+                Ok(_) => {},
+                Err(e) => {
+                    log_error("Failed to write new expression into buffer.\n");
+                    log_error(&format!("{}\n", e));
+                    exit(1);
+                },
+            };
+        }
     }
 
     // Flush the writer to ensure that all data is written to the output file
