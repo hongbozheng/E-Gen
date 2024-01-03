@@ -403,7 +403,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* basic identity */
         rw!("asinh(x)->ln(x+sqrt(x^2+1))"; "(asinh ?x)" => "(ln (+ ?x (sqrt (+ (pow ?x 2) 1))))"),
         rw!("acosh(x)->ln(x+sqrt(x^2-1))"; "(acosh ?x)" => "(ln (+ ?x (sqrt (- (pow ?x 2) 1))))"),
-        rw!("atanh(x)->((1/2)ln((1+x)/(1-x)))"; "(atanh ?x)" => "(ln (/ (+ 1 x) (- 1 x)))"),
+        rw!("atanh(x)->((1/2)ln((1+x)/(1-x)))"; "(atanh ?x)" => "(* (/ 1 2) (ln (/ (+ 1 x) (- 1 x))))"),
         /* ================================================================== */
 
         /* =========================== derivative =========================== */
