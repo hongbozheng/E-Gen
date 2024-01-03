@@ -139,9 +139,9 @@ into classes & categories
 ```
 ##### Create dataset by removing expressions with `0` equivalent expressions & filter them with specified limit
 ```
-./create_dataset.py -d <raw_data_dir>
+./create_dataset.py -n <n_exprs>
 ```
-* `<raw_data_dir>` - raw data directory
+* `<n_exprs>` - number of expressions to keep
 
 [//]: # (##### Provide input filepath and dataset directory)
 
