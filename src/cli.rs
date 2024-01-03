@@ -291,7 +291,7 @@ fn help() {
     log_info_raw("[USAGE]:  datatype          -> bool\n");
     log_info_raw("[USAGE]:  default            = false\n");
     log_info_raw("[USAGE]:  required          -> false\n");
-    log_info_raw("[USAGE]: <num equiv exprs>  -> number of equivalent expressions\n");
+    log_info_raw("[USAGE]: <n equiv exprs>    -> number of equivalent expressions\n");
     log_info_raw("[USAGE]:  datatype          -> uint8\n");
     log_info_raw("[USAGE]:  default            = 10\n");
     log_info_raw("[USAGE]:  required          -> false\n");
