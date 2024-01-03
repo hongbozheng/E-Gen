@@ -103,22 +103,22 @@ cargo run -- -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
+cargo run -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <n equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
 ```
 * `<n proc>` - number of process
 * `<thd pct>` - thread percentage
 * `<optim ext flag>` - optimized extraction flag
-* `<num equiv exprs>` - number of equivalent expressions
+* `<n equiv exprs>` - number of equivalent expressions
 * `<token limit>` - token limit
 * `<max token limit>` - maximum token limit
 * `<time limit>` - time limit
 
 ##### Example command line inputs
 ```
-cargo run -- -p <n proc> -d <thd pct> -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression>
+cargo run -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -e "(cos x)"
 ```
 ```
-cargo run -- -p <n proc> -d <thd pct> -f -n <num equiv exprs> -l <token limit> -m <max token limit> -t <time limit> -e <expression> -i <input filepath> -o <output filepath>
+cargo run -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -i "input/filepath" -o "output/filepath"
 ```
 
 ## Context-Grammar (Python)
