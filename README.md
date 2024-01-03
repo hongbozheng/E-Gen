@@ -99,17 +99,21 @@ The above command will create a binary executable files `egg` under `/target/deb
 ```
 cargo run
 ```
-##### Provide operator flag, input filepath and refactor filepath
+##### Provide operator flag, operator, input filepath and refactor filepath
 ```
-cargo run -- -f <operator flag> -i <input filepath> -r <refactor filepath>
+cargo run -- -f <operator flag> -o <operator> -i <input filepath> -r <refactor filepath>
 ```
 * `<operator flag>` - optimized extraction flag
+* `<operator>` - operator
 * `<input filepath>` - input filepath
 * `<refactor filepath>` - refactor filepath
 
 ##### Example command line inputs
 ```
-cargo run -- -f -i <input filepath> -r <refactor filepath>
+cargo run -- -i "input/filepath" -r "refactor/filepath"
+```
+```
+cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Dataset (Python)
