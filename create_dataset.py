@@ -9,6 +9,26 @@ import os
 import tqdm
 
 
+def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str, str]:
+    expr = expr.split(sep=' ')
+
+    cls = ""
+    category = ""
+
+    for token in expr:
+        if token in classes:
+            cls = token
+        if token in categories:
+            category = token
+
+    if cls == "":
+        cls = classes[0]
+    if category == "":
+        category = categories[0]
+
+    return cls, category
+
+
 def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
     edit_dists = []
     for i, expr in enumerate(equiv_exprs[1:-1]):
@@ -29,8 +49,8 @@ def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
     return equiv_exprs_filtered
 
 
-def w_data(equiv_exprs: list[str], data_processed_dir: str, class_dir: str, category_dir: str) -> None:
-    path = os.path.join(data_processed_dir, class_dir, category_dir)
+def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> None:
+    path = os.path.join(data_dir, cls, category)
 
     if not os.path.exists(path=path):
         os.makedirs(name=path, exist_ok=True)
@@ -43,65 +63,90 @@ def w_data(equiv_exprs: list[str], data_processed_dir: str, class_dir: str, cate
     return
 
 
-def create_dataset(data_raw_dir: str, n_exprs: int, data_processed_dir: str) -> None:
-    class_dirs = os.listdir(path=data_raw_dir)
+def create_dataset(
+        equiv_exprs_filepath: str,
+        classes: list[str],
+        categories: list[str],
+        processed: bool,
+        n_exprs: int,
+        data_raw_dir: str,
+        data_processed_dir: str,
+) -> None:
+    equiv_exprs_file = open(file=equiv_exprs_filepath, mode='r')
 
-    progbar = tqdm.tqdm(iterable=class_dirs)
+    equiv_exprs = []
 
-    for class_dir in progbar:
-        progbar.set_description(desc="[INFO]: Processing class '%s'" % class_dir, refresh=True)
+    for line in equiv_exprs_file:
+        if line.strip() and line not in equiv_exprs:
+            equiv_exprs.append(line)
+        elif not line.strip():
+            equiv_exprs.append(line)
 
-        class_path = os.path.join(data_raw_dir, class_dir)
-        category_dirs = os.listdir(path=class_path)
+            if processed:
+                if len(equiv_exprs) == 2:
+                    equiv_exprs = []
+                    continue
+                elif len(equiv_exprs) > n_exprs+1:
+                    equiv_exprs = filter(equiv_exprs=equiv_exprs, n_exprs=n_exprs)
+                cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
+                w_data(equiv_exprs=equiv_exprs, data_dir=data_processed_dir, cls=cls, category=category)
+            else:
+                cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
+                w_data(equiv_exprs=equiv_exprs, data_dir=data_raw_dir, cls=cls, category=category)
 
-        for category_dir in category_dirs:
-            filepath = os.path.join(class_path, category_dir, "equiv_exprs.txt")
+            equiv_exprs = []
 
-            with open(file=filepath, mode='r') as file:
-                equiv_exprs = []
-
-                for line in file:
-                    if line.strip() and line not in equiv_exprs:
-                        equiv_exprs.append(line)
-                    elif not line.strip():
-                        equiv_exprs.append(line)
-
-                        if len(equiv_exprs) == 2:
-                            equiv_exprs = []
-                            continue
-                        elif len(equiv_exprs) > n_exprs+1:
-                            equiv_exprs = filter(equiv_exprs=equiv_exprs, n_exprs=n_exprs)
-
-                        w_data(equiv_exprs=equiv_exprs, data_processed_dir=data_processed_dir, class_dir=class_dir,
-                               category_dir=category_dir)
-
-                        equiv_exprs = []
+    equiv_exprs_file.close()
 
     return
 
 
 def main() -> None:
-    if not os.path.exists(path=config.DATA_RAW_DIR):
-        logger.log_error(f"Raw dataset directory '{config.DATA_RAW_DIR}' does not exist!")
-        logger.log_error(f"Make sure to run './create_raw_dataset.py' to create {config.DATA_RAW_DIR} first.")
-        return
-    if os.path.exists(path=config.DATA_PROCESSED_DIR):
-        logger.log_error(f"{config.DATA_PROCESSED_DIR} directory already exists!")
-        logger.log_error(f"Make sure to delete {config.DATA_PROCESSED_DIR} directory first.")
+    if not os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
+        logger.log_error(f"'{config.EQUIV_EXPRS_FILEPATH}' file does not exist!")
+        logger.log_error(f"Make sure to run './deduplicate.py' first to create {config.EQUIV_EXPRS_FILEPATH} file.")
         logger.log_error("Operation aborted.")
         exit(1)
 
     parser = argparse.ArgumentParser(prog="create_dataset",
-                                     description="Create dataset by removing expressions with 0 equivalent expressions "
-                                                 "& filter them with specified limit")
-    parser.add_argument("--n_exprs", "-n", type=int, required=True, help="Number of equivalent expressions to keep")
+                                     description="Create raw dataset or dataset by removing expressions with 0 "
+                                                 "equivalent expressions & filter them with specified limit")
+    parser.add_argument("--processed", "-p", action="store_true", default=False, required=False,
+                        help="Whether to filter equivalent expressions")
+    parser.add_argument("--n_exprs", "-n", type=int, required=False,
+                        help="Number of equivalent expressions to keep")
 
     args = parser.parse_args()
+    processed = args.processed
     n_exprs = args.n_exprs
 
-    logger.log_info("Creating dataset...")
-    create_dataset(data_raw_dir=config.DATA_RAW_DIR, n_exprs=n_exprs, data_processed_dir=config.DATA_PROCESSED_DIR)
-    logger.log_info("Finish creating dataset.")
+    if processed and n_exprs is None:
+        logger.log_error_raw("[USAGE]: create_dataset [-h] [--processed] --n_exprs N_EXPRS")
+        logger.log_error("The following argument is required: --n_exprs/-n")
+        exit(1)
+    if processed and os.path.exists(path=config.DATA_PROCESSED_DIR):
+        logger.log_error(f"{config.DATA_PROCESSED_DIR} directory already exists!")
+        logger.log_error(f"Make sure to delete {config.DATA_PROCESSED_DIR} directory first.")
+        logger.log_error("Operation aborted.")
+        exit(1)
+    elif not processed and os.path.exists(path=config.DATA_RAW_DIR):
+        logger.log_error(f"{config.DATA_RAW_DIR} directory already exists!")
+        logger.log_error(f"Make sure to delete {config.DATA_RAW_DIR} directory first.")
+        logger.log_error("Operation aborted.")
+        exit(1)
+
+    if processed:
+        logger.log_info("Creating processed dataset...")
+        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
+                       categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
+                       data_raw_dir=config.DATA_RAW_DIR, data_processed_dir=config.DATA_PROCESSED_DIR)
+        logger.log_info("Finish creating dataset.")
+    else:
+        logger.log_info("Creating raw dataset...")
+        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
+                       categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
+                       data_raw_dir=config.DATA_RAW_DIR, data_processed_dir=config.DATA_PROCESSED_DIR)
+        logger.log_info("Finish raw dataset.")
 
     return
 
