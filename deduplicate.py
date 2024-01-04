@@ -86,7 +86,7 @@ def main() -> None:
     deduplicate(equiv_exprs_dir=equiv_exprs_dir, exprs_filepath=config.EXPRS_FILEPATH,
                 equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, duplicates_filepath=config.DUPLICATES_FILEPATH)
     logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_FILEPATH}', and "
-                    f"'{config.DUPLICATES_FILEPATH}'")
+                    f"'{config.DUPLICATES_FILEPATH}'.")
 
     return
 
