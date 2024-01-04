@@ -83,7 +83,7 @@ def create_dataset(data_raw_dir: str, n_exprs: int, data_processed_dir: str) -> 
 def main() -> None:
     if not os.path.exists(path=config.DATA_RAW_DIR):
         logger.log_error(f"Raw dataset directory '{config.DATA_RAW_DIR}' does not exist!")
-        logger.log_error("Make sure to run './create_raw_dataset.py' first.")
+        logger.log_error(f"Make sure to run './create_raw_dataset.py' to create {config.DATA_RAW_DIR} first.")
         return
     if os.path.exists(path=config.DATA_PROCESSED_DIR):
         logger.log_error(f"{config.DATA_PROCESSED_DIR} directory already exists!")

@@ -68,7 +68,7 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
 def main() -> None:
     if os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
         logger.log_error(f"{config.EQUIV_EXPRS_FILEPATH} file already exists!")
-        logger.log_error(f"Make sure to remove {config.EQUIV_EXPRS_FILEPATH} file first.")
+        logger.log_error(f"Make sure to delete {config.EQUIV_EXPRS_FILEPATH} file first.")
         logger.log_error("Operation aborted.")
         exit(1)
 
