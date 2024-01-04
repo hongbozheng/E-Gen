@@ -22,7 +22,7 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
         progbar.set_description(desc="[INFO]: Processing file '%s'" % filepath, refresh=True)
 
         input_file = open(file=filepath, mode='r')
-        equiv_exprs_file = open(file=equiv_exprs_filepath, mode='w')
+        equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
 
         equiv_exprs = []
 
@@ -45,8 +45,8 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
         equiv_exprs_file.close()
 
         if equiv_exprs:
-            logger.log_error(f"{filepath} file is missing a '\\n' at the end of the file!")
-            logger.log_error(f"Make sure all equiv_exprs_*.txt files have 2 '\\n' at the end of the file!")
+            logger.log_error(f"{filepath} file is missing a '\\n' character at the end of the file!")
+            logger.log_error(f"Make sure all equiv_exprs_*.txt files have 2 '\\n' characters at the end of the file!")
             logger.log_error("Operation aborted.")
             exit(1)
 
@@ -66,6 +66,12 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
 
 
 def main() -> None:
+    if os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
+        logger.log_error(f"{config.EQUIV_EXPRS_FILEPATH} file already exists!")
+        logger.log_error(f"Make sure to remove {config.EQUIV_EXPRS_FILEPATH} file first.")
+        logger.log_error("Operation aborted.")
+        exit(1)
+
     parser = argparse.ArgumentParser(prog="deduplicate",
                                      description="remove repetitive original expressions and their equivalent "
                                                  "expressions from generated equivalent expressions .txt files "
