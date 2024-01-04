@@ -109,8 +109,12 @@ def main() -> None:
         exit(1)
 
     parser = argparse.ArgumentParser(prog="create_dataset",
-                                     description="Create raw dataset or dataset by removing expressions with 0 "
-                                                 "equivalent expressions & filter them with specified limit")
+                                     description="Create raw dataset by splitting all equivalent expressions into "
+                                                 "different classes & categories or "
+                                                 "Create processed dataset by removing expressions with `0` equivalent "
+                                                 "expressions, filtering the ones with more than `<n_exprs>` "
+                                                 "equivalent expressions, and splitting all equivalent expressions "
+                                                 "into different classes & categories")
     parser.add_argument("--processed", "-p", action="store_true", default=False, required=False,
                         help="Whether to filter equivalent expressions")
     parser.add_argument("--n_exprs", "-n", type=int, required=False,
