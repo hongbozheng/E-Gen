@@ -69,8 +69,7 @@ def create_dataset(
         categories: list[str],
         processed: bool,
         n_exprs: int,
-        data_raw_dir: str,
-        data_processed_dir: str,
+        data_dir: str,
 ) -> None:
     equiv_exprs_file = open(file=equiv_exprs_filepath, mode='r')
 
@@ -89,10 +88,10 @@ def create_dataset(
                 elif len(equiv_exprs) > n_exprs+1:
                     equiv_exprs = filter(equiv_exprs=equiv_exprs, n_exprs=n_exprs)
                 cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
-                w_data(equiv_exprs=equiv_exprs, data_dir=data_processed_dir, cls=cls, category=category)
+                w_data(equiv_exprs=equiv_exprs, data_dir=data_dir, cls=cls, category=category)
             else:
                 cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
-                w_data(equiv_exprs=equiv_exprs, data_dir=data_raw_dir, cls=cls, category=category)
+                w_data(equiv_exprs=equiv_exprs, data_dir=data_dir, cls=cls, category=category)
 
             equiv_exprs = []
 
@@ -143,13 +142,13 @@ def main() -> None:
         logger.log_info("Creating processed dataset...")
         create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
                        categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
-                       data_raw_dir=config.DATA_RAW_DIR, data_processed_dir=config.DATA_PROCESSED_DIR)
+                       data_dir=config.DATA_PROCESSED_DIR)
         logger.log_info("Finish creating dataset.")
     else:
         logger.log_info("Creating raw dataset...")
         create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
                        categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
-                       data_raw_dir=config.DATA_RAW_DIR, data_processed_dir=config.DATA_PROCESSED_DIR)
+                       data_dir=config.DATA_RAW_DIR)
         logger.log_info("Finish raw dataset.")
 
     return
