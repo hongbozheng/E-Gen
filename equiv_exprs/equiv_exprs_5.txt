@@ -1,14 +1,14 @@
-(d x (+ x (cosh (cos (+ 120 (* 6 pi))))))
+d x + x cosh cos + 120 * 6 pi
 
-(d x (* -10 (+ (* -1 (cosh x)) (asin x))))
+d x * -10 + * -1 cosh x asin x
 + * sinh x 10 d x * -10 asin x
 + 0 * - d x asin x sinh x -10
 + 0 * d x - asin x cosh x -10
 
-(+ (* -10 x) (+ (cos (ln x)) (sinh x)))
++ * -10 x + cos ln x sinh x
 + + sinh x * -10 x cos ln x
 
-(+ x (+ (* -10 7) (tanh x)))
++ x + * -10 7 tanh x
 pow + x + -70 / tanh x 1 1
 + + x -70 tanh / 1 / 1 x
 + * 0.5 * 2 x + -70 tanh x
@@ -24,9 +24,9 @@ pow + + tanh x x -70 1
 * 1 + tanh x + x -70
 * + x + / tanh x 1 -70 1
 
-(d x (+ -10 (+ x (+ (pow (sec (* 10 x)) -1) (tanh x)))))
+d x + -10 + x + pow sec * 10 x -1 tanh x
 
-(+ (* 20 (cos x)) (+ (cosh x) (sinh x)))
++ * 20 cos x + cosh x sinh x
 + / 20 sec * x -1 exp x
 + exp x / 1 / / sec x 1 20
 + exp * 2 / x 2 * cos x 20
@@ -65,9 +65,9 @@ pow + + tanh x x -70 1
 + / 20 sec x exp * -1 * x -1
 + * cos x 20 exp / 2 / 2 x
 
-(+ x (* (cos x) (tanh (cos (+ x (* 7 pi))))))
++ x * cos x tanh cos + x * 7 pi
 
-(+ (* (cos x) (sinh x)) (ln x))
++ * cos x sinh x ln x
 + * cos * -1 x sinh x ln x
 + / sin x / tan x sinh x ln x
 pow + / sinh x sec x ln x 1
@@ -86,21 +86,21 @@ pow + ln x * sinh x cos x 1
 + ln x + ln 1 * sinh x cos x
 * + ln x * sinh x cos x 1
 
-(+ (* -10 (* x (+ 10 (cosh x)))) (cos x))
++ * -10 * x + 10 cosh x cos x
 + * + 10 cosh x * x -10 cos x
 + cos x * x + * -10 cosh x -100
 
-(d x (pow coth (+ 1 (* -10 x))))
+d x pow coth + 1 * -10 x
 d x pow coth + 1 * x -10
 pow d x pow coth + 1 * x -10 1
 + 0 d x pow coth + * x -10 1
 * d x pow coth + 1 * -10 x 1
 
-(d x (+ x (+ (pow x 2) (+ (* x (acosh x)) (cosh x)))))
+d x + x + pow x 2 + * x acosh x cosh x
 
-(+ -10 (+ (* -10 (cosh x)) (sin (+ x (* 3 pi)))))
++ -10 + * -10 cosh x sin + x * 3 pi
 
-(d x (* -10 (+ (* 10 x) (cosh x))))
+d x * -10 + * 10 x cosh x
 + 0 * -10 + - sinh x 0 10
 + + * -10 d x cosh x -100 0
 + 0 * -10 - d x cosh x -10
@@ -116,7 +116,7 @@ pow d x pow coth + 1 * x -10 1
 + 0 * - 10 * -1 sinh x -10
 + 0 - * -10 sinh x 100
 
-(* -10 (* x (+ -1 (* x (sinh x)))))
+* -10 * x + -1 * x sinh x
 * * -10 x + -1 * x sinh x
 * -10 - * x * sinh x x x
 * * -10 x - * x sinh x 1
@@ -124,13 +124,13 @@ pow d x pow coth + 1 * x -10 1
 * x - * sinh x * -10 x -10
 * -10 - * sinh x pow x 2 x
 
-(d x (tanh (+ 10 (* -10 (* x (+ 10 x))))))
+d x tanh + 10 * -10 * x + 10 x
 
-(+ x (* -10 (* x (+ 10 (+ (* -10 x) (sinh x))))))
++ x * -10 * x + 10 + * -10 x sinh x
 
-(+ 1 (+ (sin x) (+ (sin (+ x (* 9 pi))) (tanh x))))
++ 1 + sin x + sin + x * 9 pi tanh x
 
-(d x (+ (* -10 x) (+ 5 (cosh x))))
+d x + * -10 x + 5 cosh x
 + sinh * * * x 2 -0.5 -1 -10
 + -10 sinh / 0.5 * / 2 x 0.25
 + - -10 sinh / -1 / 1 x 0
@@ -283,12 +283,12 @@ pow d x pow coth + 1 * x -10 1
 + - d x / cosh x 1 0 -10
 + 0 - sinh / 1 / 1 x 10
 
-(d x (* 5 (* pi (+ 1 (tanh x)))))
+d x * 5 * pi + 1 tanh x
 * d x + pi * pi tanh x 5
 d x * + 5 * 5 tanh x pi
 d x * * pi 5 + 1 tanh x
 
-(+ (* -9 x) (+ (* x (ln x)) (cosh x)))
++ * -9 x + * x ln x cosh x
 + cosh x * + ln x -9 / x 1
 + cosh x / + -9 ln x / 1 x
 + cosh x * - -9 * -1 ln x x
@@ -303,7 +303,7 @@ d x * * pi 5 + 1 tanh x
 + cosh x - 0 * - 9 ln x x
 + * x - -9 ln / 1 x cosh x
 
-(* x (+ 1 (pow coth 6560)))
+* x + 1 pow coth 6560
 * * x + pow coth 6560 1 1
 pow + x * x pow coth 6560 1
 * + pow coth 6560 1 x
@@ -311,7 +311,7 @@ pow * + pow coth 6560 1 x 1
 * + x * x pow coth 6560 1
 + x * x pow coth 6560
 
-(+ (* -150 (tanh x)) (* 150 x))
++ * -150 tanh x * 150 x
 + * 150 x * -150 / tanh x 1
 + / -150 / 1 tanh x * 150 x
 + * -150 tanh x * 37.5 * x 4
@@ -324,13 +324,13 @@ pow + * -150 tanh x * 150 x 1
 + * x 150 * -150 tanh x
 + * tanh x -150 * 600 * 0.25 x
 
-(d x (+ x (+ (* x 4) (* -10 (* x (cosh x))))))
+d x + x + * x 4 * -10 * x cosh x
 d x * x + 5 * cosh x -10
 - * + * x sinh x cosh x -10 -5
 - d x * * -10 cosh x x -5
 + * -10 + cosh x * x sinh x 5
 
-(+ (* (pow x 2) (cos x)) (tanh x))
++ * pow x 2 cos x tanh x
 pow + tanh x * pow x 2 cos x 1
 - * pow x 2 cos x tanh * x -1
 + tanh x / pow x 2 sec * -1 x
@@ -345,10 +345,10 @@ pow + / pow x 2 sec x tanh x 1
 + / pow x 2 sec x tanh x
 + tanh x / pow x 2 / sec x 1
 
-(d x (* -10 (* x (sinh (pow 6 -1)))))
+d x * -10 * x sinh pow 6 -1
 * d x * x sinh pow 6 -1 -10
 
-(* x (+ 1 (pow coth 2)))
+* x + 1 pow coth 2
 pow * + pow coth 2 1 x 1
 pow + * x pow coth 2 x 1
 + x * pow coth 2 x
@@ -356,21 +356,21 @@ pow + * x pow coth 2 x 1
 * + pow coth 2 1 x
 * 1 * + pow coth 2 1 x
 
-(d x (* (+ x (pow (csc (+ -1 (* 3 pi))) -1)) (cosh x)))
+d x * + x pow csc + -1 * 3 pi -1 cosh x
 
-(+ (* -10 x) (* (cos (+ 10 (* 8 pi))) (tanh x)))
++ * -10 x * cos + 10 * 8 pi tanh x
 
-(+ 1 (+ x (* (cos (+ x (* 6 pi))) (sinh x))))
++ 1 + x * cos + x * 6 pi sinh x
 
-(+ x (+ (pow (csc x) -1) (+ (atan x) (sinh x))))
++ x + pow csc x -1 + atan x sinh x
 
-(+ (* 60 (cos (+ x (* 2 pi)))) (+ (cosh x) (sinh x)))
++ * 60 cos + x * 2 pi + cosh x sinh x
 + * 60 cos + * 2 pi x exp x
 + * cos - x * pi -2 60 exp x
 + exp x / 60 sec - x * pi -2
 + exp x / 60 sec + * 2 pi x
 
-(+ (cosh (+ -10 (* -10 x))) (sinh x))
++ cosh + -10 * -10 x sinh x
 + sinh x cosh + -10 / -20 / 2 x
 + sinh x cosh + -10 * -20 / x 2
 + cosh * - 5 * -5 x 2 sinh x
@@ -409,9 +409,9 @@ pow + sinh x cosh + -10 * -10 x 1
 + sinh x cosh * + * -5 x -5 2
 + sinh x cosh + 10 / 20 / 2 x
 
-(d x (+ (* 20 (sinh x)) (* -20 (* x (cosh x)))))
+d x + * 20 sinh x * -20 * x cosh x
 
-(+ 1 (* 9 (sinh (* 2 x))))
++ 1 * 9 sinh * 2 x
 + 1 * cosh x * 36 * sinh x 0.5
 + * sinh * -1 * -2 x 9 1
 + / 18 / 2 sinh * x 2 1
@@ -440,7 +440,7 @@ pow + 1 * sinh * x 2 9 1
 + 1 * 9 sinh * x 2
 + * * * 9 sinh x cosh x 2 1
 
-(+ (pow 4 -1) (* -10 (cosh x)))
++ pow 4 -1 * -10 cosh x
 + pow 4 -1 * -10 cosh / x 1
 + pow 4 -1 * -10 cosh * -1 x
 + pow 4 -1 * -10 cosh x
@@ -448,9 +448,9 @@ pow + 1 * sinh * x 2 9 1
 pow + pow 4 -1 * -10 cosh x 1
 * + pow 4 -1 * -10 cosh x 1
 
-(sinh (* x (* (pow 2 -1) (cos (+ 1 (* 2 pi))))))
+sinh * x * pow 2 -1 cos + 1 * 2 pi
 
-(d x (tanh (+ x (* -10 2))))
+d x tanh + x * -10 2
 - 1 - pow tanh + x -20 2 0
 d x / 1 / 1 tanh + -20 x
 + 0 pow sech * -1 + -20 x 2
@@ -546,12 +546,12 @@ d x tanh * + * x 2 -40 0.5
 + 0 - 1 pow tanh - 20 x 2
 * d x * -1 tanh - 20 x 1
 
-(d x (sin (+ (* 7 pi) (* x (cosh (* 1 pi))))))
+d x sin + * 7 pi * x cosh * 1 pi
 
-(+ (pow x 2) (+ (* x (ln x)) (sinh x)))
++ pow x 2 + * x ln x sinh x
 + pow x 2 + * x ln x sinh x
 
-(+ (* 250 (pow (cot x) -1)) (tanh x))
++ * 250 pow cot x -1 tanh x
 pow + * 250 pow cot x -1 tanh x 1
 + * 250 pow / cot x 1 -1 tanh x
 + tanh x * pow / 1 tan x -1 250
@@ -559,9 +559,9 @@ pow + * 250 pow cot x -1 tanh x 1
 * 1 + * 250 pow cot x -1 tanh x
 + tanh x * pow cot x -1 250
 
-(d x (+ x (+ (pow (sec (asinh x)) -1) (cosh x))))
+d x + x + pow sec asinh x -1 cosh x
 
-(sinh (* (+ -10 x) 3))
+sinh * + -10 x 3
 * 1 sinh * 12 * + x -10 0.25
 * -1 sinh - 30 * x 3
 * -1 sinh * -0.5 * 6 + -10 x
@@ -626,13 +626,13 @@ pow + * 250 pow cot x -1 tanh x 1
 * -1 sinh * -3 + x -10
 * -1 sinh * - 7.5 * 0.75 x 4
 
-(+ x (* -10 (* x (sinh (+ 1 x)))))
++ x * -10 * x sinh + 1 x
 + * -10 * sinh + 1 x x x
 * + * -10 sinh + x 1 1 x
 
-(+ 1 (+ (cosh x) (sin (+ (* 6 pi) (ln x)))))
++ 1 + cosh x sin + * 6 pi ln x
 
-(d x (+ 100 (* -10 (cosh x))))
+d x + 100 * -10 cosh x
 * -10 d * -2 * -0.5 x cosh x
 * -5 - exp x exp * 4 * x -0.25
 * -10 sinh * * 2 / x 1 0.5
@@ -782,30 +782,30 @@ pow + * 250 pow cot x -1 tanh x 1
 * -10 d x cosh / -2 / 2 x
 * -10 d / 2 / 2 x cosh x
 
-(d x (+ (* -10 (* x (+ 10 (* -10 x)))) (cosh x)))
+d x + * -10 * x + 10 * -10 x cosh x
 + + -100 + * 200 x sinh x 0
 
-(d x (+ (* -10 (sinh x)) (ln (cos (+ x (* 8 pi))))))
+d x + * -10 sinh x ln cos + x * 8 pi
 
-(d x (+ -10 (* (pow x 2) (+ 1 (sinh x)))))
+d x + -10 * pow x 2 + 1 sinh x
 d x * pow x 2 + 1 sinh x
 
-(* (+ x (sinh x)) (cos (+ 10 (* 3 pi))))
+* + x sinh x cos + 10 * 3 pi
 * cos - -10 * 3 pi + x sinh x
 * + sinh x x cos - 10 * -3 pi
 * cos + 10 * pi 3 + sinh x x
 * cos + -10 * pi -3 + sinh x x
 
-(d x (+ x (* -10 (* x (+ (asinh x) (sinh x))))))
+d x + x * -10 * x + asinh x sinh x
 
-(d x (* 10 (* x (+ (* -1 (cosh x)) (* 10 x)))))
+d x * 10 * x + * -1 cosh x * 10 x
 
-(* -1 (* x (+ 20 (+ (* -1 (cosh x)) (* 10 x)))))
+* -1 * x + 20 + * -1 cosh x * 10 x
 
-(+ x (+ (asin x) (+ (cosh x) (sin x))))
++ x + asin x + cosh x sin x
 + + sin x + asin x cosh x x
 
-(cosh (pow (csc (+ -20 (* 5 pi))) -1))
+cosh pow csc + -20 * 5 pi -1
 cosh pow csc + -20 * pi 5 -1
 cosh pow / 1 sin + -20 * 5 pi -1
 cosh pow / csc + -20 * pi 5 1 -1
@@ -813,9 +813,9 @@ cosh * -1 pow csc + -20 * pi 5 -1
 pow cosh pow csc + -20 * 5 pi -1 1
 * cosh pow csc + -20 * pi 5 -1 1
 
-(+ x (+ (* x (asinh x)) (+ (sin x) (tanh x))))
++ x + * x asinh x + sin x tanh x
 
-(d x (+ -40 (* -10 (tanh x))))
+d x + -40 * -10 tanh x
 d x * / / tanh x 1 1 -10
 * -10 pow sech * * x 2 -0.5 2
 d x / -10 / 1 / tanh x 1
@@ -879,7 +879,7 @@ pow * pow sech x 2 -10 1
 d / * 2 x 2 * tanh x -10
 - -10 * -10 pow tanh * x -1 2
 
-(+ (pow (cot x) 10) (tanh x))
++ pow cot x 10 tanh x
 + pow cot x 10 tanh x
 * 1 + / tanh x 1 pow cot x 10
 - pow cot x 10 tanh * 0.5 * x -2
@@ -912,7 +912,7 @@ pow + tanh x pow cot x 10 1
 * + pow cot x 10 tanh x 1
 - pow cot x 10 * -1 / tanh x 1
 
-(d x (+ (* -20 (tanh x)) (* 20 x)))
+d x + * -20 tanh x * 20 x
 - 0 * -20 pow * -1 tanh x 2
 * + 20 d x * -20 tanh x 1
 - -20 - * -20 pow tanh x 2 20
@@ -937,9 +937,9 @@ pow + * -20 pow sech x 2 20 1
 - 0 - * pow tanh x 2 -20 0
 + 20 * d x tanh x -20
 
-(d x (* -10 (pow (csc (+ (* 6 pi) (* -1 (sinh x)))) -1)))
+d x * -10 pow csc + * 6 pi * -1 sinh x -1
 
-(* 20 (+ 1 (* 3 (sinh x))))
+* 20 + 1 * 3 sinh x
 + * 60 / sinh x 1 20
 + * 20 * 1.5 * sinh x 2 20
 pow + 20 * 20 * sinh x 3 1
@@ -1013,13 +1013,13 @@ pow + / 60 / 1 sinh x 20 1
 + 20 / 60 / 2 * sinh x 2
 + 20 / 120 / 2 / sinh x 1
 
-(d x (+ 1 (cosh (+ x (pow (sec (+ 20 (* 3 pi))) -1)))))
+d x + 1 cosh + x pow sec + 20 * 3 pi -1
 
-(* x (+ 1 (+ x (+ (cos x) (+ (cosh x) (sinh x))))))
+* x + 1 + x + cos x + cosh x sinh x
 + x * x + + x cos x exp x
 * x + x + + exp x cos x 1
 
-(d x (+ 620 (* 620 (tanh x))))
+d x + 620 * 620 tanh x
 * 620 - 1 - pow tanh x 2 0
 * 620 pow sech x 2
 * pow sech / * 2 x 2 2 620
@@ -1083,9 +1083,9 @@ d x + 620 / 620 / 1 tanh x
 * pow sech / -2 / 2 x 2 620
 * - 1 pow tanh / x 1 2 620
 
-(+ x (+ (pow x 2) (* x (cosh (* 2 pi)))))
++ x + pow x 2 * x cosh * 2 pi
 
-(* 50 (+ x (* -1 (tanh x))))
+* 50 + x * -1 tanh x
 * 50 - x tanh / 2 / 2 x
 * * - x / tanh x 1 50 1
 * + tanh * -2 * x 0.5 x 50
@@ -1132,30 +1132,30 @@ pow * + x tanh * -1 x 50 1
 + * x 50 * tanh x -50
 * + x / -1 / 1 tanh x 50
 
-(sinh (+ -10 (+ (pow (csc (+ -10 (* 3 pi))) -1) (* -10 x))))
+sinh + -10 + pow csc + -10 * 3 pi -1 * -10 x
 
-(* -10 (* (pow x -10) (tanh (pow 8 -1))))
+* -10 * pow x -10 tanh pow 8 -1
 * -10 * pow x -10 tanh pow 8 -1
 
-(d x (+ 1 (+ (cos x) (+ (sin x) (sinh x)))))
+d x + 1 + cos x + sin x sinh x
 
-(d x (+ x (+ (* -10 (sinh x)) (+ (atan x) (sin x)))))
+d x + x + * -10 sinh x + atan x sin x
 
-(d x (* x (* (pow (sec (+ 1 (* 1 pi))) 10) (sinh x))))
+d x * x * pow sec + 1 * 1 pi 10 sinh x
 
-(d x (+ (* x (+ x (sinh x))) (cos x)))
+d x + * x + x sinh x cos x
 
-(+ x (+ (pow x 2) (+ (* x (cosh x)) (acosh x))))
++ x + pow x 2 + * x cosh x acosh x
 
-(d x (* -1 (* (pow x 2) (+ 99 (* 10 (cosh x))))))
+d x * -1 * pow x 2 + 99 * 10 cosh x
 
-(+ (* -10 (pow (sec (+ 1 (* 1 pi))) -1)) (sinh x))
++ * -10 pow sec + 1 * 1 pi -1 sinh x
 + * -10 pow sec + pi 1 -1 sinh x
 + * pow sec - -1 pi -1 -10 sinh x
 
-(d x (* (cos (+ 1 (* 4 pi))) (cosh x)))
+d x * cos + 1 * 4 pi cosh x
 
-(d x (+ (* -10 (tanh x)) (* 20 x)))
+d x + * -10 tanh x * 20 x
 + * d x tanh x -10 20
 pow + * pow sech x 2 -10 20 1
 - 10 * -10 pow tanh / x 1 2
@@ -1180,33 +1180,33 @@ pow + 20 d x * -10 tanh x 1
 + 20 * -10 - 1 pow tanh x 2
 d x + * 20 x * -10 tanh x
 
-(+ (pow (sec (+ x (* 5 pi))) -1) (+ (asinh x) (tanh x)))
++ pow sec + x * 5 pi -1 + asinh x tanh x
 
-(d x (+ x (* x (sinh (* x 8)))))
+d x + x * x sinh * x 8
 d x + x * sinh * 8 x x
 + 1 d x * x sinh * x 8
 
-(d x (+ x (+ (sin x) (+ (sinh x) (tanh x)))))
+d x + x + sin x + sinh x tanh x
 
-(+ (* -10 (* x (cosh x))) (cos (+ x (* 9 pi))))
++ * -10 * x cosh x cos + x * 9 pi
 
-(+ x (+ (pow x 2) (+ (* x (sinh x)) (asinh x))))
++ x + pow x 2 + * x sinh x asinh x
 
-(* x (+ -10 (+ (* -10 (sin (+ x (* 2 pi)))) (cosh x))))
+* x + -10 + * -10 sin + x * 2 pi cosh x
 
-(d x (+ (* 250 (ln x)) (cosh x)))
+d x + * 250 ln x cosh x
 
-(tanh (* x (pow (cos (+ 80 (* 8 pi))) -10)))
+tanh * x pow cos + 80 * 8 pi -10
 tanh * pow cos + * pi 8 80 -10 x
 tanh * x pow cos - -80 * pi 8 -10
 tanh * x pow cos + -80 * -8 pi -10
 tanh * pow cos - 80 * pi -8 -10 x
 
-(* (pow (sec (+ 10 (* 2 pi))) -1) (* (cosh x) 6))
+* pow sec + 10 * 2 pi -1 * cosh x 6
 
-(* (+ x (pow (sec x) -1)) (cosh x))
+* + x pow sec x -1 cosh x
 
-(d x (* x (+ 21 (sinh x))))
+d x * x + 21 sinh x
 + + + 21 * x cosh x sinh x 0
 pow + 21 d x * sinh x x 1
 + / sinh x 1 + 21 * cosh x x
@@ -1224,7 +1224,7 @@ pow + + sinh x 21 * cosh x x 1
 d x + * x 21 * sinh x x
 * d x * + 21 sinh x x 1
 
-(* -10 (+ 10 (+ x (cosh x))))
+* -10 + 10 + x cosh x
 + -100 + * x -10 * cosh x -10
 + -100 * -10 + cosh x / x 1
 + * -10 + cosh * -1 x x -100
@@ -1236,7 +1236,7 @@ d x + * x 21 * sinh x x
 + * - cosh x * -1 x -10 -100
 - * + cosh x 10 -10 * 10 x
 
-(+ -10 (+ 8 (tanh x)))
++ -10 + 8 tanh x
 + -2 tanh * 4 * / x 2 0.5
 + tanh * * 16 * x 0.25 0.25 -2
 * 1 + 8 + -10 / tanh x 1
@@ -1322,7 +1322,7 @@ pow + tanh * 4 / x 4 -2 1
 * 1 + / tanh x 1 -2
 + + tanh / 2 / 2 x -10 8
 
-(d x (+ (* 10 (tanh x)) (ln (pow x 10))))
+d x + * 10 tanh x ln pow x 10
 * 10 + / 1 x pow sech x 2
 pow d x * 10 + tanh x ln x 1
 * + pow sech x 2 d x ln x 10
@@ -1336,11 +1336,11 @@ pow d x * 10 + tanh x ln x 1
 * 10 + d x ln x d x tanh x
 + / 10 x * 10 pow sech x 2
 
-(d x (+ x (+ (* -10 (tanh x)) (* x (ln x)))))
+d x + x + * -10 tanh x * x ln x
 + ln x + 2 d x * -10 tanh x
 + + 2 * pow sech x 2 -10 ln x
 
-(* 100 (+ x (cosh x)))
+* 100 + x cosh x
 + * 100 cosh x / 200 / 2 x
 * 100 - cosh x / -1 / 1 x
 * 1 * + cosh * x -1 x 100
@@ -1408,7 +1408,7 @@ pow * - cosh x * -1 x 100 1
 - * cosh x 100 * -100 x
 - * / cosh x 1 100 * -100 x
 
-(cosh (+ (* -10 x) (sin (+ 1 (* 4 pi)))))
+cosh + * -10 x sin + 1 * 4 pi
 cosh + * -10 x sin - 1 * -4 pi
 cosh + sin + 1 * pi 4 * -10 x
 cosh - * x -10 sin + -1 * -4 pi
@@ -1416,9 +1416,9 @@ cosh - * -10 x sin - -1 * pi 4
 cosh - sin + 1 * 4 pi * x 10
 cosh - sin - 1 * -4 pi * x 10
 
-(d x (+ x (* -10 (* x (tanh (pow x 10))))))
+d x + x * -10 * x tanh pow x 10
 
-(+ 10 (+ (cos (+ x (* 1 pi))) (+ (cosh x) (sinh x))))
++ 10 + cos + x * 1 pi + cosh x sinh x
 + 10 + exp x cos * + pi x -1
 pow + 10 + exp x cos + x pi 1
 * 1 + cos + x pi + 10 exp x
@@ -1427,11 +1427,11 @@ pow + 10 + exp x cos + x pi 1
 + + 10 cos - * x -1 pi exp x
 + 10 + exp x cos + pi x
 
-(+ (* -10 (pow x 10)) (+ (sin (+ x (* 6 pi))) (sinh x)))
++ * -10 pow x 10 + sin + x * 6 pi sinh x
 
-(d x (cosh (cos (+ 120 (* 8 pi)))))
+d x cosh cos + 120 * 8 pi
 
-(d x (+ x (+ (* -10 4) (tanh x))))
+d x + x + * -10 4 tanh x
 d x + + -40 x / tanh x 1
 + 1 d x tanh * 4 * 0.25 x
 d x + * * 8 x 0.125 tanh x
@@ -1551,41 +1551,41 @@ d x + tanh x / 2 / 2 x
 d x + tanh * + x x 0.5 x
 d * * x 0.5 2 + tanh x x
 
-(cos (* x (pow (cosh (* 9 pi)) -10)))
+cos * x pow cosh * 9 pi -10
 * 1 cos * pow cosh * pi -9 -10 x
 * cos * pow cosh * 9 pi -10 x 1
 
-(+ x (+ (* -10 (sinh x)) (* 10 (cos (+ x (* 5 pi))))))
++ x + * -10 sinh x * 10 cos + x * 5 pi
 
-(+ x (+ (* -10 (sin x)) (* -10 (* x (cosh x)))))
++ x + * -10 sin x * -10 * x cosh x
 + x * -10 + * cosh x x sin x
 
-(d x (* -1 (* x (sinh (+ 10 (* 7 pi))))))
+d x * -1 * x sinh + 10 * 7 pi
 
-(+ 10 (+ (pow (sec (+ -10 x)) -1) (cosh x)))
++ 10 + pow sec + -10 x -1 cosh x
 + + 10 pow sec - 10 x -1 cosh x
 + cosh x + pow sec + -10 x -1 10
 
-(d x (* 20 (* (pow x 2) (+ 1 (sinh x)))))
+d x * 20 * pow x 2 + 1 sinh x
 
-(d x (+ (* -10 (tanh x)) (sin (ln x))))
+d x + * -10 tanh x sin ln x
 d x + * -10 tanh x sin ln x
 
-(* x (+ -10 (* -10 (* x (pow coth 10)))))
+* x + -10 * -10 * x pow coth 10
 * x + -10 * -10 * x pow coth 10
 * + * pow x 2 pow coth 10 x -10
 * * -10 + * pow coth 10 x 1 x
 * + x * x * pow coth 10 x -10
 
-(* (cosh x) (sin (+ 20 (* 8 pi))))
+* cosh x sin + 20 * 8 pi
 
-(* x (atanh (tanh (pow (sec (+ x (* 2 pi))) -1))))
+* x atanh tanh pow sec + x * 2 pi -1
 * x ln / + x 1 - 1 x
 * x - ln + 1 x ln - 1 x
 
-(d x (* x (cos (+ (* 9 pi) (tanh (* 6 pi))))))
+d x * x cos + * 9 pi tanh * 6 pi
 
-(cos (tanh (pow x -9)))
+cos tanh pow x -9
 * / cos tanh * pow x -9 -1 1 1
 * cos tanh * -1 pow x -9 1
 * cos * / tanh pow x -9 2 -2 1
@@ -1605,15 +1605,15 @@ d x + * -10 tanh x sin ln x
 * / 1 / 1 cos tanh pow x -9 1
 * cos tanh * -2 * pow x -9 0.5 1
 
-(d x (+ 1 (+ (pow (sec x) -1) (* -10 (sinh x)))))
+d x + 1 + pow sec x -1 * -10 sinh x
 d x + pow sec x -1 * -10 sinh x
 + * -10 cosh x d x pow sec x -1
 
-(+ x (tanh (+ x (* 7 (* pi x)))))
++ x tanh + x * 7 * pi x
 + x tanh * x + * pi 7 1
 + x tanh + * pi * 7 x x
 
-(+ x (+ (cosh (asin x)) (sin x)))
++ x + cosh asin x sin x
 + x + / tan x sec x cosh asin x
 + / cos x cot x + x cosh asin x
 + cosh asin x + sin x x
@@ -1621,9 +1621,9 @@ d x + pow sec x -1 * -10 sinh x
 + x + cosh asin x * cos x tan x
 + x - cosh asin x sin * x -1
 
-(d x (* -1 (* (pow x 2) (+ -1 (* 20 (cosh x))))))
+d x * -1 * pow x 2 + -1 * 20 cosh x
 
-(d x (+ x (* (pow 3 -10) (sinh x))))
+d x + x * pow 3 -10 sinh x
 * + * cosh x pow 3 -10 1 1
 - * pow 3 -10 cosh * -1 x -1
 + * pow 3 -10 - cosh x 0 1
@@ -1639,7 +1639,7 @@ d x + pow sec x -1 * -10 sinh x
 pow + * pow 3 -10 cosh x 1 1
 * - * cosh x pow 3 -10 -1 1
 
-(* -1 (* x (+ -101 (* 10 (sinh x)))))
+* -1 * x + -101 * 10 sinh x
 - * x * sinh x -10 * -101 x
 * 1 * x - * -10 sinh x -101
 * x - * -20 / sinh x 2 -101
@@ -1668,11 +1668,11 @@ pow + * pow 3 -10 cosh x 1 1
 - * x 101 * 10 * x sinh x
 * - 101 * 10 / sinh x 1 x
 
-(* x (+ (pow x -10) (tanh (pow x 10))))
+* x + pow x -10 tanh pow x 10
 * + tanh pow x 10 pow x -10 x
 + pow x -9 * x tanh pow x 10
 
-(* (+ 1 (sinh x)) (cos x))
+* + 1 sinh x cos x
 + cos x / sinh x * tan x csc x
 + / sinh x / 1 cos x cos x
 + * sinh x cos x * sin x cot x
@@ -1689,9 +1689,9 @@ pow + * pow 3 -10 cosh x 1 1
 + * cos * x -1 sinh x cos x
 + / sinh x sec x cos x
 
-(d x (+ 1 (* 5 (* pi (* (pow (cosh x) -1) (sinh x))))))
+d x + 1 * 5 * pi * pow cosh x -1 sinh x
 
-(d x (+ 1 (+ x (* (cos x) (sinh x)))))
+d x + 1 + x * cos x sinh x
 + - d x * sinh x cos x -1 0
 d x + x / sinh x / 1 cos x
 - - d x / sinh x sec x 0 -1
@@ -1747,15 +1747,15 @@ pow + d x / sinh x sec x 1 1
 - d x + / sinh x sec x x 0
 + 1 d x / sinh x sec * -1 x
 
-(+ 10 (+ x (+ (* -10 (pow coth x)) -1)))
++ 10 + x + * -10 pow coth x -1
 * + + * -10 pow coth x 9 x 1
 pow + + x * -10 pow coth x 9 1
 + + * pow coth x -10 9 x
 + + + x -1 * pow coth x -10 10
 
-(d x (+ x (+ (* x (cos x)) (* -10 (* x (cosh x))))))
+d x + x + * x cos x * -10 * x cosh x
 
-(d x (* (pow (tanh x) -10) 3))
+d x * pow tanh x -10 3
 * d x tanh x * pow tanh x -11 -30
 * 3 d x pow tanh / x 1 -10
 * * 6 d x pow tanh x -10 0.5
@@ -1765,34 +1765,34 @@ pow d x * pow tanh x -10 3 1
 * d x pow tanh x -10 3
 * pow sech x 2 * -30 pow tanh x -11
 
-(d x (* -10 (* x (+ -10 (+ (pow 6 -1) (sinh x))))))
+d x * -10 * x + -10 + pow 6 -1 sinh x
 
-(+ -10 (+ (* 10 x) (+ (cos (+ x (* 1 pi))) (cosh x))))
++ -10 + * 10 x + cos + x * 1 pi cosh x
 
-(* (+ -10 (cosh (* 10 x))) (cos (+ x (* 1 pi))))
+* + -10 cosh * 10 x cos + x * 1 pi
 * + -10 cosh * x 10 cos + x pi
 * + -10 cosh * x -10 cos + pi x
 
-(d x (+ x (* x (+ x (+ (cos x) (cosh x))))))
+d x + x * x + x + cos x cosh x
 
-(d x (+ (* x (cosh (acos x))) (sin (+ x (* 2 pi)))))
+d x + * x cosh acos x sin + x * 2 pi
 
-(+ (* 60 x) (* -10 (* x (cosh x))))
++ * 60 x * -10 * x cosh x
 + * cosh x * -10 x * x 60
 
-(d x (* (pow 6 -1) (* (cosh x) (csc (+ -1 (* 2 pi))))))
+d x * pow 6 -1 * cosh x csc + -1 * 2 pi
 
-(* -10 (* (cosh (pow 7 -1)) (ln x)))
+* -10 * cosh pow 7 -1 ln x
 
-(+ (* x (cosh x)) (* -5 (* pi x)))
++ * x cosh x * -5 * pi x
 + * x cosh x * * x -5 pi
 
-(+ (* -10 (* x (pow 3 -1))) (tanh x))
++ * -10 * x pow 3 -1 tanh x
 + * * x -10 pow 3 -1 tanh x
 
-(d x (* (pow x 2) (* (+ 1 x) (cosh x))))
+d x * pow x 2 * + 1 x cosh x
 
-(+ (cos (+ 120 (* 1 pi))) (+ (cosh x) (sinh x)))
++ cos + 120 * 1 pi + cosh x sinh x
 + exp x cos * -1 - -120 pi
 + cos / * + pi 120 2 2 exp x
 + pow exp * 0.5 x 2 cos + 120 pi
@@ -1860,13 +1860,13 @@ pow d x * pow tanh x -10 3 1
 + - exp x 1 + 1 cos - -120 pi
 + exp x cos * -1 * - -120 pi -1
 
-(+ (asin x) (+ (cosh x) (ln (pow x x))))
++ asin x + cosh x ln pow x x
 + cosh x + ln pow x x asin x
 + * ln x x + asin x cosh x
 
-(d x (* x (+ -10 (+ (* 10 x) (* 10 (cosh x))))))
+d x * x + -10 + * 10 x * 10 cosh x
 
-(d x (atanh (pow coth (+ x (tan x)))))
+d x atanh pow coth + x tan x
 d x atanh pow coth + tan x x
 d x atanh pow coth + x / 1 cot x
 - d x atanh pow coth + tan x x 0
@@ -1877,10 +1877,10 @@ d x atanh pow coth - tan x * -1 x
 pow d x atanh pow coth + tan x x 1
 d x - ln + 1 x ln - 1 x
 
-(d x (* 5 (* pi (+ -10 (cosh x)))))
+d x * 5 * pi + -10 cosh x
 * d x * pi + cosh x -10 5
 
-(+ -10 (+ x (+ (cosh x) (+ 3 (sinh x)))))
++ -10 + x + cosh x + 3 sinh x
 + + cosh x + + x 3 sinh x -10
 + x + pow exp * x 0.5 2 -7
 + 3 - -10 - * x -1 exp x
@@ -1899,14 +1899,14 @@ d x - ln + 1 x ln - 1 x
 + x + cosh x + sinh x -7
 + * 2 / x 2 + exp x -7
 
-(* x (+ x (+ (* -10 (cos (+ 10 (* 2 pi)))) (cosh x))))
+* x + x + * -10 cos + 10 * 2 pi cosh x
 
-(d x (+ (* -10 (* x (cos x))) (cosh x)))
+d x + * -10 * x cos x cosh x
 + d x / x / sec x -10 sinh x
 + sinh x * d x * cos x x -10
 + sinh x d x / * x -10 sec x
 
-(pow (sec (+ x (atanh (tanh x)))) -1)
+pow sec + x atanh tanh x -1
 pow pow sec + x atanh tanh x -1 1
 pow sec + atanh tanh x x -1
 pow sec + atanh tanh x - x 0 -1
@@ -1917,9 +1917,9 @@ pow sec - - 0 x atanh tanh x -1
 pow sec - * -1 atanh tanh x x -1
 pow / 1 cos + x atanh tanh x -1
 
-(d x (+ (pow (csc x) -1) (+ (cosh x) (ln x))))
+d x + pow csc x -1 + cosh x ln x
 
-(d x (+ 1 (+ (* 9 pi) (tanh x))))
+d x + 1 + * 9 pi tanh x
 d x + tanh x * pi 9
 d x + + 1 tanh x * 9 pi
 + d x * 9 pi d x tanh x
@@ -1929,7 +1929,7 @@ pow d x + * 9 pi tanh x 1
 * 1 d x + tanh x * pi 9
 d x + / tanh x 1 * pi 9
 
-(* x (ln (sinh (* 2 pi))))
+* x ln sinh * 2 pi
 * x ln sinh * * 0.5 * pi 0.5 8
 * x ln sinh * 2 * 4 * 0.25 pi
 * x - ln sinh * 8 * 0.25 pi 0
@@ -2000,15 +2000,15 @@ d x + / tanh x 1 * pi 9
 * x ln sinh / 4 / 2 pi
 * x ln sinh * -0.5 / -8 / 2 pi
 
-(d x (* -10 (* x (+ (* -10 x) (sinh x)))))
+d x * -10 * x + * -10 x sinh x
 * -10 + * + -20 cosh x x sinh x
 
-(d x (* (+ (* -10 x) (sin x)) (sinh x)))
+d x * + * -10 x sin x sinh x
 
-(+ 1 (* (sin (+ x (* 2 pi))) (sinh x)))
++ 1 * sin + x * 2 pi sinh x
 + 1 * sin + * 2 pi x sinh x
 
-(d x (+ 2.7 (+ (pow (sec x) -1) (sinh x))))
+d x + 2.7 + pow sec x -1 sinh x
 pow d x + pow sec x -1 sinh x 1
 d x + pow / sec x 1 -1 sinh x
 + d x pow sec x -1 d x sinh x
@@ -2030,19 +2030,19 @@ d x + sinh x + pow sec x -1 2.7
 d x - pow sec x -1 * -1 sinh x
 * 1 + cosh x d x pow sec x -1
 
-(d x (* x (+ (asin x) (sinh x))))
+d x * x + asin x sinh x
 + d x * + asin x sinh x x 0
 d x + * sinh x x * x asin x
 d x * x + asin x sinh x
 * d x * x + asin x sinh x 1
 pow d x * x + sinh x asin x 1
 
-(d x (+ 1 (+ (cosh x) (sinh x))))
+d x + 1 + cosh x sinh x
 
-(+ (* -10 (sin (+ x (* 7 pi)))) (sinh x))
++ * -10 sin + x * 7 pi sinh x
 + sinh x * -10 sin + x * pi 7
 
-(* 5 (pow (sinh x) -10))
+* 5 pow sinh x -10
 * pow sinh * * x -1 -1 -10 5
 * * pow / sinh x 1 -10 5 1
 * pow sinh * * x -2 -0.5 -10 5
@@ -2062,10 +2062,10 @@ pow * pow sinh x -10 5 1
 * pow sinh - * 2 x x -10 5
 * 1 * pow sinh x -10 5
 
-(+ 1 (+ (cosh x) (+ (exp x) (sin x))))
++ 1 + cosh x + exp x sin x
 + sin x + + exp x cosh x 1
 
-(+ (* x (sinh x)) 4)
++ * x sinh x 4
 + 4 / 1 / 1 * sinh x x
 + 4 / x / 1 / sinh x 1
 + * sinh * * x -0.5 -2 x 4
@@ -2081,19 +2081,19 @@ pow * pow sinh x -10 5 1
 * + * sinh x x 4 1
 + 4 * * x 0.5 * 2 sinh x
 
-(d x (* x (pow (cosh (cos (+ 20 (* 7 pi)))) -10)))
+d x * x pow cosh cos + 20 * 7 pi -10
 
-(d x (* x (atanh (tanh (cos x)))))
+d x * x atanh tanh cos x
 + d x * atanh tanh cos x x 0
 
-(d x (* 1020 (* x (* (+ (cosh x) (sinh x)) (sin x)))))
+d x * 1020 * x * + cosh x sinh x sin x
 d x * * x exp x * sin x 1020
 
-(+ (* -10 x) (+ (ln (pow x 10)) (tanh x)))
++ * -10 x + ln pow x 10 tanh x
 + tanh x + ln pow x 10 * -10 x
 + tanh x + * ln x 10 * -10 x
 
-(d x (* -1 (* x (+ 20 (* -1 (pow coth 1))))))
+d x * -1 * x + 20 * -1 pow coth 1
 pow - d x * x coth 20 1
 * - 20 + coth * d x coth x -1
 * + -20 + coth * d x coth x 1
@@ -2171,16 +2171,16 @@ pow d x + * x -20 * x coth 1
 pow + coth + -20 * x d x coth 1
 * d x - * + -20 coth x 0 1
 
-(ln (pow 10 (pow coth x)))
+ln pow 10 pow coth x
 
-(d x (+ x (* x (cosh (+ x (ln x))))))
+d x + x * x cosh + x ln x
 d x + x * cosh + x ln x x
 + d x * x cosh + ln x x 1
 - d x * cosh + x ln x x -1
 
-(* -1 (* x (+ 10 (+ (* -1 x) (* 10 (cosh x))))))
+* -1 * x + 10 + * -1 x * 10 cosh x
 
-(d x (* 10 (+ (* 25 (sinh x)) (* 76 x))))
+d x * 10 + * 25 sinh x * 76 x
 + * 10 - * cosh x 25 0 760
 + 760 * cosh * -1 x 250
 * 10 + 76 * 25 cosh x
@@ -2251,20 +2251,20 @@ pow + * 250 d x sinh x 760 1
 + + 760 * * 5 cosh x 50 0
 + * 500 * 0.5 cosh * x -1 760
 
-(d x (+ x (+ (pow (cot x) -1) (pow coth 10))))
+d x + x + pow cot x -1 pow coth 10
 
-(* x (+ (* -10 x) (cosh (cos (+ 10 (* 2 pi))))))
+* x + * -10 x cosh cos + 10 * 2 pi
 
-(d x (+ x (+ (* x (sinh x)) (sin (asinh x)))))
+d x + x + * x sinh x sin asinh x
 
-(* 10 (+ (* -1 (tanh x)) (sin x)))
+* 10 + * -1 tanh x sin x
 - * sin x 10 * tanh x 10
 + * 10 sin x / -10 / 1 tanh x
 + * 10 sin x * tanh * x -1 10
 + * 10 sin x * -10 tanh x
 - * sin x 10 / 10 / 1 tanh x
 
-(d x (+ (* -10 (* (cos x) (tan x))) (tanh x)))
+d x + * -10 * cos x tan x tanh x
 + * -10 cos x pow sech * -1 x 2
 + + pow sech x 2 * -10 cos x 0
 + * -10 - cos x 0 pow sech x 2
@@ -2284,12 +2284,12 @@ pow + * 250 d x sinh x 760 1
 + + d x tanh x * cos x -10 0
 + d x + tanh x * sin x -10 0
 
-(d x (* (pow (csc (+ -10 x)) -1) (sinh x)))
+d x * pow csc + -10 x -1 sinh x
 d x * pow csc + x -10 -1 sinh x
 
-(cosh (* (pow (sin (+ 10 (* 3 pi))) -10) (+ 10 x)))
+cosh * pow sin + 10 * 3 pi -10 + 10 x
 
-(* (pow 3 -1) (cosh x))
+* pow 3 -1 cosh x
 * pow 3 -1 cosh * -0.5 * 2 x
 / pow 3 -1 / 1 cosh x
 * cosh * * 0.5 x 2 pow 3 -1
@@ -2320,7 +2320,7 @@ pow / pow 3 -1 / 1 cosh x 1
 / pow 3 -1 / 1 / cosh x 1
 * pow 3 -1 cosh * x -1
 
-(d x (+ x (* x (cosh (+ -10 (ln x))))))
+d x + x * x cosh + -10 ln x
 d x + * cosh - 10 ln x x x
 d x * x + cosh + -10 ln x 1
 + d x * cosh - 10 ln x x 1
@@ -2328,15 +2328,15 @@ d x * x + cosh + -10 ln x 1
 d x + * x cosh + ln x -10 x
 - d x * x cosh - 10 ln x -1
 
-(d x (+ x (sin (+ (* 6 pi) (cosh (* 7 pi))))))
+d x + x sin + * 6 pi cosh * 7 pi
 
-(d x (+ x (* (pow 1 -1) (tanh x))))
+d x + x * pow 1 -1 tanh x
 
-(+ 1 (+ x (+ (pow (sec x) -1) (* x (sinh x)))))
++ 1 + x + pow sec x -1 * x sinh x
 
-(d x (* 10 (+ x (cosh (acos x)))))
+d x * 10 + x cosh acos x
 
-(+ (* -10 x) (+ (* -10 (* x (cos x))) (tanh x)))
++ * -10 x + * -10 * x cos x tanh x
 + tanh x * + * -10 cos x -10 x
 + * -10 + x * cos x x tanh x
 + tanh x * -10 * x - cos x -1
@@ -2344,20 +2344,20 @@ d x + * x cosh + ln x -10 x
 + tanh x * * x + 1 cos x -10
 + tanh x * + x / x sec x -10
 
-(+ -10 (+ x (* (pow (csc x) -1) (sinh x))))
++ -10 + x * pow csc x -1 sinh x
 + x + * sinh x pow csc x -1 -10
 
-(+ (* 101 x) (* -10 (* x (pow coth 10))))
++ * 101 x * -10 * x pow coth 10
 + * 101 x * pow coth 10 * -10 x
 * 1 * x + * pow coth 10 -10 101
 * x + * -10 pow coth 10 101
 pow * x + 101 * -10 pow coth 10 1
 
-(d x (+ (* 9 pi) (* -10 (sinh x))))
+d x + * 9 pi * -10 sinh x
 + * 9 d x pi * cosh x -10
 d x + * pi 9 * -10 sinh x
 
-(pow coth (+ -10 (+ x 9)))
+pow coth + -10 + x 9
 * 1 pow coth + + 9 x -10
 pow coth + -1 x
 pow pow coth + x -1 1
@@ -2365,14 +2365,14 @@ pow coth + -10 + 9 x
 * 1 pow coth + -1 x
 pow pow coth + + 9 x -10 1
 
-(* -10 (+ (* x (ln x)) (sinh x)))
+* -10 + * x ln x sinh x
 + * * ln x x -10 * -10 sinh x
 * -10 - * ln x x sinh * x -1
 * -10 + * ln x x sinh x
 * -10 + * ln x x / sinh x 1
 * + * x - ln x 0 sinh x -10
 
-(d x (* 10 (+ 4 (+ x (cosh x)))))
+d x * 10 + 4 + x cosh x
 + * * -1 * -1 sinh x 10 10
 + 10 * sinh * 4 * 0.25 x 10
 + 10 - * 10 - sinh x 0 0
@@ -2410,12 +2410,12 @@ pow pow coth + + 9 x -10 1
 + 10 * 10 sinh * * x -0.5 -2
 + 0 * 10 - sinh x -1
 
-(* (pow 5 -1) (* (cos (+ 720 (* 8 pi))) (cosh x)))
+* pow 5 -1 * cos + 720 * 8 pi cosh x
 
-(+ x (+ (* -10 (pow 4 -1)) (sinh x)))
++ x + * -10 pow 4 -1 sinh x
 + * -10 pow 4 -1 + x sinh x
 
-(+ (* x (cos (+ 240 (* 2 pi)))) (+ (cosh x) (sinh x)))
++ * x cos + 240 * 2 pi + cosh x sinh x
 + * cos - -240 * 2 pi x exp x
 + * cos + -240 * pi -2 x exp x
 + / x sec - 240 * -2 pi exp x
@@ -2425,12 +2425,12 @@ pow pow coth + + 9 x -10 1
 + / x sec + * -2 pi -240 exp x
 + exp x * x cos - 240 * pi -2
 
-(d x (+ x (* x (* 7 (sinh x)))))
+d x + x * x * 7 sinh x
 + 1 * 7 + sinh x * cosh x x
 d x + x * * 7 x sinh x
 + d x * sinh x * 7 x 1
 
-(cosh (+ (* -10 x) (sin (+ 10 (* 9 pi)))))
+cosh + * -10 x sin + 10 * 9 pi
 cosh + * x -10 sin - 10 * -9 pi
 cosh + * -10 x sin + 10 * 9 pi
 cosh - * x -10 sin - -10 * pi 9
@@ -2438,14 +2438,14 @@ cosh - sin + 10 * pi 9 * 10 x
 cosh - sin - 10 * -9 pi * 10 x
 cosh - * x -10 sin + * -9 pi -10
 
-(+ x (* 10 (tanh (+ -10 (* 10 x)))))
++ x * 10 tanh + -10 * 10 x
 + x * tanh + * x 10 -10 10
 
-(d x (* x (+ x (* x (atanh (tanh x))))))
+d x * x + x * x atanh tanh x
 
-(d x (pow (csc (+ x (pow coth 240))) -1))
+d x pow csc + x pow coth 240 -1
 
-(* x (sinh (+ (* -10 x) 5)))
+* x sinh + * -10 x 5
 * sinh + * -1 * x 10 5 x
 * sinh * + * 10 x -5 -1 x
 * sinh + * -20 / x 2 5 x
@@ -2466,30 +2466,30 @@ pow * x sinh - 5 * 10 x 1
 * x sinh * - -5 * -10 x -1
 * x sinh - 5 * -1 * x -10
 
-(d x (+ (* -10 (sinh x)) (* x (+ 10 x))))
+d x + * -10 sinh x * x + 10 x
 + * x 2 + 10 * -10 cosh x
 + + 10 + x * -10 cosh x x
 
-(pow (cos (* x (pow coth 10))) -1)
+pow cos * x pow coth 10 -1
 pow / 1 sec * pow coth 10 x -1
 pow / cos * x pow coth 10 1 -1
 * pow cos * x pow coth 10 -1 1
 
-(* -10 (+ x (pow (tanh x) 10)))
+* -10 + x pow tanh x 10
 * -10 + x pow / tanh x 1 10
 * * -10 + x pow tanh x 10 1
 + * -10 x * -10 pow tanh x 10
 pow * -10 + pow tanh x 10 x 1
 * + x pow tanh x 10 -10
 
-(* x (+ 10 (+ (* -10 x) (* 10 (sinh x)))))
+* x + 10 + * -10 x * 10 sinh x
 
-(+ (* -250 (sinh x)) (* 250 (* x (cosh x))))
++ * -250 sinh x * 250 * x cosh x
 + * sinh x -250 * cosh x * 250 x
 
-(d x (+ 1 (+ (pow (sec (asinh x)) -1) (cosh x))))
+d x + 1 + pow sec asinh x -1 cosh x
 
-(+ x (cosh (+ (* -10 x) 6)))
++ x cosh + * -10 x 6
 * 1 + cosh - 6 * 10 x x
 + cosh * -1 + * -10 x 6 x
 + x cosh + 6 * * 10 x -1
@@ -2531,12 +2531,12 @@ pow + cosh - 6 * x 10 x 1
 + x cosh * - 3 * 5 x -2
 + x cosh - 6 * -1 * x -10
 
-(d x (+ (* -10 x) (* 10 (* (cos x) (cosh x)))))
+d x + * -10 x * 10 * cos x cosh x
 + -10 d x * cosh x * 10 cos x
 + d x / * 10 cosh x sec x -10
 + d x / cosh x / sec x 10 -10
 
-(+ -10 (+ x (+ (cosh x) 9)))
++ -10 + x + cosh x 9
 + 9 - cosh x - * x -1 -10
 + - + -10 cosh x * x -1 9
 + + 9 x + -10 cosh * -1 x
@@ -2581,11 +2581,11 @@ pow + cosh - 6 * x 10 x 1
 + cosh x - -1 / * -2 x 2
 + - cosh x * / x 1 -1 -1
 
-(d x (+ (pow x 2) (* x (sinh (+ -10 x)))))
+d x + pow x 2 * x sinh + -10 x
 
-(+ x (* -10 (* (ln x) (tanh (sin (+ 10 (* 7 pi)))))))
++ x * -10 * ln x tanh sin + 10 * 7 pi
 
-(d x (* -10 (+ x (* -1 (* (cos x) (cosh x))))))
+d x * -10 + x * -1 * cos x cosh x
 + -10 d x * cosh x * 10 cos x
 + -10 d x / cosh x / sec x 10
 - -10 d x / -10 / sec x cosh x
@@ -2597,10 +2597,10 @@ d x * - x / cosh x sec x -10
 + * 10 d x / cosh x sec x -10
 * - 1 d x * cos x cosh x -10
 
-(+ (* -10 x) (* x (+ 10 (cosh x))))
++ * -10 x * x + 10 cosh x
 + * x -10 * + 10 cosh x x
 
-(d x (* 10 (+ (* 3 x) (tanh x))))
+d x * 10 + * 3 x tanh x
 pow * + 3 pow sech x 2 10 1
 + - 40 * pow tanh x 2 10 0
 pow - 40 * 10 pow tanh x 2 1
@@ -2645,7 +2645,7 @@ pow + 30 * 10 pow sech x 2 1
 - 40 * 10 pow tanh x 2
 - 40 - * 10 pow tanh x 2 0
 
-(sinh (+ x (sin (+ 30 (* 7 pi)))))
+sinh + x sin + 30 * 7 pi
 pow sinh + x sin + 30 * pi 7 1
 sinh + x sin - 30 * -7 pi
 sinh - x sin + * * 7 pi -1 -30
@@ -2666,7 +2666,7 @@ sinh + x sin + 30 * -1 * -7 pi
 * sinh - x sin + * -7 pi -30 1
 * 1 sinh + sin + * 7 pi 30 x
 
-(cos (+ (* 2 pi) (+ (cosh x) (sinh x))))
+cos + * 2 pi + cosh x sinh x
 * 1 cos + * -1 * pi -2 exp x
 * cos - * -2 pi exp x 1
 * 1 cos + * 2 pi exp x
@@ -2678,40 +2678,40 @@ sinh + x sin + 30 * -1 * -7 pi
 * / cos - * -2 pi exp x 1 1
 * 1 cos - * -1 exp x * pi 2
 
-(* -1 (* x (+ -1 (+ (* 10 x) (* 10 (sinh x))))))
+* -1 * x + -1 + * 10 x * 10 sinh x
 + x * + sinh x x * x -10
 * x + 1 * -10 + sinh x x
 - x * * 10 + sinh x x x
 
-(d x (* x (+ 1 (+ x (cosh (ln x))))))
+d x * x + 1 + x cosh ln x
 + 1 d x * x + x cosh ln x
 - d x * + x cosh ln x x -1
 
-(+ (* -10 (sin x)) (+ (acosh x) (tanh x)))
++ * -10 sin x + acosh x tanh x
 + acosh x + tanh x * sin x -10
 
-(d x (asinh (+ x (cosh (pow 3 -1)))))
+d x asinh + x cosh pow 3 -1
 
-(d x (* 30 (* (pow (csc x) -1) (sinh x))))
+d x * 30 * pow csc x -1 sinh x
 * 30 d x * pow csc x -1 sinh x
 
-(+ x (ln (pow x (pow coth 20))))
++ x ln pow x pow coth 20
 + x + * pow coth 20 ln x ln 1
 + x + ln pow x pow coth 20 ln 1
 
-(sinh (+ x (* x (pow (csc (+ -20 (* 5 pi))) -1))))
+sinh + x * x pow csc + -20 * 5 pi -1
 
-(+ (* -10 (sin (+ 10 (* 9 pi)))) (+ (cosh x) (sinh x)))
++ * -10 sin + 10 * 9 pi + cosh x sinh x
 + * -10 sin - 10 * -9 pi exp x
 + exp x * -10 sin + 10 * pi 9
 
-(* x (+ 1 (+ (pow (sec (+ x (* 1 pi))) -1) (cosh x))))
+* x + 1 + pow sec + x * 1 pi -1 cosh x
 
-(d x (* 3 (+ pi (* 2 (tanh x)))))
+d x * 3 + pi * 2 tanh x
 * 3 d x + * 2 tanh x pi
 d x + * pi 3 * tanh x 6
 
-(d x (* -10 (+ 5 (sinh x))))
+d x * -10 + 5 sinh x
 * -20 * 0.5 cosh * -0.25 * x 4
 * 1 * -10 cosh * 2 * x 0.5
 * -20 * 0.5 cosh / -2 / 2 x
@@ -2933,22 +2933,22 @@ d x + * pi 3 * tanh x 6
 * -10 - cosh * x -1 0
 * 2 * -5 cosh * -0.5 * 2 x
 
-(+ (* 100 (* x (+ 1 x))) (tanh x))
++ * 100 * x + 1 x tanh x
 + * 100 * x + 1 x tanh x
 + * + pow x 2 x 100 tanh x
 + tanh x * + * x x x 100
 + * x + * 100 x 100 tanh x
 
-(+ 10 (* -10 (* x (cosh (cos (+ 10 (* 1 pi)))))))
++ 10 * -10 * x cosh cos + 10 * 1 pi
 + 10 * * -10 x cosh cos + pi 10
 + 10 * x * -10 cosh cos - -10 pi
 
-(d x (* x (+ -10 (* (pow x -10) (tanh x)))))
+d x * x + -10 * pow x -10 tanh x
 + -10 d x * pow x -9 tanh x
 
-(d x (* -20 (pow (cosh (* 5 x)) 2)))
+d x * -20 pow cosh * 5 x 2
 
-(d x (* x (pow (tanh (pow 4 -1)) -10)))
+d x * x pow tanh pow 4 -1 -10
 pow tanh * 4 * 0.25 pow 4 -1 -10
 - pow / tanh pow 4 -1 1 -10 0
 + 0 - pow tanh pow 4 -1 -10 0
@@ -2971,31 +2971,31 @@ pow tanh / 2 / 2 pow 4 -1 -10
 - 0 - 0 pow tanh pow 4 -1 -10
 + pow tanh pow 4 -1 -10 0
 
-(+ -10 (+ (pow (cot x) -1) (* x (cosh x))))
++ -10 + pow cot x -1 * x cosh x
 + + pow cot x -1 -10 * x cosh x
 
-(* x (+ x (* 120 (cosh x))))
+* x + x * 120 cosh x
 + * * cosh x x 120 pow x 2
 + * x x * * cosh x 120 x
 
-(d x (+ (* -10 (tanh x)) (cos (+ -10 x))))
+d x + * -10 tanh x cos + -10 x
 + * -10 d x tanh x sin - 10 x
 + * -10 pow sech x 2 sin - 10 x
 
-(+ (cosh x) (+ (sin (+ x (* 4 pi))) (sinh x)))
++ cosh x + sin + x * 4 pi sinh x
 + exp x sin - x * * 4 pi -1
 + sin + * -1 * -4 pi x exp x
 + exp x sin * -1 - * -4 pi x
 + exp x sin + * pi 4 x
 + exp x sin - x * -4 pi
 
-(d x (* -1 (* x (+ -1 (* 30 (sinh x))))))
+d x * -1 * x + -1 * 30 sinh x
 - 1 d x * * x 30 sinh x
 + * -30 + * cosh x x sinh x 1
 - 1 * 30 + sinh x * cosh x x
 + 1 d x * x * -30 sinh x
 
-(+ (pow (csc (ln x)) -1) (cosh x))
++ pow csc ln x -1 cosh x
 + pow csc ln x -1 cosh * -1 x
 + cosh x pow csc ln x -1
 + pow / 1 sin ln x -1 cosh x
@@ -3004,9 +3004,9 @@ pow tanh / 2 / 2 pow 4 -1 -10
 pow + pow csc ln x -1 cosh x 1
 + cosh x pow csc - ln x 0 -1
 
-(d x (+ (* -10 (* x (sin (+ 10 (* 5 pi))))) (cosh x)))
+d x + * -10 * x sin + 10 * 5 pi cosh x
 
-(+ 10 (+ (* -10 (sinh x)) (* x (sinh x))))
++ 10 + * -10 sinh x * x sinh x
 * 1 + * sinh x + x -10 10
 + * sinh x x + * -10 sinh x 10
 + 10 * / sinh x 1 + -10 x
@@ -3014,30 +3014,30 @@ pow + pow csc ln x -1 cosh x 1
 pow + 10 * + -10 x sinh x 1
 + 10 * sinh x + -10 x
 
-(+ (* -10 (* x (pow (cos (+ 10 (* 4 pi))) -10))) (cosh x))
++ * -10 * x pow cos + 10 * 4 pi -10 cosh x
 
-(+ (* 1020 x) (* 1020 (* x (cosh x))))
++ * 1020 x * 1020 * x cosh x
 + * 1020 x * * 1020 cosh x x
 
-(d x (* 10 (* (pow x 2) (+ -1 (* 2 (cosh x))))))
+d x * 10 * pow x 2 + -1 * 2 cosh x
 
-(d x (* (+ (cosh x) (sinh x)) (cos (+ 60 (* 4 pi)))))
+d x * + cosh x sinh x cos + 60 * 4 pi
 
-(* (pow 6 -1) (pow coth x))
+* pow 6 -1 pow coth x
 * pow coth x pow 6 -1
 pow * pow 6 -1 pow coth x 1
 * 1 * pow 6 -1 pow coth x
 
-(+ (* -9 (cosh x)) (+ (sin x) (sinh x)))
++ * -9 cosh x + sin x sinh x
 + * -9 cosh x + sin x sinh x
 
-(d x (+ -10 (+ x (+ (* -10 (tanh x)) (* x (ln x))))))
+d x + -10 + x + * -10 tanh x * x ln x
 + + 2 ln x * -10 pow sech x 2
 + * d x tanh x -10 + 2 ln x
 
-(d x (+ x (+ (pow x 2) (+ (* x (cosh x)) (exp x)))))
+d x + x + pow x 2 + * x cosh x exp x
 
-(d x (+ (* -10 x) (* 10 (cosh (* 10 x)))))
+d x + * -10 x * 10 cosh * 10 x
 - * d x cosh * 10 x 10 10
 + * -10 * 10 sinh * x -10 -10
 - * * sinh * x -10 10 -10 10
@@ -3057,17 +3057,17 @@ pow * pow 6 -1 pow coth x 1
 * + * 10 sinh * 10 x -1 10
 * - * sinh * x 10 10 1 10
 
-(d x (+ 10 (+ x (+ (* -10 (* x (sinh x))) (tan x)))))
+d x + 10 + x + * -10 * x sinh x tan x
 
-(d x (* x (+ -10 (+ (cos (+ x (* 5 pi))) (sinh x)))))
+d x * x + -10 + cos + x * 5 pi sinh x
 
-(ln (pow x (pow coth 1)))
+ln pow x pow coth 1
 + + * coth ln x ln 1 ln 1
 + + ln pow x coth ln 1 ln 1
 
-(d x (* x (+ x (* (sin (+ x (* 3 pi))) (sinh x)))))
+d x * x + x * sin + x * 3 pi sinh x
 
-(sinh (* x (pow (cos (+ 10 (* 1 pi))) -10)))
+sinh * x pow cos + 10 * 1 pi -10
 * sinh * x pow cos + 10 pi -10 1
 sinh * pow cos - 10 * pi -1 -10 x
 sinh * x pow / 1 sec + pi 10 -10
@@ -3083,14 +3083,14 @@ sinh * x pow cos * -1 - -10 pi -10
 sinh * pow / cos + 10 pi 1 -10 x
 sinh * pow cos + pi 10 -10 x
 
-(* (sin (+ x (* 2 pi))) (sinh (sin x)))
+* sin + x * 2 pi sinh sin x
 
-(+ 1 (+ x (+ (ln (pow x x)) (tanh x))))
++ 1 + x + ln pow x x tanh x
 + + 1 tanh x + * x ln x x
 + x + tanh x + 1 ln pow x x
 + 1 + * x + 1 ln x tanh x
 
-(+ 1020 (+ (* -10 x) (* -10 (sinh x))))
++ 1020 + * -10 x * -10 sinh x
 pow + 1020 * + sinh x x -10 1
 + 1020 * -5 * 2 + x sinh x
 * 1 + * -10 + sinh x x 1020
@@ -3100,7 +3100,7 @@ pow + 1020 * + sinh x x -10 1
 + * - sinh x * -1 x -10 1020
 + 1020 * * 0.5 + x sinh x -20
 
-(+ (* -10 x) (* x (cosh (+ 10 x))))
++ * -10 x * x cosh + 10 x
 * x + cosh + x 10 -10
 * + cosh * + x 10 -1 -10 x
 * + -10 cosh - -10 x x
@@ -3114,13 +3114,13 @@ pow * x + cosh + 10 x -10 1
 pow * x + cosh - -10 x -10 1
 + * -10 x * cosh + x 10 x
 
-(d x (+ x (* -10 (* x (+ (exp x) (sinh x))))))
+d x + x * -10 * x + exp x sinh x
 
-(d x (* -1 (sinh (+ -10 (* 10 x)))))
+d x * -1 sinh + -10 * 10 x
 + d x sinh + * x -10 10 0
 + 0 d x sinh - 10 * x 10
 
-(d x (* 10 (* x (+ 10 (* -1 (pow coth 1))))))
+d x * 10 * x + 10 * -1 pow coth 1
 + d x - * * -10 x coth 0 100
 * -1 + -100 d x * * 10 coth x
 * - + coth * x d x coth 10 -10
@@ -3181,7 +3181,7 @@ d x * -10 + * x -10 * x coth
 * - - 10 * x d x coth coth 10
 d x * * -10 x * - 10 coth -1
 
-(cosh (pow (csc (+ -1 (* 5 pi))) -1))
+cosh pow csc + -1 * 5 pi -1
 cosh pow / csc + -1 * 5 pi 1 -1
 cosh pow / 1 sin + -1 * pi 5 -1
 cosh pow csc + * 5 pi -1 -1
@@ -3189,16 +3189,16 @@ cosh * -1 pow csc + * 5 pi -1 -1
 pow cosh pow csc + * 5 pi -1 -1 1
 * 1 cosh pow csc + * 5 pi -1 -1
 
-(d x (+ (* x (sinh (ln x))) (cos (+ x (* 4 pi)))))
+d x + * x sinh ln x cos + x * 4 pi
 
-(+ (* 7 pi) (+ (cosh x) (ln x)))
++ * 7 pi + cosh x ln x
 + + cosh x * 7 pi ln / x 1
 + * 7 pi + ln x cosh * -1 x
 + ln x + * 7 pi cosh x
 + + cosh x * pi 7 - ln x 0
 + 0 + * 7 pi + ln x cosh x
 
-(d x (+ x (sinh (+ 1 (* -10 x)))))
+d x + x sinh + 1 * -10 x
 + d x sinh + * -10 x 1 1
 + 1 d x sinh - 1 * x 10
 d x + x sinh + 1 * -10 x
@@ -3208,13 +3208,13 @@ d x + x sinh + 1 * -10 x
 + * cosh - -1 * -10 x -10 1
 d x + x sinh - 1 * 10 x
 
-(d x (+ (pow x 2) (+ (* 4 (* pi x)) (sinh x))))
+d x + pow x 2 + * 4 * pi x sinh x
 
-(d x (+ x (+ (* -10 (cosh x)) (* x (sin x)))))
+d x + x + * -10 cosh x * x sin x
 
-(pow (tanh (* x (pow (csc (+ -10 (* 2 pi))) -1))) -10)
+pow tanh * x pow csc + -10 * 2 pi -1 -10
 
-(* 30 (+ x (cosh x)))
+* 30 + x cosh x
 * * 30 + cosh x x 1
 * 30 + cosh * * -0.5 x 2 x
 + * 30 cosh x * * x 60 0.5
@@ -3282,11 +3282,11 @@ pow * 30 + x cosh * x -1 1
 + * cosh x 30 * 120 * 0.25 x
 - * cosh x 30 * -30 / x 1
 
-(d x (+ x (* -100 (* x (cosh x)))))
+d x + x * -100 * x cosh x
 + * d x * x cosh x -100 1
 + 1 * + * sinh x x cosh x -100
 
-(* -10 (* x (+ 10 (* -10 (sinh x)))))
+* -10 * x + 10 * -10 sinh x
 * x + -100 * 100 sinh x
 + * x -100 * * sinh x 100 x
 * -10 * + * sinh x -10 10 x
@@ -3299,10 +3299,10 @@ pow * x + * sinh x 100 -100 1
 * + * 200 * 0.5 sinh x -100 x
 * x + -100 / 100 / 1 sinh x
 
-(* (+ -10 (sin x)) (sinh x))
+* + -10 sin x sinh x
 + * -10 sinh x * sinh x sin x
 
-(+ x (* x (+ -10 (+ x (sinh x)))))
++ x * x + -10 + x sinh x
 * x + x + + sinh x -10 1
 + * x sinh x * + x -9 x
 * x + + -9 sinh x x
@@ -3313,13 +3313,13 @@ pow * x + + sinh x -9 x 1
 / + sinh x + x -9 / 1 x
 + pow x 2 * + sinh x -9 x
 
-(+ x (* x (* (pow (cosh 2.7) -1) (sinh 2.7))))
++ x * x * pow cosh 2.7 -1 sinh 2.7
 * + * pow cosh 2.7 -1 sinh 2.7 1 x
 + * * x pow cosh -2.7 -1 sinh 2.7 x
 * + 1 * pow cosh -2.7 -1 sinh 2.7 x
 + x * x * sinh 2.7 pow cosh 2.7 -1
 
-(+ 20 (+ (* -10 x) (* 10 (cosh x))))
++ 20 + * -10 x * 10 cosh x
 + + * 10 cosh x * x -10 20
 + * 10 - cosh x x 20
 + * + * x -1 cosh x 10 20
@@ -3327,9 +3327,9 @@ pow * x + + sinh x -9 x 1
 + - 20 * 10 x * 10 cosh x
 + 20 * - cosh * x -1 x 10
 
-(d x (* (cos (+ 1020 (* 3 pi))) (cosh x)))
+d x * cos + 1020 * 3 pi cosh x
 
-(d x (+ (* -630 (tanh x)) (* 630 x)))
+d x + * -630 tanh x * 630 x
 + * -630 d / x 1 tanh x 630
 + 630 * pow sech / x 1 2 -630
 + 0 + * -630 pow sech x 2 630
@@ -3354,18 +3354,18 @@ pow + 630 * -630 pow sech x 2 1
 * 1 + * d x tanh x -630 630
 * + * -630 pow sech x 2 630 1
 
-(d x (+ (* -10 x) (* x (pow coth 30))))
+d x + * -10 x * x pow coth 30
 + 0 d x * + pow coth 30 -10 x
 d x + * x -10 * x pow coth 30
 pow + -10 d x * x pow coth 30 1
 d x * + -10 pow coth 30 x
 * 1 + -10 d x * x pow coth 30
 
-(+ x (+ (* 2 pi) (* -10 (sinh x))))
++ x + * 2 pi * -10 sinh x
 + * + pi * -5 sinh x 2 x
 + x + * sinh x -10 * 2 pi
 
-(d x (+ 1 (+ (sin (+ x (* 1 pi))) (tanh x))))
+d x + 1 + sin + x * 1 pi tanh x
 d x + + sin + pi x tanh x 1
 + d x tanh x d x sin + x pi
 d x - tanh x sin * -1 + x pi
@@ -3377,19 +3377,19 @@ d x + tanh x sin + pi x
 + pow sech x 2 d x sin + pi x
 - d x + tanh x sin + x pi 0
 
-(+ (pow x 2) (+ (* 21 x) (sinh x)))
++ pow x 2 + * 21 x sinh x
 + + * 21 x sinh x pow x 2
 
-(+ (* -100 (sinh x)) (* 100 (* x (cosh x))))
++ * -100 sinh x * 100 * x cosh x
 + * sinh x -100 * * cosh x x 100
 
-(d x (* x (+ -10 (* -10 (* x (sinh x))))))
+d x * x + -10 * -10 * x sinh x
 
-(d x (* x (pow (+ -10 (* 10 (* x (tanh x)))) -10)))
+d x * x pow + -10 * 10 * x tanh x -10
 
-(d x (* x (+ 10 (+ x (* -10 (sinh x))))))
+d x * x + 10 + x * -10 sinh x
 
-(d x (+ (* -40 x) (* 40 (tanh x))))
+d x + * -40 x * 40 tanh x
 - 40 - * 40 pow tanh x 2 -40
 pow + -40 * pow sech x 2 40 1
 + -40 d x * / tanh x 1 40
@@ -3414,9 +3414,9 @@ pow + -40 * 40 d x tanh x 1
 * 1 - 0 * pow tanh x 2 40
 + -40 * pow sech * -1 x 2 40
 
-(d x (+ x (* -10 (sin (sinh (sin (+ 10 (* 3 pi))))))))
+d x + x * -10 sin sinh sin + 10 * 3 pi
 
-(* x (+ 1 (cosh (sinh (* 4 pi)))))
+* x + 1 cosh sinh * 4 pi
 * x + cosh sinh * pi -4 1
 * + cosh sinh * * 0.25 pi 16 1 x
 pow + * cosh sinh * 4 pi x x 1
@@ -3470,7 +3470,7 @@ pow * + 1 cosh sinh * -4 pi x 1
 + * x cosh sinh / 8 / 2 pi x
 * + 1 cosh sinh * -16 * pi 0.25 x
 
-(* -100 (+ 10 (+ x (cosh x))))
+* -100 + 10 + x cosh x
 - -1000 - * x 100 * cosh x -100
 + + * -100 x * cosh x -100 -1000
 - -1000 * -100 - * x -1 cosh x
@@ -3481,32 +3481,32 @@ pow * + 1 cosh sinh * -4 pi x 1
 + -1000 - * -100 cosh x * x 100
 + * - cosh x * x -1 -100 -1000
 
-(d x (+ (pow (sec x) -1) (+ (cosh x) (tanh x))))
+d x + pow sec x -1 + cosh x tanh x
 
-(tan (+ x (atanh (tanh x))))
+tan + x atanh tanh x
 
-(+ 10 (+ x (+ (tan x) (tanh x))))
++ 10 + x + tan x tanh x
 + 10 + - tanh x * -1 tan x x
 + 10 + + x tanh x / 1 cot x
 + tanh x + 10 + x tan x
 + 10 - tan x - tanh * -1 x x
 
-(* (+ x (cos (+ x (* 6 pi)))) (sinh (* 2 pi)))
+* + x cos + x * 6 pi sinh * 2 pi
 
-(* x (+ x (+ (* -10 (sin (+ 10 (* 8 pi)))) (sinh x))))
+* x + x + * -10 sin + 10 * 8 pi sinh x
 
-(* 1 (+ -20 (+ pi (* 2 (* x (sinh x))))))
+* 1 + -20 + pi * 2 * x sinh x
 + -20 + * sinh x * 2 x pi
 
-(d x (+ x (* x (sinh (* 80 x)))))
+d x + x * x sinh * 80 x
 d x + x * x sinh * x 80
 + d x * x sinh * x 80 1
 
-(d x (* (pow (sec (+ 10 x)) -1) (cosh x)))
+d x * pow sec + 10 x -1 cosh x
 
-(d x (* (+ -10 (+ x (* -10 (cosh x)))) (sin x)))
+d x * + -10 + x * -10 cosh x sin x
 
-(cosh (+ x (* -5 (* pi x))))
+cosh + x * -5 * pi x
 * cosh * x + 1 * pi -5 1
 * cosh * + -1 * 5 pi x 1
 * cosh + x * pi * x -5 1
@@ -3514,7 +3514,7 @@ d x + x * x sinh * x 80
 * cosh * x - * pi 5 1 1
 * cosh * x - -1 * -5 pi 1
 
-(d x (* x (+ 1 (pow coth 3120))))
+d x * x + 1 pow coth 3120
 pow d x + * pow coth 3120 x x 1
 pow + 1 d x * x pow coth 3120 1
 + d x + x * pow coth 3120 x 0
@@ -3524,17 +3524,17 @@ d x * + 1 pow coth 3120 x
 * 1 d x * + 1 pow coth 3120 x
 + d x * + 1 pow coth 3120 x 0
 
-(d x (+ x (+ (* -10 (cosh x)) (sin (+ x (* 1 pi))))))
+d x + x + * -10 cosh x sin + x * 1 pi
 
-(d x (* -10 (cosh (+ 30 (* -20 x)))))
+d x * -10 cosh + 30 * -20 x
 * -10 d x cosh + 30 * x -20
 * -10 d x cosh - 30 * x 20
 * -10 d x cosh + * 20 x -30
 * -10 d x cosh - -30 * x -20
 
-(d x (* (+ 1 (sin (+ x (* 3 pi)))) (sinh x)))
+d x * + 1 sin + x * 3 pi sinh x
 
-(+ (pow (sec x) -1) (sinh x))
++ pow sec x -1 sinh x
 * - pow sec x -1 sinh * -1 x 1
 + sinh x pow / 1 / cos x 1 -1
 + sinh x pow sec * 4 * x 0.25 -1
@@ -3577,7 +3577,7 @@ pow + sinh x pow sec * x -1 -1 1
 pow + pow / 1 cos x -1 sinh x 1
 + pow sec * 2 * -0.5 x -1 sinh x
 
-(+ (* x (cosh x)) (cosh x))
++ * x cosh x cosh x
 + cosh x * x cosh * * x -0.5 2
 + cosh x * * x 2 / cosh x 2
 + * x cosh * -1 x cosh x
@@ -3599,9 +3599,9 @@ pow + pow / 1 cos x -1 sinh x 1
 + cosh x * / / cosh x 1 1 x
 + cosh * -0.25 * x 4 * cosh x x
 
-(d x (* 4 (* x (+ pi (* 2 (cosh x))))))
+d x * 4 * x + pi * 2 cosh x
 
-(* x (+ (pow coth 10) -1))
+* x + pow coth 10 -1
 pow + * pow coth 10 x * -1 x 1
 * * - pow coth 10 1 x 1
 + * pow coth 10 x * x -1
@@ -3615,7 +3615,7 @@ pow * x - pow coth 10 1 1
 * - * x pow coth 10 x 1
 pow - * x pow coth 10 x 1
 
-(d x (* -10 (+ x (* -6 (sinh x)))))
+d x * -10 + x * -6 sinh x
 * + * * 0.5 cosh x 120 -10 1
 + * -10 + 1 * -6 cosh x 0
 + -10 * 60 cosh * x -1
@@ -3687,7 +3687,7 @@ pow + -10 * 60 d x sinh x 1
 * -10 + 1 d x * sinh x -6
 * + * 60 cosh * x -1 -10 1
 
-(* (pow (csc (+ 1 x)) -1) (sinh x))
+* pow csc + 1 x -1 sinh x
 * sinh x pow / 1 sin + 1 x -1
 * pow csc + x 1 -1 sinh x
 / pow csc + x 1 -1 / 1 sinh x
@@ -3695,11 +3695,11 @@ pow + -10 * 60 d x sinh x 1
 * 1 * sinh x pow csc + 1 x -1
 pow * pow csc + x 1 -1 sinh x 1
 
-(d x (* -1 (* x (+ -1 (sinh (* 10 x))))))
+d x * -1 * x + -1 sinh * 10 x
 
-(ln (pow x (pow coth 3120)))
+ln pow x pow coth 3120
 
-(d x (+ (* -10 x) (* 10 (sinh (* 10 x)))))
+d x + * -10 x * 10 sinh * 10 x
 - * 10 * cosh * 10 x 10 10
 * 10 - * cosh * x 10 10 1
 * 10 + d x sinh * x 10 -1
@@ -3714,7 +3714,7 @@ pow * pow csc + x 1 -1 sinh x 1
 + -10 * 10 * 10 cosh * x -10
 + * d x sinh * x 10 10 -10
 
-(+ (* -30 (cosh x)) (* 20 x))
++ * -30 cosh x * 20 x
 + / * 40 x 2 * cosh x -30
 + * * x 0.5 40 * cosh x -30
 - * cosh x -30 * * -0.5 x 40
@@ -3744,12 +3744,12 @@ pow - * cosh x -30 * -20 x 1
 - * cosh x -30 * * x 2 -10
 - * -30 cosh x / -20 / 1 x
 
-(+ (* x (asin x)) (+ (sin x) (sinh x)))
++ * x asin x + sin x sinh x
 + + sin x * asin x x sinh x
 
-(d x (+ x (+ (cosh x) (sin (+ (* 6 pi) (asinh x))))))
+d x + x + cosh x sin + * 6 pi asinh x
 
-(pow (sec (atanh (tanh x))) -1)
+pow sec atanh tanh x -1
 pow sec * -2 * atanh tanh x -0.5 -1
 pow sec atanh tanh x -1
 pow sec atanh tanh * * 0.25 x 4 -1
@@ -3788,7 +3788,7 @@ pow sec atanh / tanh x 1 -1
 pow sec * atanh tanh x -1 -1
 pow sec / -2 / 2 atanh tanh x -1
 
-(* x (+ -9 (+ x (pow coth 1))))
+* x + -9 + x pow coth 1
 pow + pow x 2 * + coth -9 x 1
 + pow x 2 + * coth x * x -9
 * 1 * + + -9 x coth x
@@ -3801,21 +3801,21 @@ pow + * -9 x * x + x coth 1
 + * x + -9 coth pow x 2
 * 1 + pow x 2 * + -9 coth x
 
-(d x (+ (* -99 x) (* -10 (* x (cosh x)))))
+d x + * -99 x * -10 * x cosh x
 + -99 * + * x sinh x cosh x -10
 + * d x * cosh x x -10 -99
 
-(cos (+ (* 5 pi) (asinh (atanh (tanh x)))))
+cos + * 5 pi asinh atanh tanh x
 
-(d x (+ x (+ (* x (cos x)) (tanh x))))
+d x + x + * x cos x tanh x
 + d x + * x cos x tanh x 1
 + d x + / x sec x tanh x 1
 
-(sinh (+ -10 (+ x (* -10 (pow 1 -1)))))
+sinh + -10 + x * -10 pow 1 -1
 
-(d x (+ 10 (+ x (+ (* -10 (* x (cos x))) (tanh x)))))
+d x + 10 + x + * -10 * x cos x tanh x
 
-(* -10 (* (+ -1 x) (sinh x)))
+* -10 * + -1 x sinh x
 * / sinh x 2 * + x -1 -20
 * + x -1 * -20 * 0.5 sinh x
 * + -1 x * -40 * sinh x 0.25
@@ -3849,23 +3849,23 @@ pow + * -9 x * x + x coth 1
 * + 10 / -20 / 2 x sinh x
 * 2 * * sinh x - x 1 -5
 
-(d x (+ (* (+ -10 x) (sinh x)) (sin x)))
+d x + * + -10 x sinh x sin x
 
-(d x (* 10 (* x (+ (pow x 9) (* -1 (sinh x))))))
+d x * 10 * x + pow x 9 * -1 sinh x
 
-(* (+ 1 x) (+ x (cosh x)))
+* + 1 x + x cosh x
 + cosh x * x - + x cosh x -1
 + cosh x + x * + x cosh x x
 + cosh x * x + + 1 x cosh x
 
-(d x (pow (sec (* x (pow coth 20))) -1))
+d x pow sec * x pow coth 20 -1
 
-(d x (+ (* -10 (* x (cos x))) (+ (cosh x) (sinh x))))
+d x + * -10 * x cos x + cosh x sinh x
 d x + exp x * * cos x x -10
 d x + * / x sec x -10 exp x
 + d x / -10 / sec x x exp x
 
-(d x (+ (* -10 (* x 1)) (+ (cosh x) (sinh x))))
+d x + * -10 * x 1 + cosh x sinh x
 + - -10 - 0 - exp x 0 0
 + + d x exp x -10 0
 + - -10 - 0 + cosh x sinh x 0
@@ -3899,13 +3899,13 @@ d x + * / x sec x -10 exp x
 + - - sinh x - 10 cosh x 0 0
 + + d x + sinh x cosh x -10 0
 
-(d x (* x (+ (* -10 (atanh x)) (cosh x))))
+d x * x + * -10 atanh x cosh x
 
-(d x (* x (* (+ 1 (exp x)) (sinh x))))
+d x * x * + 1 exp x sinh x
 d x * * + exp x 1 sinh x x
 d x * sinh x + * x exp x x
 
-(+ (* 20 (sinh x)) (ln (pow x 20)))
++ * 20 sinh x ln pow x 20
 + * ln x 20 * 80 * sinh x 0.25
 * + sinh x ln / * x 2 2 20
 * + * 20 ln x * 20 sinh x 1
@@ -3937,9 +3937,9 @@ d x * sinh x + * x exp x x
 + ln pow x 20 / 40 / 2 sinh x
 * * 20 + sinh x ln x 1
 
-(+ x (+ (asin x) (+ (sin (+ x (* 7 pi))) (sinh x))))
++ x + asin x + sin + x * 7 pi sinh x
 
-(d x (ln (pow 30 (+ x (cosh x)))))
+d x ln pow 30 + x cosh x
 + 0 * + - sinh x 0 1 ln 30
 + 0 * ln 30 - d x cosh x -1
 + 0 * / ln 900 2 + sinh x 1
@@ -3962,10 +3962,10 @@ d x * sinh x + * x exp x x
 + 0 * / ln 900 2 - sinh x -1
 + * d x cosh x ln 30 ln 30
 
-(+ (pow x -10) (+ (pow (cot x) -1) (cosh x)))
++ pow x -10 + pow cot x -1 cosh x
 + + pow cot x -1 pow x -10 cosh x
 
-(* -10 (+ (sinh x) (tanh x)))
+* -10 + sinh x tanh x
 + * / sinh x 2 -20 * tanh x -10
 + / -10 / 1 tanh x * sinh x -10
 + * * 0.5 sinh x -20 * tanh x -10
@@ -3988,9 +3988,9 @@ pow * -10 + sinh x tanh x 1
 + / -20 / 2 sinh x * tanh x -10
 * + tanh x sinh * 4 * 0.25 x -10
 
-(d x (+ (atan x) (+ (ln (pow x x)) (sinh x))))
+d x + atan x + ln pow x x sinh x
 
-(cosh (+ -10 (+ x (pow 8 -1))))
+cosh + -10 + x pow 8 -1
 cosh - * x -1 - pow 8 -1 10
 * cosh - 10 + pow 8 -1 x 1
 cosh * -1 + + x pow 8 -1 -10
@@ -4010,7 +4010,7 @@ cosh - 10 + pow 8 -1 x
 cosh - * -1 + pow 8 -1 -10 x
 / cosh - 10 + pow 8 -1 x 1
 
-(+ (cos (+ -10 (+ (* 10 x) (* 1 pi)))) (sinh x))
++ cos + -10 + * 10 x * 1 pi sinh x
 + sinh x cos - pi - 10 * 10 x
 + sinh x cos + + pi -10 * 10 x
 + cos - * -10 x - pi 10 sinh x
@@ -4019,7 +4019,7 @@ cosh - * -1 + pow 8 -1 -10 x
 + cos - + * -10 x 10 pi sinh x
 + cos - - * -10 x pi -10 sinh x
 
-(* -1 (* (+ -100 (* 100 x)) (cosh x)))
+* -1 * + -100 * 100 x cosh x
 * cosh x - 100 * * x -100 -1
 * cosh x - / -200 / 2 x -100
 * 100 - cosh * x -1 * cosh x x
@@ -4055,7 +4055,7 @@ cosh - * -1 + pow 8 -1 -10 x
 * - 100 / 200 / 2 x cosh x
 - * cosh x 100 * 100 * x cosh x
 
-(d x (+ (* 30 x) (* 30 (tanh x))))
+d x + * 30 x * 30 tanh x
 + 0 * - 2 pow tanh x 2 30
 * * 30 + pow sech x 2 1 1
 * 30 - 2 pow / tanh x 1 2
@@ -4104,7 +4104,7 @@ pow * 30 + 1 pow sech x 2 1
 + 30 * 30 pow sech x 2
 pow + * d x tanh x 30 30 1
 
-(d x (+ 10 (+ (cos x) (cosh x))))
+d x + 10 + cos x cosh x
 + - sinh x d x - -9 cos x 0
 + - sinh x / / sin x 1 1 0
 + - sinh x * * sin x -1 -1 0
@@ -4165,21 +4165,21 @@ pow + * d x tanh x 30 30 1
 + + sinh x d x + cos x 11 0
 + * - sin x sinh x -1 0
 
-(cosh (+ 240 (* -10 x)))
+cosh + 240 * -10 x
 
-(d x (cos (atanh (tanh x))))
+d x cos atanh tanh x
 
-(d x (pow coth (+ 620 (* -10 x))))
+d x pow coth + 620 * -10 x
 pow d x pow coth + 620 * -10 x 1
 * 1 d x pow coth + 620 * -10 x
 d x pow coth + 620 * x -10
 + d x pow coth + 620 * -10 x 0
 
-(d x (+ (pow x 2) (* -10 (* x (cosh (* 10 x))))))
+d x + pow x 2 * -10 * x cosh * 10 x
 
-(d x (+ x (* x (* (+ 1 x) (cosh x)))))
+d x + x * x * + 1 x cosh x
 
-(* (pow (csc x) -1) (sinh (+ -10 x)))
+* pow csc x -1 sinh + -10 x
 * sinh + -10 x pow csc x -1
 * pow csc x -1 sinh - -10 * -1 x
 * pow / 1 sin x -1 sinh + -10 x
@@ -4189,7 +4189,7 @@ d x pow coth + 620 * x -10
 / pow csc x -1 / 1 sinh + -10 x
 pow * sinh + x -10 pow csc x -1 1
 
-(+ x (* x (sinh (+ 10 x))))
++ x * x sinh + 10 x
 + * sinh * -1 - -10 x x x
 + * x / sinh + x 10 1 x
 pow * + 1 sinh + x 10 x 1
@@ -4203,18 +4203,18 @@ pow + x * x sinh + 10 x 1
 * + 1 sinh * - -10 x -1 x
 * x + sinh + 10 x 1
 
-(d x (+ x (cos (pow coth 620))))
+d x + x cos pow coth 620
 + d x + x cos pow coth 620 0
 + + 1 d x cos pow coth 620 0
 + - d x cos pow coth 620 -1 0
 
-(+ (* x (sin (+ 80 (* 2 pi)))) (+ (cosh x) (sinh x)))
++ * x sin + 80 * 2 pi + cosh x sinh x
 + * sin - 80 * -2 pi x exp x
 + * x sin + * 2 pi 80 exp x
 
-(d x (+ (pow x 2) (* -10 (* (pow x 2) (sinh x)))))
+d x + pow x 2 * -10 * pow x 2 sinh x
 
-(d x (+ (* -10 x) (+ (* 10 (pow x 2)) (cosh x))))
+d x + * -10 x + * 10 pow x 2 cosh x
 + sinh x + * -20 * x -1 -10
 + sinh x - * -20 - 0 x 10
 + sinh x - * 20 x 10
@@ -4240,7 +4240,7 @@ pow + x * x sinh + 10 x 1
 + + - * 20 x 10 sinh x 0
 + sinh x - * -20 * x -1 10
 
-(+ 1 (cos (pow coth 1)))
++ 1 cos pow coth 1
 + 1 cos * -1 / 2 / 2 coth
 + - 0 / sin coth / -1 cot coth 1
 + 1 / 1 / 1 cos coth
@@ -4374,7 +4374,7 @@ pow + x * x sinh + 10 x 1
 + 1 cos * -0.5 * / coth 2 4
 + 1 cos * -1 * -2 / coth 2
 
-(cosh (pow (sec (+ 1 (* 3 pi))) -1))
+cosh pow sec + 1 * 3 pi -1
 cosh pow sec - 1 * * -1 pi 3 -1
 * cosh pow sec - 1 * pi -3 -1 1
 cosh pow sec + * -1 * pi -3 1 -1
@@ -4402,22 +4402,22 @@ cosh pow / 1 cos - 1 * pi -3 -1
 pow cosh pow sec - 1 * pi -3 -1 1
 cosh pow / 1 cos + 1 * 3 pi -1
 
-(+ (* 8 (* pi x)) (* -5 (* pi (pow coth x))))
++ * 8 * pi x * -5 * pi pow coth x
 * + * pow coth x -5 * 8 x pi
 
-(* (pow x 2) (+ 1 (cosh (* 4 pi))))
+* pow x 2 + 1 cosh * 4 pi
 * pow x 2 + 1 cosh * pi 4
 * pow x 2 + cosh * pi -4 1
 
-(d x (+ (* -10 (pow (sec x) -1)) (tanh x)))
+d x + * -10 pow sec x -1 tanh x
 d x + tanh x * pow sec x -1 -10
 
-(* -10 (* x (+ 1 (* (pow x 10) (sinh x)))))
+* -10 * x + 1 * pow x 10 sinh x
 * -10 + x * pow x 11 sinh x
 
-(d x (+ (* 50 (pow x 2)) (* 20 (* x (sinh x)))))
+d x + * 50 pow x 2 * 20 * x sinh x
 
-(* 10 (+ x (* -1 (sinh (* 10 x)))))
+* 10 + x * -1 sinh * 10 x
 * - x sinh * -2 * x -5 10
 * - x sinh * * x 2 5 10
 * 10 + sinh * -0.5 * x 20 x
@@ -4441,7 +4441,7 @@ d x + tanh x * pow sec x -1 -10
 * - x sinh * 4 * 2.5 x 10
 * * -10 - sinh * 10 x x 1
 
-(* (cos (+ -30 x)) (sinh x))
+* cos + -30 x sinh x
 * cos * + -60 * 2 x -0.5 sinh x
 * cos * * - 30 x -0.5 2 sinh x
 * sinh x cos + -30 * 2 * 0.5 x
@@ -4517,11 +4517,11 @@ d x + tanh x * pow sec x -1 -10
 * cos * -2 / + x -30 2 sinh x
 * sinh x cos - 30 * * x -1 -1
 
-(* -10 (* x (+ (pow x 9) (* -1 (sinh x)))))
+* -10 * x + pow x 9 * -1 sinh x
 * - pow x 10 * sinh x x -10
 * * -10 x - pow x 9 sinh x
 
-(* x (+ x (* (cos x) (sinh x))))
+* x + x * cos x sinh x
 + * x x * x * cos x sinh x
 + * x x * / x sec x sinh x
 * x + x / 1 / sec x sinh x
@@ -4542,7 +4542,7 @@ pow * + / sinh x sec x x x 1
 * - / sinh x sec x * x -1 x
 * 1 * x + x / sinh x sec x
 
-(d x (+ x (sinh (cos (+ 10 (* 4 pi))))))
+d x + x sinh cos + 10 * 4 pi
 d x + x sinh cos - 10 * -4 pi
 + 1 d x sinh cos + * -4 pi -10
 d x + sinh cos + * 4 pi 10 x
@@ -4556,7 +4556,7 @@ d x + sinh cos + -10 * pi -4 x
 + d x sinh cos - 10 * -4 pi 1
 - d x sinh cos - 10 * -4 pi -1
 
-(* x (+ (cos x) (+ (cosh x) (sinh x))))
+* x + cos x + cosh x sinh x
 * * + exp x cos * -1 x x 1
 * + exp * * -1 x -1 cos x x
 * + exp x cos * -2 / x 2 x
@@ -4596,19 +4596,19 @@ d x + sinh cos + -10 * pi -4 x
 * x + exp x cos / -2 / 2 x
 * - 1 - - 1 cos x exp x x
 
-(* x (pow (sinh (pow (csc (+ -10 (* 2 pi))) -1)) -10))
+* x pow sinh pow csc + -10 * 2 pi -1 -10
 
-(+ x (* x (+ x (* -10 (cosh x)))))
++ x * x + x * -10 cosh x
 + x * x + x * -10 cosh x
 
-(+ x (+ (* -10 (sin x)) (+ (cosh x) (sinh x))))
++ x + * -10 sin x + cosh x sinh x
 + + exp x * -10 sin x x
 + - exp x * -1 x * -10 sin x
 
-(+ x (+ (atanh x) (+ (sin x) (sinh x))))
++ x + atanh x + sin x sinh x
 + + x + sin x sinh x atanh x
 
-(d x (* x (+ -90 (cosh x))))
+d x * x + -90 cosh x
 + + cosh * -1 x -90 * sinh x x
 + -90 - d x * x cosh x 0
 + + cosh x + * sinh x x -90 0
@@ -4627,15 +4627,15 @@ d x + sinh cos + -10 * pi -4 x
 + cosh x - * x d x cosh x 90
 + -90 d x * x cosh * -1 x
 
-(* x (+ x (+ 7 (+ (cosh x) (sinh x)))))
+* x + x + 7 + cosh x sinh x
 + * x + x exp x * 7 x
 + pow x 2 * + exp x 7 x
 
-(+ 1 (+ (pow (cot x) -1) (+ (cosh x) (ln x))))
++ 1 + pow cot x -1 + cosh x ln x
 
-(d x (sinh (* x (cos (+ 620 (* 3 pi))))))
+d x sinh * x cos + 620 * 3 pi
 
-(d x (+ x (+ (pow (sec x) -1) (cosh x))))
+d x + x + pow sec x -1 cosh x
 + d x + x pow sec x -1 sinh x
 + + d x pow sec x -1 1 sinh x
 - sinh x - -1 d x pow sec x -1
@@ -4643,7 +4643,7 @@ d x + sinh cos + -10 * pi -4 x
 - d x + pow sec x -1 cosh x -1
 - + d x pow sec x -1 sinh x -1
 
-(d x (+ x (+ (cosh x) (ln (pow (sec x) -1)))))
+d x + x + cosh x ln pow sec x -1
 - d x + ln cos x cosh x -1
 + sinh x + d x ln cos x 1
 - 1 d x - ln sec x cosh x
@@ -4660,7 +4660,7 @@ d x + sinh cos + -10 * pi -4 x
 + - sinh x d x ln sec x 1
 + d x - x ln sec x sinh x
 
-(* 10 (+ x (* -1 (cosh x))))
+* 10 + x * -1 cosh x
 + * x 10 * -10 / cosh x 1
 + * -10 cosh x / 20 / 2 x
 + * 40 * x 0.25 * -10 cosh x
@@ -4676,19 +4676,19 @@ d x + sinh cos + -10 * pi -4 x
 + * -10 cosh x * 20 * 0.5 x
 + * cosh x -10 / * 20 x 2
 
-(+ (pow coth (* 10 x)) -1)
++ pow coth * 10 x -1
 * 1 + pow coth * 10 x -1
 pow + -1 pow coth * x 10 1
 + -1 pow coth * 10 x
 
-(d x (+ x (sinh (sin (+ 10 (* 2 pi))))))
+d x + x sinh sin + 10 * 2 pi
 d x + sinh sin + 10 * 2 pi x
 + 1 d x sinh sin + 10 * pi 2
 
-(+ 1 (+ x (* (pow (sec x) -1) (sinh x))))
++ 1 + x * pow sec x -1 sinh x
 + 1 + * pow sec x -1 sinh x x
 
-(d x (+ (* 620 x) (* 620 (cosh x))))
+d x + * 620 x * 620 cosh x
 - 0 * 620 + * -1 sinh x -1
 - 0 * 620 - * -1 sinh x 1
 + 0 * 620 + d x cosh x 1
@@ -4810,16 +4810,16 @@ d x + sinh sin + 10 * 2 pi x
 - 620 * 620 * sinh x -1
 - * 620 * 0.5 + sinh x sinh x -620
 
-(d x (* x (+ (cos (+ -10 x)) (cosh x))))
+d x * x + cos + -10 x cosh x
 
-(d x (+ (* -10 (tan x)) (* 10 (cosh x))))
+d x + * -10 tan x * 10 cosh x
 + * 10 sinh x d x * -10 tan x
 + * pow sec x 2 -10 * 10 sinh x
 + d x / -10 cot x * sinh x 10
 d x + * -10 tan x * 10 cosh x
 d x + / -10 cot x * 10 cosh x
 
-(+ (pow x 3) (* (pow x 3) (cosh x)))
++ pow x 3 * pow x 3 cosh x
 pow * pow x 3 + cosh x 1 1
 * 1 * + 1 cosh x pow x 3
 * + cosh * -1 x 1 pow x 3
@@ -4830,13 +4830,13 @@ pow * pow x 3 + cosh x 1 1
 + * pow x 3 + cosh x 1 0
 - * pow x 3 + cosh x 1 0
 
-(d x (+ 7 (+ (cosh x) (+ (ln x) (sinh x)))))
+d x + 7 + cosh x + ln x sinh x
 + + d x ln x d x exp x 0
 + - d x + exp x ln x 0 0
 + d x + exp x + 7 ln x 0
 + d x + ln x exp x 0
 
-(d x (+ 1 (+ (sin x) (tanh x))))
+d x + 1 + sin x tanh x
 + cos / * 2 x 2 pow sech x 2
 + - d x sin x 0 pow sech x 2
 + - cos x 0 d x + tanh x 1
@@ -4905,13 +4905,13 @@ pow * pow x 3 + cosh x 1 1
 + / 1 sec x pow sech x 2
 + cos * -1 x d x tanh x
 
-(d x (cosh (pow (sec (+ 120 (* 7 pi))) -1)))
+d x cosh pow sec + 120 * 7 pi -1
 
-(d x (+ (* -10 x) (* x (sinh (* 10 x)))))
+d x + * -10 x * x sinh * 10 x
 d x * x + sinh * x 10 -10
 - d x * x sinh * 10 x 10
 
-(+ 20 (* 20 (sinh x)))
++ 20 * 20 sinh x
 * + 20 * / sinh x 2 40 1
 + 20 / 20 / 1 sinh x
 + * 20 sinh / 2 / 2 x 20
@@ -4964,7 +4964,7 @@ pow + 20 * 80 * sinh x 0.25 1
 + 20 * / 80 / 2 sinh x 0.5
 + 20 / 1 * / 1 sinh x 0.05
 
-(+ (* 30 x) (* 10 (* x (sinh x))))
++ * 30 x * 10 * x sinh x
 pow * x + 30 * sinh x 10 1
 * + 30 * 20 * sinh x 0.5 x
 + * 30 x * sinh x * 10 x
@@ -4977,12 +4977,12 @@ pow * x + 30 * sinh x 10 1
 * + 30 / 10 / 1 sinh x x
 * * + 30 * sinh x 10 x 1
 
-(* x (* (exp (+ -10 (* -10 x))) (sinh x)))
+* x * exp + -10 * -10 x sinh x
 * sinh x * x exp + -10 * x -10
 
-(+ x (+ (pow x 2) (+ (* x (sinh x)) (exp x))))
++ x + pow x 2 + * x sinh x exp x
 
-(+ (tan (* 10 x)) (tanh x))
++ tan * 10 x tanh x
 + tan * 2 * * 0.25 x 20 tanh x
 + / 1 / 1 tan * x 10 tanh x
 - tanh x tan * -5 * * 0.5 x 4
@@ -5053,13 +5053,13 @@ pow * x + 30 * sinh x 10 1
 + tan / 10 / 2 * 2 x tanh x
 + tan * -1 / -20 / 2 x tanh x
 
-(d x (+ (* -10 (sin (+ (* 9 pi) (acosh x)))) (sinh x)))
+d x + * -10 sin + * 9 pi acosh x sinh x
 
-(+ (* x (pow (csc (+ -10 (* 4 pi))) -1)) (tanh x))
++ * x pow csc + -10 * 4 pi -1 tanh x
 
-(d x (+ 1 (+ (pow (sec (+ x (* 6 pi))) -1) (tanh x))))
+d x + 1 + pow sec + x * 6 pi -1 tanh x
 
-(d x (+ (* -10 (atan x)) (* -10 (tanh x))))
+d x + * -10 atan x * -10 tanh x
 + * d x + tanh x atan x -10 0
 d x + * atan x -10 * tanh x -10
 * d x + tanh x atan / x 1 -10
@@ -5069,7 +5069,7 @@ d x + * atan x -10 * tanh x -10
 * -10 d x + atan x tanh x
 pow d x * + atan x tanh x -10 1
 
-(d x (* 310 (+ 1 (* 2 (sinh x)))))
+d x * 310 + 1 * 2 sinh x
 * d x * * 2 sinh x 2 155
 * 2 * 0.5 * d x sinh x 620
 - - * d x sinh x 620 0 0
@@ -5180,57 +5180,57 @@ pow - d x * sinh x 620 0 1
 * d x / 620 / 1 sinh x 1
 * 77.5 d x * 8 / sinh x 1
 
-(d x (* x (+ 1 (+ (pow (sec x) -1) (cosh x)))))
+d x * x + 1 + pow sec x -1 cosh x
 
-(* 9 (+ pi (+ (* -20 (cosh x)) (* 2 (acos x)))))
+* 9 + pi + * -20 cosh x * 2 acos x
 
-(* x (+ 1 (* 100 (* (+ -1 x) (sinh x)))))
+* x + 1 * 100 * + -1 x sinh x
 
-(d x (+ (* -60 (sinh x)) (* 60 (* x (cosh x)))))
+d x + * -60 sinh x * 60 * x cosh x
 
-(d x (* 3 (+ pi (* 2 (* x (cosh x))))))
+d x * 3 + pi * 2 * x cosh x
 
-(+ x (+ (* -10 (* x (sinh x))) (sin x)))
++ x + * -10 * x sinh x sin x
 + sin x * x - * sinh x -10 -1
 + + x * -10 * sinh x x sin x
 + sin x * + 1 * -10 sinh x x
 
-(* (+ -10 (sin (+ x (* 3 pi)))) (cosh x))
+* + -10 sin + x * 3 pi cosh x
 
-(d x (+ (* -10 x) (* 10 (* (pow x 2) (cosh x)))))
+d x + * -10 x * 10 * pow x 2 cosh x
 
-(d x (* x (+ -10 (tanh (pow 1 -1)))))
+d x * x + -10 tanh pow 1 -1
 
-(+ (* -10 (pow (csc (+ -1 (* 2 pi))) -1)) (tanh x))
++ * -10 pow csc + -1 * 2 pi -1 tanh x
 
-(+ x (+ (* -10 (sin (+ 1 (* 5 pi)))) (sinh x)))
++ x + * -10 sin + 1 * 5 pi sinh x
 
-(d x (+ (* 7 (* pi (ln x))) (cosh x)))
+d x + * 7 * pi ln x cosh x
 + d x * * ln x pi 7 sinh x
 
-(d x (+ (cosh x) (ln (pow x (pow x -10)))))
+d x + cosh x ln pow x pow x -10
 + sinh x d x ln pow x pow x -10
 + sinh x d x * pow x -10 ln x
 
-(+ -10 (+ x (+ (* -10 (sinh x)) (* x (sinh x)))))
++ -10 + x + * -10 sinh x * x sinh x
 * * + sinh x 1 + x -10 1
 * + x -10 + 1 / sinh x 1
 + x + -10 * sinh x + x -10
 pow * + 1 sinh x + -10 x 1
 * + 1 sinh x + -10 x
 
-(d x (* x (* (+ 1 (sin x)) (cosh x))))
+d x * x * + 1 sin x cosh x
 d x * x * + 1 sin x cosh x
 d x * cosh x + x * x sin x
 
-(d x (+ (* (pow x 2) (sinh x)) (cos x)))
+d x + * pow x 2 sinh x cos x
 
-(d x (+ (* (cosh x) (sinh x)) (exp x)))
+d x + * cosh x sinh x exp x
 + exp x d x * sinh x cosh x
 
-(d x (* (+ -10 (* -10 x)) (cosh x)))
+d x * + -10 * -10 x cosh x
 
-(d x (+ (* -1030 (tanh x)) (* 1030 x)))
+d x + * -1030 tanh x * 1030 x
 pow + 1030 * pow sech x 2 -1030 1
 + 0 + * -1030 d x tanh x 1030
 + 1030 - -1030 * -1030 pow tanh x 2
@@ -5255,7 +5255,7 @@ d x + * tanh x -1030 * x 1030
 - 0 * pow tanh / x 1 2 -1030
 pow + * -1030 d x tanh x 1030 1
 
-(+ (* -70 x) (* x (cosh x)))
++ * -70 x * x cosh x
 + * cosh x x * -140 / x 2
 + * cosh x x * -140 * x 0.5
 + * -70 x / x / 1 cosh x
@@ -5269,14 +5269,14 @@ pow + * -1030 d x tanh x 1030 1
 + * x cosh x * 35 * x -2
 + * * x -1 70 * x cosh x
 
-(d x (+ (pow (sec (ln x)) -1) (tanh x)))
+d x + pow sec ln x -1 tanh x
 d x + pow sec ln x -1 tanh x
 
-(d x (pow (+ x (sinh (sin (+ 10 (* 5 pi))))) -10))
+d x pow + x sinh sin + 10 * 5 pi -10
 
-(d x (sinh (ln (pow x 8))))
+d x sinh ln pow x 8
 
-(d x (+ (* -10 (sinh x)) (* 240 x)))
+d x + * -10 sinh x * 240 x
 + * -20 * 0.5 - cosh x 0 240
 + + * -10 cosh x 240 0
 + 240 d x * -40 * sinh x 0.25
@@ -5330,13 +5330,13 @@ pow + * -10 d x sinh x 240 1
 + 240 * * -5 cosh * -1 x 2
 pow + * * -5 cosh x 2 240 1
 
-(d x (* x (+ (* x (+ -10 x)) (sinh x))))
+d x * x + * x + -10 x sinh x
 
-(d x (+ (* 2 (sinh x)) (+ (cos x) (cosh x))))
+d x + * 2 sinh x + cos x cosh x
 
-(d x (+ x (* -10 (tanh (pow (csc (+ -10 (* 1 pi))) -1)))))
+d x + x * -10 tanh pow csc + -10 * 1 pi -1
 
-(+ (atan x) (+ (cosh x) (+ (sin x) (sinh x))))
++ atan x + cosh x + sin x sinh x
 + atan x - exp x sin * -1 x
 + exp x + / cos x cot x atan x
 + cosh x + + sinh x sin x atan x
@@ -5344,15 +5344,15 @@ pow + * * -5 cosh x 2 240 1
 + + exp x atan x * cos x tan x
 + + atan x / tan x sec x exp x
 
-(* x (+ x (* 20 (cosh x))))
+* x + x * 20 cosh x
 + pow x 2 * * x 20 cosh x
 + * x x * * cosh x x 20
 
-(d x (tanh (* x (+ 1 (pow 3 -1)))))
+d x tanh * x + 1 pow 3 -1
 d x tanh * x + 1 pow 3 -1
 d x tanh + x * x pow 3 -1
 
-(* -10 (* (pow (sec x) -1) (sinh x)))
+* -10 * pow sec x -1 sinh x
 * pow / 1 cos x -1 * -10 sinh x
 / pow sec x -1 * / 1 sinh x -0.1
 * * sinh x * pow sec x -1 -10 1
@@ -5368,12 +5368,12 @@ pow * sinh x * pow sec x -1 -10 1
 * pow sec x -1 * -40 * sinh x 0.25
 / -10 / / 1 sinh x pow sec x -1
 
-(d x (+ (pow (csc x) -1) (sinh (asin x))))
+d x + pow csc x -1 sinh asin x
 d x + pow csc x -1 sinh asin x
 
-(d x (+ (* x (cosh x)) (* 5 (* pi (cosh x)))))
+d x + * x cosh x * 5 * pi cosh x
 
-(d x (* (+ 240 x) (sinh x)))
+d x * + 240 x sinh x
 pow d x * sinh x + x 240 1
 + sinh x * cosh x + 240 x
 * + sinh x * + 240 x cosh x 1
@@ -5391,19 +5391,19 @@ d x * sinh x - + 240 x 0
 + sinh x * - cosh x 0 + 240 x
 * d x * + x 240 sinh x 1
 
-(d x (tan (pow coth 20)))
+d x tan pow coth 20
 + 0 d x / 1 cot pow coth 20
 + d x tan pow coth 20 0
 
-(+ 1 (+ (* x (pow (sec x) -1)) (cosh x)))
++ 1 + * x pow sec x -1 cosh x
 - * x pow sec x -1 - -1 cosh x
 + 1 + * x pow sec x -1 cosh x
 
-(d x (* (pow (sin (+ 10 (* 1 pi))) -10) (+ x (cosh x))))
+d x * pow sin + 10 * 1 pi -10 + x cosh x
 
-(d x (* -10 (* x (+ 1 (* (pow x 9) (cosh x))))))
+d x * -10 * x + 1 * pow x 9 cosh x
 
-(tanh (+ -130 (* -10 x)))
+tanh + -130 * -10 x
 tanh * + -32.5 * 0.5 * x -5 4
 tanh / + -260 * 4 * -5 x 2
 tanh + / -20 / 2 x -130
@@ -5458,7 +5458,7 @@ tanh * 0.5 + -260 * 4 * x -5
 tanh + * * 2 * x -2.5 2 -130
 * 1 tanh + -130 / -20 / 2 x
 
-(d x (+ (cos x) (sinh x)))
+d x + cos x sinh x
 + + cosh x d x / 1 sec x 0
 + - cosh x - 0 d x cos x 0
 + - + cosh x - 0 sin x 0 0
@@ -5515,26 +5515,26 @@ tanh + * * 2 * x -2.5 2 -130
 + - cosh * -2 * x 0.5 sin x 0
 + + - 0 sin x d x sinh x 0
 
-(* 10 (+ x (* -1 (cosh (* 10 x)))))
+* 10 + x * -1 cosh * 10 x
 - * 10 x * 10 cosh * x 10
 - * 10 x * 10 cosh * -10 x
 + * -10 cosh * -10 x * x 10
 + * x 10 * -10 cosh * 10 x
 
-(d x (+ (* 2.7 (exp x)) (cosh x)))
+d x + * 2.7 exp x cosh x
 
-(+ (pow x 3) (* x (sinh x)))
++ pow x 3 * x sinh x
 + pow x 3 / x / 1 sinh x
 + pow x 3 * / sinh x 1 x
 pow + pow x 3 * sinh x x 1
 + pow x 3 * sinh x x
 * + * sinh x x pow x 3 1
 
-(d x (+ x (* x (cosh (+ -10 x)))))
+d x + x * x cosh + -10 x
 + 1 d x * x cosh + x -10
 + 1 d x * cosh - 10 x x
 
-(tan (* x (pow coth 1)))
+tan * x pow coth 1
 * 1 tan * x / * 2 coth 2
 * 1 tan * -1 * -1 * x coth
 * 1 / 1 / 1 tan * x coth
@@ -5547,7 +5547,7 @@ pow + pow x 3 * sinh x x 1
 * 1 / 1 cot * coth x
 * 1 tan / 2 / / 2 x coth
 
-(d x (+ x (+ (pow coth (* 10 x)) -1)))
+d x + x + pow coth * 10 x -1
 pow + 1 d x pow coth * x 10 1
 + 0 d x + x pow coth * 10 x
 d x + pow coth * 10 x + -1 x
@@ -5559,18 +5559,18 @@ pow d x + pow coth * 10 x x 1
 * + d x pow coth * 10 x 1 1
 d x + pow coth * 10 x x
 
-(+ (pow x 2) (* -10 (* x (sinh (asin x)))))
++ pow x 2 * -10 * x sinh asin x
 + pow x 2 * -10 * sinh asin x x
 
-(d x (+ x (* -10 (atanh (tanh (cos x))))))
+d x + x * -10 atanh tanh cos x
 - * d x atanh tanh cos x -10 -1
 + 1 * d x atanh tanh cos x -10
 d x + * atanh tanh cos x -10 x
 
-(+ (* -100 x) (+ (* -10 (* x (cosh x))) (cos x)))
++ * -100 x + * -10 * x cosh x cos x
 + * x + * cosh x -10 -100 cos x
 
-(* (+ 620 x) (sinh x))
+* + 620 x sinh x
 * sinh x + 620 * 4 * x 0.25
 * + x 620 sinh x
 * sinh x + / 2 / 2 x 620
@@ -5592,7 +5592,7 @@ d x + * atanh tanh cos x -10 x
 + * 620 / sinh x 1 * x sinh x
 * 2 * sinh x + * 0.5 x 310
 
-(d x (+ (* x (+ -10 (* 10 x))) (sinh x)))
+d x + * x + -10 * 10 x sinh x
 + + * 40 * x 0.5 -10 cosh x
 + + -10 * * 10 x 2 cosh x
 + + / 40 / 2 x cosh x -10
@@ -5607,22 +5607,22 @@ pow + cosh x + * 20 x -10 1
 + 0 + + cosh x * 20 x -10
 + + -10 cosh x * 20 x
 
-(* x (sin (+ (* 7 pi) (tanh (* 2 pi)))))
+* x sin + * 7 pi tanh * 2 pi
 
-(d x (* -10 (* (pow x -10) (cosh (cos (+ 10 (* 9 pi)))))))
+d x * -10 * pow x -10 cosh cos + 10 * 9 pi
 
-(d x (* x (+ 1 (* 20 (sinh (ln x))))))
+d x * x + 1 * 20 sinh ln x
 + 1 * d x * x sinh ln x 20
 d x + * * x 20 sinh ln x x
 
-(+ (* -10 (* x (pow (sec (+ x (* 9 pi))) -1))) (cosh x))
++ * -10 * x pow sec + x * 9 pi -1 cosh x
 
-(+ (* (pow x 2) (sin x)) (tanh x))
++ * pow x 2 sin x tanh x
 + tanh x * sin x pow x 2
 
-(+ (pow (sec (+ x (* 6 pi))) -1) (* x (cosh x)))
++ pow sec + x * 6 pi -1 * x cosh x
 
-(d x (* (+ x (* x 1)) (sinh x)))
+d x * + x * x 1 sinh x
 + 0 * + * cosh x x sinh x 2
 + 0 d x * * x sinh x 2
 + 0 d x * + x x sinh x
@@ -5630,7 +5630,7 @@ d x + * * x 20 sinh ln x x
 + * * cosh x 2 x * 2 sinh x
 + * cosh x + x x * sinh x 2
 
-(d x (+ 1 (+ x (+ (cos x) (cosh x)))))
+d x + 1 + x + cos x cosh x
 + + + sinh x 1 - 0 sin x 0
 d x - cosh x - 1 + x cos x
 - - 1 sin x d x - 1 cosh x
@@ -5841,19 +5841,19 @@ pow + 1 d x + cos x cosh x 1
 - d x + cos x cosh * -1 x -1
 d x + cosh x - cos x - 0 x
 
-(+ -10 (+ (pow (cot x) -1) (* -10 (tanh x))))
++ -10 + pow cot x -1 * -10 tanh x
 + + * -10 tanh x pow cot x -1 -10
 
-(d x (* (+ -10 (* 10 (pow x 10))) (sinh x)))
+d x * + -10 * 10 pow x 10 sinh x
 
-(sinh (* x (acosh (pow 9 -1))))
+sinh * x acosh pow 9 -1
 * 1 sinh * acosh pow 9 -1 x
 * / sinh * acosh pow 9 -1 x 1 1
 * -1 * -1 sinh * acosh pow 9 -1 x
 
-(+ x (+ (* x (+ x (sin (+ x (* 5 pi))))) (sinh x)))
++ x + * x + x sin + x * 5 pi sinh x
 
-(+ (* -10 x) (tanh (+ x 5)))
++ * -10 x tanh + x 5
 + / -20 / 2 x tanh + 5 x
 pow + * -10 x tanh + x 5 1
 + tanh + x 5 * -10 x
@@ -5861,13 +5861,13 @@ pow + * -10 x tanh + x 5 1
 + * x -10 / tanh + x 5 1
 * + * x -10 tanh + x 5 1
 
-(pow (sinh (pow (sec (+ 10 (* 3 pi))) -1)) -10)
+pow sinh pow sec + 10 * 3 pi -1 -10
 pow sinh pow sec - 10 * -3 pi -1 -10
 pow sinh pow sec + -10 * -3 pi -1 -10
 pow sinh pow sec + * pi 3 10 -1 -10
 pow sinh pow sec - -10 * pi 3 -1 -10
 
-(d x (+ -10 (* (pow (csc x) -1) (sinh x))))
+d x + -10 * pow csc x -1 sinh x
 pow d x * sinh x pow csc x -1 1
 d x * pow csc x -1 / sinh x 1
 * 1 d x * sinh x pow csc x -1
@@ -5877,9 +5877,9 @@ d x + * pow csc x -1 sinh x -10
 d x * pow / 1 sin x -1 sinh x
 d x * sinh x pow csc x -1
 
-(+ x (+ (cos (+ x (* 4 pi))) (+ (ln x) (tanh x))))
++ x + cos + x * 4 pi + ln x tanh x
 
-(d x (+ (* 10 (asinh x)) (* 10 (tanh x))))
+d x + * 10 asinh x * 10 tanh x
 d x + * asinh x 10 * 10 tanh x
 * 10 + d x asinh x d x tanh x
 + * d x + tanh x asinh x 10 0
@@ -5889,15 +5889,15 @@ d x + * asinh x 10 * 10 tanh x
 d x * 10 + asinh / x 1 tanh x
 pow d x * 10 + asinh x tanh x 1
 
-(+ (* -10 (* x (ln x))) (+ (cos x) (tanh x)))
++ * -10 * x ln x + cos x tanh x
 
-(d x (+ 1 (+ x (+ (tan (+ -10 x)) (tanh x)))))
+d x + 1 + x + tan + -10 x tanh x
 + 1 d x - tanh x tan - 10 x
 d x - + tanh x x tan - 10 x
 d x + x + tan + x -10 tanh x
 + d x + tanh x tan + -10 x 1
 
-(d x (* (pow coth 6) 10))
+d x * pow coth 6 10
 * * 6 pow coth 5 * d x coth 10
 d x * 10 pow coth 6
 * 1 d x * 10 pow coth 6
@@ -5908,7 +5908,7 @@ pow * pow coth 5 * 60 d x coth 1
 * pow coth 5 * 60 d x coth
 * * pow coth 5 * 60 d x coth 1
 
-(+ (* 10 x) (* x (cosh (asin x))))
++ * 10 x * x cosh asin x
 * + 10 cosh * * 2 asin x 0.5 x
 * x + 10 cosh / -2 / 2 asin x
 + * x 10 * cosh / asin x 1 x
@@ -5942,7 +5942,7 @@ pow * x + 10 cosh asin x 1
 * x + cosh * * 0.25 asin x 4 10
 * x + 10 cosh / * asin x -2 2
 
-(+ x (ln (pow x (sinh (* 5 pi)))))
++ x ln pow x sinh * 5 pi
 + x / ln x / 1 sinh * 5 pi
 + x * ln x sinh * 20 * 0.25 pi
 + x ln pow x sinh * -1 * -5 pi
@@ -5965,15 +5965,15 @@ pow * x + 10 cosh asin x 1
 + x ln pow x sinh * 20 * 0.25 pi
 + x ln pow x / sinh * pi 5 1
 
-(d x (* x (* (+ -10 (* 10 x)) (+ x (sinh x)))))
+d x * x * + -10 * 10 x + x sinh x
 
-(d x (* x (+ 1 (+ (* -10 (sinh x)) (cos x)))))
+d x * x + 1 + * -10 sinh x cos x
 
-(d x (* (pow 2 -1) (* (csc (+ -250 (* 8 pi))) (sinh x))))
+d x * pow 2 -1 * csc + -250 * 8 pi sinh x
 
-(* -1 (* x (+ -10 (+ (* -1 (cosh x)) (* 10 x)))))
+* -1 * x + -10 + * -1 cosh x * 10 x
 
-(* x (+ -10 (cosh (* 20 x))))
+* x + -10 cosh * 20 x
 * x + -10 cosh * -0.5 * 40 x
 + * -10 x * x cosh * x -20
 * x + cosh * * x -1 -20 -10
@@ -6031,15 +6031,15 @@ pow * + -10 cosh * x 20 x 1
 * + cosh * -2 * 10 x -10 x
 * - cosh / -40 / 2 x 10 x
 
-(d x (+ (* -10 (* x (sinh x))) (sin (ln x))))
+d x + * -10 * x sinh x sin ln x
 
-(d x (+ (pow (sec (+ 1 (* 2 pi))) -1) (* -10 (tanh x))))
+d x + pow sec + 1 * 2 pi -1 * -10 tanh x
 
-(d x (+ (cosh x) (+ (sin (+ 9 (* 8 pi))) (sinh x))))
+d x + cosh x + sin + 9 * 8 pi sinh x
 + exp x d x sin - 9 * -8 pi
 + exp x d x sin + 9 * pi 8
 
-(+ x (* x (cosh (pow 8 -1))))
++ x * x cosh pow 8 -1
 - * x + cosh pow 8 -1 2 x
 + * x cosh pow 8 -1 x
 * + / cosh pow 8 -1 1 1 x
@@ -6058,18 +6058,18 @@ pow * + cosh pow 8 -1 1 x 1
 + 0 * + cosh pow 8 -1 1 x
 * + 1 cosh * pow 8 -1 -1 x
 
-(d x (+ (* (+ -10 x) (cosh x)) (cos (+ x (* 2 pi)))))
+d x + * + -10 x cosh x cos + x * 2 pi
 
-(+ x (+ (* -10 (sin (ln x))) (tanh x)))
++ x + * -10 sin ln x tanh x
 + + * -10 sin ln x x tanh x
 
-(* (pow (sec (+ 1020 (* 6 pi))) -1) (sinh x))
+* pow sec + 1020 * 6 pi -1 sinh x
 * pow sec + -1020 * pi -6 -1 sinh x
 * sinh x pow sec + 1020 * pi 6 -1
 * sinh x pow sec - 1020 * -6 pi -1
 * sinh x pow sec - -1020 * pi 6 -1
 
-(+ (* x (* 8 (exp x))) (cosh x))
++ * x * 8 exp x cosh x
 + * exp x * 32 * x 0.25 cosh x
 - cosh x * / -8 / 1 x exp x
 + cosh * x -1 * * 8 x exp x
@@ -6100,7 +6100,7 @@ pow + * * 8 x exp x cosh x 1
 + / * exp x 16 / 2 x cosh x
 * 1 + cosh x * * exp x x 8
 
-(d x (+ (* -20 (ln x)) (sinh x)))
+d x + * -20 ln x sinh x
 + cosh * x -1 * / 1 x -20
 + cosh x / -20 * * -0.5 x -2
 * 1 + - cosh x 0 / -20 x
@@ -6160,7 +6160,7 @@ pow + * / 1 x -20 cosh x 1
 + - cosh x 0 * -20 d x ln x
 + / -20 x cosh / -2 / 2 x
 
-(d x (* -2 (+ -1 (* 5 (sinh x)))))
+d x * -2 + -1 * 5 sinh x
 * 1 * -10 cosh * 2 * x 0.5
 * - * cosh x -2 0 5
 + 0 d x * -20 * 0.5 sinh x
@@ -6473,9 +6473,9 @@ pow * * * cosh x 0.5 10 -2 1
 * -2 * 10 - * 0.5 cosh x 0
 - * cosh * * x 0.5 2 -10 0
 
-(d x (+ x (+ (atanh x) (+ (cosh x) (+ (sin x) (sinh x))))))
+d x + x + atanh x + cosh x + sin x sinh x
 
-(+ (cos (* 10 x)) (cosh x))
++ cos * 10 x cosh x
 + cos * 20 * 0.5 x - cosh x 0
 + + cos * * 20 x -0.5 cosh x 0
 + - cos * * x -1 10 0 cosh x
@@ -6624,21 +6624,21 @@ pow * * * cosh x 0.5 10 -2 1
 - + cosh x 1 - 1 cos * -10 x
 + - cos * 20 / x 2 0 cosh x
 
-(+ 1 (+ (cos (+ x (* 4 pi))) (tanh x)))
++ 1 + cos + x * 4 pi tanh x
 + cos + x * pi 4 + 1 tanh x
 + 1 + tanh x cos - x * pi -4
 
-(d x (+ (* x (cos (+ x (* 8 pi)))) (sinh (acos x))))
+d x + * x cos + x * 8 pi sinh acos x
 
-(d x (+ x (* (sin (+ 1 (* 2 pi))) (tanh x))))
+d x + x * sin + 1 * 2 pi tanh x
 
-(+ x (* x (* (cos (+ 1 (* 2 pi))) (sinh x))))
++ x * x * cos + 1 * 2 pi sinh x
 
-(d x (ln (pow (* x (exp (sinh x))) x)))
+d x ln pow * x exp sinh x x
 
-(d x (+ (* x (ln x)) (+ (acosh x) (cosh x))))
+d x + * x ln x + acosh x cosh x
 
-(* -10 (cosh (cos (+ 10 (* 3 pi)))))
+* -10 cosh cos + 10 * 3 pi
 * cosh / cos - 10 * pi -3 1 -10
 * * -10 cosh cos + -10 * pi -3 1
 * cosh cos - 10 * * pi -1 3 -10
@@ -6676,9 +6676,9 @@ pow * -10 cosh cos - 10 * pi -3 1
 / -10 / 1 cosh cos + -10 * -3 pi
 * cosh cos + * * pi -3 -1 10 -10
 
-(d x (* (pow 6 -1) (* (csc (+ -20 (* 6 pi))) (tanh x))))
+d x * pow 6 -1 * csc + -20 * 6 pi tanh x
 
-(* x (+ 1 (pow coth 20)))
+* x + 1 pow coth 20
 pow + * pow coth 20 x x 1
 pow * x + 1 pow coth 20 1
 * 1 + * x pow coth 20 x
@@ -6686,9 +6686,9 @@ pow * x + 1 pow coth 20 1
 + * x pow coth 20 x
 * + 1 pow coth 20 x
 
-(d x (+ (pow (+ 10 (* -10 x)) -10) (cosh x)))
+d x + pow + 10 * -10 x -10 cosh x
 
-(ln (pow 10 (sinh x)))
+ln pow 10 sinh x
 + * sinh x ln 10 * 15 ln 1
 + * 12 ln 1 * sinh x ln 10
 + ln 1 ln pow 10 / sinh x 1
@@ -6727,17 +6727,17 @@ pow * x + 1 pow coth 20 1
 + * 12 ln 1 ln pow 10 sinh x
 + ln pow 10 sinh x * 7 ln 1
 
-(d x (+ (pow (sinh x) -10) (* -10 (sin x))))
+d x + pow sinh x -10 * -10 sin x
 + d x pow sinh x -10 * cos x -10
 d x + * -10 sin x pow sinh x -10
 + d x pow sinh x -10 / -10 sec x
 
-(+ x (+ (pow (cot x) -1) (* x (sinh x))))
++ x + pow cot x -1 * x sinh x
 + * x - sinh x -1 pow cot x -1
 + * x sinh x + x pow cot x -1
 + * x + sinh x 1 pow cot x -1
 
-(d x (+ (cos (+ 20 x)) (+ (cosh x) (sinh x))))
+d x + cos + 20 x + cosh x sinh x
 - exp x sin - 20 / -2 / 2 x
 - exp x sin / 2 / 2 + x 20
 - exp x sin * * - -20 x -0.5 2
@@ -6849,7 +6849,7 @@ d x + * -10 sin x pow sinh x -10
 + exp x d x / cos - -20 x 1
 + sin - -20 * 2 / x 2 exp x
 
-(d x (+ -10 (+ x (+ (* -10 (tan x)) (sinh x)))))
+d x + -10 + x + * -10 tan x sinh x
 + 1 d x + sinh x / -10 cot x
 + d x + / -10 cot x x cosh x
 + + 1 d x * -10 tan x cosh x
@@ -6859,11 +6859,11 @@ d x + + sinh x * -10 tan x x
 + d x + * tan x -10 x cosh x
 + d x + * tan x -10 sinh x 1
 
-(d x (+ (* -10 (sinh x)) (sin (+ (* 6 pi) (asinh x)))))
+d x + * -10 sinh x sin + * 6 pi asinh x
 
-(d x (* (+ (* 30 x) (cosh x)) (cos x)))
+d x * + * 30 x cosh x cos x
 
-(* x (+ 1 (* 10 (pow coth x))))
+* x + 1 * 10 pow coth x
 * 1 + x * * pow coth x x 10
 pow + * 10 * pow coth x x x 1
 * x + 1 * pow coth x 10
@@ -6871,7 +6871,7 @@ pow * x + 1 * pow coth x 10 1
 * * x + 1 * 10 pow coth x 1
 + x * pow coth x * x 10
 
-(+ (* 80 (tanh x)) (* 160 x))
++ * 80 tanh x * 160 x
 * + tanh x / * 4 x 2 80
 + * tanh x 80 * 80 * x 2
 * + tanh x / 2 / 1 x 80
@@ -6893,9 +6893,9 @@ pow * + * x 2 tanh x 80 1
 * + tanh x * 4 * x 0.5 80
 + * tanh / x 1 80 * 160 x
 
-(d x (+ x (* -10 (* (+ x (sin x)) (cosh x)))))
+d x + x * -10 * + x sin x cosh x
 
-(d x (* -10 (+ (* 2 x) (cosh x))))
+d x * -10 + * 2 x cosh x
 + 0 - - * sinh x -10 0 20
 + + -20 * -10 sinh x 0
 + 0 - -20 * -10 * -1 sinh x
@@ -6911,21 +6911,21 @@ pow * + * x 2 tanh x 80 1
 + 0 * -10 - - sinh x -2 0
 + 0 * -10 + 2 sinh x
 
-(d x (* x (* (cosh x) (sin (+ x (* 3 pi))))))
+d x * x * cosh x sin + x * 3 pi
 
-(d x (+ (* 10 x) (* x (cosh (+ -10 x)))))
+d x + * 10 x * x cosh + -10 x
 + d x * cosh + -10 x x 10
 + d x * cosh - 10 x x 10
 - d x * x cosh - 10 x -10
 - d x * cosh + -10 x x -10
 
-(d x (* -10 (+ x (cosh (asin x)))))
+d x * -10 + x cosh asin x
 
-(sinh (+ x (* x (pow 8 -10))))
+sinh + x * x pow 8 -10
 * 1 sinh + x * x pow 8 -10
 * 1 sinh * x + pow 8 -10 1
 
-(* 20 (+ 2 (cosh x)))
+* 20 + 2 cosh x
 + * pow sinh / x 2 2 40 60
 * 20 + 2 cosh * 0.5 * -2 x
 * + cosh * * x -0.5 2 2 20
@@ -6993,7 +6993,7 @@ pow * + cosh / x 1 2 20 1
 * 20 + 2 cosh * -1 x
 * 20 + 2 cosh / * x 2 2
 
-(d x (+ (* 1020 x) (* x (sinh x))))
+d x + * 1020 x * x sinh x
 d x + * sinh x x * x 1020
 pow + + * x cosh x 1020 sinh x 1
 + + * x d x sinh x 1020 sinh x
@@ -7009,45 +7009,45 @@ d x * + sinh x 1020 x
 pow + 1020 d x * x sinh x 1
 + + sinh x * cosh * x -1 x 1020
 
-(d x (+ 1 (+ x (+ (* -10 (cosh x)) (* x (cosh x))))))
+d x + 1 + x + * -10 cosh x * x cosh x
 + 1 d x * cosh x + -10 x
 + + * + x -10 sinh x cosh x 1
 
-(d x (* -1 (* x (+ 10 (* 10 (pow coth 10))))))
+d x * -1 * x + 10 * 10 pow coth 10
 
-(+ 1 (* x (pow coth 7)))
++ 1 * x pow coth 7
 + 1 * pow coth 7 x
 pow + * pow coth 7 x 1 1
 * 1 + * pow coth 7 x 1
 
-(d x (* (+ x (* x (cosh x))) (sin (+ x (* 4 pi)))))
+d x * + x * x cosh x sin + x * 4 pi
 
-(d x (+ (pow x -10) (+ (cos x) (cosh x))))
+d x + pow x -10 + cos x cosh x
 + d x + pow x -10 cos x sinh x
 + sinh x - d x pow x -10 sin x
 + * -10 pow x -11 - sinh x sin x
 
-(d x (+ (* -10 (sinh x)) (* 10 (cos x))))
+d x + * -10 sinh x * 10 cos x
 + * cosh x -10 d x / 10 sec x
 d x + * sinh x -10 * 10 cos x
 + * -10 cosh x d x * 10 cos x
 + * 10 sin * -1 x * -10 cosh x
 d x + * -10 sinh x / 10 sec x
 
-(d x (+ 1 (+ (pow (sec x) -1) (* x (sinh x)))))
+d x + 1 + pow sec x -1 * x sinh x
 d x + * x sinh x pow sec x -1
 
-(d x (pow coth (+ x (* -10 6))))
+d x pow coth + x * -10 6
 * d x pow coth + x -60 1
 pow d x pow coth + -60 x 1
 d x pow coth + -60 x
 + 0 d x pow coth + -60 x
 
-(d x (* x (+ 1 (+ (acosh x) (sinh x)))))
+d x * x + 1 + acosh x sinh x
 + 1 d x * x + acosh x sinh x
 d x + x * + acosh x sinh x x
 
-(+ (* -10 (acosh x)) (* 10 (sinh x)))
++ * -10 acosh x * 10 sinh x
 + * 10 / sinh x 1 * -10 acosh x
 + * -10 acosh x * 20 / sinh x 2
 pow + * -10 acosh x * sinh x 10 1
@@ -7059,7 +7059,7 @@ pow + * -10 acosh x * sinh x 10 1
 + * -10 acosh x / 10 / 1 sinh x
 + * * sinh x 20 0.5 * -10 acosh x
 
-(+ -10 (+ x (+ 9 (cosh x))))
++ -10 + x + 9 cosh x
 + + 9 x + -10 cosh * -1 x
 + - 0 - 1 / x 1 cosh x
 + + cosh + + x -1 1 -1 x
@@ -7180,11 +7180,11 @@ pow + * -10 acosh x * sinh x 10 1
 + - * 0.5 * 2 x 1 cosh x
 + cosh x + - 10 * x -1 -11
 
-(* x (+ (* -10 x) (sinh (cos (+ 10 (* 9 pi))))))
+* x + * -10 x sinh cos + 10 * 9 pi
 
-(d x (* x (+ x (* -5 (sinh (* 2 x))))))
+d x * x + x * -5 sinh * 2 x
 
-(+ (* (+ -10 x) (cos x)) (sinh x))
++ * + -10 x cos x sinh x
 + * cos x + -10 x sinh x
 + sinh x * / cos x 1 + x -10
 pow + sinh x / + x -10 sec x 1
@@ -7199,7 +7199,7 @@ pow + * + x -10 cos x sinh x 1
 + / 1 / sec x + -10 x sinh x
 - / + -10 x sec x sinh * x -1
 
-(d x (+ -10 (+ (pow x 2) (* x (cosh x)))))
+d x + -10 + pow x 2 * x cosh x
 + * 2 x + cosh x * x sinh x
 + cosh x * - -2 sinh x - 0 x
 + cosh x * - 2 * sinh x -1 x
@@ -7214,29 +7214,29 @@ pow + * + x -10 cos x sinh x 1
 + cosh x * + 2 sinh x x
 + cosh x * - -2 sinh x * x -1
 
-(d x (* -10 (* (pow x -9) (+ 1 (pow coth x)))))
+d x * -10 * pow x -9 + 1 pow coth x
 
-(d x (+ x (+ (atan x) (+ (sinh x) (tan x)))))
+d x + x + atan x + sinh x tan x
 
-(* -10 (+ 1 (+ x (* x (cosh x)))))
+* -10 + 1 + x * x cosh x
 + -10 * * -10 x - cosh x -1
 + -10 * x + -10 * cosh x -10
 + -10 * -10 + x * x cosh x
 + -10 * * + cosh x 1 x -10
 
-(d x (+ x (+ (pow (sec x) -1) (+ (cosh x) (ln x)))))
+d x + x + pow sec x -1 + cosh x ln x
 
-(+ (* -9 (sinh x)) (+ (cosh x) (sin (+ x (* 8 pi)))))
++ * -9 sinh x + cosh x sin + x * 8 pi
 
-(* 20 (* (pow (sec (+ x (* 7 pi))) -1) (cosh x)))
+* 20 * pow sec + x * 7 pi -1 cosh x
 
-(+ x (+ (* -10 (* x (sinh x))) 2))
++ x + * -10 * x sinh x 2
 + x + 2 * * x -10 sinh x
 + * x + * sinh x -10 1 2
 
-(d x (+ (* -10 (sin (+ 10 (+ x (* 2 pi))))) (sinh x)))
+d x + * -10 sin + 10 + x * 2 pi sinh x
 
-(* (cosh x) (* 4 (exp x)))
+* cosh x * 4 exp x
 pow * cosh * x -1 * exp x 4 1
 / exp x / * / 1 cosh x 0.25 1
 * * 4 exp x cosh * 0.5 * -2 x
@@ -7283,7 +7283,7 @@ pow * exp x * cosh x 4 1
 * exp x * 4 cosh * -0.5 + x x
 * / 4 / / 1 cosh x 1 exp x
 
-(+ 620 (+ (cos x) (+ (cosh x) (sinh x))))
++ 620 + cos x + cosh x sinh x
 + exp x + 620 cos * -1 * -1 x
 + + cos / * 2 x 2 exp x 620
 * + cos x + 620 exp x 1
@@ -7331,9 +7331,9 @@ pow * exp x * cosh x 4 1
 + - 621 - 1 cos x exp x
 + exp x + 620 / 1 sec x
 
-(* x (+ -10 (+ (cos (+ x (* 9 pi))) (cosh x))))
+* x + -10 + cos + x * 9 pi cosh x
 
-(* x (+ 30 (cosh x)))
+* x + 30 cosh x
 - * 30 x * x * cosh x -1
 + * * 2 x 15 * cosh x x
 + * x cosh x * 7.5 * x 4
@@ -7347,17 +7347,17 @@ pow * exp x * cosh x 4 1
 + * x 30 * x / cosh x 1
 + * x cosh x / 60 / 2 x
 
-(* (+ (cosh x) (sinh x)) (cos (+ 80 (* 6 pi))))
+* + cosh x sinh x cos + 80 * 6 pi
 
-(+ x (* -10 (* x (+ 1 (+ x (sinh x))))))
++ x * -10 * x + 1 + x sinh x
 * + -9 * -10 + sinh x x x
 
-(d x (* -10 (+ -62 (cosh x))))
+d x * -10 + -62 cosh x
 
-(+ (* x (sin (+ x (* 7 pi)))) (sinh x))
++ * x sin + x * 7 pi sinh x
 + sinh x * sin + * 7 pi x x
 
-(+ x (* -10 (* (pow (sinh x) -10) 6)))
++ x * -10 * pow sinh x -10 6
 + x * -10 * 6 pow sinh x -10
 - * pow sinh x -10 -60 * -1 x
 * 1 + * -60 pow sinh x -10 x
@@ -7365,9 +7365,9 @@ pow * exp x * cosh x 4 1
 pow + * -60 pow sinh x -10 x 1
 + * -60 pow sinh x -10 x
 
-(d x (* x (+ (pow x 2) (cosh x))))
+d x * x + pow x 2 cosh x
 
-(sinh (+ x 6))
+sinh + x 6
 + * cosh 6 sinh x * cosh x sinh 6
 * 1 sinh + x 6
 * 0.5 * sinh + x 6 2
@@ -7410,13 +7410,13 @@ pow + * -60 pow sinh x -10 x 1
 * 2 / sinh + 6 x 2
 * 1 sinh + * * 2 x 0.5 6
 
-(+ (* -10 (sinh x)) (* 10 (* x (exp x))))
++ * -10 sinh x * 10 * x exp x
 + * -10 sinh x * * exp x 10 x
 
-(+ (pow (cos x) -10) (* -10 (* x (sinh x))))
++ pow cos x -10 * -10 * x sinh x
 + * -10 * x sinh x pow cos x -10
 
-(+ (ln (pow x 8)) (sinh x))
++ ln pow x 8 sinh x
 + * ln x 8 sinh * * x -0.5 -2
 + sinh * / x 2 2 ln pow x 8
 + * 2 * 0.5 sinh x ln pow x 8
@@ -7438,10 +7438,10 @@ pow + * -60 pow sinh x -10 x 1
 + ln pow x 8 / sinh x 1
 + + * ln x 8 ln 1 sinh x
 
-(d x (* 90 (+ (* -1 (sinh x)) (* x (cosh x)))))
+d x * 90 + * -1 sinh x * x cosh x
 d x * 90 - * cosh x x sinh x
 
-(d x (+ 10 (* -10 (asinh (pow coth 10)))))
+d x + 10 * -10 asinh pow coth 10
 pow / d x asinh pow coth 10 -0.1 1
 d x + * -10 asinh pow coth 10 10
 d x - * -10 asinh pow coth 10 -10
@@ -7458,7 +7458,7 @@ d x * -10 asinh pow coth 10
 / d x - asinh pow coth 10 0 -0.1
 * 1 / d x asinh pow coth 10 -0.1
 
-(* 100 (+ 1 (sinh x)))
+* 100 + 1 sinh x
 + * 2 * 25 * sinh x 2 100
 + 100 * / 2 / 2 sinh x 100
 + 100 * 50 * * sinh x 0.5 4
@@ -7524,7 +7524,7 @@ pow + * / sinh x 2 200 100 1
 + 100 * sinh * * x -1 -1 100
 + * 400 / / sinh x 2 2 100
 
-(d x (+ -10 (+ (* -10 x) (* -10 (* x (cosh x))))))
+d x + -10 + * -10 x * -10 * x cosh x
 d x * -10 + x * cosh x x
 d x * x * + cosh x 1 -10
 * - d x * cosh x x -1 -10
@@ -7535,7 +7535,7 @@ d x * x * + cosh x 1 -10
 * -10 - + * x sinh x cosh x -1
 - * d x * x cosh x -10 10
 
-(* x (+ x (pow coth 10)))
+* x + x pow coth 10
 * 1 + * x pow coth 10 * x x
 + pow x 2 * x pow coth 10
 + * pow coth 10 x * x x
@@ -7546,28 +7546,28 @@ pow * x + pow coth 10 x 1
 pow + pow x 2 * x pow coth 10 1
 * 1 + * pow coth 10 x pow x 2
 
-(* -10 (sinh (* x (pow 9 -1))))
+* -10 sinh * x pow 9 -1
 * -10 sinh * pow 9 -1 x
 * -10 / sinh * x pow 9 -1 1
 * * sinh * pow 9 -1 x -10 1
 
-(+ -10 (+ x (+ (* -10 (cosh x)) (cos x))))
++ -10 + x + * -10 cosh x cos x
 + * -10 cosh x + cos x + x -10
 
-(+ (* -10 x) (* -10 (* x (pow (tanh x) -10))))
++ * -10 x * -10 * x pow tanh x -10
 * x + -10 * pow tanh x -10 -10
 * -10 * x + 1 pow tanh x -10
 * -10 + x * x pow tanh x -10
 
-(d x (* (pow (tanh x) -10) (cos (+ 10 (* 8 pi)))))
+d x * pow tanh x -10 cos + 10 * 8 pi
 
-(d x (+ (* (cos x) (sinh x)) (cosh x)))
+d x + * cos x sinh x cosh x
 + sinh x d x * sinh x cos x
 + d x / sinh x sec x sinh x
 
-(+ (* (pow x -10) (cos (+ 10 (* 5 pi)))) (cosh x))
++ * pow x -10 cos + 10 * 5 pi cosh x
 
-(* -10 (cosh (+ -1 (* 10 x))))
+* -10 cosh + -1 * 10 x
 * * cosh + -1 * 10 x -10 1
 * -10 cosh * -1 + 1 * -10 x
 pow * -10 cosh + -1 * x 10 1
@@ -7613,7 +7613,7 @@ pow * cosh - 1 * 10 x -10 1
 * cosh + * x 10 -1 -10
 * 1 * cosh + * -10 x 1 -10
 
-(* -1 (ln (pow (sinh x) 10)))
+* -1 ln pow sinh x 10
 * - 0 * -1 ln sinh x -10
 * - * ln / 1 sinh x -1 0 -10
 * * -10 ln / * sinh x 2 2 1
@@ -7777,17 +7777,17 @@ pow * cosh - 1 * 10 x -10 1
 * * -10 ln / 1 / 1 sinh x 1
 + * -1 ln pow sinh x 10 0
 
-(d x (+ x (+ (cos x) (+ (cosh x) (+ (ln x) (sinh x))))))
+d x + x + cos x + cosh x + ln x sinh x
 + + - 1 sin x exp x / 1 x
 
-(d x (* x (+ 1 (+ x (+ (ln x) (sinh x))))))
+d x * x + 1 + x + ln x sinh x
 
-(d x (* -10 (* x (sinh (cos (+ 10 (* 7 pi)))))))
+d x * -10 * x sinh cos + 10 * 7 pi
 
-(d x (* x (+ x (* (exp x) (sinh x)))))
+d x * x + x * exp x sinh x
 d x * + x * sinh x exp x x
 
-(* 10 (sinh (+ 9 (* 10 x))))
+* 10 sinh + 9 * 10 x
 * sinh + * 20 / x 2 9 10
 * sinh * -1 + -9 * x -10 10
 * sinh + 9 * * -10 x -1 10
@@ -7815,13 +7815,13 @@ pow * sinh - 9 * -10 x 10 1
 * 1 * 10 sinh - 9 * x -10
 * 40 * sinh - 9 * -10 x 0.25
 
-(d x (cosh (+ (* -10 x) (* -10 (cos (+ 10 (* 8 pi)))))))
+d x cosh + * -10 x * -10 cos + 10 * 8 pi
 
-(+ (* x (acos x)) (+ (sin (+ x (* 2 pi))) (tanh x)))
++ * x acos x + sin + x * 2 pi tanh x
 
-(* (+ (cosh x) (sin x)) (sin (+ x (* 7 pi))))
+* + cosh x sin x sin + x * 7 pi
 
-(d x (+ 10 (+ (cos (+ -10 x)) (+ (cosh x) (sinh x)))))
+d x + 10 + cos + -10 x + cosh x sinh x
 d x + / cos + -10 x 1 exp x
 d x + cos + -10 x + exp x 10
 + d x cos - 10 x d x exp x
@@ -7845,18 +7845,18 @@ pow d x + cos - 10 x exp x 1
 d x + exp x / 1 sec - 10 x
 d x + exp x + 10 cos - 10 x
 
-(sinh (+ x (pow (sec (+ 120 (* 3 pi))) -1)))
+sinh + x pow sec + 120 * 3 pi -1
 sinh + pow sec + -120 * pi -3 -1 x
 sinh + x pow sec - 120 * pi -3 -1
 sinh + pow sec + 120 * 3 pi -1 x
 sinh + x pow sec - -120 * pi 3 -1
 
-(+ (pow coth (+ 1 x)) -1)
++ pow coth + 1 x -1
 + -1 pow coth + x 1
 pow + -1 pow coth + x 1 1
 * 1 + pow coth + 1 x -1
 
-(d x (+ -80 (* 10 (cosh x))))
+d x + -80 * 10 cosh x
 * 5 - exp x exp * -1 / x 1
 * 10 sinh / 2 / 4 * 2 x
 - * sinh * -1 * x -1 10 0
@@ -8006,22 +8006,22 @@ pow + -1 pow coth + x 1 1
 * 10 sinh * -0.5 * -4 / x 2
 - 0 * 10 sinh / -2 / 2 x
 
-(+ x (+ (* 10 (ln x)) (sinh x)))
++ x + * 10 ln x sinh x
 + x + * 10 ln x sinh x
 + + / sinh x 1 x * 10 ln x
 + - x sinh * x -1 * 10 ln x
 + + * 10 - ln x 0 sinh x x
 
-(* x (sinh (* x (+ x (pow x -10)))))
+* x sinh * x + x pow x -10
 * x sinh + pow x -9 pow x 2
 * sinh * + pow x -10 x x x
 * x sinh + * x x pow x -9
 
-(* -1 (* x (+ 10 (* -1 (* (pow x -10) (cosh x))))))
+* -1 * x + 10 * -1 * pow x -10 cosh x
 - * cosh x pow x -9 * 10 x
 + * -10 x * cosh x pow x -9
 
-(atanh (tanh (tan x)))
+atanh tanh tan x
 + ln + 1 x - 0 ln - 1 x
 atanh tanh / sin x cos * * x 0.5 2
 atanh tanh * / sin x 1 sec x
@@ -8221,11 +8221,11 @@ atanh tanh / 1 / 1 tan x
 atanh tanh / 1 * csc x cos x
 atanh tanh / 1 / cot x 1
 
-(+ 1 (ln (pow x (pow coth 3120))))
++ 1 ln pow x pow coth 3120
 + 1 + * pow coth 3120 ln x ln 1
 + 1 + ln pow x pow coth 3120 ln 1
 
-(d x (+ x (+ (cosh x) (+ 6 (ln (* -1 x))))))
+d x + x + cosh x + 6 ln * -1 x
 + 1 + - sinh x 0 d x ln x
 + d x + ln x + cosh x x 0
 + 1 + d x cosh x d x ln x
@@ -8280,7 +8280,7 @@ atanh tanh / 1 / cot x 1
 + d x + cosh x x / 1 x
 + - sinh x -1 / -1 * x -1
 
-(d x (* (+ -10 (+ (cosh x) (sinh x))) 3))
+d x * + -10 + cosh x sinh x 3
 + * exp * 0.5 * 2 x 3 0
 + * 3 cosh x * * sinh x 1.5 2
 + * 3 + cosh x d x cosh x 0
@@ -8317,7 +8317,7 @@ atanh tanh / 1 / cot x 1
 + 0 + * 3 cosh x * sinh x 3
 + * - cosh x 0 3 * sinh x 3
 
-(+ (* -50 (tanh x)) (* 50 x))
++ * -50 tanh x * 50 x
 + * tanh x -50 * 50 x
 * + * x 50 * tanh x -50 1
 + * 50 x * -50 tanh / x 1
@@ -8330,7 +8330,7 @@ pow + * -50 tanh x * 50 x 1
 + / * x 100 2 * tanh x -50
 + * tanh x -50 * * 25 x 2
 
-(* (pow (sinh x) -10) (cos (+ 20 (* 9 pi))))
+* pow sinh x -10 cos + 20 * 9 pi
 * cos + * pi -9 -20 pow sinh x -10
 * cos - -20 * pi 9 pow sinh x -10
 / pow sinh x -10 sec + 20 * pi 9
@@ -8340,11 +8340,11 @@ pow + * -50 tanh x * 50 x 1
 / pow sinh x -10 sec + -20 * pi -9
 / pow sinh x -10 sec - -20 * pi 9
 
-(+ (* -10 (sin (+ 10 (* 3 pi)))) (tanh x))
++ * -10 sin + 10 * 3 pi tanh x
 + * sin - 10 * -3 pi -10 tanh x
 + * sin + * 3 pi 10 -10 tanh x
 
-(d x (+ (pow 3 -1) (+ (* -10 x) (tanh x))))
+d x + pow 3 -1 + * -10 x tanh x
 + 0 + -10 d x tanh / x 1
 - -9 pow tanh / x 1 2
 pow - -9 pow tanh / x 1 2 1
@@ -8446,10 +8446,10 @@ pow - 1 - pow tanh x 2 -10 1
 pow + -10 d x tanh x 1
 + pow sech * 8 * 0.125 x 2 -10
 
-(tan (* x (pow coth 120)))
+tan * x pow coth 120
 * / 1 cot * x pow coth 120 1
 
-(d x (+ (cosh (* 7 pi)) (tan x)))
+d x + cosh * 7 pi tan x
 + d x + cosh * -7 pi tan x 0
 + d x + cosh * 7 pi tan x 0
 + d x cosh * -7 pi d x tan x
@@ -8457,9 +8457,9 @@ pow + -10 d x tanh x 1
 + d x cosh * 7 pi d x tan x
 + d x cosh * pi -7 pow sec x 2
 
-(* x (+ (* -10 (cosh x)) (* 10 x)))
+* x + * -10 cosh x * 10 x
 
-(d x (+ 20 (+ x (+ (tan x) (tanh x)))))
+d x + 20 + x + tan x tanh x
 - 2 - pow tanh x 2 d x tan x
 - 2 - pow tanh x 2 pow sec x 2
 + 0 d x + tan x + tanh x x
@@ -8489,11 +8489,11 @@ d x + / 1 cot x + x tanh x
 + d x + tan x x pow sech x 2
 d x + tanh x + x + tan x 20
 
-(d x (* (pow (+ 10 (tanh x)) -10) (sin x)))
+d x * pow + 10 tanh x -10 sin x
 
-(d x (* 10 (* x (+ -1 (+ x (sinh x))))))
+d x * 10 * x + -1 + x sinh x
 
-(+ (pow (sec x) -1) (* 20 (tanh x)))
++ pow sec x -1 * 20 tanh x
 + * tanh x 20 pow sec x -1
 + * tanh x 20 pow sec * -1 x -1
 * + pow sec x -1 * tanh x 20 1
@@ -8502,12 +8502,12 @@ d x + tanh x + x + tan x 20
 + / 20 / 1 tanh x pow sec x -1
 pow + pow sec x -1 * 20 tanh x 1
 
-(d x (* x (+ -9 (+ x (pow coth 10)))))
+d x * x + -9 + x pow coth 10
 d x * x + + pow coth 10 -9 x
 
-(d x (+ (* -10 (sinh x)) (sin (+ 10 (+ x (* 6 pi))))))
+d x + * -10 sinh x sin + 10 + x * 6 pi
 
-(d x (+ (* x (+ 60 x)) (sinh x)))
+d x + * x + 60 x sinh x
 + + + 60 + cosh x x x 0
 + + d x * x x 60 cosh x
 + - cosh x 0 + * 2 x 60
@@ -8527,7 +8527,7 @@ d x * x + + pow coth 10 -9 x
 + + cosh x 60 d x pow x 2
 + + cosh * -1 x * 2 x 60
 
-(* -10 (+ (* -1 (sinh x)) (acosh x)))
+* -10 + * -1 sinh x acosh x
 * + * 10 sinh x * -10 acosh x 1
 * -10 - acosh x / sinh x 1
 * -10 + sinh * x -1 acosh x
@@ -8577,7 +8577,7 @@ pow * + sinh * -1 x acosh x -10 1
 pow * - acosh x / sinh x 1 -10 1
 pow + * -10 acosh x * 10 sinh x 1
 
-(d x (+ 1 (+ 7 (sinh x))))
+d x + 1 + 7 sinh x
 + d * * x 0.5 2 sinh x 0
 + 0 cosh * -1 * -2 * x 0.5
 + 0 cosh * 2 * -1 / x 2
@@ -8709,7 +8709,7 @@ pow + * -10 acosh x * 10 sinh x 1
 + 0 cosh / -2 / 1 * x 0.5
 + 0 - cosh * / x 2 2 0
 
-(d x (+ 1 (+ (cos x) (+ (cosh x) (exp x)))))
+d x + 1 + cos x + cosh x exp x
 + - sinh x sin x d x exp x
 + sinh x + * -1 sin x exp x
 + - exp x / tan x sec x sinh x
@@ -8724,7 +8724,7 @@ pow + * -10 acosh x * 10 sinh x 1
 + exp x - - sinh x sin x 0
 + exp x d x + cosh x cos x
 
-(d x (* 10 (+ (* 2 (sinh x)) (* 7 x))))
+d x * 10 + * 2 sinh x * 7 x
 pow + 70 * * 4 cosh x 5 1
 * + * 2 cosh * -1 x 7 10
 + 70 d x * 2.5 * sinh x 8
@@ -8786,13 +8786,13 @@ pow + * * 0.5 cosh x 40 70 1
 + * 20 cosh x 70
 * * + * 2 cosh x 7 10 1
 
-(d x (+ (pow (cot x) -1) (sinh (* 10 x))))
+d x + pow cot x -1 sinh * 10 x
 d x + pow cot x -1 sinh * x 10
 
-(+ -10 (+ (* -10 x) (+ (sinh x) (tan x))))
++ -10 + * -10 x + sinh x tan x
 + + -10 * -10 x + sinh x tan x
 
-(+ (* 10 (* x (+ -1 x))) (cosh x))
++ * 10 * x + -1 x cosh x
 + cosh x * * + -1 x x 10
 + cosh x * * x 10 - x 1
 + * x + -10 * x 10 cosh x
@@ -8804,16 +8804,16 @@ d x + pow cot x -1 sinh * x 10
 + cosh x * * x - 1 x -10
 + * 10 - pow x 2 x cosh x
 
-(+ 10 (* -10 (* (pow 6 -1) (sinh x))))
++ 10 * -10 * pow 6 -1 sinh x
 + * * pow 6 -1 sinh x -10 10
 
-(* (pow x 2) (+ 1 (pow coth 120)))
+* pow x 2 + 1 pow coth 120
 + pow x 2 * pow coth 120 pow x 2
 * pow x 2 + pow coth 120 1
 * 1 * + pow coth 120 1 pow x 2
 pow * + 1 pow coth 120 pow x 2 1
 
-(* x (tanh (sin (+ 1 (* 4 pi)))))
+* x tanh sin + 1 * 4 pi
 * tanh sin * + * -4 pi -1 -1 x
 * x tanh sin * -1 - -1 * 4 pi
 pow * tanh sin + 1 * 4 pi x 1
@@ -8827,14 +8827,14 @@ pow * x tanh sin - 1 * -4 pi 1
 / x / 1 tanh sin - 1 * -4 pi
 * 1 * x tanh sin + * 4 pi 1
 
-(d x (tanh (+ 210 (* -10 x))))
+d x tanh + 210 * -10 x
 + 0 d x tanh - 210 * x 10
 + 0 d x tanh + * x -10 210
 
-(+ (pow x -9) (* (pow x 2) (cosh x)))
++ pow x -9 * pow x 2 cosh x
 + * cosh x pow x 2 pow x -9
 
-(+ x (* -10 (* x (tan (pow coth 1)))))
++ x * -10 * x tan pow coth 1
 * x + 1 / 1 / cot coth -10
 * + / -10 * csc coth cos coth 1 x
 + / * x -10 * csc coth cos coth x
@@ -8866,31 +8866,31 @@ pow + x / * -10 x cot coth 1
 + / * -10 x / 1 tan coth x
 * 1 * + 1 * tan coth -10 x
 
-(* (exp (pow coth 10)) -1)
+* exp pow coth 10 -1
 * -1 exp pow coth 10
 pow * -1 exp pow coth 10 1
 * * exp pow coth 10 -1 1
 
-(d x (+ (pow (csc x) -1) (+ (* 20 x) (tanh x))))
+d x + pow csc x -1 + * 20 x tanh x
 + 20 d x + pow csc x -1 tanh x
 
-(* (pow (csc (+ (* 5 pi) (* -1 x))) -1) (+ 1 (sinh x)))
+* pow csc + * 5 pi * -1 x -1 + 1 sinh x
 
-(d x (+ x (+ (pow (csc (+ -1 (* 2 pi))) -1) (cosh x))))
+d x + x + pow csc + -1 * 2 pi -1 cosh x
 
-(d x (+ (* -10 x) (* x (pow coth 10))))
+d x + * -10 x * x pow coth 10
 + -10 d x * x pow coth 10
 pow + d x * pow coth 10 x -10 1
 + 0 + d x * x pow coth 10 -10
 * 1 d x * x + -10 pow coth 10
 d x + * x pow coth 10 * -10 x
 
-(+ (* -10 (cosh (asin x))) (sin (+ x (* 8 pi))))
++ * -10 cosh asin x sin + x * 8 pi
 
-(d x (* x (+ x (* -10 (pow coth 120)))))
+d x * x + x * -10 pow coth 120
 d x * x + x * -10 pow coth 120
 
-(d x (+ (* -1 (* x (+ 10 (* 10 x)))) (tanh x)))
+d x + * -1 * x + 10 * 10 x tanh x
 + pow sech x 2 - -10 * x 20
 + pow sech x 2 - * x -20 10
 + d x tanh x + * x -20 -10
@@ -8899,7 +8899,7 @@ d x * x + x * -10 pow coth 120
 + * -20 x + -10 pow sech x 2
 + * -20 x - -9 pow tanh x 2
 
-(* x (+ (acosh x) (sinh x)))
+* x + acosh x sinh x
 * / x 2 * 2 + acosh x sinh x
 / + acosh x sinh x / / 2 x 2
 pow + * sinh x x * acosh x x 1
@@ -8922,7 +8922,7 @@ pow * x + sinh x acosh x 1
 / + acosh x sinh x / 1 x
 * x + sinh / 1 / 1 x acosh x
 
-(+ 1 (tan (pow coth 10)))
++ 1 tan pow coth 10
 + tan * * 0.5 pow coth 10 2 1
 + 1 / 1 / 1 tan pow coth 10
 + tan * / pow coth 10 2 2 1
@@ -8940,12 +8940,12 @@ pow * x + sinh x acosh x 1
 - 1 * -1 tan pow coth 10
 + tan pow coth 10 1
 
-(d x (cosh (+ x (* -10 (pow (csc (+ -1 (* 8 pi))) -1)))))
+d x cosh + x * -10 pow csc + -1 * 8 pi -1
 
-(d x (* (pow x -10) (+ 1 (pow coth 10))))
+d x * pow x -10 + 1 pow coth 10
 d x * + pow coth 10 1 pow x -10
 
-(d x (* 10 (+ 6 (+ x (cosh x)))))
+d x * 10 + 6 + x cosh x
 + * * -1 * -1 sinh x 10 10
 + 10 * sinh * 4 * 0.25 x 10
 + d x + 60 * cosh x 10 10
@@ -8982,10 +8982,10 @@ d x * + pow coth 10 1 pow x -10
 + 10 * 10 sinh * * x -0.5 -2
 + 0 * 10 - sinh x -1
 
-(d x (+ x (* 1 (* x (sinh (* 2 x))))))
+d x + x * 1 * x sinh * 2 x
 + 1 d x * x sinh * x 2
 
-(* x (* (cos x) (cosh x)))
+* x * cos x cosh x
 * * -1 * x -1 / cosh x sec x
 * x * / cos x 1 cosh x
 * x * cosh x cos * -1 * -1 x
@@ -9007,16 +9007,16 @@ d x * + pow coth 10 1 pow x -10
 * / 2 / 2 x / cosh x sec x
 * x * cosh x / sin x tan x
 
-(+ (* x (+ -10 x)) (+ (cos x) (tanh x)))
++ * x + -10 x + cos x tanh x
 + + cos x * x + -10 x tanh x
 
-(d x (* 10 (sinh (+ -20 (* 10 x)))))
+d x * 10 sinh + -20 * 10 x
 d x * sinh + * 10 x -20 10
 * d x sinh - -20 * x -10 10
 
-(d x (* -10 (cos (+ x (pow coth 120)))))
+d x * -10 cos + x pow coth 120
 
-(+ (* -10 x) (* -10 (pow coth 10)))
++ * -10 x * -10 pow coth 10
 * + x pow coth 10 -10
 pow * + pow coth 10 x -10 1
 pow + * -10 x * pow coth 10 -10 1
@@ -9024,10 +9024,10 @@ pow + * -10 x * pow coth 10 -10 1
 * + * pow coth 10 -10 * x -10 1
 * 1 * + pow coth 10 x -10
 
-(d x (+ (* x (asinh x)) (* -10 (* x (sinh x)))))
+d x + * x asinh x * -10 * x sinh x
 d x * + * -10 sinh x asinh x x
 
-(d x (+ (* 20 (sin x)) (tanh x)))
+d x + * 20 sin x tanh x
 + pow sech * -1 x 2 * 20 cos x
 + pow sech x 2 * 20 - cos x 0
 + / 20 / 1 cos x pow sech x 2
@@ -9067,9 +9067,9 @@ pow d x + * 20 sin x tanh x 1
 + d x tanh x / 1 / sec x 20
 + 0 + / 20 sec x d x tanh x
 
-(sinh (* x (pow (csc (+ -1020 (* 7 pi))) -1)))
+sinh * x pow csc + -1020 * 7 pi -1
 
-(+ (* x (cos (+ 10 (* 9 pi)))) (cosh x))
++ * x cos + 10 * 9 pi cosh x
 + * x cos + * pi -9 -10 cosh x
 + / x sec + 10 * 9 pi cosh x
 + * x cos + 10 * pi 9 cosh x
@@ -9079,9 +9079,9 @@ pow d x + * 20 sin x tanh x 1
 + / x sec - -10 * 9 pi cosh x
 + cosh x * cos - -10 * pi 9 x
 
-(d x (+ x (+ (pow (sec x) -1) (+ (acos x) (tanh x)))))
+d x + x + pow sec x -1 + acos x tanh x
 
-(d x (+ -10 (+ (* -10 (pow coth 10)) -1)))
+d x + -10 + * -10 pow coth 10 -1
 + * -100 * d x coth pow coth 9 0
 * 10 * * -10 d x coth pow coth 9
 + 0 d x * pow coth 10 -10
@@ -9105,9 +9105,9 @@ d x + -10 * pow coth 10 -10
 d x + -11 * -10 pow coth 10
 pow * -100 * d x coth pow coth 9 1
 
-(* x (+ x (+ (* -10 (* x (sinh x))) (cos x))))
+* x + x + * -10 * x sinh x cos x
 
-(+ (* 620 x) (* x (sinh x)))
++ * 620 x * x sinh x
 pow + * 620 x * x sinh x 1
 + * 310 * x 2 * x sinh x
 * * + / sinh x 1 620 x 1
@@ -9137,11 +9137,11 @@ pow * + sinh x 620 x 1
 * + sinh x 620 x
 * + 620 sinh x / * 2 x 2
 
-(d x (* 10 (* x (+ x (cosh x)))))
+d x * 10 * x + x cosh x
 
-(* (+ x (* x (+ 20 x))) (cosh x))
+* + x * x + 20 x cosh x
 
-(* x (+ 1 (pow coth 1)))
+* x + 1 pow coth 1
 * 1 * + coth 1 x
 + x * coth x
 * 1 + * x coth x
@@ -9149,13 +9149,13 @@ pow * + sinh x 620 x 1
 pow + x * x coth 1
 pow * x + 1 coth 1
 
-(d x (+ (* x (cosh x)) (sin (+ 1 (* 1 pi)))))
+d x + * x cosh x sin + 1 * 1 pi
 
-(+ (pow (csc (+ -1 (+ (* 4 pi) (* -1 x)))) -1) (tanh x))
++ pow csc + -1 + * 4 pi * -1 x -1 tanh x
 
-(d x (pow (sec (* x (pow coth 1020))) -1))
+d x pow sec * x pow coth 1020 -1
 
-(* 20 (+ -2 (* 3 (cosh x))))
+* 20 + -2 * 3 cosh x
 * 1 + -40 * * cosh x 20 3
 + -40 * cosh * x -1 60
 pow * 20 + * 3 cosh x -2 1
@@ -9210,21 +9210,21 @@ pow + * 60 cosh x -40 1
 + / 1 * 0.016666666666666666 / 1 cosh x -40
 pow + * * 20 cosh x 3 -40 1
 
-(* -1 (* x (* (pow coth (* 9 pi)) 10)))
+* -1 * x * pow coth * 9 pi 10
 * pow coth * pi 9 * * x -1 10
 * 1 * * -10 pow coth * 9 pi x
 * pow coth * pi 9 * x -10
 pow * pow coth * 9 pi * x -10 1
 
-(d x (* x (+ (* -10 (sinh x)) (sin (+ x (* 1 pi))))))
+d x * x + * -10 sinh x sin + x * 1 pi
 
-(d x (+ (* -100 x) (* -10 (* x (pow coth 10)))))
+d x + * -100 x * -10 * x pow coth 10
 d x * * x -10 + pow coth 10 10
 + d x * -10 * pow coth 10 x -100
 
-(d x (+ x (+ (acosh x) (+ (sin x) (sinh x)))))
+d x + x + acosh x + sin x sinh x
 
-(+ 10 (+ (* 10 x) (* 10 (cosh x))))
++ 10 + * 10 x * 10 cosh x
 + * 10 cosh x * + 1 x 10
 + - 10 * -10 x * cosh x 10
 + 20 - * 10 + cosh x x 10
@@ -9237,13 +9237,13 @@ d x * * x -10 + pow coth 10 10
 + + 10 * 10 + x cosh x 0
 + - * 10 + cosh x x 0 10
 
-(d x (* x (* (+ 1 (sin x)) (sinh x))))
+d x * x * + 1 sin x sinh x
 
-(d x (* x (+ x (+ (* -10 (cosh x)) (cos x)))))
+d x * x + x + * -10 cosh x cos x
 
-(+ x (+ (* -10 (sin (+ x (* 9 pi)))) (cosh (+ 10 x))))
++ x + * -10 sin + x * 9 pi cosh + 10 x
 
-(d x (+ 10 (* 10 (sinh x))))
+d x + 10 * 10 sinh x
 - d x / 20 / 2 sinh x 0
 - * 5 d x * 2 sinh x 0
 - - * 10 cosh x 0 0
@@ -9389,22 +9389,22 @@ d x * * x -10 + pow coth 10 10
 * 10 d x / * sinh x 2 2
 * 10 cosh * * 0.25 x 4
 
-(d x (* x (+ x (sinh (* 4 pi)))))
+d x * x + x sinh * 4 pi
 d x * + sinh * 4 pi x x
 
-(+ (* -10 x) (+ (cos x) (tanh (* 10 x))))
++ * -10 x + cos x tanh * 10 x
 + - cos x * x 10 tanh * 10 x
 + * -10 x + tanh * 10 x cos x
 + - cos x tanh * -10 x * -10 x
 
-(d x (+ (* -10 (cosh (acos x))) (cos (+ x (* 4 pi)))))
+d x + * -10 cosh acos x cos + x * 4 pi
 
-(+ x (* -10 (* x (+ (cosh x) (exp x)))))
++ x * -10 * x + cosh x exp x
 + * x * -10 + cosh x exp x x
 
-(d x (pow (tanh (cos (+ 10 (* 6 pi)))) -10))
+d x pow tanh cos + 10 * 6 pi -10
 
-(+ (* -4100 (tanh x)) (* 4100 x))
++ * -4100 tanh x * 4100 x
 + * tanh x -4100 * * 0.5 x 8200
 + * -4100 tanh x * 2050 * x 2
 + / 8200 / 2 x * tanh x -4100
@@ -9417,12 +9417,12 @@ pow + * -4100 tanh x * 4100 x 1
 + / * 8200 x 2 * tanh x -4100
 + * 4100 x / -4100 / 1 tanh x
 
-(d x (+ 1 (+ 4 (cosh x))))
+d x + 1 + 4 cosh x
 + 0 + - sinh x 0 * 0 sinh x
 + 0 + sinh x * 0 sinh x
 + 0 + d x cosh x * sinh x 0
 
-(d x (* -10 (+ -1 (sinh (pow (sec x) -1)))))
+d x * -10 + -1 sinh pow sec x -1
 d x / * -20 sinh pow sec x -1 2
 + 0 d x * -10 sinh pow sec x -1
 * -10 - d x sinh pow sec x -1 0
@@ -9440,13 +9440,13 @@ d x * -10 / sinh pow sec x -1 1
 d x / -10 / 1 sinh pow sec x -1
 * -10 d x + -1 sinh pow sec x -1
 
-(* x (+ -10 (+ x (cosh x))))
+* x + -10 + x cosh x
 + * x + x -10 * cosh x x
 + * x x * x - cosh x 10
 + pow x 2 * - cosh x 10 x
 + pow x 2 * x + -10 cosh x
 
-(d x (+ (cos x) (tanh x)))
+d x + cos x tanh x
 + - d x tanh x / sin x 1 0
 + - - pow sech x 2 0 sin x 0
 + + d x tanh x * -1 sin x 0
@@ -9473,12 +9473,12 @@ d x / -10 / 1 sinh pow sec x -1
 + - pow sech x 2 / sin x 1 0
 + d x - tanh x - 0 cos x 0
 
-(d x (* (pow x 2) (+ 81 (sinh x))))
+d x * pow x 2 + 81 sinh x
 d x * pow x 2 + 81 sinh x
 
-(d x (+ (sin (+ x (* 4 pi))) (tanh (* 10 x))))
+d x + sin + x * 4 pi tanh * 10 x
 
-(+ 120 (* 240 (sinh x)))
++ 120 * 240 sinh x
 + 120 * 120 * sinh x 2
 * + * 240 / sinh x 1 120 1
 + 120 * 2 * * sinh x 480 0.25
@@ -9531,11 +9531,11 @@ pow + * 480 * sinh x 0.5 120 1
 pow + * 960 * sinh x 0.25 120 1
 + 120 / * 480 sinh x 2
 
-(d x (* (ln x) (tanh (sin (+ 1 (* 8 pi))))))
+d x * ln x tanh sin + 1 * 8 pi
 
-(+ x (+ (* -10 (* x (cosh x))) (cos (+ x (* 7 pi)))))
++ x + * -10 * x cosh x cos + x * 7 pi
 
-(* -10 (+ x (* -1 (pow (cosh x) 10))))
+* -10 + x * -1 pow cosh x 10
 + * x -10 * 10 pow cosh x 10
 * + pow cosh x 10 * -1 x 10
 * -10 - x pow cosh / x 1 10
@@ -9552,7 +9552,7 @@ pow * -10 - x pow cosh x 10 1
 - * x -10 * -10 pow cosh x 10
 pow * 10 - pow cosh x 10 x 1
 
-(d x (+ 2 (+ x (+ (cos x) (+ (cosh x) (sinh x))))))
+d x + 2 + x + cos x + cosh x sinh x
 + + 1 sin * * x 2 -0.5 exp x
 + + 1 - sinh x sin x cosh x
 + exp x + * -1 / sin x 1 1
@@ -9622,21 +9622,21 @@ pow + 1 - exp x / sin x 1 1
 - d x + d x exp x x sin x
 - + exp x 1 / sin x 1
 
-(d x (+ x (+ (* x (cos (+ x (* 1 pi)))) (tanh x))))
+d x + x + * x cos + x * 1 pi tanh x
 
-(d x (* (exp x) (exp (cosh (* 8 pi)))))
+d x * exp x exp cosh * 8 pi
 
-(cosh (+ -60 (* 10 x)))
+cosh + -60 * 10 x
 
-(d x (* -10 (+ (* x (cos x)) (cosh x))))
+d x * -10 + * x cos x cosh x
 d x * -10 + / x sec x cosh x
 * + d x / x sec x sinh x -10
 * + sinh x d x * x cos x -10
 * d x + * cos x x cosh x -10
 
-(d x (+ (* 10 x) (+ (cos (+ x (* 2 pi))) (sinh x))))
+d x + * 10 x + cos + x * 2 pi sinh x
 
-(d x (ln (* x (tanh x))))
+d x ln * x tanh x
 - d x ln * 0.5 * x tanh x 0
 - / 1 x d x - 0 ln tanh x
 + / / 2 x 2 d x ln tanh x
@@ -9677,7 +9677,7 @@ d x * -10 + / x sec x cosh x
 + d x - ln * x tanh x 0 0
 + / 1 x d x ln / tanh x 2
 
-(* x (sinh (+ -10 (* -10 x))))
+* x sinh + -10 * -10 x
 * x sinh * 2 - -5 * x 5
 / x / 1 sinh + * x -10 -10
 * sinh + * * -5 x 2 -10 x
@@ -9698,24 +9698,24 @@ pow * x sinh - -10 * x 10 1
 / x / 1 sinh - -10 * x 10
 * sinh * 2 + -5 * -5 x x
 
-(d x (+ -10 (* (pow (sec x) -1) (cosh x))))
+d x + -10 * pow sec x -1 cosh x
 + d x * cosh x pow sec x -1 0
 - d x * pow sec x -1 cosh x 0
 
-(+ 1 (+ (* x (sin x)) (cosh x)))
++ 1 + * x sin x cosh x
 + cosh x + * sin x x 1
 + 1 + cosh x - * sin x x 0
 + 1 + cosh * -1 x * x sin x
 
-(+ (* -10 (cosh x)) (+ (acos x) (sin x)))
++ * -10 cosh x + acos x sin x
 + * -10 cosh x + acos x sin x
 
-(+ 1 (+ x (+ (* x (sinh x)) (sin x))))
++ 1 + x + * x sinh x sin x
 + + 1 * sinh x x + x sin x
 + + * x - sinh x -1 1 sin x
 + 1 + * + sinh x 1 x sin x
 
-(+ 1 (sinh (sin (+ 1 (* 5 pi)))))
++ 1 sinh sin + 1 * 5 pi
 + sinh * -1 sin - -1 * pi 5 1
 * + sinh sin + 1 * pi 5 1 1
 + sinh sin * + * -5 pi -1 -1 1
@@ -9727,7 +9727,7 @@ pow * x sinh - -10 * x 10 1
 pow + sinh sin - 1 * -5 pi 1 1
 pow + sinh sin + 1 * pi 5 1 1
 
-(pow (tanh (pow 5 -1)) -10)
+pow tanh pow 5 -1 -10
 pow pow tanh pow 5 -1 -10 1
 pow tanh * * pow 5 -1 8 0.125 -10
 pow tanh / 2 / 2 pow 5 -1 -10
@@ -9743,15 +9743,15 @@ pow tanh * * 2 pow 5 -1 0.5 -10
 pow tanh / * 2 pow 5 -1 2 -10
 pow tanh * 4 / pow 5 -1 4 -10
 
-(+ x (+ (pow x 2) (* (pow x 2) (cosh x))))
++ x + pow x 2 * pow x 2 cosh x
 + * + 1 cosh x pow x 2 x
 
-(d x (tanh (+ x (pow (cos (+ 10 (* 4 pi))) -10))))
+d x tanh + x pow cos + 10 * 4 pi -10
 
-(d x (* x (+ x (tanh (* 2 pi)))))
+d x * x + x tanh * 2 pi
 d x * + tanh * pi 2 x x
 
-(+ -10 (* -10 (tanh (* 10 x))))
++ -10 * -10 tanh * 10 x
 + * tanh * * 0.5 x 20 -10 -10
 + -10 * -10 tanh * * 40 x 0.25
 + -10 * -10 tanh * * 5 x 2
@@ -9764,9 +9764,9 @@ d x * + tanh * pi 2 x x
 pow + * tanh * 10 x -10 -10 1
 + -10 * tanh * 2.5 * 4 x -10
 
-(* x (* (+ (* -10 x) (cos (+ x (* 2 pi)))) (cosh x)))
+* x * + * -10 x cos + x * 2 pi cosh x
 
-(pow (sinh (+ 10 (* 10 x))) -10)
+pow sinh + 10 * 10 x -10
 pow pow sinh + * x 10 10 -10 1
 pow sinh - 10 * x -10 -10
 pow sinh * -1 + -10 * x -10 -10
@@ -9788,9 +9788,9 @@ pow sinh + * 20 * 0.5 x 10 -10
 pow sinh * + -5 * x -5 -2 -10
 pow sinh + 10 * * 5 x 2 -10
 
-(d x (* -10 (* x (pow (sinh (pow 8 -1)) -10))))
+d x * -10 * x pow sinh pow 8 -1 -10
 
-(+ (* -730 (tanh x)) (* 730 x))
++ * -730 tanh x * 730 x
 + * tanh x -730 * * x 365 2
 + / 730 / 1 x * tanh x -730
 + * -730 tanh x * * x 1460 0.5
@@ -9803,7 +9803,7 @@ pow + * x 730 * tanh x -730 1
 + * 730 / x 1 * -730 tanh x
 + / * 1460 x 2 * -730 tanh x
 
-(+ 10 (* x (+ x (sinh x))))
++ 10 * x + x sinh x
 * 1 + 10 * x + sinh x x
 + / + sinh x x / 1 x 10
 + * x + x sinh x 10
@@ -9813,39 +9813,39 @@ pow + * + sinh x x x 10 1
 + + * x x 10 * sinh x x
 + * + / sinh x 1 x x 10
 
-(+ (* -10 (ln x)) (+ (sin x) (sinh x)))
++ * -10 ln x + sin x sinh x
 + sin x + * ln x -10 sinh x
 
-(d x (+ x (+ (cosh x) (+ (ln x) (sin x)))))
+d x + x + cosh x + ln x sin x
 + 1 + + sinh x cos x / 1 x
 + + / 1 x - sinh x -1 cos x
 
-(d x (+ -10 (+ x (* -10 (sinh (pow 9 -1))))))
+d x + -10 + x * -10 sinh pow 9 -1
 d x + x * -10 sinh pow 9 -1
 + * d x sinh pow 9 -1 -10 1
 
-(d x (cosh (ln (pow x 30))))
+d x cosh ln pow x 30
 
-(* (+ x (cos (+ (* 20 x) (* 4 pi)))) (cosh x))
+* + x cos + * 20 x * 4 pi cosh x
 
-(* x (cosh (+ x (sin (+ 1 (* 4 pi))))))
+* x cosh + x sin + 1 * 4 pi
 * cosh - sin - -1 * pi 4 x x
 * cosh + x sin + 1 * 4 pi x
 
-(+ (* 30 (cosh x)) (* x (cosh x)))
++ * 30 cosh x * x cosh x
 + * x / cosh x 1 * cosh x 30
 + * cosh x x * 30 cosh x
 + * cosh x x / 30 / 1 cosh x
 + * cosh x 30 * x cosh * x -1
 
-(+ 10 (+ x (+ (pow (sec x) -1) (tanh x))))
++ 10 + x + pow sec x -1 tanh x
 + 10 + + tanh x x pow sec x -1
 
-(+ x (+ (* x (ln x)) (cosh (acos x))))
++ x + * x ln x cosh acos x
 + * + ln x 1 x cosh acos x
 + * x ln x + x cosh acos x
 
-(atanh (pow coth (+ x (sin x))))
+atanh pow coth + x sin x
 + ln + 1 x - 0 ln - 1 x
 * - ln + 1 x ln - 1 x 1
 atanh pow coth + sin / * x 2 2 x
@@ -9888,12 +9888,12 @@ atanh pow coth + x / tan x sec x
 ln / - 1 * -1 x - 1 x
 atanh pow coth - x sin * 2 * x -0.5
 
-(d x (+ (* -100 (cosh x)) (* -10 (* x (cosh x)))))
+d x + * -100 cosh x * -10 * x cosh x
 d x * cosh x + -100 * -10 x
 
-(d x (* (pow (sinh x) -10) (sin (sin (+ 10 (* 3 pi))))))
+d x * pow sinh x -10 sin sin + 10 * 3 pi
 
-(+ x (* -10 (* x (atanh (tanh x)))))
++ x * -10 * x atanh tanh x
 + x * atanh tanh x * -40 * 0.25 x
 + * * 2 x * atanh tanh x -5 x
 + * * 0.5 x * -20 atanh tanh x x
@@ -9913,20 +9913,20 @@ d x * cosh x + -100 * -10 x
 + x * * -2.5 * 4 x atanh tanh x
 - * * -10 x atanh tanh x * x -1
 
-(d x (+ (* -10 (cos (+ x (* 3 pi)))) (* -10 (cosh x))))
+d x + * -10 cos + x * 3 pi * -10 cosh x
 
-(* (pow 7 -1) (* (csc (+ -720 (* 3 pi))) (sinh x)))
+* pow 7 -1 * csc + -720 * 3 pi sinh x
 
-(d x (+ (asinh x) (+ (cos x) (sinh x))))
+d x + asinh x + cos x sinh x
 + - cosh x sin x d x asinh x
 
-(d x (+ x (+ (* -10 (sinh x)) (cos (+ 10 x)))))
+d x + x + * -10 sinh x cos + 10 x
 + sin - -10 x - * cosh x -10 -1
 + + sin - -10 x * cosh x -10 1
 + - * cosh x -10 sin + x 10 1
 - - * cosh x -10 sin + x 10 -1
 
-(* -10 (* x (+ (ln x) (sinh x))))
+* -10 * x + ln x sinh x
 * 1 * + sinh x ln x * x -10
 * + ln x sinh x * -20 / x 2
 * * 2 * x -5 + sinh x ln x
@@ -9937,7 +9937,7 @@ d x * cosh x + -100 * -10 x
 * / -20 / 2 x + ln x sinh x
 pow * x * + ln x sinh x -10 1
 
-(+ -10 (* -10 (* x (sinh x))))
++ -10 * -10 * x sinh x
 + -10 * / -20 / 2 x sinh x
 + -10 * * sinh x 0.5 * x -20
 * + -10 * * sinh x -10 x 1
@@ -9949,14 +9949,14 @@ pow + * * sinh x -10 x -10 1
 + -10 * x / -10 / 1 sinh x
 + * -10 * x sinh x -10
 
-(d x (+ (* -10 8) (+ (cosh x) (sinh x))))
+d x + * -10 8 + cosh x sinh x
 
-(d x (* -10 (sinh (+ 10 (sin (+ x (* 5 pi)))))))
+d x * -10 sinh + 10 sin + x * 5 pi
 
-(d x (+ 10 (+ (pow (cot x) 10) (pow coth x))))
+d x + 10 + pow cot x 10 pow coth x
 d x + pow cot x 10 pow coth x
 
-(+ (* -10 (sinh x)) (cos (asinh x)))
++ * -10 sinh x cos asinh x
 + / -10 / 1 sinh x cos asinh x
 * + * sinh x -10 cos asinh x 1
 + cos + ln 1 asinh x * -10 sinh x
@@ -9970,9 +9970,9 @@ pow + cos asinh x * -10 sinh x 1
 + cos asinh x * sinh x -10
 + cos asinh x * -5 * sinh x 2
 
-(+ 1 (+ x (+ (cos x) (+ (ln x) (sinh x)))))
++ 1 + x + cos x + ln x sinh x
 
-(d x (* 10 (+ (* -1 (sinh x)) (* 62 x))))
+d x * 10 + * -1 sinh x * 62 x
 + * -1 * 10 cosh x 620
 - 620 d x * * sinh x 5 2
 pow + 620 d x * -10 sinh x 1
@@ -10135,10 +10135,10 @@ d x * 10 - * 62 x sinh x
 + 620 * -1 * 20 * 0.5 cosh x
 - 620 * 10 cosh / -2 / 2 x
 
-(* -10 (cosh (pow (csc (+ -10 (* 3 pi))) -1)))
+* -10 cosh pow csc + -10 * 3 pi -1
 * cosh pow csc + -10 * 3 pi -1 -10
 
-(+ x (tan (pow coth 120)))
++ x tan pow coth 120
 - x tan * -0.5 * 2 pow coth 120
 + x / 1 / cot pow coth 120 1
 - x tan * / pow coth 120 2 -2
@@ -10156,7 +10156,7 @@ d x * 10 - * 62 x sinh x
 - x * / 1 cot pow coth 120 -1
 + x / 1 cot pow coth 120
 
-(d x (* 10 (+ (* -1 (sinh x)) (* 12 x))))
+d x * 10 + * -1 sinh x * 12 x
 + * d x * -0.5 sinh x 20 120
 + 120 * -20 * 0.5 cosh * x -1
 - 120 d x * * sinh x 0.5 20
@@ -10319,7 +10319,7 @@ pow - 120 * d x sinh x 10 1
 + 120 * * -0.5 cosh x 20
 pow * - 12 cosh * -1 x 10 1
 
-(+ 10 (cosh (+ -10 (* -10 x))))
++ 10 cosh + -10 * -10 x
 + cosh + -10 * -1 * x 10 10
 + 10 cosh - -10 * * -1 x -10
 + 10 cosh + * x -10 -10
@@ -10354,9 +10354,9 @@ pow + 10 cosh + * x 10 10 1
 + cosh - -10 * * x 5 2 10
 pow + 10 cosh - -10 * 10 x 1
 
-(+ (* 10 (* x (cos (+ x (* 9 pi))))) (sinh x))
++ * 10 * x cos + x * 9 pi sinh x
 
-(d x (+ 10 (+ (* -10 (* x 2)) (cosh x))))
+d x + 10 + * -10 * x 2 cosh x
 + -20 - 0 sinh * * x 4 -0.25
 + -20 sinh * -1 / -1 / 1 x
 + 0 + + sinh x -20 d x 9
@@ -10500,9 +10500,9 @@ pow + 10 cosh - -10 * 10 x 1
 + -20 sinh * -0.5 / -4 / 2 x
 + d x cosh * -4 * 0.25 x -20
 
-(d x (+ x (tanh (exp (pow (csc (+ -20 (* 5 pi))) -1)))))
+d x + x tanh exp pow csc + -20 * 5 pi -1
 
-(d x (+ -20 (* -10 (sinh x))))
+d x + -20 * -10 sinh x
 * -20 * 0.5 cosh * 0.25 * x 4
 * -10 cosh / * 0.5 * x 4 2
 * -10 cosh * / * 4 x 2 -0.5
@@ -10712,28 +10712,28 @@ pow + 10 cosh - -10 * 10 x 1
 * 2 * -5 cosh * x -1
 - * cosh * * x 0.5 2 -10 0
 
-(+ x (+ (pow (sec x) -1) (* -10 (tanh x))))
++ x + pow sec x -1 * -10 tanh x
 + + x * -10 tanh x pow sec x -1
 
-(d x (+ 1 (* (cosh x) (sin x))))
+d x + 1 * cosh x sin x
 + 0 d x / sin x / 1 cosh x
 + 0 - d x * cosh x sin x 0
 + 0 d x + * cosh x sin x 1
 + d x * sin x cosh x 0
 + 0 d x * cosh * x -1 sin x
 
-(* (+ x (sin x)) (sinh (* 4 pi)))
+* + x sin x sinh * 4 pi
 
-(* x (+ -10 (+ (sin (+ x (* 3 pi))) (sinh x))))
+* x + -10 + sin + x * 3 pi sinh x
 
-(* -1 (* x (+ -1 (* 10 (pow (sinh x) 10)))))
+* -1 * x + -1 * 10 pow sinh x 10
 * x - * pow sinh x 10 -10 -1
 - x * * x pow sinh x 10 10
 * x + * -10 pow sinh x 10 1
 * x - 1 * pow sinh x 10 10
 + x * -10 * pow sinh x 10 x
 
-(d x (* 250 (+ x (tanh x))))
+d x * 250 + x tanh x
 * - 500 * pow tanh x 2 250 1
 d x + * tanh x 250 * x 250
 * * + 1 d x tanh x 250 1
@@ -10784,9 +10784,9 @@ pow * 250 d x + tanh x x 1
 pow * 250 + 1 d x tanh x 1
 * + 250 d x * 250 tanh x 1
 
-(+ x (+ (* -10 (cosh x)) (+ (asin x) (sin x))))
++ x + * -10 cosh x + asin x sin x
 
-(d x (+ (* -10 x) (cosh (+ -10 (* 10 x)))))
+d x + * -10 x cosh + -10 * 10 x
 + -10 d x cosh - 10 * x 10
 + -10 * sinh - -10 * -10 x 10
 + -10 * -10 sinh - 10 * x 10
@@ -10795,11 +10795,11 @@ pow * 250 + 1 d x tanh x 1
 + * -10 sinh + * x -10 10 -10
 + d x cosh - -10 * -10 x -10
 
-(+ x (+ (* -10 (tanh x)) (sin (+ -10 x))))
++ x + * -10 tanh x sin + -10 x
 + x + * -10 tanh x sin + x -10
 + - * tanh x -10 sin - 10 x x
 
-(d x (+ 1 (+ (cos (ln x)) (cosh x))))
+d x + 1 + cos ln x cosh x
 * 1 d x + cos ln x cosh x
 + + d x cos ln x sinh x 0
 + d x cosh x d x cos ln x
@@ -10818,15 +10818,15 @@ pow * 250 + 1 d x tanh x 1
 * 1 + sinh x d x cos ln x
 + - sinh x 0 d x cos ln x
 
-(d x (tanh (+ x (* x (pow (sec (+ 10 (* 3 pi))) 10)))))
+d x tanh + x * x pow sec + 10 * 3 pi 10
 
-(d x (+ 10 (+ x (+ (* -10 (tan x)) (tanh x)))))
+d x + 10 + x + * -10 tan x tanh x
 d x + x + * -10 tan x tanh x
 + d x + / -10 cot x tanh x 1
 d x + x + tanh x / -10 cot x
 + 1 d x + * tan x -10 tanh x
 
-(+ (* -10 (ln x)) (tanh x))
++ * -10 ln x tanh x
 - tanh x * -10 ln / / 1 x 1
 + tanh x * ln * 4 * 0.25 x -10
 pow - tanh x * -10 - 0 ln x 1
@@ -10872,7 +10872,7 @@ pow + tanh x * ln x -10 1
 * + tanh x - * -10 ln x 0 1
 - tanh x * -10 ln / 0.25 * x 0.25
 
-(* -10 (+ -1 (tanh (* 20 x))))
+* -10 + -1 tanh * 20 x
 + * tanh * 0.5 * x 40 -10 10
 + 10 * -10 tanh * 5 * 4 x
 * 1 + 10 * -10 tanh * x 20
@@ -10895,9 +10895,9 @@ pow * + -1 tanh * 20 x -10 1
 * + -1 tanh / 40 / 2 x -10
 pow + 10 * -10 tanh * 20 x 1
 
-(d x (+ x (* x (+ x (* -10 (* x (sinh x)))))))
+d x + x * x + x * -10 * x sinh x
 
-(d x (+ x (+ (* -10 (pow coth 10)) -1)))
+d x + x + * -10 pow coth 10 -1
 d x + -1 + * pow coth 10 -10 x
 pow d x + x * pow coth 10 -10 1
 pow + 1 d x * -10 pow coth 10 1
@@ -10910,12 +10910,12 @@ pow + 1 d x * -10 pow coth 10 1
 d x + x * -10 pow coth 10
 + 1 d x + * -10 pow coth 10 -1
 
-(d x (* -1 (* x (* (+ -10 (* 10 x)) (cosh x)))))
+d x * -1 * x * + -10 * 10 x cosh x
 
-(+ -10 (+ (* -10 (tanh x)) (* x (sin x))))
++ -10 + * -10 tanh x * x sin x
 + -10 + * tanh x -10 * x sin x
 
-(+ 10 (+ (* -10 (pow coth 10)) -1))
++ 10 + * -10 pow coth 10 -1
 + + 10 * -10 pow coth 10 -1
 pow + * -10 pow coth 10 9 1
 * + 9 * -10 pow coth 10 1
@@ -10923,9 +10923,9 @@ pow + * -10 pow coth 10 9 1
 * + -1 + 10 * pow coth 10 -10 1
 pow + -1 + 10 * -10 pow coth 10 1
 
-(d x (sinh (+ -10 (+ (pow 8 -1) (* -10 x)))))
+d x sinh + -10 + pow 8 -1 * -10 x
 
-(d x (+ (* -10 (cos x)) (+ (* 20 x) (sinh x))))
+d x + * -10 cos x + * 20 x sinh x
 + cosh x + * * -1 sin x -10 20
 + 0 + - * 10 sin x -20 cosh x
 + + d x sinh x 20 * 10 sin x
@@ -10965,7 +10965,7 @@ pow + + * 10 sin x 20 cosh x 1
 * 1 + cosh x + * 10 sin x 20
 * - + cosh x * 10 sin x -20 1
 
-(* -1 (tanh (+ -30 (* 10 x))))
+* -1 tanh + -30 * 10 x
 * tanh * 2 + * 5 x -15 -1
 * 1 tanh - 30 * / x 2 20
 * -1 / tanh + -30 * 10 x 1
@@ -11038,10 +11038,10 @@ tanh * 2 - 15 / * x 10 2
 tanh / 2 / 2 - 30 * x 10
 tanh / 2 / 2 + 30 * x -10
 
-(d x (* -10 (+ -2 (+ (pow x 2) (* x (cosh x))))))
+d x * -10 + -2 + pow x 2 * x cosh x
 * -10 + cosh x * + 2 sinh x x
 
-(+ -10 (+ (* 10 (sinh x)) (* x (sinh x))))
++ -10 + * 10 sinh x * x sinh x
 pow + * sinh x + 10 x -10 1
 + -10 * + x 10 sinh x
 + -10 * / sinh x 1 + x 10
@@ -11049,7 +11049,7 @@ pow + * sinh x + 10 x -10 1
 * + -10 * sinh x + 10 x 1
 + -10 / + 10 x / 1 sinh x
 
-(+ (* -10 x) (* x (+ x (sinh x))))
++ * -10 x * x + x sinh x
 pow * x + -10 + sinh x x 1
 + * x x * x + -10 sinh x
 * 1 * x + + x sinh x -10
@@ -11059,7 +11059,7 @@ pow * x + -10 + sinh x x 1
 * + -10 - sinh x * -1 x x
 / + + sinh x x -10 / 1 x
 
-(+ x (cos (cosh (* 2 pi))))
++ x cos cosh * 2 pi
 + x cos cosh * * * pi 2 -1 -1
 + / cos cosh / * -4 pi 2 1 x
 * + x cos cosh * * pi -2 -1 1
@@ -11173,7 +11173,7 @@ pow * x + -10 + sinh x x 1
 + x / cos cosh / -4 / 2 pi 1
 + / cos cosh * 4 * 0.5 pi 1 x
 
-(d x (+ -10 (* (+ -10 x) (cosh x))))
+d x + -10 * + -10 x cosh x
 + - * + -10 x sinh x 0 cosh x
 + d x * cosh x + -10 x 0
 + cosh x * - -10 * x -1 sinh x
@@ -11183,11 +11183,11 @@ pow * x + -10 + sinh x x 1
 + + * + x -10 sinh x cosh x 0
 + * sinh x + x -10 cosh x
 
-(d x (+ (* 10 x) (* 40 (* x (cosh x)))))
+d x + * 10 x * 40 * x cosh x
 + 10 * + * x sinh x cosh x 40
 + * d x * cosh x x 40 10
 
-(+ -10 (* x (+ 10 (cosh x))))
++ -10 * x + 10 cosh x
 + -10 * + cosh * x -1 10 x
 + + * 10 x -10 * cosh x x
 + * x - 10 * -1 cosh x -10
@@ -11195,7 +11195,7 @@ pow * x + -10 + sinh x x 1
 + -10 * * x - -10 cosh x -1
 + * x + cosh x 10 -10
 
-(d x (+ (* -20 (cos x)) (cosh x)))
+d x + * -20 cos x cosh x
 + sinh x * -20 - 0 sin x
 + * d x cos * -1 x -20 sinh x
 + d x cosh x * -20 d x cos x
@@ -11257,32 +11257,32 @@ pow * x + -10 + sinh x x 1
 + sinh x d x / -20 / 1 cos x
 + + d x / -20 sec x sinh x 0
 
-(* x (pow (csc (pow coth 10)) -1))
+* x pow csc pow coth 10 -1
 * pow / 1 sin pow coth 10 -1 x
 * 1 * x pow csc pow coth 10 -1
 * pow csc pow coth 10 -1 x
 * x pow / csc pow coth 10 1 -1
 pow * x pow csc pow coth 10 -1 1
 
-(* (pow coth 120) -1)
+* pow coth 120 -1
 * 1 * pow coth 120 -1
 pow * pow coth 120 -1 1
 * pow coth 120 -1
 
-(d x (+ x (+ (* x (+ x (ln x))) (tanh x))))
+d x + x + * x + x ln x tanh x
 
-(d x (* 10 (sinh (+ -20 (* 20 x)))))
+d x * 10 sinh + -20 * 20 x
 * d x sinh - -20 * -20 x 10
 * 10 d x sinh + * 20 x -20
 
-(* x (+ (* x (cosh x)) (cosh x)))
+* x + * x cosh x cosh x
 + * x cosh x * cosh x pow x 2
 + * cosh x x * * x x cosh x
 
-(+ x (+ (* 10 (sinh x)) (* -10 (* x (sinh x)))))
++ x + * 10 sinh x * -10 * x sinh x
 + x * sinh x + * -10 x 10
 
-(* 10 (* x (* (+ (cosh x) (sinh x)) (cos x))))
+* 10 * x * + cosh x sinh x cos x
 * 10 / * x exp x sec * -1 x
 * 10 / x / / sec x 1 exp x
 * x * cos * x -1 * 10 exp x
@@ -11296,41 +11296,41 @@ pow * pow coth 120 -1 1
 * x * exp x / 10 sec x
 * 10 / x / sec * -1 x exp x
 
-(* x (pow coth (+ -10 (* 10 x))))
+* x pow coth + -10 * 10 x
 * x pow coth + * x 10 -10
 pow * pow coth + -10 * x 10 x 1
 * * x pow coth + * 10 x -10 1
 
-(d x (* -10 (cos (+ x (cosh (cos (+ 10 (* 2 pi))))))))
+d x * -10 cos + x cosh cos + 10 * 2 pi
 
-(* (+ x (tanh x)) (cos (+ 10 (* 7 pi))))
+* + x tanh x cos + 10 * 7 pi
 * cos - -10 * pi 7 + x tanh x
 * cos + * -7 pi -10 + tanh x x
 * cos - 10 * pi -7 + tanh x x
 * cos + * pi 7 10 + x tanh x
 
-(d x (+ -10 (+ x (+ (* -10 (tanh x)) (ln (pow x x))))))
+d x + -10 + x + * -10 tanh x ln pow x x
 
-(+ x (* x (+ -10 (+ (* -10 x) (sinh x)))))
++ x * x + -10 + * -10 x sinh x
 * x + sinh x + -9 * -10 x
 
-(+ 10 (+ x (+ (* -10 (* x (sinh x))) (cos x))))
++ 10 + x + * -10 * x sinh x cos x
 
-(d x (+ (pow (cos x) 10) (cosh x)))
+d x + pow cos x 10 cosh x
 
-(d x (+ x (+ (acos x) (+ (sin x) (tanh x)))))
+d x + x + acos x + sin x tanh x
 
-(+ (pow (cot x) -1) (+ (asinh x) (tanh x)))
++ pow cot x -1 + asinh x tanh x
 + + pow cot x -1 asinh x tanh x
 
-(+ x (+ (* x (sin (+ x (* 9 pi)))) (* x (sinh x))))
++ x + * x sin + x * 9 pi * x sinh x
 
-(d x (+ x (* (pow (csc (+ -1 (* 3 pi))) -1) (sinh x))))
+d x + x * pow csc + -1 * 3 pi -1 sinh x
 
-(+ x (* x (+ 20 (+ x (cosh x)))))
++ x * x + 20 + x cosh x
 + x * x + + 20 x cosh x
 
-(d x (+ (* -6250 (cosh x)) (* 6250 (* x (sinh x)))))
+d x + * -6250 cosh x * 6250 * x sinh x
 + * * * x 3125 2 cosh x 0
 - * * 12500 / x 2 cosh x 0
 - 0 - 0 * * cosh x x 6250
@@ -11348,17 +11348,17 @@ pow * pow coth + -10 * x 10 x 1
 + * x * 12500 * 0.5 cosh x 0
 - * * 2 * 3125 cosh x x 0
 
-(+ (* -10 (* x (sinh x))) (cos (+ 10 (* 8 pi))))
++ * -10 * x sinh x cos + 10 * 8 pi
 
-(d x (atanh (tanh (pow (sec (+ -10 x)) -1))))
+d x atanh tanh pow sec + -10 x -1
 + d x pow sec + x -10 -1 0
 + d x pow sec - 10 x -1 0
 
-(* (+ x (sin x)) (+ x (sinh x)))
+* + x sin x + x sinh x
 
-(d x (* (cosh (pow (csc (+ -1 (* 6 pi))) -1)) (ln x)))
+d x * cosh pow csc + -1 * 6 pi -1 ln x
 
-(d x (* 10 (+ (* -1 (cosh x)) (* 102 x))))
+d x * 10 + * -1 cosh x * 102 x
 + * - - 0 sinh x -102 10 0
 + * 10 - * -1 sinh x 0 1020
 + * - * sinh x -1 -102 10 0
@@ -11445,19 +11445,19 @@ pow * pow coth + -10 * x 10 x 1
 + * -5 - exp x exp * x -1 1020
 - 0 + * - sinh x 0 10 -1020
 
-(+ (pow 4 -1) (+ (* -10 x) (cosh x)))
++ pow 4 -1 + * -10 x cosh x
 - pow 4 -1 - * 10 x cosh x
 + + pow 4 -1 cosh x * -10 x
 - + pow 4 -1 cosh x * x 10
 
-(d x (* x (+ 1 (+ (cos x) (+ (cosh x) (sinh x))))))
+d x * x + 1 + cos x + cosh x sinh x
 d x * x - + cos x exp x -1
 d x * x + 1 + cos x exp x
 d x + x * x + exp x cos x
 
-(* x (* (pow (csc (+ -1 (* 4 pi))) -1) (cosh x)))
+* x * pow csc + -1 * 4 pi -1 cosh x
 
-(cosh (* 10 (cos (+ 10 (* 3 pi)))))
+cosh * 10 cos + 10 * 3 pi
 cosh / / 20 sec - 10 * -3 pi 2
 * cosh * cos - -10 * pi 3 10 1
 pow cosh * cos - 10 * pi -3 -10 1
@@ -11611,7 +11611,7 @@ pow cosh * 10 cos - 10 * pi -3 1
 cosh / -1 / sec + 10 * pi 3 -10
 cosh * -10 cos + -10 * -3 pi
 
-(d x (* 10 (+ x (* -1 (atan (tanh x))))))
+d x * 10 + x * -1 atan tanh x
 + 10 d x * atan / tanh x 1 -10
 + * 10 d x - x atan tanh x 0
 + 0 - 10 d x * atan tanh x 10
@@ -11622,7 +11622,7 @@ cosh * -10 cos + -10 * -3 pi
 + 0 * 10 - 1 d x atan tanh x
 + - * d x atan tanh x -10 -10 0
 
-(* 70 (+ (* -1 (cosh x)) (* x (sinh x))))
+* 70 + * -1 cosh x * x sinh x
 * 70 + * -1 cosh x * sinh x x
 - * 70 * x sinh x * cosh x 70
 + * sinh x * x 70 * cosh x -70
@@ -11631,7 +11631,7 @@ cosh * -10 cos + -10 * -3 pi
 * 70 - / x / 1 sinh x cosh x
 * 70 - * sinh x x cosh * x -1
 
-(* x (+ 1 (pow coth 250)))
+* x + 1 pow coth 250
 + x * x pow coth 250
 * 1 * x + 1 pow coth 250
 pow * + 1 pow coth 250 x 1
@@ -11639,11 +11639,11 @@ pow * + 1 pow coth 250 x 1
 pow + x * pow coth 250 x 1
 * + 1 pow coth 250 x
 
-(+ (* x (cos x)) (+ (ln x) (tanh x)))
++ * x cos x + ln x tanh x
 + tanh x + * x cos x ln x
 + + tanh x ln x / x sec x
 
-(d x (+ 1 (+ (pow (sec x) -1) (tanh x))))
+d x + 1 + pow sec x -1 tanh x
 + d x pow sec x -1 pow sech x 2
 * 1 d x + tanh x pow sec x -1
 d x + 1 + pow sec x -1 tanh x
@@ -11656,26 +11656,26 @@ d x + tanh x pow / sec x 1 -1
 d x + pow sec x -1 tanh x
 + 0 d x + tanh x pow sec x -1
 
-(+ x (+ (atan x) (+ (cos (+ x (* 3 pi))) (cosh x))))
++ x + atan x + cos + x * 3 pi cosh x
 
-(d x (+ -10 (tanh (pow 5 -1))))
+d x + -10 tanh pow 5 -1
 0
 
-(d x (* (pow (sec x) -1) (cosh x)))
+d x * pow sec x -1 cosh x
 
-(d x (* -10 (* x (+ (* -10 (exp x)) (sinh x)))))
+d x * -10 * x + * -10 exp x sinh x
 
-(d x (+ (pow (cot x) -1) (+ (acosh x) (tanh x))))
+d x + pow cot x -1 + acosh x tanh x
 
-(cosh (* x (pow (sec (+ 20 (* 5 pi))) -1)))
+cosh * x pow sec + 20 * 5 pi -1
 cosh * x pow sec - -20 * pi 5 -1
 cosh * x pow sec - 20 * -5 pi -1
 cosh * x pow sec + * 5 pi 20 -1
 cosh * x pow sec + -20 * pi -5 -1
 
-(d x (+ (* x (ln x)) (+ (asin x) (cosh x))))
+d x + * x ln x + asin x cosh x
 
-(+ -9 (* (+ -10 x) (cosh x)))
++ -9 * + -10 x cosh x
 + -9 * cosh x + x -10
 + + * x cosh x * -10 cosh x -9
 + -9 * cosh * x -1 + x -10
@@ -11683,7 +11683,7 @@ cosh * x pow sec + -20 * pi -5 -1
 + * - -10 * x -1 cosh x -9
 + -9 * + -10 x / cosh x 1
 
-(d x (+ -10 (+ (pow 1 -1) (pow coth x))))
+d x + -10 + pow 1 -1 pow coth x
 d x + pow coth x -10
 + d x + pow coth x -10 0
 * 1 d x + pow coth x -10
@@ -11693,18 +11693,18 @@ d x pow coth x
 pow d x pow coth x 1
 pow d x + -10 pow coth x 1
 
-(d x (+ (* x (acos x)) (+ (cosh x) (sin x))))
+d x + * x acos x + cosh x sin x
 
-(d x (* -10 (* (+ x (+ (cosh x) (sinh x))) (cos x))))
+d x * -10 * + x + cosh x sinh x cos x
 * d x * cos x + x exp x -10
 d x / + exp x x / sec x -10
 d x * / + x exp x sec x -10
 
-(d x (+ -10 (+ (* -10 (pow (sec x) -1)) (sinh x))))
+d x + -10 + * -10 pow sec x -1 sinh x
 d x + * pow sec x -1 -10 sinh x
 + * d x pow sec x -1 -10 cosh x
 
-(d x (+ x (cosh (* x 7))))
+d x + x cosh * x 7
 + - * -7 sinh * x -7 -1 0
 + - * sinh * x 7 7 -1 0
 + + 1 * 7 sinh * x 7 0
@@ -11716,13 +11716,13 @@ d x + * pow sec x -1 -10 sinh x
 + + * -7 sinh * x -7 1 0
 + + d x cosh * x -7 1 0
 
-(d x (* 20 (* (+ x (pow (csc x) -1)) (sinh x))))
+d x * 20 * + x pow csc x -1 sinh x
 
-(+ x (+ (* x (asinh x)) (+ (cosh x) (sin x))))
++ x + * x asinh x + cosh x sin x
 
-(+ (pow (csc (+ (* 9 pi) (* -1 x))) -1) (* -10 (tanh x)))
++ pow csc + * 9 pi * -1 x -1 * -10 tanh x
 
-(d x (* -1 (* (+ (cosh x) (sinh x)) 7)))
+d x * -1 * + cosh x sinh x 7
 * -7 - * pow x 0 exp x 0
 + 0 * -7 * exp x d x x
 * - d x * 7 exp x 0 -1
@@ -11777,23 +11777,23 @@ pow d x * * exp x -1 7 1
 - - * d x exp x -7 0 0
 d / * 2 x 2 * -7 exp x
 
-(+ x (+ 9 (+ (ln (pow x -10)) (sinh x))))
++ x + 9 + ln pow x -10 sinh x
 + sinh x + 9 + x * ln x -10
 + + + 9 x sinh x ln pow x -10
 
-(d x (+ x (* (pow x 2) (sinh x))))
+d x + x * pow x 2 sinh x
 d x + x * sinh x pow x 2
 + 1 d x * pow x 2 sinh x
 
-(d x (* x (+ -10 (sinh (+ 10 x)))))
+d x * x + -10 sinh + 10 x
 + d x * sinh + 10 x x -10
 
-(d x (* x (+ x (* -10 (* x (pow coth 1))))))
+d x * x + x * -10 * x pow coth 1
 d x * + 1 * -10 coth pow x 2
 d x * x + * * -10 coth x x
 d x * * x x + * coth -10 1
 
-(+ (* -10 x) (* x (cosh (* 20 x))))
++ * -10 x * x cosh * 20 x
 * x + -10 cosh * -0.5 * 40 x
 * x + -10 cosh * * x -10 -2
 * x + cosh * * x -1 -20 -10
@@ -11847,13 +11847,13 @@ d x * * x x + * coth -10 1
 * x - cosh * * 0.5 x 40 10
 * x - cosh * 2 * x 10 10
 
-(cosh (* 20 (ln x)))
+cosh * 20 ln x
 + 1 * 2 pow sinh * ln x 10 2
 + * pow sinh * -10 ln x 2 2 1
 - * 2 pow cosh * ln x 10 2 1
 - * 2 pow cosh * -10 ln x 2 1
 
-(+ x (* -1 (* (+ 10 (* 10 x)) (cosh x))))
++ x * -1 * + 10 * 10 x cosh x
 - x * + 10 * x 10 cosh x
 + x * -10 + * x cosh x cosh x
 - x * + cosh x * cosh x x 10
@@ -11863,26 +11863,26 @@ d x * * x x + * coth -10 1
 - x * + 1 x * cosh x 10
 + * * 10 cosh x - -1 x x
 
-(d x (+ 10 (+ x (+ (pow (sec x) -1) (* -10 (sinh x))))))
+d x + 10 + x + pow sec x -1 * -10 sinh x
 
-(d x (+ (cos x) (sinh (* 6 pi))))
+d x + cos x sinh * 6 pi
 + * -1 sin x d x sinh * pi 6
 + d x cos x d x sinh * pi 6
 + - 0 sin x d x sinh * pi 6
 + d x + sinh * 6 pi cos x 0
 
-(d x (+ x (+ (cosh x) (+ (ln x) (tan x)))))
+d x + x + cosh x + ln x tan x
 
-(+ -10 (+ (* -10 x) (+ (* x (sinh x)) (sinh x))))
++ -10 + * -10 x + * x sinh x sinh x
 + * + -10 sinh x x + sinh x -10
 * * + sinh x -10 + 1 x 1
 * + sinh x -10 + 1 x
 pow * + 1 x + sinh x -10 1
 
-(+ (* 10 (pow x 2)) (* x (sinh x)))
++ * 10 pow x 2 * x sinh x
 + * x sinh x * pow x 2 10
 
-(* 20 (+ x (* 5 (tanh x))))
+* 20 + x * 5 tanh x
 + * 100 tanh x / * 40 x 2
 pow * 20 + * tanh x 5 x 1
 * 20 + x / * tanh x 5 1
@@ -11902,24 +11902,24 @@ pow + * x 20 * 100 tanh x 1
 * + * 5 tanh x x 20
 * 1 * + * 5 tanh x x 20
 
-(* (+ x (cos x)) (sinh (+ -10 x)))
+* + x cos x sinh + -10 x
 
-(d x (+ (* -10 x) (+ (cosh x) (ln (pow x 10)))))
+d x + * -10 x + cosh x ln pow x 10
 
-(d x (* x (* (+ x (* -10 5)) (cosh x))))
+d x * x * + x * -10 5 cosh x
 
-(+ (pow x 2) (+ (* x (sinh x)) (asin x)))
++ pow x 2 + * x sinh x asin x
 + * x sinh x + pow x 2 asin x
 
-(d x (+ x (+ (* -10 (* x (+ 10 x))) (tanh x))))
+d x + x + * -10 * x + 10 x tanh x
 + + -99 * x -20 pow sech x 2
 + -99 + * x -20 d x tanh x
 - + * -20 x -98 pow tanh x 2
 - -98 - pow tanh x 2 * x -20
 
-(d x (+ 10 (+ (cos (+ x (* 5 pi))) (tanh x))))
+d x + 10 + cos + x * 5 pi tanh x
 
-(* -1 (* x (+ -1 (* 10 (* x (pow coth 10))))))
+* -1 * x + -1 * 10 * x pow coth 10
 * + * x * pow coth 10 -10 1 x
 - x * * * x 10 pow coth 10 x
 * - 1 * x * pow coth 10 10 x
@@ -11928,25 +11928,25 @@ pow + * x 20 * 100 tanh x 1
 + * * pow coth 10 x * -10 x x
 - x * pow coth 10 * 10 pow x 2
 
-(d x (cosh (+ -10 (+ x (pow 5 -1)))))
+d x cosh + -10 + x pow 5 -1
 
-(d x (+ (* -99 x) (+ (* 100 (pow x 2)) (tanh x))))
+d x + * -99 x + * 100 pow x 2 tanh x
 + d x tanh x + -99 * x 200
 - -98 - pow tanh x 2 * x 200
 - + * 200 x -98 pow tanh x 2
 + + pow sech x 2 -99 * x 200
 
-(+ (* -10 x) (* x (* (sin (+ 10 (* 1 pi))) (sinh x))))
++ * -10 x * x * sin + 10 * 1 pi sinh x
 
-(d x (sinh (+ -10 (+ x (* -10 (pow 6 -1))))))
+d x sinh + -10 + x * -10 pow 6 -1
 
-(* x (+ x (+ (* -10 (cos (+ 10 (* 5 pi)))) (sinh x))))
+* x + x + * -10 cos + 10 * 5 pi sinh x
 
-(d x (* x (+ 1 (* x (sinh (+ -10 x))))))
+d x * x + 1 * x sinh + -10 x
 
-(d x (* (cosh x) (* (exp x) (sinh x))))
+d x * cosh x * exp x sinh x
 
-(d x (+ (* -30 (cosh x)) (* 30 (* x (sinh x)))))
+d x + * -30 cosh x * 30 * x sinh x
 - * 30 * x d x sinh x 0
 + - * * cosh x 30 x 0 0
 + * * 30 cosh x x 0
@@ -11964,9 +11964,9 @@ pow + * x 20 * 100 tanh x 1
 - * cosh x / 60 / 2 x 0
 + * cosh x / 60 / 2 x 0
 
-(d x (+ (* -130 (sinh x)) (* 130 (* x (cosh x)))))
+d x + * -130 sinh x * 130 * x cosh x
 
-(d x (+ x (+ (pow coth 1) -1)))
+d x + x + pow coth 1 -1
 d x + coth x
 + d x + coth + -1 x 0
 * 1 d x + coth + -1 x
@@ -11984,7 +11984,7 @@ pow + d x + coth -1 1 1
 + + 1 d x coth 0
 * + 1 d x coth 1
 
-(+ (* -10 x) (+ (* x (+ 10 x)) (cosh x)))
++ * -10 x + * x + 10 x cosh x
 + cosh x - 0 * pow x 2 -1
 + cosh - 0 x / x / 1 x
 + cosh / -1 / 1 x * x x
@@ -12040,24 +12040,24 @@ pow + d x + coth -1 1 1
 + cosh * 0.5 * x -2 * x x
 + cosh * 0.5 * x 2 pow x 2
 
-(d x (+ (exp x) (+ (sinh x) (tan x))))
+d x + exp x + sinh x tan x
 + d x + exp x tan x cosh x
 + cosh x + exp x pow sec x 2
 d x + + exp x sinh x tan x
 
-(d x (+ (pow (csc x) -1) (* 10 (* x (cosh x)))))
+d x + pow csc x -1 * 10 * x cosh x
 
-(d x (+ x (+ (* x (+ x (pow x -10))) (tanh x))))
+d x + x + * x + x pow x -10 tanh x
 
-(d x (+ 10 (+ x (* -10 (* x (+ x (cosh x)))))))
+d x + 10 + x * -10 * x + x cosh x
 
-(d x (+ 10 (+ x (+ (* -10 (sin x)) (sinh x)))))
+d x + 10 + x + * -10 sin x sinh x
 + d x + x * sin x -10 cosh x
 + 1 + d x * -10 sin x cosh x
 d x + + sinh x x * sin x -10
 + 1 d x + * sin x -10 sinh x
 
-(* (pow (csc (sinh x)) -1) (cosh x))
+* pow csc sinh x -1 cosh x
 * pow / 1 sin sinh x -1 cosh x
 pow * pow csc sinh x -1 cosh x 1
 * cosh x pow csc / sinh x 1 -1
@@ -12066,18 +12066,18 @@ pow * pow csc sinh x -1 cosh x 1
 * * pow csc sinh x -1 cosh x 1
 * pow csc sinh x -1 cosh x
 
-(d x (* (+ (* -10 x) (cos (+ 10 (* 7 pi)))) (cosh x)))
+d x * + * -10 x cos + 10 * 7 pi cosh x
 
-(* -10 (pow coth (* x 4)))
+* -10 pow coth * x 4
 * -10 pow coth * 4 x
 * 1 * -10 pow coth * 4 x
 pow * -10 pow coth * 4 x 1
 
-(+ (* -10 x) (+ (ln x) (+ (sin x) (sinh x))))
++ * -10 x + ln x + sin x sinh x
 
-(+ x (+ (pow (sec x) -1) (+ (acosh x) (sinh x))))
++ x + pow sec x -1 + acosh x sinh x
 
-(d x (* 10 (+ (* 312 (cosh x)) (* 625 x))))
+d x * 10 + * 312 cosh x * 625 x
 * 1 + 6250 d x * cosh x 3120
 - * d x cosh * x -1 3120 -6250
 + * 3120 - d x cosh x 0 6250
@@ -12157,18 +12157,18 @@ pow - * 10 * sinh x 312 -6250 1
 + 0 - * sinh x 3120 -6250
 - * - * sinh x 312 0 10 -6250
 
-(d x (+ x (cosh (* x (pow (sin (+ 10 (* 9 pi))) -10)))))
+d x + x cosh * x pow sin + 10 * 9 pi -10
 
-(d x (+ (* -10 x) (+ (ln (pow x x)) (sinh x))))
+d x + * -10 x + ln pow x x sinh x
 + + cosh x -10 d x * ln x x
 + d x + sinh x ln pow x x -10
 + -10 + cosh x d x ln pow x x
 d x + sinh x * + -10 ln x x
 
-(d x (* x (+ 30 (* (pow x -10) (tanh x)))))
+d x * x + 30 * pow x -10 tanh x
 + 30 d x * pow x -9 tanh x
 
-(d x (+ x (* -1 (sinh (+ -120 (* 10 x))))))
+d x + x * -1 sinh + -120 * 10 x
 + 1 * -10 cosh - 120 * x 10
 + 1 * -10 cosh + 120 * x -10
 + 1 * cosh - -120 * x -10 -10
@@ -12185,23 +12185,23 @@ d x + x sinh - 120 * 10 x
 - 1 d x sinh + * x 10 -120
 d x - x sinh + -120 * 10 x
 
-(d x (+ -10 (+ (* -10 (pow 6 -1)) (sinh x))))
+d x + -10 + * -10 pow 6 -1 sinh x
 + d x * pow 6 -1 -10 cosh x
 
-(d x (* -10 (+ -1 (cosh (pow 8 -1)))))
+d x * -10 + -1 cosh pow 8 -1
 0
 
-(d x (* 10 (+ -1 (+ (pow x 10) (* -1 (cosh x))))))
+d x * 10 + -1 + pow x 10 * -1 cosh x
 
-(d x (* x (+ (* -10 (cosh x)) (sin (+ 10 (* 8 pi))))))
+d x * x + * -10 cosh x sin + 10 * 8 pi
 
-(* (pow (sec x) -1) (+ -10 (+ x (sinh x))))
+* pow sec x -1 + -10 + x sinh x
 * pow sec x -1 + x + sinh x -10
 
-(d x (* (cosh x) (sin (* 10 x))))
+d x * cosh x sin * 10 x
 + d x * sin * x 10 cosh x 0
 
-(d x (+ (* 2 pi) (tanh x)))
+d x + * 2 pi tanh x
 pow d x + * 2 pi tanh x 1
 + * d x pi 2 d x tanh x
 d x + * pi 2 tanh x
@@ -12211,7 +12211,7 @@ d x + * pi 2 tanh / x 1
 d x - * pi 2 * -1 tanh x
 + * d x pi 2 pow sech x 2
 
-(cosh (* x (cos (+ 1 (* 7 pi)))))
+cosh * x cos + 1 * 7 pi
 cosh * x * cos + 1 * 7 pi -1
 pow cosh / x sec + -1 * -7 pi 1
 pow cosh * cos - 1 * pi -7 x 1
@@ -12265,11 +12265,11 @@ pow cosh * x cos + 1 * pi 7 1
 cosh / x sec - 1 * 7 * -1 pi
 cosh * / cos - 1 * pi -7 1 x
 
-(d x (+ (pow x 2) (+ (* x (exp x)) (sinh x))))
+d x + pow x 2 + * x exp x sinh x
 
-(d x (* x (* (cos x) (cosh (* 6 pi)))))
+d x * x * cos x cosh * 6 pi
 
-(d x (+ 250 (* -10 (sinh x))))
+d x + 250 * -10 sinh x
 * -10 cosh * * 0.125 * x 4 -2
 - * -10 cosh * / x 2 2 0
 * 1 * -10 cosh * 2 * x 0.5
@@ -12462,25 +12462,25 @@ cosh * / cos - 1 * pi -7 1 x
 * 2 d x * -2.5 * sinh x 2
 * 2 * -5 cosh * -0.5 * 2 x
 
-(d x (+ (pow (cos x) -10) (* -10 (cosh x))))
+d x + pow cos x -10 * -10 cosh x
 
-(d x (* -10 (* (+ x (sin x)) (sinh x))))
+d x * -10 * + x sin x sinh x
 d x * * sinh x -10 + x sin x
 
-(d x (* -1 (* x (+ 99 (* 10 (sinh x))))))
+d x * -1 * x + 99 * 10 sinh x
 + -99 * -10 d x * sinh x x
 + * -10 + * cosh x x sinh x -99
 
-(+ (* -10 (pow x 2)) (* 10 (* x (sinh x))))
++ * -10 pow x 2 * 10 * x sinh x
 
-(+ -10 (+ x (+ (* -10 (sin x)) (tanh x))))
++ -10 + x + * -10 sin x tanh x
 + + x + tanh x * sin x -10 -10
 
-(* 10 (* x (+ (* -10 x) (sinh x))))
+* 10 * x + * -10 x sinh x
 * x + * 10 sinh x * -100 x
 * * + sinh x * -10 x x 10
 
-(+ x (+ (* x 2) (* x (sinh x))))
++ x + * x 2 * x sinh x
 * x + 3 * * sinh x 2 0.5
 + * 2 x * x + sinh x 1
 + * sinh x x + * x 2 x
@@ -12522,9 +12522,9 @@ pow / + sinh x 3 / 1 x 1
 pow + x * + 2 sinh x x 1
 * * + / sinh x 1 3 x 1
 
-(+ -10 (+ x (+ (pow (csc (+ -10 (* 4 pi))) -1) (cosh x))))
++ -10 + x + pow csc + -10 * 4 pi -1 cosh x
 
-(* x (sinh (+ x (* x (+ -10 x)))))
+* x sinh + x * x + -10 x
 pow * x sinh * + -9 x x 1
 * sinh + * x + x -10 x x
 * sinh * - -9 * -1 x x x
@@ -12539,32 +12539,32 @@ pow * x sinh * + -9 x x 1
 / x / 1 sinh * x + -9 x
 * * sinh * + x -9 x x 1
 
-(* -10 (tanh (+ x (pow 2 -1))))
+* -10 tanh + x pow 2 -1
 * tanh + x pow 2 -1 -10
 pow * -10 tanh + x pow 2 -1 1
 / -10 / 1 tanh + x pow 2 -1
 * / tanh + pow 2 -1 x 1 -10
 * 1 * tanh + x pow 2 -1 -10
 
-(d x (+ (cosh x) (sin (+ -10 (+ (* 7 pi) (* 10 x))))))
+d x + cosh x sin + -10 + * 7 pi * 10 x
 
-(+ x (+ (* -10 (cosh x)) (+ (ln x) (sin x))))
++ x + * -10 cosh x + ln x sin x
 
-(+ (* -10 (cosh x)) (+ (cos x) (sin x)))
++ * -10 cosh x + cos x sin x
 + + cos x sin x * -10 cosh x
 
-(* -1 (ln (pow coth x)))
+* -1 ln pow coth x
 
-(d x (* x (tanh (pow 3 -1))))
+d x * x tanh pow 3 -1
 
-(d x (* x (+ x (* x (pow coth 60)))))
+d x * x + x * x pow coth 60
 d x * * x x + pow coth 60 1
 d x * + x * x pow coth 60 x
 d x * + pow coth 60 1 pow x 2
 
-(+ x (+ (pow (cot x) -1) (+ (acosh x) (cosh x))))
++ x + pow cot x -1 + acosh x cosh x
 
-(+ -50 (+ (* -10 x) (* -10 (cosh x))))
++ -50 + * -10 x * -10 cosh x
 + -50 + * cosh x -10 * x -10
 + * cosh x -10 - -50 * 10 x
 * + * + cosh x x -10 -50 1
@@ -12574,16 +12574,16 @@ d x * + pow coth 60 1 pow x 2
 + -50 * + cosh x x -10
 + -50 * + x / cosh x 1 -10
 
-(d x (* x (+ -10 (pow coth 8))))
+d x * x + -10 pow coth 8
 d x * + -10 pow coth 8 x
 * d x * x + pow coth 8 -10 1
 d x + * -10 x * pow coth 8 x
 pow + d x * pow coth 8 x -10 1
 + d x * x + pow coth 8 -10 0
 
-(* x (ln (* x (pow coth 10))))
+* x ln * x pow coth 10
 
-(* 60 (+ 1 (* 2 (cosh x))))
+* 60 + 1 * 2 cosh x
 + 60 / 30 / 1 * 4 cosh x
 + 60 * 60 * 0.25 * cosh x 8
 + 60 * * cosh x 240 0.5
@@ -12666,16 +12666,16 @@ pow + d x * pow coth 8 x -10 1
 + 60 * 120 cosh x
 + 60 / 30 / / 1 cosh x 4
 
-(+ (* x (cosh (ln x))) (cos (+ x (* 9 pi))))
++ * x cosh ln x cos + x * 9 pi
 
-(d x (+ (* x (sinh x)) (+ (atanh x) (sin x))))
+d x + * x sinh x + atanh x sin x
 
-(* (pow 3 -1) (* (cosh x) (csc (+ -10 (* 4 pi)))))
+* pow 3 -1 * cosh x csc + -10 * 4 pi
 
-(d x (* 20 (* (+ x (cos x)) (cosh x))))
+d x * 20 * + x cos x cosh x
 d x * 20 * cosh x + cos x x
 
-(cosh (* x (cos (+ 620 (* 8 pi)))))
+cosh * x cos + 620 * 8 pi
 cosh * / cos + -620 * -8 pi 1 x
 cosh / -1 / sec - 620 * pi -8 x
 cosh / x sec + 620 * * -8 pi -1
@@ -12733,12 +12733,12 @@ cosh * x / cos - -620 * pi 8 1
 * cosh * cos - -620 * pi 8 x 1
 cosh / x sec + -620 * * -1 pi 8
 
-(+ (pow x -10) (+ (pow (sec x) -1) (sinh x)))
++ pow x -10 + pow sec x -1 sinh x
 + pow sec x -1 + sinh x pow x -10
 
-(+ x (* -10 (* x (* (+ 10 (* -10 x)) (cosh x)))))
++ x * -10 * x * + 10 * -10 x cosh x
 
-(pow (sinh (pow 8 -1)) -10)
+pow sinh pow 8 -1 -10
 pow sinh * * 0.25 pow 8 -1 4 -10
 pow sinh * 2 / pow 8 -1 2 -10
 pow * 2 * 0.5 sinh pow 8 -1 -10
@@ -12754,17 +12754,17 @@ pow sinh pow 8 -1 -10
 * 1 pow sinh pow 8 -1 -10
 pow * -1 sinh * pow 8 -1 -1 -10
 
-(d x (* x (pow (sin (pow coth 10)) -1)))
+d x * x pow sin pow coth 10 -1
 d x * x pow sin pow coth 10 -1
 
-(+ (* -10 (* x (pow 1 -1))) (cosh x))
++ * -10 * x pow 1 -1 cosh x
 
-(+ x (+ (* x (pow 1 -1)) (sinh x)))
++ x + * x pow 1 -1 sinh x
 
-(+ (* -10 (* x (cosh (ln x)))) (sin x))
++ * -10 * x cosh ln x sin x
 + * * -10 x cosh ln x sin x
 
-(pow (cosh (+ 10 (* -10 x))) -10)
+pow cosh + 10 * -10 x -10
 pow cosh - -10 * -5 * 2 x -10
 pow cosh * -2 + * x -5 5 -10
 pow cosh - 10 * -1 * x -10 -10
@@ -12802,7 +12802,7 @@ pow pow cosh - -10 * -10 x -10 1
 pow cosh * - -5 * -5 x -2 -10
 * 1 pow cosh - -10 * x -10 -10
 
-(d x (* -20 (+ x (* -1 (cosh x)))))
+d x * -20 + x * -1 cosh x
 + -20 * -20 - sinh * -1 x 0
 + -20 d x * * cosh x -1 -20
 + -20 * 20 sinh / 2 / 2 x
@@ -12838,7 +12838,7 @@ pow cosh * - -5 * -5 x -2 -10
 + -20 * 20 d x cosh * x -1
 + 0 + * * -20 sinh x -1 -20
 
-(d x (+ -20 (* -10 (cosh x))))
+d x + -20 * -10 cosh x
 * -10 d * -2 * -0.5 x cosh x
 * -10 sinh * -2 / * x -1 2
 * -20 d x pow cosh / x 2 2
@@ -12987,7 +12987,7 @@ pow cosh * - -5 * -5 x -2 -10
 * -10 d x cosh / -2 / 2 x
 * -10 d / 2 / 2 x cosh x
 
-(+ (* -10 x) (+ (* -10 (* x 6)) (tanh x)))
++ * -10 x + * -10 * x 6 tanh x
 + * * x -140 0.5 tanh / x 1
 + tanh x * * / x 1 -35 2
 + / 1 * / 1 x -0.014285714285714285 tanh x
@@ -13106,14 +13106,14 @@ pow + tanh x * -280 * 0.25 x 1
 + tanh x / -10 * 0.07142857142857142 / 2 x
 pow + / -140 / 2 x tanh x 1
 
-(+ (* 2 (pow (+ -1 x) -10)) (tanh x))
++ * 2 pow + -1 x -10 tanh x
 + * 2 pow + x -1 -10 tanh x
 
-(d x (* 20 (+ 6 (cosh x))))
+d x * 20 + 6 cosh x
 
-(+ (* 10 (pow x -10)) (+ (sin (+ x (* 1 pi))) (sinh x)))
++ * 10 pow x -10 + sin + x * 1 pi sinh x
 
-(d x (cosh (+ 10 (* -20 x))))
+d x cosh + 10 * -20 x
 - d x cosh + * x -20 10 0
 d x cosh * -1 + 10 * -20 x
 + 0 * sinh - -10 * -20 x 20
@@ -13201,7 +13201,7 @@ d x cosh + 10 * -40 / x 2
 d x cosh - -10 * -20 x
 * * -1 sinh - -10 * -20 x -20
 
-(* -10 (+ (* -1 (sinh x)) (cosh x)))
+* -10 + * -1 sinh x cosh x
 + * -20 * -0.5 sinh x * cosh x -10
 - * -10 cosh x * -20 / sinh x 2
 - * cosh x -10 * 2 * sinh x -5
@@ -13222,15 +13222,15 @@ d x cosh - -10 * -20 x
 + * -10 cosh x / 20 / 2 sinh x
 + * / sinh x 2 20 * -10 cosh x
 
-(+ x (+ (* -10 (* x (pow 2 -1))) (sinh x)))
++ x + * -10 * x pow 2 -1 sinh x
 
-(+ (* -10 (* (pow x 10) (cos (+ x (* 1 pi))))) (tanh x))
++ * -10 * pow x 10 cos + x * 1 pi tanh x
 
-(d x (+ (cosh x) (+ (ln (pow x x)) (tan x))))
+d x + cosh x + ln pow x x tan x
 
-(+ (* -10 x) (+ (asin x) (+ (sin x) (tanh x))))
++ * -10 x + asin x + sin x tanh x
 
-(* -10 (+ (atanh x) (cosh x)))
+* -10 + atanh x cosh x
 + / -10 / 1 cosh x * -10 atanh x
 pow * + atanh x cosh * x -1 -10 1
 * -10 + atanh x cosh * -4 * x 0.25
@@ -13283,17 +13283,17 @@ pow + * -10 cosh x * -10 atanh x 1
 pow * + atanh x cosh x -10 1
 * -10 + cosh / -2 / 2 x atanh x
 
-(d x (* x (+ (* -10 (sin (+ 10 (* 9 pi)))) (cosh x))))
+d x * x + * -10 sin + 10 * 9 pi cosh x
 
-(* x (pow (sec (+ (* 6 pi) (cosh (* 9 pi)))) -1))
+* x pow sec + * 6 pi cosh * 9 pi -1
 
-(d x (+ x (+ (cos (+ -10 x)) (+ (cosh x) (sinh x)))))
+d x + x + cos + -10 x + cosh x sinh x
 d x + + exp x cos + -10 x x
 + 1 + d x cos + -10 x exp x
 + 1 d x + exp x cos - 10 x
 + d x + x cos - 10 x exp x
 
-(d x (+ 60 (+ x (+ (cos (+ x (* 1 pi))) (cosh x)))))
+d x + 60 + x + cos + x * 1 pi cosh x
 + 1 + sinh x d x cos + x pi
 d x + x + cos + x pi cosh x
 + d x + x cos + x pi sinh x
@@ -13302,33 +13302,33 @@ d x + x + cos + x pi cosh x
 - d x + cos + pi x cosh x -1
 + - sinh x -1 d x cos + pi x
 
-(d x (+ (* -10 x) (* 10 (* x (+ x (cosh x))))))
+d x + * -10 x * 10 * x + x cosh x
 
-(+ (pow (sec (+ x (* 4 pi))) -1) (sinh (* 10 x)))
++ pow sec + x * 4 pi -1 sinh * 10 x
 
-(d x (+ x (cosh (+ (* 9 pi) (* -10 x)))))
+d x + x cosh + * 9 pi * -10 x
 
-(* x (* (+ x (cosh x)) (sin x)))
+* x * + x cosh x sin x
 
-(* (ln x) (sin (tanh (* 1 pi))))
+* ln x sin tanh * 1 pi
 
-(+ x (+ (pow (sec x) -1) (cosh (+ -10 x))))
++ x + pow sec x -1 cosh + -10 x
 + x + pow sec x -1 cosh + x -10
 + pow sec x -1 + x cosh - 10 x
 
-(* x (+ -10 (+ (sin x) (sinh x))))
+* x + -10 + sin x sinh x
 * x + -10 - sinh x sin * -1 x
 + * + sin x -10 x * x sinh x
 * * + sinh x + -10 sin x x 1
 * x + + sin x sinh x -10
 
-(d x (+ (pow x 2) (+ (pow (sec x) -1) (tanh x))))
+d x + pow x 2 + pow sec x -1 tanh x
 
-(d x (+ x (* 60 (* x (cosh x)))))
+d x + x * 60 * x cosh x
 + d x * cosh x * 60 x 1
 + 1 * 60 + * x sinh x cosh x
 
-(d x (* -10 (+ (* -1 (sinh x)) (ln x))))
+d x * -10 + * -1 sinh x ln x
 pow d x * - ln x sinh x -10 1
 * * - d x ln x cosh x -10 1
 * -10 d x + ln x sinh * x -1
@@ -13360,7 +13360,7 @@ d x + * -10 ln x * 10 sinh x
 * + / 1 x - 0 cosh x -10
 * 1 * - / 1 x cosh x -10
 
-(d x (+ x (* 8 (sinh (* 2 x)))))
+d x + x * 8 sinh * 2 x
 d x + x * 8 sinh * x 2
 d x + x * cosh x * 16 sinh x
 + d x * 16 * cosh x sinh x 1
@@ -13368,13 +13368,13 @@ d x + x * cosh x * 16 sinh x
 + 1 * 2 * cosh * x -2 8
 + 1 * * 8 cosh * x 2 2
 
-(d x (+ -10 (+ (pow (sec x) -1) (+ (* -10 x) (cosh x)))))
+d x + -10 + pow sec x -1 + * -10 x cosh x
 + -10 + d x pow sec x -1 sinh x
 + -10 d x + cosh x pow sec x -1
 
-(d x (+ x (+ (ln (pow x (pow x -10))) (sinh x))))
+d x + x + ln pow x pow x -10 sinh x
 
-(* (+ 1 (* 10 x)) (sinh x))
+* + 1 * 10 x sinh x
 + / sinh x 1 * * 10 x sinh x
 + * sinh x * 10 x sinh x
 + * / 20 / 2 x sinh x sinh x
@@ -13392,20 +13392,20 @@ d x + x * cosh x * 16 sinh x
 * + 1 * 10 x sinh x
 + * x / 10 / 1 sinh x sinh x
 
-(d x (cosh (sin (* (pow x -10) x))))
+d x cosh sin * pow x -10 x
 + - d x cosh sin pow x -9 0 0
 + d x cosh sin * x pow x -10 0
 + d x cosh sin pow x -9 0
 + d x cosh sin * -1 pow x -9 0
 
-(d x (tan (* x (pow coth 10))))
+d x tan * x pow coth 10
 + d x tan * pow coth 10 x 0
 
-(d x (* -1 (* x (+ -1 (* 10 (cosh (+ -10 x)))))))
+d x * -1 * x + -1 * 10 cosh + -10 x
 
-(d x (* -10 (* x (+ -1 (+ x (* -1 (cosh x)))))))
+d x * -10 * x + -1 + x * -1 cosh x
 
-(d x (* -10 (+ (pow x 2) (cosh x))))
+d x * -10 + pow x 2 cosh x
 + * -10 - sinh x * -2 x 0
 + 0 * + sinh x * 2 x -10
 + / -20 / 1 x * -10 sinh x
@@ -13421,7 +13421,7 @@ d x + x * cosh x * 16 sinh x
 - * -10 + * x 2 sinh x 0
 + * -10 sinh x * -20 x
 
-(* -10 (* (pow (cosh x) -1) (* (sinh x) 8)))
+* -10 * pow cosh x -1 * sinh x 8
 * / -160 / 2 sinh x pow cosh x -1
 * * 8 * pow cosh x -1 sinh x -10
 * * * -5 pow cosh x -1 sinh x 16
@@ -13435,14 +13435,14 @@ pow * * pow cosh x -1 sinh x -80 1
 * * * pow cosh x -1 -80 sinh x 1
 * * -160 / sinh x 2 pow cosh x -1
 
-(+ 60 (+ (pow (csc x) -1) (sinh x)))
++ 60 + pow csc x -1 sinh x
 + pow / 1 sin x -1 + 60 sinh x
 * + + 60 sinh x pow csc x -1 1
 pow + sinh x + 60 pow csc x -1 1
 + + pow csc x -1 60 / sinh x 1
 + + sinh x pow csc x -1 60
 
-(d x (+ -10 (pow coth (pow 2 -1))))
+d x + -10 pow coth pow 2 -1
 d x pow coth pow 2 -1
 + 0 d x pow coth pow 2 -1
 * 1 d x + -10 pow coth pow 2 -1
@@ -13452,9 +13452,9 @@ d x + pow coth pow 2 -1 -10
 pow d x + pow coth pow 2 -1 -10 1
 pow d x pow coth pow 2 -1 1
 
-(d x (* (pow (+ 10 (sin (+ 10 (* 5 pi)))) -10) (tanh x)))
+d x * pow + 10 sin + 10 * 5 pi -10 tanh x
 
-(d x (+ (* -10 x) (+ (cos x) (cosh x))))
+d x + * -10 x + cos x cosh x
 + - sin * -1 x 0 + sinh x -10
 + + + sinh x -10 * -1 sin x 0
 + -10 - d x + 1 cosh x sin x
@@ -13536,17 +13536,17 @@ pow d x pow coth pow 2 -1 1
 + sin * -2 / x 2 + -10 sinh x
 + -10 - sinh x / / sin x 1 1
 
-(+ x (+ (* -10 (cosh x)) (sin (+ 1 (* 8 pi)))))
++ x + * -10 cosh x sin + 1 * 8 pi
 
-(+ 1 (+ (pow (sec (ln x)) -1) (sinh x)))
++ 1 + pow sec ln x -1 sinh x
 + sinh x + 1 pow sec ln x -1
 
-(+ (* x (pow (sec (+ 1 (* 3 pi))) -1)) (sinh x))
++ * x pow sec + 1 * 3 pi -1 sinh x
 
-(d x (* x (sinh (sin (+ 1 (* 5 pi))))))
+d x * x sinh sin + 1 * 5 pi
 d x * x sinh sin + * pi 5 1
 
-(d x (+ -10 (+ x (sinh (pow 9 -1)))))
+d x + -10 + x sinh pow 9 -1
 pow - d x sinh pow 9 -1 -1 1
 - d x + sinh pow 9 -1 -10 -1
 * 1 + 1 d x sinh pow 9 -1
@@ -13566,12 +13566,12 @@ d x + sinh pow 9 -1 x
 d x + + -10 x sinh pow 9 -1
 * - d x sinh pow 9 -1 -1 1
 
-(d x (+ 1 (sin (atanh (tanh x)))))
+d x + 1 sin atanh tanh x
 + d x sin atanh tanh x 0
 + d x sin - atanh tanh x 0 0
 + d x + sin atanh tanh x 1 0
 
-(* -1 (tanh (+ 30 (* 10 x))))
+* -1 tanh + 30 * 10 x
 * tanh * -1 + * x 10 30 1
 tanh * -2 + * x 5 15
 * tanh * 2 + * x 5 15 -1
@@ -13644,15 +13644,15 @@ tanh * -2 + * 2 * 2.5 x 15
 pow tanh + * * x 10 -1 -30 1
 * tanh - -30 * * 5 x 2 1
 
-(d x (+ x (* 10 (* (sin (+ x (* 1 pi))) (sinh x)))))
+d x + x * 10 * sin + x * 1 pi sinh x
 
-(d x (+ -10 (+ x (+ (* x (ln x)) (cosh x)))))
+d x + -10 + x + * x ln x cosh x
 + d x + * x ln x x sinh x
 + 1 + d x * x ln x sinh x
 + 1 d x + cosh x * ln x x
 + - d x * x ln x -1 sinh x
 
-(d x (* 10 (+ (* 4 x) (sinh x))))
+d x * 10 + * 4 x sinh x
 * 1 + 40 * 2 * 5 cosh x
 d x + * 40 x * 10 sinh x
 d x * 10 + sinh x * 4 x
@@ -13733,7 +13733,7 @@ pow + 40 * 20 * 0.5 cosh x 1
 + 40 * * 5 cosh * x -1 2
 pow * + cosh x 4 10 1
 
-(d x (* -10 (+ -3 (tanh x))))
+d x * -10 + -3 tanh x
 d x * / / tanh x 1 1 -10
 d x * + -3 tanh x -10
 * -10 pow sech * * x 2 -0.5 2
@@ -13802,13 +13802,13 @@ pow * pow sech x 2 -10 1
 d / * 2 x 2 * tanh x -10
 - -10 * -10 pow tanh * x -1 2
 
-(+ x (* -10 (cosh (sin (+ 10 (* 5 pi))))))
++ x * -10 cosh sin + 10 * 5 pi
 + * -10 cosh sin + 10 * 5 pi x
 + x * -10 cosh sin - -10 * pi 5
 
-(+ (pow x 2) (+ (pow (sec (+ x (* 9 pi))) -1) (cosh x)))
++ pow x 2 + pow sec + x * 9 pi -1 cosh x
 
-(d x (* (pow coth 80) -1))
+d x * pow coth 80 -1
 * * pow coth 79 d x coth -80
 * 1 * pow coth 79 * d x coth -80
 + - 0 d x pow coth 80 0
@@ -13835,10 +13835,10 @@ pow - 0 d x pow coth 80 1
 - - - 0 d x pow coth 80 0 0
 - 0 - d x pow coth 80 0
 
-(+ x (* x (+ -10 (* -10 (* x (sinh x))))))
++ x * x + -10 * -10 * x sinh x
 * x + * * sinh x -10 x -9
 
-(+ (pow x -10) (+ (cos x) (sinh x)))
++ pow x -10 + cos x sinh x
 - + cos x pow x -10 * -1 sinh x
 + + sinh x pow x -10 cos x
 - pow x -10 - * -1 sinh x cos x
@@ -13846,7 +13846,7 @@ pow - 0 d x pow coth 80 1
 + + sinh x pow x -10 / 1 sec x
 + sinh x + cos * -1 x pow x -10
 
-(d x (+ x (* -10 (* 1 (cosh x)))))
+d x + x * -10 * 1 cosh x
 + - * -10 d x cosh x -1 0
 + 1 * sinh * 4 * x -0.25 10
 + * sinh * -4 * 0.25 x 10 1
@@ -13894,7 +13894,7 @@ pow - 0 d x pow coth 80 1
 + 1 * -1 * sinh x 10
 + * sinh * / x 2 2 -10 1
 
-(d x (+ x (* (cos x) (cosh x))))
+d x + x * cos x cosh x
 + - d x * cos x cosh x -1 0
 + + 1 d x * cos x cosh x 0
 + 1 d x * / cos x 1 cosh x
@@ -13913,7 +13913,7 @@ pow - 0 d x pow coth 80 1
 + 1 d x / cosh * -1 x sec x
 + + 1 d x / cosh x sec x 0
 
-(* x (sinh (+ -10 8)))
+* x sinh + -10 8
 * * cosh 1 - exp -1 exp 1 x
 * * x * * 2 sinh -2 0.5 1
 * x * cosh -1 - exp -1 exp 1
@@ -13983,7 +13983,7 @@ pow - 0 d x pow coth 80 1
 * * * 0.5 x - exp -2 exp 2 1
 * / * - exp -2 exp 2 0.5 1 x
 
-(* -1 (sinh (+ 70 (* 10 x))))
+* -1 sinh + 70 * 10 x
 * -2 * 0.5 sinh + * x 10 70
 sinh - -70 * * * -10 x -0.5 2
 sinh * + -35 * * x 5 -1 2
@@ -14092,13 +14092,13 @@ pow sinh - -70 * * x -10 -1 1
 * sinh * + * x -5 -35 2 1
 sinh - -70 * * 5 x 2
 
-(d x (+ 10 (+ (pow (sec x) -1) (* -10 (* x (sinh x))))))
+d x + 10 + pow sec x -1 * -10 * x sinh x
 
-(* (+ -10 (+ (cosh x) (sinh x))) (cos (+ 10 (* 4 pi))))
+* + -10 + cosh x sinh x cos + 10 * 4 pi
 
-(+ x (* x (+ x (+ (cosh x) (sin (+ x (* 4 pi)))))))
++ x * x + x + cosh x sin + x * 4 pi
 
-(+ x (+ (cos (* 10 x)) (tanh x)))
++ x + cos * 10 x tanh x
 + tanh x + cos * 20 / x 2 x
 + tanh x + cos * * 5 x 2 x
 + x + cos * / x 2 -20 tanh x
@@ -14120,9 +14120,9 @@ sinh - -70 * * 5 x 2
 + + tanh x cos * * 0.5 x -20 x
 + cos * x 10 + tanh x x
 
-(d x (+ (* -10 (sin (+ x (* 8 pi)))) (sinh (asin x))))
+d x + * -10 sin + x * 8 pi sinh asin x
 
-(ln (pow (sinh (pow 2 -1)) x))
+ln pow sinh pow 2 -1 x
 + ln pow sinh pow 2 -1 x * x 0
 + * ln sinh pow 2 -1 x 0
 + ln pow / sinh pow 2 -1 1 x 0
@@ -14131,13 +14131,13 @@ sinh - -70 * * 5 x 2
 + ln pow sinh pow 2 -1 x 0
 + * - ln sinh pow 2 -1 0 x 0
 
-(d x (+ (* -10 (tanh x)) (sin (+ 10 x))))
+d x + * -10 tanh x sin + 10 x
 + cos + 10 x * pow sech x 2 -10
 + cos - -10 x * d x tanh x -10
 + * -10 d x tanh x cos + x 10
 + * pow sech x 2 -10 cos - -10 x
 
-(* x (+ x (sinh (pow 9 -1))))
+* x + x sinh pow 9 -1
 * + / sinh pow 9 -1 1 x x
 pow * x + sinh pow 9 -1 x 1
 * x + x sinh pow 9 -1
@@ -14145,17 +14145,17 @@ pow * x + sinh pow 9 -1 x 1
 + pow x 2 * x sinh pow 9 -1
 + * x x * x sinh pow 9 -1
 
-(d x (* x (cosh (* x (pow (sin (+ 10 (* 3 pi))) -10)))))
+d x * x cosh * x pow sin + 10 * 3 pi -10
 
-(+ (* -10 (* x (cos (+ x (* 3 pi))))) (sinh x))
++ * -10 * x cos + x * 3 pi sinh x
 
-(d x (+ (pow (sec x) -1) (sinh (* 10 x))))
+d x + pow sec x -1 sinh * 10 x
 d x + pow sec x -1 sinh * x 10
 
-(d x (+ (* x (pow (sec x) -1)) (sinh x)))
+d x + * x pow sec x -1 sinh x
 + d x * x pow sec x -1 cosh x
 
-(+ (* 5 pi) (cosh x))
++ * 5 pi cosh x
 + cosh / x 1 * 5 pi
 + cosh * 2 * -0.5 x * 5 pi
 + * 5 pi cosh * * x 0.25 4
@@ -14183,9 +14183,9 @@ pow + * pi 5 cosh / x 1 1
 + * pi 5 cosh * 0.5 * x -2
 + * pi 5 cosh / 2 / 2 x
 
-(d x (sinh (* x (* (pow 5 -1) (cos (+ 20 (* 1 pi)))))))
+d x sinh * x * pow 5 -1 cos + 20 * 1 pi
 
-(+ (* -10 (cos (+ -10 x))) (cosh x))
++ * -10 cos + -10 x cosh x
 pow + / -10 sec - 10 x cosh x 1
 + / -10 sec * - 10 x -1 cosh x
 + cosh x * / cos - 10 x 1 -10
@@ -14213,19 +14213,19 @@ pow + * -10 cos + x -10 cosh x 1
 + / -10 sec - 10 x cosh x
 + cosh x / 1 / sec + -10 x -10
 
-(cosh (* x (* (pow 5 -1) (csc (+ -20 (* 4 pi))))))
+cosh * x * pow 5 -1 csc + -20 * 4 pi
 
-(* x (+ (* -10 (cosh x)) 4))
+* x + * -10 cosh x 4
 + * x 4 * cosh x * -10 x
 
-(d x (+ 10 (+ (* -10 x) (+ (sin x) (sinh x)))))
+d x + 10 + * -10 x + sin x sinh x
 d x + * -10 x + sinh x sin x
 
-(d x (+ 1 (+ (cosh x) (sin (+ x (* 2 pi))))))
+d x + 1 + cosh x sin + x * 2 pi
 + d x sin + x * 2 pi sinh x
 + d x sin - x * -2 pi sinh x
 
-(* x (tanh (* x (+ -9 x))))
+* x tanh * x + -9 x
 * x tanh * x + -9 x
 * tanh + * -9 x * x x x
 pow * x tanh * x + x -9 1
@@ -14234,9 +14234,9 @@ pow * x tanh * x + x -9 1
 * 1 * tanh * + x -9 x x
 / x / 1 tanh * + x -9 x
 
-(d x (+ x (* (cos x) (sinh (cos (+ x (* 2 pi)))))))
+d x + x * cos x sinh cos + x * 2 pi
 
-(* 100 (* (pow coth 10) -1))
+* 100 * pow coth 10 -1
 * -100 pow coth 10
 * 1 * 100 * -1 pow coth 10
 * -1 * pow coth 10 100
@@ -14244,7 +14244,7 @@ pow * -1 * pow coth 10 100 1
 * 1 * pow coth 10 -100
 pow * pow coth 10 -100 1
 
-(* -10 (+ -5 (cosh x)))
+* -10 + -5 cosh x
 + 40 * pow sinh * -0.5 x 2 -20
 + 50 * -10 cosh / * x 2 2
 * + -5 cosh * -1 / x 1 -10
@@ -14312,25 +14312,25 @@ pow * + -5 cosh x -10 1
 + * cosh * -0.5 * x 2 -10 50
 + * -10 cosh x 50
 
-(d x (+ (pow (cot x) -1) (+ (exp x) (sinh x))))
+d x + pow cot x -1 + exp x sinh x
 
-(* 50 (* (+ (cosh x) (sinh x)) (sin (+ x (* 9 pi)))))
+* 50 * + cosh x sinh x sin + x * 9 pi
 
-(+ 1 (+ (cosh x) (ln (sin (+ x (* 9 pi))))))
++ 1 + cosh x ln sin + x * 9 pi
 
-(+ x (+ (* -9 (cosh x)) (+ (sin x) (sinh x))))
++ x + * -9 cosh x + sin x sinh x
 
-(d x (+ (sin (+ 1 (* 3 pi))) (tanh x)))
+d x + sin + 1 * 3 pi tanh x
 
-(+ 10 (+ (* -10 (* x (cosh x))) (sin (+ x (* 9 pi)))))
++ 10 + * -10 * x cosh x sin + x * 9 pi
 
-(+ (pow x 2) (+ (* 60 x) (* x (sinh x))))
++ pow x 2 + * 60 x * x sinh x
 + pow x 2 * + 60 sinh x x
 
-(+ x (+ (exp x) (+ (sin x) (tanh x))))
++ x + exp x + sin x tanh x
 + x + sin x + exp x tanh x
 
-(d x (+ x (+ (* x (+ 20 x)) (cosh x))))
+d x + x + * x + 20 x cosh x
 + sinh x - 21 * x -2
 + 1 + - 20 * x -2 sinh x
 + sinh x + + x x 21
@@ -14384,9 +14384,9 @@ pow * + -5 cosh x -10 1
 + - - sinh x -20 * x -2 1
 + - - sinh x -21 * x -2 0
 
-(* (pow x -10) (sinh (pow (sec (+ 1 (* 7 pi))) -1)))
+* pow x -10 sinh pow sec + 1 * 7 pi -1
 
-(* x (+ -10 (* x (sinh x))))
+* x + -10 * x sinh x
 * + / x / 1 sinh x -10 x
 + * x -10 * * sinh x x x
 + * x -10 * pow x 2 sinh x
@@ -14395,13 +14395,13 @@ pow * + -10 * sinh x x x 1
 * x + * x sinh x -10
 * * + -10 * sinh x x x 1
 
-(d x (+ (* -1250 (sinh x)) (* 1250 (* x (cosh x)))))
+d x + * -1250 sinh x * 1250 * x cosh x
 
-(+ x (* x (+ x (+ (sin x) (sinh x)))))
++ x * x + x + sin x sinh x
 * x + + 1 sinh x + sin x x
 + * + + sin x x sinh x x x
 
-(d x (+ -10 (* 10 (cosh x))))
+d x + -10 * 10 cosh x
 * 5 - exp x exp * -1 / x 1
 * 10 sinh / 2 / 4 * 2 x
 - * sinh * -1 * x -1 10 0
@@ -14557,10 +14557,10 @@ pow * + -10 * sinh x x x 1
 * 10 sinh * -0.5 * -4 / x 2
 - 0 * 10 sinh / -2 / 2 x
 
-(d x (+ 10 (* -10 (* x (sinh (pow 9 -1))))))
+d x + 10 * -10 * x sinh pow 9 -1
 d x * -10 * sinh pow 9 -1 x
 
-(exp (+ x (cosh (* 3 pi))))
+exp + x cosh * 3 pi
 * exp + cosh * -4 * pi -0.75 x 1
 * exp + x cosh * -1 * pi 3 1
 exp + x cosh * * -0.25 * 3 pi 4
@@ -14819,16 +14819,16 @@ exp + cosh * -4 * 2 * pi -0.375 x
 pow exp + cosh * -0.25 * 12 pi x 1
 exp + cosh / -0.5 / 2 * pi 12 x
 
-(+ 10 (+ (pow (cot x) -1) (* -10 (cosh x))))
++ 10 + pow cot x -1 * -10 cosh x
 - + pow cot x -1 * cosh x -10 -10
 + * cosh x -10 + pow cot x -1 10
 - * -10 cosh x - -10 pow cot x -1
 
-(d x (cos (+ x (* -10 (cosh (* 7 pi))))))
+d x cos + x * -10 cosh * 7 pi
 
-(d x (+ (* x (cosh (asin x))) (sin (+ x (* 3 pi)))))
+d x + * x cosh asin x sin + x * 3 pi
 
-(d x (+ (* -10 x) (+ (* -10 (cosh x)) (sin x))))
+d x + * -10 x + * -10 cosh x sin x
 + + + -10 cos x * sinh x -10 0
 + -10 d x + * cosh x -10 sin x
 + + * + 1 sinh x -10 cos x 0
@@ -14848,11 +14848,11 @@ exp + cosh / -0.5 / 2 * pi 12 x
 + / 1 sec x - * -10 sinh x 10
 + / 1 sec x * -10 + sinh x 1
 
-(d x (* (pow (csc x) -1) (+ -10 (+ x (sinh x)))))
+d x * pow csc x -1 + -10 + x sinh x
 
-(d x (+ (asin x) (+ (cosh x) (sin (+ x (* 8 pi))))))
+d x + asin x + cosh x sin + x * 8 pi
 
-(+ (* 1020 x) (* x (cosh x)))
++ * 1020 x * x cosh x
 + * cosh x x * x 1020
 + * 2040 / x 2 * x cosh x
 + * 1020 x * x cosh * x -1
@@ -14866,13 +14866,13 @@ exp + cosh / -0.5 / 2 * pi 12 x
 + * -1020 * x -1 * x cosh x
 + * cosh x x * -510 * x -2
 
-(d x (+ (pow (sec x) -1) (+ (acosh x) (tanh x))))
+d x + pow sec x -1 + acosh x tanh x
 
-(d x (+ (pow x 2) (+ (sin (+ x (* 5 pi))) (sinh x))))
+d x + pow x 2 + sin + x * 5 pi sinh x
 
-(d x (* (+ 1 (pow (sec x) -1)) (cosh x)))
+d x * + 1 pow sec x -1 cosh x
 
-(* -10 (tanh (* x 6)))
+* -10 tanh * x 6
 * tanh / * 6 x 1 -10
 / * -10 tanh * 0.25 * 24 x 1
 * * -10 tanh / * 6 x 1 1
@@ -14938,17 +14938,17 @@ pow * -10 tanh * * 1.5 x 4 1
 * -10 tanh / 2 / 4 * 12 x
 pow / * -10 tanh * x 6 1 1
 
-(d x (* 10 (+ -1 (+ x (* -1 (tanh (* 10 x)))))))
+d x * 10 + -1 + x * -1 tanh * 10 x
 + 10 d x * tanh * -10 x 10
 * 10 + 1 d x tanh * -10 x
 - 10 * 10 d x tanh * x 10
 * 10 - d x tanh * -10 x -1
 * 10 - 1 d x tanh * 10 x
 
-(pow (csc (+ (* 7 pi) (* -1 (tanh (pow x -9))))) -1)
+pow csc + * 7 pi * -1 tanh pow x -9 -1
 pow csc - * pi 7 tanh pow x -9 -1
 
-(sinh (* 10 (* x 7)))
+sinh * 10 * x 7
 * -1 sinh * -1 * 28 * x 2.5
 * -1 sinh * * x -10 7
 * -1 sinh * * -2 * x 17.5 2
@@ -15152,11 +15152,11 @@ pow csc - * pi 7 tanh pow x -9 -1
 * sinh * 2 * 2 * x 17.5 1
 * -1 sinh * * -35 x 2
 
-(d x (+ x (+ (pow (cot x) -1) (+ (cosh x) (ln x)))))
+d x + x + pow cot x -1 + cosh x ln x
 
-(d x (pow (csc (+ x (pow coth 120))) -1))
+d x pow csc + x pow coth 120 -1
 
-(d x (* -10 (* (pow 4 -1) (cosh x))))
+d x * -10 * pow 4 -1 cosh x
 pow * * pow 4 -1 sinh x -10 1
 d x * * -10 pow 4 -1 cosh x
 * pow 4 -1 * sinh x -10
@@ -15164,14 +15164,14 @@ d x * * -10 pow 4 -1 cosh x
 + * * -10 sinh x pow 4 -1 0
 * * pow 4 -1 * sinh x -10 1
 
-(+ 10 (+ (pow (sec x) -1) (+ (* -10 x) (tanh x))))
++ 10 + pow sec x -1 + * -10 x tanh x
 
-(* (pow coth 250) -1)
+* pow coth 250 -1
 * * pow coth 250 -1 1
 * pow coth 250 -1
 pow * -1 pow coth 250 1
 
-(d x (+ (* 60 x) (* 60 (cosh x))))
+d x + * 60 x * 60 cosh x
 + 60 * 30 * 2 - sinh x 0
 + 60 * 60 * * 2 sinh x 0.5
 + 0 * - sinh x -1 60
@@ -15318,7 +15318,7 @@ pow * -1 pow coth 250 1
 - * 30 - exp x exp * x -1 -60
 * 60 + sinh / 2 / 2 x 1
 
-(+ -10 (+ (cos x) (sinh x)))
++ -10 + cos x sinh x
 - -10 - sinh * x -1 / cos x 1
 - + cos x -10 sinh * x -1
 + cos * * -1 x -1 + sinh x -10
@@ -15354,22 +15354,22 @@ pow * -1 pow coth 250 1
 + + / sin x tan x sinh x -10
 - -10 - sinh * -2 / x 2 cos x
 
-(d x (* x (* 1 (pow coth 10))))
+d x * x * 1 pow coth 10
 pow d x * x pow coth 10 1
 * 1 d x * pow coth 10 x
 + pow coth 10 * d x pow coth 10 x
 + 0 d x * x pow coth 10
 d x * x pow coth 10
 
-(* (+ 620 x) (cosh x))
+* + 620 x cosh x
 + * cosh x x * 620 cosh x
 + * x cosh * -1 x * 620 cosh x
 + / x / 1 cosh x * 620 cosh x
 + * 620 / cosh x 1 * x cosh x
 
-(d x (ln (* x (pow coth 9))))
+d x ln * x pow coth 9
 
-(* -10 (+ 2 (+ x (* -1 (sinh x)))))
+* -10 + 2 + x * -1 sinh x
 - * -10 + 2 x * -10 sinh x
 + + * -10 x -20 * sinh x 10
 * - x - sinh x 2 -10
@@ -15396,7 +15396,7 @@ pow * + x - 2 sinh x -10 1
 - * x -10 * -10 - sinh x 2
 + * -10 + * -1 sinh x x -20
 
-(* 1 (+ 2 (+ pi (* 2 (sinh x)))))
+* 1 + 2 + pi * 2 sinh x
 + * / sinh x 1 2 + pi 2
 + - + exp x 2 exp * x -1 pi
 * 1 + 2 + * 2 sinh x pi
@@ -15410,11 +15410,11 @@ pow + pi + * 2 sinh x 2 1
 + pi + 2 * 0.25 * 8 sinh x
 + + * 4 * sinh x 0.5 pi 2
 
-(d x (* x (+ 1 (+ x (cosh (+ -10 x))))))
+d x * x + 1 + x cosh + -10 x
 
-(+ x (+ (pow x 2) (* x (sinh (+ -10 x)))))
++ x + pow x 2 * x sinh + -10 x
 
-(d x (* -10 (+ 1 (+ (cos x) (sinh x)))))
+d x * -10 + 1 + cos x sinh x
 * + * -1 sin x cosh * -1 x -10
 d x * -10 + cos x sinh x
 + * 2 * -5 cosh x * 10 sin x
@@ -15467,26 +15467,26 @@ d x + * -10 sinh x / -10 sec x
 * -10 - * sin x -1 - 0 cosh x
 * -10 + cosh x d x + 1 cos x
 
-(d x (* (pow (csc (+ -10 x)) -1) (cosh x)))
+d x * pow csc + -10 x -1 cosh x
 
-(+ (pow (tan x) -10) (+ (* -10 x) (cosh x)))
++ pow tan x -10 + * -10 x cosh x
 + * x -10 + pow tan x -10 cosh x
 
-(+ -60 (+ (* 20 x) (* 20 (* x (sinh x)))))
++ -60 + * 20 x * 20 * x sinh x
 + -60 * x + 20 * sinh x 20
 + * * x 20 + 1 sinh x -60
 + * + * sinh x x x 20 -60
 
-(* (pow x -10) (* (pow coth 10) -1))
+* pow x -10 * pow coth 10 -1
 * * pow x -10 -1 pow coth 10
 * * * pow x -10 pow coth 10 -1 1
 pow * -1 * pow coth 10 pow x -10 1
 
-(* (pow (sec (+ 10 (* 1 pi))) -1) (+ x (tanh x)))
+* pow sec + 10 * 1 pi -1 + x tanh x
 * pow sec - -10 pi -1 + tanh x x
 * pow sec + pi 10 -1 + tanh x x
 
-(+ (* 10 x) (* (cosh x) (sin x)))
++ * 10 x * cosh x sin x
 + * 20 / x 2 * cosh x sin x
 + * x 10 / sin x / 1 cosh x
 + * 20 * x 0.5 * cosh x sin x
@@ -15496,10 +15496,10 @@ pow * -1 * pow coth 10 pow x -10 1
 + * cosh x sin x / 20 / 2 x
 + * sin x cosh * x -1 * 10 x
 
-(+ (* -750 (cosh x)) (* 750 (* x (sinh x))))
++ * -750 cosh x * 750 * x sinh x
 + * x * sinh x 750 * cosh x -750
 
-(+ 10 (+ (* -9 x) (* x (sinh x))))
++ 10 + * -9 x * x sinh x
 + 10 * x + -9 / sinh x 1
 + * x sinh x + 10 * x -9
 + 10 * + sinh x -9 x
@@ -15507,7 +15507,7 @@ pow + 10 * x + -9 sinh x 1
 * + * + sinh x -9 x 10 1
 + 10 / + sinh x -9 / 1 x
 
-(+ (* x (+ -10 (* -10 x))) (cosh x))
++ * x + -10 * -10 x cosh x
 + * * x - -1 x 10 cosh x
 + cosh x * + * x x x -10
 + cosh x * -10 * x - x -1
@@ -15515,7 +15515,7 @@ pow + 10 * x + -9 sinh x 1
 + * * x -10 + 1 x cosh x
 + * + -10 * -10 x x cosh x
 
-(* x (+ 30 (sinh x)))
+* x + 30 sinh x
 + * sinh x x * * x 2 15
 pow / + 30 sinh x / 1 x 1
 * + * 2 sinh x 60 / x 2
@@ -15545,17 +15545,17 @@ pow + * sinh x x * x 30 1
 * 1 + * x 30 * sinh x x
 / + 30 sinh x / / 1 x 1
 
-(d x (* -10 (cosh (+ x (pow 8 -1)))))
+d x * -10 cosh + x pow 8 -1
 
-(d x (+ x (cos (pow coth 20))))
+d x + x cos pow coth 20
 + d x + x cos pow coth 20 0
 + + d x cos pow coth 20 1 0
 + - d x cos pow coth 20 -1 0
 
-(+ (* x (asin x)) (* -10 (* x (cosh x))))
++ * x asin x * -10 * x cosh x
 + * x * cosh x -10 * x asin x
 
-(+ (pow (sec x) -1) (cosh (asin x)))
++ pow sec x -1 cosh asin x
 + pow / 1 cos x -1 cosh asin x
 + cosh asin x pow / sec x 1 -1
 + cosh * asin x -1 pow sec x -1
@@ -15566,17 +15566,17 @@ pow + pow sec x -1 cosh asin x 1
 + cosh asin x pow / csc x cot x -1
 + cosh asin x pow * tan x csc x -1
 
-(+ -10 (+ (* 10 (cos (+ x (* 2 pi)))) (tanh x)))
++ -10 + * 10 cos + x * 2 pi tanh x
 
-(+ x (* -10 (* (cos (+ 10 (* 7 pi))) (sinh x))))
++ x * -10 * cos + 10 * 7 pi sinh x
 
-(d x (ln (* x (pow (tanh (sin (+ 10 (* 8 pi)))) -10))))
+d x ln * x pow tanh sin + 10 * 8 pi -10
 
-(d x (* x (pow (atan (sinh (sin (+ 10 (* 5 pi))))) -10)))
+d x * x pow atan sinh sin + 10 * 5 pi -10
 
-(d x (+ x (* x (* (+ -10 (* 10 x)) (sinh x)))))
+d x + x * x * + -10 * 10 x sinh x
 
-(* 1020 (+ x (cosh x)))
+* 1020 + x cosh x
 + * * 0.25 x 4080 * 1020 cosh x
 - / 1020 / 1 cosh x * x -1020
 * + * * x 4 0.25 cosh x 1020
@@ -15644,21 +15644,21 @@ pow * 1020 + x cosh x 1
 * 1020 - cosh x * * x -0.5 2
 * + cosh / -1 / 1 x x 1020
 
-(+ x (+ (cos (acosh x)) (tanh x)))
++ x + cos acosh x tanh x
 + + / cos acosh x 1 tanh x x
 + tanh x + cos * -1 acosh x x
 + cos + acosh x ln 1 + tanh x x
 + cos acosh x + x tanh x
 + + / 1 sec acosh x tanh x x
 
-(+ (* 3 pi) (* -10 (pow coth x)))
++ * 3 pi * -10 pow coth x
 pow + * 3 pi * pow coth x -10 1
 * 1 + * pi 3 * pow coth x -10
 + * 3 pi * -10 pow coth x
 
-(d x (sin (+ (* 8 pi) (cosh (* 7 pi)))))
+d x sin + * 8 pi cosh * 7 pi
 
-(* x (+ x (pow coth 60)))
+* x + x pow coth 60
 * 1 + * pow coth 60 x * x x
 pow * x + pow coth 60 x 1
 + * x pow coth 60 * x x
@@ -15669,15 +15669,15 @@ pow + * x x * x pow coth 60 1
 pow + * x pow coth 60 pow x 2 1
 + pow x 2 * pow coth 60 x
 
-(d x (* x (+ (* -10 (sin (+ x (* 1 pi)))) (cosh x))))
+d x * x + * -10 sin + x * 1 pi cosh x
 
-(d x (+ 10 (+ (pow (sec x) -1) (* -10 (tanh x)))))
+d x + 10 + pow sec x -1 * -10 tanh x
 d x + * tanh x -10 pow sec x -1
 
-(* -1 (* x (* (+ -20 (* 10 x)) (cosh x))))
+* -1 * x * + -20 * 10 x cosh x
 * - 20 * 10 x * cosh x x
 
-(tanh (+ -9 (* -10 x)))
+tanh + -9 * -10 x
 * tanh + * * x 0.5 -20 -9 1
 tanh * * + -9 * -10 x 0.25 4
 tanh * + -4.5 * / x 2 -10 2
@@ -15732,7 +15732,7 @@ tanh * + -4.5 / -10 / 2 x 2
 pow tanh + -9 / -20 / 2 x 1
 tanh + -9 * x -10
 
-(sinh (* (+ -10 x) (cos (+ 10 (* 3 pi)))))
+sinh * + -10 x cos + 10 * 3 pi
 sinh * + x -10 cos + -10 * pi -3
 sinh / + x -10 sec + -10 * pi -3
 sinh * cos + 10 * 3 pi + -10 x
@@ -15742,7 +15742,7 @@ sinh / + x -10 sec - -10 * pi 3
 sinh * cos - -10 * 3 pi + -10 x
 sinh * cos - 10 * -3 pi + -10 x
 
-(+ (* -10 (ln x)) (sinh x))
++ * -10 ln x sinh x
 + * -10 ln x sinh * / x 2 2
 - * ln x -10 sinh * -2 / x 2
 - * ln x -10 sinh * * x -0.25 4
@@ -15779,7 +15779,7 @@ pow - * ln x -10 sinh * -1 x 1
 * + / sinh x 1 * ln x -10 1
 - * ln x -10 sinh * * x 0.5 -2
 
-(+ 10 (* -10 (cosh (+ 10 x))))
++ 10 * -10 cosh + 10 x
 + * cosh + -10 * -1 x -10 10
 pow + * cosh + x 10 -10 10 1
 * 1 + 10 * cosh - -10 x -10
@@ -15795,21 +15795,21 @@ pow + 10 * -10 cosh - -10 x 1
 + * -10 / cosh - -10 x 1 10
 + * cosh * -1 + 10 x -10 10
 
-(d x (+ (* -10 (sin x)) (tanh (sin (+ 10 (* 4 pi))))))
+d x + * -10 sin x tanh sin + 10 * 4 pi
 
-(d x (* x (+ (pow x -10) (* -10 (sinh x)))))
+d x * x + pow x -10 * -10 sinh x
 
-(+ x (+ (* -10 (cos x)) (+ (cosh x) (sin x))))
++ x + * -10 cos x + cosh x sin x
 
-(d x (* -1 (* x (+ -1 (* 10 (tanh (pow x 10)))))))
+d x * -1 * x + -1 * 10 tanh pow x 10
 
-(+ 10 (* 10 (* (pow (cosh x) -1) (sinh x))))
++ 10 * 10 * pow cosh x -1 sinh x
 + 10 * sinh x * 10 pow cosh x -1
 
-(* -10 (* x (+ (pow 6 -1) (cosh x))))
+* -10 * x + pow 6 -1 cosh x
 * x * -10 + cosh x pow 6 -1
 
-(+ (* -10 (tanh x)) (* x 3))
++ * -10 tanh x * x 3
 + * -10 tanh x * / x 2 6
 * 1 + * x 3 * tanh x -10
 + * -10 tanh x * 3 x
@@ -15822,9 +15822,9 @@ pow + * tanh x -10 * 3 x 1
 + * -10 tanh x / 6 / 2 x
 + * tanh / x 1 -10 * 3 x
 
-(* -10 (sin (+ (* 3 pi) (atanh (pow (tanh x) -10)))))
+* -10 sin + * 3 pi atanh pow tanh x -10
 
-(+ (* -10 (cos (+ 60 (* 1 pi)))) (sinh x))
++ * -10 cos + 60 * 1 pi sinh x
 + / -10 / 1 cos - -60 pi sinh x
 pow + sinh x / -10 sec + pi 60 1
 + * -10 cos * - -60 pi -1 sinh x
@@ -15852,9 +15852,9 @@ pow + * cos - -60 pi -10 sinh x 1
 + sinh x / -10 / 1 cos + pi 60
 + sinh x / -10 / sec + 60 pi 1
 
-(+ 10 (+ x (* -10 (* x (tanh (pow 7 -1))))))
++ 10 + x * -10 * x tanh pow 7 -1
 
-(d x (+ (* x (cosh x)) (* x (sinh x))))
+d x + * x cosh x * x sinh x
 + - * exp x x 0 d x exp x
 + * exp x x exp * * x 2 0.5
 + * 2 / exp x / 2 x exp x
@@ -15872,7 +15872,7 @@ pow + * cos - -60 pi -10 sinh x 1
 + * exp x x exp x
 + + exp x * - exp x 0 x 0
 
-(+ 1020 (* -10 (sinh x)))
++ 1020 * -10 sinh x
 + 1020 * -40 * / sinh x 1 0.25
 + * -20 * sinh x 0.5 1020
 + / * -10 * sinh x 2 2 1020
@@ -15925,45 +15925,45 @@ pow + * -40 * sinh x 0.25 1020 1
 + 1020 * -5 * * 0.5 sinh x 4
 + 1020 * * 2 sinh x -5
 
-(+ (pow x 2) (+ (* 5 (* pi x)) (cosh x)))
++ pow x 2 + * 5 * pi x cosh x
 
-(d x (+ x (+ (asinh x) (+ (sin x) (tanh x)))))
+d x + x + asinh x + sin x tanh x
 
-(d x (+ (atan x) (+ (cos x) (cosh x))))
+d x + atan x + cos x cosh x
 + sinh x d x + cos x atan x
 + sinh x - d x atan x sin x
 
-(d x (* (+ x (sinh x)) (cos (+ 1 (* 7 pi)))))
+d x * + x sinh x cos + 1 * 7 pi
 
-(+ x (* x (+ x (* x (cosh x)))))
++ x * x + x * x cosh x
 + x * x * x + 1 cosh x
 + x * + x * x cosh x x
 + x * * x x - cosh x -1
 + x * pow x 2 - cosh x -1
 + x * + cosh x 1 pow x 2
 
-(cos (+ x (tanh (* 4 pi))))
+cos + x tanh * 4 pi
 
-(d x (+ (* -10 x) (* x (cosh (+ -10 x)))))
+d x + * -10 x * x cosh + -10 x
 d x * x + -10 cosh + -10 x
 - d x * x cosh - 10 x 10
 d x * + -10 cosh - 10 x x
 
-(d x (+ x (* -10 (* x (+ (cos x) (sinh x))))))
+d x + x * -10 * x + cos x sinh x
 
-(* (pow 5 -1) (* (csc (+ -120 (* 7 pi))) (sinh x)))
+* pow 5 -1 * csc + -120 * 7 pi sinh x
 
-(d x (+ 10 (* -10 (* x (acosh (pow coth 10))))))
+d x + 10 * -10 * x acosh pow coth 10
 d x * acosh pow coth 10 * -10 x
 
-(d x (+ -10 (+ (cos (+ (* 10 x) (* 2 pi))) (sinh x))))
+d x + -10 + cos + * 10 x * 2 pi sinh x
 
-(d x (* x (+ x (* -10 (sinh (asin x))))))
+d x * x + x * -10 sinh asin x
 d x * x + * -10 sinh asin x x
 
-(d x (* x (+ (cosh x) (sin (+ -10 (+ x (* 9 pi)))))))
+d x * x + cosh x sin + -10 + x * 9 pi
 
-(d x (* -10 (+ x (* -12 (sinh x)))))
+d x * -10 + x * -12 sinh x
 + 0 * + 1 * -12 cosh x -10
 + -10 * 120 cosh * 0.5 * 2 x
 + -10 * 120 cosh * / x 2 2
@@ -16035,7 +16035,7 @@ pow + * * 60 cosh x 2 -10 1
 * + -10 * * 60 cosh x 2 1
 + d x * 480 * sinh x 0.25 -10
 
-(d x (* 100 (* (+ -1 x) (cosh x))))
+d x * 100 * + -1 x cosh x
 d x * + -100 * 100 x cosh x
 d x * 100 * + x -1 cosh x
 * 100 d x * cosh x - x 1
@@ -16043,7 +16043,7 @@ d x * 100 * + x -1 cosh x
 * d x - * x cosh x cosh x 100
 * - d x * x cosh x sinh x 100
 
-(+ x (+ (cos x) (tanh (+ -10 x))))
++ x + cos x tanh + -10 x
 + cos * -1 x + tanh + -10 x x
 + x + cos x tanh - -10 * x -1
 + + / cos x 1 tanh + -10 x x
@@ -16053,7 +16053,7 @@ pow + + tanh + -10 x cos x x 1
 - tanh + x -10 - * -1 x cos x
 + + / 1 sec x x tanh + x -10
 
-(+ (cosh x) (sinh x))
++ cosh x sinh x
 + cosh x / sinh / * 2 x 2 1
 + sinh x cosh * * x -2 0.5
 + / sinh x 1 cosh * -1 * -1 x
@@ -16129,11 +16129,11 @@ pow + + tanh + -10 x cos x x 1
 + sinh x / cosh x 1
 + cosh / -2 / 2 x sinh x
 
-(d x (* x (+ -10 (+ (pow x 10) (cosh x)))))
+d x * x + -10 + pow x 10 cosh x
 
-(d x (+ x (cosh (pow (sec (+ 120 (* 9 pi))) -1))))
+d x + x cosh pow sec + 120 * 9 pi -1
 
-(d x (* 10 (+ -1 (+ x (* -1 (cosh x))))))
+d x * 10 + -1 + x * -1 cosh x
 + 10 * * - 0 sinh x -1 -10
 + 10 * -10 sinh * * x -1 -1
 + 10 * sinh * * -0.25 x 4 10
@@ -16185,7 +16185,7 @@ pow + + tanh + -10 x cos x x 1
 + 10 * -10 sinh * 0.5 * 2 x
 + * 10 + - 0 sinh x 1 0
 
-(* -1 (sinh (+ -10 (* 10 (ln x)))))
+* -1 sinh + -10 * 10 ln x
 pow sinh - 10 * * 2 ln x 5 1
 sinh * 2 * + -10 * 10 ln x -0.5
 sinh * -2 + / 10 / 2 ln x -5
@@ -16296,7 +16296,7 @@ pow sinh * -2 + * 5 ln x -5 1
 sinh * -2 * - -10 * ln x -10 0.5
 sinh * 2 + 5 * -0.5 * ln x 10
 
-(d x (* 10 (+ 3 (* 2 (cosh x)))))
+d x * 10 + 3 * 2 cosh x
 + * * * 2 sinh x 2 5 0
 + 0 * * + sinh x sinh x 5 2
 + 0 * * * sinh x 4 0.5 10
@@ -16355,23 +16355,23 @@ sinh * 2 + 5 * -0.5 * ln x 10
 + 0 * * 0.125 * 8 sinh x 20
 + * d x cosh x 10 * sinh x 10
 
-(d x (+ 1 (+ x (+ (* x (ln x)) (cosh x)))))
+d x + 1 + x + * x ln x cosh x
 + 1 + d x * x ln x sinh x
 + 1 d x + cosh x * x ln x
 
-(d x (* x (* (cosh x) (sin (+ 10 (* 2 pi))))))
+d x * x * cosh x sin + 10 * 2 pi
 
-(d x (+ x (+ (pow x 2) (+ (* x (cos x)) (cosh x)))))
+d x + x + pow x 2 + * x cos x cosh x
 
-(+ x (+ (pow (sec x) -1) (cosh (acos x))))
++ x + pow sec x -1 cosh acos x
 + + cosh acos x pow sec x -1 x
 
-(sinh (* (pow 1 -1) (csc (+ -1 (* 3 pi)))))
+sinh * pow 1 -1 csc + -1 * 3 pi
 
-(* x (+ 1 (+ (* -10 (cosh x)) (exp x))))
+* x + 1 + * -10 cosh x exp x
 + x * x + * -10 cosh x exp x
 
-(+ 20 (+ (pow (csc x) -1) (cosh x)))
++ 20 + pow csc x -1 cosh x
 + cosh x + pow csc x -1 20
 + cosh x + 20 pow / 1 sin x -1
 * + + 20 pow csc x -1 cosh x 1
@@ -16379,25 +16379,25 @@ sinh * 2 + 5 * -0.5 * ln x 10
 + cosh * x -1 + 20 pow csc x -1
 pow + 20 + cosh x pow csc x -1 1
 
-(d x (* x (* (pow 9 -10) (pow coth 10))))
+d x * x * pow 9 -10 pow coth 10
 d x * * x pow 9 -10 pow coth 10
 
-(d x (+ (* (pow x -10) (ln x)) (cosh x)))
+d x + * pow x -10 ln x cosh x
 
-(+ 10 (* -1 (* (+ 100 (* 10 x)) (cosh x))))
++ 10 * -1 * + 100 * 10 x cosh x
 + * cosh x - -100 * 10 x 10
 - 10 * + 100 * x 10 cosh x
 + * cosh x - * x -10 100 10
 + 10 * cosh x + -100 * x -10
 
-(+ x (+ (sinh (acos x)) (tan x)))
++ x + sinh acos x tan x
 + - sinh acos x * -1 x tan x
 + + sinh acos x * sec x sin x x
 + x + / 1 cot x sinh acos x
 + tan x + x sinh acos x
 + x + / sin x cos x sinh acos x
 
-(+ (* -130 (ln x)) (cosh x))
++ * -130 ln x cosh x
 + cosh x * -130 ln * -0.5 * x -2
 + * -130 ln x cosh * 8 * 0.125 x
 + cosh * * 2 x 0.5 * -130 ln x
@@ -16437,7 +16437,7 @@ pow + cosh x * - ln x 0 -130 1
 + cosh x * -130 ln / 2 / 2 x
 * + * -130 ln x cosh x 1
 
-(d x (tan (pow coth 1)))
+d x tan pow coth 1
 + 0 d x tan * / coth 2 2
 + 0 d x / sin coth / 1 sec coth
 + d x / 1 / 1 tan coth 0
@@ -16457,24 +16457,24 @@ pow + cosh x * - ln x 0 -130 1
 + d x tan / 2 / 2 coth 0
 + 0 d x / 1 cot coth
 
-(d x (* 10 (* x (* (cos (+ x (* 9 pi))) (cosh x)))))
+d x * 10 * x * cos + x * 9 pi cosh x
 
-(d x (* x (+ 20 (+ (* -10 x) (sinh x)))))
+d x * x + 20 + * -10 x sinh x
 
-(+ (* -10 (sin (+ x (* 5 pi)))) (* -10 (sinh x)))
++ * -10 sin + x * 5 pi * -10 sinh x
 * -10 + sinh x sin + * pi 5 x
 
-(d x (+ (* -10 (tanh x)) (* 10 (sinh x))))
+d x + * -10 tanh x * 10 sinh x
 + * cosh x 10 d x * -10 tanh x
 d x + * -10 tanh x * 10 sinh x
 + * -10 pow sech x 2 * cosh x 10
 
-(d x (+ (pow x 2) (* x (sinh (+ 1 x)))))
+d x + pow x 2 * x sinh + 1 x
 
-(+ (* (pow x -10) (+ 10 x)) (tanh x))
++ * pow x -10 + 10 x tanh x
 + * + x 10 pow x -10 tanh x
 
-(* x (cosh (+ -100 (pow x 2))))
+* x cosh + -100 pow x 2
 * cosh - 100 pow x 2 x
 pow * cosh + pow x 2 -100 x 1
 * cosh + * -1 pow x 2 100 x
@@ -16490,12 +16490,12 @@ pow * cosh - 100 pow x 2 x 1
 * x cosh - -100 * -1 pow x 2
 * x cosh * - 100 pow x 2 -1
 
-(+ x (* -10 (* (+ 1 x) (cosh x))))
++ x * -10 * + 1 x cosh x
 + * + * x -10 -10 cosh x x
 + x * cosh x * + x 1 -10
 + * + * x cosh x cosh x -10 x
 
-(d x (+ (* 10 (pow x 2)) (* x (cosh x))))
+d x + * 10 pow x 2 * x cosh x
 + cosh x * - 20 sinh * x -1 x
 + + * + sinh x 20 x cosh x 0
 + cosh x + * sinh x x * x 20
@@ -16509,7 +16509,7 @@ pow * cosh - 100 pow x 2 x 1
 + cosh x * + 20 d x cosh x x
 + cosh x * - d x cosh x -20 x
 
-(d x (+ (pow 3 -10) (cosh x)))
+d x + pow 3 -10 cosh x
 + - sinh x 0 0
 + + * 0.5 sinh x * 0.5 sinh x 0
 + - sinh * * x 0.25 4 0 0
@@ -16528,7 +16528,7 @@ pow * cosh - 100 pow x 2 x 1
 + - / 2 / 2 sinh x 0 0
 + - sinh * * x 2 0.5 0 0
 
-(* (pow (csc x) -1) (sinh x))
+* pow csc x -1 sinh x
 * * pow csc x -1 / sinh x 2 2
 * sinh x pow csc * 2 * x 0.5 -1
 * * pow csc x -1 / sinh x 1 1
@@ -16549,17 +16549,17 @@ pow * sinh x pow / 1 sin x -1 1
 pow / pow csc x -1 / 1 sinh x 1
 * pow csc x -1 sinh * 4 * 0.25 x
 
-(+ (* x (+ -10 (pow x 10))) (sinh x))
++ * x + -10 pow x 10 sinh x
 + * x -10 + pow x 11 sinh x
 + * + pow x 10 -10 x sinh x
 
-(+ (* -10 x) (tanh (pow 4 -1)))
++ * -10 x tanh pow 4 -1
 pow + * x -10 tanh pow 4 -1 1
 + tanh pow 4 -1 * -10 x
 * + tanh pow 4 -1 * -10 x 1
 + * -10 x / tanh pow 4 -1 1
 
-(+ 4 (+ (sin x) (sinh x)))
++ 4 + sin x sinh x
 + sinh * 2 / x 2 + sin x 4
 + / cos x cot x + sinh x 4
 + + sinh * * 0.5 x 2 sin x 4
@@ -16575,7 +16575,7 @@ pow + * x -10 tanh pow 4 -1 1
 + + / 1 / 1 sinh x sin x 4
 + sinh x + * -1 sin * x -1 4
 
-(d x (+ x (+ (* x 5) (sinh x))))
+d x + x + * x 5 sinh x
 + 6 - cosh * 2 * x -0.5 0
 pow + 6 cosh * -2 * 0.5 x 1
 * 1 + - cosh * x -1 0 6
@@ -16766,12 +16766,12 @@ d x + * 3 * x 2 sinh x
 pow + cosh * 2 * -0.5 x 6 1
 * 1 + 6 cosh x
 
-(+ 1 (+ x (+ (cos (asinh x)) (tanh x))))
++ 1 + x + cos asinh x tanh x
 + 1 + + x cos asinh x tanh x
 
-(* (+ -10 (+ x (pow (sec (+ 10 (* 9 pi))) -1))) (sinh x))
+* + -10 + x pow sec + 10 * 9 pi -1 sinh x
 
-(d x (+ (pow (csc x) -1) (+ 6 (cosh x))))
+d x + pow csc x -1 + 6 cosh x
 + sinh x d x + 5 pow csc x -1
 + sinh x d x pow / csc x 1 -1
 + sinh x d x + pow csc x -1 6
@@ -16784,7 +16784,7 @@ pow + cosh * 2 * -0.5 x 6 1
 + d x pow csc x -1 d x cosh x
 + + sinh x d x pow csc x -1 0
 
-(+ x (* -1 (tanh (+ -240 (* 10 x)))))
++ x * -1 tanh + -240 * 10 x
 - x tanh + * * 0.5 x 20 -240
 + x tanh * + -240 * x 10 -1
 - x tanh * 2 + -120 * 5 x
@@ -16808,11 +16808,11 @@ pow + x tanh + * x -10 240 1
 + x tanh - 240 * * x 0.5 20
 - x tanh + * 20 / x 2 -240
 
-(* x (+ -10 (+ (* 10 x) (* -10 (* x (sinh x))))))
+* x + -10 + * 10 x * -10 * x sinh x
 
-(d x (* 10 (* x (+ x (* x (cosh x))))))
+d x * 10 * x + x * x cosh x
 
-(d x (+ x (* x (tanh 2.7))))
+d x + x * x tanh 2.7
 d x + * tanh 2.7 x x
 pow + / / tanh 2.7 1 1 1 1
 pow d x + * x tanh 2.7 x 1
@@ -16850,9 +16850,9 @@ d x * x + 1 tanh 2.7
 + d x 0 + 1 / tanh 2.7 1
 + + / tanh 2.7 1 1 0
 
-(d x (+ (pow (sec x) -1) (+ (* -10 x) (tanh x))))
+d x + pow sec x -1 + * -10 x tanh x
 
-(d x (+ -10 (+ (* 10 (sin x)) (tanh x))))
+d x + -10 + * 10 sin x tanh x
 + d x tanh x * 10 d x sin x
 + * 10 d x sin x pow sech x 2
 + + pow sech x 2 / 10 sec x 0
@@ -16883,9 +16883,9 @@ d x * x + 1 tanh 2.7
 + d x tanh x / 10 sec * x -1
 + / 10 sec x d x tanh x
 
-(+ 10 (+ (pow x 2) (+ (* -10 x) (tanh x))))
++ 10 + pow x 2 + * -10 x tanh x
 
-(* x (+ 61 (sinh x)))
+* x + 61 sinh x
 pow + * sinh x x * x 61 1
 * + sinh x 61 x
 * + * sinh x 2 122 * 0.5 x
@@ -16915,7 +16915,7 @@ pow * x + / sinh x 1 61 1
 + * x sinh x * x 61
 pow * + sinh x 61 x 1
 
-(d x (* -10 (+ -6 (sinh x))))
+d x * -10 + -6 sinh x
 * -20 * 0.5 cosh * -0.25 * x 4
 * 1 * -10 cosh * 2 * x 0.5
 * -20 * 0.5 cosh / -2 / 2 x
@@ -17137,7 +17137,7 @@ pow * + sinh x 61 x 1
 * -10 - cosh * x -1 0
 * 2 * -5 cosh * -0.5 * 2 x
 
-(+ -9 (* -10 (cos (pow coth 10))))
++ -9 * -10 cos pow coth 10
 + -9 * cos * pow coth 10 -1 -10
 + * -10 / 1 sec pow coth 10 -9
 + -9 / -10 sec pow coth 10
@@ -17147,9 +17147,9 @@ pow * + sinh x 61 x 1
 + -9 / 1 / sec pow coth 10 -10
 + -9 * / cos pow coth 10 1 -10
 
-(d x (* -10 (* x (+ (pow (sec x) -1) (sinh x)))))
+d x * -10 * x + pow sec x -1 sinh x
 
-(+ -10 (+ (* -10 (cos x)) (cosh x)))
++ -10 + * -10 cos x cosh x
 + -10 - + * -10 cos x cosh x 0
 + cosh x * -20 pow cos * 0.5 x 2
 + - + / -10 sec x -10 0 cosh x
@@ -17168,9 +17168,9 @@ pow * + sinh x 61 x 1
 + + -10 * -10 / 1 sec x cosh x
 + + + cosh x * cos x -10 -10 0
 
-(+ (* -10 (cosh x)) (* 10 (* x (cos (+ x (* 6 pi))))))
++ * -10 cosh x * 10 * x cos + x * 6 pi
 
-(+ (* -5 (* pi (cos x))) (tanh x))
++ * -5 * pi cos x tanh x
 pow + * pi * -5 cos x tanh x 1
 + tanh x * cos x * -5 pi
 + / * pi -5 / sec x 1 tanh x
@@ -17191,7 +17191,7 @@ pow + tanh x * pi / -5 sec x 1
 + tanh x * -5 / pi sec x
 * + * pi / -5 sec x tanh x 1
 
-(+ x (* -10 (cosh (pow 6 -1))))
++ x * -10 cosh pow 6 -1
 pow + x * -10 cosh pow 6 -1 1
 + x * cosh pow 6 -1 -10
 + x / * -10 cosh pow 6 -1 1
@@ -17199,7 +17199,7 @@ pow + x * -10 cosh pow 6 -1 1
 + x / -10 / 1 cosh pow 6 -1
 * + x * cosh pow 6 -1 -10 1
 
-(d x (+ (cos (+ 10 (* 3 pi))) (sinh x)))
+d x + cos + 10 * 3 pi sinh x
 + d x cos + 10 * 3 pi cosh x
 d x + cos + -10 * -3 pi sinh x
 d x + sinh x cos - 10 * -3 pi
@@ -17209,7 +17209,7 @@ d x + sinh x cos + * pi 3 10
 d x + cos - -10 * 3 pi sinh x
 + d x cos - -10 * 3 pi cosh x
 
-(+ x (tanh (pow 6 -1)))
++ x tanh pow 6 -1
 pow + x tanh pow 6 -1 1
 + x tanh * * 0.125 pow 6 -1 8
 + x tanh * 4 / pow 6 -1 4
@@ -17225,29 +17225,29 @@ pow + / tanh pow 6 -1 1 x 1
 * 1 + / tanh pow 6 -1 1 x
 + tanh / 2 / 2 pow 6 -1 x
 
-(d x (tanh (ln (pow 10 x))))
+d x tanh ln pow 10 x
 
-(* x (+ 1 (+ x (* -10 (pow coth 10)))))
+* x + 1 + x * -10 pow coth 10
 + x * x + * pow coth 10 -10 x
 * x + * -10 pow coth 10 + 1 x
 
-(d x (+ (* x (+ x (sinh x))) (acos x)))
+d x + * x + x sinh x acos x
 d x + * + x sinh x x acos x
 
-(pow (cosh (* x (pow 9 -1))) -10)
+pow cosh * x pow 9 -1 -10
 * 1 pow cosh * x pow 9 -1 -10
 pow cosh * x * -1 pow 9 -1 -10
 pow cosh * pow 9 -1 x -10
 pow pow cosh * pow 9 -1 x -10 1
 pow / cosh * x pow 9 -1 1 -10
 
-(d x (* 6 (* x (+ pi (* 2 (sinh x))))))
+d x * 6 * x + pi * 2 sinh x
 
-(+ (* -10 (cosh x)) (+ (cos (+ x (* 7 pi))) (ln x)))
++ * -10 cosh x + cos + x * 7 pi ln x
 
-(* (pow (csc (+ (* 9 pi) (* -1 x))) -1) (+ x (sinh x)))
+* pow csc + * 9 pi * -1 x -1 + x sinh x
 
-(d x (* x (cosh (pow 7 -1))))
+d x * x cosh pow 7 -1
 cosh * pow 7 -1 -1
 + 0 cosh * * pow 7 -1 -0.25 4
 - - cosh * -1 pow 7 -1 0 0
@@ -17389,11 +17389,11 @@ pow d x * cosh pow 7 -1 x 1
 * 1 / cosh * -1 pow 7 -1 1
 * 1 - cosh pow 7 -1 0
 
-(d x (* 80 (* x (+ x (sinh x)))))
+d x * 80 * x + x sinh x
 d x * * + sinh x x x 80
 * + sinh x * + 2 cosh x x 80
 
-(d x (+ (sinh (* 10 x)) (tan x)))
+d x + sinh * 10 x tan x
 pow d x + tan x sinh * x 10 1
 d x + sinh * 0.5 * 20 x tan x
 d x + / 1 cot x sinh * 10 x
@@ -17410,7 +17410,7 @@ d x + sinh * 20 / x 2 tan x
 + * 10 cosh * x 10 pow sec x 2
 d x + tan x sinh / 20 / 2 x
 
-(* x (tanh (sin (+ 10 (* 5 pi)))))
+* x tanh sin + 10 * 5 pi
 * x tanh sin + 10 * -1 * -5 pi
 pow * tanh sin + 10 * pi 5 x 1
 / x / 1 tanh sin + 10 * pi 5
@@ -17424,15 +17424,15 @@ pow * tanh sin + 10 * pi 5 x 1
 pow * x tanh sin - 10 * -5 pi 1
 * tanh sin - 10 * * 5 pi -1 x
 
-(d x (* (cos (* 30 x)) (cosh x)))
+d x * cos * 30 x cosh x
 + d x * cos * x 30 cosh x 0
 + d x / cosh x sec * x 30 0
 + d x / cosh x sec * x -30 0
 + d x * cos * x -30 cosh x 0
 
-(d x (* (+ x (cosh (cos x))) (sin x)))
+d x * + x cosh cos x sin x
 
-(* -10 (+ (* 7 x) (sinh x)))
+* -10 + * 7 x sinh x
 * -10 + * x 7 / sinh x 1
 * -10 + * 14 * 0.5 x sinh x
 + * -10 sinh x / -140 / 2 x
@@ -17464,9 +17464,9 @@ pow * x tanh sin - 10 * -5 pi 1
 pow + * x -70 * -10 sinh x 1
 + * -10 sinh x * 7 * -10 x
 
-(d x (+ (cos x) (+ (sin x) (sinh x))))
+d x + cos x + sin x sinh x
 
-(+ x (pow (csc (cosh (* 1 pi))) -1))
++ x pow csc cosh * 1 pi -1
 + pow / cot cosh pi cos cosh pi -1 x
 + x pow csc cosh * 0.5 * 2 pi -1
 + x pow csc cosh / 2 / 2 pi -1
@@ -17497,10 +17497,10 @@ pow + pow / 1 sin cosh pi -1 x 1
 + pow csc cosh * * -0.25 pi 4 -1 x
 * + pow / csc cosh pi 1 -1 x 1
 
-(+ (* -10 (* (pow x 10) (cosh x))) (cos x))
++ * -10 * pow x 10 cosh x cos x
 + * -10 * pow x 10 cosh x cos x
 
-(* 10 (+ 2 (* 5 (sinh x))))
+* 10 + 2 * 5 sinh x
 + 20 * * * 2 sinh x 2.5 10
 pow + * 100 / sinh x 2 20 1
 + 20 * * sinh x 100 0.5
@@ -17570,43 +17570,43 @@ pow + 20 * * 100 sinh x 0.5 1
 + 20 * 5 * * 0.5 sinh x 20
 pow + / 50 / 1 sinh x 20 1
 
-(* 10 (* x (+ -1 (cosh (pow x 10)))))
+* 10 * x + -1 cosh pow x 10
 * 10 * x + -1 cosh pow x 10
 * - * cosh pow x 10 10 10 x
 * * - cosh pow x 10 1 x 10
 * 10 - * cosh pow x 10 x x
 * + * 10 cosh pow x 10 -10 x
 
-(d x (tan (* x (+ 1 (cosh (* 4 pi))))))
+d x tan * x + 1 cosh * 4 pi
 
-(d x (+ (* 10 (sinh x)) (* 10 (* x (sinh x)))))
+d x + * 10 sinh x * 10 * x sinh x
 d x * * sinh x + 1 x 10
 d x * + sinh x * x sinh x 10
 * + sinh x * cosh x + 1 x 10
 * 10 + d x * sinh x x cosh x
 d x * sinh x + * 10 x 10
 
-(+ (* x (exp (+ -10 x))) (sinh x))
++ * x exp + -10 x sinh x
 - * x exp + x -10 sinh * -1 x
 + / sinh x 1 * exp + x -10 x
 + * x exp + -10 x sinh x
 pow + sinh x * x exp + -10 x 1
 * + sinh x * x exp + -10 x 1
 
-(* 10 (* (+ (cosh x) (sinh x)) (sin (+ x (* 3 pi)))))
+* 10 * + cosh x sinh x sin + x * 3 pi
 
-(d x (cosh (ln (pow (* 7 pi) x))))
+d x cosh ln pow * 7 pi x
 - d x cosh ln pow * 7 pi x 0
 + d x cosh * ln * pi 7 x 0
 - d x cosh * x ln * 7 pi 0
 + d x cosh ln pow * 7 pi x 0
 
-(d x (* x (+ x (+ (cosh x) 2))))
+d x * x + x + cosh x 2
 + + cosh x 2 * + 2 sinh x x
 + + cosh x 2 * x - sinh x -2
 + 2 d x * + x cosh x x
 
-(+ (pow (sec x) -1) (cosh (acos x)))
++ pow sec x -1 cosh acos x
 + pow sec * -1 x -1 cosh acos x
 + cosh acos x pow * tan x csc x -1
 + pow / 1 cos x -1 cosh acos x
@@ -17617,11 +17617,11 @@ pow + sinh x * x exp + -10 x 1
 pow + cosh acos x pow sec x -1 1
 + pow / sec x 1 -1 cosh acos x
 
-(* (pow x -10) (sinh (pow (sec (+ 20 (* 6 pi))) -1)))
+* pow x -10 sinh pow sec + 20 * 6 pi -1
 
-(* x (+ 1 (+ (* -10 x) (* 100 (* x (cosh x))))))
+* x + 1 + * -10 x * 100 * x cosh x
 
-(d x (* (pow coth 120) -1))
+d x * pow coth 120 -1
 * 1 - d x * -1 pow coth 120 0
 + - - 0 d x pow coth 120 0 0
 - - d x * -1 pow coth 120 0 0
@@ -17648,14 +17648,14 @@ pow d x * pow coth 120 -1 1
 * * pow coth 119 -120 - d x coth 0
 d x * pow coth 120 -1
 
-(d x (* (sin (+ 1 x)) (sinh x)))
+d x * sin + 1 x sinh x
 + d x * sinh x sin + 1 x 0
 
-(* x (* (pow (sin (+ 10 (* 2 pi))) -10) (+ x (sinh x))))
+* x * pow sin + 10 * 2 pi -10 + x sinh x
 
-(d x (* (pow x 4) (+ x (cosh x))))
+d x * pow x 4 + x cosh x
 
-(+ (pow (csc x) -1) (* -10 (tanh x)))
++ pow csc x -1 * -10 tanh x
 + pow csc x -1 * -10 / tanh x 1
 pow + * tanh x -10 pow csc x -1 1
 * + pow csc x -1 * tanh x -10 1
@@ -17663,22 +17663,22 @@ pow + * tanh x -10 pow csc x -1 1
 + * tanh x -10 pow csc x -1
 + * -10 tanh x pow / 1 sin x -1
 
-(d x (* -1 (sinh (+ -620 (* 10 x)))))
+d x * -1 sinh + -620 * 10 x
 + 0 d x sinh + 620 * -10 x
 - 0 d x sinh - -620 * -10 x
 - 0 d x sinh + * 10 x -620
 + d x sinh - 620 * 10 x 0
 
-(d x (+ 1 (* (sin x) (sinh x))))
+d x + 1 * sin x sinh x
 + * sinh x cos x * sin x cosh x
 + d x / sin x / 1 sinh x 0
 + / sinh x sec x * sin x cosh x
 + d x * sin x sinh x 0
 + 0 d x + 1 * sin x sinh x
 
-(* (+ -10 (cosh x)) (+ x (pow x 10)))
+* + -10 cosh x + x pow x 10
 
-(* 20 (+ x (tanh x)))
+* 20 + x tanh x
 * + tanh * 0.5 * 2 x x 20
 + * 20 tanh x / 40 / 2 x
 + / 20 / 1 tanh x * x 20
@@ -17702,7 +17702,7 @@ pow * 20 + x / tanh x 1 1
 + * * 40 x 0.5 * 20 tanh x
 * + x tanh x 20
 
-(+ 1 (+ (cos (+ x (* 1 pi))) (cosh x)))
++ 1 + cos + x * 1 pi cosh x
 + cos + x pi + - cosh x 0 1
 + + - cosh x 1 2 cos + x pi
 + + 1 cosh x / cos + x pi 1
@@ -17717,11 +17717,11 @@ pow * 20 + x / tanh x 1 1
 + + cosh x 1 cos - pi * x -1
 + + / 1 sec + x pi cosh x 1
 
-(d x (pow (sec (+ (* 9 pi) (acosh (atanh (tanh x))))) -1))
+d x pow sec + * 9 pi acosh atanh tanh x -1
 
-(* -10 (* x (+ x (* x (+ x (cosh x))))))
+* -10 * x + x * x + x cosh x
 
-(d x (ln (pow x (cosh 2.7))))
+d x ln pow x cosh 2.7
 + - * cosh -2.7 / 1 x 0 0
 + - d x * ln x cosh 2.7 0 0
 + - - / cosh -2.7 x 0 0 0
@@ -17735,7 +17735,7 @@ pow * 20 + x / tanh x 1 1
 + - / cosh 2.7 x 0 0
 + - d x ln pow x cosh 2.7 0 0
 
-(cosh (* 240 (ln x)))
+cosh * 240 ln x
 / cosh * -960 * * ln x -1 -0.25 1
 * 1 cosh * -0.5 * * 4 ln x 120
 / cosh * 0.25 * 1920 / ln x 2 1
@@ -18548,7 +18548,7 @@ cosh * * -2 / * ln x 480 4 -1
 cosh * 2 / * 120 ln x 1
 cosh * / 1 * / 2 ln x 0.004166666666666667 2
 
-(d x (+ -10 (cos (pow coth 10))))
+d x + -10 cos pow coth 10
 + - d x cos pow coth 10 0 0
 + d x / 1 sec pow coth 10 0
 + d x cos pow coth 10 0
@@ -18556,18 +18556,18 @@ cosh * / 1 * / 2 ln x 0.004166666666666667 2
 + d x + cos pow coth 10 -10 0
 + d x cos * pow coth 10 -1 0
 
-(d x (+ 20 (+ (pow (sec x) -1) (* -10 (sinh x)))))
+d x + 20 + pow sec x -1 * -10 sinh x
 d x + * sinh x -10 pow sec x -1
 
-(* -10 (* (pow (csc (+ -10 (* 6 pi))) 10) (sinh x)))
+* -10 * pow csc + -10 * 6 pi 10 sinh x
 
-(d x (* x (+ 1 (cosh (+ -10 (* -10 x))))))
+d x * x + 1 cosh + -10 * -10 x
 
-(d x (* pi (+ (* 6 x) (* -5 (cosh x)))))
+d x * pi + * 6 x * -5 cosh x
 
-(d x (+ (* -10 (sin x)) (+ (sinh x) (tanh x))))
+d x + * -10 sin x + sinh x tanh x
 
-(+ x (* -10 (cos (pow coth 10))))
++ x * -10 cos pow coth 10
 + x / -10 / sec pow coth 10 1
 + x * / cos pow coth 10 1 -10
 + x / -10 / 1 cos pow coth 10
@@ -18577,7 +18577,7 @@ d x + * sinh x -10 pow sec x -1
 + x / -10 sec pow coth 10
 + * -10 cos * pow coth 10 -1 x
 
-(+ (pow (sec (acosh x)) -1) (cosh x))
++ pow sec acosh x -1 cosh x
 * 1 + pow sec acosh x -1 cosh x
 + pow sec acosh x -1 cosh x
 + cosh x pow sec + acosh x ln 1 -1
@@ -18586,7 +18586,7 @@ pow + pow sec acosh x -1 cosh x 1
 + pow sec * acosh x -1 -1 cosh x
 + pow sec acosh x -1 / cosh x 1
 
-(* -1 (* x (sinh (+ -10 (* 10 x)))))
+* -1 * x sinh + -10 * 10 x
 * x sinh - 10 * 20 / x 2
 * sinh - 10 * -1 * -10 x x
 * x sinh - 10 * x 10
@@ -18603,14 +18603,14 @@ pow * sinh + 10 * x -10 x 1
 * sinh * -2 + -5 * x 5 x
 * x sinh - 10 * * x 2 5
 
-(+ 50 (* 10 (* (pow (cosh x) -1) (sinh x))))
++ 50 * 10 * pow cosh x -1 sinh x
 + * 10 * sinh x pow cosh x -1 50
 
-(+ (* 10 (* x (sinh x))) (cos (+ x (* 8 pi))))
++ * 10 * x sinh x cos + x * 8 pi
 
-(d x (+ (sin x) (+ (sinh x) (tanh x))))
+d x + sin x + sinh x tanh x
 
-(atanh (tanh (cos (+ -10 x))))
+atanh tanh cos + -10 x
 atanh tanh cos * + * 2 x -20 -0.5
 atanh tanh cos * / + x -10 2 2
 + ln + 1 x - 0 ln - 1 x
@@ -18737,12 +18737,12 @@ pow atanh tanh / 1 sec + -10 x 1
 - atanh tanh / 1 sec + -10 x 0
 atanh / 1 / 1 tanh cos + -10 x
 
-(+ 10 (+ x (+ (* -10 (pow (cot x) -1)) (tanh x))))
++ 10 + x + * -10 pow cot x -1 tanh x
 
-(+ x (+ (* -10 (tanh x)) (* x (+ 10 x))))
++ x + * -10 tanh x * x + 10 x
 + * x + x 11 * -10 tanh x
 
-(+ -10 (+ (* -1 (ln (pow x 10))) (cosh x)))
++ -10 + * -1 ln pow x 10 cosh x
 + / cosh x 1 + -10 * ln x -10
 + cosh x - -10 * 10 ln x
 + -10 + cosh x * -1 * 10 ln x
@@ -18755,13 +18755,13 @@ atanh / 1 / 1 tanh cos + -10 x
 + * ln x -10 + cosh x -10
 + cosh x - -10 ln pow x 10
 
-(* x (+ x (atanh (tanh (sin (+ x (* 6 pi)))))))
+* x + x atanh tanh sin + x * 6 pi
 
-(* (pow x -9) (+ (pow x 11) (sinh x)))
+* pow x -9 + pow x 11 sinh x
 * pow x -9 + sinh x pow x 11
 + pow x 2 * sinh x pow x -9
 
-(* 10 (+ (* -1 (cosh x)) (* 4 x)))
+* 10 + * -1 cosh x * 4 x
 + * -80 * x -0.5 * cosh x -10
 + * 5 * 8 x * -10 cosh x
 + * -10 cosh x * * 2 x 20
@@ -18778,22 +18778,22 @@ atanh / 1 / 1 tanh cos + -10 x
 + / 80 / 2 x * -10 cosh x
 + * 80 / x 2 * -10 cosh x
 
-(d x (* x (+ x (* x (cosh (* 7 pi))))))
+d x * x + x * x cosh * 7 pi
 
-(+ x (* (cosh x) (sin (+ x (* 9 pi)))))
++ x * cosh x sin + x * 9 pi
 + x * cosh x sin + * pi 9 x
 + x * cosh x sin - x * -9 pi
 
-(d x (* x (+ 20 (* x (cosh x)))))
+d x * x + 20 * x cosh x
 + 20 d x * cosh x pow x 2
 + 20 d x * * x cosh x x
 
-(+ (* -10 x) (+ (* -10 (* x (sin x))) (sinh x)))
++ * -10 x + * -10 * x sin x sinh x
 + * -10 + x * sin x x sinh x
 + sinh x * x + * sin x -10 -10
 + sinh x * -10 * + sin x 1 x
 
-(d x (+ (* x (cos (ln x))) (tanh x)))
+d x + * x cos ln x tanh x
 d x + * x cos ln x tanh x
 d x + / x sec ln x tanh x
 

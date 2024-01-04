@@ -1,20 +1,20 @@
-(+ (pow (csc (+ -80 (* 5 pi))) -1) (asinh x))
++ pow csc + -80 * 5 pi -1 asinh x
 + asinh x pow csc - -80 * -5 pi -1
 + pow csc + -80 * 5 pi -1 asinh x
 
-(d x (+ x (+ (* -10 (asinh x)) (+ (cos x) (cosh x)))))
+d x + x + * -10 asinh x + cos x cosh x
 
-(d x (acosh (* x (* (pow (sec (+ 30 (* 1 pi))) -1) 4))))
+d x acosh * x * pow sec + 30 * 1 pi -1 4
 
-(d x (+ x (asinh (+ (* -10 x) (sin (+ 10 (* 1 pi)))))))
+d x + x asinh + * -10 x sin + 10 * 1 pi
 
-(d x (+ x (* x (sin (+ (* 8 pi) (atan x))))))
+d x + x * x sin + * 8 pi atan x
 
-(d x (+ (* -10 (* x (sin (+ x (* 7 pi))))) (atan x)))
+d x + * -10 * x sin + x * 7 pi atan x
 
-(d x (+ (* -10 (* x (atan x))) (cos x)))
+d x + * -10 * x atan x cos x
 
-(d x (+ 10 (+ x (+ (acosh x) (cos x)))))
+d x + 10 + x + acosh x cos x
 + d x + cos x + acosh x x 0
 + + * sin x -1 d x acosh x 1
 + + 1 d x acosh x - 0 sin x
@@ -41,9 +41,9 @@
 + sin * x -1 d x + acosh x x
 + 1 - d x + 10 acosh x sin x
 
-(cos (+ (* 1 pi) (asinh (+ (* -10 x) 1))))
+cos + * 1 pi asinh + * -10 x 1
 
-(d x (+ (* 10 (asin x)) (* 10 (sin x))))
+d x + * 10 asin x * 10 sin x
 * 10 - + d x asin x cos x 0
 + 0 * 10 d x + sin x asin x
 * * 10 d x + sin x asin x 1
@@ -62,13 +62,13 @@ pow * 10 d x + sin x asin x 1
 * + cos x d x asin x 10
 + * d x asin x 10 * 10 cos x
 
-(d x (* (pow (sin (+ 1 (* 9 pi))) -10) (atan x)))
+d x * pow sin + 1 * 9 pi -10 atan x
 
-(d x (+ (asin x) (+ (cos x) (tanh x))))
+d x + asin x + cos x tanh x
 
-(d x (+ x (* -10 (* x (atan (pow coth 10))))))
+d x + x * -10 * x atan pow coth 10
 
-(* x (* (pow (sec (asinh x)) -1) 5))
+* x * pow sec asinh x -1 5
 pow * x * 5 pow sec asinh x -1 1
 * * pow / 1 cos asinh x -1 5 x
 * * pow sec * -1 asinh x -1 x 5
@@ -76,14 +76,14 @@ pow * x * 5 pow sec asinh x -1 1
 * x * pow / sec asinh x 1 -1 5
 * * x pow sec asinh x -1 5
 
-(+ 1 (+ (* x (acosh x)) (sin x)))
++ 1 + * x acosh x sin x
 + * x acosh x - 1 sin * -1 x
 + 1 + * x acosh x sin x
 
-(d x (+ -10 (+ (pow (sec x) -1) (+ (* -10 x) (atan x)))))
+d x + -10 + pow sec x -1 + * -10 x atan x
 + -10 d x + atan x pow sec x -1
 
-(d x (+ (* 10 (cos x)) (asin x)))
+d x + * 10 cos x asin x
 + * d x cos x 10 d x asin x
 + d x + asin x * cos x 10 0
 + * -10 sin x d x + 10 asin x
@@ -96,7 +96,7 @@ pow * x * 5 pow sec asinh x -1 1
 + d x / 10 sec x d x asin x
 + * 10 - 0 sin x d x asin x
 
-(+ x (pow (sec (asinh (+ 120 x))) -1))
++ x pow sec asinh + 120 x -1
 pow + pow sec asinh + 120 x -1 x 1
 * 1 + pow sec asinh + x 120 -1 x
 + pow sec * asinh + 120 x -1 -1 x
@@ -104,21 +104,21 @@ pow + pow sec asinh + 120 x -1 x 1
 + x pow / 1 cos asinh + x 120 -1
 + x pow sec asinh + x 120 -1
 
-(+ (pow (sec (+ 1 (* 9 pi))) -1) (* -10 (* x (acos x))))
++ pow sec + 1 * 9 pi -1 * -10 * x acos x
 
-(+ (* x (acos x)) (sin (+ (* 2 pi) (asinh x))))
++ * x acos x sin + * 2 pi asinh x
 
-(+ (* -10 x) (* (atan x) (cos (+ 10 (* 5 pi)))))
++ * -10 x * atan x cos + 10 * 5 pi
 
-(+ (pow x -10) (+ (acos x) (sin x)))
++ pow x -10 + acos x sin x
 + pow x -10 + acos x sin x
 + acos x - pow x -10 sin * -1 x
 
-(+ x (+ (* x (asinh x)) (sin (+ 1 (* 4 pi)))))
++ x + * x asinh x sin + 1 * 4 pi
 
-(+ -10 (+ x (+ (* x (pow (csc x) -1)) (acos x))))
++ -10 + x + * x pow csc x -1 acos x
 
-(+ (atanh (+ -10 x)) (tan x))
++ atanh + -10 x tan x
 + atanh + -10 x * -1 * -1 tan x
 + tan x atanh - -10 / -2 / 2 x
 + 0 - atanh + -10 x tan * -1 x
@@ -145,75 +145,75 @@ pow + pow sec asinh + 120 x -1 x 1
 + tan x ln / + 1 x - 1 x
 + tan x atanh - -10 * / x 2 -2
 
-(d x (pow (csc (+ (* 8 pi) (* -1 (acosh (* 60 x))))) -1))
+d x pow csc + * 8 pi * -1 acosh * 60 x -1
 
-(d x (+ -20 (+ (* -10 (atan x)) (sin x))))
+d x + -20 + * -10 atan x sin x
 + / 1 sec x d x * atan x -10
 + - cos x 0 * -10 d x atan x
 + / cos x 1 d x * atan x -10
 
-(+ (* 10 x) (cos (+ (* 3 pi) (acosh x))))
++ * 10 x cos + * 3 pi acosh x
 + * x 10 cos - acosh x * pi -3
 + cos + * pi 3 acosh x * 10 x
 
-(d x (sin (+ (* 9 pi) (* 3120 (asin x)))))
+d x sin + * 9 pi * 3120 asin x
 
-(d x (+ x (+ (cos (asinh x)) (tanh x))))
+d x + x + cos asinh x tanh x
 - d x + cos asinh x tanh x -1
 + d x + cos asinh x tanh x 1
 
-(+ -10 (+ (pow (sec (+ (* 7 pi) (acosh x))) -1) (* -10 x)))
++ -10 + pow sec + * 7 pi acosh x -1 * -10 x
 
-(+ x (+ (atan x) (cos (+ x (* 3 pi)))))
++ x + atan x cos + x * 3 pi
 + x + cos + * 3 pi x atan x
 + + atan x cos - * -3 pi x x
 
-(+ (* x (asinh x)) (+ (acosh x) (sin (+ x (* 4 pi)))))
++ * x asinh x + acosh x sin + x * 4 pi
 
-(d x (* x (asinh (cos (+ 3120 (* 8 pi))))))
+d x * x asinh cos + 3120 * 8 pi
 
-(+ 10 (* -10 (acosh (cos (+ 10 (* 9 pi))))))
++ 10 * -10 acosh cos + 10 * 9 pi
 + * acosh cos + * pi 9 10 -10 10
 + * -10 acosh cos - -10 * 9 pi 10
 + 10 * -10 acosh cos + * -9 pi -10
 + * acosh cos - 10 * pi -9 -10 10
 
-(d x (cos (asinh (+ -10 (* 10 x)))))
+d x cos asinh + -10 * 10 x
 
-(d x (asinh (+ x (* -10 (cos (+ 10 (* 6 pi)))))))
+d x asinh + x * -10 cos + 10 * 6 pi
 
-(d x (* x (* (pow (sec (+ 20 (* 3 pi))) -1) (atan x))))
+d x * x * pow sec + 20 * 3 pi -1 atan x
 
-(sin (+ (* 4 pi) (atanh (tanh x))))
+sin + * 4 pi atanh tanh x
 
-(* x (asinh (* x (pow (cos (+ 10 (* 6 pi))) -10))))
+* x asinh * x pow cos + 10 * 6 pi -10
 
-(d x (sin (asinh (* 20 x))))
+d x sin asinh * 20 x
 + - d x sin asinh * 20 x 0 0
 + d x sin asinh * x 20 0
 
-(d x (* -10 (atan (+ x (* -10 (sin (+ 10 (* 7 pi))))))))
+d x * -10 atan + x * -10 sin + 10 * 7 pi
 
-(pow (+ x (atan (cos (+ 10 (* 2 pi))))) -10)
+pow + x atan cos + 10 * 2 pi -10
 pow + x atan cos + 10 * pi 2 -10
 pow + x atan cos - 10 * -2 pi -10
 pow + x atan cos + -10 * pi -2 -10
 pow + x atan cos - -10 * pi 2 -10
 
-(d x (* x (pow (csc (asinh (* 10 x))) -1)))
+d x * x pow csc asinh * 10 x -1
 
-(+ -10 (+ x (+ (* -10 (sin (+ x (* 3 pi)))) (acosh x))))
++ -10 + x + * -10 sin + x * 3 pi acosh x
 
-(d x (* x (+ x (+ (atan x) (sin (+ 1 (* 5 pi)))))))
+d x * x + x + atan x sin + 1 * 5 pi
 
-(d x (* -10 (+ (acos x) (cos x))))
+d x * -10 + acos x cos x
 + * - d x acos x sin x -10 0
 + * d x + acos x cos x -10 0
 + d x * -10 acos x * 10 sin x
 
-(+ 1 (+ x (+ (pow (sec (acosh x)) -1) (exp x))))
++ 1 + x + pow sec acosh x -1 exp x
 
-(asinh (* x (sin (+ 1 (* 6 pi)))))
+asinh * x sin + 1 * 6 pi
 asinh * * -1 sin - -1 * pi 6 x
 asinh * sin - 1 * -6 pi x
 pow asinh * sin - 1 * -6 pi x 1
@@ -225,22 +225,22 @@ pow asinh * sin + * 6 pi 1 x 1
 asinh * x sin + * -1 * -6 pi 1
 asinh * x sin - 1 * * 6 pi -1
 
-(d x (+ -10 (+ x (+ (pow (cot x) -1) (* -10 (atanh x))))))
+d x + -10 + x + pow cot x -1 * -10 atanh x
 
-(d x (+ (* x (pow (sec (+ 60 (* 4 pi))) -1)) (asin x)))
+d x + * x pow sec + 60 * 4 pi -1 asin x
 
-(+ x (+ (acos x) (sin (+ (* 6 pi) (* 10 x)))))
++ x + acos x sin + * 6 pi * 10 x
 
-(+ (* -10 x) (+ (acosh (+ 10 x)) (sin (+ x (* 8 pi)))))
++ * -10 x + acosh + 10 x sin + x * 8 pi
 
-(+ x (+ (pow x 2) (cos (+ (* 1 pi) (asinh x)))))
++ x + pow x 2 cos + * 1 pi asinh x
 + + x pow x 2 cos + pi asinh x
 
-(+ x (* -10 (* (acosh (cos (+ x (* 5 pi)))) (cos x))))
++ x * -10 * acosh cos + x * 5 pi cos x
 
-(d x (+ x (atanh (* x (pow (cos (+ 10 (* 3 pi))) -10)))))
+d x + x atanh * x pow cos + 10 * 3 pi -10
 
-(pow (sec (asinh x)) -1)
+pow sec asinh x -1
 pow sec + * 5.25 ln 1 asinh x -1
 pow sec * -1 * -0.5 * 2 asinh x -1
 pow sec * -1 * * asinh x 2 0.5 -1
@@ -411,7 +411,7 @@ pow sec * * 4 * 0.5 asinh x 0.5 -1
 pow sec - asinh x * -0.75 ln 1 -1
 pow pow / sec asinh x 1 -1 1
 
-(* x (+ 1 (cos (atan x))))
+* x + 1 cos atan x
 + x - / 1 / sec atan x x 0
 + x - / x sec atan x 0
 + x - * x cos atan x 0
@@ -427,27 +427,27 @@ pow pow / sec asinh x 1 -1 1
 + x - + / x sec atan x x x
 + x - * cos * -1 atan x x 0
 
-(d x (+ (* -10 (pow (cot x) -1)) (asin x)))
+d x + * -10 pow cot x -1 asin x
 d x + * pow cot x -1 -10 asin x
 
-(+ (* x (sin x)) (atan (+ -10 x)))
++ * x sin x atan + -10 x
 + * x sin x atan + x -10
 + * x sin x atan - -10 * x -1
 
-(+ (* -10 (pow x 10)) (+ (asinh x) (sin (+ x (* 8 pi)))))
++ * -10 pow x 10 + asinh x sin + x * 8 pi
 
-(+ -10 (+ (* -10 (atanh x)) (* x (sin x))))
++ -10 + * -10 atanh x * x sin x
 + -10 + * sin x x * atanh x -10
 
-(d x (* x (atan (pow (sec (+ 1 (* 7 pi))) -1))))
+d x * x atan pow sec + 1 * 7 pi -1
 
-(d x (+ x (+ (* x (cos (acosh x))) (sinh x))))
+d x + x + * x cos acosh x sinh x
 
-(+ 20 (+ x (+ (atan x) (sin (+ x (* 4 pi))))))
++ 20 + x + atan x sin + x * 4 pi
 
-(* x (* (+ 4 (* 2 x)) (+ x (acos x))))
+* x * + 4 * 2 x + x acos x
 
-(pow (+ x (* x (acos x))) 3)
+pow + x * x acos x 3
 * pow * + acos x 1 x 3 1
 pow + x * x acos x 3
 pow pow + * x acos x x 3 1
@@ -455,30 +455,30 @@ pow * x + 1 acos x 3
 * 1 pow + x * x acos x 3
 pow pow * x + 1 acos x 3 1
 
-(d x (exp (+ 1 (asin (* 4 x)))))
+d x exp + 1 asin * 4 x
 d x exp / + 1 asin * x 4 1
 * d x exp + 1 asin * x 4 1
 pow d x exp + asin * 4 x 1 1
 + 0 d x exp + 1 asin * 4 x
 d x exp + 1 asin * 4 x
 
-(+ x (* 5 (* x (* (+ 5 x) (asin x)))))
++ x * 5 * x * + 5 x asin x
 
-(d x (* (pow x -1) (+ 3 (+ 2.7 (* x (acos x))))))
+d x * pow x -1 + 3 + 2.7 * x acos x
 + * pow x -2 -5.7 d x acos x
 
-(d x (pow (+ x (* 4 (asin x))) 3))
+d x pow + x * 4 asin x 3
 d x pow + / asin x 0.25 x 3
 d x pow + * 4 asin x x 3
 
-(d x (+ (pow x 2) (* 4 (* x (pow (acos x) 3)))))
+d x + pow x 2 * 4 * x pow acos x 3
 
-(atan (pow 2 -1))
+atan pow 2 -1
 * atan pow 2 -1 1
 atan pow 2 -1
 pow atan pow 2 -1 1
 
-(d x (* 3 (+ -3 (+ x (* -1 (atan x))))))
+d x * 3 + -3 + x * -1 atan x
 * 3 + / 1 - -1 pow x 2 1
 * 3 - 0 + d x atan x -1
 + / / -1 - -1 pow x 2 -0.3333333333333333 3
@@ -666,12 +666,12 @@ pow - / -3 + pow x 2 1 -3 1
 - 3 / d x - -3 atan x -0.3333333333333333
 * + 3 d x * atan x -3 1
 
-(* (+ x (pow x 2)) (atan (+ 1 x)))
+* + x pow x 2 atan + 1 x
 * + pow x 2 x atan + x 1
 
-(d x (* 7 (* x (+ x (* 9 (asin x))))))
+d x * 7 * x + x * 9 asin x
 
-(d x (atan (+ (* 2 x) 9)))
+d x atan + * 2 x 9
 d x atan + 9 / x 0.5
 d x atan + * 2 x 9
 * d x atan + x + 9 x 1
@@ -694,17 +694,17 @@ d x atan + 9 * 2 / x 1
 pow d x atan + * 2 x 9 1
 pow d x atan + 9 + x x 1
 
-(* 1 (* x (+ 5 (* x (asin x)))))
+* 1 * x + 5 * x asin x
 pow * + * x asin x 5 x 1
 * + * asin x x 5 x
 + * x 5 * asin x pow x 2
 + * * x asin x x * x 5
 * * x + * asin x x 5 1
 
-(+ (pow (+ -1 (* 2 x)) 2) (acos x))
++ pow + -1 * 2 x 2 acos x
 + acos x pow + * x 2 -1 2
 
-(d x (* 3 (+ 4 (+ (* 3 x) (acos x)))))
+d x * 3 + 4 + * 3 x acos x
 * 1 - 9 * d x acos x -3
 + - 9 * d x acos x -3 0
 - 0 + * -3 d x acos x -9
@@ -796,9 +796,9 @@ pow - / d x acos x 0.3333333333333333 -9 1
 + 9 / / d x acos x 0.3333333333333333 1
 - 0 - / d x acos x -0.3333333333333333 9
 
-(d x (+ x (* (pow x 2) (asin (* 9 pi)))))
+d x + x * pow x 2 asin * 9 pi
 
-(* -1 (* x (+ -1 (+ (pow x 2) (* -1 (atan x))))))
+* -1 * x + -1 + pow x 2 * -1 atan x
 * x - atan x - pow x 2 1
 * - atan x + -1 pow x 2 x
 - * atan x x - pow x 3 x
@@ -810,17 +810,17 @@ pow - / d x acos x 0.3333333333333333 -9 1
 * x - + atan x 1 pow x 2
 + * x atan x - x pow x 3
 
-(d x (* 6 (* (pow x -1) (+ 1 (* x (atan x))))))
+d x * 6 * pow x -1 + 1 * x atan x
 
-(d x (+ (* 5 x) (* 8 (* x (asin x)))))
+d x + * 5 x * 8 * x asin x
 + 5 d x * / asin x 0.125 x
 + * 8 d x * x asin x 5
 + d x / asin x / 0.125 x 5
 
-(* x (* (+ -3 (* 3 x)) (acos x)))
+* x * + -3 * 3 x acos x
 * acos x * + -3 * x 3 x
 
-(* 6 (* x (+ (* 1 x) (acos x))))
+* 6 * x + * 1 x acos x
 * 6 + pow x 2 * x acos x
 pow * * 6 + acos x x x 1
 * * x 6 + acos x x
@@ -828,7 +828,7 @@ pow * * 6 + acos x x x 1
 * 1 * * + x acos x x 6
 * 6 + * x x * acos x x
 
-(* x (+ 1 (+ (acos x) 7)))
+* x + 1 + acos x 7
 pow * x + 8 acos x 1
 + x * + acos x 7 x
 * + acos x 8 x
@@ -843,30 +843,30 @@ pow + x * + 7 acos x x 1
 pow * x + + acos x 7 1 1
 + * 7 x * + 1 acos x x
 
-(d x (+ 4 (* 4 (exp (acos (* 2 x))))))
+d x + 4 * 4 exp acos * 2 x
 + d x * exp acos * 2 x 4 0
 
-(+ (* 3 (asin x)) (* 6 x))
++ * 3 asin x * 6 x
 * + * 3 asin x * 6 x 1
 + * 3 asin x * 6 x
 pow + * asin x 3 * x 6 1
 
-(+ x (+ (* 2 (pow x 2)) (* 2 (* x (atan x)))))
++ x + * 2 pow x 2 * 2 * x atan x
 
-(d x (+ 4 (* (+ 1 x) (+ x (asin x)))))
+d x + 4 * + 1 x + x asin x
 d x * + x asin x + x 1
 
-(+ (pow x 3) (* 5 (* (pow x 3) (atan x))))
++ pow x 3 * 5 * pow x 3 atan x
 * + 1 * 5 atan x pow x 3
 
-(* 6 (* x (+ 12 (+ (* 4 (asin x)) (* 5 x)))))
+* 6 * x + 12 + * 4 asin x * 5 x
 
-(d x (* x (* (pow 6 -1) (asin x))))
+d x * x * pow 6 -1 asin x
 d x * x * pow 6 -1 asin x
 
-(d x (+ (* -1 x) (* 3 (* x (atan (pow x 2))))))
+d x + * -1 x * 3 * x atan pow x 2
 
-(d x (+ (* 2 (asin x)) (* 9 x)))
+d x + * 2 asin x * 9 x
 * + d x + asin x asin x 9 1
 + 0 + 9 d x + asin x asin x
 + / 1 / 0.5 d x asin x 9
@@ -888,9 +888,9 @@ d x + * 2 asin x * 9 x
 pow + / d x asin x 0.5 9 1
 + 9 / * d x asin x 2 1
 
-(+ x (* 2 (* x (* (+ -2 x) (asin x)))))
++ x * 2 * x * + -2 x asin x
 
-(* x (+ (* -1 x) (* 6 (asin x))))
+* x + * -1 x * 6 asin x
 * 1 * - * 6 asin x x x
 * x - * 6 asin x x
 - * asin x * x 6 * x x
@@ -898,7 +898,7 @@ pow + / d x asin x 0.5 9 1
 * x + * -1 x * asin x 6
 pow * x - * asin x 6 x 1
 
-(d x (* 2 (+ -2 (+ (* 2 x) (asin x)))))
+d x * 2 + -2 + * 2 x asin x
 + * 2 + 2 d x asin x 0
 + 4 / d x asin x 0.5
 + / * d x asin x 2 1 4
@@ -924,7 +924,7 @@ pow * 2 + d x asin x 2 1
 + d x * asin x 2 4
 + 4 / d x + asin x -2 0.5
 
-(* x (+ -1 (+ (pow x 2) (* -1 (acos x)))))
+* x + -1 + pow x 2 * -1 acos x
 * - pow x 2 + 1 acos x x
 * x - - pow x 2 1 acos x
 + pow x 3 * - -1 acos x x
@@ -936,19 +936,19 @@ pow * 2 + d x asin x 2 1
 - pow x 3 * + acos x 1 x
 * x - pow x 2 - acos x -1
 
-(* x (+ 1 (+ (* 2 (acos x)) (* 5 x))))
+* x + 1 + * 2 acos x * 5 x
 
-(+ 5 (* x (+ x (* x (atan x)))))
++ 5 * x + x * x atan x
 + 5 * x + x * x atan x
 + 5 * + 1 atan x pow x 2
 + 5 * x * + atan x 1 x
 
-(* x (+ x (* x (acos (* 3 x)))))
+* x + x * x acos * 3 x
 * pow x 2 + 1 acos * x 3
 * x * x + 1 acos * x 3
 * + * x acos * 3 x x x
 
-(* x (+ -4 (* -1 (acos x))))
+* x + -4 * -1 acos x
 + * x -4 * acos x * x -1
 - * -4 x * x acos x
 * - * x -4 * x acos x 1
@@ -960,21 +960,21 @@ pow * x + -4 * -1 acos x 1
 * * x - -4 acos x 1
 pow * - -4 acos x x 1
 
-(+ (* -3 x) (* 6 (* (pow x 2) (asin x))))
++ * -3 x * 6 * pow x 2 asin x
 
-(* x (asin (* x 1)))
+* x asin * x 1
 * asin x x
 pow * asin x x 1
 * * asin x x 1
 
-(d x (* x (+ 5 (+ (* -2 x) (asin x)))))
+d x * x + 5 + * -2 x asin x
 
-(* 7 (+ (* -1 pi) (+ (* -4 (acos x)) (* 4 x))))
+* 7 + * -1 pi + * -4 acos x * 4 x
 
-(* x (+ (* -3 (atan x)) (* 3 x)))
+* x + * -3 atan x * 3 x
 * + * atan x -3 * 3 x x
 
-(* 9 (+ 1 (asin x)))
+* 9 + 1 asin x
 * + 1 asin x 9
 pow + * 9 asin x 9 1
 * 1 * + 1 asin x 9
@@ -982,7 +982,7 @@ pow + * 9 asin x 9 1
 + 9 * 9 asin x
 pow * + 1 asin x 9 1
 
-(* x (+ 25 (* -1 (asin x))))
+* x + 25 * -1 asin x
 + * 25 x * * x asin x -1
 pow - * 25 x * asin x x 1
 - * x 25 * asin x x
@@ -994,11 +994,11 @@ pow * - 25 asin x x 1
 * * x - 25 asin x 1
 * + * -1 asin x 25 x
 
-(+ (* 2 (pow x 2)) (+ (* 12 x) (acos x)))
++ * 2 pow x 2 + * 12 x acos x
 
-(d x (+ x (* -1 (* x (+ -2 (asin (* 2 x)))))))
+d x + x * -1 * x + -2 asin * 2 x
 
-(+ x (* x (acos (* 8 x))))
++ x * x acos * 8 x
 pow * x + 1 acos * 8 x 1
 + * acos * 8 x x x
 pow + x * acos * x 8 x 1
@@ -1006,16 +1006,16 @@ pow + x * acos * x 8 x 1
 * + x * x acos * 8 x 1
 * * x + 1 acos * 8 x 1
 
-(* x (+ 8 (* (pow x 2) (acos x))))
+* x + 8 * pow x 2 acos x
 + * acos x pow x 3 * x 8
 * x + * pow x 2 acos x 8
 
-(acos (+ (* -10 x) (* -10 1)))
+acos + * -10 x * -10 1
 pow acos + * -10 x -10 1
 * acos + -10 * -10 x 1
 acos + -10 * x -10
 
-(d x (+ 1 (+ (* -3 x) (* x (atan x)))))
+d x + 1 + * -3 x * x atan x
 * 1 + d x * atan x x -3
 + -3 d x + * atan x x 1
 + -3 d x / atan x pow x -1
@@ -1025,17 +1025,17 @@ acos + -10 * x -10
 + * x d x atan x + -3 atan x
 + -3 d x * x atan x
 
-(* 9 (+ (pow x 5) (* 5 (acos x))))
+* 9 + pow x 5 * 5 acos x
 * + pow x 5 * acos x 5 9
 + * acos x 45 * pow x 5 9
 
-(+ 5 (+ (* x (+ -4 x)) (atan (* 2 x))))
++ 5 + * x + -4 x atan * 2 x
 
-(d x (* 6 (+ (pow x 5) (* 32 (acos x)))))
+d x * 6 + pow x 5 * 32 acos x
 
-(d x (+ (* 6 (acos x)) (* -2 (* x (acos x)))))
+d x + * 6 acos x * -2 * x acos x
 
-(d x (+ (* -6 (atan x)) (* 4 x)))
+d x + * -6 atan x * 4 x
 pow + 4 / -6 + pow x 2 1 1
 + 0 + / d x atan x -0.16666666666666666 4
 + + * d x atan x -6 4 0
@@ -1057,43 +1057,43 @@ pow + * -6 d x atan x 4 1
 pow + / d x atan x -0.16666666666666666 4 1
 + * / d x atan x 1 -6 4
 
-(d x (+ (* 6 (asin x)) (* 3 (* x (asin x)))))
+d x + * 6 asin x * 3 * x asin x
 d x * + * x 3 6 asin x
 d x * / asin x 0.3333333333333333 + 2 x
 d x * asin x + / x 0.3333333333333333 6
 d x * asin x * 3 + x 2
 
-(* 3 (atan x))
+* 3 atan x
 * * 3 atan x 1
 * 3 atan x
 pow * 3 atan x 1
 
-(+ (* 3 x) (* -1 (* x (atan (* 5 x)))))
++ * 3 x * -1 * x atan * 5 x
 * + 3 * atan * 5 x -1 x
 * 1 * - 3 atan * 5 x x
 * x - 3 atan * 5 x
 pow * x - 3 atan * 5 x 1
 - * 3 x * x atan * 5 x
 
-(d x (* x (+ (* -2 x) (* 2 (asin x)))))
+d x * x + * -2 x * 2 asin x
 
-(d x (+ (* x (+ 256 x)) (atan x)))
+d x + * x + 256 x atan x
 d x + * + 256 x x atan x
 + + * 2 x d x atan x 256
 + d x + pow x 2 atan x 256
 + * 2 + 128 x d x atan x
 + + + d x atan x x 256 x
 
-(* x (+ x (+ (* x (asin x)) (asin x))))
+* x + x + * x asin x asin x
 * x + x + * x asin x asin x
 * x + x * asin x + x 1
 * x + * + 1 asin x x asin x
 
-(d x (* -1 (* x (* (+ 1 (* 2 x)) (acos x)))))
+d x * -1 * x * + 1 * 2 x acos x
 
-(d x (* (+ 3 x) (* (+ 4 (* 2 x)) (atan x))))
+d x * + 3 x * + 4 * 2 x atan x
 
-(* 3 (+ (* 2 x) (acos (sqrt x))))
+* 3 + * 2 x acos sqrt x
 * * 3 + acos sqrt x * 2 x 1
 * 3 + * 2 x acos sqrt x
 * 1 + * 3 acos sqrt x * x 6
@@ -1102,7 +1102,7 @@ pow + * x 6 * 3 acos sqrt x 1
 + * 3 acos sqrt x * * 3 x 2
 pow * + * 2 x acos sqrt x 3 1
 
-(* 5 (* x (+ 3 (acos x))))
+* 5 * x + 3 acos x
 + * x 15 * acos x * x 5
 * 5 + * acos x x * 3 x
 * * 5 * x + acos x 3 1
@@ -1112,11 +1112,11 @@ pow * + acos x 3 * x 5 1
 pow * + 15 * acos x 5 x 1
 * 1 * + * acos x 5 15 x
 
-(d x (* x (* (+ 1 x) (* (+ 5 x) (asin x)))))
+d x * x * + 1 x * + 5 x asin x
 
-(d x (* 2 (* x (+ x (* 8 (asin x))))))
+d x * 2 * x + x * 8 asin x
 
-(+ (* x 5) (* x (atan x)))
++ * x 5 * x atan x
 * 1 + * atan x x * 5 x
 pow + * x 5 * atan x x 1
 pow * + 5 atan x x 1
@@ -1124,7 +1124,7 @@ pow * + 5 atan x x 1
 * * x + atan x 5 1
 * x + 5 atan x
 
-(d x (+ (* 2 (acos x)) (* 3 x)))
+d x + * 2 acos x * 3 x
 + 0 + 3 d x + acos x acos x
 + * 2 d x acos x 3
 + / 2 / 1 d x acos x 3
@@ -1209,17 +1209,17 @@ pow - d x * acos x 2 -3 1
 - d x * 2 acos x -3
 - * / d x acos x -1 -2 -3
 
-(d x (+ (* 2 x) (* 2 (atan (+ 2 x)))))
+d x + * 2 x * 2 atan + 2 x
 + 2 * d x atan + x 2 2
 + / 2 + 1 pow + x 2 2 2
 + 2 / d x atan + 2 x 0.5
 d x * + atan + x 2 x 2
 * + d x atan + 2 x 1 2
 
-(d x (+ 3 (* x (+ 2 (+ x (asin x))))))
+d x + 3 * x + 2 + x asin x
 + 2 d x * + x asin x x
 
-(d x (* -3 (+ x (acos x))))
+d x * -3 + x acos x
 d x * + acos x x -3
 - -3 / -3 sqrt - 1 pow x 2
 - / 3 sqrt - 1 pow x 2 3
@@ -1296,12 +1296,12 @@ pow - -3 / d x acos x 0.3333333333333333 1
 + + -3 / d x acos x -0.3333333333333333 0
 + 0 - / d x acos x -0.3333333333333333 3
 
-(+ x (* 2.7 (exp (acos (* 2 x)))))
++ x * 2.7 exp acos * 2 x
 + * 2.7 exp acos * 2 x x
 * 1 + x * exp acos * x 2 2.7
 pow + * exp acos * x 2 2.7 x 1
 
-(* 3 (+ 5 (+ x (asin x))))
+* 3 + 5 + x asin x
 pow * 3 + x + 5 asin x 1
 pow + 15 * 3 + asin x x 1
 * * 3 + asin x + 5 x 1
@@ -1311,22 +1311,22 @@ pow + 15 * 3 + asin x x 1
 * 3 + + 5 x asin x
 * 1 + 15 * 3 + x asin x
 
-(* x (+ x (exp (+ 1 (acos x)))))
+* x + x exp + 1 acos x
 + * exp + 1 acos x x pow x 2
 * * x + x exp + acos x 1 1
 + * x x * exp + acos x 1 x
 * + exp + acos x 1 x x
 pow * x + exp + 1 acos x x 1
 
-(+ 3 (+ x (+ (* -5 (asin x)) (* x (asin x)))))
++ 3 + x + * -5 asin x * x asin x
 + 3 + * asin x + -5 x x
 
-(+ (* (pow x -2) (+ -3 x)) (acos x))
++ * pow x -2 + -3 x acos x
 + * pow x -2 + -3 x acos x
 
-(d x (pow (+ x (* 6 (* x (acos x)))) 2))
+d x pow + x * 6 * x acos x 2
 
-(d x (+ 5 (* 5 (atan x))))
+d x + 5 * 5 atan x
 / * 5 / d x atan x 1 1
 / 1 / + 0.2 * 0.2 pow x 2 1
 * 1 / 5 + pow x 2 1
@@ -1381,33 +1381,33 @@ pow / 5 / 1 d x atan x 1
 / 5 / 1 / d x atan x 1
 pow / 5 / + 1 pow x 2 1 1
 
-(d x (* 2 (* x (+ -1 (acos (pow x 2))))))
+d x * 2 * x + -1 acos pow x 2
 
-(d x (* 1 (+ x (* -2 (asin (* 5 x))))))
+d x * 1 + x * -2 asin * 5 x
 d x + * -2 asin * x 5 x
 + d x * asin * 5 x -2 1
 + / d x asin * 5 x -0.5 1
 
-(d x (+ (* 8 (atanh x)) (asin x)))
+d x + * 8 atanh x asin x
 + d x asin x * d x atanh x 8
 + 0 d x + * atanh x 8 asin x
 - d x + asin x * 8 atanh x 0
 
-(* 2 (* (pow x 2) (* (+ 1 (* 4 x)) (acos x))))
+* 2 * pow x 2 * + 1 * 4 x acos x
 
-(d x (* x (+ (* 6 x) (* 7 (atan x)))))
+d x * x + * 6 x * 7 atan x
 
-(* 5 (* (+ 1 (atan x)) (+ 2 x)))
+* 5 * + 1 atan x + 2 x
 * + 10 * 5 x + atan x 1
 * + 2 x * + 1 atan x 5
 * + x 2 + * atan x 5 5
 
-(+ 1 (* 8 (* x (asin x))))
++ 1 * 8 * x asin x
 * 1 + * 8 * asin x x 1
 + * * x asin x 8 1
 pow + 1 * x * 8 asin x 1
 
-(d x (+ (* 4 x) (* 4 (* x (atan x)))))
+d x + * 4 x * 4 * x atan x
 d x * + 1 atan x / x 0.25
 + d x / x / 0.25 atan x 4
 + d x * * 4 atan x x 4
@@ -1417,7 +1417,7 @@ d x / + * atan x x x 0.25
 + d x * x / atan x 0.25 4
 d x / + atan x 1 / 0.25 x
 
-(d x (* (atan x) 5))
+d x * atan x 5
 / * 5 / d x atan x 1 1
 / 1 / + 0.2 * 0.2 pow x 2 1
 * 1 / 5 + pow x 2 1
@@ -1467,10 +1467,10 @@ pow / 5 / 1 d x atan x 1
 pow / 1 * 0.2 + 1 pow x 2 1
 pow / 5 / + 1 pow x 2 1 1
 
-(* -1 (* x (* (+ 1 (* 4 (pow x 2))) (acos x))))
+* -1 * x * + 1 * 4 pow x 2 acos x
 * - * -4 pow x 3 x acos x
 
-(* 3 (* x (+ -2 (asin x))))
+* 3 * x + -2 asin x
 + * * x 3 asin x * -6 x
 pow * + -2 asin x * x 3 1
 * + * asin x x * x -2 3
@@ -1480,11 +1480,11 @@ pow * + -2 asin x * x 3 1
 pow * + * asin x 3 -6 x 1
 * x + -6 * 3 asin x
 
-(+ (pow x 2) (+ (* 20 x) (* -1 (* x (asin x)))))
++ pow x 2 + * 20 x * -1 * x asin x
 - pow x 2 * - asin x 20 x
 + pow x 2 * x - 20 asin x
 
-(d x (+ (pow x -1) (* 1 (atan x))))
+d x + pow x -1 * 1 atan x
 + * -1 pow x -2 d x atan x
 - / 1 + pow x 2 1 pow x -2
 + d x pow x -1 d x atan x
@@ -1499,11 +1499,11 @@ pow d x + atan x pow x -1 1
 + 0 - d x atan x pow x -2
 - d x atan x pow x -2
 
-(d x (* x (+ (* -2 x) (* 2 (atan x)))))
+d x * x + * -2 x * 2 atan x
 
-(d x (+ x (+ (* 5 (pow x 2)) (* x (atan x)))))
+d x + x + * 5 pow x 2 * x atan x
 
-(* (+ x (atan x)) 5)
+* + x atan x 5
 * * 5 + x atan x 1
 * + atan x x 5
 + * atan x 5 * x 5
@@ -1511,9 +1511,9 @@ pow d x + atan x pow x -1 1
 pow + * atan x 5 * 5 x 1
 pow * 5 + atan x x 1
 
-(+ (pow x 2) (* 7 (* (pow x 3) (atan x))))
++ pow x 2 * 7 * pow x 3 atan x
 
-(d x (+ x (* (+ 2 x) (acos x))))
+d x + x * + 2 x acos x
 d x + x * acos x + x 2
 + 1 d x * - x -2 acos x
 - d x * acos x + x 2 -1
@@ -1521,13 +1521,13 @@ d x + * acos x - x -2 x
 - d x * - x -2 acos x -1
 + d x * acos x + 2 x 1
 
-(atan (* 5 (pow (+ -2 (* 2 x)) -1)))
+atan * 5 pow + -2 * 2 x -1
 atan * 5 pow + * 2 x -2 -1
 
-(d x (* 2 (+ x (* 4 (acos 2.7)))))
+d x * 2 + x * 4 acos 2.7
 2
 
-(d x (+ 2 (+ x (* -1 (acos x)))))
+d x + 2 + x * -1 acos x
 - - 0 / d x acos x 1 -1
 + 0 d x - 2 - acos x x
 + d x + x * -1 acos x 0
@@ -1628,12 +1628,12 @@ pow - 1 d x - acos x 2 1
 - 0 - + -1 d x acos x 0
 * 1 + 1 - 0 d x acos x
 
-(+ (* 7 (pow x 2)) (* 8 (* x (atan x))))
++ * 7 pow x 2 * 8 * x atan x
 
-(+ 5 (* x (+ 5 (+ x (acos x)))))
++ 5 * x + 5 + x acos x
 + 5 * x + + 5 acos x x
 
-(d x (* 1 (+ 5 (* 2 (atan x)))))
+d x * 1 + 5 * 2 atan x
 / 1 * + pow x 2 1 0.5
 / d x atan x 0.5
 / / 2 / + pow x 2 1 1 1
@@ -1693,13 +1693,13 @@ pow / 1 / 0.5 d x atan x 1
 d x * atan x 2
 + / d x atan x 0.5 0
 
-(* x (+ -1 (+ (* 2 x) (asin x))))
+* x + -1 + * 2 x asin x
 - * x + * 2 x asin x x
 * x + + asin x * x 2 -1
 * - asin x - 1 * 2 x x
 * + - asin x 1 * 2 x x
 
-(* 7 (+ (* -1 (acos x)) (* 6 x)))
+* 7 + * -1 acos x * 6 x
 + * -1 * 7 acos x * x 42
 * 1 + * -7 acos x * x 42
 * - * x 6 acos x 7
@@ -1714,7 +1714,7 @@ pow - * 42 x * acos x 7 1
 - * 42 x * acos x 7
 pow * 7 - * 6 x acos x 1
 
-(d x (* 9 (+ x (acos x))))
+d x * 9 + x acos x
 pow + 9 d x * acos x 9 1
 - 0 + * -9 d x acos x -9
 + 9 * 9 / d x acos x 1
@@ -1791,7 +1791,7 @@ pow - d x * 9 acos x -9 1
 * 9 - 1 - 0 d x acos x
 - / - d x acos x 0 0.1111111111111111 -9
 
-(d x (* -3 (+ -1 (+ x (asin x)))))
+d x * -3 + -1 + x asin x
 + / / d x asin x -0.3333333333333333 1 -3
 pow * + d x asin x 1 -3 1
 + d x * -3 + x asin x 0
@@ -1821,18 +1821,18 @@ pow + -3 d x * -3 asin x 1
 * 1 * d x + asin x x -3
 * + 1 d x asin x -3
 
-(+ 2 (* 2 (* x (* (+ -1 x) (acos x)))))
++ 2 * 2 * x * + -1 x acos x
 
-(* 1 (* x (+ 4 (* 3 (atan x)))))
+* 1 * x + 4 * 3 atan x
 + * atan x * x 3 * 4 x
 pow * x + * 3 atan x 4 1
 * * + 4 * atan x 3 x 1
 * x + * 3 atan x 4
 
-(* (+ x (pow x 3)) (asin (+ 3 x)))
+* + x pow x 3 asin + 3 x
 * asin + 3 x + x pow x 3
 
-(d x (* 3 (+ 3 (+ (* 2 x) (acos x)))))
+d x * 3 + 3 + * 2 x acos x
 - * -1 * -3 d x acos x -6
 * 1 * 3 - d x acos x -2
 + 6 / -3 sqrt - 1 pow x 2
@@ -1924,16 +1924,16 @@ pow + 6 * 3 d x acos x 1
 * 1 - 6 * d x acos x -3
 - d x + 9 * 3 acos x -6
 
-(d x (* (+ 2 (* 6 x)) (asin x)))
+d x * + 2 * 6 x asin x
 d x * + * x 6 2 asin x
 d x * + 2 / x 0.16666666666666666 asin x
 
-(+ (pow x 2) (* x (+ 2 (+ x (asin x)))))
++ pow x 2 * x + 2 + x asin x
 * x + 2 + + asin x x x
 * x + * + x 1 2 asin x
 * + 2 + * x 2 asin x x
 
-(d x (+ x (* x (* (asin x) 5))))
+d x + x * x * asin x 5
 + 1 d x * / asin x 0.2 x
 d x + x * x / asin x 0.2
 + d x * 5 * x asin x 1
@@ -1941,7 +1941,7 @@ d x + / x / 0.2 asin x x
 + d x / x / 0.2 asin x 1
 d x + x * 5 * asin x x
 
-(* x (+ 1 (* (atan x) 9)))
+* x + 1 * atan x 9
 + x * atan x * 9 x
 * * + * 9 atan x 1 x 1
 * + 1 * 9 atan x x
@@ -1949,21 +1949,21 @@ pow + x * atan x * x 9 1
 pow * + 1 * atan x 9 x 1
 * 1 + x * * 9 x atan x
 
-(d x (+ 4 (+ x (* x (+ x (* -1 (atan x)))))))
+d x + 4 + x * x + x * -1 atan x
 d x - x * x - atan x x
 d x * x - 1 - atan x x
 d x * + x - 1 atan x x
 d x + x * - x atan x x
 - d x * x - x atan x -1
 
-(d x (* 2 (* x (+ (* 5 (atan x)) (* 10 x)))))
+d x * 2 * x + * 5 atan x * 10 x
 
-(+ (* -2 (asin x)) (* 8 x))
++ * -2 asin x * 8 x
 * + * asin x -2 * 8 x 1
 + * -2 asin x * x 8
 pow + * -2 asin x * 8 x 1
 
-(d x (* (+ 8 (* -1 x)) (asin x)))
+d x * + 8 * -1 x asin x
 d x * - / x -1 -8 asin x
 d x * + -8 x * -1 asin x
 d x - * asin x 8 * x asin x
@@ -1981,17 +1981,17 @@ d x - * - 8 x asin x 0
 d x / asin x / 1 - 8 x
 d x * asin x + 8 / x -1
 
-(d x (+ (* -1 x) (* -1 (* (pow x 2) (acos x)))))
+d x + * -1 x * -1 * pow x 2 acos x
 - -1 d x * acos x pow x 2
 
-(* x (+ x (* 3 (atan x))))
+* x + x * 3 atan x
 + * 3 * x atan x pow x 2
 * x + * atan x 3 x
 + * * 3 atan x x * x x
 pow * + x * atan x 3 x 1
 * * + * atan x 3 x x 1
 
-(* 5 (+ -2 (* x (acos x))))
+* 5 + -2 * x acos x
 pow * 5 + * x acos x -2 1
 * 5 + * x acos x -2
 pow + -10 * * acos x 5 x 1
@@ -1999,23 +1999,23 @@ pow + -10 * * acos x 5 x 1
 * 1 + * * 5 x acos x -10
 + * * x acos x 5 -10
 
-(* x (+ x (* 8 (* x (atan x)))))
+* x + x * 8 * x atan x
 * + * x * 8 atan x x x
 * pow x 2 + * atan x 8 1
 * x * + 1 * atan x 8 x
 
-(d x (* 1 (* x (+ 1 (acos (pow x 2))))))
+d x * 1 * x + 1 acos pow x 2
 + d x * acos pow x 2 x 1
 - d x * x acos pow x 2 -1
 + d x * x acos * x x 1
 - d x * acos * x x x -1
 
-(+ (* 6 (pow x 4)) (atan x))
++ * 6 pow x 4 atan x
 * + atan x * pow x 4 6 1
 pow + * 6 pow x 4 atan x 1
 + atan x * 6 pow x 4
 
-(d x (+ (* -1 (pow (+ -1 x) 2)) (asin x)))
+d x + * -1 pow + -1 x 2 asin x
 + + * -2 x 2 d x asin x
 - d x asin x - * x 2 2
 - d x asin x * 2 + x -1
@@ -2029,11 +2029,11 @@ d x - asin x pow + x -1 2
 + d x asin x * 2 - 1 x
 - d x asin x * -2 - 1 x
 
-(d x (* 3 (+ x (* 4 (acos (* 2 x))))))
+d x * 3 + x * 4 acos * 2 x
 + d x * acos * x 2 12 3
 + 3 / d x acos * x 2 0.08333333333333333
 
-(d x (+ 3 (+ (* 9 x) (atan x))))
+d x + 3 + * 9 x atan x
 + d x atan x 9
 + + 9 d x + 3 atan x 0
 pow + d x + 3 atan x 9 1
@@ -2059,7 +2059,7 @@ d x + * 9 x atan x
 pow + d x atan x 9 1
 + 0 + 9 / d x atan x 1
 
-(+ (* 3 (acos x)) (* x (acos x)))
++ * 3 acos x * x acos x
 + * x acos x * acos x 3
 * + * acos x 3 * x acos x 1
 * * acos x + x 3 1
@@ -2067,7 +2067,7 @@ pow * + x 3 acos x 1
 * acos x + 3 x
 pow + * 3 acos x * acos x x 1
 
-(* -2 (+ (* 2 x) (atan x)))
+* -2 + * 2 x atan x
 pow * -2 + * 2 x atan x 1
 + * -2 atan x * -4 x
 + * -2 * 2 x * -2 atan x
@@ -2076,7 +2076,7 @@ pow * -2 + * 2 x atan x 1
 pow + * -4 x * -2 atan x 1
 * -2 + atan x * 2 x
 
-(d x (+ (* 16 (atan x)) (* -1 (* x (atan x)))))
+d x + * 16 atan x * -1 * x atan x
 d x - 0 * atan x + -16 x
 + d x * atan x - 16 x 0
 d x * -1 * + -16 x atan x
@@ -2094,7 +2094,7 @@ pow d x * - 16 x atan x 1
 d x * - * x -1 -16 atan x
 d x / atan x / 1 - 16 x
 
-(d x (+ (* -1 (acos x)) (* 2 (pow x 2))))
+d x + * -1 acos x * 2 pow x 2
 + - * 3 x d x acos x x
 pow - * 4 x d x acos x 1
 - * 2 * x 2 d x acos x
@@ -2109,7 +2109,7 @@ d x - * 2 pow x 2 acos x
 + / d x acos x -1 * x 4
 - * 4 x / d x acos x 1
 
-(* 8 (+ 12 (atan x)))
+* 8 + 12 atan x
 * + 12 atan x 8
 pow * 8 + atan x 12 1
 + * 8 atan x 96
@@ -2117,32 +2117,32 @@ pow * 8 + atan x 12 1
 * 1 * + 12 atan x 8
 pow + 96 * 8 atan x 1
 
-(* 3 (* x (+ -2 (asin (* 2 x)))))
+* 3 * x + -2 asin * 2 x
 * + -6 * 3 asin * x 2 x
 * * + asin * 2 x -2 3 x
 
-(+ x (* -2 (* x (acos (pow x 2)))))
++ x * -2 * x acos pow x 2
 + x * * acos pow x 2 -2 x
 * + * acos pow x 2 -2 1 x
 
-(d x (+ x (* x (+ 3 (+ x (* x (acos x)))))))
+d x + x * x + 3 + x * x acos x
 
-(* 4 (+ 1 (+ x (atan (* 3 x)))))
+* 4 + 1 + x atan * 3 x
 + * + x atan * 3 x 4 4
 * + atan * x 3 + 1 x 4
 
-(* 3 (* (pow x 2) (+ 3 (* -1 (* x (acos x))))))
+* 3 * pow x 2 + 3 * -1 * x acos x
 
-(+ 4 (+ x (+ (* -1 (pow x 2)) (* x (atan x)))))
++ 4 + x + * -1 pow x 2 * x atan x
 
-(d x (+ x (* (pow x 2) (* (atan x) 8))))
+d x + x * pow x 2 * atan x 8
 
-(d x (+ (* 4 x) (* 5 (* x (asin x)))))
+d x + * 4 x * 5 * x asin x
 d x * + 4 * 5 asin x x
 + 4 d x / x / 0.2 asin x
 + 4 d x / * asin x x 0.2
 
-(+ x (* x (+ 7 (* 1 (atan x)))))
++ x * x + 7 * 1 atan x
 * + x * x + 7 atan x 1
 * 1 + * x atan x * 8 x
 + * x 8 * x atan x
@@ -2157,13 +2157,13 @@ pow * + + 1 atan x 7 x 1
 * 1 * + + 1 atan x 7 x
 * 1 * x + atan x 8
 
-(d x (* 5 (+ (* 5 x) (atan (+ 1 x)))))
+d x * 5 + * 5 x atan + 1 x
 + * d x atan + x 1 5 25
 + / d x atan + 1 x 0.2 25
 + 25 / 5 + pow + x 1 2 1
 * + d x atan + x 1 5 5
 
-(d x (+ 2 (+ (* -1 (acos x)) 8)))
+d x + 2 + * -1 acos x 8
 / - 0 d x - 2 acos x -1
 pow / * d x acos x -1 1 1
 / d x + * -1 acos x 2 1
@@ -2329,14 +2329,14 @@ pow / -1 / 1 d x acos x 1
 + 0 - 0 d x acos x
 / / d x - 2 acos x -1 -1
 
-(* -1 (* x (+ -1 (+ (* 6 x) (* 6 (acos x))))))
+* -1 * x + -1 + * 6 x * 6 acos x
 + * + acos x x * -6 x x
 * x + * -6 + x acos x 1
 * x - * -6 + x acos x -1
 * x - 1 * 6 + x acos x
 - x * + x acos x * x 6
 
-(* -3 (+ -5 (atan x)))
+* -3 + -5 atan x
 * + * -3 atan x 15 1
 + 15 * atan x -3
 * + -5 atan x -3
@@ -2344,10 +2344,10 @@ pow / -1 / 1 d x acos x 1
 pow * -3 + -5 atan x 1
 pow + * atan x -3 15 1
 
-(* (pow x 3) (* (+ 3 (* -1 x)) (atan x)))
+* pow x 3 * + 3 * -1 x atan x
 * * - 3 x atan x pow x 3
 
-(* 4 (* (+ 4 x) (acos x)))
+* 4 * + 4 x acos x
 * 4 + * acos x x * 4 acos x
 pow * acos x + * x 4 16 1
 * * * 4 acos x + 4 x 1
@@ -2357,16 +2357,16 @@ pow * acos x + * x 4 16 1
 pow * * 4 + 4 x acos x 1
 * 1 * acos x + 16 * 4 x
 
-(* -1 (pow (+ -4 (acos x)) 3))
+* -1 pow + -4 acos x 3
 * -1 pow + -4 acos x 3
 * 1 * pow + -4 acos x 3 -1
 pow * -1 pow + -4 acos x 3 1
 
-(* x (* (+ 1 (pow x 2)) (+ 2 (+ x (acos x)))))
+* x * + 1 pow x 2 + 2 + x acos x
 
-(d x (+ (pow x 2) (* 2 (* x (asin (+ 2 x))))))
+d x + pow x 2 * 2 * x asin + 2 x
 
-(d x (atan (+ (* x 7) 5)))
+d x atan + * x 7 5
 + 0 d x atan + 5 * x 7
 d x atan + 5 * 7 x
 / 7 + 1 pow + / x 0.14285714285714285 5 2
@@ -2381,7 +2381,7 @@ d x atan + 5 / x 0.14285714285714285
 / 7 + 1 pow + 5 * x 7 2
 * d x atan + 5 * 7 x 1
 
-(d x (+ (* 7 (acos x)) (* 1 x)))
+d x + * 7 acos x * 1 x
 d x + x * acos x 7
 + / d x acos x 0.14285714285714285 1
 + + * d x acos x 7 1 0
@@ -2400,68 +2400,68 @@ pow + 1 d x * acos x 7 1
 pow + 1 / d x acos x 0.14285714285714285 1
 + 1 / -7 sqrt - 1 pow x 2
 
-(+ 3 (atan x))
++ 3 atan x
 + atan x 3
 * 1 + 3 atan x
 pow + atan x 3 1
 
-(d x (* x (* (+ 15 (* 5 x)) (acos x))))
+d x * x * + 15 * 5 x acos x
 
-(d x (+ x (+ (* x (+ 1 (pow x 2))) (acos x))))
+d x + x + * x + 1 pow x 2 acos x
 + d x + acos x pow x 3 2
 
-(* 4 (* (pow x 2) (* (+ 1 (* 3 x)) (acos x))))
+* 4 * pow x 2 * + 1 * 3 x acos x
 
-(+ (* 5 (pow x 3)) (* 9 (acos x)))
++ * 5 pow x 3 * 9 acos x
 + * acos x 9 * 5 pow x 3
 
-(d x (* 2 (+ -1 (+ x (* x (atan x))))))
+d x * 2 + -1 + x * x atan x
 + d x * atan x * x 2 2
 + d x / x / 0.5 atan x 2
 + d x / * atan x x 0.5 2
 + 2 d x * + x x atan x
 + 2 d x * + atan x atan x x
 
-(d x (+ (* 4 (atan (+ 4 x))) (* 12 x)))
+d x + * 4 atan + 4 x * 12 x
 + d x * atan + x 4 4 12
 + / d x atan + 4 x 0.25 12
 + / 4 + 1 pow + x 4 2 12
 
-(* (+ 20 (* 10 x)) (asin x))
+* + 20 * 10 x asin x
 * 1 * + 20 * x 10 asin x
 * + * 10 x 20 asin x
 pow * + 20 * x 10 asin x 1
 + * * x 10 asin x * 20 asin x
 
-(* 6 (+ (pow x 2) (* -3 (asin x))))
+* 6 + pow x 2 * -3 asin x
 * 6 + * asin x -3 pow x 2
 + * pow x 2 6 * -18 asin x
 
-(+ (* 3 x) (* x (atan (+ -2 x))))
++ * 3 x * x atan + -2 x
 * x + atan + x -2 3
 pow * + atan + x -2 3 x 1
 * 1 * x + 3 atan + x -2
 + * 3 x * atan + x -2 x
 
-(d x (* (+ 2 (* -1 x)) (asin (+ 3 x))))
+d x * + 2 * -1 x asin + 3 x
 d x * asin + 3 x - 2 x
 
-(d x (* 64 (pow (+ 5 (asin x)) 3)))
+d x * 64 pow + 5 asin x 3
 d x * pow + 5 asin x 3 64
 / d x pow + 5 asin x 3 0.015625
 
-(d x (* 7 (* x (+ 5 (* -4 (asin x))))))
+d x * 7 * x + 5 * -4 asin x
 + 35 * d x * asin x x -28
 + 35 d x * / x -0.03571428571428571 asin x
 + 35 d x / asin x / -0.03571428571428571 x
 
-(d x (* x (+ (* 2 x) (* 3 (* x (atan x))))))
+d x * x + * 2 x * 3 * x atan x
 
-(d x (* 6 (* (+ 1 (* 2 x)) (+ x (acos x)))))
+d x * 6 * + 1 * 2 x + x acos x
 
-(d x (* -1 (* x (+ -6 (+ x (* -1 (acos x)))))))
+d x * -1 * x + -6 + x * -1 acos x
 
-(d x (* x (+ 1 (* 8 (atan x)))))
+d x * x + 1 * 8 atan x
 + 1 d x * * atan x 8 x
 + 1 d x / atan x / 0.125 x
 d x + * x * 8 atan x x
@@ -2469,11 +2469,11 @@ d x + x / atan x / 0.125 x
 + d x / * x atan x 0.125 1
 d x + x * x / atan x 0.125
 
-(d x (* 1 (+ (* 16 (asin x)) (* 17 (pow x 2)))))
+d x * 1 + * 16 asin x * 17 pow x 2
 + * 16 d x asin x * x 34
 + / d x asin x 0.0625 * 34 x
 
-(d x (* 4 (+ 5 (+ (* -2 (acos x)) (* 2 x)))))
+d x * 4 + 5 + * -2 acos x * 2 x
 + 0 + * -8 d x acos x 8
 + 8 / 4 / -0.5 d x acos x
 pow + * d x acos x -8 8 1
@@ -2498,36 +2498,36 @@ d x + * x 8 * acos x -8
 * + 2 d x * -2 acos x 4
 * 1 + / d x acos x -0.125 8
 
-(+ -1 (+ x (+ (* -4 (pow x -1)) (acos x))))
++ -1 + x + * -4 pow x -1 acos x
 
-(+ x (* (+ 9 (* 3 x)) (atanh x)))
++ x * + 9 * 3 x atanh x
 + * + * x 3 9 atanh x x
 
-(+ x (* (pow 1 -1) (asin x)))
++ x * pow 1 -1 asin x
 
-(d x (+ 10 (+ x (+ (pow (csc x) -1) (* -10 (acos x))))))
+d x + 10 + x + pow csc x -1 * -10 acos x
 
-(+ x (* x (asinh (+ 5 (* -1 x)))))
++ x * x asinh + 5 * -1 x
 
-(d x (* 9 (* x (+ -6 (atan x)))))
+d x * 9 * x + -6 atan x
 + -54 d x / * x atan x 0.1111111111111111
 + -54 d x * 9 * x atan x
 + -54 d x / atan x / 0.1111111111111111 x
 
-(+ (* 6 x) (* 8 (* x (asinh x))))
++ * 6 x * 8 * x asinh x
 + * x 6 * asinh x * 8 x
 
-(d x (* 2 (+ (* -5 (acos x)) (* 6 (pow x 2)))))
+d x * 2 + * -5 acos x * 6 pow x 2
 + * -10 d x acos x * 24 x
 + / d x acos x -0.1 * 24 x
 
-(+ x (* -1 (* x (+ (acosh x) 3))))
++ x * -1 * x + acosh x 3
 + - x 0 * x - -3 acosh x
 + x + x * x - -4 acosh x
 
-(d x (* x (+ (* 2 x) (* 5 (acosh x)))))
+d x * x + * 2 x * 5 acosh x
 
-(d x (+ (pow (acos x) 4) (* 3 x)))
+d x + pow acos x 4 * 3 x
 pow + d x pow acos x 4 3 1
 * 1 + 3 d x pow acos x 4
 - 3 - 0 d x pow acos x 4
@@ -2545,23 +2545,23 @@ d x + * 3 x pow acos x 4
 * 1 - d x pow acos x 4 -3
 - / d x pow acos x 4 1 -3
 
-(* x (* (+ 1 (asinh x)) (+ 2 x)))
+* x * + 1 asinh x + 2 x
 
-(d x (* x (sin (+ 1 (+ (* 5 pi) (asin x))))))
+d x * x sin + 1 + * 5 pi asin x
 
-(d x (* x (+ 1 (* -1 (* x (atan (* 3 x)))))))
+d x * x + 1 * -1 * x atan * 3 x
 
-(d x (atanh (* 5 (* (pow x -1) (+ x (pow x 2))))))
+d x atanh * 5 * pow x -1 + x pow x 2
 + d x atanh + * 5 x 5 0
 + d x atanh * 5 + 1 x 0
 
-(d x (* 5 (* (pow x -1) (+ -1 (* x (acos x))))))
+d x * 5 * pow x -1 + -1 * x acos x
 * 5 + d x acos x pow x -2
 * 5 d x - acos x pow x -1
 
-(d x (* 3 (* x (+ (* 2 x) (acosh x)))))
+d x * 3 * x + * 2 x acosh x
 
-(d x (+ (pow x 2) (* 2 (* (acosh x) 2))))
+d x + pow x 2 * 2 * acosh x 2
 d x + pow x 2 * 4 acosh x
 + * 2 x / d x acosh x 0.25
 + d x * acosh x 4 + x x
@@ -2572,14 +2572,14 @@ d x + * x x * 4 acosh x
 * + d x + acosh x acosh x x 2
 * + d x * 2 acosh x x 2
 
-(d x (+ (* -10 (asinh x)) (cos (acosh x))))
+d x + * -10 asinh x cos acosh x
 
-(+ (pow x -1) (* 2 (asin x)))
++ pow x -1 * 2 asin x
 pow + pow x -1 * 2 asin x 1
 * + * asin x 2 pow x -1 1
 + * asin x 2 pow x -1
 
-(d x (* 7 (+ -4 (atanh x))))
+d x * 7 + -4 atanh x
 + 0 * 7 - d x atanh x 0
 + / 7 / - 1 pow x 2 1 0
 + 0 - / 7 - 1 pow x 2 0
@@ -2595,9 +2595,9 @@ pow + pow x -1 * 2 asin x 1
 + d x - * atanh x 7 28 0
 + * 7 / 1 - 1 pow x 2 0
 
-(d x (+ (* 5 (pow x 2)) (* -2 (* x (asin x)))))
+d x + * 5 pow x 2 * -2 * x asin x
 
-(* 16 (+ (* 2 x) (atanh (* 4 x))))
+* 16 + * 2 x atanh * 4 x
 + * atanh * 4 x 16 * 32 x
 + * 16 atanh / x 0.25 * 32 x
 * 16 + atanh * 4 x / x 0.5
@@ -2607,14 +2607,14 @@ pow + pow x -1 * 2 asin x 1
 * 16 + / x 0.5 atanh / x 0.25
 * + * x 2 atanh / x 0.25 16
 
-(* 2 (+ 6 (* x (asinh x))))
+* 2 + 6 * x asinh x
 
-(* 7 (+ (pow x 2) (* -1 (asinh x))))
+* 7 + pow x 2 * -1 asinh x
 
-(d x (+ (* 8 (acosh x)) (* -2 (* x (acosh x)))))
+d x + * 8 acosh x * -2 * x acosh x
 d x * acosh x + * x -2 8
 
-(d x (+ 2 (+ (* -1 x) (acosh x))))
+d x + 2 + * -1 x acosh x
 - d x acosh / / x 1 1 1
 - -1 d x - 0 acosh / x 1
 + 0 d x - acosh / x 1 x
@@ -2727,13 +2727,13 @@ pow d x + acosh x - 0 x 1
 + d x - acosh x -2 -1
 pow d x - - acosh x -2 x 1
 
-(* x (* (+ 1 x) (* (+ 5 x) (atanh x))))
+* x * + 1 x * + 5 x atanh x
 
-(* 2 (* x (+ 12 (+ (* 3 (acos x)) (* 4 x)))))
+* 2 * x + 12 + * 3 acos x * 4 x
 
-(+ (* 2 x) (* 6 (* (pow x 2) (asinh x))))
++ * 2 x * 6 * pow x 2 asinh x
 
-(d x (* 3 (+ -5 (atanh x))))
+d x * 3 + -5 atanh x
 + * 3 d x - atanh x 5 0
 + 0 * d x + -5 atanh x 3
 + * d x atanh x 3 0
@@ -2749,12 +2749,12 @@ pow d x - - acosh x -2 x 1
 + d x + * atanh x 3 -15 0
 + / 3 - 1 pow x 2 0
 
-(atan (+ x (* -10 3)))
+atan + x * -10 3
 atan + x -30
 * atan + x -30 1
 pow atan + -30 x 1
 
-(d x (* 3 (+ (* -1 (acosh x)) (* 4 x))))
+d x * 3 + * -1 acosh x * 4 x
 - 12 / 1 / 0.3333333333333333 d x acosh x
 - 12 / * d x acosh x 3 1
 pow + * -3 d x acosh x 12 1
@@ -2805,7 +2805,7 @@ pow * 3 - 4 d x acosh x 1
 d x * 3 - * x 4 acosh x
 - * * d x acosh x -1 3 -12
 
-(+ (pow (cot x) -1) (acosh (* 10 x)))
++ pow cot x -1 acosh * 10 x
 + acosh * / x 2 20 pow cot x -1
 + pow cot x -1 acosh / 20 / 2 x
 + pow cot x -1 acosh * 5 * x 2
@@ -2816,9 +2816,9 @@ pow + pow cot x -1 acosh * x 10 1
 * 1 + acosh * 10 x pow cot x -1
 + acosh * 10 x pow / 1 tan x -1
 
-(atan (* x (* (pow 8 -1) (cos (+ 10 (* 3 pi))))))
+atan * x * pow 8 -1 cos + 10 * 3 pi
 
-(d x (+ (* 2 (* x 8)) (+ (acos x) (exp x))))
+d x + * 2 * x 8 + acos x exp x
 + - d x acos x -16 d x exp x
 pow + d x acos x + 16 exp x 1
 + - exp x -16 / d x acos x 1
@@ -2857,15 +2857,15 @@ pow - d x acos x - -16 exp x 1
 + exp x + 16 / d x acos x 1
 + + 8 exp x + d x acos x 8
 
-(+ 1 (+ (pow x 2) (+ (* 2 x) (asin (* 2 x)))))
++ 1 + pow x 2 + * 2 x asin * 2 x
 
-(+ -10 (+ x (+ (* x (acos x)) (tan x))))
++ -10 + x + * x acos x tan x
 + * + acos x 1 x + -10 tan x
 + + + * x acos x x tan x -10
 + -10 + * x - acos x -1 tan x
 + -10 - tan x * x - -1 acos x
 
-(d x (acos (+ x (* x 1))))
+d x acos + x * x 1
 pow d x acos / * 2 x 1 1
 d x acos / 2 / / 1 x 1
 + - d x acos * 2 x 0 0
@@ -2944,9 +2944,9 @@ d / x 1 acos / x 0.5
 - d x acos + x x 0
 / -2 sqrt - 1 pow + x x 2
 
-(d x (* 2 (* x (* (+ x (pow x 2)) (atan x)))))
+d x * 2 * x * + x pow x 2 atan x
 
-(* 2 (* x (+ 1 (* 10 (atan x)))))
+* 2 * x + 1 * 10 atan x
 * x * 2 + 1 * atan x 10
 * * + * 20 atan x 2 x 1
 + * 2 x * * x 20 atan x
@@ -2955,24 +2955,24 @@ d / x 1 acos / x 0.5
 * x + 2 * 20 atan x
 pow * + 2 * atan x 20 x 1
 
-(+ (pow x 2) (* 9 (* x (+ x (acosh x)))))
++ pow x 2 * 9 * x + x acosh x
 
-(* x (+ 4 (* -1 (* x (acosh x)))))
+* x + 4 * -1 * x acosh x
 
-(+ (* 2 x) (* 8 (acos (* 3 x))))
++ * 2 x * 8 acos * 3 x
 + * 2 x * acos * 3 x 8
 
-(+ x (+ (acos x) (sin (+ -10 x))))
++ x + acos x sin + -10 x
 + x - acos x sin - 10 x
 + acos x + x sin + -10 x
 + x + acos x sin * -1 - 10 x
 + acos x - x sin * -1 + x -10
 
-(d x (* x (+ 2 (* 8 (atanh x)))))
+d x * x + 2 * 8 atanh x
 - d x * * x atanh x 8 -2
 + * d x * atanh x x 8 2
 
-(d x (* -4 (+ -4 (asinh (* 2 x)))))
+d x * -4 + -4 asinh * 2 x
 pow / d x asinh * 2 x -0.25 1
 * - d x asinh * x 2 0 -4
 * * -4 d x asinh * x 2 1
@@ -2995,18 +2995,18 @@ d x * -4 asinh / 2 / 1 x
 / d / x 1 asinh * x 2 -0.25
 pow * -4 d x asinh * x 2 1
 
-(d x (+ 1 (* 8 (* (pow x 3) (asinh x)))))
+d x + 1 * 8 * pow x 3 asinh x
 d x / asinh x / 0.125 pow x 3
 d x * * pow x 3 8 asinh x
 d x * asinh x / pow x 3 0.125
 
-(* x (asinh (+ x (* -10 4))))
+* x asinh + x * -10 4
 
-(+ (* 3 x) (* -4 (* (pow x 2) (asinh x))))
++ * 3 x * -4 * pow x 2 asinh x
 
-(* x (* (pow (sec (+ 1 (* 9 pi))) -1) (acos x)))
+* x * pow sec + 1 * 9 pi -1 acos x
 
-(* -1 (atanh (+ 6 (* 2 x))))
+* -1 atanh + 6 * 2 x
 * atanh + 6 * x 2 -1
 * -1 atanh + / / x 1 0.5 6
 - 0 atanh + 6 / 2 / 1 x
@@ -3050,10 +3050,10 @@ ln / - 1 x + x 1
 * * -1 atanh + 6 / x 0.5 1
 - 0 - atanh + / x 0.5 6 0
 
-(d x (* x (sin (* 10 (asinh x)))))
+d x * x sin * 10 asinh x
 + d x * sin * 10 asinh x x 0
 
-(+ x (atanh (+ 1 (+ (pow x 2) (* -2 x)))))
++ x atanh + 1 + pow x 2 * -2 x
 - x ln / - 1 x + 1 x
 + - x ln - x 1 ln - -1 x
 - x - ln - 1 x ln + x 1
@@ -3067,9 +3067,9 @@ ln / - 1 x + x 1
 - x ln / + -1 x - -1 x
 + x ln / - x -1 - 1 x
 
-(d x (* 5 (* x (atanh (+ 5 (* -1 x))))))
+d x * 5 * x atanh + 5 * -1 x
 
-(+ (* 7 (pow x 3)) (atanh x))
++ * 7 pow x 3 atanh x
 pow + atanh x * pow x 3 7 1
 + - * 7 pow x 3 0 atanh x
 + atanh x * pow x 3 7
@@ -3078,12 +3078,12 @@ pow + atanh x * pow x 3 7 1
 * 1 + * 7 pow x 3 atanh x
 + + * 7 pow x 3 atanh x 0
 
-(* -2 (* (pow x 3) (+ -4 (+ x (* -1 (asinh x))))))
+* -2 * pow x 3 + -4 + x * -1 asinh x
 
-(+ (* -1 (asinh x)) (* 3 (* x (asinh x))))
++ * -1 asinh x * 3 * x asinh x
 + * x * asinh x 3 * -1 asinh x
 
-(d x (* -1 (atan (+ x 6))))
+d x * -1 atan + x 6
 - 0 / -1 - -1 pow + x 6 2
 / -1 / - -1 pow + 6 x 2 -1
 * -1 / 1 + 1 pow + 6 x 2
@@ -3119,15 +3119,15 @@ pow / d x atan + x 6 -1 1
 - 0 / 1 + 1 pow + 6 x 2
 / 1 / + 1 pow + 6 x 2 -1
 
-(d x (* x (+ (pow x 3) (acosh (* 6 x)))))
+d x * x + pow x 3 acosh * 6 x
 
-(* x (+ 7 (atan (pow x 2))))
+* x + 7 atan pow x 2
 + * x atan pow x 2 * x 7
 * x + 7 atan pow x 2
 * 1 * x + 7 atan pow x 2
 pow * + 7 atan pow x 2 x 1
 
-(d x (* x (+ 1 (* 5 (acosh x)))))
+d x * x + 1 * 5 acosh x
 d x + / acosh x / 0.2 x x
 d x * + * 5 acosh x 1 x
 - d x / * acosh x x 0.2 -1
@@ -3138,7 +3138,7 @@ d x + x * x * 5 acosh x
 + 1 d x / acosh x / 0.2 x
 - d x / acosh x / 0.2 x -1
 
-(d x (+ (* 3 x) (* 12 (acos x))))
+d x + * 3 x * 12 acos x
 pow - 3 * -12 d x acos x 1
 + 0 - * 12 d x acos x -3
 * - 3 * d x acos x -12 1
@@ -3204,7 +3204,7 @@ pow - * d x acos x 12 -3 1
 - 0 + * d x acos x -12 -3
 - 3 / - d x acos x 0 -0.08333333333333333
 
-(+ (* 7 x) (* 7 (* x (asin x))))
++ * 7 x * 7 * x asin x
 * 1 * 7 + x * x asin x
 * 1 * + asin x 1 * 7 x
 + * 7 x * asin x * 7 x
@@ -3216,52 +3216,52 @@ pow * 7 + x * asin x x 1
 pow * * x + 1 asin x 7 1
 * + 7 * asin x 7 x
 
-(+ (* 8 x) (* 2 (* x (asin x))))
++ * 8 x * 2 * x asin x
 + * x 8 * x * 2 asin x
 pow * + * 2 asin x 8 x 1
 * * + 8 * asin x 2 x 1
 * + * asin x 2 8 x
 
-(d x (+ x (* (pow x 2) (asin (* 5 x)))))
+d x + x * pow x 2 asin * 5 x
 
-(d x (* 3 (* x (+ 1 (* 4 (* x (asinh x)))))))
+d x * 3 * x + 1 * 4 * x asinh x
 
-(d x (+ (* 4 (exp x)) (* 4 (* x (asinh x)))))
+d x + * 4 exp x * 4 * x asinh x
 * 4 + d x * x asinh x exp x
 
-(* x (+ 2 (* -15 (asin x))))
+* x + 2 * -15 asin x
 + * x 2 * asin x * -15 x
 * 1 * x + 2 * -15 asin x
 * + 2 * asin x -15 x
 pow * x + * asin x -15 2 1
 
-(d x (pow (+ -2 (+ x (* -1 (acosh x)))) 2))
+d x pow + -2 + x * -1 acosh x 2
 
-(d x (* -10 (+ (* -1 (tan x)) (acos x))))
+d x * -10 + * -1 tan x acos x
 + * d x - acos x tan x -10 0
 
-(d x (* 8 (+ x (pow (acos x) 3))))
+d x * 8 + x pow acos x 3
 * 8 + 1 d x pow acos x 3
 + 8 * d x pow acos x 3 8
 d x * + x pow acos x 3 8
 + / d x pow acos x 3 0.125 8
 
-(* 2 (* x (+ 3 (acosh (* 2 x)))))
+* 2 * x + 3 acosh * 2 x
 
-(d x (+ (* x (exp (+ 1 x))) (acos x)))
+d x + * x exp + 1 x acos x
 d x + * x exp + 1 x acos x
 
-(d x (* x (+ (pow x 2) (exp (acosh x)))))
+d x * x + pow x 2 exp acosh x
 
-(d x (+ (* -125 (atanh x)) (* x (atanh x))))
+d x + * -125 atanh x * x atanh x
 + 0 d x * atanh x + -125 x
 + atanh x * d x atanh x + x -125
 - d x * + x -125 atanh x 0
 
-(d x (+ (* 4 (pow x 3)) (* 4 (atan x))))
+d x + * 4 pow x 3 * 4 atan x
 * 4 d x + pow x 3 atan x
 
-(+ x (atanh (* x 5)))
++ x atanh * x 5
 - x - 0 atanh * / x -0.2 -1
 + x - atanh / -5 / -1 x 0
 - atanh * / x -0.2 -1 / x -1
@@ -3406,30 +3406,30 @@ pow + atanh * x 5 / x 1 1
 pow - atanh / x 0.2 - 0 x 1
 + atanh / / * x -1 0.2 -1 x
 
-(d x (* (pow x 2) (+ 4 (acos x))))
+d x * pow x 2 + 4 acos x
 d x * pow x 2 + 4 acos x
 
-(d x (* 6 (* x (+ 2 (* x (acos x))))))
+d x * 6 * x + 2 * x acos x
 
-(+ x (* 3 (* x (acosh (* 5 x)))))
++ x * 3 * x acosh * 5 x
 
-(d x (* 18 (* x (+ (* 2 x) (acosh x)))))
+d x * 18 * x + * 2 x acosh x
 
-(* x (+ 2 (* -1 (pow (acos x) 3))))
+* x + 2 * -1 pow acos x 3
 * * x - 2 pow acos x 3 1
 - * 2 x * pow acos x 3 x
 * + 2 * -1 pow acos x 3 x
 pow * - 2 pow acos x 3 x 1
 * x - 2 pow acos x 3
 
-(* x (+ 3 (* -1 (* (pow x 3) (atanh x)))))
+* x + 3 * -1 * pow x 3 atanh x
 
-(d x (* -1 (* x (+ -1 (asinh (* 5 x))))))
+d x * -1 * x + -1 asinh * 5 x
 
-(* -1 (pow (+ -1 (+ x (acos x))) 3))
+* -1 pow + -1 + x acos x 3
 * pow + x + -1 acos x 3 -1
 
-(d x (* (atanh x) 4))
+d x * atanh x 4
 + * 4 / d x atanh x 1 0
 + 0 / 4 - 1 pow x 2
 + 0 - d x * 4 atanh x 0
@@ -3455,31 +3455,31 @@ pow * - 2 pow acos x 3 x 1
 + 0 / 1 / 0.25 d x atanh x
 - / 4 + 1 x / -4 - 1 x
 
-(* x (+ 6 (* (pow x 2) (acos x))))
+* x + 6 * pow x 2 acos x
 + * pow x 3 acos x * 6 x
 * + 6 * acos x pow x 2 x
 
-(* 3 (* x (+ 8 (atanh x))))
+* 3 * x + 8 atanh x
 + * * x 3 + atanh x 8 0
 + * + * atanh x 3 24 x 0
 + * - * atanh x 3 -24 x 0
 + * 3 * atanh x x * x 24
 + * * - atanh x -8 3 x 0
 
-(+ (pow x 5) (* 1 (* x (asin x))))
++ pow x 5 * 1 * x asin x
 pow + * x asin x pow x 5 1
 + * x asin x pow x 5
 * + * x asin x pow x 5 1
 
-(d x (* x (+ x (+ (* -10 (* x (sin x))) (acosh x)))))
+d x * x + x + * -10 * x sin x acosh x
 
-(* 3 (* (pow x -1) (* (+ x (pow x 5)) (atan x))))
+* 3 * pow x -1 * + x pow x 5 atan x
 
-(d x (* x (+ 10 (+ (* 2 x) (atan x)))))
+d x * x + 10 + * 2 x atan x
 
-(d x (* 8 (+ x (* 4 (atanh (* 4 x))))))
+d x * 8 + x * 4 atanh * 4 x
 
-(* 5 (+ x (* 3 (acos x))))
+* 5 + x * 3 acos x
 * 1 + * acos x 15 * 5 x
 + * acos x 15 * 5 x
 * * + x * acos x 3 5 1
@@ -3488,12 +3488,12 @@ pow * + x * 3 acos x 5 1
 pow + * x 5 * acos x 15 1
 + * 5 * acos x 3 * x 5
 
-(d x (* -1 (* (+ -10 x) (+ x (atanh x)))))
+d x * -1 * + -10 x + x atanh x
 d x * - 10 x + x atanh x
 
-(d x (* (pow (sin (+ 60 (* 4 pi))) -10) (atan x)))
+d x * pow sin + 60 * 4 pi -10 atan x
 
-(+ (* -16 (atanh x)) (* 16 x))
++ * -16 atanh x * 16 x
 + * -16 atanh x * 16 x
 + * -16 - atanh x 0 / x 0.0625
 + / / x 0.0625 1 * atanh x -16
@@ -3510,7 +3510,7 @@ pow + * -16 atanh x * x 16 1
 + / x 0.0625 * -16 atanh x
 * + * -16 atanh x / x 0.0625 1
 
-(d x (+ (* 3 x) (* 1 (* x (acos x)))))
+d x + * 3 x * 1 * x acos x
 - d x * acos x x -3
 - d x / acos x / 1 x -3
 + d x * - acos x -1 x 2
@@ -3544,9 +3544,9 @@ d x * x / - acos x -3 1
 d x * - 3 - 0 acos x x
 + d x * x - acos x -2 1
 
-(* (+ -2 (* -1 (pow x 2))) (acosh x))
+* + -2 * -1 pow x 2 acosh x
 
-(d x (+ (* 4 (asin x)) (* 6 x)))
+d x + * 4 asin x * 6 x
 + 6 * / d x asin x 1 4
 + * 4 d x asin x 6
 + + 6 / d x asin x 0.25 0
@@ -3561,12 +3561,12 @@ pow + / d x asin x 0.25 6 1
 + 6 / d x asin x 0.25
 + 6 / 4 / 1 d x asin x
 
-(+ 3 (+ (* 2 x) (+ (* x (+ 1 x)) (asinh x))))
++ 3 + * 2 x + * x + 1 x asinh x
 
-(+ 6 (+ (* -2 x) (* 2 (asinh x))))
++ 6 + * -2 x * 2 asinh x
 + 6 + * x -2 * asinh x 2
 
-(* 2 (* (+ 2 (* 3 x)) (asin x)))
+* 2 * + 2 * 3 x asin x
 * asin x + 4 * 6 x
 * + 4 * * 3 x 2 asin x
 * * + 2 * 3 x asin x 2
@@ -3574,11 +3574,11 @@ pow + / d x asin x 0.25 6 1
 * 1 * asin x + * x 6 4
 pow * + * 6 x 4 asin x 1
 
-(* 5 (* x (+ -3 (asin (* 2 x)))))
+* 5 * x + -3 asin * 2 x
 * x + * 5 asin * 2 x -15
 * * + -3 asin * 2 x x 5
 
-(d x (* 64 (+ x (* -1 (acosh x)))))
+d x * 64 + x * -1 acosh x
 - d x * -64 acosh x -64
 - / 1 / -0.015625 d x acosh x -64
 * 64 d x - 0 - acosh x x
@@ -3633,9 +3633,9 @@ pow * 64 - 1 d x acosh x 1
 - 0 + -64 d x * 64 acosh x
 * 64 + 1 d x - 0 acosh x
 
-(* x (* (+ (pow x 3) (* 4 x)) (acosh x)))
+* x * + pow x 3 * 4 x acosh x
 
-(d x (asinh (+ x (* x 5))))
+d x asinh + x * x 5
 d x asinh + * / x 1 5 x
 + d x asinh * x 6 0
 pow d x asinh / * x 6 1 1
@@ -3665,7 +3665,7 @@ d x - asinh / 6 / 1 x 0
 / 6 sqrt + 1 pow * x 6 2
 * d x asinh * 6 x 1
 
-(* x (+ 1 (* (acos x) 3)))
+* x + 1 * acos x 3
 + * acos x * x 3 x
 * + 1 * 3 acos x x
 pow + x * * 3 acos x x 1
@@ -3673,7 +3673,7 @@ pow * x + * 3 acos x 1 1
 * 1 * + * 3 acos x 1 x
 * + x * * acos x x 3 1
 
-(d x (* -4 (asinh (+ -4 x))))
+d x * -4 asinh + -4 x
 / d x - asinh + x -4 0 -0.25
 + 0 d x * asinh + x -4 -4
 pow / d x asinh + -4 x -0.25 1
@@ -3689,23 +3689,23 @@ pow d x * asinh + -4 x -4 1
 * 1 * -4 d x asinh + x -4
 d x * asinh + -4 x -4
 
-(+ (* x (+ -5 x)) (atanh (* 2 x)))
++ * x + -5 x atanh * 2 x
 + atanh / x 0.5 * x + x -5
 + atanh * 2 x * + x -5 x
 
-(+ (* -1 (asinh (* 4 x))) (* 3 x))
++ * -1 asinh * 4 x * 3 x
 
-(d x (* -2 (* x (+ -1 (acosh (* 2 x))))))
+d x * -2 * x + -1 acosh * 2 x
 
-(+ (* -1 (* 5 (exp x))) (acosh x))
++ * -1 * 5 exp x acosh x
 + * -5 exp x + acosh x ln 1
 + * -1 * 5 exp x acosh x
 + * -5 exp x acosh x
 
-(+ x (* (pow x 4) (+ x (atanh x))))
++ x * pow x 4 + x atanh x
 + * pow x 4 + atanh x x x
 
-(+ x (* 9 (* x (acos x))))
++ x * 9 * x acos x
 * 1 + * * acos x 9 x x
 * * x + * 9 acos x 1 1
 * x + 1 * 9 acos x
@@ -3713,14 +3713,14 @@ pow * x + 1 * acos x 9 1
 + * acos x * 9 x x
 pow + * * acos x x 9 x 1
 
-(d x (+ x (+ (* -1 (* x (* 9 (exp x)))) (acos x))))
+d x + x + * -1 * x * 9 exp x acos x
 
-(* 3 (* x (+ 1 (* 4 (* x (acosh x))))))
+* 3 * x + 1 * 4 * x acosh x
 
-(d x (pow (+ (* 4 x) (acosh x)) 2))
+d x pow + * 4 x acosh x 2
 d x pow + acosh x * x 4 2
 
-(* -4 (+ x (* -5 (atanh x))))
+* -4 + x * -5 atanh x
 + * -4 + * atanh x -5 x 0
 + + * -4 x * 20 atanh x 0
 + * 20 atanh x / / x -0.25 1
@@ -3741,27 +3741,27 @@ d x pow + acosh x * x 4 2
 + * -4 * -5 atanh x * -4 x
 + * 20 atanh x / 4 / -1 x
 
-(d x (* 2 (* (pow (acosh x) 2) (+ 2 x))))
+d x * 2 * pow acosh x 2 + 2 x
 
-(* 5 (+ x (+ (* 3 (acosh x)) (* 3 (exp x)))))
+* 5 + x + * 3 acosh x * 3 exp x
 
-(d x (+ (pow (sec (+ x (* 8 pi))) -1) (* x (atan x))))
+d x + pow sec + x * 8 pi -1 * x atan x
 
-(+ (* -10 5) (atan x))
++ * -10 5 atan x
 pow + atan x -50 1
 + atan x -50
 * + -50 atan x 1
 
-(* x (* (+ x (* x (+ 4 x))) (asinh x)))
+* x * + x * x + 4 x asinh x
 
-(d x (+ (asinh (+ -10 x)) (tan x)))
+d x + asinh + -10 x tan x
 + d x asinh + -10 x pow sec x 2
 + 0 d x + asinh + -10 x tan x
 + d x tan x d x asinh + x -10
 
-(d x (* -1 (* x (+ x (* -1 (asinh (* 2 x)))))))
+d x * -1 * x + x * -1 asinh * 2 x
 
-(d x (+ (* 81 (atan x)) (* 162 x)))
+d x + * 81 atan x * 162 x
 + 162 / / 81 + 1 pow x 2 1
 pow + 162 / d x atan x 0.012345679012345678 1
 + + 162 d x * atan x 81 0
@@ -3783,9 +3783,9 @@ pow + 162 / 81 + pow x 2 1 1
 pow + d x * 81 atan x 162 1
 d x + * 81 atan x * 162 x
 
-(+ x (* 4 (* x (+ 2 (acosh x)))))
++ x * 4 * x + 2 acosh x
 
-(d x (+ (* -2 x) (* -2 (asinh x))))
+d x + * -2 x * -2 asinh x
 + 0 * d x + asinh x x -2
 * + 1 / d x asinh x 1 -2
 * -2 d x + x asinh - x 0
@@ -3840,7 +3840,7 @@ d x * -2 + asinh x / x 1
 pow * -2 - d x asinh x -1 1
 + / -2 sqrt + 1 pow x 2 -2
 
-(+ x (+ (* 5 (asin x)) (* -1 (* x (asin x)))))
++ x + * 5 asin x * -1 * x asin x
 * + x * - 5 x asin x 1
 pow - x * asin x - x 5 1
 * 1 - x * - x 5 asin x
@@ -3853,27 +3853,27 @@ pow + x * asin x - 5 x 1
 + - * asin x 5 * asin x x x
 + x * asin x - 5 x
 
-(* x (+ 4 (* 7 (* (pow x -1) (acosh x)))))
+* x + 4 * 7 * pow x -1 acosh x
 + + * 7 acosh x * 4 x ln 1
 
-(* x (+ (pow x 3) (* -3 (atanh x))))
+* x + pow x 3 * -3 atanh x
 + * x / atanh x -0.3333333333333333 pow x 4
 + * * atanh x -3 x pow x 4
 * x + pow x 3 / atanh x -0.3333333333333333
 * + pow x 3 * atanh x -3 x
 + / atanh x / -0.3333333333333333 x pow x 4
 
-(d x (+ (* 25 (pow x 3)) (* x (asinh x))))
+d x + * 25 pow x 3 * x asinh x
 
-(d x (+ -1 (* x (+ 1 (+ x (asinh x))))))
+d x + -1 * x + 1 + x asinh x
 d x * - asinh x - -1 x x
 d x * + asinh x + x 1 x
 d x + * x + x asinh x x
 d x * x + - asinh x -1 x
 
-(+ (* -10 (asinh x)) (+ (sin x) (sin (+ x (* 7 pi)))))
++ * -10 asinh x + sin x sin + x * 7 pi
 
-(d x (* 2 (+ 5 (atan x))))
+d x * 2 + 5 atan x
 / 1 * + pow x 2 1 0.5
 / d x atan x 0.5
 / / 2 / + pow x 2 1 1 1
@@ -3945,13 +3945,13 @@ pow / 1 / 0.5 d x atan x 1
 d x * atan x 2
 + / d x atan x 0.5 0
 
-(d x (* 6 (+ -10 (+ (* -1 (acosh x)) (* 5 x)))))
+d x * 6 + -10 + * -1 acosh x * 5 x
 + + * -6 d x acosh x 30 0
 + - 30 * d x acosh x 6 0
 + * - 5 d x acosh x 6 0
 + - * -6 d x acosh x -30 0
 
-(d x (* x (+ 2 (+ (pow x -1) (atan x)))))
+d x * x + 2 + pow x -1 atan x
 - d x * x atan x -2
 + d x * + 2 atan x x 0
 + d / x 1 * atan x x 2
@@ -3986,10 +3986,10 @@ d x - * atan x x * -2 x
 - d x / atan x / 1 x -2
 d x * - 2 - 0 atan x x
 
-(d x (* 20 (* x (pow (csc (asinh x)) -1))))
+d x * 20 * x pow csc asinh x -1
 * d x * x pow csc asinh x -1 20
 
-(+ (* -10 (asin x)) (cos x))
++ * -10 asin x cos x
 + * asin x -10 cos x
 + * asin x -10 / 1 / sec x 1
 + / 1 / 1 cos x * -10 asin x
@@ -4009,13 +4009,13 @@ d x * - 2 - 0 atan x x
 + * -10 asin x / sin x tan x
 + / 1 sec * x -1 * asin x -10
 
-(d x (* 3 (* (+ 1 (pow x 2)) (asin x))))
+d x * 3 * + 1 pow x 2 asin x
 
-(d x (* x (+ 1 (* x (+ -1 (+ x (asinh x)))))))
+d x * x + 1 * x + -1 + x asinh x
 
-(d x (* 4 (* x (+ 3 (+ x (* 6 (acos x)))))))
+d x * 4 * x + 3 + x * 6 acos x
 
-(atanh (* (pow x -1) (+ 1 (* 5 x))))
+atanh * pow x -1 + 1 * 5 x
 + ln + 1 x - 0 ln - 1 x
 atanh * + 1 / x 0.2 pow x -1
 pow atanh + 5 pow / x 1 -1 1
@@ -4047,12 +4047,12 @@ pow - ln + x 1 ln - 1 x 1
 - atanh + pow x -1 5 0
 atanh + pow x -1 5
 
-(d x (pow (sec (+ (* 9 pi) (asinh (+ -10 x)))) -1))
+d x pow sec + * 9 pi asinh + -10 x -1
 
-(* 2 (* x (+ (* -4 x) (* 4 (acos x)))))
+* 2 * x + * -4 x * 4 acos x
 * x + * -8 x * 8 acos x
 
-(* 2 (* x (+ 25 (atan x))))
+* 2 * x + 25 atan x
 pow * x * 2 + atan x 25 1
 + * 50 x * * 2 x atan x
 pow * + 50 * atan x 2 x 1
@@ -4062,9 +4062,9 @@ pow * + 50 * atan x 2 x 1
 * 1 * * 2 x + atan x 25
 * * + 25 atan x 2 x
 
-(* 5 (* (+ 2 (* -1 x)) (acosh x)))
+* 5 * + 2 * -1 x acosh x
 
-(d x (* -10 (+ (acos x) (tan x))))
+d x * -10 + acos x tan x
 + 0 * -10 d x + tan x acos x
 d x + * acos x -10 / -10 cot x
 * -10 d x + acos x tan x
@@ -4075,7 +4075,7 @@ d x + * -10 tan x * acos x -10
 * d x + acos x / 1 cot x -10
 pow * -10 d x + acos x tan x 1
 
-(* 4 (* x (+ -3 (* 4 (acos x)))))
+* 4 * x + -3 * 4 acos x
 * * + * 4 acos x -3 x 4
 * + -12 * acos x 16 x
 pow * x + -12 * 16 acos x 1
@@ -4083,7 +4083,7 @@ pow * x + -12 * 16 acos x 1
 * * x + * acos x 16 -12 1
 * + * 4 * 4 acos x -12 x
 
-(+ 2 (* 2 (* x (+ x (* -1 (atanh x))))))
++ 2 * 2 * x + x * -1 atanh x
 - 2 * * -2 - x atanh x x
 - * x * - atanh x x -2 -2
 + 2 * * 2 x - x atanh x
@@ -4093,11 +4093,11 @@ pow * x + -12 * 16 acos x 1
 - 2 * - atanh x x + x x
 - * + x x - x atanh x -2
 
-(d x (+ x (+ (acosh x) (+ (cos x) (+ (cosh x) (sinh x))))))
+d x + x + acosh x + cos x + cosh x sinh x
 
-(d x (* 7 (* x (* (+ pi (* 2 x)) (asin x)))))
+d x * 7 * x * + pi * 2 x asin x
 
-(+ x (* x (atanh (+ x 6))))
++ x * x atanh + x 6
 * 1 + * x atanh - x -6 x
 pow * x - atanh + x 6 -1 1
 + x * atanh + 6 x x
@@ -4151,16 +4151,16 @@ pow + * atanh + x 6 x x 1
 * - atanh + x 6 -1 x
 + 0 * x + 1 atanh - x -6
 
-(d x (+ x (+ (* 2 (pow x 4)) (* x (atanh x)))))
+d x + x + * 2 pow x 4 * x atanh x
 
-(d x (+ x (* x (+ -4 (+ (* -1 x) (asinh x))))))
+d x + x * x + -4 + * -1 x asinh x
 + d x * - asinh x x x -3
 
-(+ (pow x 2) (+ (* 3 x) (acos (* 2 x))))
++ pow x 2 + * 3 x acos * 2 x
 
-(* (pow x 3) (+ x (* 2 (atanh x))))
+* pow x 3 + x * 2 atanh x
 
-(d x (* 5 (+ -1 (* 5 (acosh x)))))
+d x * 5 + -1 * 5 acosh x
 / d x acosh x 0.04
 / 5 / 1 * 5 d x acosh x
 - * d x - acosh x 0 25 0
@@ -4286,15 +4286,15 @@ pow / d x - acosh x 0 0.04 1
 pow * 5 * 5 d x acosh x 1
 * / 1 sqrt - pow x 2 1 25
 
-(+ (pow x 2) (+ (pow x 4) (* 3 (* x (asin x)))))
++ pow x 2 + pow x 4 * 3 * x asin x
 
-(d x (* x (+ (pow (sec (+ x (* 5 pi))) -1) (acosh x))))
+d x * x + pow sec + x * 5 pi -1 acosh x
 
-(d x (* (pow x -3) (+ 1 (+ (pow x 4) (atanh x)))))
+d x * pow x -3 + 1 + pow x 4 atanh x
 
-(d x (* x (+ (* -1 x) (* 4 (* x (asinh x))))))
+d x * x + * -1 x * 4 * x asinh x
 
-(* -1 (* x (+ (* -1 (atanh x)) (atan x))))
+* -1 * x + * -1 atanh x atan x
 + * x atanh x * * x -1 atan x
 + 0 * x - atanh x atan x
 + 0 / - atanh x atan x / 1 x
@@ -4305,14 +4305,14 @@ pow * 5 * 5 d x acosh x 1
 + * - atanh x atan x - x 0 0
 + - * atanh x x * x atan x 0
 
-(* 2.7 (exp (acos x)))
+* 2.7 exp acos x
 * 2.7 exp acos x
 * * exp acos x 2.7 1
 pow * 2.7 exp acos x 1
 
-(d x (acosh (* x (* (pow 3 -1) (cos (+ 80 (* 5 pi)))))))
+d x acosh * x * pow 3 -1 cos + 80 * 5 pi
 
-(+ (* -1 x) (+ (* 1 (pow x 3)) (atanh x)))
++ * -1 x + * 1 pow x 3 atanh x
 + pow x 3 - atanh x / x 1
 + atanh - x 0 - pow x 3 x
 + + atanh x * x -1 pow x 3
@@ -4320,7 +4320,7 @@ pow * 2.7 exp acos x 1
 + 0 - + pow x 3 atanh x x
 + pow x 3 + atanh x / x -1
 
-(d x (asinh (+ -5 (+ (* -1 x) 1))))
+d x asinh + -5 + * -1 x 1
 / d x asinh - -4 x 1
 / d x asinh - -4 / x 1 1
 * 1 d x asinh + -5 - 1 x
@@ -4356,47 +4356,47 @@ pow d x asinh + 1 - -5 x 1
 pow - d x asinh - -4 x 0 1
 d x - asinh + -4 * x -1 0
 
-(* 3 (* (pow x 3) (* (asin x) 8)))
+* 3 * pow x 3 * asin x 8
 * 8 * * pow x 3 asin x 3
 * * 24 pow x 3 asin x
 * * * 24 pow x 3 asin x 1
 pow * 24 * pow x 3 asin x 1
 
-(* 2 (* x (+ 5 (+ (* -2 x) (acosh x)))))
+* 2 * x + 5 + * -2 x acosh x
 
-(* -10 (acos (* x (pow 2 -1))))
+* -10 acos * x pow 2 -1
 * acos * pow 2 -1 x -10
 * * -10 acos * pow 2 -1 x 1
 pow * -10 acos * pow 2 -1 x 1
 
-(* x (+ 1 (* 4 (asinh x))))
+* x + 1 * 4 asinh x
 
-(d x (* (pow x 2) (* (atan x) 9)))
+d x * pow x 2 * atan x 9
 d x * * pow x 2 9 atan x
 d x * / pow x 2 0.1111111111111111 atan x
 d x / atan x / 0.1111111111111111 pow x 2
 
-(* (+ 3 (asinh x)) 5)
+* + 3 asinh x 5
 
-(d x (* 18 (* x (+ (* 2 x) (acos x)))))
+d x * 18 * x + * 2 x acos x
 
-(d x (* (+ 5 (* 5 x)) (+ x (acos x))))
+d x * + 5 * 5 x + x acos x
 
-(asinh (* x 9))
+asinh * x 9
 
-(+ x (* -9 (* (pow x 3) (asin x))))
++ x * -9 * pow x 3 asin x
 + * pow x 3 * asin x -9 x
 
-(* 20 (pow (csc (+ (* 6 pi) (* -1 (acosh x)))) -1))
+* 20 pow csc + * 6 pi * -1 acosh x -1
 * 20 pow csc - * 6 pi acosh x -1
 
-(d x (* 2 (* (+ x (pow x 3)) (atan x))))
+d x * 2 * + x pow x 3 atan x
 
-(d x (+ x (* (+ 12 (* 4 x)) (asin x))))
+d x + x * + 12 * 4 x asin x
 
-(d x (+ (pow x 2) (+ (* x (asin x)) (asin x))))
+d x + pow x 2 + * x asin x asin x
 
-(* -1 (* (+ x (* -1 3)) (atan x)))
+* -1 * + x * -1 3 atan x
 * -1 + * atan x x * atan x -3
 * + 3 * x -1 atan x
 * * + * x -1 3 atan x 1
@@ -4416,27 +4416,27 @@ pow * + * x -1 3 atan x 1
 pow * atan x - 3 x 1
 - * 3 atan x * x atan x
 
-(* (pow x 3) (+ x (* 4 (acosh x))))
+* pow x 3 + x * 4 acosh x
 
-(d x (* x (* (+ x (pow (+ 1 x) 2)) (acos x))))
+d x * x * + x pow + 1 x 2 acos x
 
-(+ (* 3 x) (* -1 (* x (asin (+ -1 x)))))
++ * 3 x * -1 * x asin + -1 x
 * 1 * x - 3 asin + -1 x
 * x + * asin + -1 x -1 3
 pow * - 3 asin + -1 x x 1
 - * 3 x * x asin + x -1
 * x - 3 asin + -1 x
 
-(* -1 (* x (+ -2 (+ (* 2 x) (atanh x)))))
+* -1 * x + -2 + * 2 x atanh x
 
-(+ (pow x 2) (+ (* -7 x) (* -1 (* x (acosh x)))))
++ pow x 2 + * -7 x * -1 * x acosh x
 + pow x 2 * x - -7 acosh x
 
-(+ (* x (+ 5 (* 2 x))) (atanh x))
++ * x + 5 * 2 x atanh x
 + * + * x 2 5 x atanh x
 + * x + / x 0.5 5 atanh x
 
-(+ 15 (+ (* -3 (atanh x)) (* 3 x)))
++ 15 + * -3 atanh x * 3 x
 + - * atanh x -3 -15 * 3 x
 - * -3 atanh x - -15 / x 0.3333333333333333
 - * atanh x -3 - -15 * 3 x
@@ -4444,7 +4444,7 @@ pow * - 3 asin + -1 x x 1
 + 15 + * atanh x -3 * x 3
 + / x 0.3333333333333333 + * atanh x -3 15
 
-(* -1 (* (pow x 2) (+ -6 (atan x))))
+* -1 * pow x 2 + -6 atan x
 * + * -1 atan x 6 pow x 2
 * -1 * + atan x -6 pow x 2
 pow * pow x 2 - 6 atan x 1
@@ -4452,13 +4452,13 @@ pow * pow x 2 - 6 atan x 1
 * pow x 2 - * atan x -1 -6
 * 1 * - 6 atan x pow x 2
 
-(d x (+ (cos x) (cosh (acos x))))
+d x + cos x cosh acos x
 + d x + cos x cosh acos x 0
 + - d x cosh acos x sin x 0
 
-(+ x (+ (* -10 (asinh x)) (* 10 (cos (+ x (* 7 pi))))))
++ x + * -10 asinh x * 10 cos + x * 7 pi
 
-(* x (+ -5 (+ (* -1 x) (atanh x))))
+* x + -5 + * -1 x atanh x
 - * x - + atanh x -5 x 0
 - * atanh x x * x + x 5
 + * - atanh x x x * -5 x
@@ -4472,33 +4472,33 @@ pow * pow x 2 - 6 atan x 1
 - * - atanh x 5 x pow x 2
 - * atanh x x * x - x -5
 
-(d x (+ (* 24 (asin x)) (* 16 (* x (asin x)))))
+d x + * 24 asin x * 16 * x asin x
 d x * asin x + 24 / x 0.0625
 d x * asin x + * 16 x 24
 
-(d x (+ (* 7 x) (* 2 (* x (atanh x)))))
+d x + * 7 x * 2 * x atanh x
 + d x * atanh x + x x 7
 + * 2 d x * x atanh x 7
 - * 2 d x * atanh x x -7
 - d x * + x x atanh x -7
 
-(d x (* x (+ 3 (+ (pow x 2) (* 4 (asinh x))))))
+d x * x + 3 + pow x 2 * 4 asinh x
 
-(+ (* -10 (atan x)) (+ (sin x) (sin (+ x (* 1 pi)))))
++ * -10 atan x + sin x sin + x * 1 pi
 
-(+ (* -2 (pow x 3)) (* 2 (atanh x)))
++ * -2 pow x 3 * 2 atanh x
 + * -2 pow x 3 * 2 atanh x
 
-(+ (* 6 x) (* x (acosh (* 3 x))))
++ * 6 x * x acosh * 3 x
 + * 6 x * x acosh * x 3
 
-(d x (+ -10 (+ x (+ (atanh x) (sin (+ x (* 4 pi)))))))
+d x + -10 + x + atanh x sin + x * 4 pi
 
-(d x (* 5 (* x (* (+ 2 (* 2 x)) (atanh x)))))
+d x * 5 * x * + 2 * 2 x atanh x
 
-(* (acosh x) 9)
+* acosh x 9
 
-(+ (* 8 (sqrt x)) (atanh (* 2 x)))
++ * 8 sqrt x atanh * 2 x
 + - * 8 sqrt x 0 atanh * x 2
 * 1 + * sqrt x 8 atanh * 2 x
 + atanh / x 0.5 - * sqrt x 8 0
@@ -4515,7 +4515,7 @@ pow + * 8 sqrt x atanh / x 0.5 1
 - atanh / x 0.5 - 0 * sqrt x 8
 pow + * 8 sqrt x atanh * 2 x 1
 
-(d x (* 9 (+ 2 (+ x (* x (asinh x))))))
+d x * 9 + 2 + x * x asinh x
 + 9 d x * * asinh x x 9
 - d x * x * asinh x 9 -9
 - d x / asinh x / 0.1111111111111111 x -9
@@ -4526,16 +4526,16 @@ pow + * 8 sqrt x atanh * 2 x 1
 + 9 d x / asinh x / 0.1111111111111111 x
 - d x * / asinh x 0.1111111111111111 x -9
 
-(d x (+ (* -3 (atan x)) (* 3 (pow x 5))))
+d x + * -3 atan x * 3 pow x 5
 
-(* 9 (* x (+ -1 (+ (* 2 x) (* 2 (asinh x))))))
+* 9 * x + -1 + * 2 x * 2 asinh x
 
-(+ (* 8 (atan x)) (asin x))
++ * 8 atan x asin x
 * 1 + * atan x 8 asin x
 + asin x * atan x 8
 pow + * 8 atan x asin x 1
 
-(d x (+ x (atan (+ x (* -10 5)))))
+d x + x atan + x * -10 5
 + / d x atan + x -50 1 1
 pow d x + x atan + x -50 1
 * + 1 d x atan + -50 x 1
@@ -4547,9 +4547,9 @@ d x + x atan + -50 x
 + 1 / 1 + pow + x -50 2 1
 pow + 1 d x atan + -50 x 1
 
-(d x (+ (* -10 (cos (+ x (* 3 pi)))) (acos x)))
+d x + * -10 cos + x * 3 pi acos x
 
-(* 4 (+ (sqrt x) (atan x)))
+* 4 + sqrt x atan x
 pow * 4 + sqrt x atan x 1
 + * atan x 4 * 4 sqrt x
 * * + atan x sqrt x 4 1
@@ -4557,9 +4557,9 @@ pow * 4 + sqrt x atan x 1
 pow + * 4 atan x * sqrt x 4 1
 * 4 + sqrt x atan x
 
-(d x (+ (* 6 x) (* 6 (* x (acosh (* 2 x))))))
+d x + * 6 x * 6 * x acosh * 2 x
 
-(+ (* 5 x) (* -1 (* x (+ 4 (atanh x)))))
++ * 5 x * -1 * x + 4 atanh x
 + x * x - * -1 atanh x 0
 + x - * x 0 * x atanh x
 + x * atanh x * x -1
@@ -4567,28 +4567,28 @@ pow + * 4 atan x * sqrt x 4 1
 + x * - 0 atanh x x
 + * - -4 atanh x x * x 5
 
-(* x (+ 3 (* -1 (atanh (+ -2 x)))))
+* x + 3 * -1 atanh + -2 x
 + x * - 2 atanh + -2 x x
 
-(d x (+ (* -10 (asin (+ 10 x))) (cos (+ x (* 5 pi)))))
+d x + * -10 asin + 10 x cos + x * 5 pi
 
-(d x (* x (+ 1 (+ x (+ (asinh x) (sin x))))))
+d x * x + 1 + x + asinh x sin x
 
-(* x (+ 1 (* (+ 5 x) (asinh x))))
+* x + 1 * + 5 x asinh x
 
-(d x (+ x (* -1 (* x (asinh (+ 9 x))))))
+d x + x * -1 * x asinh + 9 x
 
-(d x (+ -1 (+ x (* (pow x 2) (+ x (acosh x))))))
+d x + -1 + x * pow x 2 + x acosh x
 
-(d x (* x (+ 3 (atanh (+ -1 x)))))
+d x * x + 3 atanh + -1 x
 + 3 d x * x atanh + -1 x
 - d x * x atanh + -1 x -3
 
-(d x (+ -3 (* (pow x 2) (+ 1 (atanh x)))))
+d x + -3 * pow x 2 + 1 atanh x
 d x * pow x 2 - atanh x -1
 d x * + 1 atanh x pow x 2
 
-(d x (+ (pow x 2) (+ (* x (atanh 2.7)) (exp x))))
+d x + pow x 2 + * x atanh 2.7 exp x
 - + exp x atanh 2.7 - 0 * 2 x
 * 1 + + exp x + x x atanh 2.7
 + exp / x 1 + + x x atanh 2.7
@@ -4609,21 +4609,21 @@ pow + exp x + * x 2 atanh 2.7 1
 + d x exp x + atanh 2.7 + x x
 - atanh 2.7 - - 0 exp x * x 2
 
-(+ (pow x 2) (* 9 (* x (acosh x))))
++ pow x 2 * 9 * x acosh x
 + pow x 2 * acosh x * 9 x
 
-(+ 4 (pow (+ x (* -1 (asin x))) 2))
++ 4 pow + x * -1 asin x 2
 + 4 pow - x asin x 2
 + pow + x * asin x -1 2 4
 pow + pow - x asin x 2 4 1
 * 1 + pow - x asin x 2 4
 
-(d x (+ (pow (+ 1 x) 2) (* x (acos x))))
+d x + pow + 1 x 2 * x acos x
 
-(+ 1 (+ (pow (asinh x) 2) (* 2 (asinh x))))
++ 1 + pow asinh x 2 * 2 asinh x
 + 1 + pow asinh x 2 * asinh x 2
 
-(d x (+ 1 (+ x (* -1 (* x (+ 3 (atan x)))))))
+d x + 1 + x * -1 * x + 3 atan x
 + d x * atan x / x -1 -2
 + -2 d x * atan x - 0 x
 + -2 d x - 1 * atan x x
@@ -4632,7 +4632,7 @@ pow + pow - x asin x 2 4 1
 + -3 d x - x * x atan x
 + - 1 d x * x atan x -3
 
-(d x (+ (* 3 x) (* x (atan x))))
+d x + * 3 x * x atan x
 d x / x / 1 + atan x 3
 pow d x * x + atan x 3 1
 d x + * + atan x 2 x x
@@ -4645,20 +4645,20 @@ d x + * 3 x * x atan x
 * + 3 d x * atan x x 1
 + 0 + d x * atan x x 3
 
-(d x (* x (+ x (* 4 (exp (acos x))))))
+d x * x + x * 4 exp acos x
 d x * + x * 4 exp acos x x
 
-(+ (* 10 (atan x)) (* 4 (* x (atan x))))
++ * 10 atan x * 4 * x atan x
 + * x * atan x 4 * atan x 10
 * + 10 * x 4 atan x
 * 1 * atan x + 10 * x 4
 pow * atan x + 10 * 4 x 1
 
-(d x (* (+ (pow x 2) (pow x 4)) (atanh x)))
+d x * + pow x 2 pow x 4 atanh x
 
-(d x (asin (+ x (cos (+ 1 (* 9 pi))))))
+d x asin + x cos + 1 * 9 pi
 
-(d x (* x (+ 8 (* 2 (asin x)))))
+d x * x + 8 * 2 asin x
 d x * + asin x 4 + x x
 + d x / x / 0.5 asin x 8
 + 8 d x * + x x asin x
@@ -4669,21 +4669,21 @@ d x * x / + 4 asin x 0.5
 + 8 d x * asin x * x 2
 d x * + + asin x asin x 8 x
 
-(d x (* 1 (* x (+ 3 (+ (* 3 x) (atanh x))))))
+d x * 1 * x + 3 + * 3 x atanh x
 
-(* 4 (+ 5 (+ (pow x 2) (atanh x))))
+* 4 + 5 + pow x 2 atanh x
 + * 4 + atanh x pow x 2 20
 * 4 + - pow x 2 -5 atanh x
 * + pow x 2 + 5 atanh x 4
 * 4 - atanh x - -5 pow x 2
 - * + pow x 2 atanh x 4 -20
 
-(* (+ 4 x) (+ x (* x (atanh x))))
+* + 4 x + x * x atanh x
 * * x - atanh x -1 + x 4
 * + 4 x * + atanh x 1 x
 * + 4 x + * atanh x x x
 
-(+ x (* 25 (* x (acos x))))
++ x * 25 * x acos x
 * * + * 25 acos x 1 x 1
 pow * x + * 25 acos x 1 1
 pow + x * acos x * x 25 1
@@ -4691,13 +4691,13 @@ pow + x * acos x * x 25 1
 * + * * acos x 25 x x 1
 + x * acos x * 25 x
 
-(* x (+ 1 (* 4 (atan (pow x 2)))))
+* x + 1 * 4 atan pow x 2
 * + 1 * atan pow x 2 4 x
 + x * atan pow x 2 * 4 x
 
-(* 2 (* x (+ (pow x 2) (* -1 (acosh x)))))
+* 2 * x + pow x 2 * -1 acosh x
 
-(d x (+ -2 (+ (* 1 x) (* -1 (acosh x)))))
+d x + -2 + * 1 x * -1 acosh x
 + 1 / d x + ln 1 acosh x -1
 + 1 d x - * ln 1 -11 acosh x
 + 1 / d x - -2 acosh x 1
@@ -4837,9 +4837,9 @@ pow + x * acos x * x 25 1
 + 1 / -1 sqrt - * x x 1
 + 1 d x - * -72 ln 1 acosh x
 
-(+ x (* x (+ x (* -2 (asinh x)))))
++ x * x + x * -2 asinh x
 
-(d x (+ (* 2 (* 2.7 x)) (* 2 (* 2.7 (atanh x)))))
+d x + * 2 * 2.7 x * 2 * 2.7 atanh x
 - / 2.7 * - 1 pow x 2 0.5 -5.4
 * 2 + d x * atanh x 2.7 2.7
 pow + * 5.4 d x atanh x 5.4 1
@@ -4906,7 +4906,7 @@ pow + 5.4 / 5.4 - 1 pow x 2 1
 + 0 * + 1 d x atanh x 5.4
 * * 2.7 + d x atanh x 1 2
 
-(d x (* -5 (+ x (* -1 (acos (* 2 x))))))
+d x * -5 + x * -1 acos * 2 x
 + -5 d x * 5 acos * x 2
 - * 5 d x acos * 2 x 5
 - -5 / d x acos * 2 x -0.2
@@ -4916,37 +4916,37 @@ pow + 5.4 / 5.4 - 1 pow x 2 1
 - -5 * -5 d x acos * 2 x
 d x * - x acos * 2 x -5
 
-(+ 3 (+ (pow x 2) (* -1 (* (pow x 2) (acosh x)))))
++ 3 + pow x 2 * -1 * pow x 2 acosh x
 
-(* (pow x -1) (+ 1 (* 3 (* x (asinh x)))))
+* pow x -1 + 1 * 3 * x asinh x
 + pow x -1 + ln 1 * 3 asinh x
 + * x pow x -2 * 3 asinh x
 + pow x -1 * 3 asinh x
 
-(d x (+ (* 2 x) (* 10 (* (pow x 2) (acosh x)))))
+d x + * 2 x * 10 * pow x 2 acosh x
 
-(+ 1 (+ x (* x (pow (csc (asinh x)) -1))))
++ 1 + x * x pow csc asinh x -1
 + * x pow csc asinh x -1 + x 1
 + 1 * + pow csc asinh x -1 1 x
 
-(+ x (* -10 (* x (atanh (pow (csc (+ -10 (* 8 pi))) -1)))))
++ x * -10 * x atanh pow csc + -10 * 8 pi -1
 
-(d x (+ (* 2 (atan x)) (* 6 (* x (atan x)))))
+d x + * 2 atan x * 6 * x atan x
 d x * atan x + 2 / x 0.16666666666666666
 d x * + 2 * x 6 atan x
 
-(d x (* x (* (+ x 7) (asinh x))))
+d x * x * + x 7 asinh x
 
-(* 4 (+ (* 2 (pow x 3)) (atanh x)))
+* 4 + * 2 pow x 3 atanh x
 + * 8 pow x 3 * atanh x 4
 * + * pow x 3 2 atanh x 4
 
-(+ 16 (+ (* x (+ 1 x)) (asin x)))
++ 16 + * x + 1 x asin x
 + asin x + * x x + x 16
 + asin x + + x 16 pow x 2
 + 16 + * + 1 x x asin x
 
-(d x (+ (acos x) (tan x)))
+d x + acos x tan x
 + 0 d x - acos x * tan x -1
 + d x acos x d x / 1 cot x
 + d x + acos x - tan x 0 0
@@ -4962,7 +4962,7 @@ d x * + 2 * x 6 atan x
 + pow sec x 2 d x acos x
 + 0 + d x acos x pow sec x 2
 
-(d x (* 3 (+ (* 3 x) (atanh x))))
+d x * 3 + * 3 x atanh x
 + 9 * d x - atanh x 0 3
 - / 3 / 1 d x atanh x -9
 + 0 + 9 d x * 3 atanh x
@@ -4992,15 +4992,15 @@ d x * + 2 * x 6 atan x
 - / 3 / - 1 pow x 2 1 -9
 - - / 3 - 1 pow x 2 0 -9
 
-(+ 4 (+ (pow x 2) (+ (* 6 x) (asinh x))))
++ 4 + pow x 2 + * 6 x asinh x
 
-(d x (* x (+ x (* x (acosh (pow x 3))))))
+d x * x + x * x acosh pow x 3
 
-(+ x (* (pow x 2) (atanh (+ 2 x))))
++ x * pow x 2 atanh + 2 x
 + x * pow x 2 atanh - x -2
 + * pow x 2 atanh + x 2 x
 
-(* 2 (* x (+ x (* -1 (acos x)))))
+* 2 * x + x * -1 acos x
 pow * * 2 x - x acos x 1
 * * * x 2 - x acos x 1
 * * x - x acos x 2
@@ -5010,12 +5010,12 @@ pow * * 2 x - x acos x 1
 * x - * x 2 * 2 acos x
 * x + * -2 acos x * 2 x
 
-(d x (+ (* (pow x -1) 6) (atan x)))
+d x + * pow x -1 6 atan x
 - d x atan x * pow x -2 6
 d x + atan x * pow x -1 6
 + d x atan x * -6 pow x -2
 
-(d x (+ (* 2 (exp x)) (acosh x)))
+d x + * 2 exp x acosh x
 + * exp x 2 d x acosh x
 * + d x acosh x * 2 exp x 1
 d x + + exp x exp x acosh x
@@ -5026,11 +5026,11 @@ d x + * d x exp x 2 acosh x
 pow d x + * exp x 2 acosh x 1
 + * 2 exp x d x acosh / x 1
 
-(d x (+ (* 3 x) (* 6 (* (pow x 2) (acosh x)))))
+d x + * 3 x * 6 * pow x 2 acosh x
 
-(+ x (+ (* -10 (acosh x)) (+ (sin x) (sinh x))))
++ x + * -10 acosh x + sin x sinh x
 
-(d x (+ (* -2 (sqrt x)) (* -2 (atan x))))
+d x + * -2 sqrt x * -2 atan x
 * d x + sqrt x atan x -2
 d x + * atan x -2 * -2 sqrt x
 + * d x + atan x sqrt x -2 0
@@ -5038,7 +5038,7 @@ d x + * atan x -2 * -2 sqrt x
 * -2 + d x sqrt x d x atan x
 pow d x * + atan x sqrt x -2 1
 
-(d x (* 12 (+ 2 (asinh x))))
+d x * 12 + 2 asinh x
 d / x 1 - * 12 asinh x 0
 + 0 d x - * 12 asinh x -24
 + 0 d x * 12 + asinh x 2
@@ -5124,36 +5124,36 @@ d x - * 12 asinh x -24
 d x - * asinh x 12 0
 d x - * asinh / x 1 12 -24
 
-(* x (+ 6 (asinh (* 4 x))))
+* x + 6 asinh * 4 x
 
-(d x (+ (atan (+ -10 (* 10 x))) (cos (+ x (* 3 pi)))))
+d x + atan + -10 * 10 x cos + x * 3 pi
 
-(d x (* (+ 3 (* 3 x)) (asinh x)))
+d x * + 3 * 3 x asinh x
 * d x + * x asinh x asinh x 3
 d x * + 3 * x 3 asinh x
 d x * 3 * + x 1 asinh x
 
-(d x (* x (+ 1 (* 2 (* x (+ 1 (asinh x)))))))
+d x * x + 1 * 2 * x + 1 asinh x
 
-(d x (+ (pow (+ 4 (* 2 x)) 2) (atanh x)))
+d x + pow + 4 * 2 x 2 atanh x
 + - d x atanh x -16 * x 8
 - d x atanh x - -16 * 8 x
 + * x 8 + 16 d x atanh x
 
-(d x (+ (pow x 2) (+ (* 125 x) (atanh x))))
+d x + pow x 2 + * 125 x atanh x
 - + * 2 x d x atanh x -125
 - d x atanh x - -125 * x 2
 + d x + pow x 2 atanh x 125
 + + d x atanh x 125 * x 2
 - d x + pow x 2 atanh x -125
 
-(+ 1 (+ (* x (acosh x)) (cos (+ x (* 4 pi)))))
++ 1 + * x acosh x cos + x * 4 pi
 
-(* x (+ 4 (* (+ 1 x) (atan x))))
+* x + 4 * + 1 x atan x
 * + * + x 1 atan x 4 x
 * + 4 + atan x * x atan x x
 
-(* -1 (* (+ -3 x) (+ -3 (atanh x))))
+* -1 * + -3 x + -3 atanh x
 - * - 3 x + -3 atanh x 0
 * + -3 x * + -3 atanh x -1
 pow * - 3 x + atanh x -3 1
@@ -5168,7 +5168,7 @@ pow * - 3 x + atanh x -3 1
 * + -3 x + - 0 atanh x 3
 * * + x -3 - 3 atanh x 1
 
-(* -1 (* x (+ (* 4 x) (acos x))))
+* -1 * x + * 4 x acos x
 * - * * 4 x -1 acos x x
 * * - * -4 x acos x x 1
 * -1 * + * 4 x acos x x
@@ -5178,24 +5178,24 @@ pow * - 3 x + atanh x -3 1
 pow * x - * -4 x acos x 1
 - * -4 pow x 2 * x acos x
 
-(* -1 (* x (+ (* -1 (pow x 9)) (asinh x))))
+* -1 * x + * -1 pow x 9 asinh x
 
-(+ (pow x 3) (* 5 (* x (acosh x))))
++ pow x 3 * 5 * x acosh x
 + pow x 3 * * acosh x 5 x
 
-(d x (+ (pow x 5) (+ (* 4 x) (atanh x))))
+d x + pow x 5 + * 4 x atanh x
 - d x + atanh x pow x 5 -4
 + 4 d x + atanh x pow x 5
 
-(* -1 (* (+ 1 (pow x 2)) (acosh x)))
+* -1 * + 1 pow x 2 acosh x
 
-(d x (* x (+ 1 (* 2 (* (+ 5 x) (acos x))))))
+d x * x + 1 * 2 * + 5 x acos x
 
-(d x (atan (* x (pow (+ 8 (* 5 x)) -1))))
+d x atan * x pow + 8 * 5 x -1
 
-(d x (* x (+ 1 (+ (* -5 x) (* -5 (asinh x))))))
+d x * x + 1 + * -5 x * -5 asinh x
 
-(atanh (tanh (+ (sin x) (sin (+ x (* 2 pi))))))
+atanh tanh + sin x sin + x * 2 pi
 - ln / + 1 x - 1 x ln 1
 pow - ln + 1 x ln - 1 x 1
 * - ln + 1 x ln - 1 x 1
@@ -5207,7 +5207,7 @@ ln / + 1 x - 1 x
 * ln / + x 1 - 1 x 1
 ln / 1 / - 1 x + x 1
 
-(* x (+ (* -1 (sqrt x)) (asin x)))
+* x + * -1 sqrt x asin x
 * * x + asin x * sqrt x -1 1
 + * -1 * x sqrt x * asin x x
 pow - * x asin x * x sqrt x 1
@@ -5219,9 +5219,9 @@ pow * x + asin x * -1 sqrt x 1
 * * - asin x sqrt x x 1
 pow * - asin x sqrt x x 1
 
-(* 5 (+ x (* -1 (asinh (+ 1 x)))))
+* 5 + x * -1 asinh + 1 x
 
-(* -1 (* (+ 4 x) (+ -5 (+ x (* -1 (asin x))))))
+* -1 * + 4 x + -5 + x * -1 asin x
 * - -4 x - + x -5 asin x
 * - asin x + x -5 + 4 x
 * + 4 x + - asin x x 5
@@ -5229,14 +5229,14 @@ pow * - asin x sqrt x x 1
 * - -4 x - -5 - asin x x
 * - asin x - x 5 + 4 x
 
-(+ x (+ (atan x) (+ (sin x) (sin (+ x (* 2 pi))))))
++ x + atan x + sin x sin + x * 2 pi
 
-(* 7 (* x (+ 4 (* -1 (* x (asin x))))))
+* 7 * x + 4 * -1 * x asin x
 * x + * asin x * x -7 28
 * 7 * x - 4 * asin x x
 * - 28 * * x 7 asin x x
 
-(* x (+ 2 (asin x)))
+* x + 2 asin x
 * 1 * x + asin x 2
 pow + * x 2 * asin x x 1
 + * asin x x * 2 x
@@ -5244,21 +5244,21 @@ pow * x + 2 asin x 1
 * + * x 2 * x asin x 1
 * + asin x 2 x
 
-(d x (* -1 (* x (atan (* (pow x -1) (+ -3 x))))))
+d x * -1 * x atan * pow x -1 + -3 x
 
-(+ (* (pow x 2) (+ 2 x)) (acos x))
++ * pow x 2 + 2 x acos x
 + acos x * + 2 x pow x 2
 
-(d x (* (+ 3 (* -1 x)) (+ 4 (asin x))))
+d x * + 3 * -1 x + 4 asin x
 d x * - asin x -4 - 3 x
 + -4 d x * - 3 x asin x
 d x * - 3 x + 4 asin x
 - d x * - 3 x asin x 4
 - -4 d x * + -3 x asin x
 
-(d x (* -1 (* x (+ 7 (* 4 (acosh x))))))
+d x * -1 * x + 7 * 4 acosh x
 
-(d x (+ 2 (+ (* -1 (pow x 2)) (* x (atan x)))))
+d x + 2 + * -1 pow x 2 * x atan x
 - d x * atan x x * x 2
 + * x + d x atan x -2 atan x
 - - d x * atan x x x x
@@ -5268,38 +5268,38 @@ d x * - 3 x + 4 asin x
 + * x - d x atan x 2 atan x
 d x - * x atan x pow x 2
 
-(* (pow 4 -10) (+ x (asin x)))
+* pow 4 -10 + x asin x
 * * + x asin x pow 4 -10 1
 * + x asin x pow 4 -10
 pow * + x asin x pow 4 -10 1
 
-(+ (pow x 2) (* x (atan (* 7 x))))
++ pow x 2 * x atan * 7 x
 + pow x 2 * x atan * x 7
 
-(* x (* (+ 1 (pow x 2)) (acos (+ 4 x))))
+* x * + 1 pow x 2 acos + 4 x
 * acos + x 4 + pow x 3 x
 
-(+ (* 2 (* x (+ 1 x))) (acos x))
++ * 2 * x + 1 x acos x
 + acos x * + x * x x 2
 + * + x pow x 2 2 acos x
 + acos x * 2 * x + 1 x
 + * x + 2 * x 2 acos x
 
-(d x (+ (* 2 x) (* x (+ x (asinh x)))))
+d x + * 2 x * x + x asinh x
 d x * + + x asinh x 2 x
 d x * x - + x asinh x -2
 d x * x - asinh x - -2 x
 
-(+ x (* 8 (asinh x)))
++ x * 8 asinh x
 
-(acosh (+ x (* x (pow (csc (+ -10 (* 6 pi))) 10))))
+acosh + x * x pow csc + -10 * 6 pi 10
 
-(d x (* 8 (* x (+ 3 (* -4 (asin x))))))
+d x * 8 * x + 3 * -4 asin x
 + 24 d x / x / -0.03125 asin x
 d x * x + 24 * -32 asin x
 + 24 d x / * asin x x -0.03125
 
-(* 15 (* x (+ 3 (atan x))))
+* 15 * x + 3 atan x
 pow * + 45 * atan x 15 x 1
 * * + * 15 atan x 45 x 1
 * + * x 3 * atan x x 15
@@ -5309,14 +5309,14 @@ pow * + 45 * atan x 15 x 1
 * 1 * * + 3 atan x x 15
 pow * * 15 + 3 atan x x 1
 
-(+ (* 54 x) (* 81 (asin x)))
++ * 54 x * 81 asin x
 pow + * 54 x * 81 asin x 1
 + * x 54 * 81 asin x
 * + * asin x 81 * x 54 1
 
-(+ 1 (+ (* 2 (acosh x)) (* 3 x)))
++ 1 + * 2 acosh x * 3 x
 
-(+ (acos x) (+ 4 (sin x)))
++ acos x + 4 sin x
 + 4 + acos x sin / * 2 x 2
 + acos x - 4 * -1 sin x
 + 4 - acos x sin / -2 / 2 x
@@ -5331,7 +5331,7 @@ pow + * 54 x * 81 asin x 1
 + 4 + acos x sin * * x -1 -1
 + acos x + / tan x sec x 4
 
-(d x (atan (* (+ 1 x) 6)))
+d x atan * + 1 x 6
 d x atan / 6 / 1 + x 1
 d x atan + 6 / x 0.16666666666666666
 d / x 1 atan / + 1 x 0.16666666666666666
@@ -5359,7 +5359,7 @@ pow d x atan + 6 / x 0.16666666666666666 1
 d x atan * 6 + x 1
 / 6 + pow + * x 6 6 2 1
 
-(+ x (+ (* 8 (* x 6)) (atanh x)))
++ x + * 8 * x 6 atanh x
 + atanh x / -49 * -1 / 1 x
 + atanh x / / 49.00000000000001 / 1 x 1
 + atanh x * 49 / - x 0 1
@@ -5489,20 +5489,20 @@ d x atan * 6 + x 1
 + atanh x * -49.00000000000001 - 0 x
 + - + atanh x * 49 x 0 0
 
-(+ (* 2 x) (* -1 (* x (acos (* 5 x)))))
++ * 2 x * -1 * x acos * 5 x
 * + 2 * -1 acos * 5 x x
 * x - 2 acos * x 5
 - * x 2 * acos * x 5 x
 pow * x - 2 acos * x 5 1
 * 1 * x - 2 acos * x 5
 
-(d x (* 2 (* x (+ 1 (* x (asinh x))))))
+d x * 2 * x + 1 * x asinh x
 
-(* 3 (+ 4 (* (pow x 2) (asin x))))
+* 3 + 4 * pow x 2 asin x
 * 3 + * pow x 2 asin x 4
 + 12 * * pow x 2 asin x 3
 
-(d x (+ (* -3 x) (* 3 (atan x))))
+d x + * -3 x * 3 atan x
 + -3 * 3 d x atan x
 + -3 / / 1 + 1 pow x 2 0.3333333333333333
 * + -3 / d x atan x 0.3333333333333333 1
@@ -5524,47 +5524,47 @@ pow + d x * atan x 3 -3 1
 + / 1 / + 1 pow x 2 3 -3
 + 0 + -3 / 3 + 1 pow x 2
 
-(d x (* x (+ x (* -1 (* x (atan (* 5 x)))))))
+d x * x + x * -1 * x atan * 5 x
 
-(+ (pow x 2) (* x (* (+ 4 x) (asinh x))))
++ pow x 2 * x * + 4 x asinh x
 
-(+ x (* -10 (asinh (cos (+ (* 4 pi) 5)))))
++ x * -10 asinh cos + * 4 pi 5
 + * asinh cos + 5 * 4 pi -10 x
 + * asinh cos + -5 * -4 pi -10 x
 + x * asinh cos - -5 * pi 4 -10
 + x * -10 asinh cos - 5 * -4 pi
 
-(+ (pow x 1) (+ (* 5 x) (asinh x)))
++ pow x 1 + * 5 x asinh x
 + x + * 5 x asinh x
 + x + + asinh x ln 1 * x 5
 
-(d x (+ (* 9 (pow x 2)) (* x (asinh x))))
+d x + * 9 pow x 2 * x asinh x
 + asinh x * + d x asinh x 18 x
 + d x * x asinh x * 18 x
 - d x * asinh x x * -18 x
 + asinh x * x - d x asinh x -18
 
-(+ (* 2 x) (* 9 (* x (acosh x))))
++ * 2 x * 9 * x acosh x
 + x + * acosh x * x 9 x
 
-(d x (* 7 (+ 5 (+ x (* 5 (* x (asinh x)))))))
+d x * 7 + 5 + x * 5 * x asinh x
 + 7 * d x * x asinh x 35
 d x * x - * asinh x 35 -7
 
-(* 3 (+ x (acos (* 2 x))))
+* 3 + x acos * 2 x
 pow * + acos * 2 x x 3 1
 + * acos * x 2 3 * 3 x
 * * + acos * x 2 x 3 1
 * + x acos * 2 x 3
 
-(* (+ 1 x) (+ 5 (asinh x)))
+* + 1 x + 5 asinh x
 + 5 + * + asinh x 5 x asinh x
 
-(d x (* x (+ x (+ (pow 5 -1) (asinh x)))))
+d x * x + x + pow 5 -1 asinh x
 
-(* 3 (+ (* 6 x) (acosh x)))
+* 3 + * 6 x acosh x
 
-(atanh (* x (pow (+ 10 (* 2 x)) -1)))
+atanh * x pow + 10 * 2 x -1
 + ln + 1 x - 0 ln - 1 x
 pow - ln + x 1 ln - 1 x 1
 - - ln + x 1 0 ln - 1 x
@@ -5581,10 +5581,10 @@ atanh * x pow + 10 / x 0.5 -1
 + ln + 1 x ln / 1 - 1 x
 atanh * pow + * x 2 10 -1 x
 
-(d x (* 8 (pow (+ x (acosh x)) 3)))
+d x * 8 pow + x acosh x 3
 * 8 d x pow + acosh x x 3
 
-(* 5 (+ (* 4 (atan x)) 1))
+* 5 + * 4 atan x 1
 * + 5 * * 4 atan x 5 1
 * + 1 * 4 atan x 5
 + 5 * * 5 atan x 4
@@ -5595,38 +5595,38 @@ pow + 5 * * 4 atan x 5 1
 pow * + * 4 atan x 1 5 1
 * 1 + * atan x 20 5
 
-(+ (* 15625 (acosh x)) (* 3125 (* x (acosh x))))
++ * 15625 acosh x * 3125 * x acosh x
 
-(* 2 (* (pow (+ -2 pi) -1) (acos x)))
+* 2 * pow + -2 pi -1 acos x
 * * 2 pow + pi -2 -1 acos x
 
-(+ (* -2 (acos x)) (* 4 x))
++ * -2 acos x * 4 x
 pow + * -2 acos x * 4 x 1
 * + * -2 acos x * 4 x 1
 + * acos x -2 * x 4
 
-(d x (atanh (* x (+ 1 (pow 1 -1)))))
+d x atanh * x + 1 pow 1 -1
 d x ln / + x 1 - 1 x
 d x - ln + 1 x ln - 1 x
 - / 1 + 1 x / -1 - 1 x
 + / 1 - 1 x / 1 + 1 x
 
-(d x (* 2 (* (pow x 2) (+ 1 (* 6 (acosh x))))))
+d x * 2 * pow x 2 + 1 * 6 acosh x
 
-(d x (+ x (+ (acosh x) (exp (+ 5 x)))))
+d x + x + acosh x exp + 5 x
 + + 1 d x acosh x exp + x 5
 d x + acosh x + exp + 5 x x
 - exp + x 5 - -1 d x acosh x
 + exp + 5 x - d x acosh x -1
 
-(d x (* 5 (* x (+ (* 9 x) (* 9 (atanh x))))))
+d x * 5 * x + * 9 x * 9 atanh x
 d x * 45 * + atanh x x x
 
-(d x (* x (atan (+ (* 3 2.7) (* 2.7 x)))))
+d x * x atan + * 3 2.7 * 2.7 x
 d x * atan + * x 2.7 8.100000000000001 x
 d x * x atan + / x 0.37037037037037035 8.100000000000001
 
-(* 2 (* x (+ 8 (atan x))))
+* 2 * x + 8 atan x
 * * * 2 x + atan x 8 1
 + * x 16 * * atan x 2 x
 * 2 + * 8 x * atan x x
@@ -5636,11 +5636,11 @@ pow * 2 * x + atan x 8 1
 * + 16 * atan x 2 x
 pow * + 16 * atan x 2 x 1
 
-(+ -12 (* 3 (acosh x)))
++ -12 * 3 acosh x
 
-(* x (+ (* -10 (atan x)) (sin (+ x (* 1 pi)))))
+* x + * -10 atan x sin + x * 1 pi
 
-(d x (atan (* (pow x -10) 9)))
+d x atan * pow x -10 9
 / d x atan / pow x -10 0.1111111111111111 1
 * 1 d x atan * 9 pow x -10
 d x atan / pow x -10 0.1111111111111111
@@ -5653,7 +5653,7 @@ d x atan / * pow x -10 9 1
 d x atan / 9 / 1 pow x -10
 pow d x atan / pow x -10 0.1111111111111111 1
 
-(* 9 (+ (* 2 x) (* (atanh x) 2)))
+* 9 + * 2 x * atanh x 2
 + * atanh x 18 / 18 / 1 x
 - * * 2 + atanh x x 9 0
 * 1 * * 9 + atanh x x 2
@@ -5773,9 +5773,9 @@ pow * - atanh x * x -1 18 1
 * * 2 - x - 0 atanh x 9
 + * 18 atanh x / + x x 0.1111111111111111
 
-(* (+ x (asinh (cos (+ x (* 5 pi))))) (cos x))
+* + x asinh cos + x * 5 pi cos x
 
-(+ x (* 2 (* (+ x (atanh x)) 1)))
++ x * 2 * + x atanh x 1
 + / x 0.3333333333333333 * atanh x 2
 + x * + atanh - x 0 x 2
 + / * -3 x -1 * atanh x 2
@@ -5824,13 +5824,13 @@ pow * - atanh x * x -1 18 1
 - x * 2 - - 0 atanh x x
 + * 2 atanh x * * -3 x -1
 
-(* 4 (* x (+ -5 (* x (acos x)))))
+* 4 * x + -5 * x acos x
 * + -5 * acos x x * x 4
 * x + -20 * x * 4 acos x
 
-(+ (* -1 (acosh x)) (* 6 (pow x 4)))
++ * -1 acosh x * 6 pow x 4
 
-(d x (* 6 (* x (+ 6 (* 1 (asinh x))))))
+d x * 6 * x + 6 * 1 asinh x
 + d x / asinh x / 0.16666666666666666 x 36
 - d x * asinh x * x 6 -36
 d x * x + 36 * asinh x 6
@@ -5844,14 +5844,14 @@ d x / - asinh x -6 / 0.16666666666666666 x
 - d x / asinh x / 0.16666666666666666 x -36
 d x * - asinh x -6 / x 0.16666666666666666
 
-(* x (+ 257 (+ x (acos x))))
+* x + 257 + x acos x
 * x + acos x + x 257
 + * 257 x * + acos x x x
 * * x + acos x + x 257 1
 pow * x + x + 257 acos x 1
 + pow x 2 * + 257 acos x x
 
-(d x (asinh (* (sqrt x) 6)))
+d x asinh * sqrt x 6
 * 1 d x - asinh / sqrt x 0.16666666666666666 0
 * d x asinh * 6 sqrt x 1
 pow - d x asinh * 6 sqrt x 0 1
@@ -5921,7 +5921,7 @@ pow d x asinh * sqrt x 6 1
 pow / d x asinh * sqrt x 6 1 1
 - d x - asinh / sqrt x 0.16666666666666666 0 0
 
-(* -1 (atanh (+ 5 (* -2 (pow x -1)))))
+* -1 atanh + 5 * -2 pow x -1
 + ln - 1 x ln / 1 + 1 x
 ln * / 1 + x 1 - 1 x
 ln / - 1 x / + x 1 1
@@ -5941,20 +5941,20 @@ ln / - 1 x + x 1
 - ln / - 1 x + x 1 0
 * -1 - ln + x 1 ln - 1 x
 
-(* 2 (+ (* 4 (pow x 2)) (atan x)))
+* 2 + * 4 pow x 2 atan x
 * 2 + * pow x 2 4 atan x
 + * pow x 2 8 * 2 atan x
 
-(d x (* x (+ 2 (* 2 (* (pow x 2) (atanh x))))))
+d x * x + 2 * 2 * pow x 2 atanh x
 
-(* -1 (* (+ -3 x) (atanh (+ -3 x))))
+* -1 * + -3 x atanh + -3 x
 + 0 * atanh + x -3 - 3 x
 - * - 3 x atanh + -3 x 0
 
-(d x (+ (* -5 (acosh x)) (* 5 (atanh x))))
+d x + * -5 acosh x * 5 atanh x
 d x + * -5 acosh x * 5 atanh x
 
-(+ (* -1 x) (* 6 (* x (acos x))))
++ * -1 x * 6 * x acos x
 * x - * acos x 6 1
 * 1 - * x * 6 acos x x
 pow - * * 6 acos x x x 1
@@ -5966,22 +5966,22 @@ pow * x + -1 * 6 acos x 1
 + * x -1 * * 6 x acos x
 pow * - * 6 acos x 1 x 1
 
-(d x (* x (+ (* -1 (asin x)) (* 3 x))))
+d x * x + * -1 asin x * 3 x
 d x * x - * 3 x asin x
 - * x - 6 d x asin x asin x
 - * 6 x d x * asin x x
 
-(+ (* 2 x) (* 3 (* x (asinh (pow x 2)))))
++ * 2 x * 3 * x asinh pow x 2
 
-(+ (* -2 x) (* 16 (* (pow x 4) (atanh x))))
++ * -2 x * 16 * pow x 4 atanh x
 
-(d x (* x (+ 2 (acos (* 3 x)))))
+d x * x + 2 acos * 3 x
 + d x * acos * 3 x x 2
 d x * - acos / x 0.3333333333333333 -2 x
 - d x * x acos * 3 x -2
 d x * + acos / x 0.3333333333333333 2 x
 
-(* x (+ -1 (+ x (* (pow x -1) (atanh x)))))
+* x + -1 + x * pow x -1 atanh x
 * - atanh x - x * x x 1
 - + atanh - x 0 pow x 2 x
 pow + * - x 1 x atanh x 1
@@ -6037,15 +6037,15 @@ pow + * x x - atanh x x 1
 / + * x + -1 x atanh x 1
 - + / x / 1 x atanh x x
 
-(* 5 (acosh (* x 1)))
+* 5 acosh * x 1
 
-(+ 30 (+ x (+ (acosh x) (tan x))))
++ 30 + x + acosh x tan x
 + 30 + acosh x - x tan * -1 x
 + - acosh x - tan * -1 x x 30
 + 30 + + x / 1 cot x acosh x
 + 30 + + tan x x acosh x
 
-(+ x (* -1 (* x (+ 2 (asin x)))))
++ x * -1 * x + 2 asin x
 + x * * -1 x + 2 asin x
 + x * - -2 asin x x
 + * -1 * - asin x -2 x x
@@ -6062,7 +6062,7 @@ pow + * x x - atanh x x 1
 + - * -2 x * x asin x x
 + - 0 x - 0 * x asin x
 
-(d x (+ 10 (sin (asinh x))))
+d x + 10 sin asinh x
 + 0 d x sin * -1 * asinh x -1
 - d x / tan asinh x sec asinh x 0
 - d x sin * / asinh x 2 2 0
@@ -6103,13 +6103,13 @@ pow + * x x - atanh x x 1
 + - - d x sin asinh x 0 0 0
 - - d x sin asinh x 0 0
 
-(d x (* x (+ 7 (asinh (pow x 2)))))
+d x * x + 7 asinh pow x 2
 - d x * x asinh pow x 2 -7
 d x * x - asinh * x x -7
 + d x * x asinh * x x 7
 d x * + asinh pow x 2 7 x
 
-(d x (+ x (* 2 (* x (asinh 2.7)))))
+d x + x * 2 * x asinh 2.7
 + 0 - * 2 - asinh 2.7 0 -1
 + 0 + 1 * 2 asinh 2.7
 pow + - asinh 2.7 -1 / asinh 2.7 1 1
@@ -6214,19 +6214,19 @@ pow - 1 - 0 * asinh 2.7 2 1
 d x + * asinh 2.7 + x x x
 pow + 1 - asinh 2.7 - 0 asinh 2.7 1
 
-(+ (* 3 x) (* x (pow (atan x) 2)))
++ * 3 x * x pow atan x 2
 * + pow atan x 2 3 x
 * 1 * + 3 pow atan x 2 x
 + * 3 x * x pow atan x 2
 pow * x + pow atan x 2 3 1
 
-(+ (* 5 x) (* 5 (asin (* 6 x))))
++ * 5 x * 5 asin * 6 x
 * 1 * 5 + x asin * 6 x
 + * asin * 6 x 5 * x 5
 pow * + asin * 6 x x 5 1
 * + x asin * x 6 5
 
-(d x (* x (+ 1 (* 3 (* (pow x -1) (asinh x))))))
+d x * x + 1 * 3 * pow x -1 asinh x
 + + d x * 3 asinh x 1 0
 + 1 * 3 d x + asinh x ln 1
 + d x + x * asinh x 3 0
@@ -6236,13 +6236,13 @@ pow * + asin * 6 x x 5 1
 + 1 / 3 sqrt + 1 * x x
 + 1 d x * 3 - asinh x ln 1
 
-(* 8 (+ 3 (* (pow x 3) (atanh x))))
+* 8 + 3 * pow x 3 atanh x
 + 24 * * atanh x pow x 3 8
 - * 8 * pow x 3 atanh x -24
 * 8 + 3 * atanh x pow x 3
 * 8 - * pow x 3 atanh x -3
 
-(acos (* x (cos (+ 10 (* 7 pi)))))
+acos * x cos + 10 * 7 pi
 acos * / cos + -10 * pi -7 1 x
 acos / x / 1 cos + 10 * 7 pi
 acos * cos * -1 + * -7 pi -10 x
@@ -6296,14 +6296,14 @@ acos / x sec + * -1 * -7 pi 10
 acos * cos - -10 * 7 pi x
 acos / x sec + 10 * pi 7
 
-(d x (* x (+ 1 (* 5 (* x (asinh (+ 3 x)))))))
+d x * x + 1 * 5 * x asinh + 3 x
 
-(* x (atan (* 3 x)))
+* x atan * 3 x
 * 1 * atan * x 3 x
 pow * atan * x 3 x 1
 * atan * 3 x x
 
-(d x (* 9 (+ (* -5 (asinh x)) (* 16 x))))
+d x * 9 + * -5 asinh x * 16 x
 + 144 / -5 / 0.1111111111111111 d x asinh x
 - * / d x asinh x 1 -45 -144
 + / 9 / -0.2 d x asinh x 144
@@ -6354,11 +6354,11 @@ pow - * d x asinh x -45 -144 1
 pow - / d x asinh x -0.022222222222222223 -144 1
 - 144 - 0 / d x asinh x -0.022222222222222223
 
-(d x (* (+ 60 x) (cos (+ (* 3 pi) (acosh x)))))
+d x * + 60 x cos + * 3 pi acosh x
 
-(d x (* (pow x 4) (+ 1 (* 5 (atanh x)))))
+d x * pow x 4 + 1 * 5 atanh x
 
-(d x (+ (* 4 x) (* 9 (atanh (pow x 2)))))
+d x + * 4 x * 9 atanh pow x 2
 - / x / - 1 pow x 4 18 -4
 + 4 d x * 9 atanh pow x 2
 + 4 / * 18 x - 1 pow x 4
@@ -6366,11 +6366,11 @@ pow - / d x asinh x -0.022222222222222223 -144 1
 + / 18 / - 1 pow x 4 x 4
 - * x / 18 - 1 pow x 4 -4
 
-(+ x (* 5 (* x (* (+ 2 (* 2 x)) (acos x)))))
++ x * 5 * x * + 2 * 2 x acos x
 
-(* x (+ 1 (* 15 (* x (+ x (atan x))))))
+* x + 1 * 15 * x + x atan x
 
-(d x (* 5 (+ 3 (asin x))))
+d x * 5 + 3 asin x
 / 1 / sqrt - 1 pow x 2 5
 pow / 1 / 0.2 d x asin x 1
 * / 1 sqrt - 1 pow x 2 5
@@ -6417,13 +6417,13 @@ pow / 5 sqrt - 1 pow x 2 1
 pow / 5 / 1 d x asin x 1
 / 1 / 0.2 / d x asin x 1
 
-(+ 8 (+ (* 2 (asinh x)) (* 6 x)))
++ 8 + * 2 asinh x * 6 x
 
-(* x (+ 4 (+ (* 3 x) (* 3 (atanh x)))))
+* x + 4 + * 3 x * 3 atanh x
 * x + * 3 + atanh x x 4
 * x - * 3 + x atanh x -4
 
-(d x (+ x (+ (* -10 (sin x)) (asin x))))
+d x + x + * -10 sin x asin x
 + + d x asin x 1 * -10 cos x
 d x + + * -10 sin x x asin x
 + + d x asin x / -10 sec x 1
@@ -6431,36 +6431,36 @@ d x + + * -10 sin x x asin x
 + d x + asin x x / -10 sec x
 + * -10 cos x d x + x asin x
 
-(* 3 (* x (atanh (+ 4 (* -1 x)))))
+* 3 * x atanh + 4 * -1 x
 + * 3 * atanh - 4 x x 0
 
-(d x (+ x (+ (* 3 (pow x 4)) (acosh x))))
+d x + x + * 3 pow x 4 acosh x
 
-(d x (* (pow x -1) (+ 12 (* x (acosh x)))))
+d x * pow x -1 + 12 * x acosh x
 
-(d x (+ x (+ (cos x) (cos (acosh x)))))
+d x + x + cos x cos acosh x
 + d x + cos acosh x cos x 1
 
-(+ (* 3 x) (* 1 (* x (asinh x))))
++ * 3 x * 1 * x asinh x
 + x + x + x * x asinh x
 + x + * x asinh x * x 2
 
-(* -5 (* x (* (+ 1 x) (acosh x))))
+* -5 * x * + 1 x acosh x
 
-(+ (pow x 3) (* x (asin (* 4 x))))
++ pow x 3 * x asin * 4 x
 + pow x 3 * x asin * 4 x
 
-(d x (* (+ 2 x) (+ (* -1 x) (atanh x))))
+d x * + 2 x + * -1 x atanh x
 d x * + x 2 - atanh x x
 
-(* 3 (* (+ 12 x) (acosh x)))
+* 3 * + 12 x acosh x
 
-(d x (+ (* 3 (acosh x)) (* 4 (* x (acosh x)))))
+d x + * 3 acosh x * 4 * x acosh x
 d x * + 3 * 4 x acosh x
 
-(* -1 (* x (+ -1 (* 10 (* (acosh x) 7)))))
+* -1 * x + -1 * 10 * acosh x 7
 
-(d x (acos (* x (pow 9 -1))))
+d x acos * x pow 9 -1
 d x acos * pow 9 -1 / x 1
 d x acos / x / 1 pow 9 -1
 d x acos - * x pow 9 -1 0
@@ -6469,17 +6469,17 @@ d x acos * x pow 9 -1
 + d x acos * pow 9 -1 x 0
 pow d x acos * pow 9 -1 x 1
 
-(+ (pow (sec x) -1) (+ (asin x) (sinh x)))
++ pow sec x -1 + asin x sinh x
 + pow sec x -1 + asin x sinh x
 
-(d x (+ (* -10 (* x (+ x (acosh x)))) (sin x)))
+d x + * -10 * x + x acosh x sin x
 
-(+ 9 (+ (* 2 x) (atan x)))
++ 9 + * 2 x atan x
 pow + atan x + 9 * 2 x 1
 * + + atan x 9 * 2 x 1
 + + 9 * 2 x atan x
 
-(d x (+ (* 5 x) (* x (asinh x))))
+d x + * 5 x * x asinh x
 d x * x + - asinh x 0 5
 d x * x + 5 asinh x
 d x * x - 5 - 0 asinh x
@@ -6501,9 +6501,9 @@ pow d x * + asinh x 5 x 1
 pow d x * x - asinh x -5 1
 d x / + 5 asinh x / 1 x
 
-(+ (* 3 x) (* 5 (* x (+ x (asinh x)))))
++ * 3 x * 5 * x + x asinh x
 
-(* -1 (atanh (+ -3 (* 4 x))))
+* -1 atanh + -3 * 4 x
 - 0 atanh + -3 * x 4
 - 0 atanh + / * x 4 1 -3
 ln / - 1 x / + x 1 1
@@ -6547,9 +6547,9 @@ ln / - 1 x + x 1
 - 0 - atanh + -3 / x 0.25 0
 * -1 atanh + * 4 x -3
 
-(d x (* x (+ 1 (* x (+ -4 (atanh x))))))
+d x * x + 1 * x + -4 atanh x
 
-(d x (+ (* 2 x) (acosh x)))
+d x + * 2 x acosh x
 - + d x acosh / x 1 2 0
 + 0 + 2 d x acosh x
 + - d x acosh / x 1 -2 0
@@ -6612,17 +6612,17 @@ pow d x + * 2 x acosh x 1
 + / 1 sqrt - pow x 2 1 2
 d x - * 2 x - 0 acosh x
 
-(* x (+ 2 (* (atan x) 7)))
+* x + 2 * atan x 7
 * 1 * + * 7 atan x 2 x
 * x + * atan x 7 2
 pow * + * atan x 7 2 x 1
 + * * x atan x 7 * x 2
 
-(+ (pow x 2) (+ (* -2 x) (* -1 (* x (acos x)))))
++ pow x 2 + * -2 x * -1 * x acos x
 + pow x 2 * x - -2 acos x
 - pow x 2 * - acos x -2 x
 
-(atanh (* 2 (* (pow x -1) (+ 4 x))))
+atanh * 2 * pow x -1 + 4 x
 + ln + 1 x - 0 ln - 1 x
 ln / + x 1 - 1 x
 pow - ln + x 1 ln - 1 x 1
@@ -6648,19 +6648,19 @@ pow ln / + x 1 - 1 x 1
 pow atanh + 2 * pow x -1 8 1
 atanh * pow x -1 + 8 * x 2
 
-(* 7 (* x (+ 1 (* 25 (* x (asin x))))))
+* 7 * x + 1 * 25 * x asin x
 * + 7 * asin x * x 175 x
 
-(+ (* 5 (pow x 2)) (* x (asinh x)))
++ * 5 pow x 2 * x asinh x
 + * pow x 2 5 * asinh x x
 
-(d x (* x (* (pow 9 -1) (* (acos x) 2))))
+d x * x * pow 9 -1 * acos x 2
 
-(d x (* 3 (* x (+ 3 (* 5 (acosh x))))))
+d x * 3 * x + 3 * 5 acosh x
 + d x * * acosh x 15 x 9
 - d x * x * 15 acosh x -9
 
-(* 8 (+ (* -1 (atan x)) (* 3 x)))
+* 8 + * -1 atan x * 3 x
 * - * x 24 * atan x 8 1
 pow * 8 - * x 3 atan x 1
 * + * atan x -1 * 3 x 8
@@ -6675,17 +6675,17 @@ pow - * x 24 * 8 atan x 1
 + * 24 x * * atan x 8 -1
 * 1 * - * x 3 atan x 8
 
-(d x (+ (pow x 2) (+ (* -1 (acosh x)) (* 6 x))))
+d x + pow x 2 + * -1 acosh x * 6 x
 + 6 d x - pow x 2 acosh x
 + - 6 d x acosh x + x x
 + * x 2 - 6 d x acosh x
 + d x - * x x acosh x 6
 
-(* x (+ 1 (+ (* 3 (* x (asinh x))) (asinh x))))
+* x + 1 + * 3 * x asinh x asinh x
 
-(* 2 (* x (+ -1 (* (pow x 2) (acosh x)))))
+* 2 * x + -1 * pow x 2 acosh x
 
-(* 7 (+ (sqrt x) (asin x)))
+* 7 + sqrt x asin x
 pow + * 7 asin x * sqrt x 7 1
 * 1 * + asin x sqrt x 7
 pow * + sqrt x asin x 7 1
@@ -6693,26 +6693,26 @@ pow * + sqrt x asin x 7 1
 * 1 + * 7 sqrt x * asin x 7
 + * asin x 7 * 7 sqrt x
 
-(+ (* 9 x) (* x (asin (* 4 x))))
++ * 9 x * x asin * 4 x
 pow * x + 9 asin * x 4 1
 + * x 9 * asin * 4 x x
 * + asin * x 4 9 x
 * * + asin * 4 x 9 x 1
 
-(* x (+ 2 (asinh (* 5 pi))))
+* x + 2 asinh * 5 pi
 + x + * x asinh * pi 5 x
 
-(d x (+ x (* -64 (* x (pow (asinh x) 2)))))
+d x + x * -64 * x pow asinh x 2
 
-(* 10 (* x (+ (pow (sec x) -1) (atan x))))
+* 10 * x + pow sec x -1 atan x
 * * x 10 + atan x pow sec x -1
 
-(* x (+ x (* x (asin (* 4 x)))))
+* x + x * x asin * 4 x
 * * + 1 asin * 4 x x x
 * + * x asin * 4 x x x
 * pow x 2 + asin * 4 x 1
 
-(d x (+ 1 (+ (* 7 (exp x)) (acosh x))))
+d x + 1 + * 7 exp x acosh x
 d x + + acosh x * exp x 7 1
 pow + * exp x 7 d x acosh x 1
 + d x acosh / x 1 * exp x 7
@@ -6725,7 +6725,7 @@ d x + - * exp x 7 0 acosh x
 + d x + acosh x * 7 exp x 0
 d x - * exp x 7 - -1 acosh x
 
-(d x (+ 4 (+ (* 4 (pow x 2)) (* 4 (asinh x)))))
+d x + 4 + * 4 pow x 2 * 4 asinh x
 + * x 8 d x * 4 asinh x
 + / d x asinh x 0.25 * x 8
 * + * 2 x d x asinh x 4
@@ -6733,22 +6733,22 @@ d x - * exp x 7 - -1 acosh x
 d x * + pow x 2 asinh x 4
 * + d x asinh x + x x 4
 
-(d x (* 5 (* x (* (+ x (pow x 2)) (asinh x)))))
+d x * 5 * x * + x pow x 2 asinh x
 
-(* (pow x -10) (atanh (cos (+ 10 (* 5 pi)))))
+* pow x -10 atanh cos + 10 * 5 pi
 * pow x -10 atanh cos + * 5 pi 10
 * pow x -10 atanh cos - 10 * -5 pi
 * pow x -10 atanh cos + * pi -5 -10
 * atanh cos - -10 * pi 5 pow x -10
 
-(d x (+ 3 (+ (pow x 2) (+ (* 5 x) (atanh x)))))
+d x + 3 + pow x 2 + * 5 x atanh x
 + 5 d x + pow x 2 atanh x
 - + d x atanh x * 2 x -5
 + + 5 d x atanh x * x 2
 - d x atanh x - -5 * 2 x
 - d x + atanh x pow x 2 -5
 
-(* x (+ (pow x -1) (acos x)))
+* x + pow x -1 acos x
 + * acos x x 1
 * * + acos x pow x -1 x 1
 pow + 1 * x acos x 1
@@ -6756,12 +6756,12 @@ pow + 1 * x acos x 1
 pow * x + acos x pow x -1 1
 * x + pow x -1 acos x
 
-(* 2 (* x (* (+ 2 (* -1 x)) (asin x))))
+* 2 * x * + 2 * -1 x asin x
 * * - 2 x * 2 asin x x
 * asin x * x + 4 * x -2
 * - 4 * 2 x * asin x x
 
-(d x (* 3 (+ -10 (+ x (* 2 (asinh x))))))
+d x * 3 + -10 + x * 2 asinh x
 + 3 / d x asinh x 0.16666666666666666
 + 3 d x + * asinh x 6 -30
 + 3 * 6 d x asinh x
@@ -6783,15 +6783,15 @@ pow * x + acos x pow x -1 1
 + 3 / * 3 d x asinh x 0.5
 + 3 / 2 / 0.3333333333333333 d x asinh x
 
-(d x (* x (+ 1 (+ (* 4 x) (asin x)))))
+d x * x + 1 + * 4 x asin x
 
-(* (+ x (pow x 2)) (asinh (* 3 x)))
+* + x pow x 2 asinh * 3 x
 
-(+ 3 (+ x (* 2 (* (pow x 2) (acos x)))))
++ 3 + x * 2 * pow x 2 acos x
 
-(+ 10 (* 5 (acosh x)))
++ 10 * 5 acosh x
 
-(d x (* 6 (+ 20 (+ x (* 5 (atan x))))))
+d x * 6 + 20 + x * 5 atan x
 + 6 * / 1 + pow x 2 1 30
 + 6 / 6 / + 1 pow x 2 5
 d x + * 30 atan x * 6 x
@@ -6832,15 +6832,15 @@ pow + 6 d x * 30 atan x 1
 * 6 + * 5 d x atan x 1
 + / 5 / 0.16666666666666666 d x atan x 6
 
-(+ 10 (* -10 (atan (sin (+ 10 (* 8 pi))))))
++ 10 * -10 atan sin + 10 * 8 pi
 + 10 * -10 atan sin - 10 * pi -8
 + * -10 atan sin + * pi 8 10 10
 
-(d x (* 2 (* x (+ (* 6 x) (* 2 (atanh x))))))
+d x * 2 * x + * 6 x * 2 atanh x
 
-(* 3 (* x (+ 1 (+ (* 2 x) (asin x)))))
+* 3 * x + 1 + * 2 x asin x
 
-(d x (+ (* x (asin x)) (* 5 (* x 5))))
+d x + * x asin x * 5 * x 5
 d x + * x 24.999999999999996 * asin x x
 d x * x + asin x 25
 * + 25 d x * asin x x 1
@@ -6860,9 +6860,9 @@ d x + / x 0.04 * x asin x
 d x / + 25 asin x / 1 x
 pow d x * + asin x 25 x 1
 
-(d x (+ (* -10 (acosh x)) (cos (+ 1 (* 9 pi)))))
+d x + * -10 acosh x cos + 1 * 9 pi
 
-(* 4 (* x (* (+ 1 (* -1 x)) (atan x))))
+* 4 * x * + 1 * -1 x atan x
 * * atan x - x pow x 2 4
 * x * atan x + 4 * x -4
 * 4 * - atan x * atan x x x
@@ -6870,26 +6870,26 @@ pow d x * + asin x 25 x 1
 * * - 4 * x 4 atan x x
 * * atan x - x * x x 4
 
-(d x (+ -10 (+ (* -10 x) (+ (* x (acosh x)) (cos x)))))
+d x + -10 + * -10 x + * x acosh x cos x
 + d x + * acosh x x cos x -10
 
-(d x (+ (* 3 (acos x)) (* -2 (* x (acos x)))))
+d x + * 3 acos x * -2 * x acos x
 d x * acos x - 3 + x x
 d x * acos x + 3 * -2 x
 d x * acos x - - 3 x x
 d x * acos x - 3 * 2 x
 
-(d x (+ x (* x (+ (pow x -2) (asinh x)))))
+d x + x * x + pow x -2 asinh x
 
-(d x (* x (+ 5 (acos (* 3 x)))))
+d x * x + 5 acos * 3 x
 - d x * x acos * 3 x -5
 + d x * acos / x 0.3333333333333333 x 5
 - d x * x acos / x 0.3333333333333333 -5
 + 5 d x * x acos * x 3
 
-(* -2 (* (pow x 2) (* (+ -4 x) (atan x))))
+* -2 * pow x 2 * + -4 x atan x
 
-(+ x (* -1 (* x (+ -3 (atan x)))))
++ x * -1 * x + -3 atan x
 - - x * x -3 * atan x x
 * * - 3 - atan x 1 x 1
 pow - * x 4 * x atan x 1
@@ -6939,11 +6939,11 @@ pow * - 4 atan x x 1
 pow * x + - 3 atan x 1 1
 * - 1 + atan x -3 x
 
-(* (pow (sec (+ (* 3 pi) (acosh x))) -1) (+ -10 x))
+* pow sec + * 3 pi acosh x -1 + -10 x
 
-(* x (* (acosh (* 2 x)) 3))
+* x * acosh * 2 x 3
 
-(+ -1 (+ x (+ (* -1 (* x (atan x))) (atan x))))
++ -1 + x + * -1 * x atan x atan x
 + x + atan x - -1 * x atan x
 + atan x - -1 * - atan x 1 x
 - x - - * x atan x atan x -1
@@ -6954,13 +6954,13 @@ pow * x + - 3 atan x 1 1
 + x + * atan x - 1 x -1
 - -1 - * - atan x 1 x atan x
 
-(d x (+ (* 7 (sqrt x)) (+ (* -1 x) (atanh x))))
+d x + * 7 sqrt x + * -1 x atanh x
 d x + - atanh x x * sqrt x 7
 d x - * 7 sqrt x - x atanh x
 - d x + * sqrt x 7 atanh x 1
 + -1 d x + atanh x * 7 sqrt x
 
-(d x (* 6 (+ 3 (* 5 (acos x)))))
+d x * 6 + 3 * 5 acos x
 * -5 / d x acos x -0.16666666666666666
 * * -1 - d x acos x 0 -30
 pow d x + 18 * 30 acos x 1
@@ -7191,7 +7191,7 @@ pow / / d x acos x 0.16666666666666666 0.2 1
 / / 5 / 1 d x acos x 0.16666666666666666
 pow / -6 / -0.2 d x acos x 1
 
-(d x (+ (* 1 (* x (acos x))) (acos x)))
+d x + * 1 * x acos x acos x
 d x * acos x + 1 / x 1
 + acos x * d x acos x + 1 x
 d x - acos x * -1 * acos x x
@@ -7226,7 +7226,7 @@ d x * acos x - 1 - 0 x
 * 1 d x * acos x - x -1
 + d x * acos x x d x acos x
 
-(d x (asinh (* 2 (* x 8))))
+d x asinh * 2 * x 8
 + d x asinh * 16 x 0
 * 1 / d x asinh * 16 x 1
 * d x - asinh * x 16 0 1
@@ -7264,11 +7264,11 @@ d x asinh / 8 / 1 + x x
 * 1 d x asinh * + x x 8
 * 1 d x asinh * 16 x
 
-(+ (* 10 (atan x)) (cos (+ x (* 7 pi))))
++ * 10 atan x cos + x * 7 pi
 + cos + x * 7 pi * atan x 10
 + * atan x 10 cos - * -7 pi x
 
-(+ (* 4 x) (* 4 (* x (acos x))))
++ * 4 x * 4 * x acos x
 + * acos x * x 4 * x 4
 * * + 1 acos x * x 4 1
 * 1 * + x * acos x x 4
@@ -7280,9 +7280,9 @@ pow * 4 + * acos x x x 1
 * x + * acos x 4 4
 * 4 + x * x acos x
 
-(d x (* 2 (* (pow x 2) (+ -1 (acosh x)))))
+d x * 2 * pow x 2 + -1 acosh x
 
-(d x (+ 2 (+ (* -4 x) (* 4 (acos x)))))
+d x + 2 + * -4 x * 4 acos x
 - -4 * -1 * d x acos x 4
 + d x + * acos x 4 2 -4
 - + -4 / d x acos x 0.25 0
@@ -7344,16 +7344,16 @@ pow - -4 * d x acos x -4 1
 pow + / d x acos x 0.25 -4 1
 + / d x acos x 0.25 -4
 
-(d x (* 3 (+ (pow x 5) (asinh x))))
+d x * 3 + pow x 5 asinh x
 d x * + pow x 5 asinh x 3
 
-(* 3 (+ (pow x 2) (atan x)))
+* 3 + pow x 2 atan x
 + * pow x 2 3 * 3 atan x
 pow * 3 + atan x pow x 2 1
 * * + atan x pow x 2 3 1
 * + pow x 2 atan x 3
 
-(* 1 (+ 1 (* 2 (* x (atanh x)))))
+* 1 + 1 * 2 * x atanh x
 + / 2 / 1 * x atanh x 1
 + 1 * * x atanh / x 1 2
 + 1 * x - atanh x - 0 atanh x
@@ -7380,7 +7380,7 @@ pow * 3 + atan x pow x 2 1
 + / atanh x / 1 + x x 1
 + * * x 2 atanh x 1
 
-(d x (+ (* -1 (atanh x)) (* 5 x)))
+d x + * -1 atanh x * 5 x
 - 0 + / 1 - 1 pow x 2 -5
 - 5 * -1 d x - 0 atanh x
 + 0 + * d x atanh x -1 5
@@ -7442,7 +7442,7 @@ pow * 3 + atan x pow x 2 1
 - 5 - / 1 - 1 pow x 2 0
 * 1 + d x - 0 atanh x 5
 
-(+ x (atanh (+ x (* x 8))))
++ x atanh + x * x 8
 * + atanh * -1 / x -0.1111111111111111 x 1
 pow + atanh / -9 / -1 x x 1
 + - atanh * 9 x * x -1 0
@@ -7635,12 +7635,12 @@ pow + x atanh - x / x -0.125 1
 + 0 + atanh / / x 1 0.1111111111111111 x
 + x atanh / / / x -1 -0.1111111111111111 1
 
-(d x (atanh (+ x (* -10 (pow (sec (+ 10 (* 1 pi))) -1)))))
+d x atanh + x * -10 pow sec + 10 * 1 pi -1
 d x ln / + x 1 - 1 x
 d x - ln + 1 x ln - 1 x
 + / 1 + x 1 / 1 - 1 x
 
-(d x (asinh (* (+ 1 x) 2)))
+d x asinh * + 1 x 2
 pow d x asinh + * 2 x 2 1
 d / x 1 asinh + 2 * 2 x
 d x asinh + * x 2 2
@@ -7663,38 +7663,38 @@ d x - asinh * 2 + x 1 0
 pow d x asinh * + 1 x 2 1
 d x asinh + 2 / 2 / 1 x
 
-(+ (* -1 (atan x)) (* -5 (pow x -1)))
++ * -1 atan x * -5 pow x -1
 pow - * pow x -1 -5 atan x 1
 + * pow x -1 -5 * atan x -1
 * 1 - * -5 pow x -1 atan x
 - * -5 pow x -1 atan x
 
-(d x (pow (+ (* 7 x) (asin x)) 2))
+d x pow + * 7 x asin x 2
 d x pow + asin x * x 7 2
 
-(* x (+ (* -10 x) (+ (acos x) (cos (+ x (* 2 pi))))))
+* x + * -10 x + acos x cos + x * 2 pi
 
-(d x (* x (+ -3 (+ x (* -2 (* x (atanh x)))))))
+d x * x + -3 + x * -2 * x atanh x
 
-(d x (* -1 (* x (+ -1 (* 6 (asinh x))))))
+d x * -1 * x + -1 * 6 asinh x
 + 1 * d x * x asinh x -6
 
-(d x (* 2 (* x (+ x (* x (atanh (* 4 x)))))))
+d x * 2 * x + x * x atanh * 4 x
 
-(* x (+ 1 (* x (atan (+ 64 x)))))
+* x + 1 * x atan + 64 x
 + * * x atan + 64 x x x
 + x * atan + 64 x pow x 2
 * x + * x atan + x 64 1
 
-(d x (+ x (* (pow x 2) (+ -2 (acosh x)))))
+d x + x * pow x 2 + -2 acosh x
 
-(* 6 (+ 4 (+ pi (+ (* 4 x) (* 4 (atanh x))))))
+* 6 + 4 + pi + * 4 x * 4 atanh x
 
-(* x (+ 1 (* 8 (pow (asinh x) 3))))
+* x + 1 * 8 pow asinh x 3
 * x + * pow asinh x 3 8 1
 + * * 8 pow asinh x 3 x x
 
-(* x (+ -5 (+ (* -1 x) (* -1 (atanh x)))))
+* x + -5 + * -1 x * -1 atanh x
 * x - + -5 * atanh x -1 x
 * - * x -1 + atanh x 5 x
 * * + + x 5 atanh x -1 x
@@ -7715,18 +7715,18 @@ d x pow + asin x * x 7 2
 * x - - * -1 x atanh x 5
 * x / - -5 + x atanh x 1
 
-(* 3 (* x (* (+ 1 (pow x 3)) (atanh x))))
+* 3 * x * + 1 pow x 3 atanh x
 * + pow x 4 x * 3 atanh x
 
-(+ x (* -10 (sin (+ (* 2 pi) (asinh (+ 10 x))))))
++ x * -10 sin + * 2 pi asinh + 10 x
 
-(* (pow x 2) (+ (* 2 x) (acosh x)))
+* pow x 2 + * 2 x acosh x
 
-(+ (pow x 2) (* x (+ 4 (acosh x))))
++ pow x 2 * x + 4 acosh x
 
-(d x (* 3 (* (pow x 2) (+ x (* x (atan x))))))
+d x * 3 * pow x 2 + x * x atan x
 
-(exp (+ x (atanh 2.7)))
+exp + x atanh 2.7
 exp - / / x 1 1 - 0 atanh 2.7
 exp + * / * -1 x 1 -1 atanh 2.7
 exp + - * / x -1 -1 0 atanh 2.7
@@ -7822,7 +7822,7 @@ pow exp - - x - 0 atanh 2.7 0 1
 exp - - x ln -1 - ln -1 atanh 2.7
 pow exp + x - - atanh 2.7 0 0 1
 
-(* 3 (* x (+ -3 (asin x))))
+* 3 * x + -3 asin x
 + * * asin x x 3 * x -9
 * 3 + * x asin x * x -3
 * + * asin x 3 -9 x
@@ -7832,7 +7832,7 @@ pow * x + -9 * 3 asin x 1
 pow * 3 * + -3 asin x x 1
 * 1 * + asin x -3 * x 3
 
-(d x (+ 6 (* -2 (asinh x))))
+d x + 6 * -2 asinh x
 + 0 d x - * asinh x -2 -6
 * 1 d x + * asinh x -2 6
 * 1 / -2 sqrt + 1 pow x 2
@@ -7898,21 +7898,21 @@ pow / d x asinh / x 1 -0.5 1
 / -2 / sqrt + 1 pow x 2 1
 - / -2 sqrt + * x x 1 0
 
-(asinh (* 10 (* x 2)))
+asinh * 10 * x 2
 
-(d x (* x (+ (* 9 (pow x 2)) (atan x))))
+d x * x + * 9 pow x 2 atan x
 
-(+ (* 4 x) (* 4 (* (pow x 2) (asin x))))
++ * 4 x * 4 * pow x 2 asin x
 * + x * asin x pow x 2 4
 
-(d x (* x (+ 1 (* (+ 2 x) (atanh x)))))
+d x * x + 1 * + 2 x atanh x
 
-(+ x (+ (pow (sec (+ x (* 6 pi))) -1) (acosh (* 10 x))))
++ x + pow sec + x * 6 pi -1 acosh * 10 x
 
-(+ (* -1 (pow (+ 5 x) 2)) (acosh x))
++ * -1 pow + 5 x 2 acosh x
 + * -1 pow + x 5 2 acosh x
 
-(* 4 (* x (+ (* 4 (pow x -1)) (acos x))))
+* 4 * x + * 4 pow x -1 acos x
 * + * x * acos x 4 16 1
 * 1 * + * x acos x 4 4
 pow * 4 + 4 * acos x x 1
@@ -7920,57 +7920,57 @@ pow * 4 + 4 * acos x x 1
 pow + 16 * acos x * 4 x 1
 * 4 + 4 * acos x x
 
-(d x (+ (pow x 2) (* -5 (* x (acosh (* 3 x))))))
+d x + pow x 2 * -5 * x acosh * 3 x
 
-(d x (+ (* x (sinh (acos x))) (sin (+ x (* 3 pi)))))
+d x + * x sinh acos x sin + x * 3 pi
 
-(d x (+ (* -5 x) (* 10 (* x (atan x)))))
+d x + * -5 x * 10 * x atan x
 + * d x * atan x x 10 -5
 d x * + -5 / atan x 0.1 x
 + -5 d x / atan x / 0.1 x
 
-(+ (pow (cos (+ x (* 5 pi))) -10) (* -10 (atan x)))
++ pow cos + x * 5 pi -10 * -10 atan x
 
-(d x (* x (asinh (+ 9 (* -3 x)))))
+d x * x asinh + 9 * -3 x
 d x * x asinh + / x -0.3333333333333333 9
 d x * x asinh + 9 * -3 x
 
-(* 6 (+ (* 10 (pow x 2)) (asin x)))
+* 6 + * 10 pow x 2 asin x
 * 6 + * pow x 2 10 asin x
 + * pow x 2 60 * asin x 6
 
-(d x (* 4 (+ (pow x 3) (* 2 (atan x)))))
+d x * 4 + pow x 3 * 2 atan x
 
-(d x (pow (sec (* 10 (asin x))) -1))
+d x pow sec * 10 asin x -1
 
-(+ (* 4 x) (* 8 (* x (asin (* 2 x)))))
++ * 4 x * 8 * x asin * 2 x
 * x + * 8 asin * 2 x 4
 
-(d x (* x (* (+ x (* -4 (pow x 2))) (atanh x))))
+d x * x * + x * -4 pow x 2 atanh x
 
-(* x (* (pow (cos (+ 1 (* 5 pi))) -10) (asin x)))
+* x * pow cos + 1 * 5 pi -10 asin x
 
-(* x (atan (+ x (pow (sec (+ 1 (* 1 pi))) -1))))
+* x atan + x pow sec + 1 * 1 pi -1
 * atan + x pow sec + pi 1 -1 x
 * atan + x pow sec - -1 pi -1 x
 
-(+ (pow x 3) (+ (* x (+ 8 x)) (acos x)))
++ pow x 3 + * x + 8 x acos x
 
-(+ (pow x 3) (* 6 (* (pow x 3) (acos x))))
++ pow x 3 * 6 * pow x 3 acos x
 * pow x 3 + 1 * 6 acos x
 
-(+ x (+ (* 2 (* x (+ 5 x))) (acos x)))
++ x + * 2 * x + 5 x acos x
 + acos x * x + * x 2 11
 
-(d x (* x (+ 1 (* 2 (atan (+ 3 x))))))
+d x * x + 1 * 2 atan + 3 x
 
-(d x (* x (+ 1 (atan (* 4 (* x 5))))))
+d x * x + 1 atan * 4 * x 5
 d x * x + 1 atan / x 0.05
 + d x * atan * 20 x x 1
 d x + x * atan * 20 x x
 d x + x * atan / x 0.05 x
 
-(d x (+ x (+ (asin x) (cos x))))
+d x + x + asin x cos x
 + 1 - d x + asin x cos x 0
 + - - d x asin x -1 sin x 0
 + d x - asin x - 0 cos x 1
@@ -7997,19 +7997,19 @@ d x + x * atan / x 0.05 x
 + d x + d x sin x asin x 1
 + + d x asin x sin * -1 x 1
 
-(+ x (* (asin x) 4))
++ x * asin x 4
 * 1 + * 4 asin x x
 pow + x * asin x 4 1
 + x * 4 asin x
 
-(+ (* -10 x) (cos (+ (* 9 pi) (acosh (+ 10 x)))))
++ * -10 x cos + * 9 pi acosh + 10 x
 
-(+ (* 3 (pow x 3)) (* x (atan x)))
++ * 3 pow x 3 * x atan x
 + * pow x 3 3 * x atan x
 
-(d x (+ x (* (+ 9 (* 7 x)) (acosh x))))
+d x + x * + 9 * 7 x acosh x
 
-(+ 1 (* 1 (atanh x)))
++ 1 * 1 atanh x
 pow - 0 - -1 - atanh x 0 1
 * - atanh x -1 1
 pow + - - atanh x 0 0 1 1
@@ -8089,7 +8089,7 @@ pow - atanh x -1 1
 pow + - atanh x 0 1 1
 pow + 1 atanh / x 1 1
 
-(* 2 (+ -3 (+ x (atanh x))))
+* 2 + -3 + x atanh x
 - * 2 + atanh x -3 * x -2
 - -6 - / x -0.5 * atanh x 2
 + * x 2 * 2 + atanh x -3
@@ -8176,9 +8176,9 @@ pow - * + atanh x x 2 6 1
 - / x 0.5 - 6 * 2 atanh x
 * 2 - + atanh x ln -1 - 3 x
 
-(+ x (* (pow x 2) (acosh (+ -3 x))))
++ x * pow x 2 acosh + -3 x
 
-(* 7 (* (+ 8 x) (asin x)))
+* 7 * + 8 x asin x
 * + 56 * 7 x asin x
 * * 7 + 8 x asin x
 * 7 + * x asin x * 8 asin x
@@ -8188,41 +8188,41 @@ pow * 7 * + 8 x asin x 1
 pow * + 56 * x 7 asin x 1
 + * 56 asin x * 7 * asin x x
 
-(d x (* 20 (+ (pow x 2) (atan x))))
+d x * 20 + pow x 2 atan x
 + d x * atan x 20 * 40 x
 + / d x atan x 0.05 * x 40
 + / 20 + pow x 2 1 * x 40
 * 20 + * 2 x d x atan x
 * 20 d x + atan x pow x 2
 
-(d x (+ (* -10 (asinh x)) (* 2 (* x (asinh x)))))
+d x + * -10 asinh x * 2 * x asinh x
 d x * + -10 + x x asinh x
 d x * asinh x + * x 2 -10
 
-(+ (* 2 (asin x)) (* -2 (* x 9)))
++ * 2 asin x * -2 * x 9
 + * 9 * x -2 * asin x 2
 + * asin x 2 * -18 x
 pow + * x -18 * 2 asin x 1
 * 1 + * asin x 2 * -18 x
 
-(d x (+ 3 (* x (+ (* 2 x) (acos x)))))
+d x + 3 * x + * 2 x acos x
 - d x * acos x x * x -4
 + * x + 4 d x acos x acos x
 + * 4 x d x * x acos x
 + acos x * x - d x acos x -4
 
-(* 5 (* (pow x 3) (+ 1 (* -1 (asinh x)))))
+* 5 * pow x 3 + 1 * -1 asinh x
 
-(d x (+ (pow x 2) (* x (asinh (+ 7 x)))))
+d x + pow x 2 * x asinh + 7 x
 
-(+ (* 4 x) (atan (+ 5 x)))
++ * 4 x atan + 5 x
 + atan + x 5 * x 4
 * 1 + * 4 x atan + 5 x
 pow + * x 4 atan + x 5 1
 
-(d x (+ (* (+ -10 x) (cos (+ x (* 9 pi)))) (atanh x)))
+d x + * + -10 x cos + x * 9 pi atanh x
 
-(+ (* -1 x) (* 8 (atanh (* 2 x))))
++ * -1 x * 8 atanh * 2 x
 - * atanh / -1 / -0.5 x 8 x
 + * -1 x * atanh / x 0.5 8
 + * -1 x * 8 atanh * x 2
@@ -8256,17 +8256,17 @@ pow + * x 4 atan + x 5 1
 - - * atanh + x x 8 0 x
 - * atanh / * 2 x 1 8 x
 
-(+ (* -10 (atanh x)) (* x (sin x)))
++ * -10 atanh x * x sin x
 + + * sin x x * -10 atanh x 0
 + * sin x x * -10 atanh x
 - * -10 atanh x - 0 * sin x x
 + - * -10 atanh x 0 * sin x x
 
-(* (pow x 2) (+ 2 (* 2 (acos x))))
+* pow x 2 + 2 * 2 acos x
 * + * acos x 2 2 pow x 2
 * * pow x 2 + acos x 1 2
 
-(* 9 (* x (+ 3 (* 1 (acos x)))))
+* 9 * x + 3 * 1 acos x
 pow * + * acos x 9 27 x 1
 + * x 27 * x * 9 acos x
 pow * 9 * x + acos x 3 1
@@ -8276,35 +8276,35 @@ pow * 9 * x + acos x 3 1
 * 1 * 9 * x + 3 acos x
 * 1 * x + * 9 acos x 27
 
-(d x (* 9 (+ (pow x 5) (* 4 (asinh (* 2 x))))))
+d x * 9 + pow x 5 * 4 asinh * 2 x
 
-(d x (+ (* 2 (* x (asin x))) (* 2 (* x (atanh x)))))
+d x + * 2 * x asin x * 2 * x atanh x
 d x * + atanh x asin x + x x
 d x * x * 2 + atanh x asin x
 
-(+ x (+ (pow (cot x) -1) (atan (+ -10 x))))
++ x + pow cot x -1 atan + -10 x
 + x + pow cot x -1 atan + -10 x
 
-(d x (+ (* -2 (exp x)) (* 2 (asinh x))))
+d x + * -2 exp x * 2 asinh x
 d x + * exp x -2 * 2 asinh x
 + * exp x -2 / d x asinh x 0.5
 
-(d x (+ x (* x (+ (atanh x) (exp x)))))
+d x + x * x + atanh x exp x
 d x + * x + exp x atanh x x
 - d x * x + atanh x exp x -1
 + 1 d x * x + exp x atanh x
 
-(+ 20 (+ x (cos (+ (* 9 pi) (acosh x)))))
++ 20 + x cos + * 9 pi acosh x
 + 20 + x cos - acosh x * pi -9
 + + cos + * 9 pi acosh x 20 x
 
-(* 2 (+ 1 (+ (* 2 x) (* 2 (atanh (pow x 2))))))
+* 2 + 1 + * 2 x * 2 atanh pow x 2
 + * + x atanh pow x 2 4 2
 - * + atanh pow x 2 x 4 -2
 
-(* -5 (* x (+ x (* -1 (asinh (pow x 2))))))
+* -5 * x + x * -1 asinh pow x 2
 
-(d x (+ x (+ (* -10 (asin x)) (* x 8))))
+d x + x + * -10 asin x * x 8
 + + d x * asin x -10 8 1
 * 1 + d x * -10 asin x 9
 + d x + * -10 asin x x 8
@@ -8322,27 +8322,27 @@ pow + * -10 d x asin x 9 1
 + 9 / -10 / 1 d x asin x
 + / d x asin x -0.1 9
 
-(d x (* x (+ x (acos (+ 3 x)))))
+d x * x + x acos + 3 x
 
-(+ (pow x 7) (+ (* 3 (pow x 6)) (acosh x)))
++ pow x 7 + * 3 pow x 6 acosh x
 
-(d x (pow (+ (* -3 x) (* x (asinh x))) 2))
+d x pow + * -3 x * x asinh x 2
 
-(+ (pow (+ 5 x) 2) (* -1 (acos x)))
++ pow + 5 x 2 * -1 acos x
 + * acos x -1 pow + 5 x 2
 pow - pow + x 5 2 acos x 1
 - pow + 5 x 2 acos x
 * - pow + x 5 2 acos x 1
 
-(acosh (+ x (* 2.7 x)))
+acosh + x * 2.7 x
 
-(* 9 (+ (* 2 (pow x 2)) (+ (* 3 x) (asin x))))
+* 9 + * 2 pow x 2 + * 3 x asin x
 
-(+ (* 3 x) (* x (+ 2 (asinh x))))
++ * 3 x * x + 2 asinh x
 + x + * x asinh x * x 4
 + x + * + asinh x 3 x x
 
-(d x (+ x (* 5 (atan x))))
+d x + x * 5 atan x
 + 1 / d x * atan x 5 1
 + + 1 / d x atan x 0.2 0
 + / 5 / + pow x 2 1 1 1
@@ -8367,11 +8367,11 @@ pow + 1 / 5 + 1 pow x 2 1
 * + 1 / d x atan x 0.2 1
 + / / 1 + pow x 2 1 0.2 1
 
-(+ 2 (+ x (+ (pow x 3) (* (pow x 2) (asinh x)))))
++ 2 + x + pow x 3 * pow x 2 asinh x
 
-(d x (+ x (+ (* 4 (pow x 4)) (* x (atanh x)))))
+d x + x + * 4 pow x 4 * x atanh x
 
-(* 6 (* x (+ 1 (asin x))))
+* 6 * x + 1 asin x
 * x + * 6 asin x 6
 + * 6 x * * asin x x 6
 * * x + 6 * 6 asin x 1
@@ -8383,38 +8383,38 @@ pow * x * + asin x 1 6 1
 * * * x + asin x 1 6 1
 * * + * asin x x x 6 1
 
-(d x (* 8 (pow (+ (* 2 x) (asin x)) 3)))
+d x * 8 pow + * 2 x asin x 3
 
-(d x (+ (pow x 2) (+ (* x (asinh x)) 1)))
+d x + pow x 2 + * x asinh x 1
 + d x * x asinh x + x x
 + * x - d x asinh x -2 asinh x
 + * x 2 d x * x asinh x
 d x + pow x 2 * x asinh x
 + asinh x * x + d x asinh x 2
 
-(* 5 (+ (* 6 x) (atanh (pow x 2))))
+* 5 + * 6 x atanh pow x 2
 + * atanh pow x 2 5 * x 30
 + * atanh pow x 2 5 / x 0.03333333333333333
 * + / x 0.16666666666666666 atanh pow x 2 5
 * + * x 6 atanh pow x 2 5
 
-(d x (+ (cos (+ x (* 4 pi))) (cos (acosh x))))
+d x + cos + x * 4 pi cos acosh x
 
-(asinh (+ (* 2 x) 7))
+asinh + * 2 x 7
 
-(d x (+ (* 2 x) (* 4 (* (pow x 3) (atanh x)))))
+d x + * 2 x * 4 * pow x 3 atanh x
 
-(d x (* -4 (* x (+ 5 (+ x (* -1 (acosh x)))))))
+d x * -4 * x + 5 + x * -1 acosh x
 
-(+ x (+ (* -10 (pow 6 -1)) (acos x)))
++ x + * -10 pow 6 -1 acos x
 + acos x + x * -10 pow 6 -1
 
-(+ (* 10 (pow x 2)) (* x (atan x)))
++ * 10 pow x 2 * x atan x
 + * x atan x * 10 pow x 2
 
-(d x (+ x (* -1 (* x (+ x (* x (acos x)))))))
+d x + x * -1 * x + x * x acos x
 
-(d x (+ (* 5 x) (* x (atanh x))))
+d x + * 5 x * x atanh x
 pow + d x * atanh x x 5 1
 * 1 d x * - atanh x -5 x
 + 5 d / x 1 * atanh x x
@@ -8434,7 +8434,7 @@ d x * / x 1 - atanh x -5
 - d x * x - atanh x -5 0
 - atanh x - -5 * x d x atanh x
 
-(d x (* x (+ 16 (* -4 (asinh x)))))
+d x * x + 16 * -4 asinh x
 + 16 d x * * x -4 asinh x
 + d x * asinh x / x -0.25 16
 - * d x * asinh x x -4 -16
@@ -8442,11 +8442,11 @@ d x * / x 1 - atanh x -5
 - d x * asinh x / x -0.25 -16
 + 16 d x / asinh x / -0.25 x
 
-(d x (* 4 (* (pow x 3) (+ 1 (* -1 (acosh x))))))
+d x * 4 * pow x 3 + 1 * -1 acosh x
 
-(d x (+ x (+ (acosh x) (sin (+ (* 6 pi) (acosh x))))))
+d x + x + acosh x sin + * 6 pi acosh x
 
-(+ x (* 2 (* (+ x (atan x)) 8)))
++ x * 2 * + x atan x 8
 * + * atan x 16 * x 17 1
 + * 16 + atan x x x
 + + x * 16 x * atan x 16
@@ -8457,56 +8457,56 @@ pow + * 17 x * atan x 16 1
 pow + x * 16 + atan x x 1
 + x * * 2 + x atan x 8
 
-(+ x (cos (+ (* 10 (acosh x)) (* 8 pi))))
++ x cos + * 10 acosh x * 8 pi
 + x cos + * -8 pi * acosh x -10
 + x cos - * 8 pi * -10 acosh x
 + x cos - * -8 pi * acosh x 10
 + x cos + * pi 8 * 10 acosh x
 
-(d x (+ (* 3 (pow x 5)) (* 3 (* x (asin x)))))
+d x + * 3 pow x 5 * 3 * x asin x
 
-(d x (* x (+ 3 (* 2 (exp (acosh x))))))
+d x * x + 3 * 2 exp acosh x
 
-(* 7 (* x (+ 11 (* 5 (asinh x)))))
+* 7 * x + 11 * 5 asinh x
 
-(d x (+ (* 16 (atanh x)) (* -4 (* x (atanh x)))))
+d x + * 16 atanh x * -4 * x atanh x
 
-(acosh (* (pow 5 -10) (+ 10 x)))
+acosh * pow 5 -10 + 10 x
 
-(d x (+ 1 (* -1 (* (+ 2 x) (asinh x)))))
+d x + 1 * -1 * + 2 x asinh x
 + 0 d x * asinh x - -2 x
 
-(+ (* 2 (acos x)) (* 8 (* x (acos x))))
++ * 2 acos x * 8 * x acos x
 pow * acos x + 2 * 8 x 1
 * acos x + 2 * 8 x
 + * 2 acos x * x * acos x 8
 * 1 * acos x + 2 * x 8
 
-(+ (pow x 2) (pow (csc (acosh x)) -1))
++ pow x 2 pow csc acosh x -1
 + pow csc acosh x -1 pow x 2
 + pow x 2 pow / csc acosh x 1 -1
 + pow / 1 sin acosh x -1 pow x 2
 pow + pow x 2 pow csc acosh x -1 1
 * + pow x 2 pow csc acosh x -1 1
 
-(d x (* x (+ (* -16 (asinh x)) (* 2 x))))
+d x * x + * -16 asinh x * 2 x
 
-(d x (+ (pow x 2) (* -4 (* (pow x 4) (asin x)))))
+d x + pow x 2 * -4 * pow x 4 asin x
 
-(d x (* 2 (* x (+ -4 (* (pow x 3) (acos x))))))
+d x * 2 * x + -4 * pow x 3 acos x
 
-(d x (* (pow x 2) (+ 2 (asin x))))
+d x * pow x 2 + 2 asin x
 d x * + asin x 2 pow x 2
 
-(* (+ -2 x) (* (+ 2 x) (+ x (asinh x))))
+* + -2 x * + 2 x + x asinh x
 * + -4 * x x + asinh x x
 * + asinh x x + pow x 2 -4
 
-(* 4 (* (pow x 3) (+ 1 (* 3 (acosh x)))))
+* 4 * pow x 3 + 1 * 3 acosh x
 
-(* -10 (* x (+ (atanh x) (sin (+ x (* 6 pi))))))
+* -10 * x + atanh x sin + x * 6 pi
 
-(d x (+ (* 4 x) (* 6 (atanh x))))
+d x + * 4 x * 6 atanh x
 + * 6 / d x atanh x 1 4
 - * d x atanh x 6 -4
 + 4 / 6 - 1 pow x 2
@@ -8536,29 +8536,29 @@ pow + 4 * 6 d x atanh x 1
 + 4 / 6 / 1 d x atanh x
 - 4 d x - 0 * 6 atanh x
 
-(d x (+ 1 (+ (* -10 x) (sin (+ (* 3 pi) (asinh x))))))
+d x + 1 + * -10 x sin + * 3 pi asinh x
 - d x sin + * pi 3 asinh x 10
 + -10 d x sin + asinh x * 3 pi
 
-(d x (* 4 (* x (+ 1 (* 2 (* x (atanh x)))))))
+d x * 4 * x + 1 * 2 * x atanh x
 
-(+ (* -1 x) (* 3 (* x (asin (* 2 x)))))
++ * -1 x * 3 * x asin * 2 x
 * + * 3 asin * 2 x -1 x
 * - * asin * 2 x 3 1 x
 - * * x 3 asin * x 2 x
 
-(+ (pow x 2) (+ (* 4 x) (* 5 (* x (acosh x)))))
++ pow x 2 + * 4 x * 5 * x acosh x
 
-(+ (* 2 x) (* 4 (* x (atan (* 3 x)))))
++ * 2 x * 4 * x atan * 3 x
 * x + 2 * atan * 3 x 4
 
-(d x (pow (+ (* 2 x) (* -2 (* x (acosh x)))) 2))
+d x pow + * 2 x * -2 * x acosh x 2
 
-(* x (+ x (* -1 (* x (atanh (+ 3 x))))))
+* x + x * -1 * x atanh + 3 x
 
-(+ x (+ (pow x 2) (* 2 (* x (acos (* 2 x))))))
++ x + pow x 2 * 2 * x acos * 2 x
 
-(d x (* 3 (exp (+ 5 (asin x)))))
+d x * 3 exp + 5 asin x
 + 0 / d x exp + 5 asin x 0.3333333333333333
 pow * 3 d x exp + 5 asin x 1
 d x / / exp + asin x 5 0.3333333333333333 1
@@ -8571,15 +8571,15 @@ d x / / exp + asin x 5 0.3333333333333333 1
 pow d x / exp + asin x 5 0.3333333333333333 1
 d x / 3 / 1 exp + 5 asin x
 
-(d x (* 2 (* x (+ 7 (+ (* 2 x) (atan x))))))
+d x * 2 * x + 7 + * 2 x atan x
 
-(d x (* 2 (+ 2 (* x (acosh (pow x 2))))))
+d x * 2 + 2 * x acosh pow x 2
 d x * + x x acosh * x x
 d x * + x x acosh pow x 2
 d x * 2 * x acosh pow x 2
 d x * x * acosh * x x 2
 
-(d x (* 4 (* x (+ -64 (acos x)))))
+d x * 4 * x + -64 acos x
 * 4 d x * + -64 acos x x
 d x * + acos x -64 / x 0.25
 + d x * * x 4 acos x -256
@@ -8587,30 +8587,30 @@ d x / x / 0.25 + acos x -64
 + d x / acos x / 0.25 x -256
 + -256 d x * acos x / x 0.25
 
-(asinh (* x (* (pow 7 -1) 4)))
+asinh * x * pow 7 -1 4
 
-(* (pow x 2) (* (+ 2 (* 2 x)) (acos x)))
+* pow x 2 * + 2 * 2 x acos x
 
-(d x (+ 3 (* x (+ 4 (+ (pow x 2) (acosh x))))))
+d x + 3 * x + 4 + pow x 2 acosh x
 
-(d x (* 4 (* (+ 1 (* 3 x)) (asin x))))
+d x * 4 * + 1 * 3 x asin x
 d x * asin x + * x 12 4
 d x * + / x 0.08333333333333333 4 asin x
 
-(d x (* x (+ x (atanh (tanh (cos x))))))
+d x * x + x atanh tanh cos x
 
-(d x (+ x (+ (* x (* 4 (exp x))) (acos x))))
+d x + x + * x * 4 exp x acos x
 
-(d x (+ (* -10 (pow x -10)) (cos (+ (* 4 pi) (asinh x)))))
+d x + * -10 pow x -10 cos + * 4 pi asinh x
 
-(+ x (+ (sin x) (sin (+ (* 8 pi) (acosh x)))))
++ x + sin x sin + * 8 pi acosh x
 
-(+ 4 (* 1 (acos x)))
++ 4 * 1 acos x
 + 4 acos x
 * + 4 acos x 1
 pow + acos x 4 1
 
-(+ (* x (+ 1 (* 2 x))) (atanh x))
++ * x + 1 * 2 x atanh x
 + - atanh x * pow x 2 -2 x
 + x + * pow x 2 2 atanh x
 + atanh x * - * 2 x -1 x
@@ -8627,7 +8627,7 @@ pow + acos x 4 1
 + atanh x * + / x 0.5 1 x
 + atanh x * x - 1 * -2 x
 
-(d x (* 2 (+ x (* -1 (asinh (sqrt x))))))
+d x * 2 + x * -1 asinh sqrt x
 * - 2 * 2 d x asinh sqrt x 1
 - 0 - -2 d x * asinh sqrt x -2
 - d x * * 2 asinh sqrt x -1 -2
@@ -8671,7 +8671,7 @@ pow - 2 * 2 d x asinh sqrt x 1
 + / -2 / 1 d x asinh sqrt x 2
 - 2 / 2 / 1 d x asinh sqrt x
 
-(d x (asinh (+ 6 (* -5 x))))
+d x asinh + 6 * -5 x
 d x asinh / + * x -5 6 1
 d x asinh + 6 * x -5
 d x asinh + 6 / -5 / 1 x
@@ -8680,9 +8680,9 @@ d x asinh + 6 / -5 / 1 x
 * d x asinh + 6 * -5 x 1
 pow d x asinh + 6 * -5 x 1
 
-(+ (* 1 x) (* 7 (* x (acosh (* 3 x)))))
++ * 1 x * 7 * x acosh * 3 x
 
-(d x (* x (+ x (* -1 (exp (asin x))))))
+d x * x + x * -1 exp asin x
 - d x * - x exp asin x x 0
 * 1 d x * x - x exp asin x
 + 0 d x * - x exp asin x x
@@ -8691,13 +8691,13 @@ pow d x asinh + 6 * -5 x 1
 - x - d x * exp asin x x x
 + - x d x * x exp asin x x
 
-(* x (+ 4 (+ (* 4 x) (atan x))))
+* x + 4 + * 4 x atan x
 * x + + * 4 x 4 atan x
 * + atan x * + x 1 4 x
 
-(* x (+ -1 (* 5 (atanh x))))
+* x + -1 * 5 atanh x
 
-(+ (pow (asinh x) 4) 8)
++ pow asinh x 4 8
 + pow + asinh x * ln 1 16 4 8
 + pow + asinh x * 406 ln 1 4 8
 + pow + asinh x * 468 ln 1 4 8
@@ -9493,16 +9493,16 @@ pow d x asinh + 6 * -5 x 1
 + pow + asinh x * 367 ln 1 4 8
 + pow + asinh x * 782 ln 1 4 8
 
-(* -10 (cos (+ x (asin (* 5 pi)))))
+* -10 cos + x asin * 5 pi
 * / 1 sec + asin * pi 5 x -10
 * -10 cos * -1 + x asin * 5 pi
 * -10 cos + x asin * pi 5
 * / cos + x asin * 5 pi 1 -10
 * -10 cos - * x -1 asin * 5 pi
 
-(d x (* 4 (+ (* 5 (pow x 2)) (atanh (* 2 x)))))
+d x * 4 + * 5 pow x 2 atanh * 2 x
 
-(+ (* -10 (* x 8)) (atan x))
++ * -10 * x 8 atan x
 * + atan x * x -80 1
 * 1 + atan x * 8 * -10 x
 + * -80 x atan x
@@ -9510,9 +9510,9 @@ pow + * -80 x atan x 1
 + atan x * * x -10 8
 pow + * -10 * 8 x atan x 1
 
-(* 2 (* x (+ 1 (acosh (* 2 x)))))
+* 2 * x + 1 acosh * 2 x
 
-(d x (* 5 (+ (* 2 x) (acos (* 1 x)))))
+d x * 5 + * 2 x acos * 1 x
 - / -5 sqrt - 1 pow x 2 -10
 - - 0 / d x acos x -0.2 -10
 - / 5 / 1 d x acos x -10
@@ -9594,35 +9594,35 @@ pow - / d x acos x 0.2 -10 1
 - 10 / 5 sqrt - 1 pow x 2
 - * * d x acos x -5 -1 -10
 
-(d x (+ (pow (+ 5 x) 2) (* x (atanh x))))
+d x + pow + 5 x 2 * x atanh x
 
-(d x (* x (+ -2 (* (+ 3 x) (atanh x)))))
+d x * x + -2 * + 3 x atanh x
 
-(d x (+ (* 3 (asin x)) (* 8 (* x (asin x)))))
+d x + * 3 asin x * 8 * x asin x
 d x * + * x 8 3 asin x
 d x * asin x + / x 0.125 3
 
-(+ 8 (acos x))
++ 8 acos x
 * 1 + acos x 8
 pow + 8 acos x 1
 + 8 acos x
 
-(d x (+ x (* x (+ 20 (* 4 (acosh x))))))
+d x + x * x + 20 * 4 acosh x
 + 21 d x * acosh x / x 0.25
 - d x * * x acosh x 4 -21
 - d x * / x 0.25 acosh x -21
 + 21 d x * x * acosh x 4
 
-(+ x (+ (* -10 (sin x)) (+ (atan x) (cos x))))
++ x + * -10 sin x + atan x cos x
 
-(d x (+ (* -10 (cos (+ 1 (* 9 pi)))) (acos x)))
+d x + * -10 cos + 1 * 9 pi acos x
 
-(* x (* (+ 1 (pow x 2)) (+ x (acos x))))
+* x * + 1 pow x 2 + x acos x
 * + x acos x + x pow x 3
 
-(d x (* x (+ x (* x (acos (* 4 x))))))
+d x * x + x * x acos * 4 x
 
-(* (+ 2 (atanh x)) 7)
+* + 2 atanh x 7
 - 0 * 7 - - -2 atanh x 0
 * 1 * - atanh x -2 7
 + * - atanh x -2 7 0
@@ -9694,9 +9694,9 @@ pow - - * atanh x 7 0 -14 1
 + 0 - * 7 atanh / x 1 -14
 pow * - atanh / x 1 -2 7 1
 
-(* -10 (* x (+ 1 (cos (+ (* 9 pi) (acosh x))))))
+* -10 * x + 1 cos + * 9 pi acosh x
 
-(* -1 (* x (+ -1 (* 3 (atanh (+ 2 x))))))
+* -1 * x + -1 * 3 atanh + 2 x
 * x - * atanh - x -2 -3 -1
 * x - * atanh + 2 x -3 -1
 * + 1 * -3 atanh + 2 x x
@@ -9708,21 +9708,21 @@ pow * - atanh / x 1 -2 7 1
 * + 1 * atanh - x -2 -3 x
 + * x * atanh - x -2 -3 x
 
-(d x (* x (+ 3 (+ x (* (pow x -1) (asinh x))))))
+d x * x + 3 + x * pow x -1 asinh x
 + 3 d x + asinh x * x x
 + 3 d x + asinh x pow x 2
 + 3 + * 2 x d x asinh x
 + x + + 3 d x asinh x x
 
-(d x (+ (* 3 (pow x 2)) (* 3 (* x (atanh x)))))
+d x + * 3 pow x 2 * 3 * x atanh x
 
-(* 7 (* x (+ 4 (* -1 (asinh x)))))
+* 7 * x + 4 * -1 asinh x
 
-(d x (* 9 (* x (+ 2 (* -3 (* x (acos x)))))))
+d x * 9 * x + 2 * -3 * x acos x
 
-(+ x (+ (* 5 (pow x 2)) (* x (asin x))))
++ x + * 5 pow x 2 * x asin x
 
-(d x (* 3 (+ 2 (asin x))))
+d x * 3 + 2 asin x
 * * d x + 2 asin x 3 1
 / d x asin x 0.3333333333333333
 * 1 d x + * 3 asin x 6
@@ -9769,11 +9769,11 @@ pow d x + 6 * 3 asin x 1
 / 3 / 1 / d x asin x 1
 * 1 d x * asin x 3
 
-(+ 10 (* 5 (* x (+ x (acosh x)))))
++ 10 * 5 * x + x acosh x
 
-(* 3 (* x (+ x (* (pow x 2) (asin x)))))
+* 3 * x + x * pow x 2 asin x
 
-(d x (* 2 (* (+ x (atan x)) 3)))
+d x * 2 * + x atan x 3
 * + / 1 + 1 pow x 2 1 6
 + 6 * / 3 + pow x 2 1 2
 + 6 * 2 * d x atan x 3
@@ -9827,30 +9827,30 @@ pow + 6 / 6 + 1 pow x 2 1
 * 6 + d x atan x 1
 + * 6 d x + x atan x 0
 
-(* -4 (* x (* (+ -2 x) (acosh x))))
+* -4 * x * + -2 x acosh x
 
-(d x (* 2 (+ (* 8 (asinh x)) (* 9 (pow x 2)))))
+d x * 2 + * 8 asinh x * 9 pow x 2
 + / d x asinh x 0.0625 * x 36
 + * 16 d x asinh x * x 36
 
-(+ (* -2 x) (* 4 (asinh (sqrt x))))
++ * -2 x * 4 asinh sqrt x
 
-(d x (+ (pow (csc x) -1) (* x (acosh x))))
+d x + pow csc x -1 * x acosh x
 
-(d x (+ (pow (csc x) -1) (* -10 (acosh x))))
+d x + pow csc x -1 * -10 acosh x
 d x + pow csc x -1 * acosh x -10
 
-(d x (* 7 (* (+ 4 x) (atanh x))))
+d x * 7 * + 4 x atanh x
 d x * 7 * atanh x + 4 x
 d x * atanh x + * 7 x 28
 
-(d x (* 4 (+ (atan x) (atanh x))))
+d x * 4 + atan x atanh x
 - d x * + atanh x atan x 4 0
 + d x * + atanh x atan x 4 0
 
-(+ x (+ (* -1 (pow x 3)) (* -5 (* x (asin x)))))
++ x + * -1 pow x 3 * -5 * x asin x
 
-(d x (* 2 (* x (+ 3 (asin x)))))
+d x * 2 * x + 3 asin x
 d x / x / 0.5 + 3 asin x
 d x / * x + 3 asin x 0.5
 + 6 d x * x / asin x 0.5
@@ -9858,11 +9858,11 @@ d x * * + 3 asin x 2 x
 + d x / asin x / 0.5 x 6
 d x * x + 6 * 2 asin x
 
-(* -10 (* (pow (csc (+ -10 (* 4 pi))) -1) (atan x)))
+* -10 * pow csc + -10 * 4 pi -1 atan x
 
-(d x (* x (* (pow (sec (+ 10 (* 5 pi))) 10) (acos x))))
+d x * x * pow sec + 10 * 5 pi 10 acos x
 
-(+ x (* x (atan (* x 4))))
++ x * x atan * x 4
 * 1 * + atan * 4 x 1 x
 + * atan * x 4 x x
 * 1 + * x atan * 4 x x
@@ -9870,7 +9870,7 @@ pow * x + 1 atan * x 4 1
 * x + 1 atan * x 4
 pow + x * x atan * 4 x 1
 
-(d x (+ x (* 15 (* x (asin x)))))
+d x + x * 15 * x asin x
 d x + / asin x / 0.06666666666666667 x x
 + 1 d x * asin x * 15 x
 d x + x * * asin x 15 x
@@ -9878,31 +9878,31 @@ d x + x * * asin x 15 x
 + 1 d x * x / asin x 0.06666666666666667
 d x + / * x asin x 0.06666666666666667 x
 
-(* -1 (* x (+ -2 (* 3 (asin (* 2 x))))))
+* -1 * x + -2 * 3 asin * 2 x
 * + * -3 asin * 2 x 2 x
 * - 2 * asin * x 2 3 x
 * - * asin * 2 x -3 -2 x
 
-(+ 2 (* 2 (* (pow x 3) (asinh x))))
++ 2 * 2 * pow x 3 asinh x
 
-(* 5 (* (pow x 4) (+ (* -1 x) (acosh x))))
+* 5 * pow x 4 + * -1 x acosh x
 
-(d x (* -1 (* x (+ 1 (+ x (atan x))))))
+d x * -1 * x + 1 + x atan x
 
-(d x (+ (* -1 (acosh x)) (* 4 (pow x 3))))
+d x + * -1 acosh x * 4 pow x 3
 - * * x x 12 d x acosh x
 - * 12 pow x 2 d x acosh x
 d x - * pow x 3 4 acosh x
 
-(+ x (pow (csc (+ (* 4 pi) (* -1 (asinh (+ 10 x))))) -1))
++ x pow csc + * 4 pi * -1 asinh + 10 x -1
 
-(+ 2 (+ (pow x -2) (+ (pow x 2) (acos x))))
++ 2 + pow x -2 + pow x 2 acos x
 
-(d x (+ 10 (+ (* -10 (* x (pow (sec x) -1))) (acos x))))
+d x + 10 + * -10 * x pow sec x -1 acos x
 
-(+ (pow x 4) (+ (* -4 (pow x 3)) (asin x)))
++ pow x 4 + * -4 pow x 3 asin x
 
-(* -1 (* x (+ -1 (* (+ 2 x) (acos x)))))
+* -1 * x + -1 * + 2 x acos x
 * - 1 * acos x - x -2 x
 - x * x * acos x - x -2
 * + 1 * acos x - -2 x x
@@ -9911,7 +9911,7 @@ d x - * pow x 3 4 acosh x
 * - * acos x - -2 x -1 x
 * x - 1 * + x 2 acos x
 
-(* 6 (* x (+ -5 (* 4 (asin x)))))
+* 6 * x + -5 * 4 asin x
 + * x * 24 asin x * -30 x
 * * x + * asin x 24 -30 1
 * x + -30 * 24 asin x
@@ -9919,41 +9919,41 @@ d x - * pow x 3 4 acosh x
 pow * + * asin x 24 -30 x 1
 * + * asin x 4 -5 * x 6
 
-(+ x (* (pow x 2) (* (+ -2 x) (asinh x))))
++ x * pow x 2 * + -2 x asinh x
 
-(* x (+ 1 (* 36 (* x (asin x)))))
+* x + 1 * 36 * x asin x
 + * 36 * asin x pow x 2 x
 + x * x * * asin x 36 x
 * + * 36 * x asin x 1 x
 
-(+ (* -3 (pow x 2)) (* -3 (atan x)))
++ * -3 pow x 2 * -3 atan x
 pow * + pow x 2 atan x -3 1
 * + pow x 2 atan x -3
 + * -3 pow x 2 * -3 atan x
 * * -3 + pow x 2 atan x 1
 
-(d x (+ (* x (exp (+ 1 x))) (acosh x)))
+d x + * x exp + 1 x acosh x
 d x + acosh x * exp + x 1 x
 
-(d x (+ x (* 16 (* x (pow (acosh x) 2)))))
+d x + x * 16 * x pow acosh x 2
 
-(d x (* -2 (* x (+ (* -5 (acosh x)) (* 2 x)))))
+d x * -2 * x + * -5 acosh x * 2 x
 
-(d x (+ (* -6 (pow x 2)) (* 2 (* x (asinh x)))))
+d x + * -6 pow x 2 * 2 * x asinh x
 
-(d x (* 3 (+ -1 (+ x (atanh (+ 2 x))))))
+d x * 3 + -1 + x atanh + 2 x
 - d x * atanh + x 2 3 -3
 + d x * 3 atanh + x 2 3
 + / 3 - 1 pow + x 2 2 3
 - / 3 - 1 pow + 2 x 2 -3
 
-(d x (+ (* 8 x) (* 5 (pow (acosh x) 2))))
+d x + * 8 x * 5 pow acosh x 2
 - * 5 d x pow acosh x 2 -8
 + 8 * * 10 d x acosh x acosh x
 + 8 d x * pow acosh x 2 5
 - * * d x acosh x acosh x 10 -8
 
-(d x (+ 5 (+ (* 7 x) (asin x))))
+d x + 5 + * 7 x asin x
 pow + 7 d x + asin x 5 1
 + 7 / d x asin x 1
 + + 7 / d x asin x 1 0
@@ -9975,7 +9975,7 @@ pow + / d x asin x 1 7 1
 pow + d x asin x 7 1
 + d x + asin x 5 7
 
-(d x (+ -16 (+ (pow x 2) (atan x))))
+d x + -16 + pow x 2 atan x
 * 1 + d x atan x * x 2
 + * x 2 / 1 + 1 pow x 2
 + * x 2 d x + -16 atan x
@@ -9989,34 +9989,34 @@ d x + + atan x pow x 2 -16
 d x + pow x 2 atan x
 pow d x + atan x pow x 2 1
 
-(d x (+ (* -5 x) (* 10 (* x (atanh x)))))
+d x + * -5 x * 10 * x atanh x
 + -5 * d x * x atanh x 10
 - d x * x * 10 atanh x 5
 
-(+ (* 4 x) (* 6 (* x (acos x))))
++ * 4 x * 6 * x acos x
 pow * x + 4 * 6 acos x 1
 * * x + * 6 acos x 4 1
 + * x * 6 acos x * 4 x
 * + * acos x 6 4 x
 
-(+ (* 15 x) (* 5 (* x (atan x))))
++ * 15 x * 5 * x atan x
 * x + * atan x 5 15
 pow * + * 5 atan x 15 x 1
 * * x + * 5 atan x 15 1
 + * x * 5 atan x * 15 x
 
-(* 9 (+ (pow x 6) (+ (* 5 x) (* 5 (asinh x)))))
+* 9 + pow x 6 + * 5 x * 5 asinh x
 
-(* (pow x 3) (+ (* 8 x) (acos x)))
+* pow x 3 + * 8 x acos x
 * pow x 3 + acos x * x 8
 
-(* 7 (* pi (+ x (acosh x))))
+* 7 * pi + x acosh x
 
-(+ 3 (+ (pow x 2) (+ (* 3 x) (atan x))))
++ 3 + pow x 2 + * 3 x atan x
 
-(* x (+ 1 (+ x (* 3 (* (pow x 2) (asin x))))))
+* x + 1 + x * 3 * pow x 2 asin x
 
-(* 6 (* x (+ 3 (* 2 (atan x)))))
+* 6 * x + 3 * 2 atan x
 * * + 3 * atan x 2 6 x
 * + * 12 atan x 18 x
 * 1 * x + * atan x 12 18
@@ -10024,16 +10024,16 @@ pow * x + 18 * atan x 12 1
 * x + 18 * * 2 atan x 6
 + * * 12 atan x x * 18 x
 
-(+ (* 1250 x) (* 1250 (acosh x)))
++ * 1250 x * 1250 acosh x
 
-(d x (* x (* (+ 1 (* 8 x)) (acosh x))))
+d x * x * + 1 * 8 x acosh x
 
-(* 1 (+ (* 3 (atan x)) (* 1 (pow x 6))))
+* 1 + * 3 atan x * 1 pow x 6
 pow + * atan x 3 pow x 6 1
 + * 3 atan x pow x 6
 * 1 + pow x 6 * atan x 3
 
-(d x (* 1 (+ 10 (+ (* 2 x) (atan (* 2 x))))))
+d x * 1 + 10 + * 2 x atan * 2 x
 + 2 / 2 + pow * x 2 2 1
 * + d x atan * 2 x 2 1
 pow + 2 d x atan * 2 x 1
@@ -10044,12 +10044,12 @@ d x + * 2 x atan * x 2
 + 1 + 1 d x atan * x 2
 + 2 d x atan * x 2
 
-(+ x (+ (pow (+ 2 x) 2) (acos x)))
++ x + pow + 2 x 2 acos x
 + + pow + x 2 2 acos x x
 
-(+ (pow x 2) (+ (pow x 7) (+ (* 2 x) (atan x))))
++ pow x 2 + pow x 7 + * 2 x atan x
 
-(d x (+ x (asin (* x (+ 3 2.7)))))
+d x + x asin * x + 3 2.7
 pow + d x asin * x 5.7 1 1
 + 0 d x + x asin * 5.7 x
 d x + x asin * x 5.7
@@ -10060,28 +10060,28 @@ d x + x asin * x 5.7
 * 1 + d x asin * x 5.7 1
 pow d x + asin * 5.7 x x 1
 
-(d x (* 3 (* x (* (+ -1 x) (asin x)))))
+d x * 3 * x * + -1 x asin x
 
-(* x (* (pow 4 -10) (+ x (asin x))))
+* x * pow 4 -10 + x asin x
 * + asin x x * x pow 4 -10
 
-(d x (+ x (+ (* 4 (acosh x)) (* -2 (* x (acosh x))))))
+d x + x + * 4 acosh x * -2 * x acosh x
 
-(* x (+ 7 (* x (asin x))))
+* x + 7 * x asin x
 * + * x asin x 7 x
 + * * x asin x x * 7 x
 + * pow x 2 asin x * 7 x
 * * x + 7 * x asin x 1
 pow * + * x asin x 7 x 1
 
-(* (pow x 2) (+ 1 (asin (* 2.7 x))))
+* pow x 2 + 1 asin * 2.7 x
 * + 1 asin * 2.7 x pow x 2
 
-(d x (* -1 (* x (+ -1 (* 4 (atan x))))))
+d x * -1 * x + -1 * 4 atan x
 
-(d x (+ x (* x (* (+ 4 (* 2 x)) (asinh x)))))
+d x + x * x * + 4 * 2 x asinh x
 
-(d x (* x (+ (asin x) 7)))
+d x * x + asin x 7
 + d x * + asin x 7 x 0
 d x + * x 7 * x asin x
 + * d x asin x x + asin x 7
@@ -10092,12 +10092,12 @@ pow + 7 d x * x asin x 1
 d x + * asin x x / x 0.14285714285714285
 d x * x + asin x 7
 
-(d x (+ (* 2 x) (* 9 (* x (asin x)))))
+d x + * 2 x * 9 * x asin x
 d x * + * 9 asin x 2 x
 + 2 d x * / asin x 0.1111111111111111 x
 + 2 d x / asin x / 0.1111111111111111 x
 
-(+ 1 (atanh x))
++ 1 atanh x
 pow - 0 - -1 - atanh x 0 1
 * - atanh x -1 1
 pow + - - atanh x 0 0 1 1
@@ -10177,25 +10177,25 @@ pow - atanh x -1 1
 pow + - atanh x 0 1 1
 pow + 1 atanh / x 1 1
 
-(* x (+ 3 (+ (* 2 x) (* -2 (* x (acos x))))))
+* x + 3 + * 2 x * -2 * x acos x
 
-(* 6 (+ x (* -3 (asinh x))))
+* 6 + x * -3 asinh x
 
-(d x (* -1 (* x (* (+ 1 x) (asin (+ -4 x))))))
+d x * -1 * x * + 1 x asin + -4 x
 
-(d x (* x (+ (* 10 (pow x 2)) (acos x))))
+d x * x + * 10 pow x 2 acos x
 
-(d x (* -10 (* (pow (acos (* 2 pi)) -10) (cos x))))
+d x * -10 * pow acos * 2 pi -10 cos x
 
-(d x (* (+ 2 (* -1 (* x (+ 4 x)))) (acos x)))
+d x * + 2 * -1 * x + 4 x acos x
 
-(d x (* (+ 1 (* 5 x)) (asinh x)))
+d x * + 1 * 5 x asinh x
 d x + asinh x * * asinh x 5 x
 d x * + * x 5 1 asinh x
 
-(+ x (+ (* x (+ x (cos (+ x (* 3 pi))))) (atanh x)))
++ x + * x + x cos + x * 3 pi atanh x
 
-(d x (* x (+ 1 (* 243 (atan x)))))
+d x * x + 1 * 243 atan x
 d x + / x / 0.00411522633744856 atan x x
 d x * + 1 / atan x 0.00411522633744856 x
 + d x / atan x / 0.00411522633744856 x 1
@@ -10205,7 +10205,7 @@ d x + x * / x 0.00411522633744856 atan x
 d x + x * 242.99999999999997 * atan x x
 + 1 d x * * atan x x 243
 
-(d x (+ (* -5 (asinh (* 2 x))) (* 5 x)))
+d x + * -5 asinh * 2 x * 5 x
 + 5 d x * asinh * 2 x -5
 - d x * asinh + x x -5 -5
 - / d x asinh * 2 x -0.2 -5
@@ -10215,17 +10215,17 @@ d x + x * 242.99999999999997 * atan x x
 + / d x asinh + x x -0.2 5
 - / d x asinh + x x -0.2 -5
 
-(d x (* (pow 6 -1) (* (acosh x) 7)))
+d x * pow 6 -1 * acosh x 7
 * / pow 6 -1 0.14285714285714285 d x acosh x
 / pow 6 -1 / 0.14285714285714285 d x acosh x
 * * pow 6 -1 7 d x acosh x
 
-(d x (+ 2 (+ x (+ (atan x) (sin (+ x (* 7 pi)))))))
+d x + 2 + x + atan x sin + x * 7 pi
 
-(d x (+ (* -1 x) (* -1 (* x (+ x (acos x))))))
+d x + * -1 x * -1 * x + x acos x
 - -1 d x * + x acos x x
 
-(* x (pow (sec (+ 1 (asin x))) -1))
+* x pow sec + 1 asin x -1
 * * pow sec + 1 asin x -1 x 1
 * pow / 1 cos + 1 asin x -1 x
 * x pow sec - -1 asin x -1
@@ -10240,37 +10240,37 @@ pow * pow sec + 1 asin x -1 x 1
 * pow sec + * asin x -1 -1 -1 x
 * pow sec * -1 - -1 asin x -1 x
 
-(pow (+ x (* -4 (acos x))) 2)
+pow + x * -4 acos x 2
 * 1 pow + * acos x -4 x 2
 pow + x * -4 acos x 2
 pow pow + x * -4 acos x 2 1
 
-(d x (* 2 (+ (pow x 4) (acosh x))))
+d x * 2 + pow x 4 acosh x
 * 2 d x + acosh x pow x 4
 
-(d x (+ (pow x 2) (* x (asin (* 30 x)))))
+d x + pow x 2 * x asin * 30 x
 
-(* x (* (+ 1 (+ x (pow x -1))) (atanh x)))
+* x * + 1 + x pow x -1 atanh x
 + atanh x * atanh x + pow x 2 x
 + * * x + 1 x atanh x atanh x
 + * + x * x x atanh x atanh x
 
-(d x (* x (+ 1 (* 2 (atan (* 4 x))))))
+d x * x + 1 * 2 atan * 4 x
 
-(d x (* x (* (acosh (+ 1 x)) 2)))
+d x * x * acosh + 1 x 2
 d x * + x x acosh + 1 x
 d x * 2 * x acosh + 1 x
 
-(d x (+ (pow (sec (+ x (* 9 pi))) -1) (* 2 (atanh x))))
+d x + pow sec + x * 9 pi -1 * 2 atanh x
 
-(d x (* 6 (* x (* (+ 6 x) (atanh x)))))
+d x * 6 * x * + 6 x atanh x
 
-(* (pow x -1) (+ 3 (* 2 (* x (asin x)))))
+* pow x -1 + 3 * 2 * x asin x
 + * 3 pow x -1 * 2 asin x
 
-(d x (* -1 (* (+ -1 (* 2 x)) (acosh (* 5 x)))))
+d x * -1 * + -1 * 2 x acosh * 5 x
 
-(* -1 (* x (+ -4 (+ x (* x (asin x))))))
+* -1 * x + -4 + x * x asin x
 * x - 4 * x - asin x -1
 * - - 4 x * x asin x x
 * x - * x - -1 asin x -4
@@ -10278,16 +10278,16 @@ d x * 2 * x acosh + 1 x
 * x - 4 + x * asin x x
 * x - 4 * x + asin x 1
 
-(d x (* x (+ x (asin (* 4 x)))))
+d x * x + x asin * 4 x
 d x * + asin / x 0.25 x x
 d x * x + x asin * x 4
 
-(* -10 (* (pow 8 -1) (asin x)))
+* -10 * pow 8 -1 asin x
 * * * pow 8 -1 asin x -10 1
 pow * * asin x pow 8 -1 -10 1
 * pow 8 -1 * -10 asin x
 
-(d x (* 2 (+ x (asinh (* 1 x)))))
+d x * 2 + x asinh * 1 x
 - d x - * 2 asinh x 0 -2
 - 2 - 0 / d x asinh x 0.5
 + - d x asinh x -2 d x asinh x
@@ -10320,15 +10320,15 @@ pow * * asin x pow 8 -1 -10 1
 - * - d x asinh x -1 2 0
 + 2 * d x asinh / x 1 2
 
-(* 2 (* (pow x 2) (* (+ 3 (* -1 x)) (atanh x))))
+* 2 * pow x 2 * + 3 * -1 x atanh x
 
-(d x (* x (+ 1 (+ x (atan (+ 4 x))))))
+d x * x + 1 + x atan + 4 x
 
-(d x (+ (* 5 (asin (* 4 x))) (* 10 x)))
+d x + * 5 asin * 4 x * 10 x
 + / d x asin * 4 x 0.2 10
 + d x * 5 asin * x 4 10
 
-(+ -5 (* (+ 1 x) (asin x)))
++ -5 * + 1 x asin x
 + -5 * asin x + x 1
 + + asin x -5 * x asin x
 pow + -5 + * asin x x asin x 1
@@ -10336,19 +10336,19 @@ pow + -5 + * asin x x asin x 1
 * + * + 1 x asin x -5 1
 pow + * + x 1 asin x -5 1
 
-(* x (acos (+ x (* -10 (cos (+ 10 (* 4 pi)))))))
+* x acos + x * -10 cos + 10 * 4 pi
 
-(+ 10 (+ (* -10 x) (+ (asinh x) (sin (+ x (* 7 pi))))))
++ 10 + * -10 x + asinh x sin + x * 7 pi
 
-(+ (* -1 (asinh x)) (* 7 (pow x 2)))
++ * -1 asinh x * 7 pow x 2
 
-(d x (+ x (+ (pow x 2) (* 4 (acosh x)))))
+d x + x + pow x 2 * 4 acosh x
 
-(d x (+ x (+ (* -10 (cos x)) (* -10 (* x (acosh x))))))
+d x + x + * -10 cos x * -10 * x acosh x
 
-(* 5 (+ (* 12 x) (asinh x)))
+* 5 + * 12 x asinh x
 
-(d x (* 6 (+ (* -4 (atan x)) (* 5 x))))
+d x * 6 + * -4 atan x * 5 x
 + 30 * 6 d x * atan x -4
 * 1 + 30 / d x atan x -0.041666666666666664
 + 30 / 1 * + 1 pow x 2 -0.041666666666666664
@@ -10387,7 +10387,7 @@ pow + 30 / -24 + pow x 2 1 1
 + / / 6 + pow x 2 1 -0.25 30
 + 0 + 30 / d x atan x -0.041666666666666664
 
-(+ x (* x (atan (* 2 (* x 9)))))
++ x * x atan * 2 * x 9
 + * atan * 18 x x x
 * + * atan * 18 x x x 1
 + * x atan * 9 * x 2 x
@@ -10397,7 +10397,7 @@ pow + * atan * x 18 x x 1
 * x + atan * * x 2 9 1
 * x + atan * 18 x 1
 
-(asinh (+ x (sin (+ 240 (* 7 pi)))))
+asinh + x sin + 240 * 7 pi
 * asinh + sin + * pi 7 240 x 1
 pow asinh - x sin - -240 * pi 7 1
 * asinh - x sin - -240 * 7 pi 1
@@ -10407,7 +10407,7 @@ pow asinh - x sin + -240 * -7 pi 1
 pow asinh + sin - 240 * -7 pi x 1
 pow asinh + sin + 240 * 7 pi x 1
 
-(+ 1 (+ x (+ (* x (cos x)) (acosh x))))
++ 1 + x + * x cos x acosh x
 + + 1 x + acosh x * x cos x
 + acosh x + * x - cos x -1 1
 + 1 + acosh x * + 1 cos x x
@@ -10417,14 +10417,14 @@ pow asinh + sin + 240 * 7 pi x 1
 + acosh x - + x * x cos x -1
 + acosh x - + x / x sec x -1
 
-(d x (* 2 (* (pow x 2) (+ x (* -1 (atan x))))))
+d x * 2 * pow x 2 + x * -1 atan x
 
-(* (pow 5 -1) (+ -10 (acosh x)))
+* pow 5 -1 + -10 acosh x
 
-(d x (+ -1 (* (+ x (pow x 2)) (acosh x))))
+d x + -1 * + x pow x 2 acosh x
 d x * acosh x + x pow x 2
 
-(d x (* 4 (+ -2 (+ (* 2 x) (acosh x)))))
+d x * 4 + -2 + * 2 x acosh x
 - * 4 - d x acosh x -2 0
 + 8 d x * 4 acosh x
 + * - d x acosh x 0 4 8
@@ -10490,10 +10490,10 @@ d x + * acosh x 4 * x 8
 - d x + -8 * acosh x 4 -8
 * 1 - d x * acosh x 4 -8
 
-(+ x (+ (pow x 5) (* (pow x 5) (atan x))))
++ x + pow x 5 * pow x 5 atan x
 + * pow x 5 + 1 atan x x
 
-(+ x (* x (* 4 (atan x))))
++ x * x * 4 atan x
 * x + * 4 atan x 1
 * + * * atan x x 4 x 1
 pow * x + 1 * atan x 4 1
@@ -10501,11 +10501,11 @@ pow + * * x atan x 4 x 1
 * * x + 1 * atan x 4 1
 + * 4 * atan x x x
 
-(+ (* 2 (* x (atan x))) (* 2 (* x (atanh x))))
++ * 2 * x atan x * 2 * x atanh x
 + 0 * 2 * + atanh x atan x x
 + 0 * + x x + atan x atanh x
 
-(* -1 (* x (+ -4 (+ x (* -1 (exp (asin x)))))))
+* -1 * x + -4 + x * -1 exp asin x
 * - exp asin x - -4 * x -1 x
 * -1 * + x - -4 exp asin x x
 - * exp asin x x * x + x -4
@@ -10531,7 +10531,7 @@ pow * x - 4 - x exp asin x 1
 * * -1 x - - x exp asin x 4
 * 1 * - exp asin x - x 4 x
 
-(d x (* -3 (+ -1 (* x (atanh x)))))
+d x * -3 + -1 * x atanh x
 * d x - * x atanh x 1 -3
 d x - * * atanh x x -3 0
 d x / * * x atanh x -3 1
@@ -10544,7 +10544,7 @@ pow d x * -3 * x atanh x 1
 * + atanh x * d x atanh x x -3
 * d x * x * atanh x -3 1
 
-(d x (* 2 (+ (* -1 (atanh x)) (* 7 x))))
+d x * 2 + * -1 atanh x * 7 x
 - - 14 / 2 - 1 pow x 2 0
 + + 14 / -2 - 1 pow x 2 0
 + 14 / -2 - 1 pow x 2
@@ -10573,11 +10573,11 @@ pow d x * -3 * x atanh x 1
 + * 2 - 7 d x atanh x 0
 + 14 * d x - atanh x 0 -2
 
-(d x (+ (* 2 x) (* x (asinh (+ -5 x)))))
+d x + * 2 x * x asinh + -5 x
 + d x * asinh + x -5 x 2
 d x * x - asinh + x -5 -2
 
-(* 10 (+ (asinh x) (tan x)))
+* 10 + asinh x tan x
 * 10 + / 1 cot x asinh x
 * + / sin x cos x asinh x 10
 + * 10 asinh x / 10 / cot x 1
@@ -10601,7 +10601,7 @@ d x * x - asinh + x -5 -2
 * 10 - asinh x tan * * x -0.5 2
 + / 10 / 1 tan x * asinh x 10
 
-(atanh (+ x (* x 6)))
+atanh + x * x 6
 pow atanh / 1 * 0.14285714285714285 / 1 x 1
 * 1 atanh + * x 6 x
 + atanh + * x 6 x 0
@@ -10722,12 +10722,12 @@ ln * + 1 x / 1 - 1 x
 * 1 atanh + / * x 6 1 x
 atanh + x / 6 / 1 x
 
-(d x (* x (+ 1 (+ (* 2 (acosh x)) (* 4 x)))))
+d x * x + 1 + * 2 acosh x * 4 x
 
-(+ 1 (+ (* x (pow (csc x) -1)) (acosh x)))
++ 1 + * x pow csc x -1 acosh x
 + acosh x + 1 * x pow csc x -1
 
-(* 7 (+ (* 3 (atanh x)) (* 8 x)))
+* 7 + * 3 atanh x * 8 x
 pow + * 21 atanh x / x 0.017857142857142856 1
 + * atanh x 21 / 8 / 0.14285714285714285 x
 + * x 56 - * 21 atanh x 0
@@ -10754,13 +10754,13 @@ pow + * 21 atanh x / x 0.017857142857142856 1
 pow + * 56 x * atanh x 21 1
 + * 21 atanh x / / x 0.017857142857142856 1
 
-(d x (+ x (+ (* -2 (pow x 2)) (* x (asin x)))))
+d x + x + * -2 pow x 2 * x asin x
 
-(* 6 (+ (pow x 2) (* -2 (atanh x))))
+* 6 + pow x 2 * -2 atanh x
 * + * -2 atanh x pow x 2 6
 + * atanh x -12 * 6 pow x 2
 
-(d x (* 6 (+ x (pow (asinh x) 2))))
+d x * 6 + x pow asinh x 2
 + 6 * 12 * d x asinh x asinh x
 d x * + pow asinh x 2 x 6
 - * d x pow asinh x 2 6 -6
@@ -10769,46 +10769,46 @@ d x * + pow asinh x 2 x 6
 - * * 12 asinh x d x asinh x -6
 * 6 - d x pow asinh x 2 -1
 
-(sin (+ (* -10 (asin x)) (acos x)))
+sin + * -10 asin x acos x
 
-(d x (+ x (* -1 (* x (asinh (* 5 x))))))
+d x + x * -1 * x asinh * 5 x
 
-(* 2 (* x (+ (* 4 (pow x -1)) (asinh x))))
+* 2 * x + * 4 pow x -1 asinh x
 + 4 + * 2 * x asinh x 4
 + 4 + * + x x asinh x 4
 
-(+ -10 (+ x (+ (* -10 (acosh x)) (cos x))))
++ -10 + x + * -10 acosh x cos x
 + * -10 acosh x + cos x + -10 x
 
-(+ (* 4 x) (* 3 (* (pow x 2) (atan x))))
++ * 4 x * 3 * pow x 2 atan x
 
-(* 5 (* (+ 1 x) (+ x (asinh x))))
+* 5 * + 1 x + x asinh x
 
-(d x (+ (* -10 (* x (+ x (asin x)))) (sin x)))
+d x + * -10 * x + x asin x sin x
 
-(+ x (* 1 (* x (* 5 (asinh x)))))
++ x * 1 * x * 5 asinh x
 
-(* (+ x (pow x 2)) (+ 1 (+ x (asin x))))
+* + x pow x 2 + 1 + x asin x
 
-(atan (+ 1 (* 8 (pow x -1))))
+atan + 1 * 8 pow x -1
 atan + 1 * pow x -1 8
 pow atan + 1 * 8 pow x -1 1
 * 1 atan + 1 * pow x -1 8
 
-(* 4 (* (+ -2 x) (acosh x)))
+* 4 * + -2 x acosh x
 
-(+ x (+ (atan x) (+ (cos x) (cos (+ x (* 2 pi))))))
++ x + atan x + cos x cos + x * 2 pi
 
-(* (pow (csc (+ -10 (* 6 pi))) 10) (asin x))
+* pow csc + -10 * 6 pi 10 asin x
 * pow csc + * 6 pi -10 10 asin x
 * pow csc - -10 * -6 pi 10 asin x
 
-(* x (* (+ 1 x) (+ 2 (asin x))))
+* x * + 1 x + 2 asin x
 * + x * x x + asin x 2
 * + asin x 2 + pow x 2 x
 * + x 1 * x + asin x 2
 
-(* 2 (+ x (* -1 (pow (asin x) 4))))
+* 2 + x * -1 pow asin x 4
 * - x pow asin x 4 2
 * 2 + * -1 pow asin x 4 x
 - * 2 x * 2 pow asin x 4
@@ -10816,7 +10816,7 @@ pow atan + 1 * 8 pow x -1 1
 pow * 2 - x pow asin x 4 1
 * * 2 - x pow asin x 4 1
 
-(d x (+ (* -16 (acosh (sqrt x))) (* 16 x)))
+d x + * -16 acosh sqrt x * 16 x
 pow + * d x acosh sqrt x -16 16 1
 + / -16 / 1 d x acosh sqrt x 16
 + 0 - / d x acosh sqrt x -0.0625 -16
@@ -10847,9 +10847,9 @@ pow - * d x acosh sqrt x -16 -16 1
 - 16 / - 0 d x acosh sqrt x -0.0625
 + d x * acosh / sqrt x 1 -16 16
 
-(d x (* (pow x 2) (+ 4 (* 6 (atanh x)))))
+d x * pow x 2 + 4 * 6 atanh x
 
-(d x (+ 4 (* 6 (asin x))))
+d x + 4 * 6 asin x
 / 6 / 1 / d x asin x 1
 / 1 * / 1 d x asin x 0.16666666666666666
 + 0 / / d x asin x 0.16666666666666666 1
@@ -10885,17 +10885,17 @@ pow d x + 4 * 6 asin x 1
 pow / 6 / 1 d x asin x 1
 / d x + 4 * 6 asin x 1
 
-(d x (* x (+ 1 (* 2 (asinh (+ 4 x))))))
+d x * x + 1 * 2 asinh + 4 x
 
-(* x (+ 1 (+ (pow x 4) (atan (pow x 2)))))
+* x + 1 + pow x 4 atan pow x 2
 
-(d x (* -10 (+ (* -1 (tan x)) (atan x))))
+d x * -10 + * -1 tan x atan x
 + 0 * d x - atan x tan x -10
 
-(+ (pow x 2) (* x (acos (* 6 x))))
++ pow x 2 * x acos * 6 x
 + * x acos * x 6 pow x 2
 
-(asin (+ 2 (+ (* -2 4) (* 2 x))))
+asin + 2 + * -2 4 * 2 x
 pow asin + -8 + 2 * 2 x 1
 * 1 asin + + * x 2 2 -8
 pow asin + * x 2 -6 1
@@ -10903,26 +10903,26 @@ asin + + * x 2 -8 2
 * 1 asin + * x 2 -6
 asin + -6 * x 2
 
-(+ x (+ (pow (tan x) -10) (* -10 (acos x))))
++ x + pow tan x -10 * -10 acos x
 + pow tan x -10 + * -10 acos x x
 
-(+ (pow x 2) (* 4 (* (pow x 2) (acosh x))))
++ pow x 2 * 4 * pow x 2 acosh x
 
-(d x (+ (* 7 (pow x 4)) (* -1 (asinh x))))
+d x + * 7 pow x 4 * -1 asinh x
 - * 28 pow x 3 d x asinh x
 d x - * pow x 4 7 asinh x
 
-(d x (* x (+ 15 (+ (* 5 x) (* 5 (atanh x))))))
+d x * x + 15 + * 5 x * 5 atanh x
 
-(+ (* 2.7 (acosh x)) (* -1 (* x (acosh x))))
++ * 2.7 acosh x * -1 * x acosh x
 
-(+ (pow x 2) (* x (* 2 (asin x))))
++ pow x 2 * x * 2 asin x
 + pow x 2 * * 2 x asin x
 
-(pow (+ x (* x (+ -3 (+ x (asin x))))) 2)
+pow + x * x + -3 + x asin x 2
 pow * + asin x + x -2 x 2
 
-(+ (* -10 (* x (sin x))) (atanh x))
++ * -10 * x sin x atanh x
 + * sin x / -20 / 2 x atanh x
 + atanh x * sin x * x -10
 - atanh x - 0 * -10 * sin x x
@@ -10930,15 +10930,15 @@ pow * + asin x + x -2 x 2
 + * sin x * -5 * 2 x atanh x
 + atanh x - * * -10 x sin x 0
 
-(* -1 (* x (+ 3 (acosh (pow x 2)))))
+* -1 * x + 3 acosh pow x 2
 
-(* 5 (* x (+ 4 (+ (* x (atan x)) (atan x)))))
+* 5 * x + 4 + * x atan x atan x
 
-(d x (* x (+ 4 (atan (pow x 2)))))
+d x * x + 4 atan pow x 2
 d x * x + 4 atan * x x
 d x * x + 4 atan pow x 2
 
-(d x (asin (+ (* 3 x) (* x 8))))
+d x asin + * 3 x * x 8
 + 0 d / x 1 asin * x 11
 * d / x 1 asin / x 0.09090909090909091 1
 d x asin / * 11 / x 1 1
@@ -10977,9 +10977,9 @@ pow d x asin / x 0.09090909090909091 1
 d x asin + / x 0.125 * 3 x
 d x asin + / 10 / 1 x x
 
-(d x (* 2 (* x (+ -1 (* 2 (* x (acosh x)))))))
+d x * 2 * x + -1 * 2 * x acosh x
 
-(+ (pow (sec x) -1) (asinh x))
++ pow sec x -1 asinh x
 * + pow sec * -1 x -1 asinh x 1
 + asinh x pow sec * -1 * x -1 -1
 + asinh x pow sec * -1 x -1
@@ -11010,41 +11010,41 @@ pow + asinh x pow sec x -1 1
 pow + pow / 1 cos x -1 asinh x 1
 + pow sec * -2 * x -0.5 -1 asinh x
 
-(d x (+ (* 6 (* x (sqrt (pow x 3)))) (asinh x)))
+d x + * 6 * x sqrt pow x 3 asinh x
 
-(* -2 (* (pow x 3) (+ -5 (atan x))))
+* -2 * pow x 3 + -5 atan x
 * * pow x 3 + -5 atan x -2
 * pow x 3 + * atan x -2 10
 
-(+ (pow x 2) (+ (* 6 x) (* -1 (* x (atan x)))))
++ pow x 2 + * 6 x * -1 * x atan x
 - pow x 2 * - atan x 6 x
 + pow x 2 * x - 6 atan x
 
-(d x (+ x (+ (pow (csc x) -1) (+ (acos x) (asinh x)))))
+d x + x + pow csc x -1 + acos x asinh x
 
-(* -1 (* x (+ -5 (* (pow x 2) (atan x)))))
+* -1 * x + -5 * pow x 2 atan x
 - * 5 x * pow x 3 atan x
 * x - 5 * pow x 2 atan x
 
-(d x (+ (* -1 (* x (+ 4 (* 2 x)))) (asinh x)))
+d x + * -1 * x + 4 * 2 x asinh x
 - d x asinh x - 4 * -4 x
 + d x asinh x - -4 * x 4
 - d x asinh x + * 4 x 4
 - - d x asinh x * x 4 4
 + + -4 * -4 x d x asinh x
 
-(d x (* -10 (asin (+ x (pow (sec (+ 10 (* 5 pi))) -1)))))
+d x * -10 asin + x pow sec + 10 * 5 pi -1
 
-(+ x (+ (pow (sec x) -1) (asin (+ 1 x))))
++ x + pow sec x -1 asin + 1 x
 + x + pow sec x -1 asin + x 1
 
-(* 6 (+ (* 4 (pow x 2)) (acosh (+ 2 x))))
+* 6 + * 4 pow x 2 acosh + 2 x
 
-(+ (* -10 (* x (pow (sec (+ 1 (* 1 pi))) -1))) (asin x))
++ * -10 * x pow sec + 1 * 1 pi -1 asin x
 
-(d x (* (pow x 3) (atanh (+ 5 (* -1 x)))))
+d x * pow x 3 atanh + 5 * -1 x
 
-(d x (+ -10 (+ (* -10 x) (+ (asin x) (tan x)))))
+d x + -10 + * -10 x + asin x tan x
 + d x + + tan x asin x -10 -10
 + -10 d x + / 1 cot x asin x
 + -10 + d x tan x d x asin x
@@ -11054,7 +11054,7 @@ pow + pow / 1 cos x -1 asinh x 1
 + d x + - tan x 0 asin x -10
 + d x asin x + -9 pow tan x 2
 
-(* 4 (+ (asinh x) (atanh x)))
+* 4 + asinh x atanh x
 + 0 * + asinh x atanh / x 1 4
 * - - atanh x 0 - 0 asinh x 4
 pow * 4 - atanh x - 0 asinh x 1
@@ -11083,7 +11083,7 @@ pow * + asinh x atanh x 4 1
 * 4 + atanh x asinh x
 - * + asinh / x 1 atanh x 4 0
 
-(d x (* 2.7 (+ 4 (+ x (acosh x)))))
+d x * 2.7 + 4 + x acosh x
 * 1 + d x * 2.7 acosh x 2.7
 d x * 2.7 + x + acosh x 4
 * 2.7 - d x - acosh x -4 -1
@@ -11160,17 +11160,17 @@ pow + / d x acosh x 0.37037037037037035 2.7 1
 - / 1 / 0.37037037037037035 d x acosh x -2.7
 + 0 - * 2.7 d x acosh x -2.7
 
-(+ x (+ (* 4 (exp x)) (asinh x)))
++ x + * 4 exp x asinh x
 + x + * exp x 4 asinh x
 
-(+ x (* 12 (* x (asinh x))))
++ x * 12 * x asinh x
 
-(d x (cos (asinh (* x (pow 6 -10)))))
+d x cos asinh * x pow 6 -10
 
-(d x (exp (atanh (* (pow x -1) (+ 1 x)))))
+d x exp atanh * pow x -1 + 1 x
 + 0 d x exp atanh + pow x -1 1
 
-(d x (sin (* (acos x) 9)))
+d x sin * acos x 9
 + d x sin * * 0.5 acos x 18 0
 + d x sin * acos x 9 0
 + d x sin * 2 * acos x 4.5 0
@@ -11179,23 +11179,23 @@ pow + / d x acosh x 0.37037037037037035 2.7 1
 + d x sin * -1 * acos x -9 0
 + - d x sin * 9 acos x 0 0
 
-(d x (+ (* -4 x) (* 2 (pow (asinh x) 2))))
+d x + * -4 x * 2 pow asinh x 2
 
-(+ (* -10 (asin x)) (* -10 (sin x)))
++ * -10 asin x * -10 sin x
 + * -10 asin x * sin x -10
 
-(+ (* -10 (atanh x)) (sin (acosh x)))
++ * -10 atanh x sin acosh x
 + * -10 atanh x sin acosh x
 + - * atanh x -10 0 sin acosh x
 
-(* 1 (+ x (+ (* 4 (pow x 3)) (* 4 (acos x)))))
+* 1 + x + * 4 pow x 3 * 4 acos x
 + x * 4 + pow x 3 acos x
 
-(* 2 (* (+ 4 (* 2 x)) (+ x (asin x))))
+* 2 * + 4 * 2 x + x asin x
 * * + x asin x + 2 x 4
 * + * x 4 8 + asin x x
 
-(* 3 (+ -2 (+ x (asin x))))
+* 3 + -2 + x asin x
 * + x + asin x -2 3
 + * x 3 + -6 * 3 asin x
 + * 3 + -2 x * 3 asin x
@@ -11205,18 +11205,18 @@ pow + -6 * + asin x x 3 1
 * 1 * 3 + + x asin x -2
 pow * 3 + x + asin x -2 1
 
-(* x (pow (sec (+ (* 10 (asin x)) (* 2 pi))) -1))
+* x pow sec + * 10 asin x * 2 pi -1
 
-(d x (+ x (+ (pow x 10) (+ (asinh x) (cos x)))))
+d x + x + pow x 10 + asinh x cos x
 
-(+ (* -1 x) (* 3 (* x (acos (* 3 x)))))
++ * -1 x * 3 * x acos * 3 x
 * x - * 3 acos * 3 x 1
 - * x * acos * x 3 3 x
 * x + * acos * x 3 3 -1
 
-(* 6 (* x (+ 2 (* x (+ 2 (asinh x))))))
+* 6 * x + 2 * x + 2 asinh x
 
-(+ x (* -1 (* (+ -5 (* 2 x)) (acos x))))
++ x * -1 * + -5 * 2 x acos x
 - x * + -5 * 2 x acos x
 + * + 5 * -2 x acos x x
 - x * acos x - -5 * x -2
@@ -11224,7 +11224,7 @@ pow * 3 + x + asin x -2 1
 + x * - 5 * x 2 acos x
 + * acos x - * x -2 -5 x
 
-(+ (* 5 x) (atanh (* 5 x)))
++ * 5 x atanh * 5 x
 pow + atanh / x 0.2 / x 0.2 1
 + atanh / x 0.2 / x 0.2
 - + * x 5 atanh * x 5 0
@@ -11249,9 +11249,9 @@ pow + * 5 x atanh / x 0.2 1
 * + atanh / x 0.2 * x 5 1
 + + atanh * 5 x * x 5 0
 
-(d x (+ x (+ (* x (+ x (acos x))) (cos x))))
+d x + x + * x + x acos x cos x
 
-(d x (asinh (+ 2 (* 2 x))))
+d x asinh + 2 * 2 x
 * 1 d x asinh + 2 * x 2
 d / x 1 asinh + 2 * 2 x
 + 0 d x asinh + 2 * 2 x
@@ -11260,10 +11260,10 @@ d x asinh + 2 / 2 / 1 x
 - d x asinh + 2 * 2 x 0
 pow d x asinh + * x 2 2 1
 
-(* x (+ 3 (* 4 (acos (pow x 2)))))
+* x + 3 * 4 acos pow x 2
 * x + 3 * acos pow x 2 4
 
-(d x (+ 5 (+ (* 9 x) (* -1 (asinh x)))))
+d x + 5 + * 9 x * -1 asinh x
 + 9 d x - * ln 1 -19 asinh x
 + - 0 + -9 d x asinh x 0
 + 9 d x - * -28 ln 1 asinh x
@@ -11384,9 +11384,9 @@ pow d x asinh + * x 2 2 1
 + 9 d x - * ln 1 80 asinh x
 + - * d x asinh x -1 0 9
 
-(* x (* (+ 5 (+ x (* -1 (pow x 2)))) (acosh x)))
+* x * + 5 + x * -1 pow x 2 acosh x
 
-(* x (+ 3 (* 10 (atanh x))))
+* x + 3 * 10 atanh x
 * - * atanh x 10 -3 x
 * x + 3 * atanh / x 1 10
 + * x 3 * 10 * atanh x x
@@ -11410,14 +11410,14 @@ pow * x - * atanh x 10 -3 1
 / x / 1 + 3 * 10 atanh x
 * + - * 10 atanh x -1 2 x
 
-(* x (+ 1 (* 5 (* x (asin (* 3 x))))))
+* x + 1 * 5 * x asin * 3 x
 
-(* x (+ 1 (+ x (* -10 (acosh x)))))
+* x + 1 + x * -10 acosh x
 
-(d x (* x (exp (+ -4 (* -1 (acos x))))))
+d x * x exp + -4 * -1 acos x
 + 0 d x * exp - -4 acos x x
 
-(* (pow (csc (+ -60 (* 1 pi))) -1) (asin x))
+* pow csc + -60 * 1 pi -1 asin x
 * pow / csc + -60 pi 1 -1 asin x
 * asin x pow csc + pi -60 -1
 * * pow csc + -60 pi -1 asin x 1
@@ -11426,7 +11426,7 @@ pow * pow csc + pi -60 -1 asin x 1
 * asin x pow csc * -1 - 60 pi -1
 * pow csc - -60 * pi -1 -1 asin x
 
-(* -1 (* x (+ -1 (* 20 (* x (atan x))))))
+* -1 * x + -1 * 20 * x atan x
 - x * 20 * atan x pow x 2
 * + * -20 * x atan x 1 x
 * - * x * atan x -20 -1 x
@@ -11435,16 +11435,16 @@ pow * pow csc + pi -60 -1 asin x 1
 + * pow x 2 * -20 atan x x
 * - 1 * x * atan x 20 x
 
-(d x (+ x (+ (pow x -10) (+ (pow (cot x) -1) (asin x)))))
+d x + x + pow x -10 + pow cot x -1 asin x
 
-(* (pow x 2) (+ 1 (atanh (* 5 x))))
+* pow x 2 + 1 atanh * 5 x
 
-(d x (* (+ 15 (* 2 x)) (acos x)))
+d x * + 15 * 2 x acos x
 d x * + 15 / x 0.5 acos x
 d x * + 15 * 2 x acos x
 d x * acos x + 15 + x x
 
-(d x (* 3 (* 1 (exp (acos x)))))
+d x * 3 * 1 exp acos x
 + / / d x exp acos x 0.3333333333333333 1 0
 + 0 / 3 / 1 d x exp acos x
 + 0 / - d x exp acos x 0 0.3333333333333333
@@ -11458,24 +11458,24 @@ d x * acos x + 15 + x x
 + 0 - 0 * d x exp acos x -3
 + 0 / - 0 d x exp acos x -0.3333333333333333
 
-(+ (* 5 (asinh (+ 1 x))) (* 1 x))
++ * 5 asinh + 1 x * 1 x
 
-(* -1 (* x (+ 1 (* 3 (asin (* 2 x))))))
+* -1 * x + 1 * 3 asin * 2 x
 * x - -1 * asin * 2 x 3
 - * * x -3 asin * x 2 x
 * x - * -3 asin * x 2 1
 * + -1 * asin * 2 x -3 x
 
-(+ 1 (+ x (+ (* x (asin x)) (cos x))))
++ 1 + x + * x asin x cos x
 + * + 1 asin x x + cos x 1
 + 1 + cos x * x - asin x -1
 + cos x + 1 + x * x asin x
 + 1 - cos x * x - -1 asin x
 
-(d x (* (+ -5 (* 2 pi)) (asinh x)))
+d x * + -5 * 2 pi asinh x
 d x * + -5 * pi 2 asinh x
 
-(* (+ 1 (* -1 (asin x))) (+ 10 x))
+* + 1 * -1 asin x + 10 x
 pow * + x 10 - 1 asin x 1
 + 10 - x * asin x + x 10
 + 10 + * asin x - -10 x x
@@ -11486,7 +11486,7 @@ pow * + x 10 - 1 asin x 1
 * + x 10 - 1 asin x
 - 10 - * - x -10 asin x x
 
-(d x (+ 1 (+ (* -10 x) (+ (atanh x) (cos x)))))
+d x + 1 + * -10 x + atanh x cos x
 + d x + + cos x atanh x 1 -10
 + d x + atanh x / cos x 1 -10
 + * -1 sin x - d x atanh x 10
@@ -11501,26 +11501,26 @@ pow * + x 10 - 1 asin x 1
 + -10 - d x + atanh x cos x 0
 + d x cos x - d x atanh x 10
 
-(+ x (* 4 (* x (acos (* 2 x)))))
++ x * 4 * x acos * 2 x
 + x * 4 * x acos * x 2
 * + * acos * x 2 4 1 x
 
-(* x (+ 3 (* -4 (acosh x))))
+* x + 3 * -4 acosh x
 
-(* 2 (+ 1 (+ (* -2 (asinh (* 2 x))) (* 2 x))))
+* 2 + 1 + * -2 asinh * 2 x * 2 x
 
-(d x (pow (+ 5 (+ x (* -1 (asinh x)))) 2))
+d x pow + 5 + x * -1 asinh x 2
 
-(+ 4 (+ (pow x 3) (* x (atanh x))))
++ 4 + pow x 3 * x atanh x
 + - * x atanh x -4 pow x 3
 - pow x 3 - -4 * atanh x x
 + pow x 3 + * x atanh x 4
 
-(+ 4 (+ (* 5 x) (asinh x)))
++ 4 + * 5 x asinh x
 + 4 + * x 5 asinh x
 + 4 + * x 5 + ln 1 asinh x
 
-(d x (* 5 (+ (* 10 x) (acos x))))
+d x * 5 + * 10 x acos x
 - - 0 / d x acos x -0.2 -50
 * * 5 - d x acos x -10 1
 - / * d x acos x 5 1 -50
@@ -11602,23 +11602,23 @@ pow - d x * 5 acos x -50 1
 - 0 + / d x acos x -0.2 -50
 - / / d x acos x -1 -0.2 -50
 
-(d x (+ (pow (+ 2 x) 2) (* x (acos x))))
+d x + pow + 2 x 2 * x acos x
 
-(d x (* x (+ 10 (pow (sec (asinh x)) -1))))
+d x * x + 10 pow sec asinh x -1
 + d x * x pow sec asinh x -1 10
 
-(d x (* 2 (* x (+ (* -1 x) (acos (* 4 x))))))
+d x * 2 * x + * -1 x acos * 4 x
 
-(d x (* x (+ (* -10 (acos x)) (cos (+ 10 (* 2 pi))))))
+d x * x + * -10 acos x cos + 10 * 2 pi
 
-(+ x (+ (* -10 (* x (asin x))) (cos x)))
++ x + * -10 * x asin x cos x
 + x + * x * -10 asin x cos x
 + * x + 1 * asin x -10 cos x
 + * x - * asin x -10 -1 cos x
 
-(d x (+ (* -1 x) (* -5 (* (pow x 3) (atanh x)))))
+d x + * -1 x * -5 * pow x 3 atanh x
 
-(* -10 (+ (* -1 (sin x)) (atan x)))
+* -10 + * -1 sin x atan x
 * -10 + atan x sin * -2 / x 2
 + * -10 atan x * sin x 10
 * -10 + sin * 2 * x -0.5 atan x
@@ -11628,13 +11628,13 @@ pow - d x * 5 acos x -50 1
 - * -10 atan x * sin x -10
 * -10 + sin * -2 * x 0.5 atan x
 
-(d x (* 1 (* x (+ x (* x (atan x))))))
+d x * 1 * x + x * x atan x
 
-(d x (* (acos x) (sin (+ 60 (* 8 pi)))))
+d x * acos x sin + 60 * 8 pi
 
-(* (+ x (* 4 (* x (pow pi -1)))) (asinh x))
+* + x * 4 * x pow pi -1 asinh x
 
-(atanh (* 8 (pow (+ 1 (* 2 x)) -1)))
+atanh * 8 pow + 1 * 2 x -1
 + ln + 1 x - 0 ln - 1 x
 pow - ln + x 1 ln - 1 x 1
 - - ln + x 1 0 ln - 1 x
@@ -11651,12 +11651,12 @@ ln / + 1 x - 1 x
 atanh * 8 pow + * 2 x 1 -1
 + ln + 1 x ln / 1 - 1 x
 
-(d x (* 10 (* x (+ x (+ (pow (sec x) -1) (acosh x))))))
+d x * 10 * x + x + pow sec x -1 acosh x
 
-(+ x (+ (* 5 (sin (* 2 x))) (atan x)))
++ x + * 5 sin * 2 x atan x
 + + x atan x * sin * x 2 5
 
-(d x (* -2 (* x (+ -1 (* 16 (asin x))))))
+d x * -2 * x + -1 * 16 asin x
 - d x * * asin x x -32 -2
 + 2 d x * * -32 x asin x
 - d x / x / -0.03125 asin x -2
@@ -11665,18 +11665,18 @@ d x * x - / asin x -0.03125 -2
 d x * x - 2 * 32 asin x
 + 2 d x / x / -0.03125 asin x
 
-(d x (+ 3 (* -1 (atanh (+ -2 x)))))
+d x + 3 * -1 atanh + -2 x
 + d x * -1 atanh + x -2 0
 + 0 d x - 3 atanh + x -2
 + 0 / -1 - 1 pow + -2 x 2
 + d x - 0 atanh + x -2 0
 + / -1 + x 1 / -1 - 1 x
 
-(d x (* x (+ (pow x 5) (* 4 (atan x)))))
+d x * x + pow x 5 * 4 atan x
 
-(* x (+ 1 (acosh (* 7 x))))
+* x + 1 acosh * 7 x
 
-(* (pow (+ -5 x) 2) (atanh x))
+* pow + -5 x 2 atanh x
 pow * pow + -5 x 2 atanh x 1
 * pow + -5 x 2 atanh x
 - * pow + -5 x 2 atanh x 0
@@ -11684,15 +11684,15 @@ pow * pow + -5 x 2 atanh x 1
 * pow + / x 1 -5 2 atanh x
 * 1 * atanh x pow + x -5 2
 
-(d x (* x (+ (* 8 (pow x -3)) (acos x))))
+d x * x + * 8 pow x -3 acos x
 
-(* x (+ (* 2 x) (acosh (* 2 x))))
+* x + * 2 x acosh * 2 x
 
-(* 8 (* x (* (+ 16 x) (acos x))))
+* 8 * x * + 16 x acos x
 * acos x * * + x 16 8 x
 * acos x * + 128 * x 8 x
 
-(+ 1 (+ x (* x (+ (* -1 x) (asin x)))))
++ 1 + x * x + * -1 x asin x
 + - x * x - x asin x 1
 - x - * - x asin x x 1
 + * + 1 - asin x x x 1
@@ -11700,24 +11700,24 @@ pow * pow + -5 x 2 atanh x 1
 - 1 * - - x asin x 1 x
 + 1 * x - asin x - x 1
 
-(d x (+ 5 (+ (pow x 2) (+ (* 5 x) (atanh x)))))
+d x + 5 + pow x 2 + * 5 x atanh x
 + 5 d x + pow x 2 atanh x
 - + d x atanh x * 2 x -5
 + + 5 d x atanh x * x 2
 - d x atanh x - -5 * 2 x
 - d x + atanh x pow x 2 -5
 
-(* -10 (* x (atan (+ x (* -10 6)))))
+* -10 * x atan + x * -10 6
 pow * * atan + x -60 -10 x 1
 * x * atan + -60 x -10
 * * * -10 x atan + -60 x 1
 
-(* (+ 1 x) (sin (acosh x)))
+* + 1 x sin acosh x
 + sin acosh x * sin acosh x x
 
-(+ (* 8 (pow x 2)) (* -8 (* x (atan x))))
++ * 8 pow x 2 * -8 * x atan x
 
-(d x (+ 1 (+ (pow x -1) (* -1 (acos x)))))
+d x + 1 + pow x -1 * -1 acos x
 * + pow x -2 d x acos x -1
 d x - pow x -1 acos x
 * -1 d x - acos x pow x -1
@@ -11735,26 +11735,26 @@ d x - 1 - acos x pow x -1
 + d x - pow x -1 acos x 0
 - * -1 pow x -2 d x acos x
 
-(+ (* x (+ 2 (* 2 x))) (asinh x))
++ * x + 2 * 2 x asinh x
 
-(* (pow x 2) (+ -1 (* 6 (acosh x))))
+* pow x 2 + -1 * 6 acosh x
 
-(d x (* x (+ 1 (+ x (* 4 (* x (acosh x)))))))
+d x * x + 1 + x * 4 * x acosh x
 
-(d x (* 9 (+ (* 2 (atan x)) (* 5 (asinh x)))))
+d x * 9 + * 2 atan x * 5 asinh x
 
-(* (+ 7 x) (+ x (asin x)))
+* + 7 x + x asin x
 * 1 * + x 7 + x asin x
 * + 7 x + x asin x
 pow * + x 7 + x asin x 1
 
-(d x (+ x (+ (pow (cot x) -1) (+ (asinh x) (atan x)))))
+d x + x + pow cot x -1 + asinh x atan x
 
-(d x (* 10 (+ (* -1 (asinh x)) (* x (sin x)))))
+d x * 10 + * -1 asinh x * x sin x
 
-(* x (+ 1 (* 2 (asinh (* 3 x)))))
+* x + 1 * 2 asinh * 3 x
 
-(d x (* -1 (asinh (+ 3 (+ x (* -1 1))))))
+d x * -1 asinh + 3 + x * -1 1
 d x * -1 - asinh + x 2 0
 + 0 * -1 d x asinh + x 2
 - 0 d x asinh + + x -1 3
@@ -11777,28 +11777,28 @@ pow d x * -1 asinh + 2 x 1
 * -1 d x asinh + 2 x
 + / d x asinh + x 2 -1 0
 
-(d x (* x (+ x (* 4 (asin (* 2 x))))))
+d x * x + x * 4 asin * 2 x
 
-(* x (+ 1 (* 6 (* x (asin x)))))
+* x + 1 * 6 * x asin x
 + * asin x * * x x 6 x
 * x + 1 * x * asin x 6
 + x * * 6 asin x pow x 2
 
-(d x (* 2 (* x (+ 5 (asinh (pow x 2))))))
+d x * 2 * x + 5 asinh pow x 2
 
-(d x (+ x (* x (+ 1 (pow (asin x) 2)))))
+d x + x * x + 1 pow asin x 2
 + 2 d x * x pow asin x 2
 
-(* 7 (+ (sqrt x) (* 2 (* x (atanh x)))))
+* 7 + sqrt x * 2 * x atanh x
 + * sqrt x 7 * * x atanh x 14
 
-(+ (* 16 x) (* 16 (asinh (sqrt x))))
++ * 16 x * 16 asinh sqrt x
 
-(d x (* x (+ x (sin (+ (* 7 pi) (acosh x))))))
+d x * x + x sin + * 7 pi acosh x
 
-(d x (+ (* 10 x) (* -5 (* x (atanh (+ -3 x))))))
+d x + * 10 x * -5 * x atanh + -3 x
 
-(+ x (* 4 (atanh x)))
++ x * 4 atanh x
 + * atanh / * -1 x -1 4 x
 * + x * 4 atanh x 1
 + 0 + x * atanh - x 0 4
@@ -11834,9 +11834,9 @@ pow + * 4 atanh - x 0 x 1
 - x * 4 - 0 atanh x
 pow + * atanh / x 1 4 x 1
 
-(d x (* (pow x 2) (+ 1 (* 6 (* x (atan x))))))
+d x * pow x 2 + 1 * 6 * x atan x
 
-(atanh (* (pow x -1) (+ 2 (* 5 x))))
+atanh * pow x -1 + 2 * 5 x
 + ln + 1 x - 0 ln - 1 x
 + atanh + * pow x -1 2 5 0
 atanh * + 2 / x 0.2 pow x -1
@@ -11859,13 +11859,13 @@ ln / + 1 x - 1 x
 ln / + 1 x - 1 / x 1
 + ln + 1 x ln / 1 - 1 x
 
-(d x (+ (* -10 (asin x)) (* -10 (* x (sin x)))))
+d x + * -10 asin x * -10 * x sin x
 * -10 d x + asin x * sin x x
 
-(d x (* 1 (* (+ pi (* 4 x)) (asinh x))))
+d x * 1 * + pi * 4 x asinh x
 d x * asinh x + pi * 4 x
 
-(d x (+ (* 3 x) (* 3 (asinh (* 3 x)))))
+d x + * 3 x * 3 asinh * 3 x
 * 3 d x + asinh * x 3 x
 - d x * asinh * 3 x 3 -3
 * 3 + 1 d x asinh * 3 x
@@ -11874,7 +11874,7 @@ d x * asinh x + pi * 4 x
 * 3 - d x asinh * x 3 -1
 - / d x asinh * x 3 0.3333333333333333 -3
 
-(d x (* 7 (+ (* -1 (atan x)) (* 5 (pow x 2)))))
+d x * 7 + * -1 atan x * 5 pow x 2
 - * 70 x / d x atan x 0.14285714285714285
 - * 70 x / 7 + pow x 2 1
 - / d x atan x -0.14285714285714285 * -70 x
@@ -11891,13 +11891,13 @@ d x * asinh x + pi * 4 x
 * - * 10 x d x atan x 7
 - d x * -7 atan x * -70 x
 
-(* 3 (* x (+ 5 (* -1 (acosh x)))))
+* 3 * x + 5 * -1 acosh x
 
-(+ x (+ (* (pow x 3) (atan x)) (atan x)))
++ x + * pow x 3 atan x atan x
 + x + * pow x 3 atan x atan x
 + * atan x + 1 pow x 3 x
 
-(d x (* (pow 5 -1) (* (asin x) 1)))
+d x * pow 5 -1 * asin x 1
 d x * / pow 5 -1 1 asin x
 / pow 5 -1 sqrt - 1 pow x 2
 pow * d x asin x pow 5 -1 1
@@ -11906,9 +11906,9 @@ pow * d x asin x pow 5 -1 1
 + 0 * d x asin x pow 5 -1
 * 1 d x * pow 5 -1 asin x
 
-(d x (+ (* (pow x 2) (+ 1 x)) (atanh x)))
+d x + * pow x 2 + 1 x atanh x
 
-(* 6 (* x (+ 5 (acos x))))
+* 6 * x + 5 acos x
 * * * x 6 + 5 acos x 1
 + * x 30 * x * 6 acos x
 * + acos x 5 * x 6
@@ -11918,7 +11918,7 @@ pow * d x asin x pow 5 -1 1
 pow * x + 30 * 6 acos x 1
 pow * * + acos x 5 6 x 1
 
-(atanh (+ 5 (* -2 x)))
+atanh + 5 * -2 x
 + ln + 1 x - 0 ln - 1 x
 pow - atanh + / x -0.5 5 0 1
 * - ln + 1 x ln - 1 x 1
@@ -11968,7 +11968,7 @@ pow atanh + 5 / x -0.5 1
 + ln / + x 1 - 1 x 0
 atanh + 5 * / 1 / 1 x -2
 
-(+ (* 3 x) (* -1 (* x (+ 2 (atanh x)))))
++ * 3 x * -1 * x + 2 atanh x
 + x * x - * -1 atanh x 0
 + x - * x 0 * x atanh x
 + x * atanh x * x -1
@@ -11976,9 +11976,9 @@ atanh + 5 * / 1 / 1 x -2
 + x * - 0 atanh x x
 + * x - -2 atanh x * 3 x
 
-(d x (* x (+ 1 (* -1 (* x (acosh (* 4 x)))))))
+d x * x + 1 * -1 * x acosh * 4 x
 
-(d x (asin (* x (cos (+ 20 (* 9 pi))))))
+d x asin * x cos + 20 * 9 pi
 d x asin / x sec - -20 * pi 9
 d x asin * cos + * pi 9 20 x
 d x asin / x sec - 20 * pi -9
@@ -11988,18 +11988,18 @@ d x asin * cos - -20 * 9 pi x
 d x asin / x sec + -20 * pi -9
 d x asin * x cos - 20 * -9 pi
 
-(d x (+ (* (pow x -1) (+ 7 x)) (acosh x)))
+d x + * pow x -1 + 7 x acosh x
 + d x acosh x * pow x -2 -7
 
-(d x (+ x (+ (* 1 (asinh x)) (* 9 (exp x)))))
+d x + x + * 1 asinh x * 9 exp x
 - * exp x 9 - -1 d x asinh x
 + 1 + d x asinh x * 9 exp x
 + - d x asinh x -1 * 9 exp x
 d x + + asinh x x * exp x 9
 
-(d x (+ (* (pow x -3) (+ 1 x)) (asinh x)))
+d x + * pow x -3 + 1 x asinh x
 
-(+ (* x (+ x 9)) (atanh x))
++ * x + x 9 atanh x
 - atanh x - 0 * x + 9 x
 + atanh x + * 9 x pow x 2
 + + atanh x * x x * 9 x
@@ -12013,9 +12013,9 @@ pow + atanh x * x + x 9 1
 - + * x + x 9 atanh x 0
 + * x / + x 9 1 atanh x
 
-(* 2 (* x (+ (* 5 (pow x 2)) (atan x))))
+* 2 * x + * 5 pow x 2 atan x
 
-(d x (+ (* -24 (atan x)) (* 24 x)))
+d x + * -24 atan x * 24 x
 + 24 / 1 + -0.041666666666666664 * -0.041666666666666664 pow x 2
 + + * -24 d x atan x 24 0
 * + * d x atan x -24 24 1
@@ -12037,30 +12037,30 @@ pow + / -24 + 1 pow x 2 24 1
 pow + 24 * -24 d x atan x 1
 + / 1 * + pow x 2 1 -0.041666666666666664 24
 
-(d x (* x (+ x (acosh (* 3 x)))))
+d x * x + x acosh * 3 x
 d x * x + acosh * 3 x x
 d x * + x acosh / x 0.3333333333333333 x
 
-(+ (* 3 (pow x 2)) (* 1 (asin x)))
++ * 3 pow x 2 * 1 asin x
 + asin x * 3 pow x 2
 pow + asin x * 3 pow x 2 1
 * + asin x * 3 pow x 2 1
 
-(d x (* 1 (* x (+ -5 (* (pow x 2) (asinh x))))))
+d x * 1 * x + -5 * pow x 2 asinh x
 + -5 d x * pow x 3 asinh x
 - d x * asinh x pow x 3 5
 
-(+ x (+ (* -20 (pow (sec (+ x (* 3 pi))) -1)) (acosh x)))
++ x + * -20 pow sec + x * 3 pi -1 acosh x
 
-(d x (* 4 (* x (+ -1 (+ (* -2 x) (acos x))))))
+d x * 4 * x + -1 + * -2 x acos x
 
-(+ 1 (* -1 (* x (+ -4 (acosh x)))))
++ 1 * -1 * x + -4 acosh x
 
-(+ (* -10 x) (cos (+ (* 8 pi) (acosh x))))
++ * -10 x cos + * 8 pi acosh x
 + cos - * -8 pi acosh x * x -10
 + cos + acosh x * pi 8 * x -10
 
-(+ 5 (* -1 (* x (+ x (* -1 (acos x))))))
++ 5 * -1 * x + x * -1 acos x
 * + * x - acos x x 5 1
 - 5 * x - x acos x
 - 5 - pow x 2 * x acos x
@@ -12075,18 +12075,18 @@ pow + 5 * x - acos x x 1
 + 5 * + acos x * x -1 x
 pow - 5 * - x acos x x 1
 
-(* x (+ 1 (* x (+ 3 (asin x)))))
+* x + 1 * x + 3 asin x
 + x * * x x + asin x 3
 * x + * x + 3 asin x 1
 + * pow x 2 + 3 asin x x
 
-(* 7 (+ (pow x 4) (* -4 (asinh x))))
+* 7 + pow x 4 * -4 asinh x
 
-(d x (* (+ 27 (* -1 x)) (asinh x)))
+d x * + 27 * -1 x asinh x
 + d x * asinh x - 27 x ln 1
 + 0 d x * - 27 x asinh x
 
-(* x (+ 1 (pow (csc (acosh x)) -1)))
+* x + 1 pow csc acosh x -1
 * + pow / csc acosh x 1 -1 1 x
 pow + x * x pow csc acosh x -1 1
 * 1 * + pow csc acosh x -1 1 x
@@ -12098,11 +12098,11 @@ pow * x + 1 pow csc acosh x -1 1
 * x + pow csc acosh x -1 1
 + * x pow / 1 sin acosh x -1 x
 
-(d x (+ (* x (+ 5 (sqrt x))) (acosh x)))
+d x + * x + 5 sqrt x acosh x
 d x + acosh x * + sqrt x 5 x
 - d x + acosh x * x sqrt x -5
 
-(+ (* -1 (atanh (+ 4 x))) (* 3 x))
++ * -1 atanh + 4 x * 3 x
 - * 3 x atanh + 4 / x 1
 - 0 - atanh + 4 x * 3 x
 - / / x 1 0.3333333333333333 atanh + 4 x
@@ -12119,14 +12119,14 @@ pow - * x 3 atanh + x 4 1
 + * x 3 - 0 atanh + x 4
 - - / x 0.3333333333333333 0 atanh + 4 x
 
-(d x (* x (+ x (* 2 (* (pow x -1) (asinh x))))))
+d x * x + x * 2 * pow x -1 asinh x
 + * x 2 d x + asinh x asinh x
 + + x x d x + asinh x asinh x
 + * x 2 d x * asinh x 2
 + * 2 d x asinh x + x x
 + * 2 + x d x asinh x 0
 
-(d x (+ (pow (csc x) -1) (atanh x)))
+d x + pow csc x -1 atanh x
 + d x atanh x d x pow csc x -1
 d x + pow csc x -1 atanh x
 pow d x + atanh x pow csc x -1 1
@@ -12137,16 +12137,16 @@ d x - atanh x - 0 pow csc x -1
 d x - + atanh x pow csc x -1 0
 d x + atanh x pow / 1 sin x -1
 
-(d x (* 2 (+ x (pow (asinh x) 4))))
+d x * 2 + x pow asinh x 4
 
-(* 2 (asinh (+ 4 (* -1 x))))
+* 2 asinh + 4 * -1 x
 
-(+ (pow (csc x) -1) (+ (acosh x) (cosh x)))
++ pow csc x -1 + acosh x cosh x
 + + pow csc x -1 cosh x acosh x
 
-(d x (+ 3 (+ x (+ (pow x 3) (* x (atan x))))))
+d x + 3 + x + pow x 3 * x atan x
 
-(+ x (* 3 (* x (pow (asinh x) 2))))
++ x * 3 * x pow asinh x 2
 + * x * pow asinh x 2 3 x
 * + * 3 pow asinh x 2 1 x
 

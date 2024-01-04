@@ -1,21 +1,21 @@
-(+ x (+ (* -1 5) (* -1 (ln x))))
++ x + * -1 5 * -1 ln x
 
-(+ (pow x 3) (ln (pow (* 3 x) x)))
++ pow x 3 ln pow * 3 x x
 + pow x 3 * x + ln 3 ln x
 + pow x 3 ln pow * 3 x x
 + pow x 3 * x ln * x 3
 
-(* 3 (+ (pow x 3) (* 375 (ln x))))
+* 3 + pow x 3 * 375 ln x
 
-(* x (+ -5 (ln (pow x x))))
+* x + -5 ln pow x x
 
-(d x (* 4 (* x (+ 3 (ln (pow 3 (pow x 2)))))))
+d x * 4 * x + 3 ln pow 3 pow x 2
 + 12 * ln 3 * x * 12 x
 + * * pow x 2 ln 3 12 12
 + 12 * ln pow 3 * x x 12
 + 12 * 12 ln pow 3 pow x 2
 
-(d x (* 3 (+ x (* 1 (ln x)))))
+d x * 3 + x * 1 ln x
 + - / 1 / * 0.3333333333333333 x 1 -3 0
 + - - / 3 x -3 0 0
 + * + d x ln x 1 3 0
@@ -82,7 +82,7 @@
 + * 3 + 1 / 1 / x 1 0
 + 0 - 3 / 3 - 0 x
 
-(d x (* 3 (* x (ln (pow x -2)))))
+d x * 3 * x ln pow x -2
 + -6 * -2 - ln x ln pow x -2
 + / / * ln x -6 1 1 -6
 + * -6 ln / 1 d x ln x -6
@@ -254,14 +254,14 @@
 + -6 * 6 + ln x ln pow x -2
 + -6 - 0 * 3 + ln x ln x
 
-(+ (pow x 2) (* 5 (ln x)))
++ pow x 2 * 5 ln x
 + pow x 2 + * 5 ln x ln 1
 
-(* 4 (* (pow x -1) (+ 2 (ln (pow 3 x)))))
+* 4 * pow x -1 + 2 ln pow 3 x
 
-(* 3 (+ x (* -6 (ln (+ 6 x)))))
+* 3 + x * -6 ln + 6 x
 
-(d x (+ 4 (ln (pow x -3))))
+d x + 4 ln pow x -3
 + 0 - / -3 * -0.3333333333333333 x / 12 x
 - 0 - / 12 x / -3 / x -3
 + * -1 * -1 / -3 / x 1 0
@@ -839,11 +839,11 @@
 - 0 / 3 x
 + / -3 / 1 pow x -1 0
 
-(d x (+ (* 4 (* (pow x -2) (ln x))) (ln x)))
+d x + * 4 * pow x -2 ln x ln x
 
-(* 4 (* (pow (+ 4 pi) -1) (ln x)))
+* 4 * pow + 4 pi -1 ln x
 
-(d x (+ (* 10 x) (* -2 (* x (ln (pow x 3))))))
+d x + * 10 x * -2 * x ln pow x 3
 + 4 * * / ln x 1 3 -2
 + * -2 + ln x ln pow x 2 4
 - + + -6 * -6 ln x 10 0
@@ -952,7 +952,7 @@ pow + 4 * ln x -6 1
 + 4 * -2 ln pow x 3
 + 4 * ln * x pow x 2 -2
 
-(d x (+ x (+ (* 4 (pow x 2)) (ln (pow x 5)))))
+d x + x + * 4 pow x 2 ln pow x 5
 + + 1 / 5 x / 4 / 0.5 x
 pow + 1 + / 5 x * 8 x 1
 + + 1 / 5 x * * x 4 2
@@ -1005,16 +1005,16 @@ pow + - / 5 x -1 * 8 x 1
 + 1 + / 1 * 0.2 x * 8 x
 + + / 2 / 0.25 x 1 / 5 x
 
-(* x (+ x (ln (+ 1 x))))
+* x + x ln + 1 x
 
-(d x (+ (* 2 (ln x)) (* 3 (pow x -2))))
+d x + * 2 ln x * 3 pow x -2
 + * / 1 x 2 * -6 pow x -3
 + + / 2 x * -6 pow x -3 0
 + - / 2 x 0 * -6 pow x -3
 
-(+ x (* -1 (* (+ -5 (* 3 x)) (ln x))))
++ x * -1 * + -5 * 3 x ln x
 
-(d x (+ (* -128 (ln (+ 8 x))) (* 16 x)))
+d x + * -128 ln + 8 x * 16 x
 + 16 * / 1 - 8 - 0 x -128
 + 0 + 16 / / -128 - x -8 1
 + 0 - 0 + / -128 - -8 x -16
@@ -1099,29 +1099,29 @@ pow + - / 5 x -1 * 8 x 1
 + 0 - / 1 * - x -8 -0.0078125 -16
 + 0 + / 1 - * x -0.0078125 0.0625 16
 
-(d x (ln (pow (+ 5 (* -1 x)) (* 2 x))))
+d x ln pow + 5 * -1 x * 2 x
 
-(* 2 (* x (+ (* -2 (ln x)) (* 4 x))))
+* 2 * x + * -2 ln x * 4 x
 
-(+ (pow x 2) (+ (* 390626 x) (ln x)))
++ pow x 2 + * 390626 x ln x
 + pow x 2 + * 390626 x ln x
 
-(+ (* 5 (pow x 2)) (* 125 (ln x)))
++ * 5 pow x 2 * 125 ln x
 + * 5 pow x 2 * ln x 125
 
-(* x (+ 8 (+ (pow x 2) (* -1 (ln x)))))
+* x + 8 + pow x 2 * -1 ln x
 
-(ln (* 1024 (pow 2 (* -2 x))))
+ln * 1024 pow 2 * -2 x
 
-(d x (* (pow x -1) (+ (* 18 x) (ln x))))
+d x * pow x -1 + * 18 x ln x
 
-(+ 2 (ln (+ 20 (* 4 x))))
++ 2 ln + 20 * 4 x
 
-(+ 4 (+ x (+ (* 3 (pow x 2)) (* 3 (ln x)))))
++ 4 + x + * 3 pow x 2 * 3 ln x
 
-(* x (* (+ 1 (* 9 x)) (ln x)))
+* x * + 1 * 9 x ln x
 
-(d x (+ (* 8 (ln (pow x -1))) 8))
+d x + * 8 ln pow x -1 8
 + + / 8 x * -8 / 2 x 0
 + - - * / 1 x -8 0 0 0
 + - - / -8 / x 1 0 0 0
@@ -1144,7 +1144,7 @@ pow + - / 5 x -1 * 8 x 1
 + - - / 1 * x -0.125 0 0 0
 + - - 0 * / -1 x -8 0 0
 
-(d x (+ 10 (+ (* -1 (ln (pow x 2))) (* 4 x))))
+d x + 10 + * -1 ln pow x 2 * 4 x
 + / -2 * pow x 2 pow x -1 4
 + / -2 x 4
 + / / / 1 * 0.5 x 1 -1 4
@@ -1550,9 +1550,9 @@ pow + - / 5 x -1 * 8 x 1
 + / / / pow x -1 0.5 1 -1 4
 + - * -1 / pow x -1 0.5 -4 0
 
-(* 3 (* x (+ -5 (* 4 (ln (pow x 8))))))
+* 3 * x + -5 * 4 ln pow x 8
 
-(d x (* 7 (+ (* 15 x) (ln (pow x 2)))))
+d x * 7 + * 15 x ln pow x 2
 + - / 1 / * 0.5 x 7 -105 0
 + 0 - - - / 14 x 0 -105 0
 + 0 + 105 * - pow x -1 0 14
@@ -1748,7 +1748,7 @@ pow + - / 5 x -1 * 8 x 1
 + - / 2 / 0.14285714285714285 pow x -1 -105 0
 + 0 - 0 + - 0 / 14 x -105
 
-(d x (+ (* 4 (pow x 2)) (* 35 (ln x))))
+d x + * 4 pow x 2 * 35 ln x
 + / 35 x - / 4 / 0.5 x 0
 + / 1 * x 0.02857142857142857 * / x 1 8
 + / 35 x * 4 / * 2 x 1
@@ -1889,7 +1889,7 @@ pow + - / 5 x -1 * 8 x 1
 + / / x 0.5 0.25 / 35 x
 + / / x 0.25 0.5 - / 35 x 0
 
-(d x (+ (* 6 (pow x 2)) (* -1 (* x (ln x)))))
+d x + * 6 pow x 2 * -1 * x ln x
 + -1 - * 12 x + ln 1 ln x
 + -1 - / 12 d x ln x ln x
 + -1 - * x 12 - ln x 0
@@ -1902,11 +1902,11 @@ pow + - / 5 x -1 * 8 x 1
 + -1 + * ln x -1 * 12 x
 + -1 + - 0 ln x * 12 x
 
-(ln (* 1953125 (pow 5 (* 4 x))))
+ln * 1953125 pow 5 * 4 x
 
-(* 6 (+ -2 (+ x (* -3 (ln x)))))
+* 6 + -2 + x * -3 ln x
 
-(d x (ln (pow 35 (* 7 (pow x 2)))))
+d x ln pow 35 * 7 pow x 2
 + * / x / 1 ln 35 14 0
 / ln 35 / * / 0.5 x 0.14285714285714285 1
 * 7 - 0 - 0 * ln 1225 x
@@ -2115,7 +2115,7 @@ pow / - * ln 1225 x 0 0.14285714285714285 1
 - / * ln 35 * 14 x 1 0
 + * x * ln 35 14 0
 
-(d x (* x (+ -1 (ln (* 8 x)))))
+d x * x + -1 ln * 8 x
 + -1 + - ln * 8 x ln 1 1
 + -1 + - ln x - 0 ln 8 1
 + -1 + + ln / x 1 ln 8 1
@@ -2129,7 +2129,7 @@ pow / - * ln 1225 x 0 0.14285714285714285 1
 + -1 + + ln 8 ln x 1
 + -1 + ln * 8 x 1
 
-(d x (+ 9 (* 9 (ln (sqrt x)))))
+d x + 9 * 9 ln sqrt x
 * / d x sqrt x * 0.1111111111111111 sqrt x 1
 + / / d x sqrt x sqrt x 0.1111111111111111 0
 / 1 / / sqrt x 9 d x sqrt x
@@ -2202,7 +2202,7 @@ d x - * 9 ln / sqrt x 1 -9
 + / * 9 d x sqrt x sqrt x 0
 * 9 d x - ln sqrt x 0
 
-(d x (ln (pow (+ -2 (+ 2.7 x)) 3)))
+d x ln pow + -2 + 2.7 x 3
 d x ln pow + x 0.7000000000000002 3
 / 3 / 1 pow + 0.7000000000000002 x -1
 * pow + x 0.7000000000000002 -1 3
@@ -2325,9 +2325,9 @@ pow / / 3 + 0.7000000000000002 x 1 1
 / d x * ln + x 0.7000000000000002 3 1
 * 1 * 3 - / 1 + 0.7000000000000002 x 0
 
-(ln (+ x (* -1 (* x 9))))
+ln + x * -1 * x 9
 
-(d x (+ 2.7 (+ (* -1 (pow x 2)) (ln (pow x x)))))
+d x + 2.7 + * -1 pow x 2 ln pow x x
 + 1 * * 2 / x 1 -1
 + 1 - ln x * 2 / x 1
 + + / * x -2 1 1 ln 1
@@ -2532,9 +2532,9 @@ pow / / 3 + 0.7000000000000002 x 1 1
 + 1 - ln x - 0 * x -2
 + 1 * -1 / -1 * / 1 x -0.5
 
-(* 6 (* x (+ 2 (ln (pow x 25)))))
+* 6 * x + 2 ln pow x 25
 
-(d x (* 5 (+ 2 (+ 7 (* 3 (ln x))))))
+d x * 5 + 2 + 7 * 3 ln x
 - 0 - 0 - / 1 * x 0.06666666666666667 0
 + / / - / 1 x 0 1 0.06666666666666667 0
 + 0 * 3 / / 5 x 1
@@ -2741,7 +2741,7 @@ pow / / 3 + 0.7000000000000002 x 1 1
 - / 1 * 0.06666666666666667 / x 1 0
 + 0 / / 1 / / x 15 1 1
 
-(d x (* x (ln (* 6 (pow x -2)))))
+d x * x ln * 6 pow x -2
 + ln / 6 / 1 pow x -2 -2
 + - ln 6 - 2 ln pow x -2 0
 + + ln * x pow x -3 ln 6 -2
@@ -2775,32 +2775,32 @@ pow / / 3 + 0.7000000000000002 x 1 1
 + - ln 6 ln / 1 pow x -2 -2
 + - + ln 6 ln pow x -2 0 -2
 
-(d x (* (+ 1 (+ x (* -1 (ln x)))) (ln x)))
+d x * + 1 + x * -1 ln x ln x
 
-(ln (pow (+ 8 (* 3 x)) 4))
+ln pow + 8 * 3 x 4
 
-(+ x (ln (pow (+ -1 x) 6)))
++ x ln pow + -1 x 6
 
-(* x (+ 1 (+ (pow x 2) (+ (* 2 x) (ln x)))))
+* x + 1 + pow x 2 + * 2 x ln x
 
-(* 4 (* (pow x -4) (ln x)))
+* 4 * pow x -4 ln x
 
-(* -2 (+ (* -1 (ln x)) (* 9 x)))
+* -2 + * -1 ln x * 9 x
 
-(d x (+ (pow x 5) (ln (pow x (+ 3 x)))))
+d x + pow x 5 ln pow x + 3 x
 + d x pow x 5 / + x 3 x
 + / + x 3 x * pow x 4 5
 + + 1 d x pow x 5 / 3 x
 + + * pow x 4 5 1 / 3 x
 
-(* 9 (+ 7 (ln x)))
+* 9 + 7 ln x
 
-(* x (* (+ 1 (* 4 x)) (ln x)))
+* x * + 1 * 4 x ln x
 
-(+ 2 (+ (pow x 2) (* x (ln x))))
++ 2 + pow x 2 * x ln x
 + 2 + * x ln x pow x 2
 
-(d x (+ (* x (+ -2 x)) (ln (* 2 x))))
+d x + * x + -2 x ln * 2 x
 + + * * 4 x 0.5 -2 / 1 x
 + -2 - / 1 x * / x 2 -4
 + - - / 1 x 0 2 * 2 x
@@ -2909,17 +2909,17 @@ pow / / 3 + 0.7000000000000002 x 1 1
 + - d x pow x 2 2 / 1 x
 + - d x ln x 2 * x 2
 
-(ln (pow 2 (* 1 (pow x 2))))
+ln pow 2 * 1 pow x 2
 
-(+ (* -5 (ln x)) (* 9 (pow x 7)))
++ * -5 ln x * 9 pow x 7
 
-(* (+ x (* -1 (* x (+ 2 x)))) (ln x))
+* + x * -1 * x + 2 x ln x
 + * * ln x - -1 x x 0
 - * x * ln x - -1 x 0
 
-(* -1 (* (+ -5 1) (ln x)))
+* -1 * + -5 1 ln x
 
-(d x (* (+ -2 9) (ln x)))
+d x * + -2 9 ln x
 + 0 / * - 0 / 1 x -7 1
 + 0 / / * / 1 x 7 1 1
 + 0 - / / 2 x 0.14285714285714285 / 7 x
@@ -3022,7 +3022,7 @@ pow / / 3 + 0.7000000000000002 x 1 1
 + 0 * -1 * -7 d x ln x
 + 0 / 1 / / 1 / 1 x 7
 
-(d x (ln (pow (+ -1 (* 5 x)) 4)))
+d x ln pow + -1 * 5 x 4
 - 0 * -1 / 20 + -1 * 5 x
 * / 5 + * 5 x -1 4
 / 1 * 0.25 + -0.2 * 0.2 * x 5
@@ -3152,13 +3152,13 @@ pow / 5 * 0.25 + -1 * x 5 1
 + 0 / 4 * + -1 * x 5 0.2
 pow / / 1 + * 5 x -1 0.05 1
 
-(+ 4 (* -10 (* x (ln x))))
++ 4 * -10 * x ln x
 
-(ln (pow x 160000))
+ln pow x 160000
 
-(ln (pow (+ x 2) 27))
+ln pow + x 2 27
 
-(d x (* x (+ 4 (ln (pow x 4)))))
+d x * x + 4 ln pow x 4
 + 8 - 0 * 4 ln d x ln x
 + 0 - + 4 * ln x 4 -4
 + ln x - ln / pow x 4 x -8
@@ -3392,25 +3392,25 @@ pow / / 1 + * 5 x -1 0.05 1
 + 0 + * + 1 ln x 4 4
 + - * 4 ln x -8 0
 
-(* 2 (ln (+ (pow x 4) (* -1 x))))
+* 2 ln + pow x 4 * -1 x
 
-(+ 1 (* -1 (ln (pow x (+ 5 x)))))
++ 1 * -1 ln pow x + 5 x
 
-(+ (* 5 (pow x 3)) (ln (pow x 30)))
++ * 5 pow x 3 ln pow x 30
 + * pow x 3 5 ln pow x 30
 + * 5 pow x 3 * 30 ln x
 
-(+ (* 5 x) (ln (* 32768 (pow x 15))))
++ * 5 x ln * 32768 pow x 15
 + * 5 x + ln 32768 * 15 ln x
 + * 5 x + ln 32768 ln pow x 15
 
-(d x (* 2 (* (pow x -1) (+ 2 (* x (ln x))))))
+d x * 2 * pow x -1 + 2 * x ln x
 
-(ln (pow (* 3 x) (* 2 (pow x -1))))
+ln pow * 3 x * 2 pow x -1
 
-(d x (* 4 (+ 7 (ln (pow x -1)))))
+d x * 4 + 7 ln pow x -1
 
-(d x (ln (pow (* (pow x 3) (+ 4 x)) 9)))
+d x ln pow * pow x 3 + 4 x 9
 * 9 + / 1 + x 4 / 3 x
 + / 9 + x 4 / 27 x
 / + / 9 + 4 x / 27 x 1
@@ -3421,16 +3421,16 @@ pow + / 27 x / 9 + 4 x 1
 + - / 9 + 4 x 0 / 27 x
 + / 9 / x 3 / 9 + x 4
 
-(ln (+ 12 (* 9 x)))
+ln + 12 * 9 x
 
-(* x (+ (* 4 x) (ln (pow x 8))))
+* x + * 4 x ln pow x 8
 
-(d x (+ x (+ (* 16 (pow x 4)) (+ 5 (ln x)))))
+d x + x + * 16 pow x 4 + 5 ln x
 - * 64 pow x 3 - -1 / 1 x
 + * 64 pow x 3 - / 1 x -1
 + + / 1 x 1 * 64 pow x 3
 
-(d x (+ (* 4 (pow x 2)) (ln (pow x 6))))
+d x + * 4 pow x 2 ln pow x 6
 + - * 8 x / / -6 x 1 0
 * + * 6 / 1 x * x 8 1
 - * 8 x / * / -1 x 6 1
@@ -3731,9 +3731,9 @@ pow + / 1 * x 0.16666666666666666 * 8 x 1
 * 1 + / 6 x * 2 / x 0.25
 - * 8 x * -6 pow / x 1 -1
 
-(ln (+ 25 (+ (pow x 2) (* 13 x))))
+ln + 25 + pow x 2 * 13 x
 
-(d x (+ (pow x 4) (* 3 (ln x))))
+d x + pow x 4 * 3 ln x
 + + d x pow x 4 / 3 x 0
 + - / 3 x 0 d x pow x 4
 + * 3 pow x -1 * pow x 3 4
@@ -3753,11 +3753,11 @@ pow + / 1 * x 0.16666666666666666 * 8 x 1
 + d x pow x 4 * / 1 x 3
 + d x pow x 4 / 1 * 0.3333333333333333 x
 
-(+ (* -3 x) (ln (pow x 12)))
++ * -3 x ln pow x 12
 + * -3 x + * ln x 12 ln 1
 + * -3 x + ln pow x 12 ln 1
 
-(d x (ln (pow x (* x (+ 1 x)))))
+d x ln pow x * x + 1 x
 d x ln pow x + pow x 2 x
 d x * x + ln x * x ln x
 d x * * x + x 1 ln x
@@ -3766,15 +3766,15 @@ d x ln pow x + x * x x
 d x * ln x + * x x x
 d x ln pow x * + x 1 x
 
-(+ x (+ (pow x 2) (ln (* 3 x))))
++ x + pow x 2 ln * 3 x
 + x + pow x 2 ln * x 3
 + x + + ln x ln 3 pow x 2
 
-(ln (+ 1 (+ x (* -2 (* x (+ -2 x))))))
+ln + 1 + x * -2 * x + -2 x
 
-(+ 5 (ln (+ 1 (* 2 x))))
++ 5 ln + 1 * 2 x
 
-(d x (+ (* 2 (ln x)) (* 8 x)))
+d x + * 2 ln x * 8 x
 + * / 1 - x 0 2 8
 + / / 1 * / x 1 0.5 1 8
 + - 8 * / / 2 x 1 -1 0
@@ -3898,7 +3898,7 @@ d x ln pow x * + x 1 x
 + d x ln / x d x ln x 8
 + d - x 0 ln pow x 2 8
 
-(d x (ln (pow (+ -20 (* 20 x)) 6)))
+d x ln pow + -20 * 20 x 6
 / 20 * + -20 * x 20 0.16666666666666666
 * pow / + -20 * x 20 1 -1 120
 pow / / 120 + -20 * x 20 1 1
@@ -4005,11 +4005,11 @@ d x * ln + -20 * 20 x 6
 - / 1 * + -20 * x 20 0.008333333333333333 0
 * / 1 + -20 * 20 x 120
 
-(d x (+ 5 (* 2 (* x (ln (* 2 x))))))
+d x + 5 * 2 * x ln * 2 x
 
-(ln (* 9 (pow 5 x)))
+ln * 9 pow 5 x
 
-(ln (* 4 (pow x -8)))
+ln * 4 pow x -8
 - ln pow x -8 - 0 ln 4
 + ln pow x -8 ln 4
 * - + ln 4 ln pow x -8 0 1
@@ -4043,11 +4043,11 @@ ln * pow x -8 4
 + ln 4 - - ln pow x -8 0 0
 - - ln * pow x -8 4 0 0
 
-(d x (* 3 (* x (+ 2 (* x (ln x))))))
+d x * 3 * x + 2 * x ln x
 
-(* 9 (* (pow x 3) (* (+ 1 x) (ln x))))
+* 9 * pow x 3 * + 1 x ln x
 
-(d x (* 5 (ln (+ -1 (+ 3 (ln x))))))
+d x * 5 ln + -1 + 3 ln x
 / 5 - * - ln x -3 x x
 / / 1 * 0.2 + 2 ln x x
 / / 1 - * ln x 0.2 -0.4000000000000001 x
@@ -4173,14 +4173,14 @@ pow / / 5 - ln x -2 x 1
 * 5 d x ln - 2 ln / 1 x
 / 5 / - ln x -2 d x ln x
 
-(d x (ln (* (pow x -5) (pow x 5))))
+d x ln * pow x -5 pow x 5
 0
 
-(d x (+ 4 (+ x (ln (* x (+ 2 (pow x 2)))))))
+d x + 4 + x ln * x + 2 pow x 2
 
-(* -1 (* x (+ -3 (+ (* x (ln x)) (ln x)))))
+* -1 * x + -3 + * x ln x ln x
 
-(* -1 (* (pow x -1) (+ x (* x (ln x)))))
+* -1 * pow x -1 + x * x ln x
 + -1 + ln pow x -1 * ln 1 -1
 + -1 + ln x * ln pow x -1 2
 + -1 + ln pow x -1 * -4 ln 1
@@ -4289,18 +4289,18 @@ pow / / 5 - ln x -2 x 1
 + -1 + * -1 ln x * 12 ln 1
 + -1 + * -1 ln x * 8 ln 1
 
-(d x (ln (pow (+ 1 (* 7 x)) (* 3 x))))
+d x ln pow + 1 * 7 x * 3 x
 
-(+ x (+ (pow x 3) (+ (exp x) (ln (* 2 x)))))
++ x + pow x 3 + exp x ln * 2 x
 
-(+ (* 4 (pow x 7)) (* 8 (ln x)))
++ * 4 pow x 7 * 8 ln x
 + * 4 pow x 7 * 8 ln x
 
-(d x (+ x (* 3 (* x (ln (* x (+ 1 x)))))))
+d x + x * 3 * x ln * x + 1 x
 
-(ln (pow (* 3 (pow x 2)) (* 8 x)))
+ln pow * 3 pow x 2 * 8 x
 
-(d x (+ 5 (* -1 (ln (pow 3 (* 2 x))))))
+d x + 5 * -1 ln pow 3 * 2 x
 * * -1 * -1 * ln 3 -1 2
 pow - 0 - 0 * ln 3 -2 1
 - * -1 ln 9 0
@@ -4590,7 +4590,7 @@ pow * * - 0 ln 9 -1 -1 1
 pow - / * -2 ln 3 1 0 1
 + 0 * * 2 ln 3 -1
 
-(d x (* -1 (ln (pow (+ -25 x) 20))))
+d x * -1 ln pow + -25 x 20
 + - - / 20 - 25 x 0 0 0
 + / -1 / * -0.05 + -25 x -1 0
 + 0 / 20 - 25 x
@@ -4731,7 +4731,7 @@ pow - / * -2 ln 3 1 0 1
 + 0 / / -1 * + x -25 0.05 1
 + / - 0 / 20 - 25 x -1 0
 
-(d x (+ (* -1 x) (* 3126 (ln x))))
+d x + * -1 x * 3126 ln x
 + -1 * -1 / / -1 / x 3126 1
 + - / / -1 * x 0.0003198976327575176 -1 0 -1
 + - 0 + 1 / -3126 x 0
@@ -4984,7 +4984,7 @@ pow - / * -2 ln 3 1 0 1
 + + / / 1 * x -1 -0.0003198976327575176 -1 0
 + -1 * -1 / -1 * * x -0.0003198976327575176 -1
 
-(d x (+ 3 (+ (* 2 (ln x)) (* 3 x))))
+d x + 3 + * 2 ln x * 3 x
 * 1 - d x ln * x x -3
 - / / / 2 x 1 1 -3
 * + 3 * / 1 x 2 1
@@ -5335,9 +5335,9 @@ pow + 3 d x + ln x ln x 1
 pow + * 2 d x ln x 3 1
 - 3 d x ln / d x ln x x
 
-(d x (* 2 (* (pow x 2) (+ 5 (ln x)))))
+d x * 2 * pow x 2 + 5 ln x
 
-(d x (+ (* -1 x) (ln (pow (* 48 x) x))))
+d x + * -1 x ln pow * 48 x x
 + 1 + ln 48 - - ln x 0 1
 + 1 + -1 + ln * x 48 ln 1
 + 1 + + ln x - ln 48 0 -1
@@ -5356,24 +5356,24 @@ pow + * 2 d x ln x 3 1
 + 1 + ln 48 - + 1 ln x 2
 + 1 + - ln * x 48 ln 1 -1
 
-(+ x (ln (pow x (+ -3 4))))
++ x ln pow x + -3 4
 + x + + ln x ln 1 ln 1
 
-(* 7 (* x (* (pow 6 -1) (ln x))))
+* 7 * x * pow 6 -1 ln x
 
-(ln (+ (pow x 2) (* 3375 x)))
+ln + pow x 2 * 3375 x
 
-(* 2 (+ (* 13 x) (ln x)))
+* 2 + * 13 x ln x
 
-(+ x (* 5 (ln (+ 1 x))))
++ x * 5 ln + 1 x
 
-(ln (+ 2 (+ (pow x 2) (* x 7))))
+ln + 2 + pow x 2 * x 7
 
-(ln (pow (* 4 x) (* 4 (pow x 2))))
+ln pow * 4 x * 4 pow x 2
 
-(* 2 (* x (+ -4 (ln (+ 3 x)))))
+* 2 * x + -4 ln + 3 x
 
-(d x (* 4 (pow (ln x) 4)))
+d x * 4 pow ln x 4
 + / * pow ln x 3 16 x 0
 + / pow ln x 3 * 0.0625 x 0
 + / pow ln x 3 / x 16 0
@@ -5381,15 +5381,15 @@ pow + * 2 d x ln x 3 1
 + 0 / / pow ln x 3 0.0625 x
 + 0 * 4 d x pow ln x 4
 
-(d x (* (pow x -1) (+ 3 (ln x))))
+d x * pow x -1 + 3 ln x
 + * - -2 ln x pow x -2 0
 + / - -2 ln x pow x 2 0
 
-(+ 8 (* -2 (ln x)))
++ 8 * -2 ln x
 
-(+ -1 (+ (* -1 (ln (pow x 4))) (* 2 x)))
++ -1 + * -1 ln pow x 4 * 2 x
 
-(d x (+ 1 (* (pow (pow x -1) 1) (ln x))))
+d x + 1 * pow pow x -1 1 ln x
 / + 1 ln d x ln x pow x 2
 * pow x -2 - * ln x -1 -1
 * - ln d x ln x -1 pow x -2
@@ -5432,13 +5432,13 @@ d x + 1 * pow x -1 ln x
 / - 0 - ln x 1 pow x 2
 * - pow x -2 0 - 1 ln x
 
-(+ (pow x 2) (ln (pow 16 (sqrt x))))
++ pow x 2 ln pow 16 sqrt x
 
-(+ x (ln (pow (+ -2 (* 2 x)) 4)))
++ x ln pow + -2 * 2 x 4
 
-(ln (pow 3 (+ x (+ (pow x 2) (exp x)))))
+ln pow 3 + x + pow x 2 exp x
 
-(d x (ln (* 2 (* 1 (pow x 4)))))
+d x ln * 2 * 1 pow x 4
 + - * 4 / 2 * x 2 0 0
 + * * pow x -1 0.5 8 0
 + * 0.5 - / 8 x 0 0
@@ -5778,11 +5778,11 @@ d x + 1 * pow x -1 ln x
 + / 4 * / 2 / 1 x 0.5 0
 + - / / 2 * x 0.25 2 0 0
 
-(d x (+ x (* (pow (sin (+ 10 (* 7 pi))) -10) (ln x))))
+d x + x * pow sin + 10 * 7 pi -10 ln x
 
-(d x (+ x (* -10 (ln (sin (+ x (* 3 pi)))))))
+d x + x * -10 ln sin + x * 3 pi
 
-(d x (* x (ln (pow (sec (+ 2.7 (* 6 pi))) -1))))
+d x * x ln pow sec + 2.7 * 6 pi -1
 
-(+ (* -10 (sin (+ (* 7 pi) (ln x)))) (sin x))
++ * -10 sin + * 7 pi ln x sin x
 
