@@ -10,20 +10,18 @@ import tqdm
 
 
 def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
-    expr_orig = equiv_exprs[0]
-
     edit_dists = []
     for i, expr in enumerate(equiv_exprs[1:-1]):
-        dist = editdistance.eval(a=expr_orig, b=expr)
+        dist = editdistance.eval(a=equiv_exprs[0], b=expr)
         edit_dists.append((i, dist))
 
     indices_dists = sorted(edit_dists, key=lambda x: x[1], reverse=True)
     indices_dists = indices_dists[:n_exprs-1]
 
     equiv_exprs_filtered = []
+    equiv_exprs_filtered.append(equiv_exprs[0])
     for index, _ in indices_dists:
         equiv_exprs_filtered.append(equiv_exprs[index+1])
-    equiv_exprs_filtered.insert(0, equiv_exprs[0])
     equiv_exprs_filtered.append('\n')
 
     assert len(equiv_exprs_filtered) == n_exprs+1
@@ -87,6 +85,11 @@ def main() -> None:
         logger.log_error(f"Raw dataset directory '{config.DATA_RAW_DIR}' does not exist!")
         logger.log_error("Make sure to run './create_raw_dataset.py' first.")
         return
+    if os.path.exists(path=config.DATA_PROCESSED_DIR):
+        logger.log_error(f"{config.DATA_PROCESSED_DIR} directory already exists!")
+        logger.log_error(f"Make sure to delete {config.DATA_PROCESSED_DIR} directory first.")
+        logger.log_error("Operation aborted.")
+        exit(1)
 
     parser = argparse.ArgumentParser(prog="create_dataset",
                                      description="Create dataset by removing expressions with 0 equivalent expressions "
