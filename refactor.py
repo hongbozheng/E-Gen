@@ -4,30 +4,11 @@
 import argparse
 import config
 import fractions
+import glob
 import itertools
 import logger
 import os
-
-
-def rm_idt_expr(filepath: str, dataset_dir: str) -> None:
-    exprs_filepath = os.path.join(dataset_dir, "exprs.txt")
-
-    try:
-        with open(file=filepath, mode='r') as input_file, open(file=exprs_filepath, mode='w') as output_file:
-            for expr in input_file:
-                expr = expr.strip()
-
-                if '(' in expr:
-                    expr = expr.replace("(", "").replace(")", "")
-                    expr_orig = expr
-                    output_file.write(f"{expr}\n")
-                elif expr != expr_orig:
-                    output_file.write(f"{expr}\n")
-
-    except FileNotFoundError:
-        logger.log_error(f"Input filepath {filepath} does not exist.")
-
-    return
+import tqdm
 
 
 def ref_int(s: str) -> str:
@@ -69,16 +50,30 @@ def ref_expr(expr: str) -> str:
     return expr
 
 
-def refactor(dataset_dir: str) -> None:
-    exprs_filepath = os.path.join(dataset_dir, "exprs.txt")
-    ref_filepath = os.path.join(dataset_dir, "ref.txt")
+def refactor(data_dir: str, data_refactored_dir: str) -> None:
+    filepath = os.path.join(data_dir, "**", "equiv_exprs.txt")
+    filepaths = glob.glob(pathname=filepath, recursive=True)
 
-    with open(file=exprs_filepath, mode='r') as exprs_file, open(file=ref_filepath, mode='w') as output_file:
-        for expr in exprs_file:
-            expr = expr.strip()
-            expr = ref_expr(expr=expr)
+    progbar = tqdm.tqdm(iterable=filepaths)
 
-            output_file.write(f"{expr}\n")
+    for filepath in progbar:
+        parts = filepath.split(os.path.sep)
+        cls = parts[-3]
+        category = parts[-2]
+        progbar.set_description(desc=f"[INFO]: Processing class '{cls}', category '{category}'", refresh=True)
+
+        class_category = os.path.join(cls, category)
+        path = os.path.join(data_refactored_dir, class_category)
+        if not os.path.exists(path=path):
+            os.makedirs(name=path, exist_ok=True)
+        ref_filepath = os.path.join(path, "equiv_exprs.txt")
+
+        file = open(file=filepath, mode='r')
+        ref_file = open(file=ref_filepath, mode='w')
+
+        for line in file:
+            expr = ref_expr(expr=line.strip())
+            ref_file.write(f"{expr}\n")
 
     return
 
@@ -104,25 +99,22 @@ def create_dataset(dataset_dir: str) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="refactor", description="refactor expressions into training form")
-    parser.add_argument("--input_filepath", "-i", type=str, required=True, help="Input filepath")
-    parser.add_argument("--dataset_dir", "-d", type=str, required=True, help="Dataset directory")
+    parser = argparse.ArgumentParser(prog="create refactored dataset",
+                                     description="Create refactored dataset")
+    parser.add_argument("--dataset_dir", "-d", required=True, help="dataset directory")
 
     args = parser.parse_args()
-    filepath = args.input_filepath
     dataset_dir = args.dataset_dir
 
-    logger.log_info("Removing identical expressions...")
-    rm_idt_expr(filepath=filepath, dataset_dir=dataset_dir)
-    logger.log_info("Finish removing identical expressions...")
     logger.log_info("Refactoring expressions...")
-    refactor(dataset_dir=dataset_dir)
-    logger.log_info("Finish refactoring expressions...")
-    logger.log_info("Creating dataset ...")
-    create_dataset(dataset_dir=dataset_dir)
-    logger.log_info("Finish creating dataset ...")
+    refactor(data_dir=dataset_dir, data_refactored_dir=config.DATA_REFACTORED_DIR)
+    logger.log_info("Finish refactoring expressions.")
+    logger.log_info("Creating dataset...")
+    # create_expr_pairs(dataset_dir=config.DATA_REFACTORED_DIR)
+    logger.log_info("Finish creating dataset.")
 
     return
+
 
 if __name__ == "__main__":
     main()
