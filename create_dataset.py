@@ -6,7 +6,6 @@ import config
 import editdistance
 import logger
 import os
-import tqdm
 
 
 def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str, str]:
