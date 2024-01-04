@@ -117,53 +117,57 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Dataset (Python)
-#### Create raw dataset
+#### Deduplication
 ##### Check command line input help
 ```
-./create_raw_dataset.py -h
+./deduplicate.py -h
 ```
-##### Create raw dataset by splitting all equivalent expressions into different classes & categories and removing identical expressions
-Move all generated equivalent expressions .txt files in a folder `<folder_name>`
-
-Then rename them to be `equiv_exprs_<index>.txt`
-
-For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`, `equiv_exprs_2.txt`, ...
+##### Create `equiv_exprs.txt` which stores all generated equivalent expressions after deduplication
+1. Make sure all generated equivalent expressions `.txt` files have 2 `'\n'` characters at the end of the file
+2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
+3. Then rename them to be `equiv_exprs_<index>.txt`. For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`,
+`equiv_exprs_2.txt`, ...
+4. Run the following command-line application
 ```
-./create_raw_dataset.py -d <equiv_exprs_dir>
+./deduplication -d <equiv_exprs_dir>
 ```
 * `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
 
-The script will create a raw dataset folder named `raw` under `data` folder with all equivalent expressions splitted
-into classes & categories
+The script will create the following three `.txt` files
+1. `exprs.txt` - This file contains all the distinct generated original expressions
+2. `equiv_exprs.txt` - This file contains all the distinct generated equivalent expressions
+3. `duplicates.txt` - This file contains all the repetitive original expressions
 
-#### Create dataset
-##### Check command line input help
+#### Create Raw Dataset/Processed Dataset
+##### Create raw dataset by splitting all equivalent expressions into different classes & categories
 ```
-./create_dataset.py -h
+./create_dataset.py
 ```
-##### Create dataset by removing expressions with `0` equivalent expressions & filter them with specified limit
+##### Create processed dataset by removing expressions with `0` equivalent expressions, filtering the ones with more than `<n_exprs>` equivalent expressions, and splitting all equivalent expressions into different classes & categories
 ```
-./create_dataset.py -n <n_exprs>
+./create_dataset.py -p <processed> -n <n_exprs>
 ```
+* `<processed>` - flag to indicate whether to process all generated equivalent expressions
 * `<n_exprs>` - number of expressions to keep
 
-[//]: # (##### Provide input filepath and dataset directory)
+#### Refactor Dataset & Create Expression Pairs
+##### Check command line input help
+```
+./refactor.py -h
+```
+##### Refactor dataset and create expression pairs
+```
+./refactor.py -d <dataset_dir>
+```
+* `<dataset_dir>` - dataset directory
 
-[//]: # (```)
-
-[//]: # (./process_exprs.py -i <input filepath> -d <dataset directory>)
-
-[//]: # (```)
-
-[//]: # (* `<input filepath>` - input filepath)
-
-[//]: # (* `<dataset directory>` - dataset directory)
-
-[//]: # ()
-[//]: # (The script will create `3` files under `<dataset directory>`)
-
-[//]: # (* `exprs.txt` - The file contains expressions excluding those identical to the originals.)
-
-[//]: # (* `ref.txt` - The file contains refactored expressions.)
-
-[//]: # (* `dataset.txt` - The file contains expression pairs.)
+#### Statistics
+##### Check command line input help
+```
+./stats.py -h
+```
+##### Calculate dataset statistics
+```
+./stats.py -d <dataset_dir>
+```
+* `<dataset_dir>` - dataset directory
