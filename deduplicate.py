@@ -19,7 +19,7 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
     progbar = tqdm.tqdm(iterable=filepaths)
 
     for filepath in progbar:
-        progbar.set_description(desc="[INFO]: Processing file '%s'" % filepath, refresh=True)
+        progbar.set_description(desc=f"[INFO]: Processing file '{filepath}'", refresh=True)
 
         input_file = open(file=filepath, mode='r')
         equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
