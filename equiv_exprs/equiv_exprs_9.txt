@@ -2,7 +2,6 @@
 
 + pow x 3 ln pow * 3 x x
 + pow x 3 * x + ln 3 ln x
-+ pow x 3 ln pow * 3 x x
 + pow x 3 * x ln * x 3
 
 * 3 + pow x 3 * 375 ln x
@@ -1104,7 +1103,6 @@ d x ln pow + 5 * -1 x * 2 x
 * 2 * x + * -2 ln x * 4 x
 
 + pow x 2 + * 390626 x ln x
-+ pow x 2 + * 390626 x ln x
 
 + * 5 pow x 2 * 125 ln x
 + * 5 pow x 2 * ln x 125
@@ -1930,7 +1928,6 @@ pow * / x 0.14285714285714285 * ln 35 2 1
 + 0 / ln 35 / / 1 x 14
 * * * 7 + ln 35 ln 35 x 1
 - / x / / 0.14285714285714285 ln 35 2 0
-d x ln pow 35 * 7 pow x 2
 pow * x * ln 1225 7 1
 * ln 1225 / / x 0.14285714285714285 1
 + 0 - / x / 0.07142857142857142 ln 35 0
@@ -4293,7 +4290,6 @@ d x ln pow + 1 * 7 x * 3 x
 
 + x + pow x 3 + exp x ln * 2 x
 
-+ * 4 pow x 7 * 8 ln x
 + * 4 pow x 7 * 8 ln x
 
 d x + x * 3 * x ln * x + 1 x

@@ -13,7 +13,6 @@ d x * x * + x * 3 pow x 2 asinh x
 d x + x * -2 * x + * 4 x asinh x
 
 + * 3 pow x 3 * 9 atan x
-+ * 3 pow x 3 * 9 atan x
 
 * 7 + 1 asinh x
 
@@ -63,7 +62,6 @@ d x - * + acosh sqrt x 5 4 0
 / 4 / 1 d x + 5 acosh sqrt x
 pow d x * 4 - acosh sqrt x -5 1
 / d x + - acosh sqrt x 0 5 0.25
-d x * 4 + 5 acosh sqrt x
 * 1 * 4 d x acosh sqrt x
 * d x acosh sqrt x 4
 d x - 20 * - 0 acosh sqrt x 4
@@ -109,28 +107,6 @@ pow - / d x acosh sqrt x 0.25 0 1
 / 4 / 1 d x - acosh sqrt x -5
 / 1 / / 1 d x acosh sqrt x 4
 pow d x * 4 acosh / sqrt x 1 1
-
-d x + * 5 x atanh + 4 * -1 x
-- 5 - 0 d x atanh - 4 x
-- d x atanh + * -1 x 4 -5
-+ - d x atanh - 4 x -5 0
-- 5 * -1 d x atanh - 4 x
-pow - d x atanh - 4 x -5 1
-+ d x atanh - 4 - x 0 5
-+ d x atanh + 4 * x -1 5
-- 5 / 1 - 1 pow - 4 x 2
-- d - x 0 atanh - 4 x -5
-- d x atanh - 4 x -5
-* + d x atanh - 4 x 5 1
-+ / -1 - 1 pow - 4 x 2 5
-- / -1 - 1 pow - 4 x 2 -5
-+ 5 d x atanh - 4 x
-+ 0 + 5 d x atanh - 4 x
-pow + d x atanh - 4 x 5 1
-+ 5 d x atanh - 4 / x 1
-d x + atanh - 4 x * 5 x
-* 1 - d x atanh - 4 x -5
-- d / x 1 atanh - 4 x -5
 
 d x * 4 pow + * 2 x asinh x 2
 
@@ -190,36 +166,6 @@ d x + 2 + atan x sin x
 + * 6 pow x 2 * 2 acos x
 * 2 + * pow x 2 3 acos x
 
-* 3 * x + 8 * -1 atanh x
-+ * 24 x * * atanh x x -3
-+ * x - * atanh x -3 -24 0
-+ * x + 24 * -3 atanh x 0
-+ * x - 24 * atanh x 3 0
-+ * * 3 x - 8 atanh x 0
-
-d x + 20 + x + atanh x sin x
-+ cos x d x + + atanh x x 20
-+ + d x atanh x 1 - cos x 0
-+ d x + atanh x x / cos x 1
-+ d x + 20 + atanh x sin x 1
-+ + cos * x -1 d x atanh x 1
-+ + d x sin x d x atanh x 1
-+ 0 + cos x d x + x atanh x
-+ 1 + d x + 20 atanh x cos x
-+ 1 + cos x d x atanh x
-+ + cos x + 1 d x atanh x 0
-+ cos x d x + atanh x x
-+ d x + x atanh x cos * -1 x
-+ 0 d x + atanh x + sin x x
-+ d x + atanh x x / 1 sec x
-+ / 1 sec x + 1 d x atanh x
-+ 0 + 1 d x + sin x atanh x
-+ cos x d x - atanh x * x -1
-+ - cos x 0 d x + x atanh x
-+ 1 d x + sin x atanh x
-+ / cos x 1 + d x atanh x 1
-+ d x + atanh x x d x sin x
-
 + 6 * 9 * pow x -2 atan x
 + 6 * atan x * 9 pow x -2
 
@@ -229,8 +175,6 @@ d x + 20 + x + atanh x sin x
 
 * x + -10 + x acosh pow sec + 10 * 7 pi -1
 
-d x + -10 + * -10 * x cos x atanh pow x 10
-
 d x + pow x 2 * 2 * x acos + 1 x
 
 * -10 asin * x pow 3 -1
@@ -239,15 +183,6 @@ d x + pow x 2 * 2 * x acos + 1 x
 pow * -10 asin * x pow 3 -1 1
 
 + pow x 3 * x acosh + 4 x
-+ pow x 3 * x acosh + 4 x
-
-+ 5 + * 3 x * 5 atanh x
-- * 5 atanh x - -5 / x 0.3333333333333333
-- + * 3 x * 5 atanh x -5
-+ / x 0.3333333333333333 + 5 * atanh x 5
-+ / x 0.3333333333333333 - * atanh x 5 -5
-+ 5 + * 3 x * atanh x 5
-- * 5 atanh x - -5 * x 3
 
 + -4 + * 2 x * x + x asin x
 + -4 * + 2 + asin x x x
@@ -320,60 +255,6 @@ pow + -1 d x * 5 acos x 1
 
 * x + x + pow x 2 * 4 acosh x
 
-d x atanh + x * -1 * x 7
-d x atanh + x * / x 1 -7
-d x atanh + * 7 - 0 x x
-d x atanh - x - * 8 x x
-/ d x - atanh * x -6 0 1
-d x atanh + - * -7 x 0 x
-/ 1 - -0.16666666666666666 * -0.16666666666666666 pow * -6 x 2
-d x atanh - / x 1 * 7 x
-pow d x atanh * -6 / x 1 1
-* 1 d x atanh * -6 x
-d x atanh - x - 0 * x -7
-d x atanh - x - x * -6 x
-d - x 0 - atanh * x -6 0
-pow d x atanh * x -6 1
-d x atanh * / x 1 -6
-* - 0 d x atanh * x -6 -1
-pow d x atanh - x * 7 x 1
-- d x atanh - x * x 7 0
-* / d x atanh * x -6 1 1
-* / -1 - 1 pow * x -6 2 6
-d x atanh + x * * x -1 7
-+ 0 d x atanh * -6 / x 1
-d x atanh + x + * x -8 x
-d x atanh - x * 7 x
-/ -6 - 1 pow * -6 x 2
-d - x 0 atanh * -6 x
-* 1 / -6 - 1 pow * x -6 2
-+ 0 / -6 - 1 pow * x -6 2
-pow - d x atanh * x -6 0 1
-- / 1 + x 1 / -1 - 1 x
-pow / -6 - 1 pow * -6 x 2 1
-+ 0 d x atanh * x -6
-pow d x atanh + x * x -7 1
-/ / d x atanh * -6 x 1 1
-+ 0 d x atanh + * -7 x x
-d x ln / + 1 x - 1 x
-d x atanh + - x * x 8 x
-+ d - x 0 atanh * x -6 0
-* * d x atanh * -6 x -1 -1
-+ / 1 - 1 x / 1 + x 1
-* 1 d - x 0 atanh * -6 x
-- / -6 - 1 pow * -6 x 2 0
-d x atanh + x * -7 x
-* 1 d x atanh + * -7 x x
-- 0 / 6 - 1 pow * x -6 2
-d x atanh + x - * -6 x x
-/ -6 - 1 pow - x * x 7 2
-/ 1 / - 1 pow * -6 x 2 -6
-d x atanh * -6 x
-/ 1 * -0.16666666666666666 - 1 pow * x -6 2
-/ -6 - 1 pow + * -7 x x 2
-d x - ln + x 1 ln - 1 x
-* d x atanh - x * x 7 1
-
 * 6 * x + -3 acos x
 pow * * 6 + acos x -3 x 1
 + * * 6 x acos x * x -18
@@ -404,42 +285,6 @@ d x - * 2 pow x 2 asin x
 - 0 - d x asin x * 4 x
 - * 3 x - d x asin x x
 - * x 4 / d x asin x 1
-
-d x + 4 * x + 1 atanh x
-- d x * x + atanh x 1 0
-+ + d x * atanh x x 1 0
-pow d x + * x atanh x x 1
-* 1 + d x * x atanh x 1
-+ d x + * x atanh x 4 1
-d x + x * x atanh x
-d x + + 4 * x atanh x x
-d x * x + atanh x 1
-+ * d x atanh x x + atanh x 1
-d x / * + 1 atanh x x 1
-- 1 d x - 0 * atanh x x
-d x + x - * atanh x x -4
-+ - atanh x -1 * x d x atanh x
-d x - * x atanh x - -4 x
-d x + * x atanh - x 0 x
-d x + x * x atanh / x 1
-d x - * x atanh x * -1 x
-pow d x * x + 1 atanh x 1
-- d x * / atanh x 1 x -1
-d x - * - atanh x -1 x -4
-d - x 0 * - atanh x -1 x
-* 1 d x * - atanh x -1 x
-d x - * + atanh x 1 x -4
-+ 0 d x + x * atanh x x
-pow d x * x - atanh x -1 1
-d x - x * x - 0 atanh x
-d x * - atanh x -1 x
-* 1 d x + * x atanh x x
-- atanh x - -1 * d x atanh x x
-- d x + * x atanh x 4 -1
-+ 0 - d x * atanh x x -1
-
-+ * 27 pow x 2 * x atanh x
-+ * pow x 2 27 * x atanh x
 
 d x + * pow x -2 + 5 x acosh x
 
@@ -591,7 +436,6 @@ pow / -3 sqrt - 1 pow x 2 1
 - 0 / - d x acos x 0 -0.3333333333333333
 * 1 / -3 sqrt - 1 pow x 2
 / -1 / 0.3333333333333333 * -1 d x acos x
-d x * 3 + 9 acos x
 / / 1 sqrt - 1 pow x 2 -0.3333333333333333
 pow / / d x acos x 1 0.3333333333333333 1
 pow / 3 / 1 d x acos x 1
@@ -634,24 +478,15 @@ d x + * -2 x * 2 acosh + 2 x
 + x * -1 * pow x 2 asin + 3 x
 - x * asin + x 3 pow x 2
 
-* 9 * x + 2 atanh * 2 pow x 2
-
 + * 7 atan x exp x
 + exp x * 7 atan x
 pow + exp x * 7 atan x 1
 * + exp x * 7 atan x 1
 
-+ * -10 * x pow 8 -1 atanh x
-+ * / pow 8 -1 -0.1 x atanh x
-+ * * -10 x pow 8 -1 atanh x
-+ / x / -0.1 pow 8 -1 atanh x
-
 d x atan * pow x -1 + 1 * 4 x
 + 0 d x atan + pow x -1 4
 
 d x + * 3 x * 5 * pow x 3 acos x
-
-* + pow x 4 * 4 x atanh x
 
 d x * 9 + x * -6 asin x
 + 0 + / d x asin x -0.018518518518518517 9
@@ -682,11 +517,8 @@ pow + d x * -54 asin x 9 1
 + pow csc x -1 * -10 asinh x
 + pow / 1 sin x -1 * asinh x -10
 * 1 + pow csc x -1 * asinh x -10
-+ pow csc x -1 * -10 asinh x
 + * asinh x -10 pow / csc x 1 -1
 pow + * -10 asinh x pow csc x -1 1
-
-* x + 1 + x * 2 * pow x 2 atanh x
 
 + * 9 x * 3 * pow x 2 asinh x
 
@@ -696,16 +528,6 @@ atan * 8 * x pow + x pow x 2 -1
 
 d x + -2 + pow x 3 * x asinh x
 d x + * asinh x x pow x 3
-
-+ * 12 pow x 2 * 12 atanh x
-pow * + atanh x pow x 2 12 1
-* + atanh x pow x 2 12
-* + atanh x pow / x 1 2 12
-- * + pow x 2 atanh x 12 0
-* - pow x 2 - 0 atanh x 12
-+ * 12 + pow x 2 atanh x 0
-+ * 12 pow x 2 * 12 atanh x
-* 1 * + atanh x pow x 2 12
 
 d x * x * + 6 * 2 x acosh x
 
@@ -751,7 +573,6 @@ pow / 4 / 1 d x atan x 1
 / 1 / 1 * d x atan x 4
 * / 1 / + 1 pow x 2 1 4
 pow / 4 + 1 pow x 2 1
-d x + * 4 atan x 6
 pow / 1 + * 0.25 pow x 2 0.25 1
 + 0 / 4 / 1 d x atan x
 * 4 d x atan x
@@ -879,59 +700,6 @@ d x - * x 4 acos + x 4
 * x + 1 * + 7 x atan x
 + x * * + x 7 atan x x
 * + 1 * atan x + 7 x x
-
-d x + * 4 pi + * 2 x atanh pow x 2
-
-d x * 7 + 1 + * -3 atanh x * 3 x
-+ * 7 * -3 d x atanh x 21
-+ 0 + 21 / -21 - 1 pow x 2
-- d x * * atanh x -3 7 -21
-+ 21 / d x * atanh x -21 1
-+ 21 d x * -21 atanh x
-- 21 - 0 / -21 - 1 pow x 2
-+ 21 d x - * -21 atanh x -7
-* 1 + / -21 - 1 pow x 2 21
-- d x - * atanh x -21 -7 -21
-+ / -21 - 1 pow x 2 21
-pow + d x * -21 atanh x 21 1
-- 21 d x * - 0 atanh x -21
-- d x + 7 * atanh x -21 -21
-* - * -3 d x atanh x -3 7
-+ * -3 / 7 - 1 pow x 2 21
-- d x - * -21 atanh x 0 -21
-- / -3 * - 1 pow x 2 0.14285714285714285 -21
-+ 21 / 7 * - 1 pow x 2 -0.3333333333333333
-+ - / -21 - 1 pow x 2 -21 0
-d x + * x 21 * -21 atanh x
-- / -21 - 1 pow x 2 -21
-+ 21 / 1 * - 1 pow x 2 -0.047619047619047616
-* 1 - * -21 d x atanh x -21
-- / -21 / 1 d x atanh x -21
-- * / -3 - 1 pow x 2 7 -21
-+ / -21 / 1 d x atanh x 21
-pow - d x * -21 atanh x -21 1
-+ 21 / 7 / - 1 pow x 2 -3
-* + d x * atanh x -3 3 7
-- / -21 - 1 pow / x 1 2 -21
-- + 21 * d x atanh x -21 0
-+ 0 - * -21 d x atanh x -21
-+ + d x * -21 atanh x 21 0
-- * -21 / 1 - 1 pow x 2 -21
-- / -3 / - 1 pow x 2 7 -21
-* + / -3 - 1 pow x 2 3 7
-pow - / -21 - 1 pow x 2 -21 1
-- / 7 * - 1 pow x 2 -0.3333333333333333 -21
-- d x * atanh x -21 -21
-+ - / -21 - 1 pow x 2 0 21
-- / 1 * - 1 pow x 2 -0.047619047619047616 -21
-- d / x 1 * -21 atanh x -21
-- - / -21 - 1 pow x 2 0 -21
-+ / -21 / - 1 pow x 2 1 21
-+ 21 d x + 7 * atanh x -21
-+ / -3 * - 1 pow x 2 0.14285714285714285 21
-pow + 21 / -21 - 1 pow x 2 1
-* + 21 * -21 d x atanh x 1
-* - / -3 - 1 pow x 2 -3 7
 
 asin + * 3 x * x 6
 * 1 asin + * x 6 * 3 x
@@ -1097,7 +865,6 @@ pow / 2 / 1 d x acos x 1
 / -2 / -1 d x acos x
 + / d x + 6 acos x 0.5 0
 - d x + acos x + acos x 6 0
-d x + 6 * 2 acos x
 / 2 / 1 d x + acos x 6
 + 0 + d x acos x d x acos x
 + / -2 sqrt - 1 pow x 2 0
@@ -1172,58 +939,11 @@ d x pow + 1 + * -1 x * -1 acos x 3
 
 + x * x + -1 + x * x asinh x
 
-* 16 * x + * 2 x atanh x
-
 d x + pow x 2 + * 5 x * x acosh x
 
 d x * x + 7 * pow x 2 asinh x
 - d x * asinh x pow x 3 -7
 + 7 d x * pow x 3 asinh x
-
-* 5 * x + 10 atanh x
-* x * 5 - 0 - -10 atanh x
-+ * 50 x * * 5 x atanh x
-* + * - atanh x -5 5 25 x
-pow * x * + atanh x 10 5 1
-* - 50 - 0 * 5 atanh x x
-* x + 50 * atanh x 5
-* - + * 5 atanh x 50 0 x
-* + * + 5 atanh x 5 25 x
-/ + * atanh x 5 50 / 1 x
-* - * 5 atanh x -50 x
-* * + atanh x 10 x 5
-* x * - atanh / x 1 -10 5
-* * + atanh / x 1 10 x 5
-/ + atanh x 10 * 0.2 / 1 x
-/ - atanh x -10 * / 1 x 0.2
-* + 25 + * 5 atanh x 25 x
-+ 0 * 5 * - atanh x -10 x
-pow * * x 5 - atanh x -10 1
-* + * 5 atanh / x 1 50 x
-pow * - * atanh x 5 -50 x 1
-* + * x 10 * atanh x x 5
-+ 0 * + * atanh x 5 50 x
-- 0 * x - -50 * 5 atanh x
-* * x * 5 + 10 atanh x 1
-* 5 - * atanh x x * -10 x
-* 1 * * 5 x - atanh x -10
-+ * * 5 x + atanh x 10 0
-* - / 5 / 1 atanh x -50 x
-/ 5 / / 1 x + 10 atanh x
-+ * - * 5 atanh x -50 x 0
-* - atanh x -10 * x 5
-* * x + 5 - atanh x -5 5
-/ * 5 + atanh x 10 / 1 x
-* * + 5 + atanh x 5 5 x
-* / x 1 - * 5 atanh x -50
-* 5 * x - 10 - 0 atanh x
-pow * x + 50 * atanh x 5 1
-/ 5 / / 1 x - atanh x -10
-/ - atanh x -10 / 1 * x 5
-* * x + 10 atanh - x 0 5
-* 1 * x + * 5 atanh x 50
-- * * 5 atanh x x * -50 x
-* 1 * - * 5 atanh x -50 x
 
 * -5 + x * -1 atan * 5 x
 * * -5 - x atan * x 5 1
@@ -1234,11 +954,6 @@ pow * x + 50 * atanh x 5 1
 pow * - x atan * x 5 -5 1
 
 * x + 1 + * -3 x * 3 acosh x
-
-d x + * 4 pow x -1 atanh x
-- d x atanh x * pow x -2 4
-d x + atanh x * pow x -1 4
-+ * -4 pow x -2 d x atanh x
 
 + * -10 acos * -10 x sin x
 + * -10 acos * -20 / x 2 sin x
@@ -1256,8 +971,6 @@ d x * 8 * x + 5 * x asinh x
 * 5 + 2 * x asinh x
 
 d x * -1 * x + -1 * x asinh x
-
-+ pow x 2 * 6 * pow x 4 atanh x
 
 d x * -3 + * -1 asin * 2 x * 5 x
 * - 5 d x asin * 2 x -3
@@ -1307,23 +1020,6 @@ d x * / + atan x 1 -0.3333333333333333 x
 d x + -10 + * -10 sin + x * 1 pi atan x
 d x + * -10 sin + x pi atan x
 
-+ * 2 x * 4 atanh x
-+ * x 2 * 4 atanh x
-pow + * 4 atanh x / x 0.5 1
-+ / 2 / 1 x * atanh x 4
-+ / x 0.5 * - atanh x 0 4
-+ * atanh x 4 / x 0.5
-+ * 4 atanh x / * x 2 1
-+ 0 + * atanh x 4 / x 0.5
-+ * 2 x * 4 - atanh x 0
-* 1 + * x 2 * 4 atanh x
-* 1 + / x 0.5 * atanh x 4
-+ / / x 1 0.5 * atanh x 4
-- * x 2 * 4 - 0 atanh x
-+ 0 + * atanh x 4 * 2 x
-- * 4 atanh x - 0 / x 0.5
-pow + * atanh x 4 * 2 x 1
-
 d x + * 7 x * 3 atan x
 + 7 / / 1 + 1 pow x 2 0.3333333333333333
 * 1 + / d x atan x 0.3333333333333333 7
@@ -1342,24 +1038,8 @@ pow + 7 / d x atan x 0.3333333333333333 1
 + / 3 / 1 d x atan x 7
 + / 3 + 1 pow x 2 7
 + 0 + 7 * 3 d x atan x
-d x + * 7 x * 3 atan x
 pow + 7 / 3 + 1 pow x 2 1
 pow + 7 * 3 d x atan x 1
-
-atanh * x * pow 7 -1 cos + 10 * 9 pi
-+ ln + 1 x - 0 ln - 1 x
-+ ln + 1 x ln / 1 - 1 x
-pow - ln + x 1 ln - 1 x 1
-ln / + x 1 / - 1 x 1
-- - ln + x 1 0 ln - 1 x
-pow ln / + x 1 - 1 x 1
-* 1 - ln + x 1 ln - 1 x
-- ln + x 1 ln - 1 x
-ln / + 1 x - 1 x
-- 0 ln / - 1 x + x 1
-* ln / + x 1 - 1 x 1
-- ln + x 1 ln / - 1 x 1
-+ 0 ln / + x 1 - 1 x
 
 * -1 * x + -5 acosh pow x 2
 
@@ -1374,33 +1054,6 @@ pow + * acos x 20 2 1
 
 + * 3 acosh x * 3 pow x 3
 
-d x * 7 + 2 + * 3 x atanh x
-+ 0 - d x * 7 atanh x -21
-- * + d x atanh x 3 7 0
-- + / 7 - 1 pow x 2 21 0
-+ 21 d x * + 2 atanh x 7
-- - d x * atanh x 7 -21 0
-- - / 7 - 1 pow x 2 -21 0
-+ 21 / 7 - 1 pow x 2
-+ 21 d x - * atanh x 7 -14
-+ 21 / / 7 - 1 pow x 2 1
-+ * 7 - d x atanh x -3 0
-+ 21 d x * 7 - atanh x -2
-+ * 7 d x - atanh x 0 21
-+ 21 * / 1 - 1 pow x 2 7
-+ / 7 / 1 d x atanh x 21
-+ 0 * + 3 d x atanh x 7
-+ - / 7 - 1 pow x 2 -21 0
-- * - d x atanh x -3 7 0
-+ d x + * atanh x 7 14 21
-+ * d x atanh x 7 21
-+ / 1 * - 1 pow x 2 0.14285714285714285 21
-+ 0 + * 7 d x atanh x 21
-+ / * d x atanh x 7 1 21
-+ 0 + 21 / 7 - 1 pow x 2
-
-* 2 * x + * 2 x * 3 atanh x
-
 d x * x + -8 + * -4 x * 4 acos x
 
 d x * -6 * pow x 2 + -1 acosh x
@@ -1408,18 +1061,6 @@ d x * -6 * pow x 2 + -1 acosh x
 * x * + 1 x + x * x asin x
 
 d x + * 2 * x + 1 pow x 2 acos x
-
-* x + x + * -1 2.7 atanh x
-- * x - x - 2.7 atanh x 0
-+ * + + x atanh x -2.7 x 0
-+ * + atanh x - x 2.7 x 0
-+ * + -2.7 atanh x x pow x 2
-+ * x - atanh x - 2.7 x 0
-+ pow x 2 * x - atanh x 2.7
-- * x + + atanh x x -2.7 0
-+ * x - x 2.7 * atanh x x
-- * x atanh x * x - 2.7 x
-+ * + x atanh x x * -2.7 x
 
 * x + 1 acos * x 9
 pow * x + 1 acos * x 9 1
@@ -1443,14 +1084,6 @@ d x asin * 3 * pow x -1 + x pow x 2
 
 + x * asin sin + x * 8 pi sin x
 
-d x + * 2 x * 2 * x + 5 atanh x
-d x * x * 2 - atanh x -6
-+ 12 d x * atanh x + x x
-+ * d x * x atanh x 2 12
-d x * + 6 atanh x + x x
-d x * + x x - atanh x -6
-d x * 2 * x + 6 atanh x
-
 + * 8 asin + 4 x * 5 x
 + * x 5 * 8 asin + 4 x
 
@@ -1472,8 +1105,6 @@ pow + 1 / d x acos x 0.5 1
 * + 1 / d x acos x 0.5 1
 * 1 + * 2 d x acos x 1
 + 1 / 2 / 1 d x acos x
-
-+ 5 + x * 3 * x + x atanh x
 
 + * 10 tan x acosh x
 + / 1 / cot x 10 acosh x
@@ -1552,10 +1183,6 @@ pow - d x * asinh x 6 -9 1
 
 d x * x + 2 + * -1 x asin * 2 x
 
-* pow x 2 + 2 * 4 atanh x
-* pow x 2 + * 4 atanh x 2
-* - * atanh x 4 -2 pow x 2
-
 * 10 * x + 3 asin x
 * * x 10 + asin x 3
 + * 30 x * * 10 asin x x
@@ -1598,48 +1225,6 @@ d x / * - x 2 acos x -1
 d x - * 2 acos x * x acos x
 d x - * acos x - 2 x -3
 d x * + / x -1 2 acos x
-
-+ * 5 atanh x * 6 x
-- * 5 atanh x - 0 * x 6
-pow + * 6 x * atanh x 5 1
-+ * 5 atanh x / x 0.16666666666666666
-- / x 0.16666666666666666 - 0 * 5 atanh x
-+ * 6 x * atanh / x 1 5
-+ * - atanh x 0 5 * x 6
-pow + * 5 atanh x / x 0.16666666666666666 1
-+ + * 5 atanh x / x 0.16666666666666666 0
-* 1 + * 5 atanh x / x 0.16666666666666666
-* + * 6 x * 5 atanh x 1
-- + / x 0.16666666666666666 * atanh x 5 0
-+ / 6 / 1 x * atanh x 5
-+ * 6 x * 5 atanh x
-+ / / x 0.16666666666666666 1 * atanh x 5
-+ + * atanh x 5 * 6 x 0
-
-* x + * 4 sqrt x atanh x
-* x - atanh x - 0 / sqrt x 0.25
-* x + - atanh x 0 / sqrt x 0.25
-* 1 * + / sqrt x 0.25 atanh x x
-+ * atanh x x * * x 4 sqrt x
-* 1 * + * 4 sqrt x atanh x x
-* + atanh x / * 4 sqrt x 1 x
-/ x / 1 + / sqrt x 0.25 atanh x
-+ 0 * + / sqrt x 0.25 atanh x x
-* x + - atanh x 0 * sqrt x 4
-* + * 2 / sqrt x 0.5 atanh x x
-pow * x + atanh x * sqrt x 4 1
-pow * x + atanh x / sqrt x 0.25 1
-* + atanh x * 4 sqrt x x
-/ + * sqrt x 4 atanh x / 1 x
-* + atanh x / sqrt x 0.25 x
-+ * x atanh x / x / 0.25 sqrt x
-+ * atanh x x / * sqrt x x 0.25
-+ * x + * sqrt x 4 atanh x 0
-* x + / / sqrt x 0.5 0.5 atanh x
-* x + / 2 / 0.5 sqrt x atanh x
-* x - atanh x - 0 * sqrt x 4
-* + / / sqrt x 1 0.25 atanh x x
-* + atanh x * 2 * 2 sqrt x x
 
 + pow x 2 + * 2 x acosh x
 + pow x 2 + acosh x * x 2
@@ -1707,19 +1292,6 @@ pow d x + x asinh + -3 x 1
 * 1 + d x asinh + x -3 1
 
 * 1 * x + 1 * 5 asinh x
-
-d x * 6 + 6 * x atanh x
-- d x * * x atanh x 6 0
-+ d x * * 6 x atanh x 0
-* 6 d x * atanh x x
-* d x * * 6 atanh x x 1
-d x + * * atanh x x 6 36
-* + atanh x * d x atanh x x 6
-d x - * atanh x * 6 x -36
-d x * + * x atanh x 6 6
-pow d x * atanh x * 6 x 1
-d x * 6 - * atanh x x -6
-* d x * atanh x / x 1 6
 
 d x + * 3 x + * 7 pi acos x
 + 3 d x + * 7 pi acos x
@@ -1910,45 +1482,6 @@ d x acosh * 9 * pow x -1 + x pow x 2
 
 d x + * pow x 2 cos + x * 6 pi atan x
 
-+ 5 * 9 atanh x
-+ - * atanh / x 1 9 0 5
-+ - * 9 atanh x -5 0
-- * 9 atanh / / x 1 1 -5
-* 1 + 5 * 9 - atanh x 0
-+ - * - atanh x 0 9 -5 0
-pow - 5 - 0 * atanh x 9 1
-- 5 * - 0 atanh x 9
-* + * atanh x 9 5 1
-- + 5 * 9 - atanh x 0 0
-+ 0 + * atanh / x 1 9 5
-- - * - atanh x 0 9 0 -5
-+ - * 9 atanh x 0 5
-+ * 9 atanh / x 1 5
-- 5 - 0 * atanh / x 1 9
-pow + * 9 atanh x 5 1
-+ 0 - * 9 atanh / x 1 -5
-+ * 9 atanh x 5
-+ + 5 * 9 atanh x 0
-pow - * atanh x 9 -5 1
-* - 5 * 9 - 0 atanh x 1
-* - * 9 atanh x -5 1
-+ 5 * atanh / 1 / 1 x 9
-- * 9 - atanh x 0 -5
-pow - + * atanh x 9 5 0 1
-* - * atanh / x 1 9 -5 1
-- - * atanh / x 1 9 0 -5
-* 1 + 5 * 9 atanh / x 1
-- * atanh / x 1 9 -5
-pow + * atanh / x 1 9 5 1
-- * 9 atanh x -5
-pow - * 9 atanh / x 1 -5 1
-* - - * 9 atanh x 0 -5 1
-pow - * - atanh x 0 9 -5 1
-- 0 - - 0 * atanh x 9 5
-+ + * - atanh x 0 9 5 0
-
-d x * 4 * x + 3 * 2 * x atanh x
-
 * 3 * x + -1 atan pow x 2
 * x + * 3 atan pow x 2 -3
 * * x - atan pow x 2 1 3
@@ -1970,7 +1503,6 @@ d x + - sqrt x 0 acosh * 3 x
 + d x acosh * x 3 d x sqrt x
 d x + acosh / 3 / 1 x sqrt x
 * 1 d x + sqrt x acosh * 3 x
-d x + sqrt x acosh * x 3
 
 * x + 15 + * -1 x asinh x
 
@@ -2102,7 +1634,6 @@ d x + pow x 4 * 8 pow acos x 2
 + 1 + * 5 x asin x
 * 1 + * x 5 + 1 asin x
 pow + + asin x * 5 x 1 1
-+ 1 + * 5 x asin x
 
 d x + pow cot x -1 asin * 10 x
 d x + pow cot x -1 asin * x 10
@@ -2120,8 +1651,6 @@ pow * - 2 pow x 3 acos x 1
 pow + * atan * x 7 -10 x 1
 + x * atan * x 7 -10
 * + * atan * 7 x -10 x 1
-
-d x * pow + -3 x 2 atanh x
 
 d x + x * pow x 2 + -4 asinh x
 
@@ -2157,20 +1686,6 @@ d x + asin * x 2 3
 
 d x + pow x 2 * 8 atan * 6 x
 
-* x + -1 * 6 * x atanh x
-* x + -1 * * 6 atanh x x
-* x - * x * 6 atanh x 1
-- * 6 * pow x 2 atanh x x
-- * x * atanh x * x 6 x
-
-d x atanh * x + 1 * -1 4
-+ d x atanh * -3 x 0
-+ d x - atanh * x -3 0 0
-+ d / x 1 atanh * -3 x 0
-+ / -3 - 1 pow * -3 x 2 0
-
-d x * 8 * pow x 2 + -5 atanh x
-
 d x * + * 2 x * 2.7 x asinh x
 + 0 d x * * 4.7 asinh x x
 d x * * x 4.7 asinh x
@@ -2191,7 +1706,6 @@ d x * x + -10 + x + * -10 acosh x cos x
 + pow / 1 sin asinh + 1 x -1 x
 pow + pow csc asinh + x 1 -1 x 1
 + pow / csc asinh + x 1 1 -1 x
-+ x pow csc asinh + 1 x -1
 
 * 4 + * 4 atan x * 9 x
 * 4 + * atan x 4 * 9 x
@@ -2201,38 +1715,9 @@ pow + pow csc asinh + x 1 -1 x 1
 + * * atan x 4 4 * x 36
 pow + * atan x 16 * x 36 1
 
-d x * 4 + x * -25 atanh x
-+ 4 - * d x atanh x -100 0
-+ 4 - / -100 - 1 pow x 2 0
-
 + * -5 asinh x * 6 x
 
 d x * 4 * + -1 * 2 x acos x
-
-+ * -10 sin + * 6 pi 1 atanh x
-+ * -10 sin - 1 * -6 pi atanh x
-+ * -10 sin + 1 * 6 pi atanh x
-
-atanh + -3 * 15 pow x -1
-atanh + * 15 pow / x 1 -1 -3
-+ ln + 1 x - 0 ln - 1 x
-pow - ln + x 1 ln - 1 x 1
-* atanh + * 15 pow x -1 -3 1
-- - ln + x 1 0 ln - 1 x
-+ atanh + -3 * 15 pow x -1 0
-+ 0 ln / + x 1 - 1 x
-pow atanh + -3 * 15 pow x -1 1
-- 0 ln / - 1 x + x 1
-* ln / + x 1 - 1 x 1
-- ln + x 1 ln - 1 x
-pow ln / + x 1 - 1 x 1
-- atanh + * 15 pow x -1 -3 0
-* 1 - ln + x 1 ln - 1 x
-atanh + -3 * 15 pow x -1
-ln / + 1 x - 1 x
-ln / + 1 x - 1 / x 1
-- ln + 1 x ln / - 1 x 1
-+ ln + 1 x ln / 1 - 1 x
 
 d x pow + -6 + x * -1 asinh x 2
 
@@ -2309,10 +1794,6 @@ d x * x acosh * x pow csc + -10 * 6 pi -1
 
 d x * -1 * + -5 pow x 3 acosh x
 
-+ * 3 x * pow x 4 atanh x
-+ * x 3 * atanh x pow x 4
-+ * atanh x pow x 4 / x 0.3333333333333333
-
 * 3 * atan x 7
 * 21 atan x
 * * atan x 21 1
@@ -2330,12 +1811,6 @@ pow * asin x + -2 * x 4 1
 d x * -1 * x * + -5 * 3 x asinh x
 
 d x * -1 * x + -3 * pow x 2 asinh x
-
-d x + * -10 atanh x * 10 sin + x * 5 pi
-
-+ * 2 * pow x 4 atanh x atanh x
-* atanh x + * 2 pow x 4 1
-+ atanh x * * pow x 4 2 atanh x
 
 d x * x + -3 + * 2 x * 2 asinh x
 
@@ -2372,12 +1847,6 @@ d x / acos x / 0.3333333333333333 x
 d x * / * -3 x -1 acos x
 pow * 3 d x * acos x x 1
 
-d x + 1 + * 6 x * 3 atanh x
-+ + d x * 3 atanh x 6 0
-+ 0 - * d x atanh x 3 -6
-+ 0 + 6 / 3 - 1 pow x 2
-+ 0 - / 3 - 1 pow x 2 -6
-
 d x * x * 6 + x * x acos x
 
 * 2 * x + 5 acos x
@@ -2389,8 +1858,6 @@ pow * 2 * x + 5 acos x 1
 * * * x + 5 acos x 2 1
 * + * x 5 * x acos x 2
 pow * + * acos x 2 10 x 1
-
-d x + pow x -1 * -1 atanh + -4 x
 
 * + 1 x asin + 2 x
 * 1 * asin + x 2 + x 1
@@ -2409,49 +1876,12 @@ pow * + 6 atan x x 1
 
 d x * x pow + 10 atan sin + 10 * 2 pi -10
 
-+ * x atanh x * x exp x
-+ 0 + * atanh x x * exp x x
-* x - atanh x - 0 exp x
-* x - - exp x 0 - 0 atanh x
-pow * + atanh x exp x / x 1 1
-- * + atanh x exp x / x 1 0
-- * x atanh x * - 0 exp x x
-- * x + atanh x exp x 0
-* 1 + * exp x x * atanh x x
-pow - * + atanh x exp x x 0 1
-- + * exp x x * x atanh x 0
-* x + exp x / atanh x 1
-/ - + atanh x exp x 0 / 1 x
-+ * x / atanh x 1 * exp x x
-+ 0 * x + atanh x exp x
-+ * + exp x - atanh x 0 x 0
-pow + * exp x x * x atanh x 1
-* - * x + exp x atanh x 0 1
-* / * x + atanh x exp x 1 1
-* 1 * + exp x atanh x x
-+ * atanh x x / exp x / 1 x
-/ x / 1 + atanh x exp x
-/ * + exp / x 1 atanh x x 1
-- * x + - exp x 0 atanh x 0
-* - atanh / x 1 - 0 exp x x
-pow * + atanh x exp x x 1
-/ x / 1 - exp x - 0 atanh x
-+ 0 * + / atanh x 1 exp x x
-/ / + exp x atanh x / 1 x 1
-* 1 * x - atanh x - 0 exp x
-pow / x / 1 + exp x atanh x 1
-+ 0 / x / 1 + atanh x exp x
-+ * x exp x * atanh x x
-pow * x - atanh x - 0 exp x 1
-* x + atanh x exp x
-
 + x + * -10 cos x + acosh x sin x
 
 d x * x + 1 + pow sec x -1 asinh x
 
 d x pow asinh * x 6 5
 * d x pow asinh * 6 x 5 1
-d x pow asinh * x 6 5
 + d x pow asinh * 6 x 5 0
 d x pow asinh / * 6 x 1 5
 d x - pow asinh * x 6 5 0
@@ -2480,8 +1910,6 @@ d x + * x x * acosh x -3
 
 d x * x + 2 + * 2 x * 2 asinh x
 
-+ x + * -10 * x atanh x cos + x * 9 pi
-
 * + x * 2 * x + 4 x acosh x
 
 * x + * 1 x * 2 acos x
@@ -2490,8 +1918,6 @@ d x * x + 2 + * 2 x * 2 asinh x
 + * 2 * x acos x pow x 2
 * x + x * 2 acos x
 pow * x + x * acos x 2 1
-
-* 3 * x + 42 atanh + 64 x
 
 d x * 6 * x + 1 acosh x
 
@@ -2549,11 +1975,8 @@ d x * asin x 3
 pow / / d x asin x 1 0.3333333333333333 1
 / d x + 12 * 3 asin x 1
 
-d x * x + x atanh pow csc + -1 * 7 pi -1
-
 + * -1 pow + 4 x 2 atan x
 pow - atan x pow + x 4 2 1
-+ * -1 pow + 4 x 2 atan x
 - atan x pow + 4 x 2
 * 1 - atan x pow + 4 x 2
 
@@ -2622,82 +2045,15 @@ pow d x * -4 + x asinh x 1
 * 1 * -4 - d x asinh x -1
 - * d x asinh x -4 4
 
-atanh * pow x -10 pow 9 -1
-+ ln + 1 x - 0 ln - 1 x
-pow - ln + x 1 ln - 1 x 1
-+ 0 atanh * pow 9 -1 pow x -10
-- - ln + x 1 0 ln - 1 x
-pow atanh * pow 9 -1 pow x -10 1
-- ln + / x 1 1 ln - 1 x
-+ 0 ln / + x 1 - 1 x
-- ln + x 1 ln - 1 x
-- 0 ln / - 1 x + x 1
-* ln / + x 1 - 1 x 1
-atanh * pow x -10 pow 9 -1
-ln / + x 1 / - 1 x 1
-pow ln / + x 1 - 1 x 1
-* 1 - ln + x 1 ln - 1 x
-ln / + 1 x - 1 x
-* 1 atanh * pow 9 -1 pow x -10
-+ ln + 1 x ln / 1 - 1 x
-atanh * pow 9 -1 pow / x 1 -10
-- atanh * pow 9 -1 pow x -10 0
-
 d x + * 2 x * -6 * x atan x
 + 2 d x * x * atan x -6
 + 2 d x / x / -0.16666666666666666 atan x
 + d x * / atan x -0.16666666666666666 x 2
 
-+ 5 + * 6 x atanh x
-pow + - atanh x -5 / x 0.16666666666666666 1
-+ + 5 + * 6 x atanh x 0
-- + - * x 6 -5 atanh x 0
-pow + / x 0.16666666666666666 + atanh x 5 1
-+ - + 5 atanh x 0 * x 6
-+ - * 6 x -5 atanh x
-- / x 0.16666666666666666 - -5 atanh x
-- atanh x - - 0 / x 0.16666666666666666 5
-* + - / x 0.16666666666666666 -5 atanh x 1
-pow + - * 6 x -5 atanh x 1
-- * x 6 - 0 - atanh x -5
-* - atanh x - -5 / x 0.16666666666666666 1
-- + * x 6 5 - 0 atanh x
-pow - atanh x - -5 / x 0.16666666666666666 1
-* 1 + - * 6 x -5 atanh x
-- + atanh x / * x 6 1 -5
-- atanh x - -5 / 6 / 1 x
-* + + * x 6 atanh x 5 1
-+ + - atanh x -5 * x 6 0
-- + atanh x - / x 0.16666666666666666 0 -5
-+ 5 - atanh x - 0 / x 0.16666666666666666
-pow + + atanh x * x 6 5 1
-+ / x 0.16666666666666666 + 5 atanh x
-* - * x 6 - -5 atanh x 1
-- atanh x - -5 * x 6
-+ + + / x 0.16666666666666666 atanh x 5 0
-pow - atanh x - -5 * 6 x 1
-+ / 1 / 0.16666666666666666 x + atanh x 5
-* + / x 0.16666666666666666 + atanh x 5 1
-- atanh / x 1 - -5 / x 0.16666666666666666
-- atanh / x 1 - -5 * 6 x
-+ - atanh x -5 / 6 / 1 x
-+ atanh x + / 6 / 1 x 5
-- + + 5 / x 0.16666666666666666 atanh x 0
-+ / 1 / 0.16666666666666666 x - atanh x -5
-- 5 - - 0 atanh x * 6 x
-+ + 5 atanh / x 1 * 6 x
-- + atanh x / x 0.16666666666666666 -5
-+ 0 + - / x 0.16666666666666666 -5 atanh x
-- - / x 0.16666666666666666 -5 - 0 atanh x
-+ 5 + * x 6 atanh x
-
-d x atanh * 4 pow + 4 x -1
-
 d x * x * pow csc + -10 * 2 pi 10 atan x
 
 * 5 + pow x 3 acos x
 + * 5 acos x * pow x 3 5
-* 5 + pow x 3 acos x
 pow * 5 + pow x 3 acos x 1
 * 1 * 5 + pow x 3 acos x
 
@@ -2712,10 +2068,7 @@ d x * asin x + 10 * x -5
 + / tan x sec x atan pow x -10
 + atan pow x -10 sin * * x 0.5 2
 + atan pow x -10 sin / 2 / 2 x
-+ atan pow x -10 sin x
 + / cos x cot x atan pow x -10
-
-d x * 5 * pow x -1 + 2 * x atanh x
 
 d x + x + asinh x exp + 2 x
 + d x asinh x + exp + 2 x 1
@@ -2778,22 +2131,6 @@ pow / d x * atan 2.7 x 1 1
 - asin + 1 x - * -1 x cos x
 + cos x + x asin - 1 * -1 x
 + x + asin + 1 x / cos x 1
-
-d x + x + * -1 pow x 2 atanh x
-d x - + x atanh x pow x 2
-- - d x atanh x -1 * x 2
-+ - d x atanh x -1 * x -2
-+ + * x -2 d x atanh x 1
-- d x + atanh x x * x 2
-+ d x - atanh x pow x 2 1
-- d x atanh x - * 2 x 1
-d x - atanh x - pow x 2 x
-- 1 d x - pow x 2 atanh x
-+ * x -2 d x + x atanh x
-- d x atanh x - -1 * x -2
-- + d x atanh x 1 * x 2
-- d x - atanh x pow x 2 -1
-- d x atanh x + * x 2 -1
 
 d x + * -1 x * x asinh 2.7
 + -1 + asinh 2.7 * 6 * ln 1 15
@@ -4327,10 +3664,6 @@ d x + * 18 asin x * 6 * x asin x
 d x * + / x 0.16666666666666666 18 asin x
 d x * + * x 6 18 asin x
 
-+ * 5 pow x 2 atanh * 2 x
-+ * pow x 2 5 atanh / x 0.5
-+ * pow x 2 5 atanh * x 2
-
 d x * -10 * x sin + 10 asin x
 
 acos * + 2 x 6
@@ -4395,10 +3728,6 @@ d x * 7 + * -1 acos x * 5 pow x 2
 * 7 - * x 10 d x acos x
 + * 70 x / d x acos x -0.14285714285714285
 
-d x pow tan atanh tanh x -10
-* 1 d x pow tan atanh tanh x -10
-+ d x pow tan atanh tanh x -10 0
-
 d x + * 2 x + * 2 pow x 2 asin x
 + d x asin x + * 4 x 2
 
@@ -4406,8 +3735,6 @@ d x + 6 + * 2 pow x -1 asinh x
 + * pow x -2 -2 d x asinh x
 d x + asinh x * 2 pow x -1
 - d x asinh x * 2 pow x -2
-
-* x + 1 * 2 * x atanh + 1 x
 
 d x * pow sec + 3120 * 6 pi -1 * asin x 8
 
@@ -4485,27 +3812,6 @@ d x + * x 4 * atan x x
 
 * x + -6 + * -2 x acosh x
 
-+ * -5 x * x atanh pow x -1
-- * x atanh pow x -1 * x 5
-* x - -5 - 0 atanh pow x -1
-* * - atanh pow x -1 5 x 1
-* x + - atanh pow x -1 0 -5
-+ 0 * - atanh pow x -1 5 x
-* x + -5 / atanh pow x -1 1
-- * x atanh pow x -1 / x 0.2
-* * x + -5 atanh pow x -1 1
-pow * + -5 atanh pow x -1 x 1
-* - atanh pow x -1 5 x
-/ + atanh pow x -1 -5 / 1 x
-+ * atanh pow x -1 x * -5 x
-- 0 * - 5 atanh pow x -1 x
-* + -5 atanh pow x -1 x
-/ * - atanh pow x -1 5 x 1
-+ * x atanh pow x -1 / x -0.2
-/ x / 1 - atanh pow x -1 5
-+ * + -5 atanh pow x -1 x 0
-pow * x - atanh pow x -1 5 1
-
 + * -1 x * 4 * pow x 2 atan x
 - * pow x 2 * 4 atan x x
 
@@ -4550,8 +3856,6 @@ d x * x + x * x atan + 1 x
 
 + x * 1 * pi * pow x 2 acosh x
 
-+ 2 * x * + x pow x 2 atanh x
-
 + x + * -10 sin + 10 x asinh x
 + x + asinh x * sin + 10 x -10
 
@@ -4593,7 +3897,6 @@ pow * x - 36 * 3 acos x 1
 
 pow + -2 exp asin x 2
 pow pow + -2 exp asin x 2 1
-pow + -2 exp asin x 2
 * pow + -2 exp asin x 2 1
 
 d x + * 2 x * -1 * x asinh pow x 2
@@ -4603,36 +3906,6 @@ d x + * 2 x * -1 * x asinh pow x 2
 * x + 3 * 2 acosh * 3 x
 
 d x * x + 1 + x * 3 atan x
-
-* + 4 * -2 x atanh x
-* atanh x + - 0 + x x 4
-* atanh x + 4 - * -1 x x
-* - 4 / 2 / 1 x atanh x
-+ * 4 atanh x * * atanh x x -2
-- * atanh x + * -2 x 4 0
-+ 0 * + 4 * -2 x atanh x
-pow * + * x -2 4 atanh x 1
-* + 4 * -2 / x 1 atanh x
-* - atanh x 0 - 4 * x 2
-* - 4 + x x atanh x
-* - 4 / + x x 1 atanh x
-* + 4 * 2 - 0 x atanh x
-- * 4 atanh x * 2 * x atanh x
-* - 4 * 2 x atanh x
-* - 4 * / x 1 2 atanh x
-* * atanh x - 4 + x x 1
-pow * atanh x - 4 + x x 1
-* - 4 * -1 * -2 x atanh x
-* - 4 - 0 * x -2 atanh x
-* + 4 * -2 x atanh x
-pow * atanh x - 4 * x 2 1
-* + 4 / -2 / 1 x atanh x
-* atanh x + * + x x -1 4
-* * atanh x + * x -2 4 1
-* * - 4 * 2 x atanh x 1
-- * atanh x 4 * atanh x + x x
-* - 4 + x x - atanh x 0
-* atanh x + 4 * * 2 x -1
 
 d x * 6 + * -1 atan x * 6 x
 - 36 d x * atan x 6
@@ -4811,20 +4084,6 @@ pow * 6 - 6 d x atan x 1
 pow + / 6 - -1 pow x 2 36 1
 - / 6 + * -1 pow x 2 -1 -36
 
-* x + 5 * -1 atanh 2.7
-+ * - 0 + -5 atanh 2.7 x 0
-+ * x + 5 * -1 atanh 2.7 0
-+ * * -1 x + atanh 2.7 -5 0
-+ - * x 5 * x atanh 2.7 0
-+ * / - 5 atanh 2.7 1 x 0
-+ * - - 0 atanh 2.7 -5 x 0
-+ * - * atanh 2.7 -1 -5 x 0
-+ - * x - 5 atanh 2.7 0 0
-+ * - atanh 2.7 5 * x -1 0
-+ / - 5 atanh 2.7 / 1 x 0
-+ * x + - 0 atanh 2.7 5 0
-+ * - 5 atanh 2.7 x 0
-
 + x * x + acos x cos + x * 6 pi
 
 pow + * -4 x * 4 asin x 2
@@ -4833,10 +4092,6 @@ pow + * x -4 * asin x 4 2
 d x + * -4 x * 2 * x acos * 2 x
 
 d x + * -2 x * 2 * x atan pow x 2
-
-d x * 6 + 25 + pow x 2 * 5 atanh x
-+ * x 12 * 30 d x atanh x
-+ * 12 x / 30 - 1 pow x 2
 
 + 8 + * 2 asin x * 8 x
 + * x 8 + * 2 asin x 8
@@ -4905,15 +4160,12 @@ d x acos - - x * 6 x x
 + * -9 x * -1 * x asinh x
 + * -9 x * -1 * asinh x x
 
-d x * + 5 * 4 pow x 4 atanh x
-
 * x + 4 * -1 * x pow acosh x 2
 * x - 4 * x pow acosh x 2
 
 + * 5 atan x * 20 x
 * + * 5 atan x * 20 x 1
 pow + * x 20 * 5 atan x 1
-+ * 5 atan x * 20 x
 
 * x * + x * -10 3 acos x
 * + * x x * x -30 acos x
@@ -4930,21 +4182,11 @@ d x * x + 1 asinh + 9 * 3 x
 d x * x + * 2 asinh x * 4 x
 
 + * 27 acos x * 2 * x acos x
-+ * 27 acos x * 2 * x acos x
 * acos x + 27 * x 2
 pow * acos x + * 2 x 27 1
 * * + * x 2 27 acos x 1
 
 d x + * 18 pow x 2 * 9 * x asinh x
-
-d x atanh + * -1 x 6
-+ / 1 + 1 x / 1 - 1 x
-+ 0 / -1 - 1 pow - 6 x 2
-+ - d x atanh - 6 x 0 0
-+ 0 d x atanh + * x -1 6
-- - d x atanh - 6 x 0 0
-+ d x atanh - 6 x 0
-+ 0 / d x atanh - 6 x 1
 
 d x + * -10 * x sin + -10 x acos x
 
@@ -4997,72 +4239,13 @@ pow * - * -1 acos x x x 1
 * + * x x * x acos x -1
 * * x - * -1 x acos x 1
 
-d x exp atanh * pow x -1 + 3 x
-
 d x * x * acos x 4
 + * d x * acos x x 4 0
 + d x / acos x / 0.25 x 0
 + d x / * acos x x 0.25 0
 
-+ x * x + 1 + * -1 x atanh x
-+ * x atanh x * - 2 x x
-+ 0 * - + 2 atanh x x x
-- x * x - - x atanh x 1
-+ x * x - atanh x - x 1
-+ + x * x - atanh x x x
-+ 0 * x - - atanh x -2 x
-+ x - x * - x atanh x x
-+ x * + 1 - atanh x x x
-- x * x - -1 - atanh x x
-- x * x + x - -1 atanh x
-+ 0 * x - atanh x + x -2
-+ * x - atanh x + -1 x x
-+ 0 * - 2 - x atanh x x
-- x - * x - x atanh x x
-
-+ * 2 x * -2 * x atanh x
-+ x * x - * atanh x -2 -1
-+ x * x + * -2 atanh x 1
-+ * -2 * atanh x x * 2 x
-+ x - x * atanh x + x x
-+ x + * -2 * x atanh x x
-+ x - x * + atanh x atanh x x
-+ * -2 * x + atanh x -1 0
-+ * - 1 atanh x * 2 x 0
-+ x - x * * 2 x atanh x
-+ * -2 - * x atanh x x 0
-+ * * x -2 - atanh x 1 0
-+ * - * atanh x -2 -2 x 0
-+ * x + * -2 atanh x 2 0
-+ * + x x - 1 atanh x 0
-
 + 2 + x + pow csc x -1 asinh x
 + + asinh x + x pow csc x -1 2
-
-+ * 243 atanh x * 3 * x atanh x
-* - * 3 x -243 atanh x
-+ * * atanh x x 3 * atanh x 243
-* atanh x + * x 3 243
-* + * x 3 243 atanh / x 1
-+ * atanh x + 243 * 3 x 0
-* atanh x - + * x 4 243 x
-+ * - * 3 x -243 atanh x 0
-* 1 * atanh x + * x 3 243
-* atanh / x 1 - * x 3 -243
-* 1 * - * x 3 -243 atanh x
-* atanh x + + 243 x + x x
-* + - * 3 x 0 243 atanh x
-* atanh x + + x * x 2 243
-* atanh x - - * 4 x x -243
-pow * - * 3 x -243 atanh x 1
-- * * atanh x 3 x * -243 atanh x
-* - * 4 x - x 243 atanh x
-* - + * x 2 x -243 atanh x
-* atanh x - / 3 / 1 x -243
-* atanh x - - * x 3 -243 0
-* - + x + x x -243 atanh x
-* atanh x + 243 / 3 / 1 x
-pow * + 243 * 3 x atanh x 1
 
 d x * -1 * x + -1 acosh * -1 x
 
@@ -5083,10 +4266,6 @@ pow + * x 6 * asin x 216 1
 + * x 6 * 216 asin x
 pow * + x * 36 asin x 6 1
 * 1 + * 6 x * 216 asin x
-
-d x + * 5 x * 5 * x * 3 atanh x
-- * d x * atanh x x 15 -5
-+ d x * atanh x * x 15 5
 
 d x * + pow x 2 * 5 x asinh x
 
@@ -5131,26 +4310,12 @@ pow * + * 2 acos x 1 x 1
 * * x + pow acosh x 2 4 7
 * + 28 * pow acosh x 2 7 x
 
-+ x + * 1 pow x 5 atanh x
-+ + pow x 5 atanh - x 0 x
-+ + pow x 5 atanh / x 1 x
-+ + + pow x 5 atanh x x 0
-+ atanh x - pow x 5 / x -1
-+ atanh x + x pow x 5
-+ - pow x 5 - 0 atanh x x
-+ atanh x - pow x 5 * x -1
-
 d x * + 2.7 * 4 x asin x
 d x * asin x + 2.7 / x 0.25
 d x * asin x + * x 4 2.7
 
 + * -7 pow x 2 * x asinh x
 + * pow x 2 -7 * asinh x x
-
-* -1 * pow x 4 + -3 atanh x
-
-d x + 3 * 3 * pow x 2 atanh x
-* d x * pow x 2 atanh x 3
 
 d x + * -3 x * 3 pow acosh x 4
 
@@ -5242,24 +4407,7 @@ d x + * -1 asinh x * 6 pow x -1
 - * -6 pow x -2 d x asinh x
 d x - * 6 pow x -1 asinh x
 
-+ 4 + x * + 4 x atanh pow x 2
-* + 4 x + 1 atanh pow x 2
-* + 4 x - atanh pow x 2 -1
-
-d x + * 8 x * 8 atanh pow x 2
-* 8 - d x atanh pow x 2 -1
-+ / * 16 x - 1 pow x 4 8
-- / x / - 1 pow x 4 16 -8
-* 8 d x + atanh pow x 2 x
-+ d x * atanh pow x 2 8 8
-- d x * 8 atanh pow x 2 -8
-* + 1 d x atanh pow x 2 8
-- / * x 16 - 1 pow x 4 -8
-+ 8 / 16 / - 1 pow x 4 x
-
 * 8 + * 2 asinh x * 3 x
-
-d x * pow x 2 + 3 atanh x
 
 * + 5 + pow x 2 * 2 x asin x
 
@@ -5434,7 +4582,6 @@ d x + * pow x 5 + 2 x acos x
 + * atan x -10 cos + acosh x pi
 
 d x + * 3 pow x 3 asinh exp x
-d x + * 3 pow x 3 asinh exp x
 + d x asinh exp x * pow x 2 9
 
 * -1 * x + -1 * 10 asin x
@@ -5482,8 +4629,6 @@ pow * + + -4 atan x x x 1
 + * + atan x -4 x pow x 2
 * * + + atan x x -4 x 1
 
-d x + * -2 pow x 2 * 2 * x atanh x
-
 * -1 * pow x -1 + -1 * 4 * x acos x
 + pow x -1 * * acos x -1 4
 + * x pow x -2 * -4 acos x
@@ -5492,13 +4637,6 @@ d x + * -2 pow x 2 * 2 * x atanh x
 d x + pow x 2 * -16 * x pow acosh x 2
 
 + 1 + pow cot x -1 + * -10 x acos x
-
-d x * 9 * x + 1 * -1 atanh x
-d x * * - 1 atanh x 9 x
-- 9 d x * atanh x * x 9
-+ d x * -9 * atanh x x 9
-- d x * x * -9 atanh x -9
-d x * - x * atanh x x 9
 
 * x + * -2 pow x -2 atan x
 + * -2 pow x -1 * x atan x
@@ -5532,8 +4670,6 @@ pow + / d x asin x 0.3333333333333333 3 1
 + 0 d x * + asin x x 3
 + / 3 / 1 d x asin x 3
 * + 3 * d x asin x 3 1
-
-* pow x 2 + 1 * 3 * x atanh x
 
 + * -10 * x sin + 10 * 7 pi atan x
 
@@ -5635,10 +4771,6 @@ d x + * 2 x * pow x 2 acos x
 + d x * pow x 2 acos x 2
 - d x * acos x pow x 2 -2
 
-d x + atanh x sin acosh x
-+ d x + sin acosh x atanh x 0
-+ d x sin acosh x d x atanh x
-
 d x * 3 + x asinh + -5 x
 - / d x asinh - x 5 0.3333333333333333 -3
 + 3 * d x asinh + x -5 3
@@ -5654,13 +4786,6 @@ d x * 3 + x asinh - x 5
 * 3 d x + asinh + x -5 x
 + 3 / d x asinh + -5 x 0.3333333333333333
 + 3 / d x asinh - x 5 0.3333333333333333
-
-d x * + x + pow x 2 pow x 3 atanh x
-
-d x + x * pow x -2 + 3 atanh x
-
-+ x * 24 * pow x 2 atanh x
-+ * pow x 2 * 24 atanh x x
 
 + 3 * x * + 1 x acosh x
 
@@ -5697,21 +4822,11 @@ d x pow + 4 acosh x 2
 
 * 4 + * -1 asinh x * 5 x
 
-d x atanh + 3 * -1 x
-+ 0 d x atanh - 3 / x 1
-+ 0 d x atanh + 3 - 0 x
-+ 0 d x - atanh - 3 x 0
-+ d x atanh - 3 x 0
-+ 0 / -1 - 1 pow - 3 x 2
-+ d x atanh + 3 * x -1 0
-+ / 1 + 1 x / 1 - 1 x
-
 + x * x + 3 pow acosh x 2
 * 1 * x + pow acosh x 2 4
 * x + 4 pow + ln 1 acosh x 2
 + * pow acosh x 2 x * 4 x
 * x + 4 pow acosh x 2
-+ x * x + 3 pow acosh x 2
 * x + 1 + pow acosh x 2 3
 pow * x + 4 pow acosh x 2 1
 
@@ -5844,9 +4959,6 @@ d x * -2 + x * -9 pow asin x 2
 + -10 + * -10 x + * x sin x acos x
 + -10 + * + sin x -10 x acos x
 
-d x + * 4 x * x + 4 + x atanh x
-d x * x + + atanh x x 8
-
 d x + * 6 x * pow x 3 atan x
 + 6 d x * pow x 3 atan x
 
@@ -5868,7 +4980,6 @@ pow * x + * 9 asin x 5 1
 + pow / 1 cos x 10 * asin x -10
 + * asin x -10 pow / sec x 1 10
 pow + pow sec x 10 * -10 asin x 1
-+ pow sec x 10 * -10 asin x
 + * -10 asin x pow sec * -1 x 10
 * 1 + pow sec x 10 * -10 asin x
 
@@ -5935,7 +5046,6 @@ pow * 2 d x atan x 1
 + 0 / / d x atan x 1 0.5
 * * 2 d x atan x 1
 + d x atan x d x atan x
-d x + 6 * 2 atan x
 + d x * atan x 2 0
 * 1 d x + 6 * atan x 2
 pow d x + atan x atan x 1
@@ -5965,25 +5075,6 @@ d x * pow x -1 + 15 * 5 * x acosh x
 pow * exp + 3 asin x 9 1
 * * exp + 3 asin x 9 1
 
-+ pow x 2 + * 6 pow x 3 atanh x
-
-d x + 9 + pow x 2 * x atanh x
-+ 0 d x * + atanh x x x
-d x + * + atanh x x x 9
-+ + x x d x * atanh x x
-d x + pow x 2 * x atanh x
-+ d x * atanh x x * x 2
-d x + * x x * x atanh x
-+ * + 2 d x atanh x x atanh x
-d x * + / atanh x 1 x x
-d x * x - x - 0 atanh x
-d x - * + atanh x x x -9
-d x * + atanh x x x
-d x - * + atanh x x x 0
-* 1 d x * + x atanh x x
-+ atanh x * - d x atanh x -2 x
-pow d x * + x atanh x x 1
-
 d x + * 7 * x asin x asin x
 d x + asin x * / asin x 0.14285714285714285 x
 d x * + 1 / x 0.14285714285714285 asin x
@@ -5991,59 +5082,12 @@ d x * asin x + 1 * x 7
 d x + / asin x / 0.14285714285714285 x asin x
 d x + * * 7 x asin x asin x
 
-* x + * 125 pow x 2 atanh x
-* x + * 125 pow x 2 atanh x
-+ / pow x 3 0.008 * x atanh x
-+ * x atanh x * pow x 3 125
-* + / pow x 2 0.008 atanh x x
-
-+ 10 * -10 atanh pow coth x
-* 1 + 10 * atanh pow coth x -10
-+ * atanh pow coth / x 1 -10 10
-- * atanh pow coth / x 1 -10 -10
-- 10 * -10 - 0 atanh pow coth x
-pow + 10 * -10 atanh pow coth x 1
-pow - * atanh pow coth x -10 -10 1
-+ 10 - * atanh pow coth x -10 0
-+ - * -10 atanh pow coth x -10 0
-+ 10 * atanh pow coth x -10
-- * -10 - atanh pow coth x 0 -10
-* 1 - * -10 atanh pow coth x -10
-- * atanh pow coth x -10 -10
-+ + * atanh pow coth x -10 10 0
-
 + * 5 x * 15 atan x
 * + * 15 atan x * 5 x 1
 pow + * atan x 15 * 5 x 1
 + * atan x 15 * x 5
 
-* x + x atanh + -5 x
-* x + / atanh + x -5 1 x
-* + x atanh + -5 x x
-+ * x atanh - x 5 pow x 2
-* x + atanh - x 5 x
-* x + x atanh - - x 5 0
-/ + atanh + x -5 x / 1 x
-+ * x atanh + -5 x * x x
-* - x - 0 atanh - x 5 x
-+ * x x * x atanh - x 5
-* * + atanh + x -5 x x 1
-* / + x atanh - x 5 1 x
-* - + atanh + x -5 x 0 x
-+ * + atanh - x 5 x x 0
-pow * x + atanh + x -5 x 1
-+ * atanh + x -5 x pow x 2
-/ + atanh - x 5 x / 1 x
-pow * + atanh - x 5 x x 1
-* 1 * + x atanh - x 5 x
-+ * + x atanh + x -5 x 0
-* x - atanh + x -5 - 0 x
-
 + * 3 x * -6 * pow x 3 acos x
-
-d x * 4 * 3 atanh x
-+ 0 - * 12 d x atanh x 0
-+ 0 - / 12 - 1 pow x 2 0
 
 d x * 4 * x + 15 acos x
 + 60 d x * 4 * x acos x
@@ -6063,12 +5107,6 @@ pow + pow + 2 x 2 asin x 1
 
 + 1 * 5 * x + x atan x
 + 1 * 5 * x + atan x x
-
-* x * + atanh x 4 9
-+ * x + 36 * atanh x 9 0
-+ * 9 * x - atanh x -4 0
-+ * - * 9 atanh x -36 x 0
-+ * * + atanh x 4 9 x 0
 
 d x * 5 + x acos + -4 x
 - d x * 5 acos + -4 x -5
@@ -6166,11 +5204,6 @@ d x + 2 * 4 * pow x 2 acos x
 d x / acos x / 0.25 pow x 2
 d x * / pow x 2 0.25 acos x
 d x * acos x * 4 pow x 2
-
-* 3 * x + x * 4 atanh x
-* * x + x * 4 atanh x 3
-* x - * 12 atanh x * -3 x
-* x + * atanh x 12 * x 3
 
 + pow sec + 20 * 8 pi -1 asin x
 + asin x pow sec + -20 * -8 pi -1
@@ -6298,21 +5331,7 @@ d x + 3 asin x
 
 d x * 5 * + -5 x asinh x
 
-* 6 * pow x 2 + 1 * -1 atanh x
-* -6 * + -1 atanh x pow x 2
-* pow x 2 * - 1 atanh x 6
-* pow x 2 + 6 * atanh x -6
-* - 6 * 6 atanh x pow x 2
-* - * -6 atanh x -6 pow x 2
-* * pow x 2 -6 - atanh x 1
-
-d x * x + pow x 2 * 7 * x atanh x
-
 d x pow + -2 + pow x 2 * x acosh x 2
-
-d x + 10 + x + * -10 atanh x cos x
-+ 1 - * d x atanh x -10 sin x
-+ d x + * atanh x -10 cos x 1
 
 * 6 * + 1 * 2 pow x 2 asinh x
 
@@ -6331,9 +5350,6 @@ d x + 10 + x + * -10 atanh x cos x
 + sin + 1 x atan x
 + atan x sin * - -1 x -1
 
-* 6 * + x pow x 2 atanh x
-* 6 * + x pow x 2 atanh x
-
 d x * + x pow acos x 3 acos x
 
 * 5 * x + -4 * 5 acos x
@@ -6347,31 +5363,6 @@ pow * + * 25 acos x -20 x 1
 + x * -4 * + 4 x atan x
 + * atan x + -16 * x -4 x
 + x * * atan x + x 4 -4
-
-* x + * x atanh x 6
-* + / x / 1 atanh x 6 x
-/ - * atanh x x -6 / 1 x
-* + 6 * / atanh x 1 x x
-+ * x + 6 * x atanh x 0
-pow * x - * x atanh x -6 1
-+ / x 0.16666666666666666 * x * x atanh x
-- 0 * - -6 * atanh x x x
-+ 0 * x - * atanh x x -6
-+ * atanh x * x x * x 6
-- * x * atanh x x * -6 x
-- * atanh x pow x 2 / x -0.16666666666666666
-* 1 * x - * atanh x x -6
-pow * x + * atanh x x 6 1
-* x - 6 - 0 * atanh x x
-* * x + * atanh x x 6 1
-+ / x 0.16666666666666666 * pow x 2 atanh x
-* - / * atanh x x 1 -6 x
-- * x * atanh x x / x -0.16666666666666666
-- * pow x 2 atanh x * -6 x
-* x + 6 - * x atanh x 0
-* x - * atanh x x -6
-* + 6 * x atanh x x
-+ * 6 x * pow x 2 atanh x
 
 d x + * -1 pow x 2 * 2 * x asin x
 * 2 - d x * x asin x x
@@ -6389,7 +5380,6 @@ d x + * -10 x + asin + 10 x cos x
 + - d x asin + 10 x sin x -10
 + d x + asin + 10 x cos x -10
 
-d x + x * x * 7 asin x
 d x + x * x * 7 asin x
 + 1 d x / asin x / 0.14285714285714285 x
 d x + * / asin x 0.14285714285714285 x x
@@ -6410,57 +5400,8 @@ d x * -5 * pow x 3 + x * -1 atan x
 
 d x * -1 * x + -1 atan * 3 pow x 2
 
-* 3 + * 11 x atanh pow x 2
-* + / x 0.09090909090909091 atanh pow x 2 3
-+ * atanh pow x 2 3 / x 0.030303030303030304
-* 3 + * x 11 atanh pow x 2
-+ * atanh pow x 2 3 / x 0.0303030303030303
-+ * 33 x * 3 atanh pow x 2
-
-* x + 17 * 4 atanh x
-+ * x * 4 atanh x * x 17
-+ * + 17 * atanh x 4 x 0
-+ 0 * x - * atanh x 4 -17
-
 atan * x pow + 20 * 4 x -1
 atan * pow + 20 * 4 x -1 x
-
-+ -1 * 4 atanh x
-+ 0 - * 4 atanh / x 1 1
-pow - * atanh / x 1 4 1 1
-- 0 - 0 + * 4 atanh x -1
-+ -1 - * atanh x 4 0
-- * 4 atanh / x 1 1
-pow - * atanh x 4 1 1
-+ 0 - - * atanh x 4 1 0
-+ 0 + -1 * atanh x 4
-pow + * 4 atanh x -1 1
-pow - - * atanh x 4 1 0 1
-+ 0 - * 4 atanh x 1
-- -1 * - 0 atanh / x 1 4
-+ + -1 - * 4 atanh x 0 0
-- * 4 atanh / / x 1 1 1
-pow - -1 * - 0 atanh x 4 1
-* - -1 * 4 - 0 atanh x 1
-- - -1 - 0 * atanh x 4 0
-+ -1 * - atanh / x 1 0 4
-* 1 - + * 4 atanh x -1 0
-+ 0 + -1 * atanh / x 1 4
-- 0 - 0 - * 4 atanh x 1
-+ -1 * 4 atanh / x 1
-+ -1 * 4 atanh x
-* 1 + * 4 atanh x -1
-* + -1 * atanh / x 1 4 1
-+ * atanh / 1 / 1 x 4 -1
-* 1 - 0 - 1 * 4 atanh x
-pow + * 4 atanh / x 1 -1 1
-* 1 - * atanh / x 1 4 1
-- * 4 - atanh / x 1 0 1
-pow - + -1 * atanh x 4 0 1
-- * 4 atanh x 1
-- -1 * - 0 atanh x 4
-- * 4 - atanh x 0 1
-* 1 - * atanh x 4 1
 
 * atan x exp pow sec + 10 * 2 pi -1
 
@@ -6487,9 +5428,6 @@ d x * 3 * x * + 1 x acosh * 4 x
 
 * 2 * pow x -1 + 1 * x acosh x
 + acosh x + acosh x * 2 pow x -1
-
-d x * x + 2 * -1 atanh + 1 x
-- 2 d x * x atanh + 1 x
 
 d x + 6 + x asinh x
 + + / d x asinh x 1 1 0
@@ -6616,58 +5554,7 @@ pow * + + acos x -1 x -10 1
 + * -10 acosh x + cos x sin x
 + * acosh x -10 + cos x sin x
 
-d x atanh * 9 * x 8
-- 0 - 0 d x atanh * x 72
-/ 1 - 0.013888888888888888 * pow * 72 x 2 0.013888888888888888
-+ 0 - d x atanh * 72 x 0
-* / 9 - 1 pow * x 72 2 8
-* 1 d x atanh * 8 * x 9
-* 1 - d x atanh * x 72 0
-- d x atanh * 72 x 0
-d x atanh * * 9 / x 1 8
-pow d x atanh * x 72 1
-+ d x atanh * 72 / x 1 0
-d x atanh * 8 + x * x 8
-- / 1 + x 1 / -1 - 1 x
-d / x 1 atanh * 72 / x 1
-pow d x - atanh * x 72 0 1
-/ 9 / - 1 pow * x 72 2 8
-d x atanh * * x 8 9
-+ 0 d x atanh * * x 9 8
-* 72 / 1 - 1 pow * 72 x 2
-* / d x atanh * x 72 1 1
-/ 72 - 1 pow * 72 x 2
-d x ln / + 1 x - 1 x
-d x - atanh * * 9 x 8 0
-/ 9 - 0.125 * 0.125 pow * 72 x 2
-/ 8 * 0.1111111111111111 - 1 pow * x 72 2
-d / x 1 atanh * 72 x
-/ 1 * 0.013888888888888888 - 1 pow * x 72 2
-/ 9 * 0.125 - 1 pow * 72 x 2
-/ d x - atanh * 72 x 0 1
-* d x atanh * 72 x 1
-pow / 72 - 1 pow * 72 x 2 1
-pow / d x atanh * x 72 1 1
-- / 72 - 1 pow * x 72 2 0
-+ / 72 - 1 pow * 72 x 2 0
-+ 0 d x atanh * x 72
-+ / 1 - 1 x / 1 + x 1
-/ 8 - 0.1111111111111111 * 0.1111111111111111 pow * 72 x 2
-pow d x atanh * * 8 x 9 1
-/ 1 / - 1 pow * 72 x 2 72
-d x atanh * x 72
-d x - ln + x 1 ln - 1 x
-
 * -5 + x * -1 asinh + 5 x
-
-+ pow x 2 * 5 atanh x
-+ * 5 - atanh x 0 pow x 2
-* 1 + pow x 2 * 5 atanh x
-- pow x 2 * - 0 atanh x 5
-+ pow x 2 * 5 atanh / x 1
-+ pow x 2 * atanh x 5
-pow + * 5 atanh x pow x 2 1
-+ 0 + * atanh x 5 pow x 2
 
 + * x + 1 * 2 x acos x
 + * x + * 2 x 1 acos x
@@ -6677,15 +5564,7 @@ pow + * 5 atanh x pow x 2 1
 + x + * -10 sin x atan pow x -10
 + + * sin x -10 x atan pow x -10
 
-* -5 + x atanh pow x 2
-+ * -5 atanh pow x 2 * -5 x
-+ * -5 atanh pow x 2 / x -0.2
-+ * -5 + x atanh pow x 2 0
-
 * pow x 2 * + 1 * 4 x asin x
-
-d x + * 2 pow x 2 * 4 * x atanh x
-* 4 + d x * x atanh x x
 
 d x + * -10 cos x atan x
 + d x atan x - * 10 sin x 0
@@ -6712,29 +5591,12 @@ pow exp acos + 4 x 1
 
 d x * x + 1 * -1 * + -4 x atan x
 
-+ * 9 x + * 6 pow x 3 atanh x
-
-d x * 2 + x * 4 atanh x
-+ 2 - * 8 d x atanh x 0
-+ 2 - / 8 - 1 pow x 2 0
-
 + x * 6 * x asinh pow x 2
 
 d x + x + * -10 sin asinh x sin x
 
 * 6 pow + x * 3 acosh x 3
 * 6 pow + * acosh x 3 x 3
-
-+ x * 5 atanh pow x 2
-+ * 5 atanh pow / x 1 2 x
-- x - 0 * 5 atanh pow x 2
-pow + x * 5 atanh pow x 2 1
-- * atanh pow x 2 5 / x -1
-- * 5 atanh pow x 2 * x -1
-+ + * atanh pow x 2 5 x 0
-+ * - atanh pow x 2 0 5 x
-+ x * atanh pow x 2 5
-* 1 + * atanh pow x 2 5 x
 
 d x + -2 * 2 * x acos x
 + 0 d x * 2 * acos x x
@@ -6782,9 +5644,6 @@ pow d x * + x x acos x 1
 * 2 d x + -2 * x acos x
 d x - * + x x acos x 0
 
-d x + * -4 pow x 2 * -1 * x atanh x
-- * x -8 d x * x atanh x
-
 * 10 pow sec + * 4 pi asinh x -1
 * 10 pow sec + * pi 4 asinh x -1
 * 10 pow sec - * -4 pi asinh x -1
@@ -6819,7 +5678,6 @@ d x * + 3 * -1 x acosh + 4 x
 * x + 5 * asin pow x 2 5
 
 * -1 pow + 2 asinh x 3
-* -1 pow + 2 asinh x 3
 * -1 pow + + asinh x 2 ln 1 3
 
 d x * x + 3 pow asinh x 3
@@ -6828,26 +5686,9 @@ d x * x + 3 pow asinh x 3
 + * atan + 1 x -10 * x 5
 * 5 + * -2 atan + x 1 x
 
-d x + * -1 pow x 2 * 2 * x atanh x
-* - d x * x atanh x x 2
-
 * 4 * pow x 2 pow + -1 acosh x 2
 
 + x + * -1 pow x 3 * 5 * x atan x
-
-* x + 1 * 5 * x atanh * 2 x
-
-+ 3 + x + * 2 pow x -1 atanh x
-
-+ * -1 pow x 7 * x atanh x
-+ 0 - * x atanh x pow x 7
-- * x atanh / x 1 pow x 7
-pow - * x atanh x pow x 7 1
-- * atanh x x - pow x 7 0
-* 1 - * atanh x x pow x 7
-- / x / 1 atanh x pow x 7
-- * x atanh x pow x 7
-+ * pow x 7 -1 * atanh x x
 
 d x * x + 4 + pow x 2 * -1 acosh x
 
@@ -6882,10 +5723,6 @@ pow + x * x + 10 asin x 1
 pow + * 11 x * asin x x 1
 + * x + 10 asin x x
 pow * + asin x 11 x 1
-
-d x + 2 + x + pow csc x -1 atanh x
-+ 1 d x + pow csc x -1 atanh x
-d x + pow csc x -1 + x atanh x
 
 d x * x + * -1 x acos * 7 x
 
@@ -6925,8 +5762,6 @@ pow + acos x pow / 1 cot x -10 1
 + pow * sin x sec x -10 acos x
 + acos x pow tan * * x 0.5 2 -10
 
-+ * 5 x * -1 * x atanh + -3 x
-
 + x * -5 * x + x acos x
 * + * + x acos x -5 1 x
 + * * x + acos x x -5 x
@@ -6938,10 +5773,6 @@ pow * - -5 pow asinh x 2 x 1
 * x - -5 pow + ln 1 asinh x 2
 * + -5 * -1 pow asinh x 2 x
 * x - -5 pow asinh x 2
-
-d x * -1 atanh + x * -1 * x 4
-
-d x + * 2 x * 2 * pow x 2 atanh x
 
 + x + pow csc x -1 * -10 acos x
 + pow csc x -1 + * acos x -10 x
@@ -6961,8 +5792,6 @@ asinh pow sin - 10 * pi -9 -10
 d x + * 5 x * 5 * x exp asinh x
 
 d x + x * 5 * x acos pow x 2
-
-d x * -6 * pow x 2 + -2 atanh x
 
 + x + pow csc asinh x -1 exp x
 + + x pow csc asinh x -1 exp x
@@ -7026,13 +5855,7 @@ d x * 2 + 2 + * 3 x * 3 asinh x
 * 1 - * d x asinh x 6 -6
 * 3 * + 1 d x asinh x 2
 
-d x + * x pow csc + -10 * 4 pi -1 atanh x
-
 d x * -2 * pow x 4 + x * -1 acosh x
-
-* x + 1 * + -3 x atanh x
-* x + 1 * + x -3 atanh x
-+ * * x + x -3 atanh x x
 
 + -10 + pow csc x -1 * -10 asinh x
 + * asinh x -10 + pow csc x -1 -10
@@ -7045,19 +5868,12 @@ d x acos * x + 1 * 2 pow x -1
 + d x acos + x 2 0
 + d x acos + / x 1 2 0
 
-d x + x * 8 atanh + 5 x
-- / 8 - 1 pow + 5 x 2 -1
-+ * 8 d x atanh + x 5 1
-+ 1 / 8 - 1 pow + 5 x 2
-- * d x atanh + x 5 8 -1
-
 d x + x * + 1 * 5 x atan x
 
 d x + 5 * -1 * pow x 2 + 1 asinh x
 
 d x acosh pow csc + -10 * 7 pi -1
 
-+ pow x 2 + * 4 x acos x
 + pow x 2 + * 4 x acos x
 
 + * -10 cos + x * 4 pi + asin x cos x
@@ -7113,8 +5929,6 @@ d x + * 20 acosh x * 8 x
 pow + 8 d x * 20 acosh x 1
 - / 1 / 0.05 d x acosh x -8
 
-d x * -1 atanh * 3 pow + -2 x -1
-
 d x * -2 * x + x * -1 asinh pow x 2
 
 d x + x * x * + 11 x asinh x
@@ -7130,73 +5944,19 @@ pow + acos x * exp + 4 x x 1
 
 + * 2 x + * 7 * x acosh x exp x
 
-+ * -4 atanh x * 8 * x atanh x
-+ * + -4 * 8 x atanh x 0
-
 d x * x + 2 atan * 5 x
 d x * + atan * 5 x 2 x
 + 2 d x * atan / x 0.2 x
-
-+ * 6 x * x atanh + 4 x
-- * - atanh + 4 x -6 x 0
-* - atanh + 4 x -6 x
-* 1 * x + 6 atanh + 4 x
-* * - atanh + 4 x -6 x 1
-/ + atanh + x 4 6 / 1 x
-/ x / 1 - atanh + 4 x -6
-pow * x + atanh + x 4 6 1
-+ * x 6 * x atanh + x 4
-* + atanh + 4 x 6 x
-- * x atanh + x 4 / x -0.16666666666666666
-* + atanh + x 4 6 / x 1
-* x - 6 - 0 atanh + 4 x
-+ 0 * - atanh + 4 x -6 x
-* x - + 6 atanh + x 4 0
-+ * x + 6 atanh + x 4 0
-* x - atanh + / x 1 4 -6
-- * x atanh + x 4 * -6 x
-+ * x atanh + x 4 / x 0.16666666666666666
-pow * - atanh + 4 x -6 x 1
 
 * -2 * x + * 3 x atan x
 * + * 3 x atan x * x -2
 * x + * x -6 * atan x -2
 
 pow + 6 acos x 2
-pow + 6 acos x 2
 pow pow + acos x 6 2 1
 * 1 pow + 6 acos x 2
 
-* 5 * pow x 2 + x atanh x
-* 5 * pow x 2 + atanh x x
-/ + atanh x x / 0.2 pow x 2
-
-+ x * x atanh + 5 * 3 x
-* + atanh - 5 * x -3 1 x
-+ x * atanh - * 3 x -5 x
-* x - atanh - 5 * -3 x -1
-+ * atanh - 5 * -3 x x x
-* x - atanh + * 3 x 5 -1
-* x + atanh - * x 3 -5 1
-+ x * x atanh + 5 * 3 x
-* - atanh - * x 3 -5 -1 x
-* x + atanh + * 3 x 5 1
-
 + * -1 acosh x * 5 x
-
-+ x + pow + -5 x 2 * -1 atanh x
-+ pow - x 5 2 - x atanh x
-- pow + x -5 2 - atanh x x
-+ - pow + x -5 2 atanh x x
-- x - atanh x pow - x 5 2
-
-d x * 7 + * 4 atanh x * 5 x
-+ - / 28 - 1 pow x 2 0 35
-+ + * 28 d x atanh x 35 0
-+ + / 28 - 1 pow x 2 35 0
-+ - * d x atanh x 28 0 35
-+ 0 - d x * atanh x 28 -35
-+ 0 - / 28 - 1 pow x 2 -35
 
 * 6 * x * asinh x 1
 
@@ -7216,12 +5976,6 @@ d x * 1 + * 3 pow x 2 * 32 atan x
 + * 6 x / d x atan x 0.03125
 + * x 6 / 32 + pow x 2 1
 
-* x + 1 * -1 atanh + 6 x
-+ x * -1 * atanh - x -6 x
-+ x * - 0 atanh - x -6 x
-+ x * atanh + 6 x - 0 x
-+ x * -1 * x atanh + 6 x
-
 * x * + 3 x acosh x
 
 d x + * 3 * x + -1 x acos x
@@ -7233,10 +5987,6 @@ d x + * 3 * x + -1 x acos x
 + d x acos x - -3 * -6 x
 - d x acos x - 3 * x 6
 
-d x atanh * pow x -10 pow cos + 10 * 2 pi 10
-d x ln / + x 1 - 1 x
-d x - ln + 1 x ln - 1 x
-
 d x * pow x 2 * + 5 * 5 x acosh x
 
 acosh * x + 4 * 8 pi
@@ -7246,8 +5996,6 @@ acosh * x + 4 * 8 pi
 d x pow acos * x 6 2
 + 0 d x pow acos * 6 x 2
 - d x pow acos * x 6 2 0
-
-+ * -10 x + atanh x cos + x * 8 pi
 
 + 1 + * 5 x atan x
 pow + 1 + * x 5 atan x 1
@@ -7316,14 +6064,6 @@ pow + d x / 20 sec acosh x 20 1
 pow d x * 20 + x cos acosh x 1
 
 d x * pow x 2 + x * 6 * x acosh x
-
-d x * 2 + * -10 atanh x * 3 x
-+ - d x * -20 atanh x 0 6
-+ - / -20 - 1 pow x 2 0 6
-+ 0 - / -20 - 1 pow x 2 -6
-+ + 6 d x * atanh x -20 0
-+ + 6 / -20 - 1 pow x 2 0
-+ 0 - * -20 d x atanh x -6
 
 * -3 * pow x 3 + x * -1 asin x
 * * pow x 3 - x asin x -3
@@ -7540,7 +6280,6 @@ pow csc * * acosh x -1 -1 -1
 pow csc * -2 * -0.25 * acosh x 2 -1
 pow csc - acosh x * -2.25 ln 1 -1
 pow / / 1 / 1 csc acosh x 1 -1
-pow csc acosh x -1
 pow csc * / acosh x 2 2 -1
 pow pow / csc acosh x 1 -1 1
 pow / * -1 csc * acosh x -1 1 -1
@@ -7672,9 +6411,6 @@ d x + * -1 * x + -5 * 2 x acosh x
 
 + * -100 x * -10 * x acosh x
 
-+ * 3 x * 3 * pow x -5 atanh x
-* 3 + x * atanh x pow x -5
-
 * x * pow 6 -1 acosh x
 
 + * -256 x * x asin x
@@ -7684,11 +6420,6 @@ pow + * x asin x * -256 x 1
 pow * x + asin x -256 1
 * + * x -256 * x asin x 1
 * * x + -256 asin x 1
-
-d x * pow x -1 + 27 * x atanh x
-- d x atanh x * 27 pow x -2
-+ d x atanh x * -27 pow x -2
-d x + atanh x * 27 pow x -1
 
 * -1 acos * x 2
 * * acos * x 2 -1 1
@@ -7711,14 +6442,6 @@ pow + exp asin x * 2 x 1
 * - 1 * 4 asin * x 2 x
 * + 1 * asin * 2 x -4 x
 + x * * x asin * x 2 -4
-
-d x + * 7 * pow x -2 + 4 x atanh x
-
-* + -8 * 2 x atanh x
-+ * * 2 atanh x x * -8 atanh x
-+ * x atanh x * + x -8 atanh x
-+ 0 * + + x -8 x atanh x
-+ * atanh x + -8 * x 2 0
 
 + x * 7 * pi acos x
 + * acos x * pi 7 x
@@ -7821,16 +6544,9 @@ d x * pow x 3 + 1 * 8 acos 2.7
 d x * -1 * + -3 pow x 3 asin x
 d x * asin x - 3 pow x 3
 
-d x + * -7 pow x -1 atanh x
-- d x atanh x * pow x -2 -7
-d x + * -7 pow x -1 atanh x
-+ * pow x -2 7 d x atanh x
-
 d x acosh + x pow csc + -60 * 4 pi -1
 
 d x * x + 4 + * 2 x * 2 atan x
-
-* pow sec + 240 * 6 pi -1 * atanh x 4
 
 * + 5 x + x * x asin x
 * + x * x asin x + x 5
@@ -7856,11 +6572,7 @@ pow * x - 1 acos pow x 2 1
 
 * x + x * -1 asinh * 10 x
 
-d x + x + pow x 2 + pow x 3 atanh x
-
 d x + x * 2 * pow x 2 asinh * 5 x
-
-* 7 + pow x 2 + * -3 x * 3 atanh x
 
 d x + 2 * -1 * x + x * -1 asin x
 d x * - x asin x / x -1
@@ -7891,25 +6603,6 @@ d x - * x asin x pow x 2
 + * 4 atan + 1 x * 12 x
 + * 12 x * atan + 1 x 4
 
-+ x + atanh + 1 * -1 x exp x
-+ atanh + - 0 x 1 + x exp x
-+ atanh - 1 x - exp x * -1 x
-+ atanh * -1 + -1 x + exp x x
-+ atanh - 0 - x 1 + x exp x
-+ atanh + / x -1 1 + x exp x
-+ atanh - - 0 x -1 + exp x x
-+ atanh / + x -1 -1 + exp x x
-+ atanh - 1 x - exp x - 0 x
-+ atanh - / x -1 -1 + exp x x
-+ atanh + 1 * -1 x + x exp x
-+ atanh - 1 x - exp x / x -1
-+ atanh * -1 - x 1 + x exp x
-+ atanh - 1 x + / x 1 exp x
-+ atanh - 1 x + exp x x
-+ atanh / - x 1 -1 + exp x x
-+ atanh - 0 + -1 x + x exp x
-+ atanh - * x -1 -1 + exp x x
-
 d x + * 3 pow x 4 * 3 atan x
 * 3 d x + atan x pow x 4
 
@@ -7934,39 +6627,6 @@ d x + * -10 x + asinh x sin x
 + + + d x asinh x cos x -10 0
 + - cos x 0 + d x asinh x -10
 + + d x + asinh x sin x -10 0
-
-+ * 9 x atanh * 4 x
-+ atanh / x 0.25 - * x 9 0
-+ / / x 0.1111111111111111 1 atanh * x 4
-+ * x 9 atanh / / x 0.25 1
-- / x 0.1111111111111111 - 0 atanh / x 0.25
-+ * 9 x atanh * x 4
-+ atanh / x 0.25 / 9 / 1 x
-- atanh * x 4 - 0 / x 0.1111111111111111
-- + * 9 x atanh * x 4 0
-- * x 9 - 0 atanh * x 4
-* + / x 0.1111111111111111 atanh * x 4 1
-- atanh / x 0.25 - 0 * 9 x
-+ / x 0.1111111111111111 atanh / x 0.25
-+ atanh * x 4 - / x 0.1111111111111111 0
-+ 0 + / x 0.1111111111111111 atanh / x 0.25
-+ + * 9 x atanh * x 4 0
-+ / x 0.1111111111111111 atanh / 1 / 0.25 x
-+ * 9 / x 1 atanh * 4 x
-+ / x 0.1111111111111111 - atanh / x 0.25 0
-* + atanh * 4 x * 9 x 1
-+ atanh * 4 x / x 0.1111111111111111
-+ 0 + atanh * x 4 / x 0.1111111111111111
-pow + / x 0.1111111111111111 atanh * x 4 1
-* 1 + atanh / x 0.25 * x 9
-* + atanh / x 0.25 / x 0.1111111111111111 1
-pow + atanh / x 0.25 / x 0.1111111111111111 1
-pow + atanh / x 0.25 * 9 x 1
-pow + atanh * x 4 * x 9 1
-+ atanh / 4 / 1 x / x 0.1111111111111111
-+ atanh * x 4 / 9 / 1 x
-+ + * 9 x atanh / x 0.25 0
-+ atanh / x 0.25 * 9 x
 
 d x + * 12 atan x * 6 * x atan x
 d x * + 12 * x 6 atan x
@@ -8102,27 +6762,6 @@ d x * - acosh x - 0 acosh x x
 d x * * acosh x x 2
 d x + * acosh x x * x acosh x
 
-atanh + 3 * 8 pow x -1
-+ ln + 1 x - 0 ln - 1 x
-* 1 atanh + * 8 pow x -1 3
-pow - ln + x 1 ln - 1 x 1
-+ atanh + 3 * 8 pow x -1 0
-- - ln + x 1 0 ln - 1 x
-- ln + / x 1 1 ln - 1 x
-+ 0 ln / + x 1 - 1 x
-atanh + * pow / x 1 -1 8 3
-- ln + x 1 ln - 1 x
-- 0 ln / - 1 x + x 1
-* ln / + x 1 - 1 x 1
-pow atanh + 3 * pow x -1 8 1
-ln / + x 1 / - 1 x 1
-pow ln / + x 1 - 1 x 1
-* 1 - ln + x 1 ln - 1 x
-ln / + 1 x - 1 x
-- atanh + * pow x -1 8 3 0
-+ ln + 1 x ln / 1 - 1 x
-atanh + * pow x -1 8 3
-
 d x + * -25 atan x * x atan x
 + d x * atan x + x -25 0
 d x + * atan x -25 * x atan x
@@ -8152,7 +6791,6 @@ d x + pow x 2 + x asinh x
 * 2.7 * x exp * -1 acos x
 * 1 * * x 2.7 exp * -1 acos x
 pow * exp * -1 acos x * 2.7 x 1
-* 2.7 * x exp * -1 acos x
 
 * 5 + * 3 x asinh + 1 x
 
@@ -8163,8 +6801,6 @@ pow * exp * -1 acos x * 2.7 x 1
 
 d x * x + x * 7 * x acos * 2 x
 
-* x + 1 * 4 * x + 4 atanh x
-
 + 1 * x pow sec asinh x -1
 pow + 1 * x pow sec asinh x -1 1
 * + 1 * pow sec asinh x -1 x 1
@@ -8174,16 +6810,6 @@ pow + 1 * x pow sec asinh x -1 1
 + * pow sec asinh x -1 x 1
 
 atan * 2 * pow + 4 x -1 + 2 x
-
-d x * -5 * x + 1 atanh x
-+ -5 d x * -5 * x atanh x
-- d x * * -5 x atanh x 5
-
-d x atanh + * 2 x 2
-- d x atanh + * x 2 2 0
-- / 1 + 1 x / -1 - 1 x
-+ / 1 - 1 x / 1 + 1 x
-+ d x atanh + * 2 x 2 0
 
 + * 5 pow x 2 * x asin x
 + * 5 pow x 2 * asin x x
@@ -8230,21 +6856,6 @@ pow + d x * asinh x 5 6 1
 + 6 / - d x asinh x 0 0.2
 - d x * 5 asinh x -6
 - / / d x asinh x 0.2 1 -6
-
-+ x * x + x atanh * 9 x
-+ x * + x atanh * 9 x x
-
-d x + 1 + pow x 2 + * 2 x atanh x
-+ + 2 d x atanh x * 2 x
-+ * 2 x - d x atanh x -2
-
-d x * 4 atanh * x 7
-- * 4 d x atanh * x 7 0
-+ / 4 - 1 x / 4 + x 1
-- / 4 + x 1 / -4 - 1 x
-- / 28 - 1 pow * 7 x 2 0
-+ * d x atanh * x 7 4 0
-+ / 28 - 1 pow * x 7 2 0
 
 * 8 * x * + 4 * 3 x acosh x
 
@@ -8357,8 +6968,6 @@ pow + / d x atan x -0.03125 16 1
 + * -2 pow x 3 * x asinh x
 + * pow x 3 -2 * x asinh x
 
-* + 3 * -2 x + x atanh x
-
 * 5 + x acosh * 5 x
 
 d x + * 4 x * 5 * x acos pow x 2
@@ -8401,10 +7010,6 @@ acosh + 20 / pow 7 -1 1
 pow acosh + pow 7 -1 20 1
 d x * x acosh + pow 7 -1 20
 + acosh + 20 pow 7 -1 0
-
-d x * x + 6 * 7 atanh x
-- * 7 d x * atanh x x -6
-+ d x * x * atanh x 7 6
 
 d x + * 4 x * x asinh x
 - d x / asinh x / 1 x -4
@@ -8452,8 +7057,6 @@ d x * pow x 2 + 1 + pow x 3 asinh x
 d x + -10 + x asinh pow 8 -1
 1
 
-+ x * -10 * atanh x cos + 10 * 7 pi
-
 d x + * -1 asinh x exp + 1 x
 + 0 - exp + 1 x d x asinh x
 + exp + 1 x / d x asinh x -1
@@ -8463,29 +7066,6 @@ d x + * -1 asinh x exp + 1 x
 + sqrt x + * 2 asinh x * x 4
 
 * 5 * + 1 * 2 x acosh x
-
-+ * -10 atanh x * 10 cosh x
-- + * 10 cosh x * atanh x -10 0
-+ * -10 atanh x * 10 cosh * x -1
-+ + * cosh x 10 * atanh x -10 0
-* 1 + * cosh x 10 * atanh x -10
-- * cosh x 10 * - 0 atanh x -10
-pow + * atanh x -10 * 10 cosh x 1
-+ * 10 cosh x * -10 atanh x
-+ * cosh / x 1 10 * atanh x -10
-+ * -10 atanh x / 10 / 1 cosh x
-
-d x * -1 * x + -1 atanh + 1 * -1 x
-
-+ * 5 x * 2 * x atanh x
-+ * * 2 atanh x x * x 5
-+ x * + * atanh x 2 4 x
-+ x * * 2 x + 2 atanh x
-+ * + atanh x atanh x x * 5 x
-+ * x atanh x * - atanh x -5 x
-+ * + x x atanh x * 5 x
-+ x * + + atanh x atanh x 4 x
-+ x * + atanh x 2 + x x
 
 + x + * x acos x sin x
 + x + sin x * x acos x
@@ -8533,12 +7113,6 @@ pow + * -6 asin x * x 48 1
 pow - * x 48 * 6 asin x 1
 * 1 - * x 48 * 6 asin x
 
-d x atanh * 8 * x pow + 2 x -1
-d x ln / + x 1 - 1 x
-d x - ln + 1 x ln - 1 x
-- / 1 + 1 x / -1 - 1 x
-+ / 1 - 1 x / 1 + 1 x
-
 + 2 + pow x 2 + * 4 x * x acosh x
 
 d x + * 7 x * 3 acos + 2 x
@@ -8571,8 +7145,6 @@ pow * - -4 acos pow x 2 x 1
 * -1 * pow x 2 + 1 + x acos x
 * - - -1 acos x x pow x 2
 * pow x 2 - -1 + acos x x
-
-d x * -1 atanh * 2 pow + -1 x -1
 
 * 9 + -5 acos x
 * + -5 acos x 9
@@ -8657,28 +7229,6 @@ d x * atan x + 20 / x 0.5
 d x * + x + x 20 atan x
 d x * + 20 * 2 x atan x
 
-d x * + 5 * 10 x + 5 atanh x
-
-* 2 + 1 * 2 atanh + 1 x
-- 0 - -2 * atanh + x 1 4
-+ 2 - * 4 atanh + x 1 0
-- * * 2 atanh + x 1 2 -2
-+ * * atanh + x 1 2 2 2
-+ + * 4 atanh + x 1 2 0
-* + * atanh + 1 x 2 1 2
-* 1 - * atanh + 1 x 4 -2
-- * 4 atanh / + x 1 1 -2
-pow - * atanh + x 1 4 -2 1
-- 2 * - 0 atanh + x 1 4
-+ 2 * atanh / + x 1 1 4
-pow + 2 * atanh + x 1 4 1
-* + 2 * atanh + 1 x 4 1
-+ * atanh + x 1 4 2
-- * atanh + x 1 4 -2
-* 2 - * 2 atanh + x 1 -1
-+ - * atanh + x 1 4 -2 0
-
-+ * -20 x * 5 acos x
 + * -20 x * 5 acos x
 * + * acos x 5 * x -20 1
 pow + * -20 x * 5 acos x 1
@@ -8700,8 +7250,6 @@ d x exp - / asinh sqrt x 1 -4
 d x exp - asinh sqrt x -4
 * 1 d x exp - asinh sqrt x -4
 
-d x * x + 1 atanh + -2 * 3 x
-
 + * 2 x + * 3 pow x 2 asin x
 
 * x * + 1 * 2 pow x 2 atan x
@@ -8713,8 +7261,6 @@ d x * x + 1 atanh + -2 * 3 x
 d x * -1 * + -1 x asinh + 5 x
 
 d x + x * + 2 * 6 x acosh x
-
-* 9 + x * 2 atanh + 1 * 2 x
 
 d x + * 60 pow x -1 asinh x
 d x + asinh x * pow x -1 60
@@ -8729,34 +7275,11 @@ d x + sqrt x * atan x 9
 * d x + sqrt x * 9 atan x 1
 pow d x + * atan x 9 sqrt x 1
 
-+ * -3 atanh x * 12 x
-pow + * atanh x -3 * x 12 1
-+ * atanh / x 1 -3 * 12 x
-- + / x 0.08333333333333333 * atanh x -3 0
-+ * atanh x -3 / 12 / 1 x
-+ / / x 0.08333333333333333 1 * atanh x -3
-+ - * atanh x -3 0 * 12 x
-pow + * atanh x -3 / x 0.08333333333333333 1
-+ 0 + * atanh x -3 / x 0.08333333333333333
-- * -3 atanh x - 0 / x 0.08333333333333333
-* 1 + * 12 x * atanh x -3
-* + / x 0.08333333333333333 * atanh x -3 1
-- * -3 atanh x - 0 * x 12
-+ * -3 atanh x * 12 x
-+ + * -3 atanh x * 12 x 0
-+ / x 0.08333333333333333 * atanh x -3
-
 * 8 * x + 1 + x atan x
 * 8 + x * + atan x x x
-* 8 * x + 1 + x atan x
 * + 8 * 8 + x atan x x
 
 d x + x * x pow asinh cos + 10 * 1 pi -10
-
-d x + -3 + * 2 pow x 2 * x atanh x
-+ * x - d x atanh x -4 atanh x
-+ * x + d x atanh x 4 atanh x
-+ d x * atanh x x * x 4
 
 d x + * 4 pow x 2 * -1 * x asin x
 
@@ -8773,7 +7296,6 @@ d x * + acosh x * pi 9 x
 d x + -10 + x + pow sec x -1 * -10 acosh x
 
 * 8 pow + x * -1 acosh x 3
-* 8 pow + x * -1 acosh x 3
 
 + 1 + * x asinh x cos + x * 3 pi
 
@@ -8783,73 +7305,10 @@ d x * x + 10 sin + * 9 pi asinh x
 
 d x + * -1 x * 5 * pow x 3 asin x
 
-* 8 + * -1 atanh x * 2 x
-pow * 8 - * x 2 atanh x 1
-* + - 0 atanh x * x 2 8
-+ * 2 * 8 x * -8 atanh x
-- * -8 atanh x - 0 * 16 x
-+ * 16 x * -1 * 8 atanh x
-* 8 - / * 2 x 1 atanh x
-- * 16 x * -1 * atanh x -8
-- / / x 0.5 0.125 * 8 atanh x
-* * - * 2 x atanh x 8 1
-- * * x 2 8 * atanh x 8
-+ - / x 0.0625 * atanh x 8 0
-* - / x 0.5 atanh x 8
-+ * atanh x -8 - / x 0.0625 0
-pow * 8 - / x 0.5 atanh x 1
-+ * atanh x -8 / x 0.0625
-* 1 * - / x 0.5 atanh x 8
-+ * 8 - 0 atanh x * 16 x
-* - * x 2 - atanh x 0 8
-pow - * x 16 * atanh x 8 1
-* - * x 16 * 8 atanh x 1
-+ / / x 0.0625 1 * -8 atanh x
-* 8 - / x 0.5 atanh / x 1
-+ * atanh x -8 * x 16
-- / 16 / 1 x * 8 atanh x
-* 1 + * -8 atanh x / x 0.0625
-* 1 - / x 0.0625 * atanh x 8
-+ * -8 atanh x / * 2 x 0.125
-+ / 2 / 0.125 x * atanh x -8
-- / x 0.0625 - 0 * -8 atanh x
-+ * * 8 atanh x -1 / x 0.0625
-* + * atanh x -8 * x 16 1
-+ * 16 x * atanh / x 1 -8
-+ + / x 0.0625 * atanh x -8 0
-- * 16 - x 0 * atanh x 8
-pow + * -8 atanh x / x 0.0625 1
-- 0 * - atanh x / x 0.5 8
-+ * -8 atanh x / 8 / 0.5 x
-* + - 0 atanh x / x 0.5 8
-- / / x 1 0.0625 * 8 atanh x
-- * x 16 * atanh x 8
-- * / x 1 16 * atanh x 8
-- / x 0.0625 * -8 * atanh x -1
-- / 8 / 0.5 x * 8 atanh x
-pow + * 16 x * atanh x -8 1
-+ 0 + * x 16 * -8 atanh x
-- / * x 2 0.125 * 8 atanh x
-+ / 16 / 1 x * atanh x -8
-- / x 0.0625 * 8 atanh x
-- / 2 / 0.125 x * atanh x 8
-- / * 8 x 0.5 * atanh x 8
-pow - / x 0.0625 * 8 atanh x 1
-* - / 2 / 1 x atanh x 8
-+ * atanh x -8 / * 8 x 0.5
-* + * -1 atanh x / x 0.5 8
-+ * atanh x -8 / / x 0.125 0.5
-* 8 - * 2 x atanh x
-- / x 0.0625 - * 8 atanh x 0
-* + * 2 x * -1 atanh x 8
-+ - * 16 x 0 * atanh x -8
-
 + * 3 pow x 4 * 8 acos x
 + * 8 acos x * pow x 4 3
 
 * 2 + * 2 acosh x * 5 x
-
-d x + x + pow cot x -1 + acosh x atanh x
 
 d x * x * + -1 x + * -1 x asin x
 
@@ -8885,21 +7344,6 @@ pow d x * 4 asin * x 3 1
 
 d x + 1 + x + pow cot x -1 * x atan x
 
-* 5 * x + 2 * -1 atanh x
-+ * * - atanh x 2 x -5 0
-+ 0 * -5 * + atanh x -2 x
-+ * x + * atanh x -5 10 0
-+ 0 * - * atanh x -5 -10 x
-+ 0 * - 10 * atanh x 5 x
-+ * x * - 2 atanh x 5 0
-+ * x 10 * atanh x * x -5
-
-+ x * x + 8 atanh x
-+ / x 1 * - atanh x -8 x
-+ - x 0 * x + atanh x 8
-+ - x 0 * - atanh x -8 x
-+ / x 1 * x + atanh x 8
-
 * 5 + x * -1 asin * 2 x
 * - x asin * x 2 5
 + * x 5 * -5 asin * x 2
@@ -8922,52 +7366,10 @@ pow + * 6 pi asin x 1
 
 * 2 * x * + x pow x 2 asin * 2 x
 
-* x + 1 + * -4 x atanh x
-+ x * x - atanh x * x 4
-+ x * + atanh x * -4 x x
-
 d x * 4 * x + * -1 x atan * 3 x
 
 * 2 * x + * -1 x acosh * 5 x
 
-+ 1 * 9 atanh x
-* + * 9 atanh x 1 1
-- + * 9 atanh x 1 0
-- + * 9 - atanh x 0 1 0
-- * 9 atanh / x 1 -1
-+ + 1 - * atanh x 9 0 0
-pow + * 9 atanh x 1 1
-- 1 * - 0 atanh / x 1 9
-+ 0 + * atanh / x 1 9 1
-pow - * 9 atanh / x 1 -1 1
-pow + - * 9 atanh x 0 1 1
-- 1 * 9 - 0 - atanh x 0
-+ 1 * atanh / x 1 9
-+ * - atanh / x 1 0 9 1
-- - - * 9 atanh x -1 0 0
-* 1 + 1 * 9 atanh / x 1
-- * atanh / / x 1 1 9 -1
-pow + * atanh / x 1 9 1 1
-- 1 - 0 * 9 atanh x
-* 1 - * 9 atanh / x 1 -1
-+ 0 - * atanh / x 1 9 -1
-- * 9 atanh x -1
-* 1 - + * atanh x 9 1 0
-* 1 - * atanh x 9 -1
-- - * 9 atanh / x 1 -1 0
-+ 1 * atanh x 9
-+ 0 - * atanh x 9 -1
-+ * 9 atanh / 1 / 1 x 1
-pow - 1 - 0 * atanh x 9 1
-* - 1 - 0 * 9 atanh x 1
-pow - 0 - -1 * atanh x 9 1
-- - * 9 atanh x 0 -1
-* 1 - 0 - -1 * atanh x 9
-pow - * 9 atanh x -1 1
-+ + 1 * atanh x 9 0
-+ - - * 9 atanh x -1 0 0
-
-+ * 9 pow x 3 * x atan x
 + * 9 pow x 3 * x atan x
 
 atan * 3 * x pow + -4 x -1
@@ -9788,7 +8190,6 @@ d x / asinh x / 0.1111111111111111 pow 8 -1
 d x * x + 2 + pow x 4 asinh x
 
 + 2 + acosh x sin x
-+ 2 + acosh x sin x
 + acosh x + 2 * tan x cos x
 + acosh / * 2 x 2 + sin x 2
 + acosh x + + 2 sin x ln 1
@@ -9806,12 +8207,6 @@ d x * x + 2 + pow x 4 asinh x
 d x * x + * 3 x * -1 asinh x
 
 * 2 asinh + 8 * -1 x
-
-d x atanh * 7 * x pow + 3 x -1
-d x ln / + x 1 - 1 x
-d x - ln + 1 x ln - 1 x
-- / 1 + 1 x / -1 - 1 x
-+ / 1 - 1 x / 1 + 1 x
 
 * x + 1 + 1 acosh x
 + x + x * acosh x x
@@ -10001,9 +8396,6 @@ d x + 5 + x * x * + 1 x asin x
 + * 19 x * + asinh x ln 1 x
 + * x 19 * asinh x x
 
-d x * + 1 + pow x 2 * 2 x atanh x
-d x * atanh x pow + x 1 2
-
 + x * 4 * x + * -1 x atan x
 * x + 1 * - atan x x 4
 * x - 1 * 4 - x atan x
@@ -10013,22 +8405,12 @@ d x * atanh x pow + x 1 2
 + pow csc acosh x -1 cosh x
 + pow / csc acosh x 1 -1 cosh x
 * 1 + pow csc acosh x -1 cosh x
-+ pow csc acosh x -1 cosh x
 pow + pow csc acosh x -1 cosh x 1
 + cosh x pow / 1 sin acosh x -1
 + pow csc + acosh x ln 1 -1 cosh x
 + cosh * x -1 pow csc acosh x -1
 
 d x * -1 * pow x 2 + -5 asinh x
-
-+ * 3 atanh x * 5 * x atanh x
-+ * atanh x + * x 5 3 0
-+ * 3 atanh x * atanh x * x 5
-+ * 3 atanh x / atanh x / 0.2 x
-+ * 3 atanh x * x / atanh x 0.2
-
-+ pow x 5 * x pow atanh x 2
-+ * x pow atanh x 2 pow x 5
 
 * x + 1 * asin x 3
 + * * asin x 3 x x
@@ -10067,33 +8449,7 @@ d x + x / acosh x / 0.04 x
 + 1 d x / acosh x / 0.04 x
 + 1 d x * acosh x / x 0.04
 
-+ * -8 x * -8 atanh x
-+ * atanh x -8 * x -8
-+ * -8 + x atanh x 0
-+ - * + atanh x x -8 0 0
-+ * atanh x -8 * 8 / x -1
-+ - * atanh x -8 * x 8 0
-+ * -8 atanh / x 1 / x -0.125
-+ * -8 - atanh x - 0 x 0
-+ * -8 atanh x / - 0 x 0.125
-+ * atanh x -8 / * -1 x 0.125
-+ * atanh x -8 / 8 / -1 x
-+ - * atanh x -8 0 * x -8
-+ * + atanh / x 1 x -8 0
-+ * atanh x -8 * * x -1 8
-+ * - atanh x * x -1 -8 0
-+ * - atanh x / x -1 -8 0
-+ * atanh x -8 * -8 / x 1
-+ + / x -0.125 * atanh x -8 0
-+ * atanh x -8 / - x 0 -0.125
-+ + * -8 x * -8 atanh x 0
-+ * -8 atanh x / -8 / 1 x
-+ * atanh x -8 / -1 / 0.125 x
-+ * -8 atanh x / x -0.125
-
 + * -10 acosh x + sin x sin + x * 6 pi
-
-d x * 4 * x + 4 * x atanh x
 
 * 4 + pow x 2 * 5 asin x
 + * 4 pow x 2 * asin x 20
@@ -10104,7 +8460,6 @@ d x * 4 * x + 1 * 2 asin x
 + d x / asin x / 0.125 x 4
 + 4 d x * x / asin x 0.125
 
-+ pow x 2 * x atan x
 + pow x 2 * x atan x
 pow + pow x 2 * x atan x 1
 * + * x atan x pow x 2 1
@@ -10145,10 +8500,6 @@ d x sin * 10 acos x
 
 d x + * x atan x * 2.7 * x exp x
 d x * + * 2.7 exp x atan x x
-
-* + 1 atanh x + x pow x 4
-* - atanh x -1 + x pow x 4
-* + atanh x 1 + x pow x 4
 
 d x + 4 + * 3 x * x + x asin x
 + d x * + x asin x x 3
@@ -10245,95 +8596,7 @@ d x + * -3 atan * 8 x * 8 x
 + d x * atan * 8 x -3 8
 + / d x atan * x 8 -0.3333333333333333 8
 
-d x * 7 * x atanh + -1 x
-
 d x + x * 2 * pow x 2 atan * 4 x
 
-atanh * pow x -1 3
-+ ln + 1 x - 0 ln - 1 x
-atanh * pow / 1 / 1 x -1 3
-+ 0 atanh * pow / x 1 -1 3
-pow - ln + x 1 ln - 1 x 1
-ln / + x 1 - 1 x
-pow atanh * pow / x 1 -1 3 1
-- - ln + x 1 ln - 1 x 0
-* - ln + x 1 ln - 1 x 1
-- atanh * pow x -1 3 0
-+ 0 atanh * 3 pow x -1
-- 0 ln / - 1 x + x 1
-* ln / + x 1 - 1 x 1
-- atanh * pow / x 1 -1 3 0
-* 1 atanh * pow / x 1 -1 3
-+ ln / + 1 x - 1 x 0
-atanh * pow x -1 3
-pow - atanh * 3 pow x -1 0 1
-* 1 atanh * 3 pow x -1
-ln / + x 1 / - 1 x 1
-+ - atanh * pow x -1 3 0 0
-- ln + / x 1 1 ln - 1 x
-pow ln / + x 1 - 1 x 1
-* - atanh * pow x -1 3 0 1
-- 0 - 0 atanh * pow x -1 3
-atanh * pow / x 1 -1 3
-- ln + 1 x ln - 1 x
-+ ln + 1 x ln / 1 - 1 x
-pow atanh * 3 pow x -1 1
-
 d x + 4 + pow x 2 * x acosh * 4 x
-
-d x + pow x 3 * 8 atanh x
-
-d x + * 125 x * 125 atanh x
-* 1 * 125 + 1 d x atanh x
-* - + 1 d x atanh x 0 125
-- * 125 / 1 - 1 pow x 2 -125
-+ 0 * 125 - d x atanh x -1
-* - d x + atanh x x 0 125
-+ 125 d - x 0 * 125 atanh x
-pow + d x * atanh x 125 125 1
-pow + / 125 - 1 pow x 2 125 1
-* + / 1 - 1 pow x 2 1 125
-* 1 - * 125 d x atanh x -125
-+ * 125 d x + atanh x x 0
-+ + 125 / 125 - 1 pow x 2 0
-+ * d x atanh x 125 125
-* - / d x atanh x 1 -1 125
-+ 0 + 125 * d x atanh x 125
-- / 125 - 1 pow x 2 -125
-pow * - d x atanh x -1 125 1
-+ 0 - / 125 - 1 pow x 2 -125
-+ 125 * 125 / 1 - 1 pow x 2
-- + / 125 - 1 pow x 2 125 0
-+ 0 - * d x atanh x 125 -125
-* 1 * 125 d x + x atanh x
-* + 1 d x atanh x 125
-- / 1 * - 1 pow x 2 0.008 -125
-* + 125 d x * atanh x 125 1
-+ / 1 * - 1 pow x 2 0.008 125
-- 125 * 125 - 0 d x atanh x
-* - 1 d x - 0 atanh x 125
-+ 125 / * d x atanh x 125 1
-pow * 125 + d x atanh x 1 1
-pow d x * 125 + x atanh x 1
-- - / 125 - 1 pow x 2 -125 0
-+ / 125 - 1 pow x 2 125
-- / 1 / - 1 pow x 2 125 -125
-+ / 125 / 1 d x atanh x 125
-- d x * 125 atanh x -125
-- / 125 / 1 d x atanh x -125
-* 125 - / 1 - 1 pow x 2 -1
-* + 1 / d x atanh x 1 125
-* * 125 - d x atanh x -1 1
-d x + * atanh x 125 * 125 x
-+ * + 1 d x atanh x 125 0
-+ 125 / 1 / - 1 pow x 2 125
-- 125 - 0 / 125 - 1 pow x 2
-- - * 125 d x atanh x 0 -125
-* 125 - d x atanh x -1
-- / * 125 d x atanh x 1 -125
-pow - * d x atanh x 125 -125 1
-d x * 125 - atanh x - 0 x
-* 125 - d - x 0 atanh x -1
-* 125 d x + x atanh x
-pow - / 125 - 1 pow x 2 -125 1
 

@@ -24,7 +24,6 @@ d x pow + 2 * + x x 2 5
 pow d x pow + * 4 x 2 5 1
 * 1 d x pow + * 4 x 2 5
 d x pow + 1 + 1 * 4 x 5
-d x pow + 2 * 4 x 5
 d x pow + * 2 * x 2 2 5
 
 d x * x + 3 ln * 5 x
@@ -387,7 +386,6 @@ pow + x pow sec - -1048570 x -1 1
 - pow sec + x 1048570 -1 * x -1
 - pow sec - -1048570 x -1 * -1 x
 + pow / 1 cos + 1048570 x -1 x
-+ x pow sec + 1048570 x -1
 + pow / 1 cos - -1048570 x -1 x
 + x pow / sec - -1048570 x 1 -1
 pow + pow sec + x 1048570 -1 x 1
@@ -474,7 +472,6 @@ d x * 10 * pow 5 -1 csc + -630 * 1 pi
 + * -10240 pow x -10 / sin x cos x
 + / 1 cot x * -10240 pow x -10
 + * sec x sin x * pow x -10 -10240
-+ * -10240 pow x -10 tan x
 - * -10240 pow x -10 * tan x -1
 
 * 2 * x + 1 * pow x 2 + -5 x
@@ -2334,7 +2331,6 @@ d x + * 4 x * 2 * x + 1 * -1 x
 
 d x * + x cos + -10 x cosh x
 d x * + cos - 10 x x cosh x
-d x * + x cos + -10 x cosh x
 
 d x * 244140620 * x pow sec x -1
 
@@ -2513,7 +2509,6 @@ d x * pow csc x -1 pow csc + -620 * 3 pi 10
 pow * -10 pow sec - -2500 x -1 1
 * pow sec - 2500 * x -1 -1 -10
 * -10 pow sec * - -2500 x -1 -1
-* -10 pow sec + 2500 x -1
 * pow sec - -2500 x -1 -10
 pow * -10 pow sec + 2500 x -1 1
 * pow / sec + 2500 x 1 -1 -10
@@ -2532,7 +2527,6 @@ d x + * x 3 pow pi 4
 
 * x pow sec ln * 3 pi 10
 * pow sec * ln * pi 3 -1 10 x
-* x pow sec ln * 3 pi 10
 pow * x pow sec ln * 3 pi 10 1
 * x pow sec + ln pi ln 3 10
 * pow / 1 cos ln * 3 pi 10 x
@@ -2592,7 +2586,6 @@ pow + * 6 exp x * x 9 1
 + 10 + pow cot x -1 * 20 x
 + + 10 * x 20 pow cot x -1
 
-+ * 1048575 x * x ln x
 + * 1048575 x * x ln x
 + * 1048575 x * x + ln 1 ln x
 
@@ -2983,7 +2976,6 @@ d x * x * + -5 x + x * -1 pow x 3
 + 2 / 1 sec + * 3 pi x
 + 2 cos * -1 - * pi -3 x
 + 2 / cos - x * -3 pi 1
-+ 2 cos + x * 3 pi
 + 2 / cos + x * 3 pi 1
 + 2 cos - * pi -3 x
 + 2 cos + x * -1 * pi -3
@@ -3438,7 +3430,6 @@ d x * -18 * pow x 3 + -1 x
 * 720 + x pow / tan x sin x -1
 * + pow * tan x csc x -1 x 720
 * 720 + x pow / csc x cot x -1
-+ * 720 x * 720 pow sec x -1
 * * + pow sec x -1 x 720 1
 * 720 + x pow sec x -1
 pow * + x pow sec x -1 720 1
@@ -4155,7 +4146,6 @@ pow cos + * * pi 8 -1 -15620 -10
 * 1 pow cos + 15620 * pi 8 -10
 pow cos * -1 - -15620 * 8 pi -10
 * 1 pow cos - 15620 * pi -8 -10
-pow cos + 15620 * 8 pi -10
 pow / 1 sec + * 8 pi 15620 -10
 pow cos * - 15620 * -8 pi -1 -10
 pow cos * + * pi 8 15620 -1 -10
@@ -4257,7 +4247,6 @@ pow + * * 2 x 2 2 1
 + pow / 1 sec x 2 / -30 sec x
 + * -30 cos x * cos x cos x
 
-d x * pow x 21 pow + 1 x 20
 d x * pow x 21 pow + 1 x 20
 
 d x + -10 cos + * 8 pi 9
@@ -4391,7 +4380,6 @@ pow + - * ln sin x -10 -1 x 1
 
 + 3 + * 5 pi ln x
 + 3 + * 5 pi + ln 1 ln x
-+ 3 + * 5 pi ln x
 
 d x + 2 + pow x 4 * -5 pow x 3
 d x + pow x 4 * pow x 3 -5
@@ -4436,7 +4424,6 @@ pow * 4 + pow x -1 pow x 6 1
 + -10 + x * -10 pow csc x -2
 + x + * -10 pow csc x -2 -10
 
-* 1 * pow x 2 pow + 3 pi -1
 * 1 * pow x 2 pow + 3 pi -1
 * pow + 3 pi -1 pow x 2
 pow * pow x 2 pow + pi 3 -1 1
@@ -4921,7 +4908,6 @@ d x + x exp + 2 * 2 x
 + * 2 exp + 2 * 2 x 1
 d x + x exp + x + 2 x
 + d x exp + 2 * 2 x 1
-d x + x exp + 2 * 2 x
 + 1 * exp + x + x 2 2
 + d x exp + x + x 2 1
 
@@ -6123,7 +6109,6 @@ d x + -10 + x sin + 20 x
 * 7 * pow x -7 + -12 * -7 x
 * pow x -7 + * * 7 x -7 -84
 * pow x -7 + * x -49 -84
-* 7 * pow x -7 + -12 * -7 x
 * * + * x -49 -84 pow x -7 1
 pow * + * x -49 -84 pow x -7 1
 + * -49 pow x -6 * -84 pow x -7
@@ -6355,7 +6340,6 @@ ln pow x + x * 2 * x 2
 + x / 1 / 1 tan + -30 x
 - x tan * -0.5 + * x 2 -60
 + x / 1 / cot + x -30 1
-+ x tan + -30 x
 - x / sin - 30 x cos + -30 x
 + x * sin + x -30 sec + -30 x
 - x tan * * 2 + x -30 -0.5
@@ -6496,7 +6480,6 @@ pow * x + 3 * x - 3 x 1
 - * + * x 3 3 x pow x 3
 
 + 1 + x + exp x ln pow x 4
-+ 1 + x + exp x ln pow x 4
 + 1 + x + exp x * ln x 4
 
 d x ln * x pow sec + 20 * 1 pi 10
@@ -6628,7 +6611,6 @@ d x + 240 + * 40 x * 40 sin x
 + / * 59040 tan x sec * x -1 29520
 + / / 59040 cot x sec * x -1 29520
 + * / 59040 sec x tan x 29520
-+ 29520 * 59040 sin x
 + / 59040 / sec x tan x 29520
 + * cos x * 59040 / 1 cot x 29520
 + * / 1 sec x / 59040 cot x 29520
@@ -6694,7 +6676,6 @@ pow d x + * 16 pow x 2 -8 1
 + d x + * pow x 2 16 -8 0
 * 2 * x 16
 * 1 * * x 2 16
-d x + -8 * 16 pow x 2
 + 0 * 2 * x 16
 pow * x 32 1
 * 1 d x * 16 pow x 2
@@ -6706,9 +6687,7 @@ pow d x * 16 pow x 2 1
 * pow x -10 cos - -20 * 6 pi
 * pow x -10 cos - 20 * pi -6
 * pow x -10 cos + -20 * pi -6
-* pow x -10 cos + 20 * 6 pi
 
-d x + pow cot x -1 exp * 20 x
 d x + pow cot x -1 exp * 20 x
 
 d x * x + * 10 x * -10 * x sin x
@@ -6960,7 +6939,6 @@ d x * -10 sin + 59053 * 4 pi
 
 * pow sin x -10 sin + -10 + x * 2 pi
 
-+ x * pow x -12 pow + 1 x 2
 + x * pow x -12 pow + 1 x 2
 
 pow sec + 1020 + * 1020 x * 1 pi -1
@@ -7693,7 +7671,6 @@ pow - * + 3 x * 8 pi x 1
 * - * pi + 24 * x 8 x 1
 + * -1 x * pi + 24 * 8 x
 pow - * pi + * x 8 24 x 1
-+ * -1 x * 8 * pi + 3 x
 + * x - * 8 pi 1 * 24 pi
 + * 24 pi * + -1 * pi 8 x
 - * * + x 3 pi 8 x
@@ -8158,7 +8135,6 @@ d x * ln x cos + * 7 pi 720
 d x * cos - 720 * -7 pi ln x
 d x / ln x sec - 720 * pi -7
 d x ln pow x cos - 720 * -7 pi
-d x ln pow x cos + 720 * 7 pi
 d x / ln x sec + * -7 pi -720
 d x / ln x sec - -720 * 7 pi
 d x ln pow x cos + * pi -7 -720
@@ -8773,7 +8749,6 @@ d x * x + 1 * 8 cos x
 + d x / * 8 x sec x 1
 
 d x pow + -3 exp * 9 x 4
-d x pow + -3 exp * 9 x 4
 
 d x * cos x 6
 
@@ -8806,7 +8781,6 @@ pow * x + * -10 cos x -29 1
 
 d x + pow x 2 + * 120 x * x cos x
 
-+ * 36 pow x 2 * 180 ln x
 + * 36 pow x 2 * 180 ln x
 
 * 8 + 15 + * 2 pow x 2 * 6 x
@@ -9498,7 +9472,6 @@ pow * x + + * x x 5 x 1
 + 1 + * 60 cos * -1 x x
 + 1 + / 60 sec x x
 + - * cos x 60 * x -1 1
-+ 1 + x * 60 cos x
 + + x / 60 sec * -1 x 1
 
 d x + pow csc x -1 * x + 100 x
@@ -9684,7 +9657,6 @@ d x * - x tan + 10 x -10
 - 0 * ln / / sec x 1 1 -40
 + * -40 ln cos * x -1 0
 * -10 * ln / 1 sec x 4
-* -10 * ln cos x 4
 - 0 * -40 ln / sec * x -1 1
 * -10 * ln / sin x tan x 4
 * -10 * - - 0 ln sec x 0 4
@@ -9959,7 +9931,6 @@ d x * pow / cot x cos x -1 1250
 pow * d x pow csc x -1 1250 1
 * pow csc x -2 * d x csc x -1250
 + d x * 1250 pow csc x -1 0
-d x * 1250 pow csc x -1
 
 d x + 40 * pow cos x -1 cos + x * 5 pi
 
@@ -11435,7 +11406,6 @@ d x + 3 + * -1 x * -6 6
 
 d x * pow x 3 + 4 pow x 8
 + * 12 pow x 2 d x pow x 11
-d x * pow x 3 + 4 pow x 8
 * pow x 2 + 12 * pow x 8 11
 d x + * pow x 3 4 pow x 11
 + * pow x 2 12 * pow x 10 11
@@ -11443,7 +11413,6 @@ d x + * pow x 3 4 pow x 11
 + x * 20 * x sin ln x
 + * x * 20 sin ln x x
 
-pow + * -15 pow x 2 * 2 x 3
 pow + * -15 pow x 2 * 2 x 3
 
 d x * 2 * x sqrt + 2 pow x 2
@@ -11714,7 +11683,6 @@ pow d x ln pow cos x * 7 pi 1
 d x ln / pow cos x * pi 7 1
 d x ln pow d x sin x * 7 pi
 + d x ln pow cos x * pi 7 0
-d x ln pow cos x * 7 pi
 d x - * * 7 ln cos x pi 0
 * 1 d x * * ln cos x 7 pi
 d x ln pow / 1 sec x * 7 pi
@@ -11722,7 +11690,6 @@ d x ln pow / 1 sec x * 7 pi
 + 80 + x + exp x tan x
 + 80 + exp x - x tan * x -1
 + exp x - tan x - * x -1 80
-+ 80 + x + exp x tan x
 + + exp x + x 80 / 1 cot x
 
 d x + * 6 pow x 2 exp + 1 x
@@ -11753,7 +11720,6 @@ pow cos / 2 / 2 pow 7 -10 -10
 pow cos * * -1 pow 7 -10 -1 -10
 pow cos * 2 * -0.5 pow 7 -10 -10
 + pow cos pow 7 -10 -10 0
-d x * x pow cos pow 7 -10 -10
 - 0 - 0 pow cos pow 7 -10 -10
 * 1 pow / cos pow 7 -10 1 -10
 pow / sin pow 7 -10 tan pow 7 -10 -10
@@ -12474,7 +12440,6 @@ pow + / 4 - x 0 -3125 1
 + 0 + -3125 / 1 / 0.25 pow x -1
 pow - -3125 * 4 * -1 / 1 x 1
 + 0 - / 1 - / x 4 0 3125
-d x + * -3125 x ln pow x 4
 - -3125 - 0 / 4 x
 - -3125 - 0 / 1 * x 0.25
 - -3125 - 0 / / 4 x 1
@@ -12891,7 +12856,6 @@ d x * 5 * pow + 3 x -1 + 9 * 4 x
 * cos * -2 / x 2 5
 * * / 1 tan x sin x 5
 * 5 cos / / 4 / 2 x 2
-* 5 cos x
 * cos * * x -1 -1 5
 * / sin x / 1 / cot x 1 5
 * cos * -0.5 * 2 x 5
@@ -13128,7 +13092,6 @@ d x + pow 0 x sin x
 + / cos x cot x * 1020 pow x 20
 + * cos x tan x * pow x 20 1020
 + / tan x sec x * 1020 pow x 20
-+ * 1020 pow x 20 sin x
 
 pow sec + x + * -10 5 * 5 pi -1
 pow sec - + x -50 * -5 pi -1
@@ -13212,7 +13175,6 @@ d x + * -2 ln + -3 x * 2 x
 d x + * -10 x * 80 pow csc x 10
 + * 80 d x pow csc x 10 -10
 
-* 10 * x sin + -10 * 10 x
 * 10 * x sin + -10 * 10 x
 
 cos + 1 + x 4
@@ -13844,7 +13806,6 @@ d x + * -10 * exp x sin x sin x
 d x * x pow csc + -80 * 7 pi 10
 
 * pow x -10 pow tan pow x -10 10
-* pow x -10 pow tan pow x -10 10
 
 d x + pow x 2 * 4 exp * 8 x
 * + * exp * x 8 16 x 2
@@ -13884,7 +13845,6 @@ pow + 12 * pow x -1 32 1
 + 1 / tan + -260 x sec + x -260
 + 1 / cos - 260 x cot + x -260
 + 1 sin * * -0.5 - 260 x 2
-+ 1 sin + -260 x
 + 1 / tan + x -260 sec - 260 x
 
 d x * -10 tan + -10 + x 5
@@ -14625,7 +14585,6 @@ pow + * x + * 4 x -52 -192 1
 * 4 + * + x -13 x -48
 
 * x pow + 1 * -2 pow x 2 4
-* x pow + 1 * -2 pow x 2 4
 
 + x * -40 * x pow csc x -1
 * x - * -40 pow csc x -1 -1
@@ -15336,7 +15295,6 @@ d x * 1 * pow x 3 + 10 * 243 pow x 7
 + x * pow x -2 + 20 x
 * 1 + x * + 20 x pow x -2
 + + * 20 pow x -2 x pow x -1
-+ x * pow x -2 + 20 x
 pow + x * pow x -2 + 20 x 1
 
 d x * 5 * pow x -2 + -15625 * 10 pow x 3
@@ -16705,7 +16663,6 @@ d x * 5 * x + -2 ln * 8 pow x 3
 
 + 30 * -30 pow csc x -1
 + 30 * -30 pow / csc x 1 -1
-+ 30 * -30 pow csc x -1
 * 1 + 30 * -30 pow csc x -1
 + 30 * -30 pow / cot x cos x -1
 pow + * pow csc x -1 -30 30 1
@@ -18745,7 +18702,6 @@ d x * x pow + -3 * -1 x -2
 + 0 d x * x pow - -3 x -2
 d x * x - pow - -3 x -2 0
 * 1 d x * pow - -3 x -2 x
-d x * x pow + -3 * -1 x -2
 pow d x * x pow - -3 x -2 1
 d x * x pow - -3 x -2
 
@@ -20360,7 +20316,6 @@ pow + x sin + * 7 pi 6 -10
 pow + x sin - 6 * pi -7 -10
 pow - x sin + -6 * pi -7 -10
 pow - x sin - -6 * pi 7 -10
-pow + x sin + * 7 pi 6 -10
 
 tan + -40 x
 * / 1 * -1 cot - 40 x 1
@@ -20661,7 +20616,6 @@ d x + * -10 cos x * x cos + 1020 * 3 pi
 * 4 * pow x 2 pow + 4 * -1 x 2
 * * pow - 4 x 2 pow x 2 4
 
-+ x pow cot pow 6 -1 -1
 + x pow cot pow 6 -1 -1
 pow + x pow cot pow 6 -1 -1 1
 + x pow / 1 tan pow 6 -1 -1
@@ -23266,7 +23220,6 @@ d x + * -4 8 * -1 * x 5
 * 4 * pow csc * 2 x -1 + 1 x
 
 + * -729 x ln pow x * 729 x
-+ * -729 x ln pow x * 729 x
 + * x -729 * 729 * x ln x
 
 * pow x 2 + x * 6 pow x 8
@@ -23451,7 +23404,6 @@ d x * x * cos x 1
 pow + x exp pow 5 -1 -10
 * 1 pow + exp pow 5 -1 x -10
 pow pow + exp pow 5 -1 x -10 1
-pow + x exp pow 5 -1 -10
 
 d x * 8 pow + -4 * 3 x 3
 + 0 * 72 pow + * 3 x -4 2
@@ -24513,7 +24465,6 @@ pow + pow / cos x sin x -1 7770 1
 + pow cot / 2 / 2 x -1 7770
 + 7770 pow / / 1 tan x 1 -1
 * + pow / cos x sin x -1 7770 1
-+ 7770 pow cot x -1
 * + pow / 1 tan x -1 7770 1
 + 7770 pow cot * / x 2 2 -1
 + 7770 pow / / 1 sin x sec x -1
@@ -24527,7 +24478,6 @@ d x * x * + 75 * 25 x exp x
 * 9 * x + 5 * 2 pow ln x 2
 * + * pow ln x 2 18 45 x
 
-+ * -9 pow x 4 * 12 pow x 3
 + * -9 pow x 4 * 12 pow x 3
 
 d x * 10 + * -1 tanh x tan x
@@ -26352,7 +26302,6 @@ d x * pow x 2 pow + 1 * 8 x -2
 d x + x * x pow + 1 pow x 2 -1
 
 + x pow cot + 40 x -1
-+ x pow cot + 40 x -1
 pow + x pow cot + 40 x -1 1
 + x pow cot - 40 * x -1 -1
 + x pow cot * - -40 x -1 -1
@@ -27560,7 +27509,6 @@ pow * -10 pow sec + -90 x -1 1
 * pow sec * -1 + x -90 -1 -10
 
 * pow x 2 + 12 pi
-* pow x 2 + 12 pi
 + * pow x 2 12 * pi pow x 2
 * * pow x 2 + 12 pi 1
 pow * pow x 2 + 12 pi 1
@@ -27811,7 +27759,6 @@ pow d x + * 4 pow x 2 4 1
 * 10 pow / csc + x 10 1 -1
 pow * 10 pow csc + x 10 -1 1
 * 1 * 10 pow csc + 10 x -1
-* 10 pow csc + 10 x -1
 * pow csc - 10 * x -1 -1 10
 * 10 pow / 1 sin + x 10 -1
 * 10 pow csc * -1 - -10 x -1
@@ -27879,7 +27826,6 @@ d x * 15 * pow x 4 + -5 x
 + * + -300 * 75 x pow x 3 0
 d x * pow x 4 + -75 * 15 x
 * 15 * pow x 3 + -20 * x 5
-d x * 15 * pow x 4 + -5 x
 * + * x 75 -300 pow x 3
 pow * pow x 3 + -300 * 75 x 1
 * 1 * pow x 3 + -300 * 75 x
@@ -28036,7 +27982,6 @@ pow * pow sec x -1 / sinh x 1 1
 pow * sinh x pow / 1 cos x -1 1
 * * sinh x pow sec * x -1 -1 1
 pow / pow sec x -1 / 1 sinh x 1
-* pow sec x -1 sinh x
 * * pow sec x -1 sinh x 1
 * / pow sec x -1 / 2 sinh x 2
 * pow sec x -1 * -1 sinh * -1 x
@@ -28682,7 +28627,6 @@ pow * 5 pow x 4 1
 + d x pow x 5 0
 + 0 d x + 6 pow x 5
 pow d x pow x 5 1
-d x + pow x 5 6
 * 1 d x pow x 5
 * d x + 6 pow x 5 1
 d x pow x 5
@@ -28734,7 +28678,6 @@ pow * 30 pow * tan x cos x -10 1
 * 1 * 30 pow sin x -10
 * pow sin * * x 0.5 2 -10 30
 * pow * / tan x 1 cos x -10 30
-* 30 pow sin x -10
 * 30 pow / / 1 sec x cot x -10
 * pow / cos * x -1 cot x -10 30
 * 30 pow * tan x cos * x -1 -10
@@ -28753,7 +28696,6 @@ d x * 100 * pow x 2 pow + 5 x 2
 d x * 5 pow + x * 2 pow x 2 4
 
 + 4 + * -4 x * -4 ln x
-+ 4 + * -4 x * -4 ln x
 
 + * -10 sin x sin + x * 9 pi
 + sin + * 9 pi x * -10 sin x
@@ -28763,7 +28705,6 @@ d x * 5 pow + x * 2 pow x 2 4
 * x - * pow + x 1 2 3 1
 - * 3 * pow + 1 x 2 x x
 
-* pow csc + -1 * 7 pi -1 tanh x
 * pow csc + -1 * 7 pi -1 tanh x
 
 d x * -10 sin + x + * 5 pi cosh * 6 pi
@@ -29846,7 +29787,6 @@ d x * pow x 6 pow + x 2 3
 
 d x + 520 * -10 pow csc x -1
 * 1 d x * pow csc x -1 -10
-d x + 520 * -10 pow csc x -1
 + * -10 d x pow csc x -1 0
 d x * -10 pow / csc x 1 -1
 pow * -10 d x pow csc x -1 1
@@ -31895,9 +31835,7 @@ pow * d x pow sec ln x -1 10 1
 + * d x pow sec ln x -1 10 0
 * 1 * d x pow sec ln x -1 10
 * 10 d x pow sec ln x -1
-d x + -10 * 10 pow sec ln x -1
 
-pow + 25 * 5 pow x -1 -1
 pow + 25 * 5 pow x -1 -1
 pow pow + 25 * 5 pow x -1 -1 1
 * pow + 25 * 5 pow x -1 -1 1
@@ -32308,7 +32246,6 @@ pow * * pi pow - 1 x -1 6 1
 
 d x * + x ln x ln pow x 20
 d x * 20 * ln x + ln x x
-d x * + x ln x ln pow x 20
 
 d x + * -20 x * x cos ln x
 + -20 - d x * x cos ln x 0
@@ -32351,7 +32288,6 @@ d x * cos + 15620 * 8 pi ln x
 * 1 + * pow x 5 3 pow x 14
 pow * + pow x 9 3 pow x 5 1
 + * pow x 5 3 pow x 14
-* pow x 5 + 3 pow x 9
 pow + pow x 14 * pow x 5 3 1
 
 * 162 * x pow + 1 x 4
@@ -32831,7 +32767,6 @@ d x exp + x + 21 x
 pow d x exp + + x 21 x 1
 + * exp + 21 * 2 x 2 0
 pow * 2 exp + 21 + x x 1
-d x exp + 21 * 2 x
 * 2 exp + * x 2 21
 * 1 d x exp + * x 2 21
 * 1 * exp + x + x 21 2
@@ -32874,7 +32809,6 @@ pow + * x 2 * pow x 12 91 1
 + * x 2 * 7 * 13 pow x 12
 + d x pow x 2 * 91 pow x 12
 + * d x pow x 13 7 * x 2
-d x + pow x 2 * pow x 13 7
 + * x 2 * 91 pow x 12
 * 1 + * pow x 12 91 * x 2
 
@@ -32982,7 +32916,6 @@ d x + * -12.5 x * -5 pow x 2
 + 1 pow / cot + -30 x 1 -1
 * + pow cot + x -30 -1 1 1
 + pow cot - -30 * x -1 -1 1
-+ 1 pow cot + -30 x -1
 + pow / 1 tan + x -30 -1 1
 + 1 pow cot * -1 - 30 x -1
 pow + 1 pow cot + x -30 -1 1
@@ -33176,9 +33109,7 @@ d x * -20 cos + x * 2 pi
 d x * x * pow + -3 x -1 + -8 x
 
 * 152587890620 * pow cos x -10 pow sin x 10
-* 152587890620 * pow cos x -10 pow sin x 10
 
-+ x cosh pow csc + -20 * 8 pi -1
 + x cosh pow csc + -20 * 8 pi -1
 
 + x + * x + 20 x cos + x * 8 pi
@@ -33355,7 +33286,6 @@ pow + + x x 3 1
 + * 2 x 3
 
 + pow cot x 10 tanh x
-+ pow cot x 10 tanh x
 * 1 + / tanh x 1 pow cot x 10
 - pow cot x 10 tanh * 0.5 * x -2
 - pow cot x 10 tanh * -0.5 * x 2
@@ -33506,7 +33436,6 @@ d x * 3 pow + x * -5 pow x -1 2
 * 30 / exp x / sec x tan x
 * sin x * 30 exp / * 2 x 2
 * exp x * * tan x 30 cos x
-* 30 * exp x sin x
 * 30 / / exp x sec x cot x
 
 * -1 * + x ln + -1 x 4
@@ -34711,7 +34640,6 @@ d x * -770 ln pow sec x -1
 + * sqrt x 3 9
 * + * 3 sqrt x 9 1
 pow + * 3 sqrt x 9 1
-* 3 + 3 sqrt x
 pow * 3 + 3 sqrt x 1
 * * 3 + sqrt x 3 1
 
@@ -34731,7 +34659,6 @@ pow * exp * 3125 x 3 1
 
 d x + pow x -10 + pow cot x -1 * 10 x
 
-+ -21 * -3 x
 + -21 * -3 x
 * 1 + * x -3 -21
 pow + -21 * x -3 1
@@ -34801,7 +34728,6 @@ pow + -21 * x -3 1
 + -6570 cos * * * x 2 0.25 2
 + -6570 / / cos x tan x cot x
 + -6570 / 1 / sec x 1
-+ -6570 cos x
 + -6570 / cos x 1
 + -6570 cos / / 4 / 2 x 2
 + -6570 / 1 / / sec x 1 1
@@ -36450,7 +36376,6 @@ d x + 20 * -30 pow sec x -1
 + * d x pow sec x -1 -30 0
 
 + * 8 pow x 16 * 7 pow x 3
-+ * 8 pow x 16 * 7 pow x 3
 
 d x * -89 sin + x * 6 pi
 
@@ -37111,7 +37036,6 @@ pow + + + x 2 -7 x 1
 * 3 * + 3 * -2 x ln x
 
 + * 16 x * 16 pow x 3
-+ * 16 x * 16 pow x 3
 * * + pow x 3 x 16 1
 * 16 + pow x 3 x
 pow + * 16 pow x 3 * x 16 1
@@ -37334,7 +37258,6 @@ pow + pow / 1 sin x -1 4090 1
 + 4090 pow / 1 / sin x 1 -1
 pow + 4090 pow / csc x 1 -1 1
 + pow / sec * -1 x tan x -1 4090
-+ 4090 pow csc x -1
 * 1 + pow / csc x 1 -1 4090
 + pow / 1 * tan x cos x -1 4090
 * 1 + 4090 pow / cot x cos x -1
@@ -38159,7 +38082,6 @@ d x * pow cos x -10 cos + 10 * 5 pi
 * 30 * x pow sin x -10
 * pow sin x -10 * 15 * 2 x
 * * 30 pow * tan x cos x -10 x
-* 30 * x pow sin x -10
 * * / x 2 60 pow sin x -10
 pow * x * pow sin x -10 30 1
 * * pow / tan x sec x -10 30 x
@@ -38289,7 +38211,6 @@ pow * x - - -4 x pow x 2 1
 * 10 pow + * -10 x sin + 10 * 9 pi -10
 
 d x tan * x + -10 pow x -10
-d x tan * x + -10 pow x -10
 d x tan + pow x -9 * x -10
 
 + 1 * x * pow 7 -1 csc + -240 * 2 pi
@@ -38299,7 +38220,6 @@ d x tan + pow x -9 * x -10
 + x * x exp + 11 x
 pow * + 1 exp + 11 x x 1
 * * x + 1 exp + x 11 1
-+ x * x exp + 11 x
 * x + exp + 11 x 1
 pow + * x exp + x 11 x 1
 * + * x exp + x 11 x 1
@@ -38347,7 +38267,6 @@ d x + -100 * -10 * x sin x
 + pow + 60 x -10 sin x
 + pow + 60 x -10 / tan x sec x
 + pow + 60 x -10 / cos x cot x
-+ pow + 60 x -10 sin x
 + pow + x 60 -10 * tan x cos x
 + sin x pow - 60 * x -1 -10
 
@@ -39712,7 +39631,6 @@ pow * x + 192 * * -31 x 6 1
 + 10 / 30 sec - * -6 pi x
 
 d x * pow x -10 pow csc x -1
-d x * pow x -10 pow csc x -1
 
 d x + -10 * -10 * x + x pow sec x -1
 
@@ -39731,7 +39649,6 @@ pow + d x pow csc x -1 9765620 1
 + 9765620 d x pow / csc x 1 -1
 - 9765620 * d x csc x pow csc x -2
 + d x pow / sec x tan x -1 9765620
-d x + pow csc x -1 * 9765620 x
 * 1 + d x pow csc x -1 9765620
 + 9765620 d x pow / 1 sin x -1
 
@@ -41923,7 +41840,6 @@ pow pow sec + 4 x -1 1
 pow / / sec - -4 x 1 1 -1
 pow pow sec + -4 * x -1 -1 1
 pow sec * 2 * - -4 x -0.5 -1
-pow sec + x 4 -1
 pow / 1 / cos - -4 x 1 -1
 pow / tan - -4 x sin - -4 x -1
 pow sec / 2 / 2 + 4 x -1
@@ -42357,7 +42273,6 @@ d x + * 1250 x * -1250 * cos x sin x
 + 10 / -10 sec + * -1 x 10
 
 + x * pow x 4 + 14 * 2 x
-+ x * pow x 4 + 14 * 2 x
 
 * x + -10 + pow x 10 pow sec x -1
 
@@ -42580,7 +42495,6 @@ pow + + + 3 * x 18 1 2 1
 * + 3 * 3 + x + x x 2
 * 1 * 3 + * x 6 2
 + + * x 6 + 6 * x 12 0
-d x + -2 pow + 1 * 3 x 2
 * * 6 + 1 * x 3 1
 * 1 + 2 + 2 + * 18 x 2
 + 3 + * x 18 3
@@ -43060,7 +42974,6 @@ pow * pow x 3 + 113.4 * 60 x 1
 + 21 pow x -1
 * + 21 pow x -1 1
 pow + 21 pow x -1 1
-+ 21 pow x -1
 
 d x * 10 * x * pow 4 -10 sin x
 
@@ -43070,7 +42983,6 @@ d x * 10 * x * pow 4 -10 sin x
 + * pow x 7 2 * x pow x 2
 + pow x 3 * 2 pow x 7
 pow + pow x 3 * pow x 7 2 1
-* pow x 2 + x * 2 pow x 5
 * + pow x 3 * 2 pow x 7 1
 
 + 630 * -630 pow sec + x * 9 pi -1
@@ -43898,7 +43810,6 @@ pow - 0 + * -5 pow x -2 4 1
 pow + -4 - * 5 pow x -2 0 1
 
 d x + -10 pow cot + -10 x -1
-d x + -10 pow cot + -10 x -1
 d x pow / cot + x -10 1 -1
 d x pow cot + -10 x -1
 + 0 d x pow cot + -10 x -1
@@ -43974,7 +43885,6 @@ pow * 3370 pow / cot x 1 10 1
 
 + -10 pow csc pow coth 10 -1
 * + -10 pow csc pow coth 10 -1 1
-+ -10 pow csc pow coth 10 -1
 + pow / csc pow coth 10 1 -1 -10
 pow + pow csc pow coth 10 -1 -10 1
 + pow / 1 sin pow coth 10 -1 -10
@@ -44002,7 +43912,6 @@ pow + 5120 * 1024 + x x 1
 + 5120 d x * 1024 pow x 2
 pow + 5120 * x 2048 1
 + 0 + 5120 * x 2048
-d x + * 1024 pow x 2 * 5120 x
 + + * x 1024 * 1024 x 5120
 pow + 5120 * 1024 d x pow x 2 1
 
@@ -44571,7 +44480,6 @@ d x * pow x -3 pow + x pow x 8 2
 * pow csc / 2 / 2 x -10 10
 pow * 10 pow / csc x 1 -10 1
 * pow / / sec x 1 tan x -10 10
-* 10 pow csc x -10
 * 10 pow / / 1 sin x 1 -10
 * * pow / 1 sin x -10 10 1
 * 10 pow / cot x cos * x -1 -10
@@ -46845,7 +46753,6 @@ pow + 10 - * x 2 / -20 x 1
 * + 4 sin x * 40 * 0.5 x
 + * * sin x 20 x * x 80
 * 20 + * sin x x * x 4
-* 20 * x + 4 sin x
 * x + * * cos x tan x 20 80
 
 d x sin + -10 + * 1 pi + * 10 x 6
@@ -46862,7 +46769,6 @@ pow * + x pow sec x -1 9 1
 * 1 * + pow sec x -1 x 9
 + * x 9 * 9 pow sec x -1
 * + x pow / csc x cot x -1 9
-* + x pow sec x -1 9
 
 d x * -6 ln + -5 x
 + / 1 + 0.8333333333333333 * / x 1 -0.16666666666666666 0
@@ -47008,7 +46914,6 @@ d x * + -60 * -5 + x x x
 pow + 36 * 4 + sqrt x x 1
 + 36 * 4 + sqrt x x
 
-+ * -10 * x + 10 sin x exp x
 + * -10 * x + 10 sin x exp x
 + exp x * x + * -10 sin x -100
 
@@ -47755,7 +47660,6 @@ d x pow cot * x + -10 pow x -10 -1
 d x cos + 3120 + x * 9 pi
 
 * pow x 2 + 80 pow sec x -1
-* pow x 2 + 80 pow sec x -1
 
 + x + * -10 * pow x 10 sin x cos x
 
@@ -48127,7 +48031,6 @@ pow * + * * x 3 225 648 x 1
 
 d x ln pow 20 * x pow sec x -1
 * d x * x pow sec x -1 ln 20
-d x ln pow 20 * x pow sec x -1
 
 pow sec + * 3120 ln x * 6 pi -1
 pow sec - * pi 6 * -3120 ln x -1
@@ -48850,7 +48753,6 @@ d x + * 16 x * 128 pow x 3
 * 1 + 16 * 128 * 3 pow x 2
 * 1 + 16 * pow x 2 384
 * + 16 d x * 128 pow x 3 1
-d x + * 16 x * 128 pow x 3
 + + 16 * pow x 2 384 0
 + * pow x 2 384 16
 pow + 16 * 3 * 128 pow x 2 1
@@ -49835,7 +49737,6 @@ pow + -10 * d x cos ln x 20 1
 - * - d x cos ln x 0 20 10
 d x + * -10 x / 20 sec ln x
 - d x / 1 / sec ln x 20 10
-d x + * -10 x * 20 cos ln x
 + -10 * * -20 sin ln x / 1 x
 - * 20 d x / cos ln x 1 10
 + - d x * 20 cos ln x 10 0
@@ -50063,7 +49964,6 @@ pow cot * * 0.5 + -250 x 2 -1
 pow / cos - 250 x sin + -250 x -1
 pow / cot + -250 x 1 -1
 pow * csc + -250 x cos + -250 x -1
-pow cot + -250 x -1
 pow cot + * * -1 x -1 -250 -1
 pow * csc + x -250 cos - 250 x -1
 pow / 1 * -1 tan - 250 x -1
@@ -50522,7 +50422,6 @@ pow / 1 tan / 1000 / 2 x -1
 pow cot * * 2000 / x 2 0.5 -1
 pow cot * 2 * * x 1000 0.25 -1
 * pow cot * 0.5 * 1000 x -1 1
-pow cot * 500 x -1
 pow / 1 tan * * 2 x 250 -1
 * pow cot * 1000 / x 2 -1 1
 pow / cos * x 500 sin * 500 x -1
@@ -50657,7 +50556,6 @@ pow + pow cot x -1 pow 4 -1 1
 + pow * cos x csc x -1 pow 4 -1
 + pow 4 -1 pow / cot x 1 -1
 + pow 4 -1 pow / 1 tan x -1
-+ pow 4 -1 pow cot x -1
 + pow / cos x sin x -1 pow 4 -1
 + pow 4 -1 pow / csc x sec x -1
 
@@ -51701,7 +51599,6 @@ pow + * x 160 * 125 pow x 2 1
 * -10 * pow x -10 pow sin + 120 * 6 pi -10
 
 * pow csc x -40 pow sec x 40
-* pow csc x -40 pow sec x 40
 * pow csc x -40 pow / sec x 1 40
 * pow csc x -40 pow sec * x -1 40
 * * pow sec x 40 pow csc x -40 1
@@ -52135,11 +52032,9 @@ d x / -10 sec - * -6 pi x
 
 d x + x pow cot + 10 x -1
 + d x pow cot + 10 x -1 1
-d x + x pow cot + 10 x -1
 
 + -10 + pow sin + x * 1 pi 10 * -10 x
 
-* -10 * pow x 10 sin + -10 x
 * -10 * pow x 10 sin + -10 x
 
 d x * 10 * x + -1 pow cot x -10
@@ -52192,7 +52087,6 @@ d x + x ln * -1 * x + 4 x
 * cos + 10 * x -1 80
 * cos * / + -10 x 2 -2 80
 * 80 cos * 2 + 5 * -0.5 x
-* 80 cos + -10 x
 * 80 cos - 10 x
 * 80 / 1 / sec + -10 x 1
 * / sin - 10 x tan - 10 x 80
@@ -52250,7 +52144,6 @@ pow / 1 sin + x pow 6 -1 -1
 pow / csc + pow 6 -1 x 1 -1
 pow pow csc + pow 6 -1 x -1 1
 * 1 pow csc + pow 6 -1 x -1
-pow csc + x pow 6 -1 -1
 
 + 5 * -1 * x + -4 * 5 x
 - * -5 * x x - * x -4 5
@@ -54097,10 +53990,8 @@ pow + + * sqrt x 9 x 1 3
 d x * 2.7 * x pow csc + -1 * 1 pi -1
 
 * -10 + x * -6 pow cot x 10
-* -10 + x * -6 pow cot x 10
 + * pow cot x 10 60 * -10 x
 
-+ * -1 x + 8 ln x
 + * -1 x + 8 ln x
 + * -1 x + ln x + ln 1 8
 
@@ -54154,7 +54045,6 @@ d x * + + 5 x exp x x
 
 d x + pow x 3 * 25 pow x 4
 + d x pow x 3 * 100 pow x 3
-d x + pow x 3 * 25 pow x 4
 + * pow x 3 100 * 3 pow x 2
 
 + pow x 10 + ln x sin x
@@ -54857,7 +54747,6 @@ pow / pow / + 2 x 1 -1 0.25 1
 pow * pow + 2 x -1 4 1
 / / 1 + x 2 0.25
 / 1 / 1 / 1 + * 0.25 x 0.5
-d x + 8 ln pow + 2 x 4
 * * -1 * -1 / 1 + x 2 4
 pow - / 4 + x 2 0 1
 pow * * / -1 + x 2 -1 4 1
@@ -55594,7 +55483,6 @@ d x * + pow x 10 x ln 5
 + ln 5 / * ln 5 pow x 9 0.1
 + ln 5 * ln 5 * 10 pow x 9
 + ln 5 d x * ln 5 pow x 10
-d x ln pow 5 + x pow x 10
 + / pow x 9 / 0.1 ln 5 ln 5
 * ln 5 + * 10 pow x 9 1
 * ln 5 + 1 d x pow x 10
@@ -57561,7 +57449,6 @@ d x * -10 pow csc + -270 x -1
 + pow / 1 sin + -59050 x -1 -10
 pow + -10 pow csc + -59050 x -1 1
 + -10 pow / csc + -59050 x 1 -1
-+ -10 pow csc + -59050 x -1
 + pow csc * -1 - 59050 x -1 -10
 * 1 + pow csc + x -59050 -1 -10
 
@@ -57712,7 +57599,6 @@ d x pow cot + 220 x -1
 + d x pow cot + 220 x -1 0
 
 + sqrt x * x + 8 * 2 x
-+ sqrt x * x + 8 * 2 x
 
 d x + pow sec x -1 * 1020 pow x 20
 
@@ -57746,7 +57632,6 @@ d x * * x - -3 x + x x
 + pow x 3 pow x 6
 * 1 + pow x 3 pow x 6
 pow + pow x 6 pow x 3 1
-+ pow x 3 pow x 6
 
 * -1 * pow x -1 pow + -2 pow x 2 -1
 
@@ -58145,7 +58030,6 @@ pow * 5 pow + * x 2 -5 -1 1
 * 3070 * x * / 1 sec x tan x
 * 3070 / x / sec * -1 x tan x
 * 3070 / * x / 1 cot x sec x
-* 3070 * x sin x
 * 3070 / x / sec x tan x
 * 3070 / * cos x x / cot x 1
 
@@ -58153,7 +58037,6 @@ d x + x * x ln + 16 * 3 x
 
 d x * x + 8 * pi x
 pow d x * x + 8 * pi x 1
-d x * x + 8 * pi x
 + 8 d x * pi pow x 2
 d x + * 8 x * pi pow x 2
 pow + 8 d x * pi pow x 2 1
@@ -58229,7 +58112,6 @@ d x + * -1 x * x + 25 ln x
 * pow x -10 cos cos + 240 * 8 pi
 * pow x -10 cos cos - -240 * pi 8
 / pow x -10 sec cos + 240 * 8 pi
-* pow x -10 cos cos + 240 * 8 pi
 / pow x -10 sec cos - -240 * pi 8
 * cos cos - 240 * pi -8 pow x -10
 * cos cos + -240 * pi -8 pow x -10
@@ -59654,7 +59536,6 @@ d x tan + 40 * 40 x
 + -9 + * -10 sin + x * 1 pi cosh x
 + + cosh x -9 * sin + x pi -10
 
-* x * pow + 10 sin x -10 sin x
 * x * pow + 10 sin x -10 sin x
 
 d x * -10 sin + -40 + * 1 pi * 10 x
