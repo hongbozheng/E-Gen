@@ -44,6 +44,8 @@ def cal_stats(dataset_dir: str) -> dict:
             stats[cls] = {}
         stats[cls][category] = info
 
+        file.close()
+
     return stats
 
 
