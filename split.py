@@ -95,18 +95,16 @@ def main() -> None:
         exit(1)
 
     parser = argparse.ArgumentParser(prog="split", description="Create train, val and test splits")
-    parser.add_argument("--seed", "-s", type=int, default=42, required=False, help="random seed")
     parser.add_argument("--dataset_dir", "-d", required=True, help="dataset directory")
     parser.add_argument("--test_pct", "-t", type=float, required=True, help="test set percentage")
     parser.add_argument("--val_pct", "-v", type=float, required=True, help="validation set percentage")
 
     args = parser.parse_args()
-    seed = args.seed
     dataset_dir = args.dataset_dir
     test_pct = args.test_pct
     val_pct = args.val_pct
 
-    split(seed=seed, data_dir=dataset_dir, test_pct=test_pct, val_pct=val_pct,
+    split(seed=config.SEED, data_dir=dataset_dir, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
           expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
           expr_pairs_val_filepath=config.EXPR_PAIRS_VAL_FILEPATH)
