@@ -171,3 +171,16 @@ The script will create the following three `.txt` files
 ./stats.py -d <dataset_dir>
 ```
 * `<dataset_dir>` - dataset directory
+
+#### Create Train, Validation, and Test Sets
+##### Check command line input help
+```
+./split.py -h
+```
+##### Split dataset into train, validation, and test sets
+```
+./split.py -d <dataset_dir> -t <test_pct> -v <val_pct>
+```
+* `<dataset_dir>` - dataset directory
+* `<test_pct>` - test set percentage
+* `<val_pct>` - validation set percentage
