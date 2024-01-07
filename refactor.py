@@ -81,9 +81,9 @@ def refactor(data_dir: str, data_refactored_dir: str) -> None:
         equiv_exprs = []
 
         for line in file:
-            if line.strip() and line not in equiv_exprs:
+            if line.strip():
                 equiv_exprs.append(line)
-            elif not line.strip():
+            else:
                 equiv_exprs.append(line)
 
                 equiv_exprs = ref_expr(equiv_exprs=equiv_exprs)
@@ -92,34 +92,8 @@ def refactor(data_dir: str, data_refactored_dir: str) -> None:
 
                 equiv_exprs = []
 
-    return
-
-
-def create_expr_pairs(data_dir: str, expr_pairs_filepath: str) -> None:
-    filepath = os.path.join(data_dir, "**", "equiv_exprs.txt")
-    filepaths = glob.glob(pathname=filepath, recursive=True)
-
-    progbar = tqdm.tqdm(iterable=filepaths)
-
-    for filepath in progbar:
-        parts = filepath.split(os.path.sep)
-        cls = parts[-3]
-        category = parts[-2]
-        progbar.set_description(desc=f"[INFO]: Processing class '{cls}', category '{category}'", refresh=True)
-
-        equiv_exprs_file = open(file=filepath, mode='r')
-        expr_pairs_file = open(file=expr_pairs_filepath, mode='a')
-
-        equiv_exprs = []
-
-        for line in equiv_exprs_file:
-            if line.strip() and line not in equiv_exprs:
-                equiv_exprs.append(line.strip())
-            elif not line.strip():
-                for pair in itertools.permutations(iterable=equiv_exprs[:-1], r=2):
-                    expr_pairs_file.write(f"{pair[0]}\t{pair[1]}\n")
-
-                equiv_exprs = []
+        file.close()
+        ref_file.close()
 
     return
 
@@ -134,21 +108,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="create refactored dataset",
                                      description="Create refactored dataset")
     parser.add_argument("--dataset_dir", "-d", required=True, help="dataset directory")
-    parser.add_argument("--create_expr_pairs", "-c", action="store_true", default=False, required=False,
-                        help="Whether to generate expression pairs")
 
     args = parser.parse_args()
     dataset_dir = args.dataset_dir
-    pairs = args.create_expr_pairs
 
     logger.log_info("Refactoring expressions...")
     refactor(data_dir=dataset_dir, data_refactored_dir=config.DATA_REFACTORED_DIR)
     logger.log_info("Finish refactoring expressions.")
-
-    if pairs:
-        logger.log_info("Creating expression pairs...")
-        create_expr_pairs(data_dir=config.DATA_REFACTORED_DIR, expr_pairs_filepath=config.EXPR_PAIRS_FILEPATH)
-        logger.log_info("Finish creating expression pairs.")
 
     return
 
