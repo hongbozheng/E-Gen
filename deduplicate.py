@@ -21,12 +21,12 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
     for filepath in progbar:
         progbar.set_description(desc=f"[INFO]: Processing file '{filepath}'", refresh=True)
 
-        input_file = open(file=filepath, mode='r')
+        file = open(file=filepath, mode='r')
         equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
 
         equiv_exprs = []
 
-        for line in input_file:
+        for line in file:
             if line.strip() and line not in equiv_exprs:
                 equiv_exprs.append(line)
             elif not line.strip():
@@ -41,7 +41,7 @@ def deduplicate(equiv_exprs_dir: str, exprs_filepath: str, equiv_exprs_filepath:
 
                 equiv_exprs = []
 
-        input_file.close()
+        file.close()
         equiv_exprs_file.close()
 
         if equiv_exprs:
