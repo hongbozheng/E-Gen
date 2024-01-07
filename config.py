@@ -19,6 +19,10 @@ DATA_REFACTORED_DIR = DATA_DIR + "/refactored"
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
 EQUIV_EXPRS_FILEPATH = DATA_DIR + "/equiv_exprs.txt"
 DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
-EXPR_PAIRS_FILEPATH = DATA_DIR + "/expr_pairs.txt"
 
+EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"
+EXPR_PAIRS_VAL_FILEPATH = DATA_DIR + "/expr_pairs_val.txt"
+EXPR_PAIRS_TEST_FILEPATH = DATA_DIR + "/expr_pairs_test.txt"
+
+SEED = 42
 LOG_LEVEL = logger.LogLevel.INFO
