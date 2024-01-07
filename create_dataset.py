@@ -55,9 +55,12 @@ def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> No
         os.makedirs(name=path, exist_ok=True)
 
     filepath = os.path.join(path, "equiv_exprs.txt")
-    with open(file=filepath, mode='a') as file:
-        for expr in equiv_exprs:
-            file.write(expr)
+    file = open(file=filepath, mode='a')
+
+    for expr in equiv_exprs:
+        file.write(expr)
+
+    file.close()
 
     return
 
@@ -70,14 +73,14 @@ def create_dataset(
         n_exprs: int,
         data_dir: str,
 ) -> None:
-    equiv_exprs_file = open(file=equiv_exprs_filepath, mode='r')
+    file = open(file=equiv_exprs_filepath, mode='r')
 
     equiv_exprs = []
 
-    for line in equiv_exprs_file:
-        if line.strip() and line not in equiv_exprs:
+    for line in file:
+        if line.strip():
             equiv_exprs.append(line)
-        elif not line.strip():
+        else:
             equiv_exprs.append(line)
 
             if processed:
@@ -94,7 +97,7 @@ def create_dataset(
 
             equiv_exprs = []
 
-    equiv_exprs_file.close()
+    file.close()
 
     return
 
