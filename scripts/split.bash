@@ -7,7 +7,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 input_file="$1"
-num_exprs_per_file="$2"
+n_exprs_per_file="$2"
 
 # Loop to split the file
 counter=0
@@ -20,8 +20,8 @@ while IFS= read -r line; do
     echo "$line" >> "${input_file%.*}_$file_counter.txt"
     ((counter++))
 
-    # Check if the counter reaches the desired num_exprs_per_file
-    if [ "$counter" -eq "$num_exprs_per_file" ]; then
+    # Check if the counter reaches the desired n_exprs_per_file
+    if [ "$counter" -eq "$n_exprs_per_file" ]; then
         # Reset the counter and increment the file counter
         counter=0
         ((file_counter++))

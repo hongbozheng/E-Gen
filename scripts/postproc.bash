@@ -18,7 +18,7 @@ if [ -e "$output_file" ]; then
 fi
 
 # Loop through each file and delete the first $line_num lines
-for file in *.test; do
+for file in *_gen.txt; do
     if [ -f "$file" ]; then
 	echo "[INFO]: Processing file: $file"
         tail -n +$n_lines "$file" >> "$output_file"
