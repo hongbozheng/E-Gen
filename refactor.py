@@ -31,6 +31,7 @@ def ref_expr(equiv_exprs: list[str]) -> list[str]:
     equiv_exprs_ref = []
 
     for expr in equiv_exprs[:-1]:
+        flag = False
         expr = expr.strip()
         expr = expr.replace("+", "add").replace("*", "mul").replace("/", "div")
 
@@ -44,13 +45,17 @@ def ref_expr(equiv_exprs: list[str]) -> list[str]:
                 fraction = fractions.Fraction(token)
                 numerator = ref_int(s=str(fraction.numerator))
                 denominator = ref_int(s=str(fraction.denominator))
+                if len(numerator) > 6 or len(denominator) > 6:
+                    flag = True
+                    break
                 tokens[i] = f"div {numerator} {denominator}"
             elif is_int(s=token):
                 token = ref_int(s=token)
                 tokens[i] = token
 
-        expr = ' '.join(tokens)
-        equiv_exprs_ref.append(expr+'\n')
+        if not flag:
+            expr = ' '.join(tokens)
+            equiv_exprs_ref.append(expr+'\n')
 
     equiv_exprs_ref.append(equiv_exprs[-1])
 
@@ -87,8 +92,10 @@ def refactor(data_dir: str, data_refactored_dir: str) -> None:
                 equiv_exprs.append(line)
 
                 equiv_exprs = ref_expr(equiv_exprs=equiv_exprs)
-                for expr in equiv_exprs:
-                    ref_file.write(expr)
+
+                if len(equiv_exprs) != 2:
+                    for expr in equiv_exprs:
+                        ref_file.write(expr)
 
                 equiv_exprs = []
 
