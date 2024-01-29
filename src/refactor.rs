@@ -24,7 +24,9 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
         token == "sinh" || token == "cosh" || token == "tanh" ||
         token == "csch" || token == "sech" || token == "coth" ||
         token == "asin" || token == "acos" || token == "atan" ||
-        token == "asinh" || token == "acosh" || token == "atanh" {
+        token == "acsc" || token == "asec" || token == "acot" ||
+        token == "asinh" || token == "acosh" || token == "atanh" ||
+        token == "acsch" || token == "asech" || token == "acoth" {
 
         let operator = token;
 
@@ -182,7 +184,7 @@ pub fn refactor() {
             .replace("div", "/")
             .replace("INT+ ", "")
             .replace("INT- ", "-")
-            .replace("pi", "3.14")
+            // .replace("pi", "3.14")
             .replace("abs ", "");
 
         new_expr = add_paren(&new_expr);
