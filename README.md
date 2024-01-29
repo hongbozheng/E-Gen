@@ -117,6 +117,18 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Dataset (Python)
+#### Replace character 'c' with random integer from 0-9
+##### Check command line input help
+```
+./const.py -h
+```
+##### Replace 'c' & any integer have more than 2 digits with random integer from 0-9
+```
+./const.py -i <input_filepath> -o <output_filepath>
+```
+* `<input_filepath>` - input filepath
+* `<output_filepath>` - output filepath
+
 #### Deduplication
 ##### Check command line input help
 ```
