@@ -22,6 +22,7 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
         token == "sin" || token == "cos" || token == "tan" ||
         token == "csc" || token == "sec" || token == "cot" ||
         token == "sinh" || token == "cosh" || token == "tanh" ||
+        token == "csch" || token == "sech" || token == "coth" ||
         token == "asin" || token == "acos" || token == "atan" ||
         token == "asinh" || token == "acosh" || token == "atanh" {
 
