@@ -12,11 +12,17 @@ import tqdm
 
 
 def w_set(equiv_exprs_list: list[list[str]], expr_pairs_filepath: str) -> None:
-    expr_pairs_file = open(file=expr_pairs_filepath, mode='a')
+    expr_pairs = []
 
     for equiv_exprs in equiv_exprs_list:
         for pair in itertools.permutations(iterable=equiv_exprs, r=2):
-            expr_pairs_file.write(f"{pair[0]}\t{pair[1]}\n")
+            expr_pairs.append(f"{pair[0]}\t{pair[1]}\n")
+
+    random.shuffle(x=expr_pairs)
+
+    expr_pairs_file = open(file=expr_pairs_filepath, mode='w')
+    for pair in expr_pairs:
+        expr_pairs_file.write(f"{pair}")
 
     expr_pairs_file.close()
 
@@ -34,6 +40,10 @@ def split(
 ) -> None:
     filepath = os.path.join(data_dir, "**", "equiv_exprs.txt")
     filepaths = glob.glob(pathname=filepath, recursive=True)
+
+    train_list = []
+    val_list = []
+    test_list = []
 
     progbar = tqdm.tqdm(iterable=filepaths)
 
@@ -64,15 +74,13 @@ def split(
         test_size = int(n_exprs*test_pct)
         val_size = int(n_exprs*val_pct)
 
-        test_set = equiv_exprs_list[:test_size]
-        val_set = equiv_exprs_list[test_size:test_size+val_size]
-        train_set = equiv_exprs_list[test_size+val_size:]
+        test_list.extend(equiv_exprs_list[:test_size])
+        val_list.extend(equiv_exprs_list[test_size:test_size+val_size])
+        train_list.extend(equiv_exprs_list[test_size+val_size:])
 
-        w_set(equiv_exprs_list=train_set, expr_pairs_filepath=expr_pairs_train_filepath)
-        w_set(equiv_exprs_list=val_set, expr_pairs_filepath=expr_pairs_val_filepath)
-        w_set(equiv_exprs_list=test_set, expr_pairs_filepath=expr_pairs_test_filepath)
-
-        equiv_exprs_list = []
+    w_set(equiv_exprs_list=train_list, expr_pairs_filepath=expr_pairs_train_filepath)
+    w_set(equiv_exprs_list=val_list, expr_pairs_filepath=expr_pairs_val_filepath)
+    w_set(equiv_exprs_list=test_list, expr_pairs_filepath=expr_pairs_test_filepath)
 
     return
 
