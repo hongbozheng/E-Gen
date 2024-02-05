@@ -5,7 +5,6 @@ import argparse
 import config
 import fractions
 import glob
-import itertools
 import logger
 import os
 import tqdm
