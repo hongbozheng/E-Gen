@@ -162,7 +162,7 @@ The script will create the following three `.txt` files
 * `<processed>` - flag to indicate whether to process all generated equivalent expressions
 * `<n_exprs>` - number of expressions to keep
 
-#### Refactor Dataset & Create Expression Pairs
+#### Refactor Dataset
 ##### Check command line input help
 ```
 ./refactor.py -h
