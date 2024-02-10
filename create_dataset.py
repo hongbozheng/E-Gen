@@ -152,16 +152,23 @@ def main() -> None:
         logger.log_error_raw("[USAGE]: create_dataset [-h] [--filter] --n_exprs N_EXPRS")
         logger.log_error("The following argument is required: --n_exprs/-n")
         exit(1)
-    if filter_ and os.path.exists(path=config.DATA_FILTERED_DIR):
-        logger.log_error(f"{config.DATA_FILTERED_DIR} directory already exists!")
-        logger.log_error(f"Make sure to delete {config.DATA_FILTERED_DIR} directory first.")
-        logger.log_error("Operation aborted.")
-        exit(1)
-    elif not filter_ and os.path.exists(path=config.DATA_RAW_DIR):
-        logger.log_error(f"{config.DATA_RAW_DIR} directory already exists!")
-        logger.log_error(f"Make sure to delete {config.DATA_RAW_DIR} directory first.")
-        logger.log_error("Operation aborted.")
-        exit(1)
+    if pair:
+        if os.path.exists(path=config.DATA_FILTERED_PAIRS_DIR):
+            logger.log_error(f"{config.DATA_FILTERED_PAIRS_DIR} directory already exists!")
+            logger.log_error(f"Make sure to delete {config.DATA_FILTERED_PAIRS_DIR} directory first.")
+            logger.log_error("Operation aborted.")
+            exit(1)
+    else:
+        if filter_ and os.path.exists(path=config.DATA_FILTERED_DIR):
+            logger.log_error(f"{config.DATA_FILTERED_DIR} directory already exists!")
+            logger.log_error(f"Make sure to delete {config.DATA_FILTERED_DIR} directory first.")
+            logger.log_error("Operation aborted.")
+            exit(1)
+        elif not filter_ and os.path.exists(path=config.DATA_RAW_DIR):
+            logger.log_error(f"{config.DATA_RAW_DIR} directory already exists!")
+            logger.log_error(f"Make sure to delete {config.DATA_RAW_DIR} directory first.")
+            logger.log_error("Operation aborted.")
+            exit(1)
 
     if pair:
         logger.log_info("Creating filtered dataset in the form of expression pairs...")
