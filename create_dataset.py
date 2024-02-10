@@ -4,6 +4,7 @@
 import argparse
 import config
 import editdistance
+import itertools
 import logger
 import os
 
@@ -30,7 +31,7 @@ def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str,
 
 def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
     edit_dists = []
-    for i, expr in enumerate(equiv_exprs[1:-1]):
+    for i, expr in enumerate(equiv_exprs[1:]):
         dist = editdistance.eval(a=equiv_exprs[0], b=expr)
         edit_dists.append((i, dist))
 
@@ -41,14 +42,22 @@ def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
     equiv_exprs_filtered.append(equiv_exprs[0])
     for index, _ in indices_dists:
         equiv_exprs_filtered.append(equiv_exprs[index+1])
-    equiv_exprs_filtered.append('\n')
 
-    assert len(equiv_exprs_filtered) == n_exprs+1
+    assert len(equiv_exprs_filtered) == n_exprs
 
     return equiv_exprs_filtered
 
 
-def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> None:
+def create_pairs(equiv_exprs: list) -> list:
+    expr_pairs = []
+
+    for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
+        expr_pairs.append(expr_pair)
+
+    return expr_pairs
+
+
+def w_data(equiv_exprs: list[str], pair: bool, data_dir: str, cls: str, category: str) -> None:
     path = os.path.join(data_dir, cls, category)
 
     if not os.path.exists(path=path):
@@ -57,8 +66,15 @@ def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> No
     filepath = os.path.join(path, "equiv_exprs.txt")
     file = open(file=filepath, mode='a')
 
-    for expr in equiv_exprs:
-        file.write(expr)
+    if pair:
+        expr_pairs = create_pairs(equiv_exprs=equiv_exprs)
+        for expr_pair in expr_pairs:
+            file.write(f"{expr_pair[0]}\t{expr_pair[1]}\n")
+    else:
+        for expr in equiv_exprs:
+            file.write(expr+'\n')
+
+    file.write('\n')
 
     file.close()
 
@@ -69,8 +85,9 @@ def create_dataset(
         equiv_exprs_filepath: str,
         classes: list[str],
         categories: list[str],
-        processed: bool,
+        filter_: bool,
         n_exprs: int,
+        pair: bool,
         data_dir: str,
 ) -> None:
     file = open(file=equiv_exprs_filepath, mode='r')
@@ -79,21 +96,19 @@ def create_dataset(
 
     for line in file:
         if line.strip():
-            equiv_exprs.append(line)
+            equiv_exprs.append(line.strip())
         else:
-            equiv_exprs.append(line)
-
-            if processed:
-                if len(equiv_exprs) == 2:
+            if filter_:
+                if len(equiv_exprs) == 1:
                     equiv_exprs = []
                     continue
                 elif len(equiv_exprs) > n_exprs+1:
                     equiv_exprs = filter(equiv_exprs=equiv_exprs, n_exprs=n_exprs)
                 cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
-                w_data(equiv_exprs=equiv_exprs, data_dir=data_dir, cls=cls, category=category)
+                w_data(equiv_exprs=equiv_exprs, pair=pair, data_dir=data_dir, cls=cls, category=category)
             else:
                 cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
-                w_data(equiv_exprs=equiv_exprs, data_dir=data_dir, cls=cls, category=category)
+                w_data(equiv_exprs=equiv_exprs, pair=pair, data_dir=data_dir, cls=cls, category=category)
 
             equiv_exprs = []
 
@@ -112,44 +127,58 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="create_dataset",
                                      description="Create raw dataset by splitting all equivalent expressions into "
                                                  "different classes & categories or "
-                                                 "Create processed dataset by removing expressions with `0` equivalent "
+                                                 "Create filtered dataset by removing expressions with `0` equivalent "
                                                  "expressions, filtering the ones with more than `<n_exprs>` "
                                                  "equivalent expressions, and splitting all equivalent expressions "
                                                  "into different classes & categories")
-    parser.add_argument("--processed", "-p", action="store_true", default=False, required=False,
+    parser.add_argument("--pair", "-p", action="store_true", default=False, required=False,
+                        help="Create filtered dataset in expression pairs")
+    parser.add_argument("--filter", "-f", action="store_true", default=False, required=False,
                         help="Whether to filter equivalent expressions")
     parser.add_argument("--n_exprs", "-n", type=int, required=False,
                         help="Number of equivalent expressions to keep")
 
     args = parser.parse_args()
-    processed = args.processed
+    pair = args.pair
+    filter_ = args.filter
     n_exprs = args.n_exprs
 
-    if processed and n_exprs is None:
-        logger.log_error_raw("[USAGE]: create_dataset [-h] [--processed] --n_exprs N_EXPRS")
+    if pair and not (filter_ and n_exprs):
+        logger.log_error(f"[USAGE]: create_dataset [-h] [--pair] [--filter] --n_exprs N_EXPRS")
+        logger.log_error("The following argument is required: --filter/-f")
         logger.log_error("The following argument is required: --n_exprs/-n")
         exit(1)
-    if processed and os.path.exists(path=config.DATA_PROCESSED_DIR):
-        logger.log_error(f"{config.DATA_PROCESSED_DIR} directory already exists!")
-        logger.log_error(f"Make sure to delete {config.DATA_PROCESSED_DIR} directory first.")
+    elif filter_ and n_exprs is None:
+        logger.log_error_raw("[USAGE]: create_dataset [-h] [--filter] --n_exprs N_EXPRS")
+        logger.log_error("The following argument is required: --n_exprs/-n")
+        exit(1)
+    if filter_ and os.path.exists(path=config.DATA_FILTERED_DIR):
+        logger.log_error(f"{config.DATA_FILTERED_DIR} directory already exists!")
+        logger.log_error(f"Make sure to delete {config.DATA_FILTERED_DIR} directory first.")
         logger.log_error("Operation aborted.")
         exit(1)
-    elif not processed and os.path.exists(path=config.DATA_RAW_DIR):
+    elif not filter_ and os.path.exists(path=config.DATA_RAW_DIR):
         logger.log_error(f"{config.DATA_RAW_DIR} directory already exists!")
         logger.log_error(f"Make sure to delete {config.DATA_RAW_DIR} directory first.")
         logger.log_error("Operation aborted.")
         exit(1)
 
-    if processed:
-        logger.log_info("Creating processed dataset...")
+    if pair:
+        logger.log_info("Creating filtered dataset in the form of expression pairs...")
         create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
-                       categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
-                       data_dir=config.DATA_PROCESSED_DIR)
+                       categories=config.CATEGORIES, filter_=filter_, n_exprs=n_exprs, pair=pair,
+                       data_dir=config.DATA_FILTERED_PAIRS_DIR)
+        logger.log_info("Finish creating dataset in the form of expression pairs.")
+    elif filter_:
+        logger.log_info("Creating filtered dataset...")
+        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
+                       categories=config.CATEGORIES, filter_=filter_, n_exprs=n_exprs, pair=pair,
+                       data_dir=config.DATA_FILTERED_DIR)
         logger.log_info("Finish creating dataset.")
     else:
         logger.log_info("Creating raw dataset...")
         create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
-                       categories=config.CATEGORIES, processed=processed, n_exprs=n_exprs,
+                       categories=config.CATEGORIES, filter_=filter_, n_exprs=n_exprs, pair=pair,
                        data_dir=config.DATA_RAW_DIR)
         logger.log_info("Finish raw dataset.")
 

@@ -150,16 +150,38 @@ The script will create the following three `.txt` files
 2. `equiv_exprs.txt` - This file contains all the distinct generated equivalent expressions
 3. `duplicates.txt` - This file contains all the repetitive original expressions
 
-#### Create Raw Dataset/Processed Dataset
-##### Create raw dataset by splitting all equivalent expressions into different classes & categories
+#### Create Dataset
+##### Check command line input help
+```
+./create_dataset.py -h
+```
+##### Create raw dataset
+Splitting all equivalent expressions into different classes & categories
 ```
 ./create_dataset.py
 ```
-##### Create processed dataset by removing expressions with `0` equivalent expressions, filtering the ones with more than `<n_exprs>` equivalent expressions, and splitting all equivalent expressions into different classes & categories
+##### Create filtered dataset
+1. Remove expressions with `0` equivalent expressions
+2. Filter the ones with more than `<n_exprs>` equivalent
+expressions
+3. Classify all equivalent expressions into different classes & categories
 ```
-./create_dataset.py -p <processed> -n <n_exprs>
+./create_dataset.py -f <filter> -n <n_exprs>
 ```
-* `<processed>` - flag to indicate whether to process all generated equivalent expressions
+* `<filter>` - flag to indicate whether to filter all generated equivalent expressions
+* `<n_exprs>` - number of expressions to keep
+
+##### Create filtered dataset (expression pairs)
+1. Remove expressions with `0` equivalent expressions
+2. Filter the ones with more than `<n_exprs>` equivalent
+expressions
+3. Create expressions pairs
+4. Classify all expression pairs into different classes & categories
+```
+./create_dataset.py -p <pair> -f <filter> -n <n_exprs>
+```
+* `<pair>` - flag to indicate whether to create expression pairs
+* `<filter>` - flag to indicate whether to filter all generated equivalent expressions
 * `<n_exprs>` - number of expressions to keep
 
 #### Refactor Dataset
