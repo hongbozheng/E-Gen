@@ -167,7 +167,9 @@ The script will create the following three `.txt` files
 ```
 ./refactor.py -h
 ```
-##### Refactor dataset and create expression pairs
+##### Refactor dataset (Remove multi-digit expressions)
+This step will remove expressions with integers that have more than 2-digit and fractions' numerator or denominator that
+have more than 1-digit
 ```
 ./refactor.py -d <dataset_dir>
 ```

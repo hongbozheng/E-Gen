@@ -44,19 +44,25 @@ def ref_expr(equiv_exprs: list[str]) -> list[str]:
                 fraction = fractions.Fraction(token)
                 numerator = ref_int(s=str(fraction.numerator))
                 denominator = ref_int(s=str(fraction.denominator))
+                # rm fraction with numerator or denominator more than 1-digit
                 if len(numerator) > 6 or len(denominator) > 6:
                     flag = True
                     break
                 tokens[i] = f"div {numerator} {denominator}"
             elif is_int(s=token):
                 token = ref_int(s=token)
+                # rm integer with more than 2-digit
+                if len(token) > 8:
+                    flag = True
+                    break
                 tokens[i] = token
 
         if not flag:
             expr = ' '.join(tokens)
             equiv_exprs_ref.append(expr+'\n')
 
-    equiv_exprs_ref.append(equiv_exprs[-1])
+    if len(equiv_exprs_ref) > 1:
+        equiv_exprs_ref.append(equiv_exprs[-1])
 
     return equiv_exprs_ref
 
