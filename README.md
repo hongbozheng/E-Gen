@@ -134,16 +134,17 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 ./deduplicate.py -h
 ```
-##### Create `equiv_exprs.txt` which stores all generated equivalent expressions after deduplication
+##### Deduplicate (Refactor)
 1. Make sure all generated equivalent expressions `.txt` files have 2 `'\n'` characters at the end of the file
 2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
 3. Then rename them to be `equiv_exprs_<index>.txt`. For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`,
 `equiv_exprs_2.txt`, ...
 4. Run the following command-line application
 ```
-./deduplication -d <equiv_exprs_dir>
+./deduplication -d <equiv_exprs_dir> -r <refactor>
 ```
 * `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
+* `<refactor>` - flag to indicate whether to refactor the expressions
 
 The script will create the following three `.txt` files
 1. `exprs.txt` - This file contains all the distinct generated original expressions
@@ -183,19 +184,6 @@ expressions
 * `<pair>` - flag to indicate whether to create expression pairs
 * `<filter>` - flag to indicate whether to filter all generated equivalent expressions
 * `<n_exprs>` - number of expressions to keep
-
-#### Refactor Dataset
-##### Check command line input help
-```
-./refactor.py -h
-```
-##### Refactor dataset (Remove multi-digit expressions)
-This step will remove expressions with integers that have more than 2-digit and fractions' numerator or denominator that
-have more than 1-digit
-```
-./refactor.py -d <dataset_dir>
-```
-* `<dataset_dir>` - dataset directory
 
 #### Statistics
 ##### Check command line input help

@@ -15,7 +15,6 @@ DATA_DIR = "data"
 DATA_RAW_DIR = DATA_DIR + "/raw"
 DATA_FILTERED_DIR = DATA_DIR + "/filtered"
 DATA_FILTERED_PAIRS_DIR = DATA_DIR + "/filtered_pairs"
-DATA_REFACTORED_DIR = DATA_DIR + "/refactored"
 DATA_INCORRECT_DIR = DATA_DIR + "/incorrect"
 
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
