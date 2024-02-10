@@ -15,6 +15,7 @@ DATA_DIR = "data"
 DATA_RAW_DIR = DATA_DIR + "/raw"
 DATA_PROCESSED_DIR = DATA_DIR + "/processed"
 DATA_REFACTORED_DIR = DATA_DIR + "/refactored"
+DATA_INCORRECT_DIR = DATA_DIR + "/incorrect"
 
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
 EQUIV_EXPRS_FILEPATH = DATA_DIR + "/equiv_exprs.txt"
