@@ -15,8 +15,8 @@ def w_set(equiv_exprs_list: list[list[str]], expr_pairs_filepath: str) -> None:
     expr_pairs = []
 
     for equiv_exprs in equiv_exprs_list:
-        for pair in itertools.permutations(iterable=equiv_exprs, r=2):
-            expr_pairs.append(f"{pair[0]}\t{pair[1]}\n")
+        for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
+            expr_pairs.append(f"{expr_pair[0]}\t{expr_pair[1]}\n")
 
     random.shuffle(x=expr_pairs)
 
