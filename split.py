@@ -4,7 +4,6 @@
 import argparse
 import config
 import glob
-import itertools
 import logger
 import numpy
 import os
@@ -15,6 +14,7 @@ from collections import OrderedDict
 from sympy import *
 from sympy.calculus.util import continuous_domain
 from sympy.utilities.lambdify import lambdify
+from timeout import timeout, TimeoutError
 
 
 OPERATORS = {
@@ -251,7 +251,7 @@ def check_equiv(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: fl
 
 def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
     i = 0
-    while i < 5:
+    while i < n:
         fn = lambdify(args=x, expr=expr, modules=["numpy"])
         rand_num = numpy.random.uniform(low=start, high=end, size=1)
         val = fn(rand_num)
@@ -263,7 +263,7 @@ def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, t
     return True
 
 
-def verify(expr_pairs: list, n: int, tol: float) -> tuple[list, list]:
+def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]:
     corrects = []
     incorrects = []
 
@@ -279,36 +279,34 @@ def verify(expr_pairs: list, n: int, tol: float) -> tuple[list, list]:
 
         expr_0 = prefix_to_sympy(expr=expr_0)
         expr_1 = prefix_to_sympy(expr=expr_1)
-        expr = sp.simplify(expr_0 - expr_1)
+        expr_0 = sp.simplify(expr=expr_0)
+        expr_1 = sp.simplify(expr=expr_1)
 
-        res = False
-
-        if expr == 0:
+        if expr_0-expr_1 == 0:
             res = True
         else:
+            domain = continuous_domain(f=expr_0-expr_1, symbol=x,
+                                       domain=Interval(start=0, end=10, left_open=True, right_open=False))
             try:
-                domain = continuous_domain(f=expr, symbol=x, domain=Interval(start=0, end=10))
-
-                try:
-                    if isinstance(domain, sp.sets.sets.Union):
-                        type = "union"
-                        start = float(domain.args[0].start)
-                        end = float(domain.args[0].end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-                    elif isinstance(domain, sp.sets.sets.Complement):
-                        type = "complement"
-                        res = check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
-                    elif isinstance(domain, sp.sets.sets.Interval):
-                        type = "interval"
-                        start = float(domain.start)
-                        end = float(domain.end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-
-                except Exception as e:
-                    logger.log_error(f"type {type} exception {e}")
+                if isinstance(domain, sp.sets.sets.Union):
+                    type = "union"
+                    start = float(domain.args[0].start)
+                    end = float(domain.args[0].end)
+                    res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                elif isinstance(domain, sp.sets.sets.Complement):
+                    type = "complement"
+                    res = check_equiv_compl(x=x, expr=expr_0-expr_1, start=1, end=10, n=n, tol=tol)
+                elif isinstance(domain, sp.sets.sets.Interval):
+                    type = "interval"
+                    start = float(domain.start)
+                    end = float(domain.end)
+                    res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                else:
                     res = False
+                    logger.log_error(f"{expr_0} & {expr_1} have invalid domain type!")
+
             except Exception as e:
-                logger.log_error(f"continuous_domain exception {e}")
+                logger.log_error(f"type {type} exception {e}")
                 res = False
 
         if res:
@@ -348,6 +346,7 @@ def split(
         data_dir: str,
         n: int,
         tol: float,
+        secs: int,
         incorrect_dir: str,
         seed: int,
         test_pct: float,
@@ -383,7 +382,7 @@ def split(
             if line.strip():
                 expr_pairs.append(line)
             else:
-                expr_pairs, incorrects = verify(expr_pairs=expr_pairs, n=3, tol=1e-6)
+                expr_pairs, incorrects = verify(expr_pairs=expr_pairs, n=n, tol=tol, secs=secs)
                 expr_pairs_list.append(expr_pairs)
 
                 if incorrects:
@@ -458,7 +457,7 @@ def main() -> None:
     test_pct = args.test_pct
     val_pct = args.val_pct
 
-    split(data_dir=config.DATA_FILTERED_PAIRS_DIR, n=3, tol=1e-6, incorrect_dir=config.DATA_INCORRECT_DIR,
+    split(data_dir=config.DATA_FILTERED_PAIRS_DIR, n=3, tol=1e-6, secs=4, incorrect_dir=config.DATA_INCORRECT_DIR,
           seed=config.SEED, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
           expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
