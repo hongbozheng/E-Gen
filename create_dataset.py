@@ -120,7 +120,7 @@ def create_dataset(
 def main() -> None:
     if not os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
         logger.log_error(f"'{config.EQUIV_EXPRS_FILEPATH}' file does not exist!")
-        logger.log_error(f"Make sure to run './deduplicate.py' first to create {config.EQUIV_EXPRS_FILEPATH} file.")
+        logger.log_error(f"Make sure to run './deduplicate.py' first to create '{config.EQUIV_EXPRS_FILEPATH}' file.")
         logger.log_error("Operation aborted.")
         exit(1)
 
@@ -154,19 +154,19 @@ def main() -> None:
         exit(1)
     if pair:
         if os.path.exists(path=config.DATA_FILTERED_PAIRS_DIR):
-            logger.log_error(f"{config.DATA_FILTERED_PAIRS_DIR} directory already exists!")
-            logger.log_error(f"Make sure to delete {config.DATA_FILTERED_PAIRS_DIR} directory first.")
+            logger.log_error(f"'{config.DATA_FILTERED_PAIRS_DIR}' directory already exists!")
+            logger.log_error(f"Make sure to delete '{config.DATA_FILTERED_PAIRS_DIR}' directory first.")
             logger.log_error("Operation aborted.")
             exit(1)
     else:
         if filter_ and os.path.exists(path=config.DATA_FILTERED_DIR):
-            logger.log_error(f"{config.DATA_FILTERED_DIR} directory already exists!")
-            logger.log_error(f"Make sure to delete {config.DATA_FILTERED_DIR} directory first.")
+            logger.log_error(f"'{config.DATA_FILTERED_DIR}' directory already exists!")
+            logger.log_error(f"Make sure to delete '{config.DATA_FILTERED_DIR}' directory first.")
             logger.log_error("Operation aborted.")
             exit(1)
         elif not filter_ and os.path.exists(path=config.DATA_RAW_DIR):
-            logger.log_error(f"{config.DATA_RAW_DIR} directory already exists!")
-            logger.log_error(f"Make sure to delete {config.DATA_RAW_DIR} directory first.")
+            logger.log_error(f"'{config.DATA_RAW_DIR}' directory already exists!")
+            logger.log_error(f"Make sure to delete '{config.DATA_RAW_DIR}' directory first.")
             logger.log_error("Operation aborted.")
             exit(1)
 

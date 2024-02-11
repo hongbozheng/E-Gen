@@ -114,7 +114,7 @@ def deduplicate(
         equiv_exprs_file.close()
 
         if equiv_exprs:
-            logger.log_error(f"{filepath} file is missing a '\\n' character at the end of the file!")
+            logger.log_error(f"'{filepath}' file is missing a '\\n' character at the end of the file!")
             logger.log_error(f"Make sure all equiv_exprs_*.txt files have 2 '\\n' characters at the end of the file!")
             logger.log_error("Operation aborted.")
             exit(1)
@@ -136,8 +136,8 @@ def deduplicate(
 
 def main() -> None:
     if os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
-        logger.log_error(f"{config.EQUIV_EXPRS_FILEPATH} file already exists!")
-        logger.log_error(f"Make sure to delete {config.EQUIV_EXPRS_FILEPATH} file first.")
+        logger.log_error(f"'{config.EQUIV_EXPRS_FILEPATH}' file already exists!")
+        logger.log_error(f"Make sure to delete '{config.EQUIV_EXPRS_FILEPATH}' file first.")
         logger.log_error("Operation aborted.")
         exit(1)
 
