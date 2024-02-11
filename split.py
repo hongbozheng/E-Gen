@@ -263,7 +263,7 @@ def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, t
     return True
 
 
-def verify(expr_pairs: list) -> tuple[list, list]:
+def verify(expr_pairs: list, n: int, tol: float) -> tuple[list, list]:
     corrects = []
     incorrects = []
 
@@ -294,15 +294,15 @@ def verify(expr_pairs: list) -> tuple[list, list]:
                         type = "union"
                         start = float(domain.args[0].start)
                         end = float(domain.args[0].end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=5, tol=1e-6)
+                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Complement):
                         type = "complement"
-                        res = check_equiv_compl(x=x, expr=expr, start=1, end=10, n=5, tol=1e-6)
+                        res = check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Interval):
                         type = "interval"
                         start = float(domain.start)
                         end = float(domain.end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=5, tol=1e-6)
+                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
 
                 except Exception as e:
                     logger.log_error(f"type {type} exception {e}")
@@ -345,11 +345,13 @@ def w_set(expr_pairs: list[str], expr_pairs_filepath: str) -> None:
 
 
 def split(
-        seed: int,
         data_dir: str,
+        n: int,
+        tol: float,
+        incorrect_dir: str,
+        seed: int,
         test_pct: float,
         val_pct: float,
-        incorrect_dir: str,
         expr_pairs_train_filepath: str,
         expr_pairs_val_filepath: str,
         expr_pairs_test_filepath: str,
@@ -381,7 +383,7 @@ def split(
             if line.strip():
                 expr_pairs.append(line)
             else:
-                expr_pairs, incorrects = verify(expr_pairs=expr_pairs)
+                expr_pairs, incorrects = verify(expr_pairs=expr_pairs, n=3, tol=1e-6)
                 expr_pairs_list.append(expr_pairs)
 
                 if incorrects:
@@ -456,8 +458,8 @@ def main() -> None:
     test_pct = args.test_pct
     val_pct = args.val_pct
 
-    split(seed=config.SEED, data_dir=config.DATA_FILTERED_PAIRS_DIR, test_pct=test_pct, val_pct=val_pct,
-          incorrect_dir=config.DATA_INCORRECT_DIR,
+    split(data_dir=config.DATA_FILTERED_PAIRS_DIR, n=3, tol=1e-6, incorrect_dir=config.DATA_INCORRECT_DIR,
+          seed=config.SEED, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
           expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
           expr_pairs_val_filepath=config.EXPR_PAIRS_VAL_FILEPATH)
