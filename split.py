@@ -264,6 +264,11 @@ def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, t
 
 
 def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]:
+    @timeout(seconds=secs)
+    def _cont_domain(expr_0: Expr, expr_1: Expr, symbol: Symbol):
+        return continuous_domain(f=expr_0 - expr_1, symbol=symbol,
+                                 domain=Interval(start=0, end=10, left_open=True, right_open=False))
+
     corrects = []
     incorrects = []
 
@@ -286,8 +291,7 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
             res = True
         else:
             try:
-                domain = continuous_domain(f=expr_0-expr_1, symbol=x,
-                                           domain=Interval(start=0, end=10, left_open=True, right_open=False))
+                domain = _cont_domain(expr_0=expr_0, expr_1=expr_1, symbol=x)
                 try:
                     if isinstance(domain, sp.sets.sets.Union):
                         type = "union"
@@ -304,13 +308,13 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
                         res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
                     else:
                         res = False
-                        logger.log_error(f"{expr_0} & {expr_1} have invalid domain type!")
+                        logger.log_error(f"{pair[0]} & {pair[1]} have invalid domain type {domain}!")
 
                 except Exception as e:
                     logger.log_error(f"type {type} exception {e}")
                     res = False
             except Exception as e:
-                logger.log_error(f"{expr_0}-{expr_1} continous domain exception {e}")
+                logger.log_error(f"{pair[0]}-{pair[1]} continous domain exception {e}")
                 res = False
 
         if res:
@@ -459,7 +463,7 @@ def main() -> None:
     val_pct = args.val_pct
 
     logger.log_info("Creating train, val, and test sets...")
-    split(data_dir=config.DATA_FILTERED_PAIRS_DIR, n=3, tol=1e-6, secs=4, incorrect_dir=config.DATA_INCORRECT_DIR,
+    split(data_dir="data/test/", n=3, tol=1e-6, secs=4, incorrect_dir=config.DATA_INCORRECT_DIR,
           seed=config.SEED, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
           expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
