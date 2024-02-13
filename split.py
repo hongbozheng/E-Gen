@@ -285,28 +285,32 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
         if expr_0-expr_1 == 0:
             res = True
         else:
-            domain = continuous_domain(f=expr_0-expr_1, symbol=x,
-                                       domain=Interval(start=0, end=10, left_open=True, right_open=False))
             try:
-                if isinstance(domain, sp.sets.sets.Union):
-                    type = "union"
-                    start = float(domain.args[0].start)
-                    end = float(domain.args[0].end)
-                    res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
-                elif isinstance(domain, sp.sets.sets.Complement):
-                    type = "complement"
-                    res = check_equiv_compl(x=x, expr=expr_0-expr_1, start=1, end=10, n=n, tol=tol)
-                elif isinstance(domain, sp.sets.sets.Interval):
-                    type = "interval"
-                    start = float(domain.start)
-                    end = float(domain.end)
-                    res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
-                else:
-                    res = False
-                    logger.log_error(f"{expr_0} & {expr_1} have invalid domain type!")
+                domain = continuous_domain(f=expr_0-expr_1, symbol=x,
+                                           domain=Interval(start=0, end=10, left_open=True, right_open=False))
+                try:
+                    if isinstance(domain, sp.sets.sets.Union):
+                        type = "union"
+                        start = float(domain.args[0].start)
+                        end = float(domain.args[0].end)
+                        res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                    elif isinstance(domain, sp.sets.sets.Complement):
+                        type = "complement"
+                        res = check_equiv_compl(x=x, expr=expr_0-expr_1, start=1, end=10, n=n, tol=tol)
+                    elif isinstance(domain, sp.sets.sets.Interval):
+                        type = "interval"
+                        start = float(domain.start)
+                        end = float(domain.end)
+                        res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                    else:
+                        res = False
+                        logger.log_error(f"{expr_0} & {expr_1} have invalid domain type!")
 
+                except Exception as e:
+                    logger.log_error(f"type {type} exception {e}")
+                    res = False
             except Exception as e:
-                logger.log_error(f"type {type} exception {e}")
+                logger.log_error(f"{expr_0}-{expr_1} continous domain exception {e}")
                 res = False
 
         if res:
@@ -361,9 +365,7 @@ def split(
     n_corrects = 0
     n_incorrects = 0
 
-    train_list = []
-    val_list = []
-    test_list = []
+    expr_pairs_list = []
 
     progbar = tqdm.tqdm(iterable=filepaths)
 
@@ -375,7 +377,6 @@ def split(
 
         file = open(file=filepath, mode='r')
 
-        expr_pairs_list = []
         expr_pairs = []
 
         for line in file:
@@ -398,16 +399,16 @@ def split(
 
         file.close()
 
-        random.seed(a=seed)
-        random.shuffle(x=expr_pairs_list)
+    random.seed(a=seed)
+    random.shuffle(x=expr_pairs_list)
 
-        n_exprs = len(expr_pairs_list)
-        test_size = int(n_exprs*test_pct)
-        val_size = int(n_exprs*val_pct)
+    n_exprs = len(expr_pairs_list)
+    test_size = int(n_exprs*test_pct)
+    val_size = int(n_exprs*val_pct)
 
-        test_list = sum(expr_pairs_list[:test_size], [])
-        val_list = sum(expr_pairs_list[test_size:test_size+val_size], [])
-        train_list = sum(expr_pairs_list[test_size+val_size:], [])
+    test_list = [expr_pair for expr_pairs in expr_pairs_list[:test_size] for expr_pair in expr_pairs]
+    val_list = [expr_pair for expr_pairs in expr_pairs_list[test_size:test_size+val_size] for expr_pair in expr_pairs]
+    train_list = [expr_pair for expr_pairs in expr_pairs_list[test_size+val_size:] for expr_pair in expr_pairs]
 
     w_set(expr_pairs=train_list, expr_pairs_filepath=expr_pairs_train_filepath)
     w_set(expr_pairs=val_list, expr_pairs_filepath=expr_pairs_val_filepath)
@@ -457,11 +458,13 @@ def main() -> None:
     test_pct = args.test_pct
     val_pct = args.val_pct
 
+    logger.log_info("Creating train, val, and test sets...")
     split(data_dir=config.DATA_FILTERED_PAIRS_DIR, n=3, tol=1e-6, secs=4, incorrect_dir=config.DATA_INCORRECT_DIR,
           seed=config.SEED, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
           expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
           expr_pairs_val_filepath=config.EXPR_PAIRS_VAL_FILEPATH)
+    logger.log_info("Finish creating train, val, and test sets.")
 
     return
 
