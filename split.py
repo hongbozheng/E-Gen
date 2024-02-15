@@ -13,7 +13,6 @@ import tqdm
 from collections import OrderedDict
 from sympy import *
 from sympy.calculus.util import continuous_domain
-from sympy.utilities.lambdify import lambdify
 from timeout import timeout, TimeoutError
 
 
@@ -240,21 +239,20 @@ def write_infix(token, args):
 
 
 def check_equiv(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
-    fn = lambdify(args=x, expr=expr, modules=["numpy"])
     rand_nums = numpy.random.uniform(low=start, high=end, size=n)
-    vals = fn(rand_nums)
+    for num in rand_nums:
+        val = expr.subs(x, num).evalf()
+        if val > tol:
+            return False
 
-    res = numpy.all(vals <= tol)
-
-    return res
+    return True
 
 
 def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
     i = 0
     while i < n:
-        fn = lambdify(args=x, expr=expr, modules=["numpy"])
         rand_num = numpy.random.uniform(low=start, high=end, size=1)
-        val = fn(rand_num)
+        val = expr.subs(x, rand_num).evalf()
         if val in S.Reals:
             if val > tol:
                 return False
@@ -265,8 +263,11 @@ def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, t
 
 def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]:
     @timeout(seconds=secs)
-    def _cont_domain(expr_0: Expr, expr_1: Expr, symbol: Symbol):
-        return continuous_domain(f=expr_0 - expr_1, symbol=symbol,
+    def _simplify(expr: Expr) -> Expr:
+        return sp.simplify(expr=expr)
+    @timeout(seconds=secs)
+    def _cont_domain(expr: Expr, symbol: Symbol):
+        return continuous_domain(f=expr, symbol=symbol,
                                  domain=Interval(start=0, end=10, left_open=True, right_open=False))
 
     corrects = []
@@ -282,39 +283,52 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
         if "coth" in expr_0 or "coth" in expr_1:
             continue
 
-        expr_0 = prefix_to_sympy(expr=expr_0)
-        expr_1 = prefix_to_sympy(expr=expr_1)
-        expr_0 = sp.simplify(expr=expr_0)
-        expr_1 = sp.simplify(expr=expr_1)
+        try:
+            expr_0 = prefix_to_sympy(expr=expr_0)
+            expr_1 = prefix_to_sympy(expr=expr_1)
+        except Exception as e:
+            print(f"[ERROR]: {pair[0]} & {pair[1]} prefix_to_sympy exception {e}")
+            incorrects.append(expr_pair)
+            continue
+        try:
+            expr_0 = _simplify(expr=expr_0)
+            expr_1 = _simplify(expr=expr_1)
+            # expr = _simplify(expr=expr_0-expr_1)
+        except Exception as e:
+            print(f"[ERROR]: {pair[0]} & {pair[1]} simplify exception {e}")
+            incorrects.append(expr_pair)
+            continue
 
-        if expr_0-expr_1 == 0:
+        expr = expr_0 - expr_1
+
+        if expr == 0:
             res = True
         else:
             try:
-                domain = _cont_domain(expr_0=expr_0, expr_1=expr_1, symbol=x)
+                domain = _cont_domain(expr=expr, symbol=x)
                 try:
                     if isinstance(domain, sp.sets.sets.Union):
                         type = "union"
                         start = float(domain.args[0].start)
                         end = float(domain.args[0].end)
-                        res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Complement):
                         type = "complement"
-                        res = check_equiv_compl(x=x, expr=expr_0-expr_1, start=1, end=10, n=n, tol=tol)
+                        res = check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Interval):
                         type = "interval"
                         start = float(domain.start)
                         end = float(domain.end)
-                        res = check_equiv(x=x, expr=expr_0-expr_1, start=start, end=end, n=n, tol=tol)
+                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
                     else:
-                        res = False
                         logger.log_error(f"{pair[0]} & {pair[1]} have invalid domain type {domain}!")
+                        res = False
 
                 except Exception as e:
-                    logger.log_error(f"type {type} exception {e}")
+                    logger.log_error(f"{pair[0]} & {pair[1]} type {type} exception {e}")
                     res = False
             except Exception as e:
-                logger.log_error(f"{pair[0]}-{pair[1]} continous domain exception {e}")
+                logger.log_error(f"{pair[0]} & {pair[1]} continous domain exception {e}")
                 res = False
 
         if res:
