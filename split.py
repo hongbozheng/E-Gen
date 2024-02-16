@@ -239,16 +239,6 @@ def write_infix(token, args):
 
 
 def check_equiv(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
-    rand_nums = numpy.random.uniform(low=start, high=end, size=n)
-    for num in rand_nums:
-        val = expr.subs(x, num).evalf()
-        if val > tol:
-            return False
-
-    return True
-
-
-def check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
     i = 0
     while i < n:
         rand_num = numpy.random.uniform(low=start, high=end, size=1)
@@ -265,10 +255,15 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
     @timeout(seconds=secs)
     def _simplify(expr: Expr) -> Expr:
         return sp.simplify(expr=expr)
+
     @timeout(seconds=secs)
     def _cont_domain(expr: Expr, symbol: Symbol):
         return continuous_domain(f=expr, symbol=symbol,
                                  domain=Interval(start=0, end=10, left_open=True, right_open=False))
+
+    @timeout(seconds=secs*2)
+    def _check_equiv(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
+        return check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
 
     corrects = []
     incorrects = []
@@ -293,7 +288,6 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
         try:
             expr_0 = _simplify(expr=expr_0)
             expr_1 = _simplify(expr=expr_1)
-            # expr = _simplify(expr=expr_0-expr_1)
         except Exception as e:
             print(f"[ERROR]: {pair[0]} & {pair[1]} simplify exception {e}")
             incorrects.append(expr_pair)
@@ -308,27 +302,27 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
                 domain = _cont_domain(expr=expr, symbol=x)
                 try:
                     if isinstance(domain, sp.sets.sets.Union):
-                        type = "union"
-                        start = float(domain.args[0].start)
-                        end = float(domain.args[0].end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                        if isinstance(domain.args[0], sp.sets.sets.Complement):
+                            res = _check_equiv(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
+                        else:
+                            start = float(domain.args[0].start)
+                            end = float(domain.args[0].end)
+                            res = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Complement):
-                        type = "complement"
-                        res = check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
+                        res = _check_equiv(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
                     elif isinstance(domain, sp.sets.sets.Interval):
-                        type = "interval"
                         start = float(domain.start)
                         end = float(domain.end)
-                        res = check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                        res = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
                     else:
                         logger.log_error(f"{pair[0]} & {pair[1]} have invalid domain type {domain}!")
                         res = False
 
                 except Exception as e:
-                    logger.log_error(f"{pair[0]} & {pair[1]} type {type} exception {e}")
+                    logger.log_error(f"{pair[0]} & {pair[1]} eval exception {e}")
                     res = False
             except Exception as e:
-                logger.log_error(f"{pair[0]} & {pair[1]} continous domain exception {e}")
+                logger.log_error(f"{pair[0]} & {pair[1]} continuous domain exception {e}")
                 res = False
 
         if res:
