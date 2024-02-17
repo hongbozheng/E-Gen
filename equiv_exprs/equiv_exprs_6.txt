@@ -65,8 +65,6 @@ d x * pow sin + 1 * 9 pi -10 atan x
 
 d x + asin x + cos x tanh x
 
-d x + x * -10 * x atan pow coth 10
-
 * x * pow sec asinh x -1 5
 pow * x * 5 pow sec asinh x -1 1
 * * pow / 1 cos asinh x -1 5 x

@@ -4222,17 +4222,6 @@
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 87s
 
-[INFO]: Expression: (d x (tan (pow coth 1)))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 3236
-[INFO]: Total # of e-node(s):   8066
-[INFO]: Expression extraction time: 300s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 96
-[INFO]: Total # of expression(s) after  postprocessing: 18
-[INFO]: Total run time: 300s
-
 [INFO]: Expression: (d x (+ (* 1048570 (pow x 20)) (cos (+ x (* 7 pi)))))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -5677,19 +5666,6 @@
 [INFO]: -----------------------------------
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 115s
-
-[INFO]: Expression: (d x (* x (pow (cot (pow coth 1)) -1)))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 2957
-[INFO]: Total # of e-node(s):   8024
-[INFO]: Expression extraction time: 24s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 24
-[INFO]: Total # of expression(s) after  postprocessing: 9
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 24s
 
 [INFO]: Expression: (d x (* x (+ 1 (* 8 (cos x)))))
 [INFO]: E-graph saturation time: 0s
@@ -10538,19 +10514,6 @@
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 300s
 
-[INFO]: Expression: (d x (* -10 (cos (pow coth 60))))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 3086
-[INFO]: Total # of e-node(s):   8290
-[INFO]: Expression extraction time: 300s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 0
-[INFO]: Total # of expression(s) after  postprocessing: 0
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 301s
-
 [INFO]: Expression: (d x (* -10 (sin (* x 6))))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -13178,19 +13141,6 @@
 [INFO]: -----------------------------------
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 1s
-
-[INFO]: Expression: (* x (pow (csc (pow coth 10)) -1))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 3179
-[INFO]: Total # of e-node(s):   8825
-[INFO]: Expression extraction time: 6s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 12
-[INFO]: Total # of expression(s) after  postprocessing: 5
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 7s
 
 [INFO]: Expression: (d x (* 10 (cos (+ 9 (* 5 pi)))))
 [INFO]: E-graph saturation time: 0s
@@ -22031,19 +21981,6 @@
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 2s
 
-[INFO]: Expression: (cos (+ x (pow coth 20)))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 3617
-[INFO]: Total # of e-node(s):   9143
-[INFO]: Expression extraction time: 300s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 0
-[INFO]: Total # of expression(s) after  postprocessing: 0
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 300s
-
 [INFO]: Expression: (+ (* 2 x) (* 6 (ln (+ 1 x))))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -23623,19 +23560,6 @@
 [INFO]: Total # of expression(s) before postprocessing: 162
 [INFO]: Total # of expression(s) after  postprocessing: 33
 [INFO]: Total run time: 8s
-
-[INFO]: Expression: (+ -10 (pow (csc (pow coth 10)) -1))
-[INFO]: E-graph saturation time: 0s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 3186
-[INFO]: Total # of e-node(s):   8850
-[INFO]: Expression extraction time: 5s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 12
-[INFO]: Total # of expression(s) after  postprocessing: 5
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 5s
 
 [INFO]: Expression: (d x (pow (+ -3 (* 16 (pow x 4))) 2))
 [INFO]: E-graph saturation time: 1s

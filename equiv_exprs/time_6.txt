@@ -150,19 +150,6 @@
 [INFO]: Token limit 14 reaches max token limit 12
 [INFO]: Total run time: 300s
 
-[INFO]: Expression: (d x (+ x (* -10 (* x (atan (pow coth 10))))))
-[INFO]: E-graph saturation time: 2s
-[INFO]: Grammar  creation  time: 0s
-[INFO]: Total # of e-class(es): 606
-[INFO]: Total # of e-node(s):   4327
-[INFO]: Expression extraction time: 300s
-[INFO]: Expression postprocessing time: 0s
-[INFO]: Total # of expression(s) before postprocessing: 0
-[INFO]: Total # of expression(s) after  postprocessing: 0
-[INFO]: -----------------------------------
-[INFO]: Token limit 14 reaches max token limit 12
-[INFO]: Total run time: 303s
-
 [INFO]: Expression: (* x (* (pow (sec (asinh x)) -1) 5))
 [INFO]: E-graph saturation time: 1s
 [INFO]: Grammar  creation  time: 0s

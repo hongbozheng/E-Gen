@@ -89,12 +89,6 @@ pow + ln x * sinh x cos x 1
 + * + 10 cosh x * x -10 cos x
 + cos x * x + * -10 cosh x -100
 
-d x pow coth + 1 * -10 x
-d x pow coth + 1 * x -10
-pow d x pow coth + 1 * x -10 1
-+ 0 d x pow coth + * x -10 1
-* d x pow coth + 1 * -10 x 1
-
 d x + x + pow x 2 + * x acosh x cosh x
 
 + -10 + * -10 cosh x sin + x * 3 pi
@@ -302,14 +296,6 @@ d x * * pi 5 + 1 tanh x
 + cosh x - 0 * - 9 ln x x
 + * x - -9 ln / 1 x cosh x
 
-* x + 1 pow coth 6560
-* * x + pow coth 6560 1 1
-pow + x * x pow coth 6560 1
-* + pow coth 6560 1 x
-pow * + pow coth 6560 1 x 1
-* + x * x pow coth 6560 1
-+ x * x pow coth 6560
-
 + * -150 tanh x * 150 x
 + * 150 x * -150 / tanh x 1
 + / -150 / 1 tanh x * 150 x
@@ -346,14 +332,6 @@ pow + / pow x 2 sec x tanh x 1
 
 d x * -10 * x sinh pow 6 -1
 * d x * x sinh pow 6 -1 -10
-
-* x + 1 pow coth 2
-pow * + pow coth 2 1 x 1
-pow + * x pow coth 2 x 1
-+ x * pow coth 2 x
-* + x * pow coth 2 x 1
-* + pow coth 2 1 x
-* 1 * + pow coth 2 1 x
 
 d x * + x pow csc + -1 * 3 pi -1 cosh x
 
@@ -1563,11 +1541,6 @@ d x * 20 * pow x 2 + 1 sinh x
 
 d x + * -10 tanh x sin ln x
 
-* x + -10 * -10 * x pow coth 10
-* + * pow x 2 pow coth 10 x -10
-* * -10 + * pow coth 10 x 1 x
-* + x * x * pow coth 10 x -10
-
 * cosh x sin + 20 * 8 pi
 
 d x * x cos + * 9 pi tanh * 6 pi
@@ -1733,12 +1706,6 @@ d x + * sinh x / cos x 1 x
 pow + d x / sinh x sec x 1 1
 - d x + / sinh x sec x x 0
 + 1 d x / sinh x sec * -1 x
-
-+ 10 + x + * -10 pow coth x -1
-* + + * -10 pow coth x 9 x 1
-pow + + x * -10 pow coth x 9 1
-+ + * pow coth x -10 9 x
-+ + + x -1 * pow coth x -10 10
 
 d x + x + * x cos x * -10 * x cosh x
 
@@ -2052,86 +2019,6 @@ d x * * x exp x * sin x 1020
 + tanh x + ln pow x 10 * -10 x
 + tanh x + * ln x 10 * -10 x
 
-d x * -1 * x + 20 * -1 pow coth 1
-pow - d x * x coth 20 1
-* - 20 + coth * d x coth x -1
-* + -20 + coth * d x coth x 1
-+ 0 d x * x - coth 20
-* 1 d x + * x -20 * x coth
-- 0 + 20 d x * * x coth -1
-d x + - 0 * 20 x * x coth
-- coth * -1 + -20 * x d x coth
-d x * * -1 x - 20 coth
-- - coth 20 * d x coth * x -1
-+ * -1 d x - 0 * x coth -20
-d x * x - - -20 - 0 coth 0
-pow + coth - * x d x coth 20 1
-+ 0 + -20 + * x d x coth coth
-* - coth - 20 * x d x coth 1
-d x - 0 * * - coth 20 -1 x
-+ - * d x - coth 0 x 20 coth
-* 1 d x - * x coth * 20 x
-- -20 - - 0 coth * d x coth x
-+ coth + -20 * x d x - coth 0
-+ + - * d x coth x 20 coth 0
-- + * x d x + -20 coth coth 20
-pow - -20 d x * * coth x -1 1
-+ + d x * - coth 0 x -20 0
-+ -20 - coth * x d x - 0 coth
-d x * - * coth -1 -20 * -1 x
-- 0 d x - * x 20 * coth x
-* d x - * 20 x * coth x -1
-- - d x * coth x 0 20
-+ + * d x coth x coth -20
-+ coth - * d x - coth 20 x 20
-+ 0 d x - 0 * x - 20 coth
-pow + d x * coth x -20 1
-- -20 d x * * x -1 coth
-d x + * x coth * * -1 x 20
-- coth - 20 * x d x + coth -20
-* 1 - + coth * d x coth x 20
-d x - * x -20 - 0 * coth x
-d x * -1 * x + 20 * -1 coth
-- -20 * - d x * coth x 0 -1
-* 1 d x * * -1 x - 20 coth
-d x * -1 * * + -20 coth -1 x
-- d x - * + coth -20 x 0 0
-pow * d x * - 20 coth x -1 1
-+ d x * x + coth -20 0
-- - coth 20 * x d x - 0 coth
-pow - d x - * coth x 0 20 1
-pow - -20 - 0 d x * x coth 1
-+ 0 d x + * coth x * x -20
-d x * * -1 - coth 20 * x -1
-* 1 + -20 d x * coth x
-- + * d x coth x coth 20
-d x * x - coth 20
-- coth - * x d x - 20 coth -20
-* - -20 d x * coth * x -1 1
-d x - * coth x * x 20
-- 0 - d x * x - 20 coth 0
-* 1 d x * x - coth 20
-+ d x - * coth x 0 -20
-+ coth + * x d x + -20 coth -20
-d x + * -20 x * coth x
-* - - d x * coth x 20 0 1
-- -20 - 0 d x * x coth
-d x + * - coth 0 x * -20 x
-- * d x coth x - 20 coth
-pow + -20 d x - * x coth 0 1
-d x - * -20 x * x * coth -1
-pow - * x d x coth - 20 coth 1
-- coth - 20 * x d x - coth 20
-pow d x - * coth x * 20 x 1
-- coth - * d x coth * -1 x -20
-d x * + coth -20 x
-pow d x + * x -20 * x coth 1
-* - -20 d x - 0 * coth x 1
-pow + coth + -20 * x d x coth 1
-* d x - * + -20 coth x 0 1
-
-ln pow 10 pow coth x
-
 d x + x * x cosh + x ln x
 d x + x * cosh + x ln x x
 + d x * x cosh + ln x x 1
@@ -2209,8 +2096,6 @@ pow + * 250 d x sinh x 760 1
 + 0 + 760 * * 0.5 cosh x 500
 + + 760 * * 5 cosh x 50 0
 + * 500 * 0.5 cosh * x -1 760
-
-d x + x + pow cot x -1 pow coth 10
 
 * x + * -10 x cosh cos + 10 * 2 pi
 
@@ -2305,23 +2190,9 @@ d x * 10 + x cosh acos x
 + -10 + x * pow csc x -1 sinh x
 + x + * sinh x pow csc x -1 -10
 
-+ * 101 x * -10 * x pow coth 10
-+ * 101 x * pow coth 10 * -10 x
-* 1 * x + * pow coth 10 -10 101
-* x + * -10 pow coth 10 101
-pow * x + 101 * -10 pow coth 10 1
-
 d x + * 9 pi * -10 sinh x
 + * 9 d x pi * cosh x -10
 d x + * pi 9 * -10 sinh x
-
-pow coth + -10 + x 9
-* 1 pow coth + + 9 x -10
-pow coth + -1 x
-pow pow coth + x -1 1
-pow coth + -10 + 9 x
-* 1 pow coth + -1 x
-pow pow coth + + 9 x -10 1
 
 * -10 + * x ln x sinh x
 + * * ln x x -10 * -10 sinh x
@@ -2398,8 +2269,6 @@ cosh - * x -10 sin + * -9 pi -10
 + x * 10 tanh + -10 * 10 x
 + x * tanh + * x 10 -10 10
 
-d x pow csc + x pow coth 240 -1
-
 * x sinh + * -10 x 5
 * sinh + * -1 * x 10 5 x
 * sinh * + * 10 x -5 -1 x
@@ -2424,11 +2293,6 @@ pow * x sinh - 5 * 10 x 1
 d x + * -10 sinh x * x + 10 x
 + * x 2 + 10 * -10 cosh x
 + + 10 + x * -10 cosh x x
-
-pow cos * x pow coth 10 -1
-pow / 1 sec * pow coth 10 x -1
-pow / cos * x pow coth 10 1 -1
-* pow cos * x pow coth 10 -1 1
 
 * -10 + x pow tanh x 10
 * -10 + x pow / tanh x 1 10
@@ -2649,10 +2513,6 @@ d x asinh + x cosh pow 3 -1
 
 d x * 30 * pow csc x -1 sinh x
 * 30 d x * pow csc x -1 sinh x
-
-+ x ln pow x pow coth 20
-+ x + * pow coth 20 ln x ln 1
-+ x + ln pow x pow coth 20 ln 1
 
 sinh + x * x pow csc + -20 * 5 pi -1
 
@@ -2976,11 +2836,6 @@ d x * 10 * pow x 2 + -1 * 2 cosh x
 
 d x * + cosh x sinh x cos + 60 * 4 pi
 
-* pow 6 -1 pow coth x
-* pow coth x pow 6 -1
-pow * pow 6 -1 pow coth x 1
-* 1 * pow 6 -1 pow coth x
-
 + * -9 cosh x + sin x sinh x
 
 d x + -10 + x + * -10 tanh x * x ln x
@@ -3012,10 +2867,6 @@ d x + * -10 x * 10 cosh * 10 x
 d x + 10 + x + * -10 * x sinh x tan x
 
 d x * x + -10 + cos + x * 5 pi sinh x
-
-ln pow x pow coth 1
-+ + * coth ln x ln 1 ln 1
-+ + ln pow x coth ln 1 ln 1
 
 d x * x + x * sin + x * 3 pi sinh x
 
@@ -3071,67 +2922,6 @@ d x + x * -10 * x + exp x sinh x
 d x * -1 sinh + -10 * 10 x
 + d x sinh + * x -10 10 0
 + 0 d x sinh - 10 * x 10
-
-d x * 10 * x + 10 * -1 pow coth 1
-+ d x - * * -10 x coth 0 100
-* -1 + -100 d x * * 10 coth x
-* - + coth * x d x coth 10 -10
-+ 100 d x * * coth * 10 x -1
-* * -10 d x * + coth -10 x 1
-* d x * x - 100 * coth 10 1
-d x * - * - 10 coth 10 0 x
-- * -1 * 10 d x * coth x -100
-* 1 d x * x * -10 - coth 10
-d x * * x -10 - -10 * coth -1
-* * + -10 d x * coth x 10 -1
-- * 10 - 0 d x * coth x -100
-pow d x * x - * -10 coth -100 1
-+ 0 + 100 d x * -10 * coth x
-d x - 0 * x + -100 * 10 coth
-- 100 - 0 d x * * -10 x coth
-- - d x * * -10 coth x -100 0
-- * + * x d x coth coth -10 -100
-- 100 - d x * x * coth 10 0
-d x * * -10 x - coth 10
-pow d x * + 100 * coth -10 x 1
-* * 10 - 10 d x * coth x 1
-d x * 10 - * 10 x * coth x
-* - 10 d x * x coth 10
-d x - * * coth -10 x * -100 x
-d x * * * - coth 10 10 x -1
-+ 100 d x * x * -10 coth
-* -10 d x - * x coth * 10 x
-pow d x * x - 100 * 10 coth 1
-* - 10 + * d x coth x coth 10
-- 0 * d x * + -10 coth x 10
-d x * * x -1 - * 10 coth 100
-* -10 + + * x d x coth coth -10
-* + d x * x - 0 coth 10 10
-* -10 - -10 - 0 d x * x coth
-* -10 - * d x coth x - 10 coth
-+ * 10 - 0 d x * coth x 100
-pow d x * * x - coth 10 -10 1
-- 100 * d x * coth * x -1 -10
-+ 0 - d x * x * -10 coth -100
-* -10 d x * + -10 coth x
-* 10 + 10 * -1 d x * coth x
-* 10 - - 0 d x * coth x -10
-* d x * - * coth -10 -100 x 1
-- 100 * 10 + coth * d x coth x
-+ 0 * -10 + d x * x coth -10
-+ * + * d x coth x coth -10 100
-d x + * * coth x -10 * x 100
-d x * + - coth 0 -10 * -10 x
-d x - * x 100 * * coth x 10
-- 100 d x * * x coth 10
-* 1 + 100 * -10 d x * coth x
-- * d x * coth x -10 -100
-pow * d x * - 10 coth x 10 1
-pow d x * * -10 x + -10 coth 1
-d x * -10 + * x -10 * x coth
-* -1 - -100 d x * coth * -10 x
-* - - 10 * x d x coth coth 10
-d x * * -10 x * - 10 coth -1
 
 cosh pow csc + -1 * 5 pi -1
 cosh pow / csc + -1 * 5 pi 1 -1
@@ -3305,13 +3095,6 @@ pow + 630 * -630 pow sech x 2 1
 * 1 + * d x tanh x -630 630
 * + * -630 pow sech x 2 630 1
 
-d x + * -10 x * x pow coth 30
-+ 0 d x * + pow coth 30 -10 x
-d x + * x -10 * x pow coth 30
-pow + -10 d x * x pow coth 30 1
-d x * + -10 pow coth 30 x
-* 1 + -10 d x * x pow coth 30
-
 + x + * 2 pi * -10 sinh x
 + * + pi * -5 sinh x 2 x
 + x + * sinh x -10 * 2 pi
@@ -3463,16 +3246,6 @@ cosh + x * -5 * pi x
 * cosh * x - * pi 5 1 1
 * cosh * x - -1 * -5 pi 1
 
-d x * x + 1 pow coth 3120
-pow d x + * pow coth 3120 x x 1
-pow + 1 d x * x pow coth 3120 1
-+ d x + x * pow coth 3120 x 0
-* d x + * x pow coth 3120 x 1
-d x + * pow coth 3120 x x
-d x * + 1 pow coth 3120 x
-* 1 d x * + 1 pow coth 3120 x
-+ d x * + 1 pow coth 3120 x 0
-
 d x + x + * -10 cosh x sin + x * 1 pi
 
 d x * -10 cosh + 30 * -20 x
@@ -3548,20 +3321,6 @@ pow + pow / 1 cos x -1 sinh x 1
 + cosh * -0.25 * x 4 * cosh x x
 
 d x * 4 * x + pi * 2 cosh x
-
-* x + pow coth 10 -1
-pow + * pow coth 10 x * -1 x 1
-* * - pow coth 10 1 x 1
-+ * pow coth 10 x * x -1
-- * x pow coth 10 x
-* x + -1 pow coth 10
-* * + pow coth 10 -1 x 1
-* x - pow coth 10 1
-pow * + pow coth 10 -1 x 1
-* 1 + * pow coth 10 x * x -1
-pow * x - pow coth 10 1 1
-* - * x pow coth 10 x 1
-pow - * x pow coth 10 x 1
 
 d x * -10 + x * -6 sinh x
 * + * * 0.5 cosh x 120 -10 1
@@ -3645,8 +3404,6 @@ pow * pow csc + x 1 -1 sinh x 1
 
 d x * -1 * x + -1 sinh * 10 x
 
-ln pow x pow coth 3120
-
 d x + * -10 x * 10 sinh * 10 x
 - * 10 * cosh * 10 x 10 10
 * 10 - * cosh * x 10 10 1
@@ -3696,19 +3453,6 @@ pow - * cosh x -30 * -20 x 1
 + + sin x * asin x x sinh x
 
 d x + x + cosh x sin + * 6 pi asinh x
-
-* x + -9 + x pow coth 1
-pow + pow x 2 * + coth -9 x 1
-+ pow x 2 + * coth x * x -9
-* 1 * + + -9 x coth x
-+ * + x -9 x * x coth
-pow * + + coth x -9 x 1
-* x + + coth -9 x
-+ * x x + * -9 x * x coth
-* + * x coth * + x -9 x 1
-pow + * -9 x * x + x coth 1
-+ * x + -9 coth pow x 2
-* 1 + pow x 2 * + -9 coth x
 
 d x + * -99 x * -10 * x cosh x
 + -99 * + * x sinh x cosh x -10
@@ -3764,8 +3508,6 @@ d x * 10 * x + pow x 9 * -1 sinh x
 + cosh x * x - + x cosh x -1
 + cosh x + x * + x cosh x x
 + cosh x * x + + 1 x cosh x
-
-d x pow sec * x pow coth 20 -1
 
 d x + * -10 * x cos x + cosh x sinh x
 d x + exp x * * cos x x -10
@@ -4072,12 +3814,6 @@ d x + 10 + cos x cosh x
 
 cosh + 240 * -10 x
 
-d x pow coth + 620 * -10 x
-pow d x pow coth + 620 * -10 x 1
-* 1 d x pow coth + 620 * -10 x
-d x pow coth + 620 * x -10
-+ d x pow coth + 620 * -10 x 0
-
 d x + pow x 2 * -10 * x cosh * 10 x
 
 d x + x * x * + 1 x cosh x
@@ -4105,11 +3841,6 @@ pow * + 1 sinh + x 10 x 1
 pow + x * x sinh + 10 x 1
 * + 1 sinh * - -10 x -1 x
 * x + sinh + 10 x 1
-
-d x + x cos pow coth 620
-+ d x + x cos pow coth 620 0
-+ + 1 d x cos pow coth 620 0
-+ - d x cos pow coth 620 -1 0
 
 + * x sin + 80 * 2 pi + cosh x sinh x
 + * sin - 80 * -2 pi x exp x
@@ -4143,140 +3874,6 @@ d x + * -10 x + * 10 pow x 2 cosh x
 + + - * 20 x 10 sinh x 0
 + sinh x - * -20 * x -1 10
 
-+ 1 cos pow coth 1
-+ 1 cos * -1 / 2 / 2 coth
-+ - 0 / sin coth / -1 cot coth 1
-+ 1 / 1 / 1 cos coth
-+ 1 - * sin coth / 1 tan coth 0
-+ 1 * sin coth cot * * 0.5 coth 2
-+ 1 / 1 / 1 / cos coth 1
-+ 1 * / cot coth 1 / sin coth 1
-+ 1 + 1 - * sin coth cot coth 1
-+ 1 / * cos coth cot coth cot coth
-+ 1 / sin coth tan * 0.5 * 2 coth
-+ 1 / sin coth * -1 tan * coth -1
-+ 1 - / 1 sec * -1 coth 0
-+ + 1 - / 1 sec coth 1 1
-+ 1 cos * -2 * * coth 2 0.25
-+ 1 cos * * 4 * coth 0.5 -0.5
-+ 1 - cos * * coth 2 -0.5 0
-+ 1 cos * 2 * * 0.5 coth -1
-+ 1 * cot * coth -1 * -1 sin coth
-+ 1 + + 1 / sin coth tan coth -1
-+ 1 - / 1 / tan coth sin coth 0
-+ 1 / 1 / sec * coth -1 1
-+ 1 / sin / * coth 2 2 tan coth
-+ 1 * / cot coth 1 sin coth
-+ + + 1 * sin coth cot coth -1 1
-+ 1 / sin coth / 1 / cot coth 1
-+ 1 / 1 sec * -2 * coth 0.5
-+ 1 cos * / coth 2 -2
-+ 1 / 1 sec coth
-+ 1 / cos * -2 / coth 2 1
-+ 1 cos * 0.5 * 4 * 0.5 coth
-+ 1 * cot coth sin / 2 / 2 coth
-+ 1 * / 1 tan coth sin coth
-+ 1 cos * -0.5 / 4 / 2 coth
-+ 1 cos * * -0.5 * coth -1 -2
-+ 1 cos * 2 * -0.25 * 2 coth
-+ 1 / / cos coth cot coth tan coth
-+ 1 - cos / * coth 2 2 0
-+ 1 / 1 / / tan coth sin coth 1
-+ 1 + + 1 cos coth -1
-+ 1 + + cos * -1 coth 1 -1
-+ 1 - cos * 0.5 * 2 coth 0
-+ 1 / 1 * / 1 cot coth csc coth
-+ 1 / 1 sec / * 2 coth 2
-+ 1 cos * * -1 * -1 coth -1
-+ 1 - / cos coth 1 0
-+ 1 cos * -1 * -0.5 * 2 coth
-+ 1 - / / 1 sec coth 1 0
-+ 1 / 1 sec * 0.5 * 2 coth
-+ 1 / 1 / / sec coth 1 1
-+ 1 cos * coth -1
-+ 1 - / 1 * tan coth csc coth 0
-+ 1 / 1 sec * * coth -0.5 2
-+ 1 / / tan coth sec coth tan coth
-+ 1 - cos * -2 / coth 2 0
-+ 1 / cos * * coth 2 0.5 1
-+ 1 / cos * 2 / coth 2 1
-+ 1 cos * * 0.5 coth 2
-+ 1 - + 1 / cos coth 1 1
-+ + + / 1 sec coth 1 -1 1
-+ 1 cos / * 4 * 0.5 coth 2
-+ 1 cos / * coth 2 2
-+ 1 - cos / 2 / 2 coth 0
-+ 1 - * cot coth / sin coth 1 0
-+ 1 * sin coth * cos coth csc coth
-+ 1 - / 1 sec coth 0
-+ 1 * tan coth / cos coth tan coth
-+ 1 / 1 sec * -1 * -1 coth
-+ 1 * / 1 tan coth / sin coth 1
-+ 1 - cos / -2 / 2 coth 0
-+ 1 / sin coth / 1 cot coth
-+ 1 - cos * * -1 coth -1 0
-+ 1 / cos coth 1
-+ 1 cos * 2 * -0.5 coth
-+ 1 / + + cos coth 1 -1 1
-+ 1 - cos * coth -1 0
-+ 1 cos * / -2 / 2 coth -1
-+ 1 / 1 / tan coth sin coth
-+ 1 - * cot coth sin coth 0
-+ 1 - / sin coth tan coth 0
-+ 1 / 1 / * tan coth csc coth 1
-+ 1 / sin / 2 / 2 coth tan coth
-+ 1 / cos * -1 coth 1
-+ 1 - cos * * 0.5 coth -2 0
-+ 1 * -1 / sin coth / -1 cot coth
-+ - + 1 / sin coth tan coth 1 1
-+ 1 cos * 2 * 0.25 * coth 2
-+ 1 / sin coth * sin coth sec coth
-+ 1 cos / -2 / / 2 coth 1
-+ - - + 2 cos coth 1 1 1
-+ 1 cos / 2 / 2 coth
-+ 1 / sin coth / sin coth cos coth
-+ 1 / / cos * coth -1 1 1
-+ 1 / * cos coth sin coth sin coth
-+ 1 / 1 sec / -2 / 2 coth
-+ 1 cos / / 4 / 2 coth 2
-+ 1 cos * * 0.5 coth -2
-+ 1 / 1 sec / 2 / 2 coth
-+ 1 cos / * / coth 2 4 2
-+ 1 + - + 2 cos coth 1 -1
-+ - + cos * coth -1 1 1 1
-+ - + 1 - cos coth 0 1 1
-+ 1 / cos * -0.5 * 2 coth 1
-+ 1 - / cos * -1 coth 1 0
-+ - + 1 cos coth 1 1
-+ 1 * cot coth sin * / coth 2 2
-+ 1 * sin coth cot coth
-+ 1 / / 1 sec coth 1
-+ 1 / 1 sec * -2 / coth 2
-+ 1 / cos * -1 * coth -1 1
-+ 1 - 0 / sin coth tan * -1 coth
-+ 1 cos / -1 / / 2 coth 2
-+ 1 / / cot coth sec coth cot coth
-+ 1 cos coth
-+ 1 / cot coth / cot coth cos coth
-+ 1 - / sin coth / 1 cot coth 0
-+ 1 cos * 0.5 / 4 / 2 coth
-+ 1 cos * * -1 coth -1
-+ 1 / 1 * tan coth csc coth
-+ 1 - + + 1 cos coth -1 0
-+ 1 / cos * -2 * coth 0.5 1
-+ 1 cos / -2 / 2 coth
-+ 1 / 1 sec * -1 coth
-+ 1 - / 1 / 1 cos coth 0
-+ * * tan coth cos coth cot coth 1
-+ 1 * / tan coth sec coth cot coth
-+ 1 cos / 1 / / 2 coth 2
-+ 1 - cos coth 0
-+ 1 cos * 2 * / coth 2 -1
-+ 1 cos * 0.5 * * coth -1 -2
-+ 1 / sin coth tan coth
-+ 1 cos * -0.5 * / coth 2 4
-+ 1 cos * -1 * -2 / coth 2
-
 cosh pow sec + 1 * 3 pi -1
 cosh pow sec - 1 * * -1 pi 3 -1
 * cosh pow sec - 1 * pi -3 -1 1
@@ -4304,9 +3901,6 @@ cosh pow / sec - 1 * -3 pi 1 -1
 cosh pow / 1 cos - 1 * pi -3 -1
 pow cosh pow sec - 1 * pi -3 -1 1
 cosh pow / 1 cos + 1 * 3 pi -1
-
-+ * 8 * pi x * -5 * pi pow coth x
-* + * pow coth x -5 * 8 x pi
 
 * pow x 2 + 1 cosh * 4 pi
 * pow x 2 + 1 cosh * pi 4
@@ -4574,11 +4168,6 @@ d x + x + cosh x ln pow sec x -1
 + * 10 x / -10 / 1 cosh x
 + * -10 cosh x * 20 * 0.5 x
 + * cosh x -10 / * 20 x 2
-
-+ pow coth * 10 x -1
-* 1 + pow coth * 10 x -1
-pow + -1 pow coth * x 10 1
-+ -1 pow coth * 10 x
 
 d x + x sinh sin + 10 * 2 pi
 d x + sinh sin + 10 * 2 pi x
@@ -5284,10 +4873,6 @@ d x * sinh x - + 240 x 0
 + sinh x * - cosh x 0 + 240 x
 * d x * + x 240 sinh x 1
 
-d x tan pow coth 20
-+ 0 d x / 1 cot pow coth 20
-+ d x tan pow coth 20 0
-
 + 1 + * x pow sec x -1 cosh x
 - * x pow sec x -1 - -1 cosh x
 
@@ -5425,31 +5010,6 @@ pow + pow x 3 * sinh x x 1
 d x + x * x cosh + -10 x
 + 1 d x * x cosh + x -10
 + 1 d x * cosh - 10 x x
-
-tan * x pow coth 1
-* 1 tan * x / * 2 coth 2
-* 1 tan * -1 * -1 * x coth
-* 1 / 1 / 1 tan * x coth
-* 1 / sin * coth x cos * coth x
-* 1 tan * coth x
-* 1 tan * * 0.5 coth * x 2
-* 1 * sec * coth x sin * coth x
-* 1 / 1 / cot * coth x 1
-* 1 tan / * x 2 / 2 coth
-* 1 / 1 cot * coth x
-* 1 tan / 2 / / 2 x coth
-
-d x + x + pow coth * 10 x -1
-pow + 1 d x pow coth * x 10 1
-+ 0 d x + x pow coth * 10 x
-d x + pow coth * 10 x + -1 x
-+ 1 d x pow coth * 10 x
-* d x + pow coth * x 10 x 1
-pow d x + pow coth * 10 x x 1
-+ + d x pow coth * x 10 1 0
-+ d x + -1 pow coth * 10 x 1
-* + d x pow coth * 10 x 1 1
-d x + pow coth * 10 x x
 
 + pow x 2 * -10 * x sinh asin x
 + pow x 2 * -10 * sinh asin x x
@@ -5783,17 +5343,6 @@ d x + 1 + x + tan + -10 x tanh x
 d x - + tanh x x tan - 10 x
 d x + x + tan + x -10 tanh x
 + d x + tanh x tan + -10 x 1
-
-d x * pow coth 6 10
-* * 6 pow coth 5 * d x coth 10
-d x * 10 pow coth 6
-* 1 d x * 10 pow coth 6
-pow * 10 d x pow coth 6 1
-+ 0 * 10 d x pow coth 6
-pow * pow coth 5 * 60 d x coth 1
-+ * 60 * d x coth pow coth 5 0
-* pow coth 5 * 60 d x coth
-* * pow coth 5 * 60 d x coth 1
 
 + * 10 x * x cosh asin x
 * + 10 cosh * * 2 asin x 0.5 x
@@ -6563,14 +6112,6 @@ pow * -10 cosh cos - 10 * pi -3 1
 
 d x * pow 6 -1 * csc + -20 * 6 pi tanh x
 
-* x + 1 pow coth 20
-pow + * pow coth 20 x x 1
-pow * x + 1 pow coth 20 1
-* 1 + * x pow coth 20 x
-* 1 * x + pow coth 20 1
-+ * x pow coth 20 x
-* + 1 pow coth 20 x
-
 d x + pow + 10 * -10 x -10 cosh x
 
 ln pow 10 sinh x
@@ -6748,14 +6289,6 @@ d x + * -10 sinh x sin + * 6 pi asinh x
 
 d x * + * 30 x cosh x cos x
 
-* x + 1 * 10 pow coth x
-* 1 + x * * pow coth x x 10
-pow + * 10 * pow coth x x x 1
-* x + 1 * pow coth x 10
-pow * x + 1 * pow coth x 10 1
-* * x + 1 * 10 pow coth x 1
-+ x * pow coth x * x 10
-
 + * 80 tanh x * 160 x
 * + tanh x / * 4 x 2 80
 + * tanh x 80 * 80 * x 2
@@ -6897,13 +6430,6 @@ d x + 1 + x + * -10 cosh x * x cosh x
 + 1 d x * cosh x + -10 x
 + + * + x -10 sinh x cosh x 1
 
-d x * -1 * x + 10 * 10 pow coth 10
-
-+ 1 * x pow coth 7
-+ 1 * pow coth 7 x
-pow + * pow coth 7 x 1 1
-* 1 + * pow coth 7 x 1
-
 d x * + x * x cosh x sin + x * 4 pi
 
 d x + pow x -10 + cos x cosh x
@@ -6920,12 +6446,6 @@ d x + * -10 sinh x / 10 sec x
 
 d x + 1 + pow sec x -1 * x sinh x
 d x + * x sinh x pow sec x -1
-
-d x pow coth + x * -10 6
-* d x pow coth + x -60 1
-pow d x pow coth + -60 x 1
-d x pow coth + -60 x
-+ 0 d x pow coth + -60 x
 
 d x * x + 1 + acosh x sinh x
 + 1 d x * x + acosh x sinh x
@@ -7097,8 +6617,6 @@ d x + -10 + pow x 2 * x cosh x
 + * x 2 d x * x cosh x
 + cosh x * + 2 sinh x x
 + cosh x * - -2 sinh x * x -1
-
-d x * -10 * pow x -9 + 1 pow coth x
 
 d x + x + atan x + sinh x tan x
 
@@ -7324,23 +6842,6 @@ sinh + x 6
 d x * 90 + * -1 sinh x * x cosh x
 d x * 90 - * cosh x x sinh x
 
-d x + 10 * -10 asinh pow coth 10
-pow / d x asinh pow coth 10 -0.1 1
-d x + * -10 asinh pow coth 10 10
-d x - * -10 asinh pow coth 10 -10
-d x - * asinh pow coth 10 -10 0
-+ 0 d x * -10 asinh pow coth 10
-/ * d x asinh pow coth 10 -10 1
-pow * -10 d x asinh pow coth 10 1
-* 1 d x * -10 asinh pow coth 10
-d x * -10 asinh pow coth 10
-/ -10 / 1 d x asinh pow coth 10
-/ / d x asinh pow coth 10 -0.1 1
-+ 0 / d x asinh pow coth 10 -0.1
-/ d x asinh pow coth 10 -0.1
-/ d x - asinh pow coth 10 0 -0.1
-* 1 / d x asinh pow coth 10 -0.1
-
 * 100 + 1 sinh x
 + * 2 * 25 * sinh x 2 100
 + 100 * / 2 / 2 sinh x 100
@@ -7417,17 +6918,6 @@ d x * x * + cosh x 1 -10
 + -10 * + cosh x * sinh x x -10
 * -10 - + * x sinh x cosh x -1
 - * d x * x cosh x -10 10
-
-* x + x pow coth 10
-* 1 + * x pow coth 10 * x x
-+ pow x 2 * x pow coth 10
-+ * pow coth 10 x * x x
-* + pow coth 10 x x
-pow + * pow coth 10 x * x x 1
-* 1 * x + x pow coth 10
-pow * x + pow coth 10 x 1
-pow + pow x 2 * x pow coth 10 1
-* 1 + * pow coth 10 x pow x 2
 
 * -10 sinh * x pow 9 -1
 * -10 sinh * pow 9 -1 x
@@ -7734,11 +7224,6 @@ sinh + x pow sec - 120 * pi -3 -1
 sinh + pow sec + 120 * 3 pi -1 x
 sinh + x pow sec - -120 * pi 3 -1
 
-+ pow coth + 1 x -1
-+ -1 pow coth + x 1
-pow + -1 pow coth + x 1 1
-* 1 + pow coth + 1 x -1
-
 d x + -80 * 10 cosh x
 * 5 - exp x exp * -1 / x 1
 * 10 sinh / 2 / 4 * 2 x
@@ -7902,10 +7387,6 @@ d x + -80 * 10 cosh x
 * -1 * x + 10 * -1 * pow x -10 cosh x
 - * cosh x pow x -9 * 10 x
 + * -10 x * cosh x pow x -9
-
-+ 1 ln pow x pow coth 3120
-+ 1 + * pow coth 3120 ln x ln 1
-+ 1 + ln pow x pow coth 3120 ln 1
 
 d x + x + cosh x + 6 ln * -1 x
 + 1 + - sinh x 0 d x ln x
@@ -8128,9 +7609,6 @@ pow - 1 - pow tanh x 2 -10 1
 pow + -10 d x tanh x 1
 + pow sech * 8 * 0.125 x 2 -10
 
-tan * x pow coth 120
-* / 1 cot * x pow coth 120 1
-
 d x + cosh * 7 pi tan x
 + d x + cosh * -7 pi tan x 0
 + d x + cosh * 7 pi tan x 0
@@ -8183,9 +7661,6 @@ d x * 10 * x + -1 + x sinh x
 + * 20 tanh x pow / 1 cos x -1
 + / 20 / 1 tanh x pow sec x -1
 pow + pow sec x -1 * 20 tanh x 1
-
-d x * x + -9 + x pow coth 10
-d x * x + + pow coth 10 -9 x
 
 d x + * -10 sinh x sin + 10 + x * 6 pi
 
@@ -8489,12 +7964,6 @@ d x + pow cot x -1 sinh * x 10
 + 10 * -10 * pow 6 -1 sinh x
 + * * pow 6 -1 sinh x -10 10
 
-* pow x 2 + 1 pow coth 120
-+ pow x 2 * pow coth 120 pow x 2
-* pow x 2 + pow coth 120 1
-* 1 * + pow coth 120 1 pow x 2
-pow * + 1 pow coth 120 pow x 2 1
-
 * x tanh sin + 1 * 4 pi
 * tanh sin * + * -4 pi -1 -1 x
 * x tanh sin * -1 - -1 * 4 pi
@@ -8516,43 +7985,6 @@ d x tanh + 210 * -10 x
 + pow x -9 * pow x 2 cosh x
 + * cosh x pow x 2 pow x -9
 
-+ x * -10 * x tan pow coth 1
-* x + 1 / 1 / cot coth -10
-* + / -10 * csc coth cos coth 1 x
-+ / * x -10 * csc coth cos coth x
-* 1 * + / -10 cot coth 1 x
-* + * * sin coth sec coth -10 1 x
-+ x * * x -10 * sin coth sec coth
-+ x * -10 / * x sin coth cos coth
-* x + 1 * -10 tan coth
-* x + / -10 / cos coth sin coth 1
-* + x / x / cot coth -10 1
-+ / sin coth / cos coth * x -10 x
-* x + / * -10 sin coth cos coth 1
-* + / -10 cot coth 1 x
-+ x / x / * cos coth csc coth -10
-pow + x * * x tan coth -10 1
-pow * + * tan coth -10 1 x 1
-pow + x / -10 / cot coth x 1
-+ x / * -10 x cot coth
-* + / -10 / 1 tan coth 1 x
-* + * tan coth * -10 x x 1
-+ x / x / / 1 tan coth -10
-+ * * x tan coth -10 x
-+ x / -10 / / cos coth sin coth x
-* + x * / x cot coth -10 1
-+ x / -10 / / cot coth x 1
-+ x / -10 / cot coth x
-pow * + / -10 cot coth 1 x 1
-pow + x / * -10 x cot coth 1
-+ / * -10 x / 1 tan coth x
-* 1 * + 1 * tan coth -10 x
-
-* exp pow coth 10 -1
-* -1 exp pow coth 10
-pow * -1 exp pow coth 10 1
-* * exp pow coth 10 -1 1
-
 d x + pow csc x -1 + * 20 x tanh x
 + 20 d x + pow csc x -1 tanh x
 
@@ -8560,16 +7992,7 @@ d x + pow csc x -1 + * 20 x tanh x
 
 d x + x + pow csc + -1 * 2 pi -1 cosh x
 
-d x + * -10 x * x pow coth 10
-+ -10 d x * x pow coth 10
-pow + d x * pow coth 10 x -10 1
-+ 0 + d x * x pow coth 10 -10
-* 1 d x * x + -10 pow coth 10
-d x + * x pow coth 10 * -10 x
-
 + * -10 cosh asin x sin + x * 8 pi
-
-d x * x + x * -10 pow coth 120
 
 d x + * -1 * x + 10 * 10 x tanh x
 + pow sech x 2 - -10 * x 20
@@ -8603,28 +8026,7 @@ pow * x + sinh x acosh x 1
 / + acosh x sinh x / 1 x
 * x + sinh / 1 / 1 x acosh x
 
-+ 1 tan pow coth 10
-+ tan * * 0.5 pow coth 10 2 1
-+ 1 / 1 / 1 tan pow coth 10
-+ tan * / pow coth 10 2 2 1
-+ 1 / 1 cot pow coth 10
-- 1 tan * 2 * pow coth 10 -0.5
-+ / sin pow coth 10 cos pow coth 10 1
-- 1 tan * -2 / pow coth 10 2
-- 1 * -1 / 1 cot pow coth 10
-+ 1 * -1 * tan pow coth 10 -1
-+ 1 / 1 / cot pow coth 10 1
-+ * sin pow coth 10 sec pow coth 10 1
-+ 1 tan / 2 / 2 pow coth 10
-- 1 tan / -2 / 2 pow coth 10
-- 1 tan * -2 * 0.5 pow coth 10
-- 1 * -1 tan pow coth 10
-+ tan pow coth 10 1
-
 d x cosh + x * -10 pow csc + -1 * 8 pi -1
-
-d x * pow x -10 + 1 pow coth 10
-d x * + pow coth 10 1 pow x -10
 
 d x * 10 + 6 + x cosh x
 + * * -1 * -1 sinh x 10 10
@@ -8695,16 +8097,6 @@ d x * 10 sinh + -20 * 10 x
 d x * sinh + * 10 x -20 10
 * d x sinh - -20 * x -10 10
 
-d x * -10 cos + x pow coth 120
-
-+ * -10 x * -10 pow coth 10
-* + x pow coth 10 -10
-pow * + pow coth 10 x -10 1
-pow + * -10 x * pow coth 10 -10 1
-+ * x -10 * -10 pow coth 10
-* + * pow coth 10 -10 * x -10 1
-* 1 * + pow coth 10 x -10
-
 d x + * x asinh x * -10 * x sinh x
 d x * + * -10 sinh x asinh x x
 
@@ -8762,30 +8154,6 @@ sinh * x pow csc + -1020 * 7 pi -1
 
 d x + x + pow sec x -1 + acos x tanh x
 
-d x + -10 + * -10 pow coth 10 -1
-+ * -100 * d x coth pow coth 9 0
-* 10 * * -10 d x coth pow coth 9
-+ 0 d x * pow coth 10 -10
-d x + + * -10 pow coth 10 -1 -10
-pow * d x pow coth 10 -10 1
-pow d x + -10 * -10 pow coth 10 1
-d x + -1 * pow coth 10 -10
-* 1 d x + -11 * pow coth 10 -10
-pow d x + * -10 pow coth 10 -11 1
-* * * -100 d x coth pow coth 9 1
-* 1 d x + * pow coth 10 -10 -10
-+ d x + -10 * pow coth 10 -10 0
-+ d x + * -10 pow coth 10 -1 0
-pow d x + -1 * -10 pow coth 10 1
-* pow coth 9 * -100 d x coth
-d x * pow coth 10 -10
-+ d x + -11 * -10 pow coth 10 0
-d x + -10 * pow coth 10 -10
-* d x + -1 * -10 pow coth 10 1
-* d x * -10 pow coth 10 1
-d x + -11 * -10 pow coth 10
-pow * -100 * d x coth pow coth 9 1
-
 * x + x + * -10 * x sinh x cos x
 
 + * 620 x * x sinh x
@@ -8822,19 +8190,9 @@ d x * 10 * x + x cosh x
 
 * + x * x + 20 x cosh x
 
-* x + 1 pow coth 1
-* 1 * + coth 1 x
-+ x * coth x
-* 1 + * x coth x
-* + 1 coth x
-pow + x * x coth 1
-pow * x + 1 coth 1
-
 d x + * x cosh x sin + 1 * 1 pi
 
 + pow csc + -1 + * 4 pi * -1 x -1 tanh x
-
-d x pow sec * x pow coth 1020 -1
 
 * 20 + -2 * 3 cosh x
 * 1 + -40 * * cosh x 20 3
@@ -8891,17 +8249,7 @@ pow + * 60 cosh x -40 1
 + / 1 * 0.016666666666666666 / 1 cosh x -40
 pow + * * 20 cosh x 3 -40 1
 
-* -1 * x * pow coth * 9 pi 10
-* pow coth * pi 9 * * x -1 10
-* 1 * * -10 pow coth * 9 pi x
-* pow coth * pi 9 * x -10
-pow * pow coth * 9 pi * x -10 1
-
 d x * x + * -10 sinh x sin + x * 1 pi
-
-d x + * -100 x * -10 * x pow coth 10
-d x * * x -10 + pow coth 10 10
-+ d x * -10 * pow coth 10 x -100
 
 d x + x + acosh x + sin x sinh x
 
@@ -9566,9 +8914,6 @@ d x + * -10 8 + cosh x sinh x
 
 d x * -10 sinh + 10 sin + x * 5 pi
 
-d x + 10 + pow cot x 10 pow coth x
-d x + pow cot x 10 pow coth x
-
 + * -10 sinh x cos asinh x
 + / -10 / 1 sinh x cos asinh x
 * + * sinh x -10 cos asinh x 1
@@ -9750,23 +9095,6 @@ d x * 10 - * 62 x sinh x
 
 * -10 cosh pow csc + -10 * 3 pi -1
 * cosh pow csc + -10 * 3 pi -1 -10
-
-+ x tan pow coth 120
-- x tan * -0.5 * 2 pow coth 120
-+ x / 1 / cot pow coth 120 1
-- x tan * / pow coth 120 2 -2
-- x * tan pow coth 120 -1
-+ tan * -1 * -1 pow coth 120 x
-+ tan * 0.5 * 2 pow coth 120 x
-- x tan / -2 / 2 pow coth 120
-+ / 1 / 1 tan pow coth 120 x
-+ tan / 2 / 2 pow coth 120 x
-+ x * sec pow coth 120 sin pow coth 120
-+ / sin pow coth 120 cos pow coth 120 x
-+ tan * / pow coth 120 2 2 x
-- x tan * * 0.5 pow coth 120 -2
-- x * / 1 cot pow coth 120 -1
-+ x / 1 cot pow coth 120
 
 d x * 10 + * -1 sinh x * 12 x
 + * d x * -0.5 sinh x 20 120
@@ -10509,31 +9837,10 @@ pow + 10 * -10 tanh * 20 x 1
 
 d x + x * x + x * -10 * x sinh x
 
-d x + x + * -10 pow coth 10 -1
-d x + -1 + * pow coth 10 -10 x
-pow d x + x * pow coth 10 -10 1
-pow + 1 d x * -10 pow coth 10 1
-+ 1 * * d x coth pow coth 9 -100
-+ 1 * -10 d x pow coth 10
-+ 0 + 1 * d x pow coth 10 -10
-* 1 d x + * pow coth 10 -10 x
-+ d x + x * -10 pow coth 10 0
-* + d x * pow coth 10 -10 1 1
-d x + x * -10 pow coth 10
-+ 1 d x + * -10 pow coth 10 -1
-
 d x * -1 * x * + -10 * 10 x cosh x
 
 + -10 + * -10 tanh x * x sin x
 + -10 + * tanh x -10 * x sin x
-
-+ 10 + * -10 pow coth 10 -1
-+ + 10 * -10 pow coth 10 -1
-pow + * -10 pow coth 10 9 1
-* + 9 * -10 pow coth 10 1
-+ * pow coth 10 -10 9
-* + -1 + 10 * pow coth 10 -10 1
-pow + -1 + 10 * -10 pow coth 10 1
 
 d x sinh + -10 + pow 8 -1 * -10 x
 
@@ -10869,17 +10176,6 @@ d x + * -20 cos x cosh x
 + sinh x d x / -20 / 1 cos x
 + + d x / -20 sec x sinh x 0
 
-* x pow csc pow coth 10 -1
-* pow / 1 sin pow coth 10 -1 x
-* 1 * x pow csc pow coth 10 -1
-* pow csc pow coth 10 -1 x
-* x pow / csc pow coth 10 1 -1
-pow * x pow csc pow coth 10 -1 1
-
-* pow coth 120 -1
-* 1 * pow coth 120 -1
-pow * pow coth 120 -1 1
-
 d x + x + * x + x ln x tanh x
 
 d x * 10 sinh + -20 * 20 x
@@ -10906,11 +10202,6 @@ d x * 10 sinh + -20 * 20 x
 * 10 * * exp x / cos x 1 x
 * x * exp x / 10 sec x
 * 10 / x / sec * -1 x exp x
-
-* x pow coth + -10 * 10 x
-* x pow coth + * x 10 -10
-pow * pow coth + -10 * x 10 x 1
-* * x pow coth + * 10 x -10 1
 
 d x * -10 cos + x cosh cos + 10 * 2 pi
 
@@ -11238,14 +10529,6 @@ d x * 10 + x * -1 atan tanh x
 * 70 - / x / 1 sinh x cosh x
 * 70 - * sinh x x cosh * x -1
 
-* x + 1 pow coth 250
-+ x * x pow coth 250
-* 1 * x + 1 pow coth 250
-pow * + 1 pow coth 250 x 1
-* + * x pow coth 250 x 1
-pow + x * pow coth 250 x 1
-* + 1 pow coth 250 x
-
 + * x cos x + ln x tanh x
 + tanh x + * x cos x ln x
 + + tanh x ln x / x sec x
@@ -11288,16 +10571,6 @@ d x + * x ln x + asin x cosh x
 + / + -10 x / 1 cosh x -9
 + * - -10 * x -1 cosh x -9
 + -9 * + -10 x / cosh x 1
-
-d x + -10 + pow 1 -1 pow coth x
-d x + pow coth x -10
-+ d x + pow coth x -10 0
-* 1 d x + pow coth x -10
-+ d x pow coth x 0
-d x pow coth x
-* d x pow coth x 1
-pow d x pow coth x 1
-pow d x + -10 pow coth x 1
 
 d x + * x acos x + cosh x sin x
 
@@ -11393,11 +10666,6 @@ d x + x * sinh x pow x 2
 
 d x * x + -10 sinh + 10 x
 + d x * sinh + 10 x x -10
-
-d x * x + x * -10 * x pow coth 1
-d x * + 1 * -10 coth pow x 2
-d x * x + * * -10 coth x x
-d x * * x x + * coth -10 1
 
 + * -10 x * x cosh * 20 x
 * x + -10 cosh * -0.5 * 40 x
@@ -11525,15 +10793,6 @@ d x + x + * -10 * x + 10 x tanh x
 
 d x + 10 + cos + x * 5 pi tanh x
 
-* -1 * x + -1 * 10 * x pow coth 10
-* + * x * pow coth 10 -10 1 x
-- x * * * x 10 pow coth 10 x
-* - 1 * x * pow coth 10 10 x
-+ * * pow coth 10 -10 pow x 2 x
-* - * * pow coth 10 x -10 -1 x
-+ * * pow coth 10 x * -10 x x
-- x * pow coth 10 * 10 pow x 2
-
 d x cosh + -10 + x pow 5 -1
 
 d x + * -99 x + * 100 pow x 2 tanh x
@@ -11571,24 +10830,6 @@ d x + * -30 cosh x * 30 * x sinh x
 + * cosh x / 60 / 2 x 0
 
 d x + * -130 sinh x * 130 * x cosh x
-
-d x + x + pow coth 1 -1
-d x + coth x
-+ d x + coth + -1 x 0
-* 1 d x + coth + -1 x
-pow d x + coth x 1
-+ d x coth 1
-pow d x + + -1 x coth 1
-d x + + -1 x coth
-+ d x + coth -1 1
-pow + d x coth 1 1
-* 1 d x + coth x
-* 1 + d x + -1 coth 1
-+ 0 + d x + -1 coth 1
-+ 0 d x + x coth
-pow + d x + coth -1 1 1
-+ + 1 d x coth 0
-* + 1 d x coth 1
 
 + * -10 x + * x + 10 x cosh x
 + cosh x - 0 * pow x 2 -1
@@ -11672,11 +10913,6 @@ pow * pow csc sinh x -1 cosh x 1
 * * pow csc sinh x -1 cosh x 1
 
 d x * + * -10 x cos + 10 * 7 pi cosh x
-
-* -10 pow coth * x 4
-* -10 pow coth * 4 x
-* 1 * -10 pow coth * 4 x
-pow * -10 pow coth * 4 x 1
 
 + * -10 x + ln x + sin x sinh x
 
@@ -12158,14 +11394,7 @@ d x + cosh x sin + -10 + * 7 pi * 10 x
 + * -10 cosh x + cos x sin x
 + + cos x sin x * -10 cosh x
 
-* -1 ln pow coth x
-
 d x * x tanh pow 3 -1
-
-d x * x + x * x pow coth 60
-d x * * x x + pow coth 60 1
-d x * + x * x pow coth 60 x
-d x * + pow coth 60 1 pow x 2
 
 + x + pow cot x -1 + acosh x cosh x
 
@@ -12178,15 +11407,6 @@ d x * + pow coth 60 1 pow x 2
 - -50 - * 10 x * cosh x -10
 + -50 * + cosh x x -10
 + -50 * + x / cosh x 1 -10
-
-d x * x + -10 pow coth 8
-d x * + -10 pow coth 8 x
-* d x * x + pow coth 8 -10 1
-d x + * -10 x * pow coth 8 x
-pow + d x * pow coth 8 x -10 1
-+ d x * x + pow coth 8 -10 0
-
-* x ln * x pow coth 10
 
 * 60 + 1 * 2 cosh x
 + 60 / 30 / 1 * 4 cosh x
@@ -12355,8 +11575,6 @@ pow pow sinh pow 8 -1 -10 1
 pow sinh * * pow 8 -1 -0.25 -4 -10
 * 1 pow sinh pow 8 -1 -10
 pow * -1 sinh * pow 8 -1 -1 -10
-
-d x * x pow sin pow coth 10 -1
 
 + * -10 * x pow 1 -1 cosh x
 
@@ -12945,9 +12163,6 @@ d x cosh sin * pow x -10 x
 + d x cosh sin pow x -9 0
 + d x cosh sin * -1 pow x -9 0
 
-d x tan * x pow coth 10
-+ d x tan * pow coth 10 x 0
-
 d x * -1 * x + -1 * 10 cosh + -10 x
 
 d x * -10 * x + -1 + x * -1 cosh x
@@ -12988,16 +12203,6 @@ pow * * pow cosh x -1 sinh x -80 1
 pow + sinh x + 60 pow csc x -1 1
 + + pow csc x -1 60 / sinh x 1
 + + sinh x pow csc x -1 60
-
-d x + -10 pow coth pow 2 -1
-d x pow coth pow 2 -1
-+ 0 d x pow coth pow 2 -1
-* 1 d x + -10 pow coth pow 2 -1
-+ 0 d x + pow coth pow 2 -1 -10
-* 1 d x pow coth pow 2 -1
-d x + pow coth pow 2 -1 -10
-pow d x + pow coth pow 2 -1 -10 1
-pow d x pow coth pow 2 -1 1
 
 d x * pow + 10 sin + 10 * 5 pi -10 tanh x
 
@@ -13349,33 +12554,6 @@ d / * 2 x 2 * tanh x -10
 + x * -10 cosh sin - -10 * pi 5
 
 + pow x 2 + pow sec + x * 9 pi -1 cosh x
-
-d x * pow coth 80 -1
-* * pow coth 79 d x coth -80
-* 1 * pow coth 79 * d x coth -80
-+ - 0 d x pow coth 80 0
-* 1 * -1 - d x pow coth 80 0
-* - 0 - d x pow coth 80 0 1
-pow * * d x coth pow coth 79 -80 1
-+ * * -80 pow coth 79 d x coth 0
-pow - 0 - d x pow coth 80 0 1
-+ d x * -1 pow coth 80 0
-pow - d x * pow coth 80 -1 0 1
-* -80 * pow coth 79 - d x coth 0
-pow d x * pow coth 80 -1 1
-+ 0 - 0 - d x pow coth 80 0
-+ 0 - d x * pow coth 80 -1 0
-* 1 - 0 d x pow coth 80
-* * * -1 d x coth pow coth 79 80
-d x * -1 pow coth 80
-- d x * -1 pow coth 80 0
-- 0 d x pow coth 80
-- 0 * 80 * pow coth 79 d x coth
-- - * d x pow coth 80 -1 0 0
-* d x * -1 pow coth 80 1
-pow - 0 d x pow coth 80 1
-- - - 0 d x pow coth 80 0 0
-- 0 - d x pow coth 80 0
 
 + x * x + -10 * -10 * x sinh x
 * x + * * sinh x -10 x -9
@@ -13775,14 +12953,6 @@ pow * x tanh * x + x -9 1
 / x / 1 tanh * + x -9 x
 
 d x + x * cos x sinh cos + x * 2 pi
-
-* 100 * pow coth 10 -1
-* -100 pow coth 10
-* 1 * 100 * -1 pow coth 10
-* -1 * pow coth 10 100
-pow * -1 * pow coth 10 100 1
-* 1 * pow coth 10 -100
-pow * pow coth 10 -100 1
 
 * -10 + -5 cosh x
 + 40 * pow sinh * -0.5 x 2 -20
@@ -14693,8 +13863,6 @@ sinh * 10 * x 7
 
 d x + x + pow cot x -1 + cosh x ln x
 
-d x pow csc + x pow coth 120 -1
-
 d x * -10 * pow 4 -1 cosh x
 pow * * pow 4 -1 sinh x -10 1
 d x * * -10 pow 4 -1 cosh x
@@ -14704,10 +13872,6 @@ d x * * -10 pow 4 -1 cosh x
 * * pow 4 -1 * sinh x -10 1
 
 + 10 + pow sec x -1 + * -10 x tanh x
-
-* pow coth 250 -1
-* * pow coth 250 -1 1
-pow * -1 pow coth 250 1
 
 d x + * 60 x * 60 cosh x
 + 60 * 30 * 2 - sinh x 0
@@ -14892,20 +14056,11 @@ d x + * 60 x * 60 cosh x
 + + / sin x tan x sinh x -10
 - -10 - sinh * -2 / x 2 cos x
 
-d x * x * 1 pow coth 10
-pow d x * x pow coth 10 1
-* 1 d x * pow coth 10 x
-+ pow coth 10 * d x pow coth 10 x
-+ 0 d x * x pow coth 10
-d x * x pow coth 10
-
 * + 620 x cosh x
 + * cosh x x * 620 cosh x
 + * x cosh * -1 x * 620 cosh x
 + / x / 1 cosh x * 620 cosh x
 + * 620 / cosh x 1 * x cosh x
-
-d x ln * x pow coth 9
 
 * -10 + 2 + x * -1 sinh x
 - * -10 + 2 x * -10 sinh x
@@ -15015,11 +14170,6 @@ d x * pow csc + -10 x -1 cosh x
 + * * x 20 + 1 sinh x -60
 + * + * sinh x x x 20 -60
 
-* pow x -10 * pow coth 10 -1
-* * pow x -10 -1 pow coth 10
-* * * pow x -10 pow coth 10 -1 1
-pow * -1 * pow coth 10 pow x -10 1
-
 * pow sec + 10 * 1 pi -1 + x tanh x
 * pow sec - -10 pi -1 + tanh x x
 * pow sec + pi 10 -1 + tanh x x
@@ -15084,11 +14234,6 @@ pow + * sinh x x * x 30 1
 / + 30 sinh x / / 1 x 1
 
 d x * -10 cosh + x pow 8 -1
-
-d x + x cos pow coth 20
-+ d x + x cos pow coth 20 0
-+ + d x cos pow coth 20 1 0
-+ - d x cos pow coth 20 -1 0
 
 + * x asin x * -10 * x cosh x
 + * x * cosh x -10 * x asin x
@@ -15188,22 +14333,7 @@ pow * 1020 + x cosh x 1
 + cos acosh x + x tanh x
 + + / 1 sec acosh x tanh x x
 
-+ * 3 pi * -10 pow coth x
-pow + * 3 pi * pow coth x -10 1
-* 1 + * pi 3 * pow coth x -10
-
 d x sin + * 8 pi cosh * 7 pi
-
-* x + x pow coth 60
-* 1 + * pow coth 60 x * x x
-pow * x + pow coth 60 x 1
-+ * x pow coth 60 * x x
-* + pow x 2 * pow coth 60 x 1
-* + x pow coth 60 x
-* * + x pow coth 60 x 1
-pow + * x x * x pow coth 60 1
-pow + * x pow coth 60 pow x 2 1
-+ pow x 2 * pow coth 60 x
 
 d x * x + * -10 sin + x * 1 pi cosh x
 
@@ -15485,9 +14615,6 @@ d x * + -10 cosh - 10 x x
 d x + x * -10 * x + cos x sinh x
 
 * pow 5 -1 * csc + -120 * 7 pi sinh x
-
-d x + 10 * -10 * x acosh pow coth 10
-d x * acosh pow coth 10 * -10 x
 
 d x + -10 + cos + * 10 x * 2 pi sinh x
 
@@ -15911,9 +15038,6 @@ sinh * pow 1 -1 csc + -1 * 3 pi
 + cosh * x -1 + 20 pow csc x -1
 pow + 20 + cosh x pow csc x -1 1
 
-d x * x * pow 9 -10 pow coth 10
-d x * * x pow 9 -10 pow coth 10
-
 d x + * pow x -10 ln x cosh x
 
 + 10 * -1 * + 100 * 10 x cosh x
@@ -15968,26 +15092,6 @@ pow + cosh x * - ln x 0 -130 1
 * 1 + * ln / x 1 -130 cosh x
 + cosh x * -130 ln / 2 / 2 x
 * + * -130 ln x cosh x 1
-
-d x tan pow coth 1
-+ 0 d x tan * / coth 2 2
-+ 0 d x / sin coth / 1 sec coth
-+ d x / 1 / 1 tan coth 0
-+ d x / sin coth cos * -1 coth 0
-+ * pow sec coth 2 d x coth 0
-+ d x tan * * -1 coth -1 0
-+ d x / sin coth cos coth 0
-+ d x tan * * 0.5 coth 2 0
-+ 0 d x / 1 / cot coth 1
-+ 0 d x * sin coth / 1 cos coth
-+ 0 d x * / sec coth 1 sin coth
-+ d x tan coth 0
-+ d x / 1 * csc coth cos coth 0
-+ 0 d x * sin coth sec * -1 coth
-+ d x / 1 / cos coth sin coth 0
-+ 0 d x * sin coth sec coth
-+ d x tan / 2 / 2 coth 0
-+ 0 d x / 1 cot coth
 
 d x * 10 * x * cos + x * 9 pi cosh x
 
@@ -16667,16 +15771,6 @@ d x * -10 + -6 sinh x
 * -10 - cosh * x -1 0
 * 2 * -5 cosh * -0.5 * 2 x
 
-+ -9 * -10 cos pow coth 10
-+ -9 * cos * pow coth 10 -1 -10
-+ * -10 / 1 sec pow coth 10 -9
-+ -9 / -10 sec pow coth 10
-+ -9 / -10 / 1 cos pow coth 10
-+ -9 * cos pow coth 10 -10
-+ -9 / -10 sec * pow coth 10 -1
-+ -9 / 1 / sec pow coth 10 -10
-+ -9 * / cos pow coth 10 1 -10
-
 d x * -10 * x + pow sec x -1 sinh x
 
 + -10 + * -10 cos x cosh x
@@ -16755,10 +15849,6 @@ pow + / tanh pow 6 -1 1 x 1
 + tanh / 2 / 2 pow 6 -1 x
 
 d x tanh ln pow 10 x
-
-* x + 1 + x * -10 pow coth 10
-+ x * x + * pow coth 10 -10 x
-* x + * -10 pow coth 10 + 1 x
 
 d x + * x + x sinh x acos x
 d x + * + x sinh x x acos x
@@ -17144,32 +16234,6 @@ pow + cosh acos x pow sec x -1 1
 * pow x -10 sinh pow sec + 20 * 6 pi -1
 
 * x + 1 + * -10 x * 100 * x cosh x
-
-d x * pow coth 120 -1
-* 1 - d x * -1 pow coth 120 0
-+ - - 0 d x pow coth 120 0 0
-- - d x * -1 pow coth 120 0 0
-+ * d x coth * -120 pow coth 119 0
-+ 0 - 0 d x pow coth 120
-+ * - d x pow coth 120 0 -1 0
-* * * d x coth 120 pow coth 119 -1
-pow - 0 - d x pow coth 120 0 1
-- 0 d x pow coth 120
-* 1 - 0 - d x pow coth 120 0
-pow - d x * pow coth 120 -1 0 1
-pow - 0 d x pow coth 120 1
-* 1 * d x coth * -120 pow coth 119
-- 0 - d x pow coth 120 0
-- * -1 d x pow coth 120 0
-- 0 - - d x pow coth 120 0 0
-* 120 * - 0 d x coth pow coth 119
-pow * pow coth 119 * d x coth -120 1
-* -120 * pow coth 119 d x coth
-pow d x * pow coth 120 -1 1
-* 1 * d x pow coth 120 -1
-+ 0 d x * pow coth 120 -1
-* 1 - 0 d x pow coth 120
-* * pow coth 119 -120 - d x coth 0
 
 d x * sin + 1 x sinh x
 + d x * sinh x sin + 1 x 0
@@ -18069,14 +17133,6 @@ cosh * * -2 / * ln x 480 4 -1
 cosh * 2 / * 120 ln x 1
 cosh * / 1 * / 2 ln x 0.004166666666666667 2
 
-d x + -10 cos pow coth 10
-+ - d x cos pow coth 10 0 0
-+ d x / 1 sec pow coth 10 0
-+ d x cos pow coth 10 0
-+ d x / cos pow coth 10 1 0
-+ d x + cos pow coth 10 -10 0
-+ d x cos * pow coth 10 -1 0
-
 d x + 20 + pow sec x -1 * -10 sinh x
 d x + * sinh x -10 pow sec x -1
 
@@ -18087,15 +17143,6 @@ d x * x + 1 cosh + -10 * -10 x
 d x * pi + * 6 x * -5 cosh x
 
 d x + * -10 sin x + sinh x tanh x
-
-+ x * -10 cos pow coth 10
-+ x / -10 / sec pow coth 10 1
-+ x * / cos pow coth 10 1 -10
-+ x / -10 / 1 cos pow coth 10
-+ x * -10 / 1 sec pow coth 10
-+ x / -10 sec * -1 pow coth 10
-+ x / -10 sec pow coth 10
-+ * -10 cos * pow coth 10 -1 x
 
 + pow sec acosh x -1 cosh x
 * 1 + pow sec acosh x -1 cosh x
