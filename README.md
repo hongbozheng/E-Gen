@@ -172,18 +172,19 @@ expressions
 * `<filter>` - flag to indicate whether to filter all generated equivalent expressions
 * `<n_exprs>` - number of expressions to keep
 
-##### Create filtered dataset (expression pairs)
-1. Remove expressions with `0` equivalent expressions
-2. Filter the ones with more than `<n_exprs>` equivalent
-expressions
-3. Create expressions pairs
-4. Classify all expression pairs into different classes & categories
+#### Verify Dataset
+##### Check command line input help
 ```
-./create_dataset.py -p <pair> -f <filter> -n <n_exprs>
+./verify.py -h
 ```
-* `<pair>` - flag to indicate whether to create expression pairs
-* `<filter>` - flag to indicate whether to filter all generated equivalent expressions
-* `<n_exprs>` - number of expressions to keep
+##### Verify dataset & Create verified dataset
+1. Create expression pairs
+2. Verify if a given expression pair is equivalent **(Note: Verification is time consuming)**
+3. Create verified dataset
+4. Create incorrect dataset
+```
+./verify.py
+```
 
 #### Statistics
 ##### Check command line input help
