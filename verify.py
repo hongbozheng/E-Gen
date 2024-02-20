@@ -414,9 +414,9 @@ def create_dataset(data_dir: str, n: int, tol: float, secs: int, verified_dir: s
 
                 equiv_exprs = []
 
-    logger.log_info(f"Total number of corrects:   {n_corrects}")
-    logger.log_info(f"Total number of incorrects: {n_incorrects}")
-    logger.log_info(f"Accuracy: {(n_corrects/(n_corrects+n_incorrects)):.4f}")
+    logger.log_info(f"Total number of correct expression pairs:   {n_corrects}")
+    logger.log_info(f"Total number of incorrect expression pairs: {n_incorrects}")
+    logger.log_info(f"Accuracy: {n_corrects/(n_corrects+n_incorrects)*100:.4f}%")
 
     return
 
