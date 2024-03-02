@@ -1,5 +1,4 @@
 .DS_Store
 .idea/
-target/
-__pycache__/
 data/
+__pycache__/
