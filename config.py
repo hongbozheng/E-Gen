@@ -1,10 +1,20 @@
 import logger
 
-log_level = logger.LogLevel.info
 
-operator = {'Add':'+',
-            'Sub':'-',
-            'Mul':'*',
-            'Div':'/'}
-operator_list = operator.values()
-var_list = ['x','y']
+colors = [
+    "cyan",
+    "orange",
+    "magenta",
+    "lime",
+    "pink",
+    "yellow",
+    "purple",
+    "skyblue",
+    "coral",
+    "royalblue",
+    "violet",
+    "orangered",
+    "navy",
+]
+
+log_level = logger.LogLevel.info

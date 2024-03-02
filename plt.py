@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 
+import config
+import logger
 import torch
 import umap.umap_ as umap
 import matplotlib.pyplot as plt
@@ -32,22 +34,6 @@ def main() -> None:
         "asin",
         "acos",
         "atan",
-    ]
-
-    colors = [
-        "cyan",
-        "orange",
-        "magenta",
-        "lime",
-        "pink",
-        "yellow",
-        "purple",
-        "skyblue",
-        "coral",
-        "royalblue",
-        "violet",
-        "orangered",
-        "navy",
     ]
 
     # color_cycle = color_cycle = [colors[i // 30 % len(colors)] for i in range(embeds.shape[0])]
