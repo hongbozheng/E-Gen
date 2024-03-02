@@ -33,9 +33,9 @@ for less or more logging.
 mod macros;
 
 #[doc(hidden)]
-pub mod test;
+// pub mod test;
 
-pub mod tutorials;
+// pub mod tutorials;
 
 mod cli;
 mod config;
