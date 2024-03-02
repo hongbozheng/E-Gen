@@ -27,7 +27,7 @@ for less or more logging.
 
 */
 #![doc = "## Simple Example\n```"]
-#![doc = include_str!("../tests/simple.rs")]
+// #![doc = include_str!("../tests/simple.rs")]
 #![doc = "\n```"]
 
 mod macros;
