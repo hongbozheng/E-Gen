@@ -27,15 +27,15 @@ for less or more logging.
 
 */
 #![doc = "## Simple Example\n```"]
-#![doc = include_str!("../tests/simple.rs")]
+// #![doc = include_str!("../tests/simple.rs")]
 #![doc = "\n```"]
 
 mod macros;
 
 #[doc(hidden)]
-pub mod test;
+// pub mod test;
 
-pub mod tutorials;
+// pub mod tutorials;
 
 mod cli;
 mod config;
