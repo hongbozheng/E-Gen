@@ -10,12 +10,12 @@ import tqdm
 
 
 def embedding_algebra(
-        embedding_filepath: str,
+        embeddings_filepath: str,
         exprs_filepath: str,
         test_filepath: str,
         embedding_algebra_filepath: str,
 ) -> None:
-    embeddings = torch.load(f=embedding_filepath)
+    embeddings = torch.load(f=embeddings_filepath)
 
     exprs_file = open(file=exprs_filepath, mode='r')
     exprs = [line.strip() for line in exprs_file.readlines()]
@@ -73,17 +73,17 @@ def embedding_algebra(
 
 def main() -> None:
     parser = argparse.ArgumentParser(prog="embed_algebra", description="embedding algebra")
-    parser.add_argument("--embedding_filepath", "-p", type=str, required=True, help="embedding .pt filepath")
+    parser.add_argument("--embeddings_filepath", "-p", type=str, required=True, help="embeddings .pt filepath")
     parser.add_argument("--exprs_filepath", "-e", type=str, required=True, help="exprs pool filepath")
     parser.add_argument("--test_filepath", "-t", type=str, required=True, help="test filepath")
 
     args = parser.parse_args()
-    embedding_filepath = args.embedding_filepath
+    embeddings_filepath = args.embeddings_filepath
     exprs_filepath = args.exprs_filepath
     test_filepath = args.test_filepath
 
     logger.log_info("Start embedding algebra test...")
-    embedding_algebra(embedding_filepath=embedding_filepath, exprs_filepath=exprs_filepath,
+    embedding_algebra(embeddings_filepath=embeddings_filepath, exprs_filepath=exprs_filepath,
                       test_filepath=test_filepath, embedding_algebra_filepath=config.EMBEDDING_ALGEBRA_FILEPATH)
     logger.log_info("Finish embedding algebra test.")
 
