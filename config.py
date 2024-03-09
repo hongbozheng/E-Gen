@@ -8,7 +8,7 @@ CLASSES = ["poly", "ln",
            "sinh", "cosh", "tanh",
            "csch", "sech", "coth",
            "asinh", "acosh", "atanh",
-           "acsch", "asech", "acosh",]
+           "acsch", "asech", "acoth",]
 CATEGORIES = ["general", "d",]
 
 DATA_DIR = "data"
@@ -22,8 +22,10 @@ EQUIV_EXPRS_FILEPATH = DATA_DIR + "/equiv_exprs.txt"
 DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
 
 EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"
-EXPR_PAIRS_VAL_FILEPATH = DATA_DIR + "/expr_pairs_val.txt"
-EXPR_PAIRS_TEST_FILEPATH = DATA_DIR + "/expr_pairs_test.txt"
+EXPRS_VAL_FILEPATH = DATA_DIR + "/exprs_val.txt"
+EXPRS_TEST_FILEPATH = DATA_DIR + "/exprs_test.txt"
+
+FUND_EXPRS_FILEPATH = DATA_DIR + "/fund_exprs.txt"
 
 SEED = 42
 LOG_LEVEL = logger.LogLevel.INFO
