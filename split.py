@@ -116,14 +116,14 @@ def main() -> None:
         logger.log_error(f"Make sure to remove '{config.EXPR_PAIRS_TRAIN_FILEPATH}' file first.")
         logger.log_error("Operation aborted.")
         exit(1)
-    if os.path.exists(path=config.EXPR_PAIRS_VAL_FILEPATH):
-        logger.log_error(f"'{config.EXPR_PAIRS_VAL_FILEPATH}' file already exists!")
-        logger.log_error(f"Make sure to remove '{config.EXPR_PAIRS_VAL_FILEPATH}' file first.")
+    if os.path.exists(path=config.EXPRS_VAL_FILEPATH):
+        logger.log_error(f"'{config.EXPRS_VAL_FILEPATH}' file already exists!")
+        logger.log_error(f"Make sure to remove '{config.EXPRS_VAL_FILEPATH}' file first.")
         logger.log_error("Operation aborted.")
         exit(1)
-    if os.path.exists(path=config.EXPR_PAIRS_TEST_FILEPATH):
-        logger.log_error(f"'{config.EXPR_PAIRS_TEST_FILEPATH}' file already exists!")
-        logger.log_error(f"Make sure to remove '{config.EXPR_PAIRS_TEST_FILEPATH}' file first.")
+    if os.path.exists(path=config.EXPRS_TEST_FILEPATH):
+        logger.log_error(f"'{config.EXPRS_TEST_FILEPATH}' file already exists!")
+        logger.log_error(f"Make sure to remove '{config.EXPRS_TEST_FILEPATH}' file first.")
         logger.log_error("Operation aborted.")
         exit(1)
 
@@ -138,8 +138,8 @@ def main() -> None:
     logger.log_info("Creating train, val, and test sets...")
     split(data_dir=config.DATA_VERIFIED_DIR, seed=config.SEED, test_pct=test_pct, val_pct=val_pct,
           expr_pairs_train_filepath=config.EXPR_PAIRS_TRAIN_FILEPATH,
-          expr_pairs_test_filepath=config.EXPR_PAIRS_TEST_FILEPATH,
-          expr_pairs_val_filepath=config.EXPR_PAIRS_VAL_FILEPATH)
+          expr_pairs_test_filepath=config.EXPRS_TEST_FILEPATH,
+          expr_pairs_val_filepath=config.EXPRS_VAL_FILEPATH)
     logger.log_info("Finish creating train, val, and test sets.")
 
     return

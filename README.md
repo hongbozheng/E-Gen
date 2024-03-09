@@ -16,7 +16,7 @@ cargo run
 ```
 cargo run -- -f <operator flag> -o <operator> -i <input filepath> -r <refactor filepath>
 ```
-- `<operator flag>` - optimized extraction flag
+- `<operator flag>` - operator flag
 - `<operator>` - operator
 - `<input filepath>` - input filepath
 - `<refactor filepath>` - refactor filepath
@@ -42,6 +42,31 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 - `<input_filepath>` - input filepath
 - `<output_filepath>` - output filepath
+
+#### Generate fundamental expressions
+##### Check command line input help
+```
+./fund_expr.py -h
+```
+##### Generate fundamental expressions
+```
+./fund_expr.py -s <seed> -f <op_flag> -o <operator>
+```
+- `<seed>` - random seed
+  - general: `42`
+  - d: `84`
+- `op_flag` - operator flag
+- `operator` - operator str
+
+##### Example command line inputs
+- Generate general fundamental expressions
+```
+./fund_expr.py -s 42
+```
+- Generate derivative fundamental expressions
+```
+./fund_expr.py -s 84 -f -o "d x"
+```
 
 ## Generate Dataset (Python)
 #### Deduplication
