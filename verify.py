@@ -390,7 +390,7 @@ def create_dataset(data_dir: str, n: int, tol: float, secs: int, verified_dir: s
 
     progbar = tqdm.tqdm(iterable=filepaths)
 
-    for filepath in filepaths:
+    for filepath in progbar:
         parts = filepath.split(os.path.sep)
         cls = parts[-3]
         category = parts[-2]
@@ -406,13 +406,15 @@ def create_dataset(data_dir: str, n: int, tol: float, secs: int, verified_dir: s
             else:
                 expr_pairs = create_pairs(equiv_exprs=equiv_exprs)
                 corrects, incorrects = verify(expr_pairs=expr_pairs, n=n, tol=tol, secs=secs)
-                w_data(equiv_exprs=corrects, data_dir=verified_dir, cls=cls, category=category)
+                w_data(equiv_exprs=expr_pairs, data_dir=verified_dir, cls=cls, category=category)
                 w_data(equiv_exprs=incorrects, data_dir=incorrect_dir, cls=cls, category=category)
 
                 n_corrects += len(corrects)
                 n_incorrects += len(incorrects)
 
                 equiv_exprs = []
+
+        file.close()
 
     logger.log_info(f"Total number of correct expression pairs:   {n_corrects}")
     logger.log_info(f"Total number of incorrect expression pairs: {n_incorrects}")
