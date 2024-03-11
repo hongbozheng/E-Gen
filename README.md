@@ -137,7 +137,7 @@ expressions
 ```
 - `<dataset_dir>` - dataset directory
 
-#### Create Train, Validation, and Test Sets (Sympy Verify)
+#### Create Train, Validation, and Test Sets
 ##### Check command line input help
 ```
 ./split.py -h
