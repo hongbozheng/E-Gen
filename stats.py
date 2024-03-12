@@ -97,9 +97,6 @@ def pt_stats(stats: dict, stats_op: dict, stats_op_op: dict) -> None:
                             f"{stats[cls][category]['n_expr_pairs']:<12}")
             writer.writerow([f"{cls}, {category}", stats[cls][category]['n_exprs'],
                              stats[cls][category]['n_expr_pairs']])
-            # n_exprs.append(stats[cls][category]['n_exprs'])
-            # n_expr_pairs.append(stats[cls][category]['n_expr_pairs'])
-            # categories.append(f"{cls}, {category}")
     file.close()
 
     logger.log_info("------------------------------------------------")
