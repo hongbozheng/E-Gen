@@ -37,13 +37,13 @@ def create_pairs(equiv_exprs: list) -> list:
     return expr_pairs
 
 
-def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str, str]:
-    ops = {op: 0 for op in classes}
+def classify(expr: str, operators: list[str], categories: list[str]) -> tuple[str, str]:
+    ops = {op: 0 for op in sorted(operators)}
     category = ""
 
     expr = expr.split(sep=' ')
     for token in expr:
-        if token in classes:
+        if token in operators:
             ops[token] += 1
         if token in categories:
             category = token
@@ -53,7 +53,7 @@ def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str,
     if expr_ops:
         cls = '_'.join(expr_ops)
     else:
-        cls = classes[0]
+        cls = "poly"
     if category == "":
         category = categories[0]
 
@@ -76,7 +76,7 @@ def w_data(expr_pair: str, data_dir: str, cls: str, category: str) -> None:
 
 def create_dataset(
         equiv_exprs_filepath: str,
-        classes: list[str],
+        operators: list[str],
         categories: list[str],
         filter_: bool,
         n_exprs: int,
@@ -100,7 +100,7 @@ def create_dataset(
             expr_pairs = create_pairs(equiv_exprs=equiv_exprs)
 
             for expr_pair in expr_pairs:
-                cls, category = classify(expr=expr_pair[0], classes=classes, categories=categories)
+                cls, category = classify(expr=expr_pair[0], operators=operators, categories=categories)
                 w_data(expr_pair=expr_pair, data_dir=data_dir, cls=cls, category=category)
 
             equiv_exprs = []
@@ -150,13 +150,13 @@ def main() -> None:
 
     if filter_:
         logger.log_info("Creating filtered dataset...")
-        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
+        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, operators=config.OPERATORS,
                        categories=config.CATEGORIES, filter_=filter_, n_exprs=n_exprs,
                        data_dir=config.DATA_FILTERED_DIR)
         logger.log_info("Finish creating dataset.")
     else:
         logger.log_info("Creating raw dataset...")
-        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, classes=config.CLASSES,
+        create_dataset(equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH, operators=config.OPERATORS,
                        categories=config.CATEGORIES, filter_=filter_, n_exprs=n_exprs,
                        data_dir=config.DATA_RAW_DIR)
         logger.log_info("Finish raw dataset.")
