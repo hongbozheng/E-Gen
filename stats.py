@@ -11,12 +11,33 @@ import tqdm
 import matplotlib.pyplot as plt
 
 
-def stats(dataset_dir: str) -> tuple[dict, dict]:
+def classify(expr: str, operators: list[str]) -> str:
+    ops = {op: 0 for op in sorted(operators)}
+
+    expr = expr.split(sep=' ')
+    for token in expr:
+        if token in operators:
+            ops[token] += 1
+
+    expr_ops = [op for op, cnt in ops.items() if cnt > 0]
+
+    if expr_ops:
+        cls = '_'.join(expr_ops)
+    else:
+        cls = "poly"
+
+    return cls
+
+
+def stats(dataset_dir: str, operators: list[str]) -> tuple[dict, dict, dict]:
     filepath = os.path.join(dataset_dir, "**", "equiv_exprs.txt")
     filepaths = glob.glob(pathname=filepath, recursive=True)
 
+    classes = sorted(os.listdir(path=dataset_dir))
+
     stats = {}
     stats_op = {}
+    stats_op_op = {}
 
     progbar = tqdm.tqdm(iterable=filepaths)
 
@@ -40,58 +61,66 @@ def stats(dataset_dir: str) -> tuple[dict, dict]:
             expr_pair = line.strip().split(sep='\t')
             exprs.add(expr_pair[0])
             n_expr_pairs += 1
+            cls_equiv_expr = classify(expr=expr_pair[1], operators=operators)
+
+            if cls not in stats_op_op:
+                info_op_op = {c: 0 for c in classes}
+                stats_op_op[cls] = info_op_op
+            stats_op_op[cls][cls_equiv_expr] += 1
 
         info = {"n_exprs": len(exprs), "n_expr_pairs": n_expr_pairs}
         if cls not in stats:
             stats[cls] = {}
         stats[cls][category] = info
 
-        info_op = {"n_exprs": 0, "n_expr_pairs": 0}
         if n_ops not in stats_op:
+            info_op = {"n_exprs": 0, "n_expr_pairs": 0}
             stats_op[n_ops] = info_op
         stats_op[n_ops]["n_exprs"] += len(exprs)
         stats_op[n_ops]["n_expr_pairs"] += n_expr_pairs
 
         file.close()
 
-    return stats, stats_op
+    return stats, stats_op, stats_op_op
 
 
-def pt_stats(stats: dict, stats_op: dict) -> None:
-    n_exprs = []
-    n_expr_pairs = []
-    categories = []
-
+def pt_stats(stats: dict, stats_op: dict, stats_op_op: dict) -> None:
     logger.log_info("Class               | Category | N Exprs | N Expr Pairs")
+
+    file = open(file="stats.csv", mode='w', newline='')
+    writer = csv.writer(file)
+    writer.writerow(["Category", "Number of Expressions", "Number of Expression Pairs"])
+
     for cls in sorted(stats):
         for category in stats[cls]:
             logger.log_info(f"{cls:<19} | {category:<8} | {stats[cls][category]['n_exprs']:<7} | "
                             f"{stats[cls][category]['n_expr_pairs']:<12}")
-            n_exprs.append(stats[cls][category]['n_exprs'])
-            n_expr_pairs.append(stats[cls][category]['n_expr_pairs'])
-            categories.append(f"{cls}, {category}")
-    logger.log_info("------------------------------------------------")
-    logger.log_info(f"Total               |          | {sum(n_exprs):<7} | {sum(n_expr_pairs):<12}\n")
-
-    data = list(zip(categories, n_exprs, n_expr_pairs))
-    file = open(file="stats.csv", mode='w', newline='')
-    writer = csv.writer(file)
-    writer.writerow(["Category", "Number of Expressions", "Number of Expression Pairs"])
-    for row in data:
-        writer.writerow(row)
-    writer.writerow(["Total", sum(n_exprs), sum(n_expr_pairs)])
+            writer.writerow([f"{cls}, {category}", stats[cls][category]['n_exprs'],
+                             stats[cls][category]['n_expr_pairs']])
+            # n_exprs.append(stats[cls][category]['n_exprs'])
+            # n_expr_pairs.append(stats[cls][category]['n_expr_pairs'])
+            # categories.append(f"{cls}, {category}")
     file.close()
 
-    n_exprs = []
-    n_expr_pairs = []
+    logger.log_info("------------------------------------------------")
 
     logger.log_info("N OP  | N Exprs | N Expr Pairs")
     for n_ops in sorted(stats_op):
         logger.log_info(f"{n_ops:<5} | {stats_op[n_ops]['n_exprs']:<7} | {stats_op[n_ops]['n_expr_pairs']:<12}")
-        n_exprs.append(stats_op[n_ops]['n_exprs'])
-        n_expr_pairs.append(stats_op[n_ops]['n_expr_pairs'])
     logger.log_info("-------------------------------")
-    logger.log_info(f"Total | {sum(n_exprs):<7} | {sum(n_expr_pairs):<12}")
+
+    file = open(file="stats_op_op.csv", mode='w', newline='')
+    writer = csv.writer(file)
+    classes = list(stats_op_op[next(iter(stats_op_op))].keys())
+    writer.writerow([""]+classes)
+
+    for cls in sorted(stats_op_op):
+        row = []
+        row.append(f"{cls}")
+        for cls_equiv_expr in stats_op_op[cls]:
+            row.append(stats_op_op[cls][cls_equiv_expr])
+        writer.writerow(row)
+    file.close()
 
     # plt.rc(group="font", family="serif")
     # plt.rc(group="text", usetex=True)
@@ -124,8 +153,8 @@ def main() -> None:
     args = parser.parse_args()
     dataset_dir = args.dataset_dir
 
-    stats_, stats_op = stats(dataset_dir=dataset_dir)
-    pt_stats(stats=stats_, stats_op=stats_op)
+    stats_, stats_op, stats_op_op = stats(dataset_dir=dataset_dir, operators=config.OPERATORS)
+    pt_stats(stats=stats_, stats_op=stats_op, stats_op_op=stats_op_op)
 
     return
 
