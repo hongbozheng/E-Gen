@@ -1,14 +1,14 @@
 import logger
 
-CLASSES = ["poly", "ln",
-           "sin", "cos", "tan",
-           "csc", "sec", "cot",
-           "asin", "acos", "atan",
-           "acsc", "asec", "acot",
-           "sinh", "cosh", "tanh",
-           "csch", "sech", "coth",
-           "asinh", "acosh", "atanh",
-           "acsch", "asech", "acoth",]
+OPERATORS = ["ln",
+             "sin", "cos", "tan",
+             "csc", "sec", "cot",
+             "asin", "acos", "atan",
+             "acsc", "asec", "acot",
+             "sinh", "cosh", "tanh",
+             "csch", "sech", "coth",
+             "asinh", "acosh", "atanh",
+             "acsch", "asech", "acoth",]
 CATEGORIES = ["general", "d",]
 
 DATA_DIR = "data"
