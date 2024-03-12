@@ -4,28 +4,9 @@
 import argparse
 import config
 import editdistance
+import itertools
 import logger
 import os
-
-
-def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str, str]:
-    expr = expr.split(sep=' ')
-
-    cls = ""
-    category = ""
-
-    for token in expr:
-        if token in classes:
-            cls = token
-        if token in categories:
-            category = token
-
-    if cls == "":
-        cls = classes[0]
-    if category == "":
-        category = categories[0]
-
-    return cls, category
 
 
 def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
@@ -47,7 +28,39 @@ def filter(equiv_exprs: list[str], n_exprs: int) -> list[str]:
     return equiv_exprs_filtered
 
 
-def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> None:
+def create_pairs(equiv_exprs: list) -> list:
+    expr_pairs = []
+
+    for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
+        expr_pairs.append(expr_pair)
+
+    return expr_pairs
+
+
+def classify(expr: str, classes: list[str], categories: list[str]) -> tuple[str, str]:
+    ops = {op: 0 for op in classes}
+    category = ""
+
+    expr = expr.split(sep=' ')
+    for token in expr:
+        if token in classes:
+            ops[token] += 1
+        if token in categories:
+            category = token
+
+    expr_ops = [op for op, cnt in ops.items() if cnt > 0]
+
+    if expr_ops:
+        cls = '_'.join(expr_ops)
+    else:
+        cls = classes[0]
+    if category == "":
+        category = categories[0]
+
+    return cls, category
+
+
+def w_data(expr_pair: str, data_dir: str, cls: str, category: str) -> None:
     path = os.path.join(data_dir, cls, category)
 
     if not os.path.exists(path=path):
@@ -55,12 +68,7 @@ def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> No
 
     filepath = os.path.join(path, "equiv_exprs.txt")
     file = open(file=filepath, mode='a')
-
-    for expr in equiv_exprs:
-        file.write(expr+'\n')
-
-    file.write('\n')
-
+    file.write(f"{expr_pair[0]}\t{expr_pair[1]}\n")
     file.close()
 
     return
@@ -89,8 +97,11 @@ def create_dataset(
                 elif len(equiv_exprs) > n_exprs:
                     equiv_exprs = filter(equiv_exprs=equiv_exprs, n_exprs=n_exprs)
 
-            cls, category = classify(expr=equiv_exprs[0], classes=classes, categories=categories)
-            w_data(equiv_exprs=equiv_exprs, data_dir=data_dir, cls=cls, category=category)
+            expr_pairs = create_pairs(equiv_exprs=equiv_exprs)
+
+            for expr_pair in expr_pairs:
+                cls, category = classify(expr=expr_pair[0], classes=classes, categories=categories)
+                w_data(expr_pair=expr_pair, data_dir=data_dir, cls=cls, category=category)
 
             equiv_exprs = []
 
