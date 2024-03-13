@@ -97,7 +97,7 @@ The script will create the following three `.txt` files
 ./create_dataset.py -h
 ```
 ##### Create raw dataset
-Splitting all equivalent expressions into different classes & categories
+Splitting all equivalent expression pairs into different classes & categories
 ```
 ./create_dataset.py
 ```
@@ -105,7 +105,8 @@ Splitting all equivalent expressions into different classes & categories
 1. Remove expressions with `0` equivalent expressions
 2. Filter the ones with more than `<n_exprs>` equivalent
 expressions
-3. Classify all equivalent expressions into different classes & categories
+3. Create equivalent expression pairs
+4. Classify all equivalent expression pairs into different classes & categories
 ```
 ./create_dataset.py -f <filter> -n <n_exprs>
 ```
@@ -118,10 +119,9 @@ expressions
 ./verify.py -h
 ```
 ##### Verify dataset & Create verified dataset
-1. Create expression pairs
-2. Verify if a given expression pair is equivalent **(Note: Verification is time consuming)**
-3. Create verified dataset
-4. Create incorrect dataset
+1. Verify if an expression pair is equivalent **(Note: Verification is time consuming)**
+2. Create verified dataset
+3. Create incorrect dataset
 ```
 ./verify.py
 ```

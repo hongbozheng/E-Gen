@@ -237,16 +237,16 @@ def write_infix(token, args):
 # ================================================================================
 
 
-def create_pairs(equiv_exprs: list) -> list:
-    expr_pairs = []
+# def create_pairs(equiv_exprs: list) -> list:
+#     expr_pairs = []
+#
+#     for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
+#         expr_pairs.append(f"{expr_pair[0]}\t{expr_pair[1]}")
+#
+#     return expr_pairs
 
-    for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
-        expr_pairs.append(f"{expr_pair[0]}\t{expr_pair[1]}")
 
-    return expr_pairs
-
-
-def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]:
+def verify(expr_pair: list[str], n: int, tol: float, secs: int) -> bool:
     @timeout(secs=secs)
     def _simplify(expr: Expr) -> Expr:
         return sp.simplify(expr=expr)
@@ -279,90 +279,74 @@ def verify(expr_pairs: list, n: int, tol: float, secs: int) -> tuple[list, list]
 
         return True
 
-    corrects = []
-    incorrects = []
-
     x = VARIABLES['x']
 
-    for expr_pair in expr_pairs:
-        pair = expr_pair.rstrip().split('\t')
+    try:
+        expr_0 = prefix_to_sympy(expr=expr_pair[0])
+        expr_1 = prefix_to_sympy(expr=expr_pair[1])
+    except Exception as e:
+        logger.log_error(f"prefix_to_sympy exception {e}; {expr_pair[0]} & {expr_pair[1]}")
+        return False
+    try:
+        expr_0 = _simplify(expr=expr_0)
+        expr_1 = _simplify(expr=expr_1)
+    except Exception as e:
+        logger.log_error(f"simplify exception {e}; {expr_pair[0]} & {expr_pair[1]}")
+        return False
 
-        if "coth" in pair[0] or "coth" in pair[1]:
-            continue
+    expr = expr_0 - expr_1
 
+    if expr == 0:
+        logger.log_info(f" simplify  , equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
+        equiv = True
+    else:
         try:
-            expr_0 = prefix_to_sympy(expr=pair[0])
-            expr_1 = prefix_to_sympy(expr=pair[1])
-        except Exception as e:
-            logger.log_error(f"prefix_to_sympy exception {e}; {pair[0]} & {pair[1]}")
-            incorrects.append(expr_pair)
-            continue
-        try:
-            expr_0 = _simplify(expr=expr_0)
-            expr_1 = _simplify(expr=expr_1)
-        except Exception as e:
-            logger.log_error(f"simplify exception {e}; {pair[0]} & {pair[1]}")
-            incorrects.append(expr_pair)
-            continue
-
-        expr = expr_0 - expr_1
-
-        if expr == 0:
-            logger.log_info(f" simplify  , equivalent    ; {pair[0]} & {pair[1]}")
-            equiv = True
-        else:
+            domain = _cont_domain(expr=expr, symbol=x)
             try:
-                domain = _cont_domain(expr=expr, symbol=x)
-                try:
-                    if isinstance(domain, sp.sets.sets.Union):
-                        if isinstance(domain.args[0], sp.sets.sets.Complement):
-                            case = "Union-Comp"
-                            equiv = _check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
-                        else:
-                            case = "Union"
-                            start = float(domain.args[0].start)
-                            end = float(domain.args[0].end)
-                            equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-                        if equiv:
-                            logger.log_info(f" {case:<10}, equivalent    ; {pair[0]} & {pair[1]}")
-                        else:
-                            logger.log_error(f"{case:<10}, non-equivalent; {pair[0]} & {pair[1]}")
-                    elif isinstance(domain, sp.sets.sets.Complement):
-                        case = "Complement"
+                if isinstance(domain, sp.sets.sets.Union):
+                    if isinstance(domain.args[0], sp.sets.sets.Complement):
+                        case = "Union-Comp"
                         equiv = _check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
-                        if equiv:
-                            logger.log_info(f" {case:<10}, equivalent    ; {pair[0]} & {pair[1]}")
-                        else:
-                            logger.log_error(f"{case:<10}, non-equivalent; {pair[0]} & {pair[1]}")
-                    elif isinstance(domain, sp.sets.sets.Interval):
-                        case = "Interval"
-                        start = float(domain.start)
-                        end = float(domain.end)
-                        equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-                        if equiv:
-                            logger.log_info(f" {case:<10}, equivalent    ; {pair[0]} & {pair[1]}")
-                        else:
-                            logger.log_error(f"{case:<10}, non-equivalent; {pair[0]} & {pair[1]}")
                     else:
-                        logger.log_error(f"Invalid domain type {domain}")
-                        equiv = False
-
-                except Exception as e:
-                    logger.log_error(f"{case:<10}, eval exception {e}; {pair[0]} & {pair[1]} ")
+                        case = "Union"
+                        start = float(domain.args[0].start)
+                        end = float(domain.args[0].end)
+                        equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                    if equiv:
+                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
+                    else:
+                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
+                elif isinstance(domain, sp.sets.sets.Complement):
+                    case = "Complement"
+                    equiv = _check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
+                    if equiv:
+                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
+                    else:
+                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
+                elif isinstance(domain, sp.sets.sets.Interval):
+                    case = "Interval"
+                    start = float(domain.start)
+                    end = float(domain.end)
+                    equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                    if equiv:
+                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
+                    else:
+                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
+                else:
+                    logger.log_error(f"Invalid domain type {domain}")
                     equiv = False
+
             except Exception as e:
-                logger.log_error(f"continuous domain exception {e}; {pair[0]} & {pair[1]}")
+                logger.log_error(f"{case:<10}, eval exception {e}; {expr_pair[0]} & {expr_pair[1]} ")
                 equiv = False
+        except Exception as e:
+            logger.log_error(f"continuous domain exception {e}; {expr_pair[0]} & {expr_pair[1]}")
+            equiv = False
 
-        if equiv:
-            corrects.append(expr_pair)
-        else:
-            incorrects.append(expr_pair)
-
-    return corrects, incorrects
+    return equiv
 
 
-def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> None:
+def w_data(expr_pair: list[str], data_dir: str, cls: str, category: str) -> None:
     path = os.path.join(data_dir, cls, category)
 
     if not os.path.exists(path=path):
@@ -370,12 +354,7 @@ def w_data(equiv_exprs: list[str], data_dir: str, cls: str, category: str) -> No
 
     filepath = os.path.join(path, "equiv_exprs.txt")
     file = open(file=filepath, mode='a')
-
-    for expr in equiv_exprs:
-        file.write(expr+'\n')
-
-    file.write('\n')
-
+    file.write(f"{expr_pair[0]}\t{expr_pair[1]}\n")
     file.close()
 
     return
@@ -398,21 +377,15 @@ def create_dataset(data_dir: str, n: int, tol: float, secs: int, verified_dir: s
 
         file = open(file=filepath, mode='r')
 
-        equiv_exprs = []
-
         for line in file:
-            if line.strip():
-                equiv_exprs.append(line.strip())
+            expr_pair = line.strip().split(sep='\t')
+            equiv = verify(expr_pair=expr_pair, n=n, tol=tol, secs=secs)
+            if equiv:
+                w_data(expr_pair=expr_pair, data_dir=verified_dir, cls=cls, category=category)
+                n_corrects += 1
             else:
-                expr_pairs = create_pairs(equiv_exprs=equiv_exprs)
-                corrects, incorrects = verify(expr_pairs=expr_pairs, n=n, tol=tol, secs=secs)
-                w_data(equiv_exprs=expr_pairs, data_dir=verified_dir, cls=cls, category=category)
-                w_data(equiv_exprs=incorrects, data_dir=incorrect_dir, cls=cls, category=category)
-
-                n_corrects += len(corrects)
-                n_incorrects += len(incorrects)
-
-                equiv_exprs = []
+                w_data(expr_pair=expr_pair, data_dir=incorrect_dir, cls=cls, category=category)
+                n_incorrects += 1
 
         file.close()
 
