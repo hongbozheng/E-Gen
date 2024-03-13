@@ -442,10 +442,10 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(sin ?x)" => "(- (pow (+ (sin (/ ?x 2)) (cos (/ ?x 2))) 2) 1)"),
         rw!("(sin(x)+cos(x))^2-1=sin(2x)";
             "(- (pow (+ (sin ?x) (cos ?x)) 2) 1)" => "(sin (* 2 ?x))"),
-        // rw!("sin(x)=2tan(0.5x)/(1+tan^2(0.5x)";
-        //     "(sin ?x)" => "(/ (* 2 (tan (* 0.5 ?x))) (+ 1 (pow (tan (* 0.5 ?x)) 2)))"),
-        // rw!("2tan(x)/(1+tan^2(x)=sin(2x)";
-        //     "(/ (* 2 (tan ?x)) (+ 1 (pow (tan ?x) 2)))" => "(sin (* 2 ?x))"),
+        rw!("sin(x)=2tan(0.5x)/(1+tan^2(0.5x)";
+            "(sin ?x)" => "(/ (* 2 (tan (/ ?x 2))) (+ 1 (pow (tan (/ ?x 2)) 2)))"),
+        rw!("2tan(x)/(1+tan^2(x)=sin(2x)";
+            "(/ (* 2 (tan ?x)) (+ 1 (pow (tan ?x) 2)))" => "(sin (* 2 ?x))"),
         rw!("cos(x)=cos^2(x/2)-sin^2(x/2)";
             "(cos ?x)" => "(- (pow (cos (/ ?x 2)) 2) (pow (sin (/ ?x 2)) 2))"),
         rw!("cos^2(x)-sin^2(x)=cos(2x)";
@@ -462,7 +462,28 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(tan ?x)" => "(/ (* 2 (tan (/ ?x 2))) (- 1 (pow (tan (/ ?x 2)) 2)))"),
         rw!("2tan(x)/(1-tan^2(x))=tan(2x)";
             "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
-        // csc & sec & cot rw exceed length limit
+        rw!("csc(x)=(sec(x/2)csc(x/2))/2"; "(csc ?x)" => "(/ (* (sec (/ ?x 2)) (csc (/ ?x 2))) 2)"),
+        rw!("csc(2x)=(sec(x)csc(x))/2"; "(/ (* (sec ?x) (csc ?x)) 2)" => "(csc (* 2 ?x))"),
+        rw!("csc(x)=(1+tan^2(x/2))/(2tan(x/2))";
+            "(csc ?x)" => "(/ (+ 1 (pow (tan (/ ?x 2)) 2)) (* 2 (tan (/ ?x 2))))"),
+        rw!("(1+tan^2(x))/(2tan(x))=csc(2x)";
+            "(/ (+ 1 (pow (tan ?x) 2)) (* 2 (tan ?x)))" => "(csc (* 2 ?x))"),
+        rw!("sec(x)=sec^2(x/2)/(2-sec^2(x/2))";
+            "(sec ?x)" => "(/ (pow (sec (/ ?x 2)) 2) (- 2 (pow (sec (/ ?x 2)) 2)))"),
+        rw!("sec^2(x)/(2-sec^2(x))=sec(2x)";
+            "(/ (pow (sec ?x) 2) (- 2 (pow (sec ?x) 2)))" => "(sec (* 2 ?x))"),
+        rw!("sec(x)=(1+tan^2(x/2))/(1-tan^2(x/2))";
+            "(sec ?x)" => "(/ (+ 1 (pow (tan (/ ?x 2)) 2)) (- 1 (pow (tan (/ ?x 2)) 2)))"),
+        rw!("(1+tan^2(x))/(1-tan^2(x))=sec(2x)";
+            "(/ (+ 1 (pow (tan ?x) 2)) (- 1 (pow (tan ?x) 2)))" => "(sec (* 2 ?x))"),
+        rw!("cot(x)=(cot^2(x/2)-1)/2cot(x/2)";
+            "(cot ?x)" => "(/ (- (pow (cot (/ ?x 2)) 2) 1) (* 2 (cot (/ ?x 2))))"),
+        rw!("(cot^2(x)-1)/2cot(x)=cot(2x)";
+            "(/ (- (pow (cot ?x) 2) 1) (* 2 (cot ?x)))" => "(cot (* 2 ?x))"),
+        rw!("cot(x)=(1-tan^2(x/2))/(2tan(x/2))";
+            "(cot ?x)" => "(/ (- 1 (pow (tan (/ ?x 2)) 2)) (* 2 (tan (/ ?x 2))))"),
+        rw!("(1-tan^2(x))/(2tan(x))=cot(2x)";
+            "(/ (- 1 (pow (tan ?x) 2)) (* 2 (tan ?x)))" => "(cot (* 2 ?x))"),
         /* triple-angle formulae */
         rw!("sin(x)=3sin(x/3)-4sin^3(x/3)";
             "(sin ?x)" => "(- (* 3 (sin (/ ?x 3))) (* 4 (pow (sin (/ ?x 3)) 3)))"),
@@ -472,7 +493,7 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(cos ?x)" => "(- (* 4 (pow (cos (/ ?x 3)) 3)) (* 3 (cos (/ ?x 3))))"),
         rw!("4cos^3(x)-3cos(x)=cos(3x)";
             "(- (* 4 (pow (cos ?x) 3)) (* 3 (cos ?x)))" => "(cos ( * 3 ?x))"),
-        // csc & sec & cot rw exceed length limit
+        // tan & csc & sec & cot rw exceed length limit
         /* half-angle formulae */
         rw!("sin(x)=sqrt((1-cos(2x))/2)"; "(sin ?x)" => "(sqrt (/ (- 1 (cos (* 2 ?x))) 2))"),
         rw!("sqrt((1-cos(x))/2)=sin(2x)"; "(sqrt (/ (- 1 (cos ?x)) 2))" => "(sin (/ ?x 2))"),
@@ -498,18 +519,63 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(tan (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos (* 2 ?x))) (+ 1 (cos (* 2 ?x)))))"),
         rw!("-sqrt((1-cos(2x))/(1+cos(2x)))=tan(x)";
             "(* -1 (sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))" => "(tan (/ ?x 2))"),
-        // csc sec cot .....
+        rw!("csc(x)=sqrt(2/(1-cos(2x)))"; "(csc ?x)" => "(sqrt (/ 2 (- 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt(2/(1-cos(x)))=csc(x/2)"; "(sqrt (/ 2 (- 1 (cos ?x))))" => "(csc (/ ?x 2))"),
+        rw!("csc(x)=-sqrt(2/(1-cos(2x)))"; "(csc ?x)" => "(* -1 (sqrt (/ 2 (- 1 (cos (* 2 ?x))))))"),
+        rw!("-sqrt(2/(1-cos(x)))=csc(x/2)"; "( * -1 (sqrt (/ 2 (- 1 (cos ?x)))))" => "(csc (/ ?x 2))"),
+        rw!("sec(x)=sqrt(2/(1+cos(2x)))"; "(sec ?x)" => "(sqrt (/ 2 (+ 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt(2/(1+cos(x)))=csc(x/2)"; "(sqrt (/ 2 (+ 1 (cos ?x))))" => "(sec (/ ?x 2))"),
+        rw!("sec(x)=-sqrt(2/(1+cos(2x)))"; "(sec ?x)" => "(* -1 (sqrt (/ 2 (+ 1 (cos (* 2 ?x))))))"),
+        rw!("-sqrt(2/(1+cos(x)))=csc(x/2)"; "(* -1 (sqrt (/ 2 (+ 1 (cos ?x)))))" => "(sec (/ ?x 2))"),
+        rw!("cot(x)=(1+cos(2x))/sin(2x)"; "(cot ?x)" => "(/ (+ 1 (cos (* 2 ?x))) (sin (* 2 ?x)))"),
+        rw!("(1+cos(x))/sin(x)=cot(x/2)"; "(/ (+ 1 (cos ?x)) (sin ?x))" => "(cot (/ ?x 2))"),
+        rw!("cot(x)=sin(2x)/(1-cos(2x))"; "(cot ?x)" => "(/ (sin (* 2 ?x)) (- 1 (cos (* 2 ?x))))"),
+        rw!("sin(x)/(1-cos(x))=cot(x/2)"; "(/ (sin ?x) (- 1 (cos ?x)))" => "(cot (/ ?x 2))"),
+        rw!("cot(x)=csc(2x)+cot(2x)"; "(cot ?x)" => "(+ (csc (* 2 ?x)) (cot (* 2 ?x)))"),
+        rw!("csc(x)+cot(x)=cot(x/2)"; "(+ (csc ?x) (cot ?x))" => "(cot (/ ?x 2))"),
+        rw!("cot(x)=sqrt((1+cos(2x))/(1-cos(2x)))";
+            "(cot ?x)" => "(sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x))))"),
+        rw!("sqrt((1+cos(2x))/(1-cos(2x)))=cot(x)";
+            "(sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x)))" => "(cot (/ ?x 2))"),
+        rw!("cot(x)=-sqrt((1+cos(2x))/(1-cos(2x)))";
+            "(cot (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x)))))"),
+        rw!("-sqrt((1+cos(2x))/(1-cos(2x)))=cot(x)";
+            "(* -1 (sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x))))" => "(cot (/ ?x 2))"),
         /* power-reduction formulae */
-        // .....
+        rw!("sin^2(x)=(1-cos(2x))/2"; "(pow (sin ?x) 2)" => "(/ (- 1 (cos (* 2 ?x))) 2)"),
+        rw!("cos^2(x)=(1+cos(2x))/2"; "(pow (cos ?x) 2)" => "(/ (+ 1 (cos (* 2 ?x))) 2)"),
+        rw!("sin^2(x)cos^2(x)=(1-cos(4x))/8";
+            "(* (pow (sin ?x) 2) (pow (cos ?x) 2))" => "(/ (- 1 (cos (* 4 ?x))) 8)"),
+        rw!("sin^3(x)=(3sin(x)-sin(3x))/4";
+            "(pow (sin ?x) 3)" => "(/ (- (* 3 (sin ?x)) (sin (* 3 ?x))) 4)"),
+        rw!("cos^3(x)=(3cos(x)+cos(3x))/4";
+            "(pow (cos ?x) 3)" => "(/ (+ (* 3 (cos ?x)) (cos (* 3 ?x))) 4)"),
+        rw!("sin^3(x)cos^3(x)=(3sin(2x)-sin(6x))/32";
+            "(* (pow (sin ?x) 3) (pow (cos ?x) 3))" => "(/ (- (* 3 (sin (* 2 ?x))) (sin (* 6 ?x))) 32)"),
+        rw!("sin^4(x)=(3-4cos(2x)+cos(4x))/8";
+            "(pow (sin ?x) 4)" => "(/ (+ (- 3 (* 4 (cos (* 2 ?x)))) (cos (* 4 ?x))) 8)"),
+        rw!("cos^4(x)=(3+4cos(2x)+cos(4x))/8";
+            "(pow (cos ?x) 4)" => "(/ (+ (+ 3 (* 4 (cos (* 2 ?x)))) (cos (* 4 ?x))) 8)"),
+        rw!("sin^4(x)cos^4(x)=(3sin(2x)-sin(6x))/32";
+            "(* (pow (sin ?x) 4) (pow (cos ?x) 4))" => "(/ (+ (- 3 (* 4 (cos (* 4 ?x)))) (cos (* 8 ?x))) 128)"),
+        // sin^5(x) & cos^5(x) & sin^5(x)cos^5(x) exceed length limit
         /* product-to-sum identities */
         rw!("sin(a)sin(b)=(cos(a-b)-cos(a+b))/2";
             "(* (sin ?x) (sin ?y))" => "(/ (- (cos (- ?x ?y)) (cos (+ ?x ?y))) 2)"),
+        rw!("(cos(a-b)-cos(a+b))=2sin(a)sin(b)";
+            "(- (cos (- ?x ?y)) (cos (+ ?x ?y)))" => "(* 2 (* (sin ?x) (sin ?y)))"),
         rw!("cos(a)cos(b)=(cos(a-b)+cos(a+b))/2";
             "(* (cos ?x) (cos ?y))" => "(/ (+ (cos (- ?x ?y)) (cos (+ ?x ?y))) 2)"),
+        rw!("(cos(a-b)+cos(a+b))=2cos(a)cos(b)";
+            "(+ (cos (- ?x ?y)) (cos (+ ?x ?y)))" => "(* 2 (* (cos ?x) (cos ?y)))"),
         rw!("sin(a)cos(b)=(sin(a+b)+sin(a-b))/2";
             "(* (sin ?x) (cos ?y))" => "(/ (+ (sin (+ ?x ?y)) (sin (- ?x ?y))) 2)"),
+        rw!("(sin(a+b)+sin(a-b))/2=sin(a)cos(b)";
+            "(+ (sin (+ ?x ?y)) (sin (- ?x ?y)))" => "(* 2 (* (sin ?x) (cos ?y)))"),
         rw!("cos(a)sin(b)=(sin(a+b)-sin(a-b))/2";
             "(* (cos ?x) (sin ?y))" => "(/ (- (sin (+ ?x ?y)) (sin (- ?x ?y))) 2)"),
+        rw!("(sin(a+b)-sin(a-b))=2cos(a)sin(b)";
+            "(- (sin (+ ?x ?y)) (sin (- ?x ?y)))" => "(* 2 (* (cos ?x) (sin ?y)))"),
         // tan(a)tan(b) & tan(a)cot(b) rw exceed length limit
         /* sum-to-product identities */
         rw!("sin(a)+sin(b)=2sin((a+b)/2)cos((a-b)/2)";
@@ -583,7 +649,7 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(tanh (- ?x ?y))" => "(/ (- (tanh ?x) (tanh ?y)) (- 1 (* (tanh ?x) (tanh ?y))))"),
         /* ================================================================== */
 
-        /* ======================== inv hyperbolic ========================== */
+        /* ============================ inv hyperbolic ============================== */
         /* basic identity */
         rw!("asinh(x)->ln(x+sqrt(x^2+1))"; "(asinh ?x)" => "(ln (+ ?x (sqrt (+ (pow ?x 2) 1))))"),
         rw!("acosh(x)->ln(x+sqrt(x^2-1))"; "(acosh ?x)" => "(ln (+ ?x (sqrt (- (pow ?x 2) 1))))"),
@@ -598,18 +664,19 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("asinh((x^2-1)/(2x))->ln"; "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(ln ?x)"),
         rw!("ln->atanh((x^2-1)/(x^2+1))"; "(ln ?x)" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
         rw!("atanh((x^2-1)/(x^2+1))->ln"; "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(ln ?x)"),
-        rw!("acosh((x^2+1)/(2x))->asinh((x^2-1)/(2x))";
-            "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
-        rw!("asinh((x^2-1)/(2x))->acosh((x^2+1)/(2x))";
-            "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
-        rw!("acosh((x^2+1)/(2x))->atanh((x^2-1)/(x^2+1))";
-            "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
-        rw!("atanh((x^2-1)/(x^2+1))->acosh((x^2+1)/(2x))";
-            "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
-        rw!("asinh((x^2-1)/(2x))->atanh((x^2-1)/(x^2+1))";
-            "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
-        rw!("atanh((x^2-1)/(x^2+1))->asinh((x^2-1)/(2x))";
-            "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
+        // a=b=c=d redundant (below)
+        // rw!("acosh((x^2+1)/(2x))->asinh((x^2-1)/(2x))";
+        //     "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
+        // rw!("asinh((x^2-1)/(2x))->acosh((x^2+1)/(2x))";
+        //     "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
+        // rw!("acosh((x^2+1)/(2x))->atanh((x^2-1)/(x^2+1))";
+        //     "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
+        // rw!("atanh((x^2-1)/(x^2+1))->acosh((x^2+1)/(2x))";
+        //     "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(acosh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
+        // rw!("asinh((x^2-1)/(2x))->atanh((x^2-1)/(x^2+1))";
+        //     "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
+        // rw!("atanh((x^2-1)/(x^2+1))->asinh((x^2-1)/(2x))";
+        //     "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
         /* composition of hyperbolic and inverse hyperbolic functions */
         rw!("sinh(acosh)->sqrt(x^2-1)"; "(sinh (acosh ?x))" => "(sqrt (- (pow ?x 2) 1))"),
         rw!("sqrt(x^2-1)->sinh(acosh)"; "(sqrt (- (pow ?x 2) 1))" => "(sinh (acosh ?x))"),
@@ -634,52 +701,63 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("acosh(1/cos)->asinh(tan)"; "(acosh (/ 1 (cos ?x)))" => "(asinh (tan ?x))"),
         rw!("asinh(tan)->-acosh(1/cos)"; "(asinh (tan ?x))" => "(* -1 (acosh (/ 1 (cos ?x))))"),
         rw!("-acosh(1/cos)->asinh(tan)"; "(* -1 (acosh (/ 1 (cos ?x))))" => "(asinh (tan ?x))"),
-        rw!("atanh(sin)->ln((1+sin)/(cos))"; "(atanh (sin ?x))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
-        rw!("ln((1+sin)/(cos))->atanh(sin)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(atanh (sin ?x))"),
-        rw!("atanh(sin)->acosh(1/cos)"; "(atanh (sin ?x))" => "(acosh (/ 1 (cos ?x)))"),
-        rw!("acosh(1/cos)->atanh(sin)"; "(acosh (/ 1 (cos ?x)))" => "(atanh (sin ?x))"),
-        rw!("atanh(sin)->-acosh(1/cos)"; "(atanh (sin ?x))" => "(* -1 (acosh (/ 1 (cos ?x))))"),
-        rw!("-acosh(1/cos)->atanh(sin)"; "(* -1 (acosh (/ 1 (cos ?x))))" => "(atanh (sin ?x))"),
-        rw!("ln((1+sin)/(cos))->acosh(1/cos)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(acosh (/ 1 (cos ?x)))"),
-        rw!("acosh(1/cos)->ln((1+sin)/(cos))"; "(acosh (/ 1 (cos ?x)))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
-        rw!("ln((1+sin)/(cos))->-acosh(1/cos)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(* -1 (acosh (/ 1 (cos ?x))))"),
-        rw!("-acosh(1/cos)->ln((1+sin)/(cos))"; "(* -1 (acosh (/ 1 (cos ?x))))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
+        // a=b=c=d redundant (below)
+        // rw!("atanh(sin)->ln((1+sin)/(cos))"; "(atanh (sin ?x))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
+        // rw!("ln((1+sin)/(cos))->atanh(sin)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(atanh (sin ?x))"),
+        // rw!("atanh(sin)->acosh(1/cos)"; "(atanh (sin ?x))" => "(acosh (/ 1 (cos ?x)))"),
+        // rw!("acosh(1/cos)->atanh(sin)"; "(acosh (/ 1 (cos ?x)))" => "(atanh (sin ?x))"),
+        // rw!("atanh(sin)->-acosh(1/cos)"; "(atanh (sin ?x))" => "(* -1 (acosh (/ 1 (cos ?x))))"),
+        // rw!("-acosh(1/cos)->atanh(sin)"; "(* -1 (acosh (/ 1 (cos ?x))))" => "(atanh (sin ?x))"),
+        // rw!("ln((1+sin)/(cos))->acosh(1/cos)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(acosh (/ 1 (cos ?x)))"),
+        // rw!("acosh(1/cos)->ln((1+sin)/(cos))"; "(acosh (/ 1 (cos ?x)))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
+        // rw!("ln((1+sin)/(cos))->-acosh(1/cos)"; "(ln (/ (+ 1 (sin ?x)) (cos ?x)))" => "(* -1 (acosh (/ 1 (cos ?x))))"),
+        // rw!("-acosh(1/cos)->ln((1+sin)/(cos))"; "(* -1 (acosh (/ 1 (cos ?x))))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
         /* Conversions */
-        rw!("ln->atanh((x^-1)/(x^2+1))"; "(ln ?x)" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
-        rw!("ln->asinh((x^-1)/2x)"; "(ln ?x)" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
-        rw!("ln->acosh((x^+1)/2x)"; "(ln ?x)" => "(asinh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
-        rw!("ln->-acosh((x^+1)/2x)"; "(ln ?x)" => "(* -1 (asinh (/ (+ (pow ?x 2) 1) (* 2 ?x))))"),
-        rw!("atanh->asinh(x/sqrt(1-x^2))"; "(atanh ?x)" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("asinh(x/sqrt(1-x^2))->atanh"; "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
-        rw!("atanh->acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("acosh(1/sqrt(1-x^2))->atanh"; "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
-        rw!("atanh->-acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))"),
-        rw!("-acosh(1/sqrt(1-x^2))->atanh"; "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(atanh ?x)"),
-        rw!("asinh(x/sqrt(1-x^2))->acosh(1/sqrt(1-x^2))";
-            "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("acosh(1/sqrt(1-x^2))->asinh(x/sqrt(1-x^2))";
-            "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("asinh(x/sqrt(1-x^2))->-acosh(1/sqrt(1-x^2))";
-            "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))"),
-        rw!("-acosh(1/sqrt(1-x^2))->asinh(x/sqrt(1-x^2))";
-            "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("asinh->atanh(x/sqrt(1+x^2))"; "(asinh ?x)" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("atanh(x/sqrt(1+x^2))->asinh"; "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(asinh ?x)"),
-        rw!("asinh->acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
-        rw!("acosh(sqrt(1+x^2))->asinh"; "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(asinh ?x)"),
-        rw!("asinh->-acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))"),
+        rw!("ln=atanh((x^-1)/(x^2+1))"; "(ln ?x)" => "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))"),
+        rw!("atanh((x^-1)/(x^2+1))=ln"; "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(ln ?x)"),
+        rw!("ln=asinh((x^-1)/2x)"; "(ln ?x)" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
+        rw!("asinh((x^-1)/2x)=ln"; "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))" => "(ln ?x)"),
+        rw!("ln=acosh((x^+1)/2x)"; "(ln ?x)" => "(asinh (/ (+ (pow ?x 2) 1) (* 2 ?x)))"),
+        rw!("acosh((x^+1)/2x)=ln"; "(asinh (/ (+ (pow ?x 2) 1) (* 2 ?x)))" => "(ln ?x)"),
+        rw!("ln=-acosh((x^+1)/2x)"; "(ln ?x)" => "(* -1 (asinh (/ (+ (pow ?x 2) 1) (* 2 ?x))))"),
+        rw!("-acosh((x^+1)/2x)=ln"; "(* -1 (asinh (/ (+ (pow ?x 2) 1) (* 2 ?x))))" => "(ln ?x)"),
+        rw!("atanh=asinh(x/sqrt(1-x^2))"; "(atanh ?x)" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
+        rw!("asinh(x/sqrt(1-x^2))=atanh"; "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
+        rw!("atanh=acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
+        rw!("acosh(1/sqrt(1-x^2))=atanh"; "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
+        rw!("atanh=-acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))"),
+        rw!("-acosh(1/sqrt(1-x^2))=atanh"; "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(atanh ?x)"),
+        // a=b=c=d redundant (below)
+        // rw!("asinh(x/sqrt(1-x^2))=acosh(1/sqrt(1-x^2))";
+        //     "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
+        // rw!("acosh(1/sqrt(1-x^2))=asinh(x/sqrt(1-x^2))";
+        //     "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
+        // rw!("asinh(x/sqrt(1-x^2))=-acosh(1/sqrt(1-x^2))";
+        //     "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))"),
+        // rw!("-acosh(1/sqrt(1-x^2))=asinh(x/sqrt(1-x^2))";
+        //     "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
+        rw!("asinh=atanh(x/sqrt(1+x^2))"; "(asinh ?x)" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
+        rw!("atanh(x/sqrt(1+x^2))=asinh"; "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(asinh ?x)"),
+        rw!("asinh=acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
+        rw!("acosh(sqrt(1+x^2))=asinh"; "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(asinh ?x)"),
+        rw!("asinh=-acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))"),
         rw!("-acosh(sqrt(1+x^2))->asinh"; "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))" => "(asinh ?x)"),
-        rw!("atanh(x/sqrt(1+x^2))->acosh(sqrt(1+x^2))";
-            "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
-        rw!("acosh(sqrt(1+x^2))->atanh(x/sqrt(1+x^2))";
-            "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("atanh(x/sqrt(1+x^2))->-acosh(sqrt(1+x^2))";
-            "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("-acosh(sqrt(1+x^2))->atanh(x/sqrt(1+x^2))";
-            "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("acosh->|asinh(sqrt(x^2-1))|"; "(acosh ?x)" => "(abs (asinh (sqrt (- (pow ?x 2) 1))))"),
-        rw!("acosh->|atanh((sqrt(x^2-1))/(x))|"; "(acosh ?x)" => "(abs (atanh (/ (sqrt (- (pow ?x 2) 1)) ?x)))"),
-        /* ================================================================== */
+        // a=b=c redundant (below)
+        // rw!("atanh(x/sqrt(1+x^2))->acosh(sqrt(1+x^2))";
+        //     "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
+        // rw!("acosh(sqrt(1+x^2))->atanh(x/sqrt(1+x^2))";
+        //     "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
+        // rw!("atanh(x/sqrt(1+x^2))->-acosh(sqrt(1+x^2))";
+        //     "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))"),
+        // rw!("-acosh(sqrt(1+x^2))->atanh(x/sqrt(1+x^2))";
+        //     "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
+        rw!("acosh=|asinh(sqrt(x^2-1))|"; "(acosh ?x)" => "(abs (asinh (sqrt (- (pow ?x 2) 1))))"),
+        rw!("|asinh(sqrt(x^2-1))|=acosh"; "(abs (asinh (sqrt (- (pow ?x 2) 1))))" => "(acosh ?x)"),
+        rw!("acosh=|atanh((sqrt(x^2-1))/(x))|";
+            "(acosh ?x)" => "(abs (atanh (/ (sqrt (- (pow ?x 2) 1)) ?x)))"),
+        rw!("|atanh((sqrt(x^2-1))/(x))|=acosh";
+            "(abs (atanh (/ (sqrt (- (pow ?x 2) 1)) ?x)))" => "(acosh ?x)"),
+        /* ========================================================================== */
 
         /* =============================== derivative =============================== */
         /* basic derivative */
