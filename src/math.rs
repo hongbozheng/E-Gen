@@ -278,6 +278,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("tan=sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
         rw!("cos=sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
         rw!("sin=cos*tan"; "(sin ?x)" => "(* (cos ?x) (tan ?x))"),
+        rw!("cot=cos/sin"; "(cot ?x)" => "(/ (cos ?x) (sin ?x))"),
+        rw!("sin=cos/cot"; "(sin ?x)" => "(/ (cos ?x) (cot ?x))"),
+        rw!("cos=cot*sin"; "(cos ?x)" => "(* (cot ?x) (sin ?x))"),
         /* reciprocal identities */
         rw!("sin=1/csc"; "(sin ?x)" => "(/ 1 (csc ?x))"),
         rw!("cos=1/sec"; "(cos ?x)" => "(/ 1 (sec ?x))"),
@@ -328,17 +331,21 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(* (pow (sec ?x) 2) (pow (csc ?x) 2))" => "(+ (pow (sec ?x) 2) (pow (csc ?x) 2))"),
         /* even-odd identities */
         rw!("sin(-x)=-sin(x)"; "(sin (* -1 ?x))" => "(* -1 (sin ?x))"),
-        rw!("-sin(x)=sin(-x)"; "(* -1 (sin ?x))" => "(sin (* -1 ?x))"),
+        // rw!("-sin(x)=sin(-x)"; "(* -1 (sin ?x))" => "(sin (* -1 ?x))"),
+        rw!("sin(x)=-sin(-x)"; "(sin ?x)" => "(* -1 (sin (* -1 ?x)))"),
         rw!("cos(-x)=cos(x)"; "(cos (* -1 ?x))" => "(cos ?x)"),
         rw!("cos(x)->cos(-x)"; "(cos ?x)" => "(cos (* -1 ?x))"),
         rw!("tan(-x)=-tan(x)"; "(tan (* -1 ?x))" => "(* -1 (tan ?x))"),
-        rw!("-tan(x)->tan(-x)"; "(* -1 (tan ?x))" => "(tan (* -1 ?x))"),
+        // rw!("-tan(x)->tan(-x)"; "(* -1 (tan ?x))" => "(tan (* -1 ?x))"),
+        rw!("tan(x)->-tan(-x)"; "(tan ?x)" => "(* -1 (tan (* -1 ?x)))"),
         rw!("csc(-x)=-csc(x)"; "(csc (* -1 ?x))" => "(* -1 (csc ?x))"),
-        rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
+        // rw!("-csc(x)->csc(-x)"; "(* -1 (csc ?x))" => "(csc (* -1 ?x))"),
+        rw!("csc(x)->-csc(-x)"; "(csc ?x)" => "(* -1 (csc (* -1 ?x)))"),
         rw!("sec(-x)=sec(x)"; "(sec (* -1 ?x))" => "(sec ?x)"),
         rw!("sec(x)->sec(-x)"; "(sec ?x)" => "(sec (* -1 ?x))"),
         rw!("cot(-x)=-cot(x)"; "(cot (* -1 ?x))" => "(* -1 (cot ?x))"),
-        rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
+        // rw!("-cot(x)->cot(-x)"; "(* -1 (cot ?x))" => "(cot (* -1 ?x))"),
+        rw!("cot(x)->-cot(-x)"; "(cot ?x)" => "(* -1 (cot (* -1 ?x)))"),
         // /* shifts & periodicity */
         // /* 1/4 period */
         rw!("sin(x+0.5pi)=cos(x)"; "(sin (+ ?x (* 0.5 pi)))" => "(cos ?x)"),
@@ -471,7 +478,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("2tan(x)/(1-tan^2(x))=tan(2x)";
             "(/ (* 2 (tan ?x)) (- 1 (pow (tan ?x) 2)))" => "(tan (* 2 ?x))"),
         rw!("csc(x)=(sec(x/2)csc(x/2))/2"; "(csc ?x)" => "(/ (* (sec (/ ?x 2)) (csc (/ ?x 2))) 2)"),
-        rw!("csc(2x)=(sec(x)csc(x))/2"; "(csc (* 2 ?x))" => "(/ (* (sec ?x) (csc ?x)) 2)"),
+        rw!("(sec(x)csc(x))/2=csc(2x)"; "(/ (* (sec ?x) (csc ?x)) 2)" => "(csc (* 2 ?x))"),
         rw!("csc(x)=(1+tan^2(x/2))/(2tan(x/2))";
             "(csc ?x)" => "(/ (+ 1 (pow (tan (/ ?x 2)) 2)) (* 2 (tan (/ ?x 2))))"),
         rw!("(1+tan^2(x))/(2tan(x))=csc(2x)";
@@ -492,15 +499,15 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(cot ?x)" => "(/ (- 1 (pow (tan (/ ?x 2)) 2)) (* 2 (tan (/ ?x 2))))"),
         rw!("(1-tan^2(x))/(2tan(x))=cot(2x)";
             "(/ (- 1 (pow (tan ?x) 2)) (* 2 (tan ?x)))" => "(cot (* 2 ?x))"),
-        /* triple-angle formulae */
-        rw!("sin(x)=3sin(x/3)-4sin^3(x/3)";
-            "(sin ?x)" => "(- (* 3 (sin (/ ?x 3))) (* 4 (pow (sin (/ ?x 3)) 3)))"),
-        rw!("3sin(x)-4sin^3(x)=sin(3x)";
-            "(- (* 3 (sin ?x)) (* 4 (pow (sin ?x) 3)))" => "(sin ( * 3 ?x))"),
-        rw!("cos(x)=4cos^3(x/3)-3cos(x/3)";
-            "(cos ?x)" => "(- (* 4 (pow (cos (/ ?x 3)) 3)) (* 3 (cos (/ ?x 3))))"),
-        rw!("4cos^3(x)-3cos(x)=cos(3x)";
-            "(- (* 4 (pow (cos ?x) 3)) (* 3 (cos ?x)))" => "(cos ( * 3 ?x))"),
+        // /* triple-angle formulae */
+        // rw!("sin(x)=3sin(x/3)-4sin^3(x/3)";
+        //     "(sin ?x)" => "(- (* 3 (sin (/ ?x 3))) (* 4 (pow (sin (/ ?x 3)) 3)))"),
+        // rw!("3sin(x)-4sin^3(x)=sin(3x)";
+        //     "(- (* 3 (sin ?x)) (* 4 (pow (sin ?x) 3)))" => "(sin ( * 3 ?x))"),
+        // rw!("cos(x)=4cos^3(x/3)-3cos(x/3)";
+        //     "(cos ?x)" => "(- (* 4 (pow (cos (/ ?x 3)) 3)) (* 3 (cos (/ ?x 3))))"),
+        // rw!("4cos^3(x)-3cos(x)=cos(3x)";
+        //     "(- (* 4 (pow (cos ?x) 3)) (* 3 (cos ?x)))" => "(cos ( * 3 ?x))"),
         // tan & csc & sec & cot rw exceed length limit
         /* half-angle formulae */
         rw!("sin(x)=sqrt((1-cos(2x))/2)"; "(sin ?x)" => "(sqrt (/ (- 1 (cos (* 2 ?x))) 2))"),
@@ -717,7 +724,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("sinh(x)=((e^x-e^-x)/2)"; "(sinh ?x)" => "(/ (- (pow e ?x) (pow e (* -1 ?x))) 2)"),
         rw!("sinh(x)=((e^2x-1)/2e^x)"; "(sinh ?x)" => "(/ (- (pow e (* 2 ?x)) 1) (* 2 (pow e ?x)))"),
         rw!("cosh(x)=((e^x+e^-x)/2)"; "(cosh ?x)" => "(/ (+ (pow e ?x) (pow e (* -1 ?x))) 2)"),
-        rw!("cosh(x)=((e^2x+1)/2e^x)"; "(sinh ?x)" => "(/ (+ (pow e (* 2 ?x)) 1) (* 2 (pow e ?x)))"),
+        rw!("cosh(x)=((e^2x+1)/2e^x)"; "(cosh ?x)" => "(/ (+ (pow e (* 2 ?x)) 1) (* 2 (pow e ?x)))"),
         rw!("tanh(x)=((e^2x-1)/(e^2x+1))";
             "(tanh ?x)" => "(/ (- (pow e (* 2 ?x)) 1) (+ (pow e (* 2 ?x)) 1))"),
         // can be learned from above and reciprocal identities
@@ -727,6 +734,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("tanh(x)=((e^x-e^-x)/(e^x+e^-x))";
         //     "(tanh ?x)" => "(/ (- (pow e ?x) (pow e (* -1 ?x))) (+ (pow e ?x) (pow e (* -1 ?x))))"),
         rw!("tanh=sinh/cosh"; "(tanh ?x)" => "(/ (sinh ?x) (cosh ?x))"),
+        rw!("sinh=tanh*cosh"; "(sinh ?x)" => "(* (tanh ?x) (cosh ?x))"),
+        rw!("cosh=sinh/tanh"; "(cosh ?x)" => "(/ (sinh ?x) (tanh ?x))"),
+        rw!("coth=cosh/sinh"; "(coth ?x)" => "(/ (cosh ?x) (sinh ?x))"),
+        rw!("sinh=cosh/coth"; "(sinh ?x)" => "(/ (cosh ?x) (coth ?x))"),
+        rw!("cosh=coth*sinh"; "(cosh ?x)" => "(* (coth ?x) (sinh ?x))"),
         rw!("cosh(x)+sinh(x)=e^x"; "(+ (cosh ?x) (sinh ?x))" => "(pow e ?x)"),
         rw!("cosh(x)-sinh(x)=e^(-x)"; "(- (cosh ?x) (sinh ?x))" => "(pow e (* -1 ?x))"),
         /* reciprocal identities */
@@ -745,17 +757,18 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("csch^2=coth^2-1"; "(pow (csch ?x) 2)" => "(- (pow (coth ?x) 2) 1)"),
         /* even-odd identities */
         rw!("sinh(-x)=-sinh(x)"; "(sinh (* -1 ?x))" => "(* -1 (sinh ?x))"),
+        rw!("sinh(x)=-sinh(-x)"; "(sinh ?x)" => "(* -1 (sinh (* -1 ?x)))"),
         rw!("cosh(-x)=cosh(x)"; "(cosh (* -1 ?x))" => "(cosh ?x)"),
-        rw!("tanh(-x)=-tanh(x)"; "(tanh (* -1 ?x))" => "(* -1 (tanh ?x))"),
-        rw!("csch(-x)=-csch(x)"; "(csch (* -1 ?x))" => "(* -1 (csch ?x))"),
-        rw!("sech(-x)=sech(x)"; "(sech (* -1 ?x))" => "(sech ?x)"),
-        rw!("coth(-x)=-coth(x)"; "(coth (* -1 ?x))" => "(* -1 (coth ?x))"),
-        rw!("-sinh(x)=sinh(-x)"; "(* -1 (sinh ?x))" => "(sinh (* -1 ?x))"),
         rw!("cosh(x)=cosh(-x)"; "(cosh ?x)" => "(cosh (* -1 ?x))"),
-        rw!("-tanh(x)=tanh(-x)"; "(* -1 (tanh ?x))" => "(tanh (* -1 ?x))"),
-        rw!("-csch(x)=csch(-x)"; "(* -1 (csch ?x))" => "(csch (* -1 ?x))"),
+        rw!("tanh(-x)=-tanh(x)"; "(tanh (* -1 ?x))" => "(* -1 (tanh ?x))"),
+        rw!("tanh(x)=-tanh(-x)"; "(tanh ?x)" => "(* -1 (tanh (* -1 ?x)))"),
+        rw!("csch(-x)=-csch(x)"; "(csch (* -1 ?x))" => "(* -1 (csch ?x))"),
+        rw!("csch(x)=-csch(-x)"; "(csch ?x)" => "(* -1 (csch (* -1 ?x)))"),
+        rw!("sech(-x)=sech(x)"; "(sech (* -1 ?x))" => "(sech ?x)"),
         rw!("sech(x)=sech(-x)"; "(sech ?x)" => "(sech (* -1 ?x))"),
-        rw!("-coth(x)=coth(-x)"; "(* -1 (coth ?x))" => "(coth (* -1 ?x))"),
+        rw!("coth(-x)=-coth(x)"; "(coth (* -1 ?x))" => "(* -1 (coth ?x))"),
+        rw!("coth(x)=-coth(-x)"; "(coth ?x)" => "(* -1 (coth (* -1 ?x)))"),
+    
         /* double angle identities */
         rw!("sinh(x)=2sinh(x/2)cosh(x/2)"; "(sinh ?x)" => "(* 2 (* (sinh (/ ?x 2)) (cosh (/ ?x 2))))"),
         rw!("2sinh(x)cosh(x)=sinh(2x)"; "(* 2 (* (sinh ?x) (cosh ?x)))" => "(sinh (* 2 ?x))"),
@@ -922,6 +935,7 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* =============================== derivative =============================== */
         /* basic derivative */
+        rw!("d/dx x"; "(d ?x ?x)" => "1"),
         rw!("d/dx c"; "(d ?x ?c)" => "0" if is_const("?c")),
         rw!("d/dx y"; "(d x y)" => "0"),
         rw!("d/dx z"; "(d x z)" => "0"),
@@ -975,10 +989,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("d/dx log"; "(d ?x (log ?b ?u))" => "(* (/ 1 (* ?u (ln ?b))) (d ?x ?u))"),
         /* ========================================================================== */
 
-        /* ============================== integration =============================== */
-        // rw!("i-one"; "(i 1 ?x)" => "?x"),
-        // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
-        //     if is_const("?c")),
-        /* ========================================================================== */
+        // /* ============================== integration =============================== */
+        // // rw!("i-one"; "(i 1 ?x)" => "?x"),
+        // // rw!("i-power-const"; "(i (pow ?x ?c) ?x)" => "(/ (pow ?x (+ ?c 1)) (+ ?c 1))"
+        // //     if is_const("?c")),
+        // /* ========================================================================== */
     ]
 }
