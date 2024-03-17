@@ -311,16 +311,16 @@ pub fn math_rule() -> Vec<Rewrite> {
          */
         /* Pythagorean identities */
         rw!("sin^2+cos^2->1"; "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))" => "1"),
-        // // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
-        // rw!("sin=sqrt(1-cos^2)"; "(sin ?x)" => "(sqrt (- 1 (pow (cos ?x) 2)))"),
-        // rw!("sqrt(1-cos^2)=sin"; "(sqrt (- 1 (pow (cos ?x) 2)))" => "(sin ?x)"),
-        // // if a=+/-b ONLY assign a = b NOT BOTH a=b & a=-b
-        // // rw!("sin=-sqrt(1-cos^2)"; "(sin ?x)" => "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))"),
-        // // rw!("-sqrt(1-cos^2)=sin"; "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))" => "(sin ?x)"),
-        // rw!("cos=sqrt(1-sin^2)"; "(cos ?x)" => "(sqrt (- 1 (pow (sin ?x) 2)))"),
-        // rw!("sqrt(1-sin^2)=cos"; "(sqrt (- 1 (pow (sin ?x) 2)))" => "(cos ?x)"),
-        // // rw!("cos=-sqrt(1-sin^2)"; "(cos ?x)" => "(* -1 (sqrt (- 1 (pow (sin ?x) 2))))"),
-        // // rw!("-sqrt(1-cos^2)=cos"; "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))" => "(sin ?x)"),
+        // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
+        rw!("|sin|=sqrt(1-cos^2)"; "(abs (sin ?x))" => "(sqrt (- 1 (pow (cos ?x) 2)))"),
+        rw!("sqrt(1-cos^2)=|sin|"; "(sqrt (- 1 (pow (cos ?x) 2)))" => "(abs (sin ?x))"),
+        // if a=+/-b ONLY assign a = b NOT BOTH a=b & a=-b
+        // rw!("sin=-sqrt(1-cos^2)"; "(sin ?x)" => "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))"),
+        // rw!("-sqrt(1-cos^2)=sin"; "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))" => "(sin ?x)"),
+        rw!("|cos|=sqrt(1-sin^2)"; "(abs (cos ?x))" => "(sqrt (- 1 (pow (sin ?x) 2)))"),
+        rw!("sqrt(1-sin^2)=|cos|"; "(sqrt (- 1 (pow (sin ?x) 2)))" => "(abs (cos ?x))"),
+        // rw!("cos=-sqrt(1-sin^2)"; "(cos ?x)" => "(* -1 (sqrt (- 1 (pow (sin ?x) 2))))"),
+        // rw!("-sqrt(1-cos^2)=cos"; "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))" => "(sin ?x)"),
         rw!("tan^2=sec^2-1"; "(pow (tan ?x) 2)" => "(- (pow (sec ?x) 2) 1)"),
         rw!("sec^2=tan^2+1->"; "(pow (sec ?x) 2)" => "(+ (pow (tan ?x) 2) 1)"),
         rw!("cot^2=csc^2-1"; "(pow (cot ?x) 2)" => "(- (pow (csc ?x) 2) 1)"),
@@ -510,14 +510,14 @@ pub fn math_rule() -> Vec<Rewrite> {
         //     "(- (* 4 (pow (cos ?x) 3)) (* 3 (cos ?x)))" => "(cos ( * 3 ?x))"),
         // tan & csc & sec & cot rw exceed length limit
         /* half-angle formulae */
-        rw!("sin(x)=sqrt((1-cos(2x))/2)"; "(sin ?x)" => "(sqrt (/ (- 1 (cos (* 2 ?x))) 2))"),
-        rw!("sqrt((1-cos(x))/2)=sin(2x)"; "(sqrt (/ (- 1 (cos ?x)) 2))" => "(sin (/ ?x 2))"),
-        rw!("sin(x)=-sqrt((1-cos(2x))/2)"; "(sin ?x)" => "(* -1 (sqrt (/ (- 1 (cos (* 2 ?x))) 2)))"),
-        rw!("-sqrt((1-cos(x))/2)=sin(2x)"; "(* -1 (sqrt (/ (- 1 (cos ?x)) 2)))" => "(sin (/ ?x 2))"),
-        rw!("cos(x)=sqrt((1+cos(2x))/2)"; "(cos (/ ?x 2))" => "(sqrt (/ (+ 1 (cos (* 2 ?x))) 2))"),
-        rw!("sqrt((1+cos(x))/2)=cos(2x)"; "(sqrt (/ (+ 1 (cos ?x)) 2))" => "(cos (/ ?x 2))"),
-        rw!("cos(x)=-sqrt((1+cos(2x))/2)"; "(cos (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos (* 2 ?x))) 2)))"),
-        rw!("-sqrt((1+cos(x))/2)=cos(2x)"; "(* -1 (sqrt (/ (+ 1 (cos ?x)) 2)))" => "(cos (/ ?x 2))"),
+        rw!("|sin(x)|=sqrt((1-cos(2x))/2)"; "(abs (sin ?x))" => "(sqrt (/ (- 1 (cos (* 2 ?x))) 2))"),
+        rw!("sqrt((1-cos(x))/2)=|sin(2x)|"; "(sqrt (/ (- 1 (cos ?x)) 2))" => "(abs (sin (/ ?x 2)))"),
+        // rw!("sin(x)=-sqrt((1-cos(2x))/2)"; "(sin ?x)" => "(* -1 (sqrt (/ (- 1 (cos (* 2 ?x))) 2)))"),
+        // rw!("-sqrt((1-cos(x))/2)=sin(2x)"; "(* -1 (sqrt (/ (- 1 (cos ?x)) 2)))" => "(sin (/ ?x 2))"),
+        rw!("|cos(x)|=sqrt((1+cos(2x))/2)"; "(abs (cos (/ ?x 2)))" => "(sqrt (/ (+ 1 (cos (* 2 ?x))) 2))"),
+        rw!("sqrt((1+cos(x))/2)=|cos(2x)|"; "(sqrt (/ (+ 1 (cos ?x)) 2))" => "(abs (cos (/ ?x 2)))"),
+        // rw!("cos(x)=-sqrt((1+cos(2x))/2)"; "(cos (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos (* 2 ?x))) 2)))"),
+        // rw!("-sqrt((1+cos(x))/2)=cos(2x)"; "(* -1 (sqrt (/ (+ 1 (cos ?x)) 2)))" => "(cos (/ ?x 2))"),
         rw!("tan(x)=(1-cos(2x))/sin(2x)"; "(tan ?x)" => "(/ (- 1 (cos (* 2 ?x))) (sin (* 2 ?x)))"),
         rw!("(1-cos(x))/sin(x)=tan(x/2)"; "(/ (- 1 (cos ?x)) (sin ?x))" => "(tan (/ ?x 2))"),
         rw!("tan(x)=sin(2x)/(1+cos(2x))"; "(tan ?x)" => "(/ (sin (* 2 ?x)) (+ 1 (cos (* 2 ?x))))"),
@@ -526,36 +526,36 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("csc(x)-cot(x)=tan(x/2)"; "(- (csc ?x) (cot ?x))" => "(tan (/ ?x 2))"),
         rw!("tan(x)=tan(2x)/(1+sec(2x))"; "(tan ?x)" => "(/ (tan (* 2 ?x)) (+ 1 (sec (* 2 ?x))))"),
         rw!("tan(x)/(1+sec(x))=tan(x/2)"; "(/ (tan (* 2 ?x)) (+ 1 (sec (* 2 ?x))))" => "(tan (/ ?x 2))"),
-        rw!("tan(x)=sqrt((1-cos(2x))/(1+cos(2x)))";
-            "(tan ?x)" => "(sqrt (/ (- 1 (cos (* 2 ?x))) (+ 1 (cos (* 2 ?x)))))"),
-        rw!("sqrt((1-cos(x))/(1+cos(x)))=tan(x/2)";
-            "(sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))" => "(tan (/ ?x 2))"),
-        rw!("tan(x)=-sqrt((1-cos(2x))/(1+cos(2x)))";
-            "(tan (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos (* 2 ?x))) (+ 1 (cos (* 2 ?x))))))"),
-        rw!("-sqrt((1-cos(x))/(1+cos(x)))=tan(x/2)";
-            "(* -1 (sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))))" => "(tan (/ ?x 2))"),
-        rw!("csc(x)=sqrt(2/(1-cos(2x)))"; "(csc ?x)" => "(sqrt (/ 2 (- 1 (cos (* 2 ?x)))))"),
-        rw!("sqrt(2/(1-cos(x)))=csc(x/2)"; "(sqrt (/ 2 (- 1 (cos ?x))))" => "(csc (/ ?x 2))"),
-        rw!("csc(x)=-sqrt(2/(1-cos(2x)))"; "(csc ?x)" => "(* -1 (sqrt (/ 2 (- 1 (cos (* 2 ?x))))))"),
-        rw!("-sqrt(2/(1-cos(x)))=csc(x/2)"; "( * -1 (sqrt (/ 2 (- 1 (cos ?x)))))" => "(csc (/ ?x 2))"),
-        rw!("sec(x)=sqrt(2/(1+cos(2x)))"; "(sec ?x)" => "(sqrt (/ 2 (+ 1 (cos (* 2 ?x)))))"),
-        rw!("sqrt(2/(1+cos(x)))=csc(x/2)"; "(sqrt (/ 2 (+ 1 (cos ?x))))" => "(sec (/ ?x 2))"),
-        rw!("sec(x)=-sqrt(2/(1+cos(2x)))"; "(sec ?x)" => "(* -1 (sqrt (/ 2 (+ 1 (cos (* 2 ?x))))))"),
-        rw!("-sqrt(2/(1+cos(x)))=csc(x/2)"; "(* -1 (sqrt (/ 2 (+ 1 (cos ?x)))))" => "(sec (/ ?x 2))"),
+        rw!("|tan(x)|=sqrt((1-cos(2x))/(1+cos(2x)))";
+            "(abs (tan ?x))" => "(sqrt (/ (- 1 (cos (* 2 ?x))) (+ 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt((1-cos(x))/(1+cos(x)))=|tan(x/2)|";
+            "(sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))" => "(abs (tan (/ ?x 2)))"),
+        // rw!("tan(x)=-sqrt((1-cos(2x))/(1+cos(2x)))";
+        //     "(tan (/ ?x 2))" => "(* -1 (sqrt (/ (- 1 (cos (* 2 ?x))) (+ 1 (cos (* 2 ?x))))))"),
+        // rw!("-sqrt((1-cos(x))/(1+cos(x)))=tan(x/2)";
+        //     "(* -1 (sqrt (/ (- 1 (cos ?x)) (+ 1 (cos ?x))))))" => "(tan (/ ?x 2))"),
+        rw!("|csc(x)|=sqrt(2/(1-cos(2x)))"; "(abs (csc ?x))" => "(sqrt (/ 2 (- 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt(2/(1-cos(x)))=|csc(x/2)|"; "(sqrt (/ 2 (- 1 (cos ?x))))" => "(abs (csc (/ ?x 2)))"),
+        // rw!("csc(x)=-sqrt(2/(1-cos(2x)))"; "(csc ?x)" => "(* -1 (sqrt (/ 2 (- 1 (cos (* 2 ?x))))))"),
+        // rw!("-sqrt(2/(1-cos(x)))=csc(x/2)"; "( * -1 (sqrt (/ 2 (- 1 (cos ?x)))))" => "(csc (/ ?x 2))"),
+        rw!("|sec(x)|=sqrt(2/(1+cos(2x)))"; "(abs (sec ?x))" => "(sqrt (/ 2 (+ 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt(2/(1+cos(x)))=sec(x/2)"; "(sqrt (/ 2 (+ 1 (cos ?x))))" => "(sec (/ ?x 2))"),
+        // rw!("sec(x)=-sqrt(2/(1+cos(2x)))"; "(sec ?x)" => "(* -1 (sqrt (/ 2 (+ 1 (cos (* 2 ?x))))))"),
+        // rw!("-sqrt(2/(1+cos(x)))=csc(x/2)"; "(* -1 (sqrt (/ 2 (+ 1 (cos ?x)))))" => "(sec (/ ?x 2))"),
         rw!("cot(x)=(1+cos(2x))/sin(2x)"; "(cot ?x)" => "(/ (+ 1 (cos (* 2 ?x))) (sin (* 2 ?x)))"),
         rw!("(1+cos(x))/sin(x)=cot(x/2)"; "(/ (+ 1 (cos ?x)) (sin ?x))" => "(cot (/ ?x 2))"),
         rw!("cot(x)=sin(2x)/(1-cos(2x))"; "(cot ?x)" => "(/ (sin (* 2 ?x)) (- 1 (cos (* 2 ?x))))"),
         rw!("sin(x)/(1-cos(x))=cot(x/2)"; "(/ (sin ?x) (- 1 (cos ?x)))" => "(cot (/ ?x 2))"),
         rw!("cot(x)=csc(2x)+cot(2x)"; "(cot ?x)" => "(+ (csc (* 2 ?x)) (cot (* 2 ?x)))"),
         rw!("csc(x)+cot(x)=cot(x/2)"; "(+ (csc ?x) (cot ?x))" => "(cot (/ ?x 2))"),
-        rw!("cot(x)=sqrt((1+cos(2x))/(1-cos(2x)))";
-            "(cot ?x)" => "(sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x)))))"),
-        rw!("sqrt((1+cos(2x))/(1-cos(2x)))=cot(x)";
-            "(sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x))))" => "(cot (/ ?x 2))"),
-        rw!("cot(x)=-sqrt((1+cos(2x))/(1-cos(2x)))";
-            "(cot (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x))))))"),
-        rw!("-sqrt((1+cos(2x))/(1-cos(2x)))=cot(x)";
-            "(* -1 (sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x)))))" => "(cot (/ ?x 2))"),
+        rw!("|cot(x)|=sqrt((1+cos(2x))/(1-cos(2x)))";
+            "(abs (cot ?x))" => "(sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x)))))"),
+        rw!("sqrt((1+cos(x))/(1-cos(x)))=|cot(x/2)|";
+            "(sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x))))" => "(abs (cot (/ ?x 2)))"),
+        // rw!("cot(x)=-sqrt((1+cos(2x))/(1-cos(2x)))";
+        //     "(cot (/ ?x 2))" => "(* -1 (sqrt (/ (+ 1 (cos (* 2 ?x))) (- 1 (cos (* 2 ?x))))))"),
+        // rw!("-sqrt((1+cos(2x))/(1-cos(2x)))=cot(x)";
+        //     "(* -1 (sqrt (/ (+ 1 (cos ?x)) (- 1 (cos ?x)))))" => "(cot (/ ?x 2))"),
         /* power-reduction formulae */
         rw!("sin^2(x)=(1-cos(2x))/2"; "(pow (sin ?x) 2)" => "(/ (- 1 (cos (* 2 ?x))) 2)"),
         rw!("cos^2(x)=(1+cos(2x))/2"; "(pow (cos ?x) 2)" => "(/ (+ 1 (cos (* 2 ?x))) 2)"),
@@ -635,10 +635,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x/sqrt(1+x^2)=sin(atan(x))"; "(/ ?x (sqrt (+ 1 (pow ?x 2))))" => "(sin (atan ?x))"),
         rw!("sin(acsc(x))=1/x"; "(sin (acsc ?x))" => "(/ 1 ?x)" if not_zero("?x")),
         rw!("1/x=sin(acsc(x))"; "(/ 1 ?x)" => "(sin (acsc ?x))" if not_zero("?x")),
-        rw!("sin(asec(x))=sqrt(x^2-1)/x";
-            "(sin (asec ?x))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)" if not_zero("?x")),
-        rw!("sqrt(x^2-1)/x=sin(asec(x))";
-            "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(sin (asec ?x))" if not_zero("?x")),
+        rw!("|sin(asec(x))|=sqrt(x^2-1)/x";
+            "(abs (sin (asec ?x)))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)" if not_zero("?x")),
+        rw!("sqrt(x^2-1)/x=|sin(asec(x))|";
+            "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(abs (sin (asec ?x)))" if not_zero("?x")),
         rw!("sin(acot(x))=1/sqrt(1+x^2)"; "(sin (acot ?x))" => "(/ 1 (sqrt (+ 1 (pow ?x 2))))"),
         rw!("1/sqrt(1+x^2)=sin(acot(x))"; "(/ 1 (sqrt (+ 1 (pow ?x 2))))" => "(sin (acot ?x))"),
         rw!("cos(asin(x))=sqrt(1-x^2)"; "(cos (asin ?x))" => "(sqrt (- 1 (pow ?x 2)))"),
@@ -647,10 +647,10 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x=cos(acos(x))"; "?x" => "(cos (acos ?x))"),
         rw!("cos(atan(x))=1/sqrt(1+x^2)"; "(cos (atan ?x))" => "(/ 1 (sqrt (+ 1 (pow ?x 2))))"),
         rw!("1/sqrt(1+x^2)=cos(atan(x))"; "(/ 1 (sqrt (+ 1 (pow ?x 2))))" => "(cos (atan ?x))"),
-        rw!("cos(acsc(x))=sqrt(x^2-1)/x";
-            "(cos (acsc ?x))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)" if not_zero("?x")),
-        rw!("sqrt(x^2-1)/x=cos(acsc(x))";
-            "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(cos (acsc ?x))" if not_zero("?x")),
+        rw!("|cos(acsc(x))|=sqrt(x^2-1)/x";
+            "(abs (cos (acsc ?x)))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)" if not_zero("?x")),
+        rw!("sqrt(x^2-1)/x=|cos(acsc(x))|";
+            "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(abs (cos (acsc ?x)))" if not_zero("?x")),
         rw!("cos(asec(x))=1/x"; "(cos (asec ?x))" => "(/ 1 ?x)" if not_zero("?x")),
         rw!("1/x=cos(asec(x))"; "(/ 1 ?x)" => "(cos (asec ?x))" if not_zero("?x")),
         rw!("cos(acot(x))=x/sqrt(1+x^2)"; "(cos (acot ?x))" => "(/ ?x (sqrt (+ 1 (pow ?x 2))))"),
@@ -663,14 +663,14 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(/ (sqrt (- 1 (pow ?x 2))) ?x)" => "(tan (acos ?x))" if not_zero("?x")),
         rw!("tan(atan(x))=x"; "(tan (atan ?x))" => "?x"),
         rw!("x=tan(atan(x))"; "?x" => "(tan (atan ?x))"),
-        rw!("tan(acsc(x))=1/sqrt(x^2-1)"; "(tan (acsc ?x))" => "(/ 1 (sqrt (- (pow ?x 2) 1)))"),
-        rw!("1/sqrt(x^2-1)=tan(acsc(x))"; "(/ 1 (sqrt (- (pow ?x 2) 1)))" => "(tan (acsc ?x))"),
-        rw!("tan(acsc(x))=-1/sqrt(x^2-1)"; "(tan (acsc ?x))" => "(/ -1 (sqrt (- (pow ?x 2) 1)))"),
-        rw!("-1/sqrt(x^2-1)=tan(acsc(x))"; "(/ -1 (sqrt (- (pow ?x 2) 1)))" => "(tan (acsc ?x))"),
-        rw!("tan(asec(x))=sqrt(x^2-1)"; "(tan (asec ?x))" => "(sqrt (- (pow ?x 2) 1))"),
-        rw!("sqrt(x^2-1)=tan(asec(x))"; "(sqrt (- (pow ?x 2) 1))" => "(tan (asec ?x))"),
-        rw!("tan(asec(x))=-sqrt(x^2-1)"; "(tan (asec ?x))" => "(* -1 (sqrt (- (pow ?x 2) 1)))"),
-        rw!("-sqrt(x^2-1)=tan(asec(x))"; "(* -1 (sqrt (- (pow ?x 2) 1)))" => "(tan (asec ?x))"),
+        rw!("|tan(acsc(x))|=1/sqrt(x^2-1)"; "(abs (tan (acsc ?x)))" => "(/ 1 (sqrt (- (pow ?x 2) 1)))"),
+        rw!("1/sqrt(x^2-1)=|tan(acsc(x))|"; "(/ 1 (sqrt (- (pow ?x 2) 1)))" => "(abs (tan (acsc ?x)))"),
+        // rw!("tan(acsc(x))=-1/sqrt(x^2-1)"; "(tan (acsc ?x))" => "(/ -1 (sqrt (- (pow ?x 2) 1)))"),
+        // rw!("-1/sqrt(x^2-1)=tan(acsc(x))"; "(/ -1 (sqrt (- (pow ?x 2) 1)))" => "(tan (acsc ?x))"),
+        rw!("|tan(asec(x))|=sqrt(x^2-1)"; "(abs (tan (asec ?x)))" => "(sqrt (- (pow ?x 2) 1))"),
+        rw!("sqrt(x^2-1)=|tan(asec(x))|"; "(sqrt (- (pow ?x 2) 1))" => "(abs (tan (asec ?x)))"),
+        // rw!("tan(asec(x))=-sqrt(x^2-1)"; "(tan (asec ?x))" => "(* -1 (sqrt (- (pow ?x 2) 1)))"),
+        // rw!("-sqrt(x^2-1)=tan(asec(x))"; "(* -1 (sqrt (- (pow ?x 2) 1)))" => "(tan (asec ?x))"),
         rw!("tan(acot(x))=1/x"; "(tan (acot ?x))" => "(/ 1 ?x)" if not_zero("?x")),
         rw!("1/x=tan(acot(x))"; "(/ 1 ?x)" => "(tan (acot ?x))" if not_zero("?x")),
         /* complementary angles */
@@ -682,13 +682,16 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("asec=pi/2-acsc"; "(asec ?x)" => "(- (/ pi 2) (acsc ?x))"),
         /* negative args */
         rw!("asin(-x)=-asin(x)"; "(asin (* -1 ?x))" => "(* -1 (asin ?x))"),
-        rw!("-asin(x)=asin(-x)"; "(* -1 (asin ?x))" => "(asin (* -1 ?x))"),
+        // rw!("-asin(x)=asin(-x)"; "(* -1 (asin ?x))" => "(asin (* -1 ?x))"),
+        rw!("asin(x)=-asin(-x)"; "(asin ?x)" => "(* -1 (asin (* -1 ?x)))"),
         rw!("acos(-x)=pi-acos(x)"; "(acos (* -1 ?x))" => "(- pi (acos ?x))"),
         rw!("acos(x)=pi-acos(-x)="; "(acos ?x)" => "(- pi (acos (* -1 ?x)))"),
         rw!("atan(-x)=-atan(x)"; "(atan (* -1 ?x))" => "(* -1 (atan ?x))"),
-        rw!("-atan(x)=atan(-x)"; "(* -1 (atan ?x))" => "(atan (* -1 ?x))"),
+        // rw!("-atan(x)=atan(-x)"; "(* -1 (atan ?x))" => "(atan (* -1 ?x))"),
+        rw!("atan(x)=-atan(-x)"; "(atan ?x)" => "(* -1 (atan (* -1 ?x)))"),
         rw!("acsc(-x)=-acsc(x)"; "(acsc (* -1 ?x))" => "(* -1 (acsc ?x))"),
-        rw!("-acsc(x)=acsc(-x)"; "(* -1 (acsc ?x))" => "(acsc (* -1 ?x))"),
+        // rw!("-acsc(x)=acsc(-x)"; "(* -1 (acsc ?x))" => "(acsc (* -1 ?x))"),
+        rw!("acsc(x)=-acsc(-x)"; "(acsc ?x)" => "(* -1 (acsc (* -1 ?x)))"),
         rw!("asec(-x)=pi-asec(x)"; "(asec (* -1 ?x))" => "(- pi (asec ?x))"),
         rw!("asec(x)=pi-asec(-x)="; "(asec ?x)" => "(- pi (asec (* -1 ?x)))"),
         rw!("acot(-x)=pi-acot(x)"; "(acot (* -1 ?x))" => "(- pi (acot ?x))"),
@@ -706,16 +709,19 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("asin(x)=2atan(x/(1+sqrt(1-x^2)))";
             "(asin ?x)" => "(* 2 (atan (/ ?x (+ 1 (sqrt (- 1 (pow ?x 2)))))))"),
         rw!("asin(x)=0.5acos(1-2x^2)"; "(asin ?x)" => "(* 0.5 (acos (- 1 (* 2 (pow ?x 2)))))"),
-        rw!("acos(x)=atan(sqrt(1-x^2)/x)";
-            "(acos ?x)" => "(atan (/ (sqrt (- 1 (pow ?x 2))) ?x))" if not_zero("?x")),
+        // may not be correct
+        // rw!("acos(x)=atan(sqrt(1-x^2)/x)";
+        //     "(acos ?x)" => "(atan (/ (sqrt (- 1 (pow ?x 2))) ?x))" if not_zero("?x")),
         rw!("acos(x)=0.5acos(2x^2-1)"; "(acos ?x)" => "(* 0.5 (acos (- (* 2 (pow ?x 2)) 1)))"),
-        rw!("acos(x)=asin(sqrt(1-x^2))"; "(acos ?x)" => "(asin (sqrt (- 1 (pow ?x 2))))"),
+        // only when x>0
+        // rw!("acos(x)=asin(sqrt(1-x^2))"; "(acos ?x)" => "(asin (sqrt (- 1 (pow ?x 2))))"),
         rw!("acos(x)=2atan(sqrt(1-x^2)/(1+x))";
             "(acos ?x)" => "(* 2 (atan (/ (sqrt (- 1 (pow ?x 2))) (+ 1 ?x))))"),
         rw!("atan(x)=asin(x/sqrt(1+x^2))"; "(atan ?x)" => "(asin (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("atan(x)=acos(1/sqrt(1+x^2))"; "(atan ?x)" => "(acos (/ 1 (sqrt (+ 1 (pow ?x 2)))))"),
-        rw!("atan(x)=2atan(x/(1+sqrt(1-x^2)))";
-            "(atan ?x)" => "(* 2 (atan (/ ?x (+ 1 (sqrt (+ 1 (pow ?x 2)))))))"),
+        rw!("|atan(x)|=acos(1/sqrt(1+x^2))"; "(abs (atan ?x))" => "(acos (/ 1 (sqrt (+ 1 (pow ?x 2)))))"),
+        // may not be correct
+        // rw!("atan(x)=2atan(x/(1+sqrt(1-x^2)))";
+        //     "(atan ?x)" => "(* 2 (atan (/ ?x (+ 1 (sqrt (+ 1 (pow ?x 2)))))))"),
         rw!("acot(x)=acos(x/sqrt(1+x^2))"; "(acot ?x)" => "(acos (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
         /* ========================================================================== */
 
@@ -848,8 +854,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("atanh((x^2-1)/(x^2+1))->asinh((x^2-1)/(2x))";
         //     "(atanh (/ (- (pow ?x 2) 1) (+ (pow ?x 2) 1)))" => "(asinh (/ (- (pow ?x 2) 1) (* 2 ?x)))"),
         /* composition of hyperbolic and inverse hyperbolic functions */
-        rw!("sinh(acosh)=sqrt(x^2-1)"; "(sinh (acosh ?x))" => "(sqrt (- (pow ?x 2) 1))"),
-        rw!("sqrt(x^2-1)=sinh(acosh)"; "(sqrt (- (pow ?x 2) 1))" => "(sinh (acosh ?x))"),
+        // only when x>0
+        // rw!("sinh(acosh)=sqrt(x^2-1)"; "(sinh (acosh ?x))" => "(sqrt (- (pow ?x 2) 1))"),
+        // rw!("sqrt(x^2-1)=sinh(acosh)"; "(sqrt (- (pow ?x 2) 1))" => "(sinh (acosh ?x))"),
         rw!("sinh(atanh)=x/sqrt(1-x^2)"; "(sinh (atanh ?x))" => "(/ ?x (sqrt (- 1 (pow ?x 2))))"),
         rw!("x/sqrt(1-x^2)=sinh(atanh)"; "(/ ?x (sqrt (- 1 (pow ?x 2))))" => "(sinh (atanh ?x))"),
         rw!("cosh(asinh)=sqrt(1+x^2)"; "(cosh (asinh ?x))" => "(sqrt (+ 1 (pow ?x 2)))"),
@@ -858,8 +865,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("1/sqrt(1-x^2)=cosh(atanh)"; "(/ 1 (sqrt (- 1 (pow ?x 2))))" => "(cosh (atanh ?x))"),
         rw!("tanh(asinh)=x/sqrt(1+x^2)"; "(tanh (asinh ?x))" => "(/ ?x (sqrt (+ 1 (pow ?x 2))))"),
         rw!("x/sqrt(1+x^2)=tanh(asinh)"; "(/ ?x (sqrt (+ 1 (pow ?x 2))))" => "(tanh (asinh ?x))"),
-        rw!("tanh(acosh)=sqrt(x^2-1)/x"; "(tanh (acosh ?x))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)"),
-        rw!("sqrt(x^2-1)/x=tanh(acosh)"; "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(tanh (acosh ?x))"),
+        // only when x>0
+        // rw!("tanh(acosh)=sqrt(x^2-1)/x"; "(tanh (acosh ?x))" => "(/ (sqrt (- (pow ?x 2) 1)) ?x)"),
+        // rw!("sqrt(x^2-1)/x=tanh(acosh)"; "(/ (sqrt (- (pow ?x 2) 1)) ?x)" => "(tanh (acosh ?x))"),
         /* composition of inverse hyperbolic and circular functions */
         rw!("ln(|tan|)=-atan(cos(2x))"; "(ln (abs (tan ?x)))" => "(* -1 (atan (cos (* 2 ?x))))"),
         rw!("-atan(cos)=ln(|tan(x/2)|)"; "(* -1 (atan (cos (* 2 ?x))))" => "(ln (abs (tan (/ ?x 2))))"),
@@ -895,8 +903,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("-acosh((x^+1)/2x)=ln"; "(* -1 (asinh (/ (+ (pow ?x 2) 1) (* 2 ?x))))" => "(ln ?x)"),
         rw!("atanh=asinh(x/sqrt(1-x^2))"; "(atanh ?x)" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
         rw!("asinh(x/sqrt(1-x^2))=atanh"; "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
-        rw!("atanh=acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("acosh(1/sqrt(1-x^2))=atanh"; "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(atanh ?x)"),
+        rw!("|atanh|=acosh(1/sqrt(1-x^2))"; "(abs (atanh ?x))" => "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))"),
+        rw!("acosh(1/sqrt(1-x^2))=|atanh|"; "(acosh (/ 1 (sqrt (- 1 (pow ?x 2)))))" => "(abs (atanh ?x))"),
         // if a=+/-b ONLY assign a = b NOT BOTH a=b & a=-b
         // rw!("atanh=-acosh(1/sqrt(1-x^2))"; "(atanh ?x)" => "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))"),
         // rw!("-acosh(1/sqrt(1-x^2))=atanh"; "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(atanh ?x)"),
@@ -911,8 +919,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         //     "(* -1 (acosh (/ 1 (sqrt (- 1 (pow ?x 2))))))" => "(asinh (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
         rw!("asinh=atanh(x/sqrt(1+x^2))"; "(asinh ?x)" => "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
         rw!("atanh(x/sqrt(1+x^2))=asinh"; "(atanh (/ ?x (sqrt (+ 1 (pow ?x 2)))))" => "(asinh ?x)"),
-        rw!("asinh=acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
-        rw!("acosh(sqrt(1+x^2))=asinh"; "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(asinh ?x)"),
+        rw!("|asinh|=acosh(sqrt(1+x^2))"; "(abs (asinh ?x))" => "(acosh (sqrt (+ 1 (pow ?x 2))))"),
+        rw!("acosh(sqrt(1+x^2))=|asinh|"; "(acosh (sqrt (+ 1 (pow ?x 2))))" => "(abs (asinh ?x))"),
         // if a=+/-b ONLY assign a = b NOT BOTH a=b & a=-b
         // rw!("asinh=-acosh(sqrt(1+x^2))"; "(asinh ?x)" => "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))"),
         // rw!("-acosh(sqrt(1+x^2))->asinh"; "(* -1 (acosh (sqrt (+ 1 (pow ?x 2)))))" => "(asinh ?x)"),
