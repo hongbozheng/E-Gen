@@ -88,10 +88,10 @@ impl Analysis<Math> for ConstantFold {
                 x(a)? * x(b)?,
                 format!("(* {} {})", x(a)?, x(b)?).parse().unwrap(),
             ),
-            // Math::Div([a, b]) if x(b) != Some(NotNan::new(0.0).unwrap()) => (
-            //     x(a)? / x(b)?,
-            //     format!("(/ {} {})", x(a)?, x(b)?).parse().unwrap(),
-            // ),
+            Math::Div([a, b]) if x(b) != Some(NotNan::new(0.0).unwrap()) => (
+                x(a)? / x(b)?,
+                format!("(/ {} {})", x(a)?, x(b)?).parse().unwrap(),
+            ),
             _ => return None,
         })
     }
@@ -164,7 +164,6 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
         }
     }
 }
-
 
 /// mathematical rules including:
 /// 1. basic arithmetic
@@ -281,18 +280,46 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("ln(x^a)=aln(x)"; "(ln (pow ?x ?a))" => "(* ?a (ln ?x))"),
         rw!("aln(x)=ln(x^a)"; "(* ?a (ln ?x))" => "(ln (pow ?x ?a))"),
         /* log */
-        rw!("log(b)=1"; "(log ?b ?b)" => "1"),
-        rw!("log(xy)=log(x)+log(y)"; "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))"),
-        rw!("log(x)+log(y)=log(xy)"; "(+ (log ?b ?x) (log ?b ?y))" => "(log ?b (* ?x ?y))"),
+        rw!("log(b)=1"; "(log ?b ?b)" => "1" if not_zero("?b")),
+        rw!("log(xy)=log(x)+log(y)";
+            "(log ?b (* ?x ?y))" => "(+ (log ?b ?x) (log ?b ?y))" if not_zero("?b")),
+        rw!("log(x)+log(y)=log(xy)";
+            "(+ (log ?b ?x) (log ?b ?y))" => "(log ?b (* ?x ?y))" if not_zero("?b")),
         rw!("log(x/y)=log(x)-log(y)";
-            "(log ?b (/ ?x ?y))" => "(- (log ?b ?x) (log ?b ?y))" if not_zero("?y")),
+            "(log ?b (/ ?x ?y))" => "(- (log ?b ?x) (log ?b ?y))" if not_zero("?b") if not_zero("?y")),
         rw!("log(x)-log(y)=log(x/y)";
-            "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (/ ?x ?y))" if not_zero("?y")),
-        rw!("log(x^a)=alog(x)"; "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))"),
-        rw!("alog(x)=log(x^a)"; "(* ?a (log ?b ?x))" => "(log ?b (pow ?x ?a))"),
+            "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (/ ?x ?y))" if not_zero("?b") if not_zero("?y")),
+        rw!("log(x^a)=alog(x)";
+            "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))" if not_zero("?b")),
+        rw!("alog(x)=log(x^a)";
+            "(* ?a (log ?b ?x))" => "(log ?b (pow ?x ?a))" if not_zero("?b")),
         /* ========================================================================== */
 
         /* ================================= trig =================================== */
+        /* const */
+        // rw!("sin(0)"; "(sin 0)" => "0"),
+        // rw!("sin(0.5pi)"; "(sin (* 0.5 pi))" => "1"),
+        // rw!("sin(-0.5pi)"; "(sin (* -0.5 pi))" => "-1"),
+        // rw!("sin(pi)"; "(sin pi)" => "0"),
+        // rw!("sin(-pi)"; "(sin (* -1 pi))" => "0"),
+        // rw!("sin(1.5pi)"; "(sin (* 1.5 pi))" => "-1"),
+        // rw!("sin(-1.5pi)"; "(sin (* -1.5 pi))" => "1"),
+        // rw!("sin(2pi)"; "(sin (* 2 pi))" => "0"),
+        // rw!("sin(-2pi)"; "(sin (* -2 pi))" => "0"),
+        // rw!("cos(0)"; "(cos 0)" => "1"),
+        // rw!("cos(0.5pi)"; "(cos (* 0.5 pi))" => "0"),
+        // rw!("cos(-0.5pi)"; "(cos (* -0.5 pi))" => "0"),
+        // rw!("cos(pi)"; "(cos pi)" => "-1"),
+        // rw!("cos(-pi)"; "(cos (* -1 pi))" => "-1"),
+        // rw!("cos(1.5pi)"; "(cos (* 1.5 pi))" => "0"),
+        // rw!("cos(-1.5pi)"; "(cos (* -1.5 pi))" => "0"),
+        // rw!("cos(2pi)"; "(cos (* 2 pi))" => "1"),
+        // rw!("cos(-2pi)"; "(cos (* -2 pi))" => "1"),
+        // rw!("tan(0)"; "(tan 0)" => "0"),
+        // rw!("tan(pi)"; "(tan pi)" => "0"),
+        // rw!("tan(-pi)"; "(tan (* -1 pi))" => "0"),
+        // rw!("tan(2pi)"; "(tan (* 2 pi))" => "0"),
+        // rw!("tan(-2pi)"; "(tan (* -2 pi))" => "0"),
         /* basic identities */
         rw!("tan=sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
         rw!("cos=sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
@@ -307,10 +334,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("csc=1/sin"; "(csc ?x)" => "(/ 1 (sin ?x))"),
         rw!("sec=1/cos"; "(sec ?x)" => "(/ 1 (cos ?x))"),
         rw!("cot=1/tan"; "(cot ?x)" => "(/ 1 (tan ?x))"),
-        /* Pythagorean identities */
+        /* Pythagorean identities (abs required for sqrt) */
         rw!("sin^2+cos^2->1"; "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))" => "1"),
         // rw!("1->sin^2+cos^2"; "1" => "(+ (pow (sin ?x) 2) (pow (cos ?x) 2))"),
-        // abs required for sqrt
         rw!("|sin|=sqrt(1-cos^2)"; "(abs (sin ?x))" => "(sqrt (- 1 (pow (cos ?x) 2)))"),
         rw!("sqrt(1-cos^2)=|sin|"; "(sqrt (- 1 (pow (cos ?x) 2)))" => "(abs (sin ?x))"),
         rw!("-|sin|=-sqrt(1-cos^2)"; "(* -1 (abs (sin ?x)))" => "(* -1 (sqrt (- 1 (pow (cos ?x) 2))))"),
@@ -339,7 +365,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("cot(x)=-cot(-x)"; "(cot ?x)" => "(* -1 (cot (* -1 ?x)))"),
         /* shifts & periodicity */
         /* 1/4 period */
-        // able to cover 1/2 period & 1 period & reflections
         rw!("sin(x)=cos(x-0.5pi)"; "(sin ?x)" => "(cos (- ?x (* 0.5 pi)))"),
         rw!("cos(x)=sin(x+0.5pi)"; "(cos ?x)" => "(sin (+ ?x (* 0.5 pi)))"),
         rw!("csc(x)=sec(x-0.5pi)"; "(csc ?x)" => "(sec (- ?x (* 0.5 pi)))"),
@@ -374,11 +399,17 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("cot(x+0.5pi)=-tan(x)"; "(cot (+ ?x (* 0.5 pi)))" => "(* -1 (tan ?x))"),
         rw!("-tan(x)=cot(x+0.5pi)"; "(* -1 (tan ?x))" => "(cot (+ ?x (* 0.5 pi)))"),
         /* 1 period */
+        rw!("sin(x+2pi)=sin(x)"; "(sin (+ ?x (* 2 pi)))" => "(sin ?x)"),
         rw!("sin(x)=sin(x+2pi)"; "(sin ?x)" => "(sin (+ ?x (* 2 pi)))"),
+        rw!("cos(x+2pi)=cos(x)"; "(cos (+ ?x (* 2 pi)))" => "(cos ?x)"),
         rw!("cos(x)=cos(x+2pi)"; "(cos ?x)" => "(cos (+ ?x (* 2 pi)))"),
+        rw!("csc(x+2pi)=csc(x)"; "(csc (+ ?x (* 2 pi)))" => "(csc ?x)"),
         rw!("csc(x)=csc(x+2pi)"; "(csc ?x)" => "(csc (+ ?x (* 2 pi)))"),
+        rw!("sec(x+2pi)=sec(x)"; "(sec (+ ?x (* 2 pi)))" => "(sec ?x)"),
         rw!("sec(x)=sec(x+2pi)"; "(sec ?x)" => "(sec (+ ?x (* 2 pi)))"),
+        rw!("tan(x+pi)=tan(x)"; "(tan (+ ?x pi))" => "(tan ?x)"),
         rw!("tan(x)=tan(x+pi)"; "(tan ?x)" => "(tan (+ ?x pi))"),
+        rw!("cot(x+pi)=cot(x)"; "(cot (+ ?x pi))" => "(cot ?x)"),
         rw!("cot(x)=cot(x+pi)"; "(cot ?x)" => "(cot (+ ?x pi))"),
         /* reflections */
         rw!("sin(1.5pi-x)=-cos(x)"; "(sin (- (* 1.5 pi) ?x))" => "(* -1 (cos ?x))"),
@@ -428,20 +459,22 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("2sin(x)cos(x)=sin(2x)"; "(* 2 (* (sin ?x) (cos ?x)))" => "(sin (* 2 ?x))"),
         rw!("sin(x)=(sin(x/2)+cos(x/2))^2-1";
             "(sin ?x)" => "(- (pow (+ (sin (/ ?x 2)) (cos (/ ?x 2))) 2) 1)"),
-        rw!("(sin(x)+cos(x))^2-1=sin(2x)";
-            "(- (pow (+ (sin ?x) (cos ?x)) 2) 1)" => "(sin (* 2 ?x))"),
-        rw!("sin(x)=2tan(0.5x)/(1+tan^2(0.5x)";
+        rw!("(sin(x)+cos(x))^2=sin(2x)+1";
+            "(pow (+ (sin ?x) (cos ?x)) 2)" => "(+ (sin (* 2 ?x)) 1)"),
+        rw!("sin(x)=2tan(0.5x)/(1+tan^2(0.5x))";
             "(sin ?x)" => "(/ (* 2 (tan (/ ?x 2))) (+ 1 (pow (tan (/ ?x 2)) 2)))"),
-        rw!("2tan(x)/(1+tan^2(x)=sin(2x)";
+        rw!("2tan(x)/(1+tan^2(x))=sin(2x)";
             "(/ (* 2 (tan ?x)) (+ 1 (pow (tan ?x) 2)))" => "(sin (* 2 ?x))"),
         rw!("cos(x)=cos^2(x/2)-sin^2(x/2)";
             "(cos ?x)" => "(- (pow (cos (/ ?x 2)) 2) (pow (sin (/ ?x 2)) 2))"),
         rw!("cos^2(x)-sin^2(x)=cos(2x)";
             "(- (pow (cos ?x) 2) (pow (sin ?x) 2))" => "(cos (* 2 ?x))"),
         rw!("cos(x)=2cos^2(x/2)-1"; "(cos ?x)" => "(- (* 2 (pow (cos (/ ?x 2)) 2)) 1)"),
-        rw!("2cos^2(x)-1=cos(2x)"; "(- (* 2 (pow (cos ?x) 2)) 1)" => "(cos (* 2 ?x))"),
+        // appears in power reduction
+        // rw!("2cos^2(x)=cos(2x)+1"; "(* 2 (pow (cos ?x) 2))" => "(+ (cos (* 2 ?x)) 1)"),
         rw!("cos(x)=1-2sin^2(x/2)"; "(cos ?x)" => "(- 1 (* 2 (pow (sin (/ ?x 2)) 2)))"),
-        rw!("1-2sin^2(x)=cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
+        // appears in power reduction
+        // rw!("1-2sin^2(x)=cos(2x)"; "(- 1 (* 2 (pow (sin ?x) 2)))" => "(cos (* 2 ?x))"),
         rw!("cos(x)=(1-tan^2(x/2))/(1+tan^2(x/2))";
             "(cos ?x)" => "(/ (- 1 (pow (tan (/ ?x 2)) 2)) (+ 1 (pow (tan (/ ?x 2)) 2)))"),
         rw!("(1-tan^2(x))/(1+tan^2(x))=cos(2x)";
@@ -482,7 +515,7 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("4cos^3(x)-3cos(x)=cos(3x)";
             "(- (* 4 (pow (cos ?x) 3)) (* 3 (cos ?x)))" => "(cos ( * 3 ?x))"),
         // tan & csc & sec & cot rw exceed length limit
-        /* half-angle formulae */
+        /* half-angle formulae (abs required for sqrt) */
         rw!("|sin(x)|=sqrt((1-cos(2x))/2)"; "(abs (sin ?x))" => "(sqrt (/ (- 1 (cos (* 2 ?x))) 2))"),
         rw!("sqrt((1-cos(x))/2)=|sin(2x)|"; "(sqrt (/ (- 1 (cos ?x)) 2))" => "(abs (sin (/ ?x 2)))"),
         rw!("-|sin(x)|=-sqrt((1-cos(2x))/2)";
