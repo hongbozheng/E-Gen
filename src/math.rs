@@ -718,15 +718,13 @@ pub fn math_rule() -> Vec<Rewrite> {
         // rw!("atan(x)=acot(1/x)"; "(atan ?x)" => "(acot (/ 1 ?x))" if not_zero("?x")),
         // rw!("acot(x)=atan(1/x)"; "(acot ?x)" => "(atan (/ 1 ?x))" if not_zero("?x")),
         // if a=+/-b ONLY assign a=b NOT BOTH a=b & a=-b
-        rw!("asin(x)=atan(x/sqrt(1-x^2))"; "(asin ?x)" => "(atan (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
-        rw!("asin(x)=2atan(x/(1+sqrt(1-x^2)))";
-            "(asin ?x)" => "(* 2 (atan (/ ?x (+ 1 (sqrt (- 1 (pow ?x 2)))))))"),
         rw!("|asin(x)|=0.5acos(1-2x^2)";
             "(abs (asin ?x))" => "(* 0.5 (acos (- 1 (* 2 (pow ?x 2)))))"),
+        rw!("asin(x)=atan(x/sqrt(1-x^2))"; "(asin ?x)" => "(atan (/ ?x (sqrt (- 1 (pow ?x 2)))))"),
         // not deterministic (x>=0 & x<0)
+        // rw!("acos(x)=0.5acos(2x^2-1)"; "(acos ?x)" => "(* 0.5 (acos (- (* 2 (pow ?x 2)) 1)))"),
         // rw!("acos(x)=atan(sqrt(1-x^2)/x)";
         //     "(acos ?x)" => "(atan (/ (sqrt (- 1 (pow ?x 2))) ?x))" if not_zero("?x")),
-        // rw!("acos(x)=0.5acos(2x^2-1)"; "(acos ?x)" => "(* 0.5 (acos (- (* 2 (pow ?x 2)) 1)))"),
         // rw!("acos(x)=asin(sqrt(1-x^2))"; "(acos ?x)" => "(asin (sqrt (- 1 (pow ?x 2))))"),
         rw!("atan(x)=asin(x/sqrt(1+x^2))"; "(atan ?x)" => "(asin (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
         rw!("acot(x)=acos(x/sqrt(1+x^2))"; "(acot ?x)" => "(acos (/ ?x (sqrt (+ 1 (pow ?x 2)))))"),
