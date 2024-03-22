@@ -893,10 +893,11 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("csch(x)=(sech(x/2)csch(x/2))/2";
             "(csch ?x)" => "(/ (* (sech (/ ?x 2)) (csch (/ ?x 2))) 2)"),
         rw!("(sech(x)csch(x))/2=csch(2x)"; "(/ (* (sech ?x) (csch ?x)) 2)" => "(csch (* 2 ?x))"),
-        rw!("csch(x)=(1+tanh^2(x/2))/(2tanh(x/2))";
-            "(csch ?x)" => "(/ (+ 1 (pow (tanh (/ ?x 2)) 2)) (* 2 (tanh (/ ?x 2))))"),
-        rw!("(1+tanh^2(x))/(2tanh(x))=csch(2x)";
-            "(/ (+ 1 (pow (tanh ?x) 2)) (* 2 (tanh ?x)))" => "(csch (* 2 ?x))"),
+        // cause error of tanh and sinh
+        // rw!("coth(x)=(1+tanh^2(x/2))/(2tanh(x/2))";
+        //     "(coth ?x)" => "(/ (+ 1 (pow (tanh (/ ?x 2)) 2)) (* 2 (tanh (/ ?x 2))))"),
+        // rw!("(1+tanh^2(x))/(2tanh(x))=coth(2x)";
+        //     "(/ (+ 1 (pow (tanh ?x) 2)) (* 2 (tanh ?x)))" => "(coth (* 2 ?x))"),
         rw!("sech(x)=sech^2(x/2)/(2-sech^2(x/2))";
             "(sech ?x)" => "(/ (pow (sech (/ ?x 2)) 2) (- 2 (pow (sech (/ ?x 2)) 2)))"),
         rw!("sech^2(x)/(2-sech^2(x))=sech(2x)";
@@ -1071,8 +1072,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-atanh(cos(x))=ln(|tan(x/2)|)";
             "(* -1 (atanh (cos (* 2 ?x))))" => "(ln (abs (tan (/ ?x 2))))"),
         // domain piecewise equiv
-        rw!("asinh(tan)=atanh(sin)"; "(asinh (tan ?x))" => "(atanh (sin ?x))"),
-        rw!("atanh(sin)=asinh(tan)"; "(atanh (sin ?x))" => "(asinh (tan ?x))"),
+        // cause problem of asinh and atanh
+        // rw!("asinh(tan)=atanh(sin)"; "(asinh (tan ?x))" => "(atanh (sin ?x))"),
+        // rw!("atanh(sin)=asinh(tan)"; "(atanh (sin ?x))" => "(asinh (tan ?x))"),
         // domain piecewise equiv
         rw!("asinh(tan)=ln((1+sin)/(cos))";
             "(asinh (tan ?x))" => "(ln (/ (+ 1 (sin ?x)) (cos ?x)))"),
