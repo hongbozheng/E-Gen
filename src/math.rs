@@ -341,29 +341,31 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* ================================= trig =================================== */
         /* ++++++++++++++++++ const +++++++++++++++++++ */
-        // rw!("sin(0)"; "(sin 0)" => "0"),
-        // rw!("sin(0.5pi)"; "(sin (* 0.5 pi))" => "1"),
-        // rw!("sin(-0.5pi)"; "(sin (* -0.5 pi))" => "-1"),
-        // rw!("sin(pi)"; "(sin pi)" => "0"),
-        // rw!("sin(-pi)"; "(sin (* -1 pi))" => "0"),
-        // rw!("sin(1.5pi)"; "(sin (* 1.5 pi))" => "-1"),
-        // rw!("sin(-1.5pi)"; "(sin (* -1.5 pi))" => "1"),
-        // rw!("sin(2pi)"; "(sin (* 2 pi))" => "0"),
-        // rw!("sin(-2pi)"; "(sin (* -2 pi))" => "0"),
-        // rw!("cos(0)"; "(cos 0)" => "1"),
-        // rw!("cos(0.5pi)"; "(cos (* 0.5 pi))" => "0"),
-        // rw!("cos(-0.5pi)"; "(cos (* -0.5 pi))" => "0"),
-        // rw!("cos(pi)"; "(cos pi)" => "-1"),
-        // rw!("cos(-pi)"; "(cos (* -1 pi))" => "-1"),
-        // rw!("cos(1.5pi)"; "(cos (* 1.5 pi))" => "0"),
-        // rw!("cos(-1.5pi)"; "(cos (* -1.5 pi))" => "0"),
-        // rw!("cos(2pi)"; "(cos (* 2 pi))" => "1"),
-        // rw!("cos(-2pi)"; "(cos (* -2 pi))" => "1"),
-        // rw!("tan(0)"; "(tan 0)" => "0"),
-        // rw!("tan(pi)"; "(tan pi)" => "0"),
-        // rw!("tan(-pi)"; "(tan (* -1 pi))" => "0"),
-        // rw!("tan(2pi)"; "(tan (* 2 pi))" => "0"),
-        // rw!("tan(-2pi)"; "(tan (* -2 pi))" => "0"),
+        rw!("sin(0)=0"; "(sin 0)" => "0"),
+        rw!("0=sin(0)"; "0" => "(sin 0)"),
+        rw!("sin(0.5pi)=1"; "(sin (* 0.5 pi))" => "1"),
+        rw!("1=sin(0.5pi)"; "1" => "(sin (* 0.5 pi)))"),
+        rw!("sin(-0.5pi)"; "(sin (* -0.5 pi))" => "-1"),
+        rw!("sin(pi)"; "(sin pi)" => "0"),
+        rw!("sin(-pi)"; "(sin (* -1 pi))" => "0"),
+        rw!("sin(1.5pi)"; "(sin (* 1.5 pi))" => "-1"),
+        rw!("sin(-1.5pi)"; "(sin (* -1.5 pi))" => "1"),
+        rw!("sin(2pi)"; "(sin (* 2 pi))" => "0"),
+        rw!("sin(-2pi)"; "(sin (* -2 pi))" => "0"),
+        rw!("cos(0)"; "(cos 0)" => "1"),
+        rw!("cos(0.5pi)"; "(cos (* 0.5 pi))" => "0"),
+        rw!("cos(-0.5pi)"; "(cos (* -0.5 pi))" => "0"),
+        rw!("cos(pi)"; "(cos pi)" => "-1"),
+        rw!("cos(-pi)"; "(cos (* -1 pi))" => "-1"),
+        rw!("cos(1.5pi)"; "(cos (* 1.5 pi))" => "0"),
+        rw!("cos(-1.5pi)"; "(cos (* -1.5 pi))" => "0"),
+        rw!("cos(2pi)"; "(cos (* 2 pi))" => "1"),
+        rw!("cos(-2pi)"; "(cos (* -2 pi))" => "1"),
+        rw!("tan(0)"; "(tan 0)" => "0"),
+        rw!("tan(pi)"; "(tan pi)" => "0"),
+        rw!("tan(-pi)"; "(tan (* -1 pi))" => "0"),
+        rw!("tan(2pi)"; "(tan (* 2 pi))" => "0"),
+        rw!("tan(-2pi)"; "(tan (* -2 pi))" => "0"),
         /* +++++++++++++ basic identities +++++++++++++ */
         rw!("tan=sin/cos"; "(tan ?x)" => "(/ (sin ?x) (cos ?x))"),
         rw!("cos=sin/tan"; "(cos ?x)" => "(/ (sin ?x) (tan ?x))"),
@@ -893,11 +895,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("csch(x)=(sech(x/2)csch(x/2))/2";
             "(csch ?x)" => "(/ (* (sech (/ ?x 2)) (csch (/ ?x 2))) 2)"),
         rw!("(sech(x)csch(x))/2=csch(2x)"; "(/ (* (sech ?x) (csch ?x)) 2)" => "(csch (* 2 ?x))"),
-        // cause error of tanh and sinh
-        // rw!("coth(x)=(1+tanh^2(x/2))/(2tanh(x/2))";
-        //     "(coth ?x)" => "(/ (+ 1 (pow (tanh (/ ?x 2)) 2)) (* 2 (tanh (/ ?x 2))))"),
-        // rw!("(1+tanh^2(x))/(2tanh(x))=coth(2x)";
-        //     "(/ (+ 1 (pow (tanh ?x) 2)) (* 2 (tanh ?x)))" => "(coth (* 2 ?x))"),
         rw!("sech(x)=sech^2(x/2)/(2-sech^2(x/2))";
             "(sech ?x)" => "(/ (pow (sech (/ ?x 2)) 2) (- 2 (pow (sech (/ ?x 2)) 2)))"),
         rw!("sech^2(x)/(2-sech^2(x))=sech(2x)";
@@ -1071,8 +1068,7 @@ pub fn math_rule() -> Vec<Rewrite> {
             "(ln (abs (tan ?x)))" => "(* -1 (atanh (cos (* 2 ?x))))"),
         rw!("-atanh(cos(x))=ln(|tan(x/2)|)";
             "(* -1 (atanh (cos (* 2 ?x))))" => "(ln (abs (tan (/ ?x 2))))"),
-        // domain piecewise equiv
-        // cause problem of asinh and atanh
+        // domain piecewise equiv (cause problem of asinh and atanh)
         // rw!("asinh(tan)=atanh(sin)"; "(asinh (tan ?x))" => "(atanh (sin ?x))"),
         // rw!("atanh(sin)=asinh(tan)"; "(atanh (sin ?x))" => "(asinh (tan ?x))"),
         // domain piecewise equiv
