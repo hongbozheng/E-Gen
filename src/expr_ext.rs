@@ -43,35 +43,34 @@ pub unsafe fn get_global_equiv_exprs() -> &'static HashSet<String> {
 /// * `str`    - str to search
 /// #### Return
 /// * `bool` - whether distinct eclass exits in str or not
-fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
-    let matches: Vec<_> = str.match_indices(eclass).collect();
-    for mat in matches {
-        let start_idx = &mat.0;
-        let end_idx = &(start_idx + eclass.len());
-        if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
-            *end_idx == str.len() {
-            return true;
-        }
-    }
-    return false;
-}
+// fn contain_distinct_ecls(eclass: &String, str: &String) -> bool {
+//     let matches: Vec<_> = str.match_indices(eclass).collect();
+//     for mat in matches {
+//         let start_idx = &mat.0;
+//         let end_idx = &(start_idx + eclass.len());
+//         if (*end_idx != str.len() && str.chars().nth(*end_idx).unwrap() == ' ') ||
+//             *end_idx == str.len() {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
 /// ### private member function to skip meaningless rewrite rule(s)
 /// #### Argument
 /// * `rw` - rewrite rule
 /// #### Return
 /// * `bool` - whether skip the current rewrite or not
-unsafe fn skip_rw(rw: &String) -> bool {
+unsafe fn skip_rw(rw: &Vec<String>) -> bool {
     for (eclass, constant) in SKIP_ECLS.as_ref().unwrap() {
-        if contain_distinct_ecls(eclass, rw) {
-            if constant == &1.0f64 {
-                if rw.contains('*') { return true; }
-                else if rw.contains("pow") { return true; }
-            } else if constant == &0.0f64 {
-                if rw.contains('+') { return true; }
-            } else {
-                log_fatal("Invalid Pattern in fn skip_rw !\n");
-            }
+        if constant == &1.0f64 {
+            if (rw[0] == "*" || rw[0] == "pow") && rw.contains(eclass) { return true; }
+            else if rw[0] == "/" && rw[rw.len()-1] == *eclass { return true; }
+        } else if constant == &0.0f64 {
+            if rw[0] == "+" && rw.contains(eclass) { return true; }
+            // else if rw[0] == "-" && rw[rw.len()-1] == *eclass { return true; }
+        } else {
+            log_fatal("Invalid Pattern in fn skip_rw !\n");
         }
     }
     return false;
@@ -138,8 +137,11 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             let rw = &rw_list[k];
             log_trace_raw(&format!("[INIT]:  {:?}\n", tokens));
             log_trace_raw(&format!("[ RW ]:  {:?}\n", rw));
+
+            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
+
             if SUPPRESS {
-                if skip_rw(&rw) {
+                if rw_tokens.len() == 3 && skip_rw(&rw_tokens) {
                     if k == rw_list.len()-1 {
                         term = true;
                         break;
@@ -159,7 +161,6 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             /// str.replace_range(mat.start()..mat.end(), &rw);
             /// ```
             // replace_distinct_ecls(op, rw, &mut str);
-            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
@@ -253,7 +254,18 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             let rw = &rw_list[k];
             log_trace_raw(&format!("[INIT]:  {:?}\n", tokens));
             log_trace_raw(&format!("[ RW ]:  {:?}\n", rw));
-            if SUPPRESS { if skip_rw(&rw) { continue; } }
+
+            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
+
+            if SUPPRESS {
+                if rw_tokens.len() == 3 && skip_rw(&rw_tokens) {
+                    if k == rw_list.len()-1 {
+                        term = true;
+                        break;
+                    }
+                    continue;
+                }
+            }
 
             #[allow(unused_doc_comments)]
             /// ```rust
@@ -266,7 +278,6 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             /// str.replace_range(mat.start()..mat.end(), &rw);
             /// ```
             // replace_distinct_ecls(op, rw, &mut str);
-            let rw_tokens: Vec<String> = rw.split_whitespace().map(|s| s.to_owned()).collect();
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
