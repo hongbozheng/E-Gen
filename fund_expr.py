@@ -133,148 +133,145 @@ def fund_expr() -> list[str]:
     return exprs
 
 
-def fund_op_exprs(classes: list[str]) -> list[str]:
+def fund_op_exprs(operators: list[str]) -> list[str]:
     exprs = []
 
     rand_num = lambda: random.randint(a=2, b=9) if random.choice([True, False]) else random.randint(a=-9, b=-2)
 
-    for cls in classes:
-        if cls == "poly":
-            continue
-
+    for op in operators:
         # sin x
-        exprs.append(f"({cls} x)")
+        exprs.append(f"({op} x)")
 
         # sin^2 x
-        exprs.append(f"(pow ({cls} x) 2)")
+        exprs.append(f"(pow ({op} x) 2)")
 
         # sin(x+a)
-        exprs.append(f"({cls} (+ x {rand_num()}))")
-        exprs.append(f"({cls} (- x {rand_num()}))")
+        exprs.append(f"({op} (+ x {rand_num()}))")
+        exprs.append(f"({op} (- x {rand_num()}))")
 
         # sin^a(x+b)
-        exprs.append(f"(pow ({cls} (+ x {rand_num()})) {rand_num()})")
-        exprs.append(f"(pow ({cls} (- x {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (+ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (- x {rand_num()})) {rand_num()})")
 
         # sin(ax)
-        exprs.append(f"({cls} (* {rand_num()} x))")
-        exprs.append(f"({cls} (/ x {rand_num()}))")
+        exprs.append(f"({op} (* {rand_num()} x))")
+        exprs.append(f"({op} (/ x {rand_num()}))")
 
         # sin^a(bx)
-        exprs.append(f"(pow ({cls} (* {rand_num()} x)) {rand_num()})")
-        exprs.append(f"(pow ({cls} (/ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (* {rand_num()} x)) {rand_num()})")
+        exprs.append(f"(pow ({op} (/ x {rand_num()})) {rand_num()})")
 
         # csin(ax)
-        exprs.append(f"(* {rand_num()} ({cls} (* {rand_num()} x)))")
-        exprs.append(f"(* {rand_num()} ({cls} (/ x {rand_num()})))")
-        exprs.append(f"(/ {rand_num()} ({cls} (* {rand_num()} x)))")
-        exprs.append(f"(/ {rand_num()} ({cls} (/ x {rand_num()})))")
+        exprs.append(f"(* {rand_num()} ({op} (* {rand_num()} x)))")
+        exprs.append(f"(* {rand_num()} ({op} (/ x {rand_num()})))")
+        exprs.append(f"(/ {rand_num()} ({op} (* {rand_num()} x)))")
+        exprs.append(f"(/ {rand_num()} ({op} (/ x {rand_num()})))")
 
         # csin^a(bx)
-        exprs.append(f"(* {rand_num()} (pow ({cls} (* {rand_num()} x)) {rand_num()}))")
-        exprs.append(f"(* {rand_num()} (pow ({cls} (/ x {rand_num()})) {rand_num()}))")
-        exprs.append(f"(/ {rand_num()} (pow ({cls} (* {rand_num()} x)) {rand_num()}))")
-        exprs.append(f"(/ {rand_num()} (pow ({cls} (/ x {rand_num()})) {rand_num()}))")
+        exprs.append(f"(* {rand_num()} (pow ({op} (* {rand_num()} x)) {rand_num()}))")
+        exprs.append(f"(* {rand_num()} (pow ({op} (/ x {rand_num()})) {rand_num()}))")
+        exprs.append(f"(/ {rand_num()} (pow ({op} (* {rand_num()} x)) {rand_num()}))")
+        exprs.append(f"(/ {rand_num()} (pow ({op} (/ x {rand_num()})) {rand_num()}))")
 
         # csin(x+a)
-        exprs.append(f"(* {rand_num()} ({cls} (+ x {rand_num()})))")
-        exprs.append(f"(* {rand_num()} ({cls} (- x {rand_num()})))")
-        exprs.append(f"(/ ({cls} (+ x {rand_num()})) {rand_num()})")
-        exprs.append(f"(/ ({cls} (- x {rand_num()})) {rand_num()})")
+        exprs.append(f"(* {rand_num()} ({op} (+ x {rand_num()})))")
+        exprs.append(f"(* {rand_num()} ({op} (- x {rand_num()})))")
+        exprs.append(f"(/ ({op} (+ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(/ ({op} (- x {rand_num()})) {rand_num()})")
 
         # csin^a(x+b)
-        exprs.append(f"(* {rand_num()} (pow ({cls} (+ x {rand_num()})) {rand_num()}))")
-        exprs.append(f"(* {rand_num()} (pow ({cls} (- x {rand_num()})) {rand_num()}))")
-        exprs.append(f"(/ (pow ({cls} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(/ (pow ({cls} (- x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(* {rand_num()} (pow ({op} (+ x {rand_num()})) {rand_num()}))")
+        exprs.append(f"(* {rand_num()} (pow ({op} (- x {rand_num()})) {rand_num()}))")
+        exprs.append(f"(/ (pow ({op} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(/ (pow ({op} (- x {rand_num()})) {rand_num()}) {rand_num()})")
 
         # csin(x)+a
-        exprs.append(f"(+ (* {rand_num()} ({cls} x)) {rand_num()})")
-        exprs.append(f"(+ (/ ({cls} x) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} ({cls} x)) {rand_num()})")
-        exprs.append(f"(- (/ ({cls} x) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} ({op} x)) {rand_num()})")
+        exprs.append(f"(+ (/ ({op} x) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} ({op} x)) {rand_num()})")
+        exprs.append(f"(- (/ ({op} x) {rand_num()}) {rand_num()})")
 
         # csin^a(x)+b
-        exprs.append(f"(+ (* {rand_num()} (pow ({cls} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(+ (/ (pow ({cls} x) {rand_num()}) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} (pow ({cls} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(- (/ (pow ({cls} x) {rand_num()}) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} (pow ({op} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ (/ (pow ({op} x) {rand_num()}) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} (pow ({op} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(- (/ (pow ({op} x) {rand_num()}) {rand_num()}) {rand_num()})")
 
         # sin(ax+b)
-        exprs.append(f"({cls} (+ (* {rand_num()} x) {rand_num()}))")
-        exprs.append(f"({cls} (+ (/ x {rand_num()}) {rand_num()}))")
-        exprs.append(f"({cls} (- (* {rand_num()} x) {rand_num()}))")
-        exprs.append(f"({cls} (- (/ x {rand_num()}) {rand_num()}))")
+        exprs.append(f"({op} (+ (* {rand_num()} x) {rand_num()}))")
+        exprs.append(f"({op} (+ (/ x {rand_num()}) {rand_num()}))")
+        exprs.append(f"({op} (- (* {rand_num()} x) {rand_num()}))")
+        exprs.append(f"({op} (- (/ x {rand_num()}) {rand_num()}))")
 
         # sin^a(bx+c)
-        exprs.append(f"(pow ({cls} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(pow ({cls} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
-        exprs.append(f"(pow ({cls} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(pow ({cls} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(pow ({op} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
 
         # sin(ax)+b
-        exprs.append(f"(+ ({cls} (* {rand_num()} x)) {rand_num()})")
-        exprs.append(f"(+ ({cls} (/ x {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (* {rand_num()} x)) {rand_num()})")
-        exprs.append(f"(- ({cls} (/ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (* {rand_num()} x)) {rand_num()})")
+        exprs.append(f"(+ ({op} (/ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (* {rand_num()} x)) {rand_num()})")
+        exprs.append(f"(- ({op} (/ x {rand_num()})) {rand_num()})")
 
         # sin^a(bx)+c
-        exprs.append(f"(+ (pow ({cls} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
-        exprs.append(f"(+ (pow ({cls} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (pow ({cls} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (pow ({cls} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (pow ({op} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (pow ({op} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (pow ({op} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (pow ({op} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
 
         # sin(x+a)+b
-        exprs.append(f"(+ ({cls} (+ x {rand_num()})) {rand_num()})")
-        exprs.append(f"(+ ({cls} (- x {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (+ x {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (- x {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (+ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (- x {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (+ x {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (- x {rand_num()})) {rand_num()})")
 
         # sin^a(x+b)+c
-        exprs.append(f"(+ (pow ({cls} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(+ (pow ({cls} (- x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (pow ({cls} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (pow ({cls} (- x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (pow ({op} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (pow ({op} (- x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (pow ({op} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (pow ({op} (- x {rand_num()})) {rand_num()}) {rand_num()})")
 
         # csin(ax+b)
-        exprs.append(f"(* {rand_num()} ({cls} (+ (* {rand_num()} x) {rand_num()})))")
-        exprs.append(f"(* {rand_num()} ({cls} (+ (/ x {rand_num()}) {rand_num()})))")
-        exprs.append(f"(* {rand_num()} ({cls} (- (* {rand_num()} x) {rand_num()})))")
-        exprs.append(f"(* {rand_num()} ({cls} (- (/ x {rand_num()}) {rand_num()})))")
-        exprs.append(f"(/ ({cls} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(/ ({cls} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
-        exprs.append(f"(/ ({cls} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(/ ({cls} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(* {rand_num()} ({op} (+ (* {rand_num()} x) {rand_num()})))")
+        exprs.append(f"(* {rand_num()} ({op} (+ (/ x {rand_num()}) {rand_num()})))")
+        exprs.append(f"(* {rand_num()} ({op} (- (* {rand_num()} x) {rand_num()})))")
+        exprs.append(f"(* {rand_num()} ({op} (- (/ x {rand_num()}) {rand_num()})))")
+        exprs.append(f"(/ ({op} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(/ ({op} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(/ ({op} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(/ ({op} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
 
         # csin(ax)+b
-        exprs.append(f"(+ (* {rand_num()} ({cls} (* {rand_num()} x))) {rand_num()})")
-        exprs.append(f"(+ (* {rand_num()} ({cls} (/ x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(+ (/ ({cls} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
-        exprs.append(f"(+ (/ ({cls} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} ({cls} (* {rand_num()} x))) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} ({cls} (/ x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(- (/ ({cls} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (/ ({cls} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} ({op} (* {rand_num()} x))) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} ({op} (/ x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(+ (/ ({op} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (/ ({op} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} ({op} (* {rand_num()} x))) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} ({op} (/ x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(- (/ ({op} (* {rand_num()} x)) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (/ ({op} (/ x {rand_num()})) {rand_num()}) {rand_num()})")
 
         # csin(x+a)+b
-        exprs.append(f"(+ (* {rand_num()} ({cls} (+ x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(+ (* {rand_num()} ({cls} (- x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(+ (/ ({cls} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(+ (/ ({cls} (- x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} ({cls} (+ x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(- (* {rand_num()} ({cls} (- x {rand_num()}))) {rand_num()})")
-        exprs.append(f"(- (/ ({cls} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
-        exprs.append(f"(- (/ ({cls} (- x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} ({op} (+ x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(+ (* {rand_num()} ({op} (- x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(+ (/ ({op} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(+ (/ ({op} (- x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} ({op} (+ x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(- (* {rand_num()} ({op} (- x {rand_num()}))) {rand_num()})")
+        exprs.append(f"(- (/ ({op} (+ x {rand_num()})) {rand_num()}) {rand_num()})")
+        exprs.append(f"(- (/ ({op} (- x {rand_num()})) {rand_num()}) {rand_num()})")
 
         # sin(ax+b)+c
-        exprs.append(f"(+ ({cls} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(+ ({cls} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
-        exprs.append(f"(+ ({cls} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(+ ({cls} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
-        exprs.append(f"(- ({cls} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(+ ({op} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (+ (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (+ (/ x {rand_num()}) {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (- (* {rand_num()} x) {rand_num()})) {rand_num()})")
+        exprs.append(f"(- ({op} (- (/ x {rand_num()}) {rand_num()})) {rand_num()})")
 
     return exprs
 
@@ -304,7 +301,7 @@ def main():
     func_exprs = []
     exprs = fund_expr()
     func_exprs.extend(exprs)
-    exprs = fund_op_exprs(classes=config.CLASSES)
+    exprs = fund_op_exprs(operators=config.OPERATORS)
     func_exprs.extend(exprs)
     w_fund_exprs(fund_exprs=func_exprs, op_flag=op_flag, op=op, fund_exprs_filepath=config.FUND_EXPRS_FILEPATH)
     logger.log_info(f"Finished generating fundamental expressions to '{config.FUND_EXPRS_FILEPATH}' file.")
