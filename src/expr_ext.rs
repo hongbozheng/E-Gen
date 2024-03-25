@@ -353,7 +353,7 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
         SKIP_ECLS = Some(skip_ecls.clone());
         GRAMMAR = Some(grammar.clone());
         STATE = Some(Default::default());
-        // EQUIV_EXPRS = Some(Default::default());
+        EQUIV_EXPRS = Some(Default::default());
     }
 
     let init_token_exprs: Vec<Vec<String>> = init_exprs
