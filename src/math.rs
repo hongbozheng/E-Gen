@@ -88,10 +88,10 @@ impl Analysis<Math> for ConstantFold {
                 x(a)? * x(b)?,
                 format!("(* {} {})", x(a)?, x(b)?).parse().unwrap(),
             ),
-            Math::Div([a, b]) if x(b) != Some(NotNan::new(0.0).unwrap()) => (
-                x(a)? / x(b)?,
-                format!("(/ {} {})", x(a)?, x(b)?).parse().unwrap(),
-            ),
+            // Math::Div([a, b]) if x(b) != Some(NotNan::new(0.0).unwrap()) => (
+            //     x(a)? / x(b)?,
+            //     format!("(/ {} {})", x(a)?, x(b)?).parse().unwrap(),
+            // ),
             _ => return None,
         })
     }
