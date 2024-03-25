@@ -51,7 +51,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
             log_info("-----------------------------------\n");
             match cli[2] {
                 CliDtype::UInt8(ref mut token_limit) => {
-                    *token_limit += 2;
+                    *token_limit += 1;
                     if *token_limit > MAX_TOKEN_LIMIT {
                         log_info(&format!("Token limit {} reaches max token limit {}.\n", token_limit, MAX_TOKEN_LIMIT));
                         break;
