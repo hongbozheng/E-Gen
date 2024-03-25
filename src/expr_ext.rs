@@ -164,7 +164,7 @@ unsafe fn optimized_extract(mut tokens: Vec<String>, idx: u8) {
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
-            if tokens.len() >= TOKEN_LIMIT as usize {
+            if tokens.len() > TOKEN_LIMIT as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
                 if k == rw_list.len()-1 {
                     term = true;
@@ -281,8 +281,12 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
             tokens.splice(i..i+1, rw_tokens);
             log_trace_raw(&format!("[AFTER]: {:?}\n", tokens));
 
-            if tokens.len() >= TOKEN_LIMIT as usize {
+            if tokens.len() > TOKEN_LIMIT as usize {
                 log_trace("STR exceeds length limit, Try another RW...\n");
+                if k == rw_list.len()-1 {
+                    term = true;
+                    break;
+                }
                 tokens = prev_tokens.clone();
                 continue;
             }
@@ -290,7 +294,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 let global_equiv_exprs = EQUIV_EXPRS.as_mut().unwrap();
                 let final_expr = tokens.join(" ");
                 global_equiv_exprs.insert(final_expr.clone());
-                log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
+                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
                 term = true;
                 break;
             } else if !contain_ecls(&tokens) {
@@ -298,7 +302,7 @@ unsafe fn exhaustive_extract(mut tokens: Vec<String>, idx: u8) {
                 let final_expr = tokens.join(" ");
                 global_equiv_exprs.insert(final_expr.clone());
                 tokens = prev_tokens.clone();
-                log_trace_raw(&format!("[FINAL]: {:?}\n", final_expr));
+                log_trace_raw(&format!("[FINAL]: {}\n", final_expr));
             } else {
                 exhaustive_extract(tokens.clone(), idx+1);
                 let start_time = get_start_time();
