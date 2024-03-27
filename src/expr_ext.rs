@@ -68,7 +68,7 @@ unsafe fn skip_rw(rw: &Vec<String>) -> bool {
             else if rw[0] == "/" && rw[rw.len()-1] == *eclass { return true; }
         } else if constant == &0.0f64 {
             if rw[0] == "+" && rw.contains(eclass) { return true; }
-            // else if rw[0] == "-" && rw[rw.len()-1] == *eclass { return true; }
+            else if rw[0] == "-" && rw[rw.len()-1] == *eclass { return true; }
         } else {
             log_fatal("Invalid Pattern in fn skip_rw !\n");
         }
@@ -366,7 +366,11 @@ pub fn extract(cli: &Vec<CliDtype>, skip_ecls: &HashMap<String, f64>, grammar: &
         /* start extraction */
         if OPTIMIZED {
             for init_token_expr in init_token_exprs {
-                optimized_extract(init_token_expr, 0);
+                // if init_token_expr[0] != "d" && !skip_rw(&init_token_expr) {
+                    optimized_extract(init_token_expr, 0);
+                // } else {
+                //     println!("skip!!!");
+                // }
             }
         } else {
             for init_token_expr in init_token_exprs {

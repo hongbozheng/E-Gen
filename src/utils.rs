@@ -119,8 +119,8 @@ pub fn pt_type_of<T>(_: &T) {
 /// #### Return
 /// * `None`
 pub fn pt_egraph_info(egraph: &MathEGraph) {
-    log_info(&format!("Total # of e-class(es): {}\n", &egraph.number_of_classes()));
-    log_info(&format!("Total # of e-node(s):   {}\n", &egraph.total_number_of_nodes()));
+    log_info(&format!("Total # of e-class(es):  {}\n", &egraph.number_of_classes()));
+    log_info(&format!("Total # of e-node(s):    {}\n", &egraph.total_number_of_nodes()));
 
     return;
 }

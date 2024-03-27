@@ -20,6 +20,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
     let skip_ecls = &ctx_gr.skip_eclasses.clone();
     let grammar = &ctx_gr.grammar.clone();
     let init_exprs = &ctx_gr.init_exprs.clone();
+    log_info(&format!("Total # of init expr(s): {}\n", init_exprs.len()));
 
     #[allow(unused_assignments)]
     let mut equiv_exprs: HashSet<String> = HashSet::default();
@@ -44,7 +45,7 @@ fn generate_exprs(mut cli: Vec<CliDtype>) -> HashSet<String> {
             log_info(&format!("Total # of expression(s) before postprocessing: {}\n", orig_num_exprs));
             log_info(&format!("Total # of expression(s) after  postprocessing: {}\n", num_exprs));
 
-            if equiv_exprs.len() >= N_EQUIV_EXPRS as usize {
+            if num_exprs >= N_EQUIV_EXPRS as usize {
                 break;
             }
 
