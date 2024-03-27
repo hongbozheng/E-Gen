@@ -1154,26 +1154,26 @@ pub fn math_rule() -> Vec<Rewrite> {
 
         /* =============================== derivative =============================== */
         /* +++++++++++++ basic derivative +++++++++++++ */
-        rw!("d/dx x"; "(d ?x ?x)" => "1"),
         rw!("d/dx c";
-            "(d ?x ?c)" => "0" if const_or_dist_var("?x", "?c") if is_const("?c") if sym("?x")),
+            "(d ?x ?c)" => "0" if sym("?x") if const_or_dist_var("?x", "?c") if is_const("?c")),
         rw!("d/dx y"; "(d x y)" => "0"),
         rw!("d/dx z"; "(d x z)" => "0"),
         rw!("d/dy x"; "(d y x)" => "0"),
         rw!("d/dy z"; "(d y z)" => "0"),
         rw!("d/dz x"; "(d z x)" => "0"),
         rw!("d/dz y"; "(d z y)" => "0"),
-        rw!("d/dx f(x)*g(x)"; "(d ?x (* ?f ?g))" => "(+ (* (d x ?f) ?g) (* ?f (d x ?g)))"),
+        rw!("d/dx f(x)*g(x)"; "(d ?x (* ?f ?g))" => "(+ (* (d x ?f) ?g) (* ?f (d x ?g)))" if sym("?x")),
         /* ++++++++++ distributive property +++++++++++ */
-        rw!("d/dx c*f(x)"; "(d ?x (* ?c ?f))" => "(* ?c (d ?x ?f))" if is_const("?c")),
-        rw!("d/dx const*f(x)"; "(d ?x (* c ?f))" => "(* c (d ?x ?f))"),
-        rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?f ?g))" => "(+ (d ?x ?f) (d ?x ?g))"),
-        rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))"),
+        rw!("d/dx cf(x)"; "(d ?x (* ?c ?f))" => "(* ?c (d ?x ?f))" if sym("?x") if is_const("?c")),
+        rw!("d/dx (a/b)f(x)";
+            "(d ?x (* (/ ?a ?b) ?f))" => "(* (/ ?a ?b) (d ?x ?f))" if sym("?x") if not_zero("?b") if is_const("?a") if is_const("?b")),
+        rw!("d/dx f(x)+g(x)"; "(d ?x (+ ?f ?g))" => "(+ (d ?x ?f) (d ?x ?g))" if sym("?x")),
+        rw!("d/dx f(x)-g(x)"; "(d ?x (- ?f ?g))" => "(- (d ?x ?f) (d ?x ?g))" if sym("?x")),
         /* +++++++++++++ poly chain rule ++++++++++++++ */
         rw!("d/dx f(x)^c";
             "(d ?x (pow ?f ?c))" => "(* (* ?c (pow ?f (- ?c 1))) (d ?x ?f))" if is_const("?c")),
         /* polynomial */
-        rw!("d/d?x ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if is_const("?c")),
+        rw!("d/dx ?x^c"; "(d ?x (pow ?x ?c))" => "(* ?c (pow ?x (- ?c 1)))" if sym("?x") if is_const("?c")),
         /* +++++++++++++ trig chain rule ++++++++++++++ */
         rw!("d/dx sin(u)"; "(d ?x (sin ?u))" => "(* (cos ?u) (d ?x ?u))"),
         rw!("d/dx cos(u)"; "(d ?x (cos ?u))" => "(* (* -1 (sin ?u)) (d ?x ?u))"),
