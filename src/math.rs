@@ -92,6 +92,14 @@ impl Analysis<Math> for ConstantFold {
             //     x(a)? / x(b)?,
             //     format!("(/ {} {})", x(a)?, x(b)?).parse().unwrap(),
             // ),
+            Math::Pow([a, b]) => {
+                let base = x(a)?.into_inner(); // Extract inner f64 value
+                let exponent = x(b)?.into_inner(); // Extract inner f64 value
+                (
+                    NotNan::new(base.powf(exponent)).unwrap(), // Reconstruct NotNan<f64>
+                    format!("(pow {} {})", base, exponent).parse().unwrap(),
+                )
+            },
             _ => return None,
         })
     }
@@ -176,38 +184,38 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 //     }
 // }
 
-// fn lt_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
-//     let var = var.parse().unwrap();
-//     move |egraph, _, subst| {
-//         if let Some(n) = &egraph[subst[var]].data {
-//             *(n.0) < 0.0
-//         } else {
-//             true
-//         }
-//     }
-// }
+fn lt_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
+    let var = var.parse().unwrap();
+    move |egraph, _, subst| {
+        if let Some(n) = &egraph[subst[var]].data {
+            *(n.0) < 0.0
+        } else {
+            true
+        }
+    }
+}
 
-// fn ge_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
-//     let var = var.parse().unwrap();
-//     move |egraph, _, subst| {
-//         if let Some(n) = &egraph[subst[var]].data {
-//             *(n.0) >= 0.0
-//         } else {
-//             true
-//         }
-//     }
-// }
+fn ge_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
+    let var = var.parse().unwrap();
+    move |egraph, _, subst| {
+        if let Some(n) = &egraph[subst[var]].data {
+            *(n.0) >= 0.0
+        } else {
+            true
+        }
+    }
+}
 
-// fn le_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
-//     let var = var.parse().unwrap();
-//     move |egraph, _, subst| {
-//         if let Some(n) = &egraph[subst[var]].data {
-//             *(n.0) <= 0.0
-//         } else {
-//             true
-//         }
-//     }
-// }
+fn le_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
+    let var = var.parse().unwrap();
+    move |egraph, _, subst| {
+        if let Some(n) = &egraph[subst[var]].data {
+            *(n.0) <= 0.0
+        } else {
+            true
+        }
+    }
+}
 
 /// mathematical rules including:
 /// 1. basic arithmetic
@@ -237,11 +245,15 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("-x-y=-(x+y)"; "(- (* -1 ?x) ?y)" => "(* -1 (+ ?x ?y))"),
         rw!("-(x-y)=y-x"; "(* -1 (- ?x ?y))" => "(- ?y ?x)"),
         rw!("y-x=-(x-y)"; "(- ?y ?x)" => "(* -1 (- ?x ?y))"),
+        rw!("abs(x)=x"; "(abs ?x)" => "?x" if is_const("?x") if ge_zero("?x")),
+        rw!("abs(-x)=x"; "(abs ?x)" => "(* -1 ?x)" if is_const("?x") if le_zero("?x")),
         /* ========================================================================== */
 
         /* =============================== expansion ================================ */
         rw!("x=1*x"; "?x" => "(* 1 ?x)"),
         rw!("x=x^1"; "?x" => "(pow ?x 1)"),
+        rw!("(a+b)^2"; "(pow (+ ?a ?b) 2)" => "(+ (+ (pow ?a 2) (* 2 (* ?a ?b))) (pow ?b 2))"),
+        rw!("(a-b)^2"; "(pow (- ?a ?b) 2)" => "(+ (- (pow ?a 2) (* 2 (* ?a ?b))) (pow ?b 2))"),
         /* ========================================================================== */
 
         /* ============================== commutative =============================== */
@@ -277,6 +289,14 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("x/(y/z)=x(z/y)";
             "(/ ?x (/ ?y ?z))" => "(* ?x (/ ?z ?y))" if not_zero("?y") if not_zero("?z")),
         /* ++++++++++ addition & subtraction ++++++++++ */
+        rw!("(x+y)+z=(x+z)+y"; "(+ (+ ?x ?y) ?z)" => "(+ (+ ?x ?z) ?y)"),
+        rw!("(x+z)+y=(x+y)+z"; "(+ (+ ?x ?z) ?y)" => "(+ (+ ?x ?y) ?z)"),
+        rw!("(x+y)-z=(x-z)+y"; "(- (+ ?x ?y) ?z)" => "(+ (- ?x ?z) ?y)"),
+        rw!("(x-z)+y=(x+y)-z"; "(+ (- ?x ?z) ?y)" => "(- (+ ?x ?y) ?z)"),
+        rw!("(x-y)+z=(x+z)-y"; "(+ (- ?x ?y) ?z)" => "(- (+ ?x ?z) ?y)"),
+        rw!("(x+z)-y=(x-y)+z"; "(- (+ ?x ?z) ?y)" => "(+ (- ?x ?y) ?z)"),
+        rw!("(x-y)-z=(x-z)-y"; "(- (- ?x ?y) ?z)" => "(- (- ?x ?z) ?y)"),
+        rw!("(x-z)-y=(x-y)-z"; "(- (- ?x ?z) ?y)" => "(- (- ?x ?y) ?z)"),
         rw!("(x+y)+z=x+(y+z)"; "(+ (+ ?x ?y) ?z)" => "(+ ?x (+ ?y ?z))"),
         rw!("x+(y+z)=(x+y)+z"; "(+ ?x (+ ?y ?z))" => "(+ (+ ?x ?y) ?z)"),
         rw!("(x+y)-z=x+(y-z)"; "(- (+ ?x ?y) ?z)" => "(+ ?x (- ?y ?z))"),
@@ -299,10 +319,16 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("pow(0)"; "(pow ?x 0)" => "1"),
         rw!("pow(1)"; "(pow ?x 1)" => "?x"),
         /* +++++++++++++ basic identities +++++++++++++ */
-        rw!("pow-of-prod"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"),
-        rw!("pow-of-quotient"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"),
-        rw!("pow-of-pow"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"),
-        rw!("pow-of-(-1)"; "(pow ?x -1)" => "(/ 1 ?x)" if not_zero("?x")),
+        rw!("x^yx^z=x^(y+z)"; "(* (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (+ ?y ?z))"
+            if is_const("?y") if is_const("?z")),
+        rw!("(x^y)/(x^z)=x^(y-z)"; "(/ (pow ?x ?y) (pow ?x ?z))" => "(pow ?x (- ?y ?z))"
+            if is_const("?y") if is_const("?z")),
+        rw!("(x^y)^z"; "(pow (pow ?x ?y) ?z)" => "(pow ?x (* ?y ?z))"
+            if is_const("?y") if is_const("?z")),
+        rw!("(xy)^z"; "(pow (* ?x ?y) ?z)" => "(* (pow ?x ?z) (pow ?y ?z))" if is_const("?z")),
+        rw!("(x/y)^z"; "(pow (/ ?x ?y) ?z)" => "(/ (pow ?x ?z) (pow ?y ?z))"
+            if not_zero("?y") if is_const("?z")),
+        rw!("x^(-y)"; "(pow ?x ?y)" => "(/ 1 (pow ?x (* -1 ?y)))" if is_const("?y") if le_zero("?y")),
         /* ========================================================================== */
 
         /* ============================= exponent rules ============================= */
@@ -321,8 +347,8 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("ln(a)+ln(b)=ln(ab)"; "(+ (ln ?a) (ln ?b))" => "(ln (* ?a ?b))"),
         rw!("ln(a/b)=ln(a)-ln(b)"; "(ln (/ ?a ?b))" => "(- (ln ?a) (ln ?b))" if not_zero("?b")),
         rw!("ln(a)-ln(b)=ln(a/b)"; "(- (ln ?a) (ln ?b))" => "(ln (/ ?a ?b))" if not_zero("?b")),
-        rw!("ln(x^a)=aln(x)"; "(ln (pow ?x ?a))" => "(* ?a (ln ?x))"),
-        rw!("aln(x)=ln(x^a)"; "(* ?a (ln ?x))" => "(ln (pow ?x ?a))"),
+        rw!("ln(x^a)=aln(x)"; "(ln (pow ?x ?a))" => "(* ?a (ln ?x))" if is_const("?a")),
+        rw!("aln(x)=ln(x^a)"; "(* ?a (ln ?x))" => "(ln (pow ?x ?a))" if is_const("?a")),
         /* +++++++++++++++++++ log ++++++++++++++++++++ */
         rw!("log(b)=1"; "(log ?b ?b)" => "1" if not_zero("?b")),
         rw!("log(xy)=log(x)+log(y)";
@@ -334,9 +360,9 @@ pub fn math_rule() -> Vec<Rewrite> {
         rw!("log(x)-log(y)=log(x/y)";
             "(- (log ?b ?x) (log ?b ?y))" => "(log ?b (/ ?x ?y))" if not_zero("?b") if not_zero("?y")),
         rw!("log(x^a)=alog(x)";
-            "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))" if not_zero("?b")),
+            "(log ?b (pow ?x ?a))" => "(* ?a (log ?b ?x))" if not_zero("?b") if is_const("?a")),
         rw!("alog(x)=log(x^a)";
-            "(* ?a (log ?b ?x))" => "(log ?b (pow ?x ?a))" if not_zero("?b")),
+            "(* ?a (log ?b ?x))" => "(log ?b (pow ?x ?a))" if not_zero("?b") if is_const("?a")),
         /* ========================================================================== */
 
         /* ================================= trig =================================== */
