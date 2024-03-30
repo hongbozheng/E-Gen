@@ -184,16 +184,16 @@ fn not_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
 //     }
 // }
 
-fn lt_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
-    let var = var.parse().unwrap();
-    move |egraph, _, subst| {
-        if let Some(n) = &egraph[subst[var]].data {
-            *(n.0) < 0.0
-        } else {
-            true
-        }
-    }
-}
+// fn lt_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
+//     let var = var.parse().unwrap();
+//     move |egraph, _, subst| {
+//         if let Some(n) = &egraph[subst[var]].data {
+//             *(n.0) < 0.0
+//         } else {
+//             true
+//         }
+//     }
+// }
 
 fn ge_zero(var: &str) -> impl Fn(&mut MathEGraph, Id, &Subst) -> bool {
     let var = var.parse().unwrap();
@@ -252,8 +252,6 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* =============================== expansion ================================ */
         rw!("x=1*x"; "?x" => "(* 1 ?x)"),
         rw!("x=x^1"; "?x" => "(pow ?x 1)"),
-        rw!("(a+b)^2"; "(pow (+ ?a ?b) 2)" => "(+ (+ (pow ?a 2) (* 2 (* ?a ?b))) (pow ?b 2))"),
-        rw!("(a-b)^2"; "(pow (- ?a ?b) 2)" => "(+ (- (pow ?a 2) (* 2 (* ?a ?b))) (pow ?b 2))"),
         /* ========================================================================== */
 
         /* ============================== commutative =============================== */
@@ -308,10 +306,14 @@ pub fn math_rule() -> Vec<Rewrite> {
         /* ========================================================================== */
 
         /* ============================ binomial theorem ============================ */
-        rw!("(x+y)^2=(x)^2+2xy+(y)^2";
+        rw!("(x+y)^2=x^2+2xy+y^2";
             "(pow (+ ?x ?y) 2)" => "(+ (+ (pow ?x 2) (* 2 (* ?x ?y))) (pow ?y 2))"),
-        rw!("(x)^2+2xy+(y)^2=(x+y)^2";
+        rw!("x^2+2xy+y^2=(x+y)^2";
             "(+ (+ (pow ?x 2) (* 2 (* ?x ?y))) (pow ?y 2))" => "(pow (+ ?x ?y) 2)"),
+        rw!("(x-y)^2=x^2-2xy+y^2";
+            "(pow (- ?x ?y) 2)" => "(+ (- (pow ?x 2) (* 2 (* ?x ?y))) (pow ?y 2))"),
+        rw!("x^2-2xy+y^2=(x-y)^2";
+            "(+ (- (pow ?x 2) (* 2 (* ?x ?y))) (pow ?y 2))" => "(pow (- ?x ?y) 2)"),
         /* ========================================================================== */
 
         /* ============================== power rules =============================== */
