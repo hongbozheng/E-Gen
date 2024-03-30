@@ -4,6 +4,7 @@
 import argparse
 import config
 import logger
+import os
 import random
 
 
@@ -21,16 +22,35 @@ import random
     # sin(ax+b)+c
 
 
-def w_fund_exprs(fund_exprs: list[str], op_flag: bool, op: str, fund_exprs_filepath: str) -> None:
-    file = open(file=fund_exprs_filepath, mode='w')
+def w_fund_exprs(fund_exprs: list[str], operators: set[str], op_flag: bool, op: str, fund_exprs_dir: str) -> None:
+    if not os.path.exists(path=fund_exprs_dir):
+        os.makedirs(name=fund_exprs_dir, exist_ok=True)
 
     for expr in fund_exprs:
+        tokens = expr.replace('(', '').replace(')', '').split(' ')
+
+        tokens_set = set(tokens)
+        common = operators.intersection(tokens_set)
+
+        if not op_flag:
+            if not common:
+                filepath = os.path.join(fund_exprs_dir, f"poly_{len(tokens)}.txt")
+            else:
+                filepath = os.path.join(fund_exprs_dir, f"op_{len(tokens)}.txt")
+        else:
+            if not common:
+                filepath = os.path.join(fund_exprs_dir, f"poly_d_{len(tokens)}.txt")
+            else:
+                filepath = os.path.join(fund_exprs_dir, f"op_d_{len(tokens)}.txt")
+
+        file = open(file=filepath, mode='a')
+
         if not op_flag:
             file.write(f"{expr}\n")
         else:
             file.write(f"({op} {expr})\n")
 
-    file.close()
+        file.close()
 
     return
 
@@ -489,10 +509,11 @@ def main():
     func_exprs = []
     exprs = fund_expr()
     func_exprs.extend(exprs)
-    # exprs = fund_op_exprs(operators=config.OPERATORS)
-    # func_exprs.extend(exprs)
-    w_fund_exprs(fund_exprs=func_exprs, op_flag=op_flag, op=op, fund_exprs_filepath=config.FUND_EXPRS_FILEPATH)
-    logger.log_info(f"Finished generating fundamental expressions to '{config.FUND_EXPRS_FILEPATH}' file.")
+    exprs = fund_op_exprs(operators=config.OPERATORS)
+    func_exprs.extend(exprs)
+    w_fund_exprs(fund_exprs=func_exprs, operators=set(config.OPERATORS), op_flag=op_flag, op=op,
+                 fund_exprs_dir=config.FUND_EXPRS_DIR)
+    logger.log_info(f"Finished generating fundamental expressions to '{config.FUND_EXPRS_DIR}' directory.")
 
     return
 
