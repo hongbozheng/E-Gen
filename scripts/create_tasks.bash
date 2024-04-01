@@ -19,7 +19,7 @@ for ((i = 0; i < num_tasks; i++)); do
 #SBATCH --job-name=eee
 #SBATCH --partition=secondary
 #SBATCH --output=eeg.o%j
-#SBATCH --error=eeg.e%j
+##SBATCH --error=eeg.e%j
 #SBATCH --mail-user=EMAIL_ADDR@illinois.edu
 #SBATCH --mail-type=BEGIN,END
 #
