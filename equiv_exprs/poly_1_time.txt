@@ -1,0 +1,14 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 11.15s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 8 -m 8 -t 600 -i ../data/poly_1.txt -o ../data/poly_1_gen.txt`
+[INFO]: Expression: (x)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3905
+[INFO]: Total # of e-node(s):    9304
+[INFO]: Total # of init expr(s): 528
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 853
+[INFO]: Total # of expression(s) after  postprocessing: 334
+[INFO]: Total run time: 600s
+

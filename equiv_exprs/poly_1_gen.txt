@@ -1,0 +1,336 @@
+x
+pow - + 1 x 1 1
++ sin asin x 0
+* * -1 x -1
++ 0 sin atan tan asin x
+* -1 * / x 2 -2
++ 0 tan asin tanh asinh x
++ tan acot cos asec x 0
++ 0 / 1 sec acos x
+* sin acos x sinh atanh x
+/ + 1 - x 1 1
++ 0 / 1 cos asec x
+/ sin acsc sec acos x 1
+/ 1 csc acsc tan acot x
++ 0 / 1 cot atan x
+/ tan atan tan atan x 1
+/ cos asec cot atan x 1
+- - 1 * x -1 1
+sin sin asin asin sin asin x
+sin - 0 asin * -1 x
+/ 1 / 1 sin asin x
++ sin cos acos asin x 0
+/ 1 tan atan sec acos x
+/ 1 / 1 x
+/ cos acos cos acos x 1
+* 1 tan atan x
+* - + x 1 1 1
+- 0 cos + pi acos x
+/ sin atan x cos atan x
+/ tan + atan x pi 1
+* tan asin tanh asinh x 1
+sin tan + pi atan asin x
++ sin acsc / 1 x 0
+* 1 tan acot / 1 x
+sin cos acos tan atan asin x
+/ cos acot x cos atan x
+- x * 0 abs cos asin x
+* -1 tan * -1 atan x
+sin tan atan asin sin asin x
+sin cos acos acsc tan acot x
+* / 1 cos asec x 1
+/ 1 sin asin sin acsc x
+pow tan + atan x pi 1
++ / 1 / 1 x 0
+* tan asin x abs cos asin x
+/ sin acsc cot atan x 1
+* -1 / -1 / 1 x
+* 1 sin atan sinh atanh x
+* tan acot sin acsc x 1
+sin - / pi 2 acos x
+/ sin acsc sin acsc x 1
+pow cos asec sec acos x 1
+pow tan acot / 1 x 1
+pow sin cos acos asin x 1
+pow sin sin asin asin x 1
+pow / 1 csc asin x 1
+/ sin acos x cot asin x
+/ cos asec tan acot x 1
+- 0 / -1 cot atan x
+* -1 cos acos * x -1
+* 1 tan atan tan atan x
+pow sin acsc csc asin x 1
+* -1 / -1 sec acos x
+- 0 / -1 sec acos x
+- 0 tan - 0 atan x
+* / -1 tan acot x -1
+/ 1 csc acsc / 1 x
+/ tan asin x csc acos x
+* 1 tan asin sin atan x
+pow sin acsc cot atan x 1
+/ 1 cot atan x
++ / * 2 x 2 0
+sin sin cos acos asin asin x
+/ 1 tan acos tanh asinh x
+* 2 tan atan / x 2
+- tan atan + x 1 1
+/ tan asin sin atan x 1
+/ - 0 * -1 x 1
++ - + x 1 1 0
++ sin sin asin asin x 0
+pow cos cos acos acos x 1
++ 0 * -1 * -1 x
+/ sin asin x 1
+* / 1 cot atan x 1
+/ tan acot / 1 x 1
++ 0 tan atan x
+/ tan asin tanh asinh x 1
+sin sin asin acsc csc asin x
+pow cos acos x 1
+/ * 2 x 2
+pow / 1 sin acsc x 1
+* -1 / -1 csc asin x
++ 0 cos asec sec acos x
+/ 1 csc asin cos acos x
++ 0 - 0 * x -1
+* sin cos acos asin x 1
+/ cos - 0 acos x 1
++ 0 tan acot tan acot x
+sin tan atan acsc csc asin x
+* cos asec cot atan x 1
+- 0 / -1 cos asec x
+/ 1 sec acos cos acos x
+pow tan acot sec acos x 1
+- x * 0 sin acos x
+/ 1 cos acos / 1 x
+* / 1 sin acsc x 1
+* abs cos asin x sinh atanh x
+/ 1 sec asec / 1 x
+- 0 / -1 tan acot x
++ sin atan sinh atanh x 0
++ 0 sin acsc cot atan x
+* cos asec cos asec x 1
+/ cos * -1 acos x 1
+pow sin acsc cos asec x 1
+/ 1 sec * -1 acos x
++ 0 / 1 csc asin x
+* 1 cos tan atan acos x
++ 0 cos acos x
++ cos acos tan atan x 0
++ 0 / 1 tan acot x
+/ 1 sin acsc cos acos x
+- 0 sin + asin x pi
+sin cos acos acsc cos asec x
+sin cos acos cos acos asin x
+pow cos asec cos asec x 1
+/ 1 sec asec tan acot x
+pow tan asin tanh asinh x 1
+sin tan atan acsc sec acos x
+* 1 sin acsc cot atan x
+pow sin acsc sin acsc x 1
+* cos asin x sinh atanh x
+- 0 / -1 / 1 x
+/ cos asec csc asin x 1
+* / -1 cos asec x -1
+/ 1 tan acot tan atan x
+* -1 - 1 + 1 x
+pow cos asec csc asin x 1
+pow sin asin x 1
+sin asin + - x 1 1
+/ 1 cot tan atan atan x
+/ / 1 sin acsc x 1
+/ 1 sec asec sin acsc x
+pow - 0 * x -1 1
+/ cos asin x tan acos x
+- x / 0 csc acos x
+/ tan acot tan acot x 1
+* abs sin acos x sinh atanh x
+pow tan atan x 1
+sin cos acos asin x
++ cos asec cot atan x 0
+/ sin acos x tan acos x
+pow / 1 cos asec x 1
+sin sin asin acsc cot atan x
+pow sin atan tan asin x 1
+/ 1 tan acot cos acos x
+/ abs sin acos x tan acos x
++ x * abs sin acos x 0
+* sin sin asin asin x 1
+- 0 * -2 / x 2
++ cos asec sin acsc x 0
+/ 1 csc acsc cos asec x
+* 1 * / x 2 2
+* 1 / 1 sec acos x
++ 0 x
+/ / 1 cot atan x 1
++ 0 tan asin cos acot x
+* sin + asin x pi -1
++ sin acsc sec acos x 0
+/ -1 cot * atan x -1
+/ tan atan cos acos x 1
+/ / 1 / 1 x 1
+* 1 * * x -1 -1
+/ tan atan x 1
+/ 1 csc atan sinh atanh x
+* tan acot cot atan x 1
+sin cos acos acsc sin acsc x
+/ tan acot cot atan x 1
+* 1 tan acot csc asin x
+pow cos asec tan acot x 1
+- x * abs sin acos x 0
+* cos asec csc asin x 1
+/ / 1 cos asec x 1
+* cos asec tan acot x 1
+/ sin asin cos acos x 1
+/ sin asin sin asin x 1
+- x / 0 tan asin x
+* / 1 / 1 x 1
++ x / 0 csc acos x
+pow / 1 sec acos x 1
++ 0 cos - 0 acos x
+pow cos * acos x -1 1
+pow / 1 cot atan x 1
+- x / 0 sinh atanh x
+sin sin asin atan sinh atanh x
+sin tan atan atan sinh atanh x
+pow * 2 / x 2 1
+sin cos acos atan sinh atanh x
++ 0 sin acsc sin acsc x
++ tan acot csc asin x 0
++ x * abs cos asin x 0
+/ 1 sec - 0 acos x
+sin cos acos acsc cot atan x
++ tan acot cot atan x 0
+/ * 2 sin asin x 2
+/ 1 tan atan sin acsc x
++ 0 cos acos cos acos x
+/ 1 tan acot sin asin x
++ x / 0 sinh atanh x
+pow sin acsc sec acos x 1
+pow tan atan tan atan x 1
+* / cos acos x 2 2
+/ abs cos asin x tan acos x
+sin tan atan acsc tan acot x
+/ 1 csc asin x
+sin cos acos acsc sec acos x
+sin sin asin acsc cos asec x
+* -1 cos + pi acos x
+* cos asin x tan asin x
+/ tan acot sin acsc x 1
+pow sin acsc tan acot x 1
++ * sin acos x 0 x
+/ 1 csc acsc sin acsc x
+* cos acos x 1
+- 0 * x -1
+* tan asin x abs sin acos x
+* cos cos acos acos x 1
+sin sin asin acsc sin acsc x
+* 1 sin acsc csc asin x
+* tan + atan x pi 1
+/ abs sin acos x cot asin x
+/ sin acsc csc asin x 1
+/ tanh asinh x cos atan x
+/ 1 sec asec csc asin x
+* 1 sin acsc sin acsc x
++ 0 sin acsc csc asin x
+* 1 cos * acos x -1
+pow x 1
+sin cos * -1 acos asin x
+- 0 cos - pi acos x
+/ sinh atanh x sec asin x
++ 0 tan + atan x pi
+* cos - pi acos x -1
+/ 1 cot + atan x pi
+* sin acsc sec acos x 1
+/ 1 sin acsc x
++ tan atan tan atan x 0
+sin sin asin acsc tan acot x
+- 0 cos acos * -1 x
+- x * cos asin x 0
++ cos asec cos asec x 0
+- 0 - 1 + 1 x
+* tan asin cos acot x 1
+pow tan acot csc asin x 1
+/ tan acot csc asin x 1
+pow sin atan sinh atanh x 1
+- cos acos + 1 x 1
++ cos * -1 acos x 0
+* -1 / -1 sin acsc x
+pow cos asec cot atan x 1
+/ -1 csc - 0 asin x
++ 0 cos asec csc asin x
+* sin asin x 1
+/ 1 sec asec cos asec x
+* 1 x
+/ 1 sec asec sec acos x
+pow tan asin cos acot x 1
+/ 1 cos acos cos asec x
+/ 1 cot asin tanh asinh x
++ x / 0 sec asin x
++ x * cos asin x 0
+/ 1 tan acos sin atan x
+- 0 / -1 sin acsc x
++ x / 0 tan asin x
+/ 1 sec asec cot atan x
+/ sinh atanh x csc acos x
+sin sin asin asin x
+sin tan atan acsc cos asec x
+/ sin atan sinh atanh x 1
+* / 1 csc asin x 1
+/ abs cos asin x cot asin x
+* 1 sin acsc cos asec x
+/ 1 sec acos sin asin x
+/ 1 cos asec x
+* 1 cos asec sec acos x
+/ cos asin x cot asin x
+/ 1 tan acot x
++ tan acot sec acos x 0
+sin tan atan asin x
+* tan - 0 atan x -1
+/ / * x 2 2 1
+* 1 cos - 0 acos x
+* tan acot sec acos x 1
+/ 1 sec acos x
+/ * * x -1 -1 1
+pow / 1 / 1 x 1
+- x / 0 sec asin x
+pow tan acot cot atan x 1
+- 0 sin - 0 asin x
+* 1 - 0 * -1 x
+/ tan asin x sec asin x
+pow cos tan atan acos x 1
+pow * -1 * -1 x 1
+* tan acot tan acot x 1
+/ 1 csc acsc csc asin x
+/ 1 cot atan sin asin x
+/ tan asin cos acot x 1
+sin tan atan acsc cot atan x
+sin cos asec / 1 asin x
++ sin acsc tan acot x 0
+/ 1 csc acsc sec acos x
+/ 1 cot cos acos atan x
+/ x 1
+/ 1 sin asin csc asin x
+/ 1 cot asin cos acot x
+/ 1 cos asec tan atan x
+- + x 1 1
+/ / 1 csc asin x 1
+pow tan acot tan acot x 1
+- - + 2 x 1 1
+/ cos acos x 1
+sin cos acos acsc csc asin x
+pow cos - 0 acos x 1
+/ / 1 sec acos x 1
+* tan asin x sin acos x
+sin sin asin acsc sec acos x
+/ 1 csc acsc cot atan x
+/ cos asec cos asec x 1
+/ cos asec sin acsc x 1
+sin * -1 * asin x -1
+sin tan atan acsc sin acsc x
+/ 1 csc atan tan asin x
+/ tan acot sec acos x 1
+/ cos asec sec acos x 1
+sin tan atan asin tan atan x
+/ 1 tan atan / 1 x
+

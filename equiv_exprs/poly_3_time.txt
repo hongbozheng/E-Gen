@@ -1,0 +1,62 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 9 -m 9 -t 600 -i ../data/poly_3.txt -o ../data/poly_3_gen_l9.txt`
+[INFO]: Expression: (pow x 2)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4540
+[INFO]: Total # of e-node(s):    9769
+[INFO]: Total # of init expr(s): 275
+[INFO]: Expression extraction time: 321s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3525
+[INFO]: Total # of expression(s) after  postprocessing: 451
+[INFO]: Total run time: 322s
+
+[INFO]: Expression: (+ x -6)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4464
+[INFO]: Total # of e-node(s):    9671
+[INFO]: Total # of init expr(s): 284
+[INFO]: Expression extraction time: 502s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 13883
+[INFO]: Total # of expression(s) after  postprocessing: 1371
+[INFO]: Total run time: 502s
+
+[INFO]: Expression: (- x 4)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4449
+[INFO]: Total # of e-node(s):    9699
+[INFO]: Total # of init expr(s): 258
+[INFO]: Expression extraction time: 401s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 8887
+[INFO]: Total # of expression(s) after  postprocessing: 1095
+[INFO]: Total run time: 401s
+
+[INFO]: Expression: (* 3 x)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4380
+[INFO]: Total # of e-node(s):    9487
+[INFO]: Total # of init expr(s): 243
+[INFO]: Expression extraction time: 403s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12679
+[INFO]: Total # of expression(s) after  postprocessing: 1409
+[INFO]: Total run time: 404s
+
+[INFO]: Expression: (/ x -9)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4399
+[INFO]: Total # of e-node(s):    9499
+[INFO]: Total # of init expr(s): 240
+[INFO]: Expression extraction time: 381s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6548
+[INFO]: Total # of expression(s) after  postprocessing: 668
+[INFO]: Total run time: 381s
+
