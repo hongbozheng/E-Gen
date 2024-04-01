@@ -192,24 +192,6 @@ def fund_expr() -> list[str]:
     exprs.append(f"(/ (- (* {rand_num()} (pow x {rand_num()})) {rand_num()}) {rand_num()})")
     exprs.append(f"(/ (- (/ (pow x {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
 
-    # a(bx+c)^d+e
-    exprs.append(f"(+ (* {rand_num()} (pow (+ (* {rand_num()} x) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(+ (* {rand_num()} (pow (+ (/ x {rand_num()}) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(+ (* {rand_num()} (pow (- (* {rand_num()} x) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(+ (* {rand_num()} (pow (- (/ x {rand_num()}) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(+ (/ (pow (+ (* {rand_num()} x) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(+ (/ (pow (+ (/ x {rand_num()}) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(+ (/ (pow (- (* {rand_num()} x) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(+ (/ (pow (- (/ x {rand_num()}) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(- (* {rand_num()} (pow (+ (* {rand_num()} x) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(- (* {rand_num()} (pow (+ (/ x {rand_num()}) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(- (* {rand_num()} (pow (- (* {rand_num()} x) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(- (* {rand_num()} (pow (- (/ x {rand_num()}) {rand_num()}))) {rand_num()})")
-    exprs.append(f"(- (/ (pow (+ (* {rand_num()} x) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(- (/ (pow (+ (/ x {rand_num()}) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(- (/ (pow (- (* {rand_num()} x) {rand_num()})) {rand_num()}) {rand_num()})")
-    exprs.append(f"(- (/ (pow (- (/ x {rand_num()}) {rand_num()})) {rand_num()}) {rand_num()})")
-
     # (ax+b)^c+dx
     exprs.append(f"(+ (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()}) (* {rand_num()} x))")
     exprs.append(f"(+ (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()}) (/ x {rand_num()}))")
@@ -335,6 +317,24 @@ def fund_expr() -> list[str]:
     exprs.append(f"(- (- (* {rand_num()} (pow x {rand_num()})) (/ x {rand_num()})) {rand_num()})")
     exprs.append(f"(- (- (/ (pow x {rand_num()}) {rand_num()}) (* {rand_num()} x)) {rand_num()})")
     exprs.append(f"(- (- (/ (pow x {rand_num()}) {rand_num()}) (/ x {rand_num()})) {rand_num()})")
+
+    # a(bx+c)^d+e
+    exprs.append(f"(+ (* {rand_num()} (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(+ (* {rand_num()} (pow (+ (/ x {rand_num()}) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(+ (* {rand_num()} (pow (- (* {rand_num()} x) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(+ (* {rand_num()} (pow (- (/ x {rand_num()}) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(+ (/ (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(+ (/ (pow (+ (/ x {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(+ (/ (pow (- (* {rand_num()} x) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(+ (/ (pow (- (/ x {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(- (* {rand_num()} (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(- (* {rand_num()} (pow (+ (/ x {rand_num()}) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(- (* {rand_num()} (pow (- (* {rand_num()} x) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(- (* {rand_num()} (pow (- (/ x {rand_num()}) {rand_num()}) {rand_num()})) {rand_num()})")
+    exprs.append(f"(- (/ (pow (+ (* {rand_num()} x) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(- (/ (pow (+ (/ x {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(- (/ (pow (- (* {rand_num()} x) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
+    exprs.append(f"(- (/ (pow (- (/ x {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()}) {rand_num()})")
 
     # a(bx^c+dx+e) len=13
 
