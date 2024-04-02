@@ -1,0 +1,1702 @@
++ pow x 3 * 5 x
+- pow x 3 tan atan sin asin * -5 x
++ * x 5 / 1 pow cot atan x 3
+* - pow x 3 * -5 cos acos x 1
+- pow sin sin asin asin x 3 * -5 x
+- pow tan atan tan atan x 3 * -5 x
++ tan atan sin asin * x 5 pow x 3
++ pow cos asec sec acos x 3 * 5 x
++ * sin cos acos asin x 5 pow x 3
++ sin asin * * -5 x -1 pow x 3
++ sin acsc / cot atan x 5 pow x 3
++ pow x 3 / 5 csc acsc csc asin x
++ * cos acos x 5 pow x 3
+- pow x 3 * -5 cos * -1 acos x
++ pow x 3 * cos acos tan atan x 5
++ pow x 3 / 5 / 1 x
+- * x 5 * pow cos acos x 3 -1
++ pow x 3 / 5 sec acos tan atan x
++ / 1 / sec acos x 5 pow x 3
+- pow x 3 * -5 sin acsc sec acos x
++ pow x 3 tan + pi atan * x 5
++ / 5 cot atan x pow sin asin x 3
++ pow x 3 / 5 sec asec / 1 x
++ sin acsc sec acos pow x 3 * x 5
+- / 1 pow cot atan x 3 * -5 x
++ cos asec / cot atan x 5 pow x 3
+- sin asin pow x 3 * * x 5 -1
++ cos acos / 5 / 1 x pow x 3
++ pow x 3 / 5 sec asec sec acos x
+- * 5 x * -1 pow x 3
+- pow x 3 - 1 + * x 5 1
++ * cos cos acos acos x 5 pow x 3
+- pow x 3 * -5 sin asin x
++ sin acsc / / 1 5 x pow x 3
+* - pow tan atan x 3 * -5 x 1
++ pow x 3 cos - pi acos * -5 x
+- / 1 pow csc asin x 3 * -5 x
++ * tan atan tan atan x 5 pow x 3
++ pow x 3 / 5 csc acsc / 1 x
++ pow x 3 * -5 / -1 / 1 x
++ sin acsc / sec acos x 5 pow x 3
+- pow x 3 * -5 cos asec csc asin x
+- tan atan pow x 3 * -5 cos acos x
+- / 5 sec acos x * -1 pow x 3
++ pow x 3 / 5 csc acsc sec acos x
++ pow x 3 * -5 * -1 tan atan x
+* + * sin asin x 5 pow x 3 1
++ * / 1 / 1 x 5 pow x 3
+- + 1 - pow x 3 * -5 x 1
+- cos acos pow x 3 * -5 x
+* + * 5 x cos acos pow x 3 1
+- * -1 * -5 x * -1 pow x 3
++ / 5 cot + atan x pi pow x 3
++ pow x 3 / 5 sec acos cos acos x
++ cos acos pow x 3 * * -5 x -1
++ / 5 / 1 x tan atan pow x 3
++ * cos asec / 1 x 5 pow x 3
++ / 5 csc asin x pow cos acos x 3
+- sin asin pow cos acos x 3 * -5 x
+- pow x 3 tan + atan * -5 x pi
+- pow x 3 / -1 / csc asin x 5
+- pow tan atan x 3 * * 5 x -1
+- pow cos asec sec acos x 3 * -5 x
+- pow x 3 / -1 csc asin * 5 x
++ * cos asec csc asin x 5 pow x 3
++ pow x 3 cos asec / / 1 5 x
+- - 1 * -5 x - 1 pow x 3
+- pow sin acsc / 1 x 3 * -5 x
+- / 5 / 1 x * pow x 3 -1
++ pow x 3 / 5 csc asin x
++ * -5 sin + asin x pi pow x 3
++ pow x 3 sin acsc / csc asin x 5
++ / 5 cot atan x pow x 3
++ pow sin asin sin asin x 3 * 5 x
++ pow x 3 / 1 / / 1 x 5
++ pow sin acsc cot atan x 3 * x 5
++ pow x 3 * * -1 * x -1 5
++ pow x 3 / 5 sec * -1 acos x
++ / 1 sec acos pow x 3 * 5 x
+* + * 5 x pow x 3 1
++ * -5 / -1 csc asin x pow x 3
++ pow sin acsc / 1 x 3 * x 5
+* - pow x 3 * * -1 x 5 1
++ pow x 3 / 5 / 1 sin asin x
++ cos acos pow x 3 / 5 cot atan x
++ * -5 - 1 + x 1 pow x 3
++ pow tan atan x 3 * 5 x
+* - pow x 3 * -5 sin asin x 1
++ * * -5 x -1 pow x 3
+* + pow x 3 * -5 * x -1 1
+- * x 5 cos + acos pow x 3 pi
+- pow x 3 * -5 cos asec / 1 x
+- pow cos acos x 3 * -5 cos acos x
+* - pow x 3 * -5 x 1
++ / 5 sec acos sin asin x pow x 3
+- + + * x 5 pow x 3 1 1
++ pow x 3 sin asin / 5 csc asin x
+- pow x 3 sin + asin * 5 x pi
+- pow x 3 * -5 x
+- / 1 pow / 1 x 3 * -5 x
+- / 5 cot atan x * -1 pow x 3
++ / 1 / csc asin x 5 pow x 3
++ pow x 3 / 5 csc acsc cot atan x
++ / 1 / cot atan x 5 pow x 3
+- pow sin acsc cot atan x 3 * -5 x
++ pow x 3 / 5 sec acos x
+* + tan atan * x 5 pow x 3 1
+- pow / 1 sec acos x 3 * -5 x
++ pow x 3 / 5 sec asec cot atan x
+- pow tan atan x 3 * -5 x
++ * 5 cos * acos x -1 pow x 3
++ * -5 / -1 sec acos x pow x 3
++ cos asec / sec acos x 5 pow x 3
++ * x 5 / 1 pow csc asin x 3
++ pow x 3 sin acsc csc asin * x 5
+- pow x 3 / -1 / cot atan x 5
++ pow x 3 / 5 cot tan atan atan x
++ pow x 3 * x 5
++ * -5 cos + acos x pi pow x 3
++ pow cos asec cot atan x 3 * x 5
++ pow x 3 cos asec / csc asin x 5
+- pow x 3 / -1 / sec acos x 5
+- pow cos asec cot atan x 3 * -5 x
++ * -5 / -1 cot atan x pow x 3
+- sin acsc csc asin pow x 3 * -5 x
++ tan atan / 5 csc asin x pow x 3
++ pow x 3 / 5 sec asec csc asin x
++ pow x 3 * 5 sin asin x
+- pow x 3 / -1 / / 1 x 5
+
++ pow x -8 * 3 x
++ * -3 * x -1 sin acsc pow x 8
++ * 3 x tan + pi atan pow x -8
+- pow x -8 / -1 / csc asin x 3
++ * -3 * -1 x / 1 pow x 8
++ * 3 x sin acsc csc asin pow x -8
+- pow x -8 * -3 / 1 csc asin x
+- / 1 csc acsc pow x 8 * -3 x
++ cos acos * x 3 pow x -8
++ cos - acos * -3 x pi pow x -8
+- tan atan pow tan atan x -8 * -3 x
+- / 1 sec asec pow x 8 * -3 x
+- pow sin acsc sec acos x -8 * -3 x
+- tan + atan pow x -8 pi * -3 x
+- pow x -8 / -1 / cot atan x 3
++ * * -1 * x -1 3 pow x -8
++ * 3 x sin acsc pow tan atan x 8
++ cos acos pow x -8 / 3 csc asin x
++ * -3 * -1 x pow sin asin x -8
++ tan acot pow x 8 / 3 sec acos x
++ / 1 pow x 8 * 3 x
+- pow cos tan atan acos x -8 * -3 x
+- / 3 csc asin x / -1 pow x 8
++ pow x -8 / 1 cot atan * 3 x
+- tan atan * x 3 / -1 pow x 8
+- tan acot pow x 8 * -3 sin asin x
+- / 1 cot acot pow x 8 * -3 x
++ / 3 / 1 x sin asin pow x -8
++ * x 3 cos acos pow sin asin x -8
++ / 1 pow x 8 / 3 sec acos x
+- / 3 / 1 x / -1 pow x 8
++ pow x -8 / 1 csc asin * 3 x
+- * 3 x * / 1 pow x 8 -1
++ pow x -8 / 3 sec asec / 1 x
++ / 3 csc asin x / 1 pow x 8
++ * x 3 tan + acot pow x 8 pi
+- pow x -8 * -3 / 1 / 1 x
++ * 3 x / 1 pow sin asin x 8
++ / 3 sec asec sec acos x pow x -8
++ * x 3 pow cos asec sec acos x -8
+- pow x -8 * -1 / 3 sec acos x
++ * tan atan x 3 tan atan pow x -8
+- pow x -8 * cos acos * 3 x -1
++ / 3 csc asin x tan atan pow x -8
+- / 1 pow sin asin x 8 * -3 x
++ tan atan pow x -8 * 3 sin asin x
+- * 3 x * sin acsc pow x 8 -1
++ pow x -8 sin acsc / sec acos x 3
++ cos * -1 asec pow x 8 * 3 x
+- tan acot tan atan pow x 8 * -3 x
+- * x 3 sin + acsc pow x 8 pi
+- - 1 * -3 x - 1 pow x -8
++ * 3 cos cos acos acos x pow x -8
++ * x 3 sin acsc pow sin asin x 8
++ / 3 / 1 x cos asec pow x 8
++ sin acsc / / 1 x 3 pow x -8
+- pow x -8 cos + acos * 3 x pi
+- pow sin asin x -8 tan atan * -3 x
+- / 3 cot atan x / -1 pow x 8
++ pow x -8 tan atan / 3 sec acos x
++ cos * -1 acos * x 3 pow x -8
++ / 3 csc asin x tan acot pow x 8
++ pow x -8 / 3 sec acos x
++ pow cos acos x -8 * -1 * -3 x
+- cos asec pow x 8 * -3 x
++ * x 3 pow / 1 sec acos x -8
+- tan + acot pow x 8 pi * -3 x
++ pow x -8 * 3 x
++ / 3 / 1 x cos acos pow x -8
+- pow x -8 / -1 / / 1 x 3
+- pow x -8 * * x 3 -1
++ pow x -8 * -3 cos + acos x pi
++ cos asec pow x 8 / 3 cot atan x
+- cos * acos pow x -8 -1 * -3 x
+- sin acsc pow x 8 * -3 cos acos x
++ pow cos asec csc asin x -8 * 3 x
+- pow x -8 / -1 / sec acos x 3
++ pow x -8 / 3 cot atan sin asin x
++ pow cos acos tan atan x -8 * 3 x
+- tan atan pow x -8 * -1 * 3 x
++ * 3 x pow sin acsc sec acos x -8
+- * x 3 * -1 sin asin pow x -8
+- / 1 sec acos pow x -8 * -3 x
++ * 3 x / 1 csc acsc pow x 8
++ * -3 - 1 + 1 x pow x -8
++ * 3 x / 1 tan atan pow x 8
++ * -3 * -1 x tan atan pow x -8
++ cos asec pow x 8 tan atan * x 3
++ / 3 cot atan x tan atan pow x -8
++ * 3 x tan acot cos acos pow x 8
++ / 3 csc asin x cos asec pow x 8
++ cos acos * 3 x / 1 pow x 8
++ cos asec cos acos pow x 8 * x 3
++ * x 3 tan acot pow x 8
++ pow x -8 / 1 / sec acos x 3
++ / 3 csc asin sin asin x pow x -8
++ sin acsc pow x 8 / 3 / 1 x
+- tan acot cos acos pow x 8 * -3 x
+- tan acot pow x 8 * -1 * 3 x
++ pow x -8 / 3 csc acsc cot atan x
+- pow cos cos acos acos x -8 * -3 x
++ * -1 / -1 pow x 8 * x 3
++ pow x -8 sin acsc / csc asin x 3
++ cos asec cot atan pow x -8 * 3 x
+- pow cos asec csc asin x -8 * -3 x
+- tan atan pow x -8 * -3 x
++ / 1 sec asec pow x 8 * 3 x
+- * -1 * -3 x * -1 pow x -8
++ sin acsc pow x 8 cos acos * 3 x
+- pow x -8 * sin + asin x pi 3
++ pow x -8 * -3 / -1 csc asin x
+- * 3 x cos + asec pow x 8 pi
++ pow x -8 / 1 / cot atan x 3
++ / 3 sec acos x cos asec pow x 8
++ pow x -8 cos asec / sec acos x 3
++ / 3 csc asin x pow x -8
++ pow x -8 * -3 / -1 sec acos x
+- sin asin * x 3 / -1 pow x 8
+- * 3 x - 1 + pow x -8 1
++ * 3 sin asin x sin asin pow x -8
++ sin acsc pow x 8 / 3 cot atan x
++ tan acot pow x 8 * -1 * -3 x
+- cos acos pow sin asin x -8 * -3 x
+- * 3 x / -1 pow cos acos x 8
+- pow x -8 * -3 sin acsc cot atan x
++ pow x -8 / 3 sec asec cot atan x
+- * -1 / -1 pow x 8 * -3 x
++ / 1 / csc asin x 3 pow x -8
++ * x 3 pow sin asin x -8
+- pow x -8 * -3 cos asec sec acos x
++ tan acot pow x 8 * 3 sin asin x
++ / 3 sec acos x cos acos pow x -8
++ pow x -8 - - 1 * -3 x 1
++ sin asin * x 3 cos asec pow x 8
++ pow x -8 / 3 cot + pi atan x
+- pow x -8 * -3 sin acsc / 1 x
+- * 3 x * -1 cos asec pow x 8
++ sin acsc pow x 8 * 3 x
++ * -1 * -3 x pow x -8
+- cos asec sin asin pow x 8 * -3 x
++ sin acsc pow x 8 / 3 sec acos x
+- pow x -8 * -3 cos asec cot atan x
+- / 3 sec acos x / -1 pow x 8
++ * -3 / -1 / 1 x pow x -8
++ * 3 x pow cos asec / 1 x -8
++ / 3 csc acsc / 1 x pow x -8
++ / 3 / 1 x / 1 pow x 8
+- sin acsc pow sin asin x 8 * -3 x
+- / 1 pow x 8 * -3 x
+- tan atan / 1 pow x 8 * -3 x
++ * -3 / -1 cot atan x pow x -8
++ cos asec pow x 8 * -1 * -3 x
++ * -3 sin + asin x pi pow x -8
+- * 3 x / -1 pow x 8
++ pow x -8 * 3 sin acsc / 1 x
++ sin acsc cot atan pow x -8 * 3 x
+- pow x -8 * -3 / 1 cot atan x
+- cos * -1 asec pow x 8 * -3 x
++ pow x -8 sin acsc / cot atan x 3
++ cos asec / csc asin x 3 pow x -8
++ / 3 csc acsc sec acos x pow x -8
++ pow x -8 / 3 / 1 tan atan x
+- pow x -8 * -3 x
++ / 1 pow x 8 / 3 cot atan x
++ pow x -8 / 3 csc acsc csc asin x
+- sin asin pow sin asin x -8 * -3 x
++ / 3 cot atan cos acos x pow x -8
++ tan atan pow x -8 * 3 x
+- cos asec pow x 8 * -3 cos acos x
++ / 3 sec acos x pow sin asin x -8
+- sin acsc pow x 8 * -3 tan atan x
++ / 1 / / 1 x 3 pow x -8
+- cos acos / 1 pow x 8 * -3 x
+- pow x -8 * -1 / 3 / 1 x
++ pow x -8 / 3 cot atan x
+- pow x -8 * / 3 cot atan x -1
+- + + * 3 x 1 pow x -8 1
++ tan acot pow x 8 / 3 / 1 x
++ / 3 cot atan x tan acot pow x 8
++ sin acsc pow x 8 / 3 csc asin x
+- / 3 csc asin x * -1 pow x -8
+- cos asec pow x 8 tan atan * -3 x
+- sin acsc csc asin pow x -8 * -3 x
+- sin asin pow x -8 * -3 x
++ / 3 sec asec csc asin x pow x -8
++ cos asec pow x 8 * 3 x
++ cos asec / cot atan x 3 pow x -8
++ * x 3 / 1 cot acot pow x 8
++ * / 1 / 1 x 3 pow x -8
+- tan acot pow x 8 * -3 x
++ * 3 tan atan x tan acot pow x 8
+- sin acsc pow x 8 * -3 x
++ / 3 / 1 x pow x -8
++ pow x -8 / 3 sec * acos x -1
++ cos asec / / 1 x 3 pow x -8
+- cos acos pow x -8 * -3 x
+- pow cos asec / 1 x -8 * -3 x
+
+- pow x -5 / x -4
+- pow sin acsc csc asin x -5 / x -4
+- pow x -5 / sin acsc cot atan x -4
+* -1 - / sin asin x -4 pow x -5
+- pow cos acos sin asin x -5 / x -4
+- tan atan pow x -5 / x -4
+- pow x -5 tan atan * / 1 -4 x
+- tan acot sin asin pow x 5 / x -4
+* 1 - pow x -5 * / 1 -4 x
+- pow cos asec csc asin x -5 / x -4
+* - / x -4 / 1 pow x 5 -1
+- tan acot tan atan pow x 5 / x -4
+* -1 - / cos acos x -4 pow x -5
+- cos acos pow x -5 / x -4
+- cos asec pow x 5 / x -4
+- sin asin pow sin asin x -5 / x -4
+- sin acsc pow x 5 sin asin / x -4
+- pow x -5 / 1 * cot atan x -4
+* 1 - pow sin asin x -5 / x -4
+- pow x -5 cos asec / 1 / x -4
+- pow x -5 cos acos * x / 1 -4
+- pow x -5 sin asin tan atan / x -4
+- sin acsc pow cos acos x 5 / x -4
+- * / -1 pow x 5 -1 / x -4
+- sin acsc pow x 5 * x / 1 -4
++ - pow x -5 + / x -4 1 1
+- pow cos tan atan acos x -5 / x -4
+* - tan acot pow x 5 / x -4 1
+- pow x -5 / x -4
+- tan acot pow x 5 / x -4
+- pow x -5 / 1 * csc asin x -4
+- cos asec pow cos acos x 5 / x -4
+- / 1 cot acot pow x 5 / x -4
+- / 1 cot atan pow x -5 / x -4
+- pow x -5 * / * x -1 -4 -1
+- cos asec pow sin asin x 5 / x -4
+- / 1 pow tan atan x 5 / x -4
+- pow x -5 / cos asec sec acos x -4
+- pow x -5 / 1 * sec acos x -4
+- / 1 pow x 5 / sin asin x -4
+- sin acsc sec acos pow x -5 / x -4
+- pow x -5 sin acsc / 1 / x -4
+* 1 - cos asec pow x 5 / x -4
+* - * / 1 -4 x pow x -5 -1
+- / 1 sec asec pow x 5 / x -4
+- cos asec cot atan pow x -5 / x -4
+- / 1 cos acos pow x 5 / x -4
+- pow cos cos acos acos x -5 / x -4
+- cos * -1 asec pow x 5 / x -4
+- tan + acot pow x 5 pi / x -4
+- cos asec pow x 5 / tan atan x -4
+- sin acsc pow x 5 / x -4
+- tan tan atan atan pow x -5 / x -4
+- / 1 csc acsc pow x 5 / x -4
+* -1 + / -1 pow x 5 / x -4
+- / 1 / 1 pow x -5 / x -4
+- pow x -5 / tan + pi atan x -4
+- tan acot pow x 5 cos acos / x -4
+* -1 + * pow x -5 -1 / x -4
+- pow / 1 csc asin x -5 / x -4
+* -1 - / tan atan x -4 pow x -5
+- / 1 pow sec acos x -5 / x -4
+* - / x -4 tan acot pow x 5 -1
+- pow x -5 / 1 * / 1 x -4
+* 1 - / 1 pow x 5 / x -4
+* - / x -4 pow x -5 -1
+- / 1 pow x 5 / x -4
+* -1 - / x -4 sin acsc pow x 5
+- - 1 - / x -4 pow x -5 1
+- pow x -5 - + 1 / x -4 1
+- sin asin pow x -5 / x -4
+* 1 - pow x -5 / x -4
+- sin acsc tan atan pow x 5 / x -4
+
+- pow x 7 / x -6
+* - pow sin asin x 7 / x -6 1
+* -1 - / x -6 pow x 7
+* - / x -6 pow tan atan x 7 -1
+- + 1 pow x 7 + 1 / x -6
+* - pow x 7 * x / 1 -6 1
+- pow x 7 sin asin tan atan / x -6
+- cos acos pow x 7 / x -6
+- pow x 7 / / 1 / 1 x -6
+- sin asin cos acos pow x 7 / x -6
+* -1 + * -1 pow x 7 / x -6
+- cos acos pow x 7 cos acos / x -6
+- pow x 7 sin acsc / 1 / x -6
+- tan atan pow x 7 tan atan / x -6
+- pow x 7 tan atan * / 1 -6 x
+- pow x 7 / tan + atan x pi -6
+* - pow x 7 / x -6 1
+- pow x 7 / tan atan x -6
+- pow cos asec csc asin x 7 / x -6
+- pow x 7 / x -6
+- pow / 1 csc asin x 7 / x -6
+* sin asin - / x -6 pow x 7 -1
+- pow x 7 / 1 * sec acos x -6
+- pow x 7 / 1 * cot atan x -6
+- pow sin asin x 7 sin asin / x -6
+* - cos acos / x -6 pow x 7 -1
+- pow x 7 / 1 * csc asin x -6
+- pow - + x 1 1 7 / x -6
+- pow x 7 / 1 * / 1 x -6
+- cos asec / 1 pow x 7 / x -6
+* -1 - * x / 1 -6 pow x 7
+- * -1 pow * -1 x 7 / x -6
+- pow cos asec sec acos x 7 / x -6
+- / 1 sec acos pow x 7 / x -6
+- - 1 - / x -6 pow x 7 1
+- / 1 cot atan pow x 7 / x -6
+- cos asec cot atan pow x 7 / x -6
+- sin asin pow x 7 / x -6
+- pow sin acsc sec acos x 7 / x -6
+- pow x 7 / sin acsc cot atan x -6
+- pow cos acos x 7 * x / 1 -6
+- pow x 7 / sin acsc csc asin x -6
+- pow x 7 cos acos / tan atan x -6
+
+pow + * -8 x 5 9
+pow + 5 * -8 sin asin x 9
+pow + 5 cos acos / -8 sec acos x 9
+pow + sin asin * -8 sin asin x 5 9
+pow + 5 * sin tan atan asin x -8 9
+* -1 pow - sin asin * 8 x 5 9
+pow - + * -8 x 1 -4 9
+pow + 5 / -8 / 1 sin asin x 9
+pow + * -8 tan atan x 5 9
+pow * - -5 * -8 x -1 9
+pow + 5 / 1 / / 1 x -8 9
+pow - - 1 - -5 * x -8 1 9
+pow + cos asec / csc asin x -8 5 9
+pow + 5 * -8 cos acos sin asin x 9
+pow - + 6 / -8 / 1 x 1 9
+pow + * 8 / -1 csc asin x 5 9
+pow - 5 * 8 cos asec csc asin x 9
+* 1 pow * -1 - -5 * x -8 9
+pow + 5 * -8 sin acsc / 1 x 9
+/ 1 sec acos pow + 5 * x -8 9
+pow - 5 * 8 - + x 1 1 9
+pow + 5 cos asec / sec acos x -8 9
+pow + sin acsc sec acos * x -8 5 9
+pow - 5 tan atan * 8 x 9
+pow cos acos - - 1 * 8 x -4 9
+* 1 pow + 5 / -8 / 1 x 9
+pow sin asin - + 6 * -8 x 1 9
+pow sin asin + 5 * -1 * 8 x 9
+pow + 5 cos acos * -1 * 8 x 9
+pow - 5 sin asin tan atan * 8 x 9
+pow + * * * -8 x -1 -1 5 9
+pow + 5 * -8 sin acsc cot atan x 9
+pow - - 1 * * x -1 -8 -4 9
+/ 1 / 1 pow - 5 * 8 x 9
+pow - + 1 / -8 / 1 x -4 9
+pow cos acos - 5 * 8 x 9
+* 1 pow - 5 sin asin * 8 x 9
+pow + 5 * -8 cos asec csc asin x 9
+pow - + * tan atan x -8 1 -4 9
+pow + / -8 sin asin csc asin x 5 9
+* 1 pow + 5 * -8 sin asin x 9
+* 1 pow - 5 * 8 cos acos x 9
+pow + 5 cos asec / cot atan x -8 9
+pow + 5 cos acos / -8 cot atan x 9
+pow * -1 - * 8 tan atan x 5 9
+pow + / -8 sec asec cot atan x 5 9
+pow - 5 * 8 cos asec sec acos x 9
+pow cos acos sin asin - 5 * 8 x 9
+pow sin asin - 5 * 8 x 9
+pow + 5 / 1 / csc asin x -8 9
+pow - 5 * 8 sin acsc csc asin x 9
+pow + sin acsc / cot atan x -8 5 9
+pow - + 6 * * 8 x -1 1 9
+pow - - 1 * 8 x -4 9
+pow cos acos * - -5 * x -8 -1 9
+pow / 1 csc asin + 5 * x -8 9
+pow cos * -1 acos + 5 * x -8 9
+* tan atan pow + * -8 x 5 9 1
+pow + 5 cos asec / / 1 x -8 9
+pow - 5 / -1 / csc asin x -8 9
+pow - 5 / -1 sec acos * x -8 9
+pow - + / -8 csc asin x 1 -4 9
+pow + 5 cos acos * cos acos x -8 9
+pow - 5 * -1 sin asin * x -8 9
+pow - 5 tan atan * * x -8 -1 9
+* pow + 5 * -8 cos acos x 9 1
+pow * -1 - * * x -8 -1 5 9
+* -1 pow - -5 / -8 csc asin x 9
+* -1 pow - -5 / -8 / 1 x 9
+pow - 5 / -1 / / 1 x -8 9
+pow - 5 * 8 cos asec / 1 x 9
+pow + sin + asin * 8 x pi 5 9
+pow + * tan atan tan atan x -8 5 9
+pow * -1 - -5 * -8 tan atan x 9
+pow - 5 * * 8 * x -1 -1 9
+* pow - 5 * * x -1 -8 9 1
+* 1 pow - 5 * 8 x 9
+pow + 5 * 8 * x -1 9
+pow + tan atan / -8 cot atan x 5 9
+pow + * -8 / 1 cot atan x 5 9
+pow - + 1 cos acos * -8 x -4 9
+pow cos acos - 5 * * x -8 -1 9
+pow - 5 * / -8 csc asin x -1 9
+* -1 pow - 1 + 6 * -8 x 9
+/ 1 pow sec acos - 5 * 8 x 9
+pow + / -8 cot + pi atan x 5 9
+pow cos asec / 1 + * -8 x 5 9
+pow - 5 * sin + asin x pi -8 9
+pow + 5 tan atan * 8 * -1 x 9
+pow - 5 * 8 tan atan tan atan x 9
+* pow - + 1 * x -8 -4 9 1
+pow - + 6 * -8 x 1 9
+pow + * -8 x 5 9
+pow - 5 / -1 / 1 * -8 x 9
+pow sin acsc / 1 - 5 * 8 x 9
+pow + 5 * 8 / -1 / 1 x 9
+pow sin + asin - * 8 x 5 pi 9
+pow + / -8 sec acos x 5 9
+* 1 pow - 5 tan atan * 8 x 9
+pow sin asin * -1 - -5 * -8 x 9
+pow + 5 * 8 / -1 cot atan x 9
+pow + / -8 csc asin cos acos x 5 9
+pow + 5 * -8 tan + atan x pi 9
+pow + 5 - + 1 * -8 x 1 9
+pow * -1 - -5 * * 8 x -1 9
+pow - + 6 / -8 cot atan x 1 9
+pow + 5 / -8 csc acsc sec acos x 9
+pow + 5 / -8 cot atan x 9
+pow + 5 sin asin / -8 sec acos x 9
+pow - - 1 * 8 tan atan x -4 9
+* -1 pow - -5 / -8 cot atan x 9
+pow - + 1 / -8 sec acos x -4 9
+pow cos - acos - * 8 x 5 pi 9
+pow sin + asin - -5 * -8 x pi 9
+pow + 5 / -8 sec acos tan atan x 9
+pow + * -8 cos asec sec acos x 5 9
+pow + 5 * 8 - 1 + 1 x 9
+* 1 pow + * -8 x 5 9
+pow - + 1 * -1 * 8 x -4 9
+pow - 5 * 8 / 1 cot atan x 9
+pow - 5 * 8 sin acsc cot atan x 9
+pow - 5 tan + atan * 8 x pi 9
+pow cos * acos - 5 * 8 x -1 9
+pow + 5 / -8 sec asec csc asin x 9
+pow - 5 * -1 / -8 cot atan x 9
+pow cos acos - + 6 * -8 x 1 9
+pow - + 6 / -8 sec acos x 1 9
+pow + * -8 cos asec cot atan x 5 9
+* 1 pow - - 1 * 8 x -4 9
+pow + 5 sin acsc / csc asin x -8 9
+* 1 * -1 pow - * 8 x 5 9
+pow cos cos acos acos - 5 * 8 x 9
+pow + 5 / -8 csc acsc / 1 x 9
+pow + sin acsc / / 1 x -8 5 9
+pow - 5 cos + acos * -8 x pi 9
+/ 1 pow csc asin - 5 * 8 x 9
+pow - + 6 * tan atan x -8 1 9
+pow - 5 * - 1 + x 1 -8 9
+pow + 5 / -8 / 1 tan atan x 9
+pow + 5 / -8 / 1 x 9
+pow + cos acos / -8 / 1 x 5 9
+pow + 5 / -8 sec * -1 acos x 9
+* pow + 5 * 8 * x -1 9 1
+pow + / 1 / cot atan x -8 5 9
+pow + 5 / -8 csc tan atan asin x 9
+pow + 5 / -8 sin asin cot atan x 9
+pow - + / -8 cot atan x 1 -4 9
+pow - 5 * 8 cos tan atan acos x 9
+pow - 5 * * x -1 -8 9
+pow + * -8 sin acsc csc asin x 5 9
+pow sin acsc sec acos - 5 * 8 x 9
+pow + / -8 csc acsc csc asin x 5 9
+pow - 5 - 1 - 1 * 8 x 9
+pow + / -8 csc asin x 5 9
+pow + 5 / -8 sec asec sec acos x 9
+* 1 pow - + 6 * x -8 1 9
+pow + 5 * 8 / -1 sec acos x 9
+pow * - -5 / -8 sec acos x -1 9
+pow + / -8 sec asec / 1 x 5 9
+pow cos - acos - -5 * -8 x pi 9
+pow + sin acsc / sec acos x -8 5 9
+pow + 5 / 1 / sec acos x -8 9
+pow - 5 * 8 x 9
+pow - - 1 * 8 sin asin x -4 9
+pow - 5 / -1 / sec acos x -8 9
+pow + cos - pi acos * 8 x 5 9
+pow + * 8 cos + acos x pi 5 9
+pow * - * 8 x 5 -1 9
+pow + 5 / -8 csc acsc cot atan x 9
+pow cos acos + 5 * -8 tan atan x 9
+pow - + 6 / -8 csc asin x 1 9
+pow cos asec cot atan - 5 * 8 x 9
+pow cos acos + * x -8 5 9
+pow - 5 / -1 / cot atan x -8 9
+pow - + sin asin * -8 x 1 -4 9
+pow - 5 sin asin * 8 sin asin x 9
+
+pow + / x -5 7 5
+pow + 7 / 1 * csc asin x -5 5
+pow cos asec sec acos + / x -5 7 5
+pow tan cos acos atan + / x -5 7 5
+pow pow - 7 / * x -1 -5 5 1
+* pow + 7 / x -5 5 1
+* pow + * / 1 -5 x 7 5 1
+pow * -1 - * -1 / x -5 7 5
+pow + 7 * -1 / * -1 x -5 5
+pow sin asin - 7 * / x -5 -1 5
+pow + / cos cos acos acos x -5 7 5
+pow + cos * acos / x -5 -1 7 5
+pow * - -7 / x -5 -1 5
+pow + 7 sin asin / x -5 5
+pow - + 1 / x -5 -6 5
+pow cos acos + * x / 1 -5 7 5
+pow cos acos - 7 * -1 / x -5 5
+pow + / sin cos acos asin x -5 7 5
+* pow + 7 tan atan / x -5 5 1
+pow pow - + 8 / x -5 1 5 1
+sin asin pow * -1 - -7 / x -5 5
+* -1 pow - 1 + 8 / x -5 5
+pow + tan atan tan atan / x -5 7 5
+pow + tan atan / sin asin x -5 7 5
+pow + 7 / x -5 5
+pow + 7 cos acos / x -5 5
+pow - + * x / 1 -5 1 -6 5
+pow pow + 7 / cos acos x -5 5 1
+pow - 7 tan atan * -1 / x -5 5
+pow + / / 1 / 1 x -5 7 5
+pow - + tan atan / x -5 1 -6 5
+pow - + 1 / sin asin x -5 -6 5
+pow + / - + x 1 1 -5 7 5
+pow cos - pi acos - -7 / x -5 5
+pow + sin asin * x / 1 -5 7 5
+pow cos asec cot atan + / x -5 7 5
+/ 1 pow csc asin + / x -5 7 5
+pow sin + asin - -7 / x -5 pi 5
+pow pow + / sin asin x -5 7 5 1
+pow - 7 / / -1 / 1 x -5 5
+pow + / / 1 sec acos x -5 7 5
+pow + tan + atan / x -5 pi 7 5
+pow - 7 / -1 sec acos / x -5 5
+pow sin acsc / 1 + / x -5 7 5
+pow - 7 cos + acos / x -5 pi 5
+pow - + 8 / x -5 1 5
+pow pow tan atan + / x -5 7 5 1
+pow tan atan + 7 / x -5 5
+pow + 7 cos asec / 1 / x -5 5
+pow - + 8 cos acos / x -5 1 5
+pow + / 1 * sec acos x -5 7 5
+pow + 7 / sin sin asin asin x -5 5
+pow + / sin acsc csc asin x -5 7 5
+pow * - -7 / tan atan x -5 -1 5
+pow pow + / x -5 7 5 1
+pow - 7 sin + asin / x -5 pi 5
+* -1 pow - -7 / cos acos x -5 5
+pow cos asec csc asin + 7 / x -5 5
+pow sin acsc cot atan + 7 / x -5 5
+/ 1 pow cot atan + 7 / x -5 5
+sin asin pow - + 8 / x -5 1 5
+pow - 7 / - 1 + x 1 -5 5
+pow - + 1 cos acos / x -5 -6 5
+pow + 7 / 1 * cot atan x -5 5
+pow pow - + / x -5 1 -6 5 1
+pow - + 8 * / 1 -5 x 1 5
+pow pow * - -7 / x -5 -1 5 1
+pow + sin acsc sec acos / x -5 7 5
+pow - + 8 / tan atan x -5 1 5
+pow - 7 / -1 csc asin / x -5 5
+pow - - 1 * / x -5 -1 -6 5
+* pow * -1 - -7 / x -5 5 1
+pow - 7 * / -1 -5 x 5
+pow + / 1 * / 1 x -5 7 5
+pow - - 1 - -7 / x -5 1 5
+pow pow + 7 * x / 1 -5 5 1
+* 1 pow - 7 / * -1 x -5 5
+pow - 7 / -1 cot atan / x -5 5
+
+pow - * 7 x -5 5
+pow - / 7 cot atan x -5 5
+pow - cos asec cot atan * x 7 -5 5
+pow * - -5 * -7 * x -1 -1 5
+pow cos acos pow - * x 7 -5 5 1
+* pow - * tan atan x 7 -5 5 1
+pow sin acsc cot atan - * x 7 -5 5
+pow pow - / 7 / 1 x -5 5 1
+* pow * -1 - -5 * 7 x 5 1
+pow - sin acsc / sec acos x 7 -5 5
+pow cos + acos - -5 * 7 x pi 5
+* 1 pow - * -7 * x -1 -5 5
+pow tan atan - / 7 / 1 x -5 5
+pow - sin asin * * -7 x -1 -5 5
+pow cos - pi acos - -5 * 7 x 5
+pow - / 7 sec cos acos acos x -5 5
+pow - sin acsc / / 1 7 x -5 5
+* pow - / 7 csc asin x -5 5 1
+sin asin pow * -1 - -5 * 7 x 5
+pow pow - / 7 csc asin x -5 5 1
+pow - * -7 - 1 + x 1 -5 5
+pow - sin asin * 7 x -5 5
+* pow - -5 / 7 / 1 x 5 -1
+pow tan atan - / 7 cot atan x -5 5
+pow cos acos - / 7 cot atan x -5 5
+pow tan atan pow - * 7 x -5 5 1
+pow cos acos - - 1 * -7 x -4 5
+pow - + 1 * cos acos x 7 -4 5
+pow - cos acos * 7 sin asin x -5 5
+pow - * -1 * -7 tan atan x -5 5
+pow - tan atan cos acos * x 7 -5 5
+pow - - 1 tan atan * -7 x -4 5
+pow * -1 + tan atan * -7 x -5 5
+pow - + 1 / 7 cot atan x -4 5
+pow - cos acos / 7 / 1 x -5 5
+pow - / 7 sec acos x -5 5
+pow * pow - -5 * x 7 5 -1 1
+pow * -1 + sin asin * -7 x -5 5
+pow - * -7 / -1 / 1 x -5 5
+pow cos asec sec acos - * x 7 -5 5
+pow - cos asec / sec acos x 7 -5 5
+pow - * sin acsc sec acos x 7 -5 5
+pow - / 1 / sec acos x 7 -5 5
+pow cos acos - * -7 * x -1 -5 5
+- - 1 pow - -5 * 7 x 5 1
+pow - cos - acos * -7 x pi -5 5
+pow - tan atan * 7 x -5 5
+* cos acos pow - * 7 x -5 5 1
+pow - / 1 / / 1 7 x -5 5
+pow - cos asec / csc asin x 7 -5 5
+pow - + / 7 csc asin x 1 -4 5
+pow - sin asin * sin asin x 7 -5 5
+pow - sin + asin * -7 x pi -5 5
+pow - * -1 * -7 x -5 5
+pow pow - * 7 x -5 5 1
+/ 1 sec acos pow - * x 7 -5 5
+* * pow - * 7 x -5 5 -1 -1
+pow - / 7 csc asin cos acos x -5 5
+pow * -1 + * -7 x -5 5
+* pow - + 1 * 7 x -4 5 1
+pow - * -7 / -1 sec acos x -5 5
+pow * -1 + * * -1 x 7 -5 5
+sin asin pow - + 1 * 7 x -4 5
+pow - * / 1 / 1 x 7 -5 5
+pow - / 1 cot atan * x 7 -5 5
+pow tan tan atan atan - * x 7 -5 5
+pow - - 1 * -7 x -4 5
+pow - * 7 - + 1 x 1 -5 5
+pow cos asec csc asin - * 7 x -5 5
+pow - + / 7 sec acos x 1 -4 5
+pow - + * * -7 x -1 1 -4 5
+pow - / 7 sec asec csc asin x -5 5
+pow - tan + pi atan * x 7 -5 5
+pow - * -7 / -1 csc asin x -5 5
+pow - * -7 / -1 cot atan x -5 5
+pow - - - 1 * -7 x 1 -5 5
+* -1 pow cos acos - -5 * 7 x 5
+* -1 pow - -5 * 7 x 5
+pow * -1 - -5 / 7 csc asin x 5
+* pow - -5 tan atan * 7 x 5 -1
+pow - sin asin / 7 / 1 x -5 5
+pow - / 7 csc acsc csc asin x -5 5
+* pow - -5 / 7 cot atan x 5 -1
+pow - + * x 7 1 -4 5
+pow pow - / 7 cot atan x -5 5 1
+* -1 pow - -5 / 7 sec acos x 5
+pow - cos asec / cot atan x 7 -5 5
+* pow - * x 7 -5 5 1
+pow - / 7 sec asec / 1 x -5 5
+pow - / 7 csc acsc cot atan x -5 5
+pow - + / 7 / 1 x 1 -4 5
+pow - / 7 sec acos tan atan x -5 5
+pow - / 7 csc asin x -5 5
+pow - / 7 sec asec sec acos x -5 5
+pow - / 7 csc acsc sec acos x -5 5
+pow - cos asec / / 1 7 x -5 5
+pow - tan sin asin atan * 7 x -5 5
+pow - / 7 csc sin asin asin x -5 5
+* 1 pow - - 1 * -7 x -4 5
+pow - - 1 * -1 * x 7 -4 5
+pow pow - sin asin * 7 x -5 5 1
+pow sin acsc csc asin - * 7 x -5 5
+pow cos cos acos acos - * x 7 -5 5
+pow - / 7 csc acsc / 1 x -5 5
+pow * -1 + * -7 cos acos x -5 5
+pow cos asec / 1 - * 7 x -5 5
+* pow * -1 + * -7 x -5 5 1
+pow sin + asin - -5 * 7 x pi 5
+* 1 sin asin pow - * x 7 -5 5
+pow sin asin - / 7 cot atan x -5 5
+pow pow - * -1 * -7 x -5 5 1
+pow - + tan atan * x 7 1 -4 5
+pow - / 1 / cot atan x 7 -5 5
+pow - / 7 sec sin asin acos x -5 5
+pow - / 1 / csc asin x 7 -5 5
+pow cos acos - * x 7 -5 5
+pow - sin acsc / cot atan x 7 -5 5
+pow - sin acsc / 1 * x 7 -5 5
+pow - tan atan / 7 csc asin x -5 5
+pow - * -7 cos + acos x pi -5 5
+pow - / 7 sec asec cot atan x -5 5
+pow - / 7 cot + pi atan x -5 5
+pow pow * -1 + * -7 x -5 5 1
+pow - / 7 / 1 x -5 5
+pow - * 7 x -5 5
+pow - - 1 sin asin * -7 x -4 5
+pow - sin acsc / csc asin x 7 -5 5
+pow pow - + * 7 x 1 -4 5 1
+pow pow - / 7 sec acos x -5 5 1
+pow pow - - 1 * -7 x -4 5 1
+
+pow - / x -6 -3 -7
+pow - / 1 * csc asin x -6 -3 -7
+pow * pow - -3 / x -6 -7 -1 1
+* pow tan atan - / x -6 -3 -7 1
+pow pow - / sin asin x -6 -3 -7 1
+* -1 pow * -1 - / x -6 -3 -7
+/ 1 sec asec pow - / x -6 -3 7
+pow * -1 + / * -1 x -6 -3 -7
+pow cos asec cot atan - / x -6 -3 -7
+/ 1 pow cos acos - / x -6 -3 7
+pow pow - cos acos / x -6 -3 -7 1
+pow - / cos acos cos acos x -6 -3 -7
+/ 1 * pow - -3 / x -6 7 -1
+* -1 pow - -3 / x -6 -7
+pow - + / tan atan x -6 1 -2 -7
+pow - / / 1 sec acos x -6 -3 -7
+pow cos * -1 acos - / x -6 -3 -7
+pow - / sin acsc csc asin x -6 -3 -7
+pow - / sin asin sin asin x -6 -3 -7
+pow tan atan - / cos acos x -6 -3 -7
+pow - - + / x -6 1 1 -3 -7
+pow - + 1 * / 1 -6 x -2 -7
+pow - - 1 * -1 / x -6 -2 -7
+pow - / 1 * sec acos x -6 -3 -7
+pow sin asin - tan atan / x -6 -3 -7
+pow tan atan * -1 - -3 / x -6 -7
+pow - tan atan / x -6 -3 -7
+pow - + sin asin / x -6 1 -2 -7
+pow - / cos sin asin acos x -6 -3 -7
+pow cos asec / 1 - / x -6 -3 -7
+/ 1 pow - + / x -6 1 -2 7
+pow * sin asin - -3 / x -6 -1 -7
+pow - / 1 * cot atan x -6 -3 -7
+pow sin acsc / 1 - / x -6 -3 -7
+* pow - * / 1 -6 x -3 -7 1
+/ 1 pow cot atan - / x -6 -3 -7
+/ 1 pow - sin asin / x -6 -3 7
+pow - / / 1 / 1 x -6 -3 -7
+pow - cos acos * x / 1 -6 -3 -7
+pow sin acsc cot atan - / x -6 -3 -7
+pow pow - + / x -6 1 -2 -7 1
+pow / 1 pow - / x -6 -3 7 1
+* cos asec pow - / x -6 -3 7 1
+* / -1 pow - / x -6 -3 7 -1
+pow - / 1 csc asin / x -6 -3 -7
+* 1 sin acsc pow - / x -6 -3 7
+* pow sin asin - / x -6 -3 -7 1
+pow tan atan - tan atan / x -6 -3 -7
+pow - / 1 * / 1 x -6 -3 -7
+pow - - 1 - -3 / x -6 1 -7
+pow cos - acos - -3 / x -6 pi -7
+/ 1 pow - * x / 1 -6 -3 7
+pow - cos asec sec acos / x -6 -3 -7
+/ 1 pow - / x -6 -3 7
+pow pow - / tan atan x -6 -3 -7 1
+* 1 * pow - -3 / x -6 -7 -1
+pow pow - * x / 1 -6 -3 -7 1
+pow - sin asin / x -6 -3 -7
+pow - * / 1 -6 x -3 -7
+pow - + 1 / cos acos x -6 -2 -7
+pow - + 1 / x -6 -2 -7
+/ 1 cot acot pow - / x -6 -3 7
+* tan acot pow - / x -6 -3 7 1
+pow pow - / x -6 -3 -7 1
+pow - cos acos / x -6 -3 -7
+pow sin acsc pow - / x -6 -3 7 1
+pow - / x -6 -3 -7
+pow sin + asin - -3 / x -6 pi -7
+pow - / tan + pi atan x -6 -3 -7
+/ / 1 -1 pow - -3 / x -6 7
+pow - / sin acsc sec acos x -6 -3 -7
+pow cos asec csc asin - / x -6 -3 -7
+/ 1 pow tan atan - / x -6 -3 7
+pow cos + acos - -3 / x -6 pi -7
+/ 1 csc acsc pow - / x -6 -3 7
+
++ * -7 pow x 6 -3
+- -3 * 7 cos asec sec acos pow x 6
+- + 1 + * pow x 6 -7 -3 1
+- -3 * 7 cos acos pow cos acos x 6
++ -3 * -7 pow sin asin tan atan x 6
++ cos acos * pow sin asin x 6 -7 -3
+- -3 * 7 pow cos * acos x -1 6
+- -3 tan atan * 7 pow tan atan x 6
+- -3 * 7 / 1 csc asin pow x 6
++ -3 * -7 * -1 * -1 pow x 6
++ / -7 csc sin asin asin pow x 6 -3
+- + 1 / -7 sec acos pow x 6 4
+- -3 * 7 pow cos acos x 6
++ / 1 / csc asin pow x 6 -7 -3
+- -3 / -1 / cot atan pow x 6 -7
++ -3 * 7 / -1 sec acos pow x 6
++ -3 * -7 tan atan pow tan atan x 6
++ / -7 csc acsc cot atan pow x 6 -3
++ / -7 csc acsc sec acos pow x 6 -3
+* * - 3 * -7 pow x 6 -1 1
+* 1 + * -7 pow x 6 -3
++ * cos acos pow x 6 -7 -3
+- -3 * 7 pow sin acsc sec acos x 6
++ sin acsc / sec acos pow x 6 -7 -3
++ * -1 * 7 tan atan pow x 6 -3
++ -3 / -7 cot atan pow x 6
+* 1 - - 1 * 7 pow x 6 4
++ / -7 sec asec cot atan pow x 6 -3
++ -3 tan atan cos acos * pow x 6 -7
+- -3 * 7 cos asec cot atan pow x 6
++ -3 / -7 csc tan atan asin pow x 6
+- + -2 * 7 * -1 pow x 6 1
++ -3 / -7 sec asec csc asin pow x 6
++ -3 sin * -1 asin * 7 pow x 6
++ * pow sin acsc sec acos x 6 -7 -3
++ -3 * 7 * cos acos pow x 6 -1
+- -3 * 7 cos acos sin asin pow x 6
+* 1 + -3 * 7 * pow x 6 -1
++ -3 * 7 cos + acos pow x 6 pi
+- -3 * -1 * -7 pow tan atan x 6
+- -3 * cos + acos pow x 6 pi -7
++ * / 1 sec acos pow x 6 -7 -3
+* 1 + * pow tan atan x 6 -7 -3
++ * 7 - 1 + pow x 6 1 -3
+- + cos acos * pow x 6 -7 1 4
++ * cos asec / 1 pow x 6 -7 -3
++ -3 / -7 sec acos pow tan atan x 6
++ -3 sin acsc / csc asin pow x 6 -7
+- - 1 * * pow x 6 -1 -7 4
++ * / 1 cot atan pow x 6 -7 -3
++ cos asec csc asin * pow x 6 -7 -3
++ sin acsc / / 1 -7 pow x 6 -3
+- -3 / -1 cot atan * -7 pow x 6
+- - 1 tan atan * 7 pow x 6 4
+* + -3 * -7 cos acos pow x 6 1
+* 1 - + * -7 pow x 6 1 4
+- -3 * 7 sin acsc cot atan pow x 6
+- sin asin - 1 * 7 pow x 6 4
++ -3 * pow x 6 -7
+- -3 * 7 / 1 pow / 1 x 6
+- + 1 / -7 cot atan pow x 6 4
++ sin + asin * 7 pow x 6 pi -3
++ -3 tan atan * pow x 6 -7
++ -3 / -7 / 1 pow x 6
+- -3 sin asin * 7 pow x 6
++ * cos cos acos acos pow x 6 -7 -3
+- - 1 * 7 cos acos pow x 6 4
+- -3 * 7 pow cos asec / 1 x 6
+- + sin asin * pow x 6 -7 1 4
+- -3 * 7 tan + atan pow x 6 pi
+- -3 * sin + asin pow x 6 pi -7
+- + -2 / -7 cot atan pow x 6 1
++ cos asec sec acos * pow x 6 -7 -3
+- + -2 / -7 csc asin pow x 6 1
+- -3 * 7 * * pow x 6 -1 -1
++ / -7 cot atan sin asin pow x 6 -3
+- -3 * 7 pow sin acsc csc asin x 6
+- -3 sin sin asin asin * 7 pow x 6
+- -3 - 1 + * pow x 6 -7 1
++ * 7 / -1 cot atan pow x 6 -3
++ / 1 / cot atan pow x 6 -7 -3
++ * / 1 csc asin pow x 6 -7 -3
++ sin acsc / cot atan pow x 6 -7 -3
++ / -7 sec asec / 1 pow x 6 -3
++ -3 tan atan / -7 / 1 pow x 6
+- -3 / -1 / csc asin pow x 6 -7
++ * -7 pow sin acsc cot atan x 6 -3
+- + -2 * tan atan pow x 6 -7 1
+* 1 + sin asin * -7 pow x 6 -3
+- -3 / -1 / / 1 -7 pow x 6
+- -3 * -1 * -7 pow x 6
+- - 1 - 3 * -7 pow x 6 1
+* 1 - + -2 * -7 pow x 6 1
++ -3 * sin asin pow x 6 -7
++ cos asec / sec acos pow x 6 -7 -3
++ -3 cos asec / csc asin pow x 6 -7
++ / 1 / sec acos pow x 6 -7 -3
+- -3 * / -1 sec acos pow x 6 -7
++ -3 / -7 sin asin / 1 pow x 6
+- -3 * 7 pow cos asec csc asin x 6
++ -3 / -7 / 1 pow cos acos x 6
++ -3 cos asec / / 1 -7 pow x 6
++ / -7 cot + atan pow x 6 pi -3
++ * 7 / -1 csc asin pow x 6 -3
+* + -3 / -7 / 1 pow x 6 1
++ -3 / -7 cot cos acos atan pow x 6
++ * pow sin asin sin asin x 6 -7 -3
++ -3 cos - pi acos * 7 pow x 6
++ -3 * -1 * 7 pow x 6
+* - -3 * 7 pow x 6 1
++ -3 / -7 sec acos pow x 6
++ / -7 csc asin pow x 6 -3
++ / 1 / / 1 pow x 6 -7 -3
+- -3 * 7 pow cos tan atan acos x 6
++ * -7 cos asec cot atan pow x 6 -3
+- -3 sin * asin * -7 pow x 6 -1
+- + / -7 csc asin pow x 6 1 4
++ cos acos / -7 csc asin pow x 6 -3
+- sin asin + -2 * -7 pow x 6 1
++ -3 * tan + atan pow x 6 pi -7
++ / -7 csc acsc csc asin pow x 6 -3
+* - -3 * -1 * pow x 6 -7 1
++ -3 / -7 sec * acos pow x 6 -1
++ -3 / -7 csc acsc / 1 pow x 6
++ * -7 pow sin acsc / 1 x 6 -3
+- + 1 * pow tan atan x 6 -7 4
++ -3 / -7 sec asec sec acos pow x 6
+- - 1 * 7 pow x 6 4
+- -3 / -1 / sec acos pow x 6 -7
++ -3 * sin acsc csc asin pow x 6 -7
++ tan atan / -7 cot atan pow x 6 -3
+- -3 * 7 / 1 sec acos pow x 6
+- -3 tan atan * 7 pow x 6
+- -3 / 1 cot atan * 7 pow x 6
+- -3 sin asin tan atan * 7 pow x 6
+* 1 * -1 - * 7 pow x 6 -3
+- + -2 / -7 / 1 pow x 6 1
+- + -2 cos acos * pow x 6 -7 1
+- -3 - 1 - 1 * 7 pow x 6
++ / -7 sec sin asin acos pow x 6 -3
++ / -7 sec cos acos acos pow x 6 -3
+* 1 tan atan - -3 * 7 pow x 6
+- -3 * 7 pow x 6
++ -3 * 7 / -1 / 1 pow x 6
+- + - 1 * 7 pow x 6 -3 1
+* 1 - -3 * 7 sin asin pow x 6
+- + * 7 * -1 pow x 6 1 4
++ cos asec / cot atan pow x 6 -7 -3
+- + / -7 / 1 pow x 6 1 4
+- + -2 * pow x 6 -7 1
+- -3 * 7 sin acsc / 1 pow x 6
+- -3 * cos acos * -7 pow x 6 -1
+- + -2 / -7 sec acos pow x 6 1
+- -3 / -1 / 1 * pow x 6 -7
+* 1 - -3 * 7 pow cos acos x 6
+- -3 * / -7 csc asin pow x 6 -1
+- + * -7 pow x 6 1 4
++ * cos * acos pow x 6 -1 -7 -3
+
++ / pow x -6 9 2
+- 2 / * pow x -6 -1 9
+- + 3 sin asin / pow x -6 9 1
+- 2 / -1 cot atan / pow x -6 9
+* 1 + / / 1 pow x 6 9 2
++ / sin asin pow x -6 9 2
+- + 1 + 2 / pow x -6 9 1
+- + 3 / cos acos pow x -6 9 1
+* - 1 + 3 / pow x -6 9 -1
++ 2 / tan + acot pow x 6 pi 9
+* 1 + 2 / cos asec pow x 6 9
++ / pow / 1 sec acos x -6 9 2
++ cos acos / 1 * pow x 6 9 2
++ / / 1 pow x 6 9 2
++ / 1 * sin asin pow x 6 9 2
++ 2 tan atan / cos acos pow x -6 9
+* -1 - -2 / pow cos acos x -6 9
+- 2 / cos + asec pow x 6 pi 9
+- 2 / / -1 sin asin pow x 6 9
++ * * / pow x -6 9 -1 -1 2
++ cos asec / 1 / pow x -6 9 2
++ / / 1 sec asec pow x 6 9 2
+- + 3 / sin acsc pow x 6 9 1
++ / pow cos asec sec acos x -6 9 2
++ 2 / sin acsc sin asin pow x 6 9
++ / sin tan atan asin pow x -6 9 2
++ / cos acos sin asin pow x -6 9 2
+* - 2 / / -1 pow x 6 9 1
+- + / / 1 pow x 6 9 1 -1
++ 2 sin acsc / 1 / pow x -6 9
+* - -2 / sin acsc pow x 6 9 -1
+- 2 / -1 * pow sin asin x 6 9
+- + 3 / 1 * pow x 6 9 1
+- 2 tan atan / / -1 pow x 6 9
++ 2 / / 1 tan atan pow x 6 9
++ 2 / sin acsc pow x 6 9
+* - -2 / pow x -6 9 -1
++ 2 / sin asin cos asec pow x 6 9
++ sin sin asin asin / pow x -6 9 2
+* 1 + / sin acsc pow x 6 9 2
++ 2 / cos asec pow cos acos x 6 9
++ 2 / cos asec cot atan pow x -6 9
++ 2 / pow tan + pi atan x -6 9
++ 2 / / 1 pow csc asin x -6 9
+- + 3 / pow x -6 9 1
++ / tan acot pow cos acos x 6 9 2
++ / sin acsc sec acos pow x -6 9 2
+- 2 / sin + acsc pow x 6 pi 9
+- + 1 / pow tan atan x -6 9 -1
++ 2 / cos acos pow x -6 9
++ sin asin * / 1 9 pow x -6 2
+- 2 tan atan / * pow x -6 -1 9
+- 2 / cos + acos pow x -6 pi 9
+- 2 * / cos asec pow x 6 9 -1
+- + 3 / / 1 pow x 6 9 1
++ cos acos / / 1 pow x 6 9 2
+* 1 + / tan atan pow x -6 9 2
+- + 3 / tan acot pow x 6 9 1
+- + 1 / tan acot pow x 6 9 -1
+- 2 / / -1 cos acos pow x 6 9
+* - -2 / 1 * 9 pow x 6 -1
+- 2 / -1 / 1 / pow x -6 9
++ 2 / tan atan sin acsc pow x 6 9
+- 2 * / cos acos pow x -6 9 -1
++ 2 / pow / 1 / 1 x -6 9
+- 2 / * -1 sin acsc pow x 6 9
+* - + / pow x -6 9 1 -1 1
+* -1 - -2 / sin asin pow x -6 9
++ 2 / / 1 pow cot atan x -6 9
+- + 1 / cos acos pow x -6 9 -1
+* 1 * -1 - -2 / pow x -6 9
+* 1 + * / 1 9 pow x -6 2
+* - / -1 * pow x 6 9 2 -1
+- 2 / -1 * 9 pow tan atan x 6
+- + 3 tan atan / pow x -6 9 1
+- 2 / sin + asin pow x -6 pi 9
+- + / sin acsc pow x 6 9 1 -1
+- 2 / / -1 csc asin pow x -6 9
+- 2 * * -1 / 1 9 pow x -6
+* -1 - -2 / pow tan atan x -6 9
++ / 1 * tan atan pow x 6 9 2
+* + 2 / tan acot pow x 6 9 1
+* 1 + 2 / 1 * 9 pow x 6
+* + 2 / cos acos pow x -6 9 1
+* - / * pow x -6 -1 9 2 -1
++ 2 / / 1 cot acot pow x 6 9
++ cos acos cos acos / pow x -6 9 2
+- + 1 / pow x -6 9 -1
+- 2 / / -1 sec acos pow x -6 9
+- 2 * / 1 * pow x 6 9 -1
++ 2 / pow cos asec csc asin x -6 9
++ 2 tan atan / tan acot pow x 6 9
++ cos * acos / pow x -6 9 -1 2
++ / pow tan atan tan atan x -6 9 2
++ / 1 * sec acos pow x -6 9 2
+- 2 * -1 / tan acot pow x 6 9
+- 2 / - 1 + 1 pow x -6 9
++ / / 1 sin asin pow x 6 9 2
++ 2 / cos asec pow x 6 9
+- 2 / -1 * cos acos pow x 6 9
+- - 1 * / -1 9 pow x -6 -1
++ 2 / tan acot pow sin asin x 6 9
++ 2 / cos asec pow tan atan x 6 9
+* 1 - + 3 / pow x -6 9 1
++ * -1 / / -1 pow x 6 9 2
+- 2 / -1 * pow x 6 9
+* -1 - / / -1 pow x 6 9 2
+- + / pow sin asin x -6 9 1 -1
++ / 1 * cot atan pow x -6 9 2
+* - -2 / cos asec pow x 6 9 -1
++ 2 / / 1 csc acsc pow x 6 9
++ 2 / cos * -1 asec pow x 6 9
+- + 1 / 1 * 9 pow x 6 -1
++ 2 / 1 * csc asin pow x -6 9
+- + 1 / cos asec pow x 6 9 -1
++ sin acsc csc asin / pow x -6 9 2
++ tan atan / pow x -6 9 2
+- - 1 / / -1 pow x 6 9 -1
+* - -2 / tan acot pow x 6 9 -1
++ 2 / pow sin acsc cot atan x -6 9
+- - 1 - -2 / pow x -6 9 1
++ 2 / 1 * 9 pow x 6
++ 2 * -1 / -1 * 9 pow x 6
++ 2 / 1 * / 1 pow x -6 9
+- - 1 / -1 * 9 pow x 6 -1
+- 2 sin asin / * pow x -6 -1 9
+* - -2 / / 1 pow x 6 9 -1
++ * pow x -6 / 1 9 2
++ 2 / cos acos sin acsc pow x 6 9
+- + 3 / cos asec pow x 6 9 1
+- 2 / / -1 pow x 6 9
++ / pow x -6 9 2
++ / tan acot pow x 6 9 2
+
+- * 4 pow x 8 8
+- / 4 sec acos pow x 8 8
+- cos asec / sec acos pow x 8 4 8
+- sin asin / 4 cot atan pow x 8 8
+- + * tan atan pow x 8 4 1 9
+- / 4 sec asec sec acos pow x 8 8
+* -1 - 8 * -4 * -1 pow x 8
+- sin acsc csc asin * pow x 8 4 8
+- cos acos * pow tan atan x 8 4 8
+- sin acsc sec acos * 4 pow x 8 8
+- - + * pow x 8 4 1 8 1
+- * cos asec cot atan pow x 8 4 8
+- / 4 csc acsc csc asin pow x 8 8
+- cos acos * -1 * -4 pow x 8 8
+* - 8 / 4 / 1 pow x 8 -1
+* - * 4 pow x 8 8 1
+- + / 4 sec acos pow x 8 1 9
+* 1 - * -4 * -1 pow x 8 8
+* -1 + * * 4 pow x 8 -1 8
+- * pow cos asec / 1 x 8 4 8
+- + * -1 * -4 pow x 8 1 9
+- / 4 sin asin / 1 pow x 8 8
+- - 1 * -4 cos acos pow x 8 9
+- * pow cos acos sin asin x 8 4 8
+- * tan atan sin asin pow x 8 4 8
+* - - 1 * -4 pow x 8 9 1
+- * -4 / -1 / 1 pow x 8 8
+- * tan atan pow tan atan x 8 4 8
+- / 4 sec acos pow sin asin x 8 8
+- * -1 * -4 pow x 8 8
+- sin acsc / cot atan pow x 8 4 8
+- * 4 pow sin acsc cot atan x 8 8
+- + * 4 pow x 8 1 9
+- cos acos * 4 pow cos acos x 8 8
+- * * * pow x 8 4 -1 -1 8
+* -1 + * -4 pow tan atan x 8 8
+- cos asec / csc asin pow x 8 4 8
+- * -4 / -1 csc asin pow x 8 8
+- * 4 sin asin sin asin pow x 8 8
+- + 1 * 4 sin asin pow x 8 9
+- * / 1 / 1 pow x 8 4 8
+- - - 1 * -4 pow x 8 1 8
+* - 8 * 4 pow x 8 -1
+- + 1 * 4 pow cos acos x 8 9
+- / 1 / / 1 pow x 8 4 8
+* * -1 - 8 * pow x 8 4 1
+* sin asin - * pow x 8 4 8 1
+* - cos acos * 4 pow x 8 8 1
+- / 4 csc cos acos asin pow x 8 8
+- cos acos / 4 sec acos pow x 8 8
+- cos * acos * 4 pow x 8 -1 8
+- / 4 csc acsc / 1 pow x 8 8
+- * / 1 cot atan pow x 8 4 8
+* - * pow tan atan x 8 4 8 1
+* - / 4 csc asin pow x 8 8 1
+- * -4 / -1 sec acos pow x 8 8
+- * 4 pow tan + pi atan x 8 8
+- * 4 pow cos asec csc asin x 8 8
+- - 1 * -4 tan atan pow x 8 9
+- sin asin * -4 * -1 pow x 8 8
+* -1 - 8 / 4 csc asin pow x 8
+* -1 - 8 tan atan * 4 pow x 8
+- * pow / 1 sec acos x 8 4 8
+- / 4 csc asin pow x 8 8
+- / 1 / cot atan pow x 8 4 8
+- / 4 / 1 pow x 8 8
+- - 1 * -4 sin asin pow x 8 9
+- + 1 / 4 cot atan pow x 8 9
+- tan atan / 4 / 1 pow x 8 8
+* -1 + * -4 cos acos pow x 8 8
+- sin + asin * -4 pow x 8 pi 8
+* 1 * -1 + * -4 pow x 8 8
+- / 4 cot cos acos atan pow x 8 8
+- * * -4 pow tan atan x 8 -1 8
+- cos asec / / 1 4 pow x 8 8
+- * -4 cos + acos pow x 8 pi 8
+- / 4 csc asin tan atan pow x 8 8
+- sin asin * 4 pow x 8 8
+- cos asec / cot atan pow x 8 4 8
+- sin asin / 4 csc asin pow x 8 8
+- cos acos / 4 / 1 pow x 8 8
+- / 1 / sec acos pow x 8 4 8
+- / 4 sec asec cot atan pow x 8 8
+- tan atan / 4 sec acos pow x 8 8
+- / 4 csc acsc cot atan pow x 8 8
+- / 4 cot tan atan atan pow x 8 8
+- tan atan * pow x 8 4 8
+- / 4 sec asec / 1 pow x 8 8
+- * 4 pow x 8 8
+- * -4 - 1 + 1 pow x 8 8
+* -1 + * -4 pow x 8 8
+- * -4 / -1 cot atan pow x 8 8
+- + 1 / 4 / 1 pow x 8 9
+- + 1 / 4 csc asin pow x 8 9
+- / 4 sec asec csc asin pow x 8 8
+- sin acsc / / 1 pow x 8 4 8
+* sin asin - 8 * 4 pow x 8 -1
+- cos - pi acos * -4 pow x 8 8
+* -1 + * -4 sin asin pow x 8 8
+* 1 - + * pow x 8 4 1 9
+- * pow cos asec sec acos x 8 4 8
+- / 4 cot atan pow x 8 8
+* - 8 / 4 cot atan pow x 8 -1
+- / 4 csc acsc sec acos pow x 8 8
+- - 1 * -1 * pow x 8 4 9
+- sin acsc / sec acos pow x 8 4 8
+- - 1 - 8 * 4 pow x 8 1
+* -1 - 8 / 4 sec acos pow x 8
+- cos acos * pow x 8 4 8
+- / 1 / csc asin pow x 8 4 8
+- * pow sin acsc / 1 x 8 4 8
+- - 1 * -4 pow x 8 9
+- / 4 cot + pi atan pow x 8 8
+- sin acsc / csc asin pow x 8 4 8
+
+- / pow x -2 -9 6
+- / pow - + x 1 1 -2 -9 6
+- * cos acos pow x -2 / 1 -9 6
+- / cos asec cos acos pow x 2 -9 6
+- / pow cos asec csc asin x -2 -9 6
+- cos acos / 1 * pow x 2 -9 6
+- / pow x -2 -9 6
+* - / pow x -2 -9 6 1
+/ 1 sec acos - / pow x -2 -9 6
+* 1 tan atan - / pow x -2 -9 6
+- + 1 / sin acsc pow x 2 -9 7
+* -1 + / * -1 pow x -2 -9 6
+- / cos acos pow x -2 -9 6
+- / cos asec pow sin asin x 2 -9 6
+- * / -1 * pow x 2 -9 -1 6
+- + 1 / / 1 pow x 2 -9 7
+* - 6 / 1 * -9 pow x 2 -1
+- / sin acsc / 1 pow x -2 -9 6
+- tan atan / pow x -2 -9 6
+* * - 6 / pow x -2 -9 -1 1
+* 1 - / pow sin asin x -2 -9 6
+- / sin acsc pow x 2 -9 6
+- sin acsc csc asin / pow x -2 -9 6
+- / cos * -1 asec pow x 2 -9 6
+- / / 1 pow x 2 -9 6
+* cos acos - 6 / pow x -2 -9 -1
+* - / / 1 pow x 2 -9 6 1
+- / 1 * -9 sin asin pow x 2 6
+- / 1 * csc asin pow x -2 -9 6
+- / pow cos tan atan acos x -2 -9 6
+- cos acos / tan acot pow x 2 -9 6
+- tan atan / cos asec pow x 2 -9 6
+- / sin asin tan atan pow x -2 -9 6
+- / sin acsc cos acos pow x 2 -9 6
+* - 6 / tan atan pow x -2 -9 -1
+* 1 - * pow x -2 / 1 -9 6
+- cos acos / cos acos pow x -2 -9 6
+- / tan acot pow x 2 -9 6
+- cos sin asin acos / pow x -2 -9 6
+- / tan atan tan atan pow x -2 -9 6
+- / sin acsc sec acos pow x -2 -9 6
+* -1 * - / pow x -2 -9 6 -1
+* - / cos asec pow x 2 -9 6 1
+- / / 1 pow sin asin x 2 -9 6
+- / pow / 1 cot atan x -2 -9 6
+- / 1 * sec acos pow x -2 -9 6
+- + 1 / cos asec pow x 2 -9 7
+- / pow / 1 csc asin x -2 -9 6
+- / / 1 sec asec pow x 2 -9 6
+* 1 - / sin acsc pow x 2 -9 6
+- tan atan / / 1 pow x 2 -9 6
+- / * -1 / -1 pow x 2 -9 6
+- sin asin / sin acsc pow x 2 -9 6
+- / 1 * cot atan pow x -2 -9 6
+* - / 1 * pow x 2 -9 6 1
+- / cos asec pow x 2 -9 6
+- - 1 / / -1 pow x 2 -9 7
+- / pow sin asin x -2 -9 6
+- / sin acsc tan atan pow x 2 -9 6
+- * / 1 -9 tan acot pow x 2 6
+- cos acos / / 1 pow x 2 -9 6
+* -1 + / / -1 pow x 2 -9 6
+- / / 1 cot acot pow x 2 -9 6
+- / / 1 csc acsc pow x 2 -9 6
+- - 1 / * -1 pow x -2 -9 7
+- tan + pi atan / pow x -2 -9 6
+* - + 1 / pow x -2 -9 7 1
+- + 1 / tan acot pow x 2 -9 7
+- + 1 / 1 * pow x 2 -9 7
+- / 1 * / 1 pow x -2 -9 6
+- cos asec cot atan / pow x -2 -9 6
+- - 1 - 6 / pow x -2 -9 1
+* - 6 / / 1 pow x 2 -9 -1
+- / tan + acot pow x 2 pi -9 6
+- / tan acot pow tan atan x 2 -9 6
+- / 1 * pow x 2 -9 6
+- tan atan / 1 * -9 pow x 2 6
+- - 1 / -1 * pow x 2 -9 7
+- / cos asec / 1 pow x -2 -9 6
+* - 6 / tan acot pow x 2 -9 -1
+* -1 - 6 / pow x -2 -9
+- / tan acot pow sin asin x 2 -9 6
+- / cos asec sec acos pow x -2 -9 6
+* -1 + / -1 * -9 pow x 2 6
+* - 6 / sin acsc pow x 2 -9 -1
+- / / 1 / 1 pow x -2 -9 6
+- + sin asin / pow x -2 -9 1 7
+* -1 sin asin - 6 / pow x -2 -9
+- + 1 / pow x -2 -9 7
+- / sin asin sin asin pow x -2 -9 6
+- / pow sin acsc cot atan x -2 -9 6
+- + 1 / pow cos acos x -2 -9 7
+- + / pow tan atan x -2 -9 1 7
+
+* -8 + pow x -3 9
+* -8 tan sin asin atan + pow x -3 9
+* -8 + 9 pow sin asin x -3
+* - + 1 tan atan pow x -3 -8 -8
+* -8 * -1 - -9 tan acot pow x 3
+* - 9 * sin acsc pow x 3 -1 -8
+* + * -1 * pow x -3 -1 9 -8
+* -8 + 9 * -1 / -1 pow x 3
+* * 8 - -9 tan acot pow x 3 1
+* + 9 / 1 cot atan pow x -3 -8
+* -8 - + 1 / 1 pow x 3 -8
+* -8 + 9 cos asec sec acos pow x -3
+* + 9 cos acos cos acos pow x -3 -8
+* -8 - + + pow x -3 1 9 1
+* * - -9 pow sin asin x -3 -1 -8
+* * 8 - -9 sin acsc pow x 3 1
+* * 8 - -9 pow cos acos x -3 1
+* -8 - + 1 pow cos acos x -3 -8
+* * -1 - -9 / 1 pow x 3 -8
+* + 9 sin acsc csc asin pow x -3 -8
+* -8 * - -9 sin acsc pow x 3 -1
+* + sin acsc pow cos acos x 3 9 -8
+* -8 + cos asec tan atan pow x 3 9
+* -8 + 9 tan atan tan acot pow x 3
+* 1 * 8 - -9 sin asin pow x -3
+* - 9 * -1 cos asec pow x 3 -8
+* -8 - + 10 pow x -3 1
+* -8 - 9 tan atan / -1 pow x 3
+* -8 + sin acsc cot atan pow x -3 9
+* 1 * - 9 * -1 pow x -3 -8
+* -8 - 9 * / 1 pow x 3 -1
+* -1 * 8 + 9 pow cos acos x -3
+* -8 sin cos acos asin + 9 pow x -3
+* 1 tan atan * -8 + 9 pow x -3
+* -8 - 9 - 1 + pow x -3 1
+* + 9 pow cos asec csc asin x -3 -8
+* sin asin + 9 tan acot pow x 3 -8
+* -8 - + 10 tan atan pow x -3 1
+* -8 - + 10 tan acot pow x 3 1
+* -8 + cos acos tan atan pow x -3 9
+* -8 cos asec / 1 + 9 pow x -3
+* cos acos + / 1 pow x 3 9 -8
+* * 8 - -9 / 1 pow x 3 1
+* + cos * -1 acos pow x -3 9 -8
+* * - * pow x -3 -1 9 -1 -8
+* -1 * 8 + 9 pow x -3
+* + / 1 tan atan pow x 3 9 -8
+* - + 10 / 1 pow x 3 1 -8
+* + 9 cos asec pow cos acos x 3 -8
+* + 9 pow cos asec cot atan x -3 -8
+* * + cos asec pow x 3 9 -8 1
+* -8 + 9 sin acsc pow x 3
+* * - + pow x -3 1 -8 -8 1
+* -1 * 8 sin asin + pow x -3 9
+* - + cos asec pow x 3 1 -8 -8
+- - 1 * 8 + pow x -3 9 1
+* cos acos + pow x -3 9 -8
+* * -1 - -9 pow cos acos x -3 -8
+* 1 * 8 * + pow x -3 9 -1
+* 1 * - + 10 pow x -3 1 -8
+* -1 * 8 - + 10 pow x -3 1
+* -8 sin + asin - -9 pow x -3 pi
+* -8 + sin acsc sec acos pow x -3 9
+* -8 + tan acot pow x 3 9
+* * 8 - -9 cos asec pow x 3 1
+* + 9 sin acsc tan atan pow x 3 -8
+* + 9 cos * -1 asec pow x 3 -8
+* - + 10 cos asec pow x 3 1 -8
+* - 9 sin + acsc pow x 3 pi -8
+* -8 cos acos - 9 * pow x -3 -1
+* * -1 - -9 pow x -3 -8
+* cos - acos - -9 pow x -3 pi -8
+* - + 1 pow sin asin x -3 -8 -8
+* -8 - 9 tan * -1 atan pow x -3
+- - 1 * - -9 pow x -3 -8 1
+* - 9 * pow x -3 -1 -8
+* -1 * 8 + 9 cos asec pow x 3
+* 1 * -8 sin asin + pow x -3 9
+* -8 - + 10 sin asin pow x -3 1
+* -8 + 9 tan + acot pow x 3 pi
+* - - 1 / -1 pow x 3 -8 -8
+* -8 - 9 / -1 / 1 pow x -3
+* + 9 pow x -3 -8
+* 1 * 8 - / -1 pow x 3 9
+* -8 + / 1 csc acsc pow x 3 9
+- + 1 * 8 - -9 pow x -3 1
+* 1 * 8 - 1 + 10 pow x -3
+* -8 - 9 sin + asin pow x -3 pi
+* - - 1 * pow x -3 -1 -8 -8
+* * + pow x -3 9 -8 1
+* -8 + 9 / 1 pow x 3
+* -1 * 8 - 9 / -1 pow x 3
+* * -8 + / 1 pow x 3 9 1
+* - + tan acot pow x 3 1 -8 -8
+* -8 + tan acot cos acos pow x 3 9
+* -8 + 9 tan tan atan atan pow x -3
+* -8 - 9 cos + asec pow x 3 pi
+* - + 10 sin acsc pow x 3 1 -8
+* -8 tan * -1 atan - -9 pow x -3
+* + 9 sin acsc sin asin pow x 3 -8
+* -8 - 9 sin * -1 asin pow x -3
+* -8 - 9 / -1 pow cos acos x 3
+* - 9 * tan acot pow x 3 -1 -8
+* + / 1 cot acot pow x 3 9 -8
+* -8 sin asin + cos asec pow x 3 9
+* + cos asec pow x 3 9 -8
+* + 9 / 1 sec asec pow x 3 -8
+* -8 * -1 - 1 + 10 pow x -3
+* -1 * 8 tan atan + 9 pow x -3
+* -1 * 8 + 9 tan acot pow x 3
+* - 9 / -1 csc asin pow x -3 -8
+* -8 * - / -1 pow x 3 9 -1
+* 1 * 8 - -9 tan atan pow x -3
+* + 9 tan + atan pow x -3 pi -8
+* -1 * * 8 - -9 pow x -3 -1
+* -8 - 9 / -1 sec acos pow x -3
+* -8 + tan atan pow x -3 9
+* -8 + 9 / 1 csc asin pow x -3
+* - 9 / -1 cot atan pow x -3 -8
+* -1 * 8 - 9 * pow x -3 -1
+* -8 - 9 / -1 pow x 3
+* -8 + sin asin / 1 pow x 3 9
+* 1 * 8 - * pow x -3 -1 9
+* * + tan acot pow x 3 9 -8 1
+* -8 * -1 - -9 cos asec pow x 3
+* -8 - + 1 pow x -3 -8
+* * + 9 sin acsc pow x 3 -8 1
+* 1 * * -1 - -9 pow x -3 -8
+* -8 - + 10 cos acos pow x -3 1
+* - + sin acsc pow x 3 1 -8 -8
+* -8 + 9 sin acsc / 1 pow x -3
+* + pow / 1 / 1 x -3 9 -8
+* -1 * 8 - + pow x -3 1 -8
+* * 8 - -9 pow x -3 1
+* -1 * 8 + / 1 pow x 3 9
+* -1 * 8 + sin acsc pow x 3 9
+* -8 + 9 / 1 pow sec acos x -3
+* 1 * -8 cos acos + pow x -3 9
+* -8 sin asin + 9 sin asin pow x -3
+* - 9 cos + acos pow x -3 pi -8
+* - 9 / -1 sin asin pow x 3 -8
+
+* 6 - pow x 3 -6
+* -1 * 6 sin asin - -6 pow x 3
+* 6 * -1 - -6 pow x 3
+* - -6 pow / 1 cot atan x 3 -6
+* * 6 - pow x 3 -6 1
+* 6 cos asec sec acos - pow x 3 -6
+* 6 - sin acsc sec acos pow x 3 -6
+* 1 cos acos * 6 - pow x 3 -6
+* sin + asin - pow x 3 -6 pi -6
+* * -1 sin asin - pow x 3 -6 -6
+* - -6 cos * -1 acos pow x 3 -6
+* -6 cos acos - -6 pow cos acos x 3
+* 6 - / 1 pow sec acos x 3 -6
+* / 6 / 1 - pow x 3 -6 1
+* 1 sin asin * - -6 pow x 3 -6
+* 6 - + pow tan atan x 3 1 -5
+* 6 cos + acos - -6 pow x 3 pi
+* sin acsc / 1 - pow x 3 -6 6
+* * - pow x 3 -6 -1 -6
+* - -6 cos asec / 1 pow x 3 -6
+* -6 - -6 pow cos asec cot atan x 3
+* - -6 pow sin acsc / 1 x 3 -6
+* cos asec csc asin - pow x 3 -6 6
+* tan atan - -6 pow tan atan x 3 -6
+* - -6 pow cos acos x 3 -6
+* - -6 pow cos asec sec acos x 3 -6
+* -1 * 6 cos acos - -6 pow x 3
+* -6 tan * atan - pow x 3 -6 -1
+* * * - pow x 3 -6 -1 -1 6
+* - -6 sin asin pow x 3 -6
+* tan + pi atan - pow x 3 -6 6
+* tan tan atan atan - pow x 3 -6 6
+* 6 - cos asec / 1 pow x 3 -6
+* sin asin - pow x 3 -6 6
+* -6 - -6 cos asec csc asin pow x 3
+* 1 * -6 - -6 pow tan atan x 3
+* cos cos acos acos - pow x 3 -6 6
+* tan atan - pow x 3 -6 6
+* -6 - -6 pow x 3
+* sin asin - -6 pow sin asin x 3 -6
+* -6 - -6 tan atan cos acos pow x 3
+* 1 * - pow tan atan x 3 -6 6
+* 6 sin asin tan atan - pow x 3 -6
+* -6 - 1 - 1 - -6 pow x 3
+* - 1 - + pow x 3 1 -6 -6
+* - cos asec cot atan pow x 3 -6 6
+* -6 - -6 pow sin acsc sec acos x 3
+* 6 - pow sin asin sin asin x 3 -6
+* -6 / -1 / 1 - pow x 3 -6
+* -6 - -6 tan atan pow sin asin x 3
+* - -6 sin acsc cot atan pow x 3 -6
+* sin + asin - -6 pow x 3 pi 6
+* 6 - pow cos acos x 3 -6
+* tan * atan - -6 pow x 3 -1 6
+* - -6 pow / 1 sec acos x 3 -6
+* - -6 sin acsc csc asin pow x 3 -6
+- - 1 * 6 - -6 pow x 3 1
+- + 1 * 6 - pow x 3 -6 1
+* - -6 pow * * x -1 -1 3 -6
+* - / 1 pow cot atan x 3 -6 6
+* 6 cos acos sin asin - pow x 3 -6
+* - -6 / 1 pow / 1 x 3 -6
+* - - 1 * -1 pow x 3 -5 6
+* / -1 cot atan - pow x 3 -6 -6
+* - + 1 pow cos acos x 3 -5 6
+* 1 / 6 csc asin - pow x 3 -6
+* -6 - -6 pow tan + pi atan x 3
+* - -6 tan atan pow x 3 -6
+* 1 * - + 1 pow x 3 -5 6
+* * -1 + * pow x 3 -1 -6 6
+* -6 sin asin cos acos - -6 pow x 3
+* 1 * -6 * - pow x 3 -6 -1
+* 1 * * - -6 pow x 3 6 -1
+* 6 sin asin - + pow x 3 1 -5
+* -6 / -1 sec acos - pow x 3 -6
+* -6 / 1 csc asin - -6 pow x 3
+* 1 * cos acos - -6 pow x 3 -6
+* 1 * 6 sin asin - pow x 3 -6
+* 6 - sin acsc cot atan pow x 3 -6
+* -1 * -6 - + 1 pow x 3 -5
+* - tan cos acos atan pow x 3 -6 6
+* 6 - + 1 pow x 3 -5
+* + - -6 + 1 pow x 3 1 -6
+* * -6 - -6 pow x 3 1
+* cos + acos - pow x 3 -6 pi -6
+* 6 sin acsc csc asin - pow x 3 -6
+* / -1 csc asin - pow x 3 -6 -6
+* 6 - pow x 3 -6
+* 6 cos - acos - -6 pow x 3 pi
+
+/ + pow x 7 2 -2
+* 1 / - + 3 pow x 7 1 -2
+* / + pow sin asin x 7 2 -2 1
+- + / + 2 pow x 7 -2 1 1
+- - 1 / - -2 pow x 7 -2 1
+* 1 * + pow x 7 2 / 1 -2
+* 1 / + cos acos pow x 7 2 -2
+* / - 2 * pow x 7 -1 -2 1
+* 1 tan atan / + 2 pow x 7 -2
+* / * -1 - -2 pow x 7 -2 1
+* -1 * / + pow x 7 2 -2 -1
+* 1 / - + pow x 7 1 -1 -2
+* / + pow x 7 2 -2 1
+
+/ - pow x 3 -5 2
+/ - / 1 pow cot atan x 3 -5 2
+/ - pow sin asin sin asin x 3 -5 2
+* / 1 2 - sin asin pow x 3 -5
+/ - pow cos acos tan atan x 3 -5 2
+/ - tan + atan pow x 3 pi -5 2
+/ * - -5 pow tan atan x 3 -1 2
+* cos acos - -5 pow x 3 / -1 2
+/ - tan atan pow sin asin x 3 -5 2
+/ - pow cos asec csc asin x 3 -5 2
+/ - pow x 3 -5 2
+/ - pow tan atan tan atan x 3 -5 2
+* - tan atan pow x 3 -5 / 1 2
+* sin asin - -5 pow x 3 / -1 2
+/ - - 1 - -5 pow x 3 1 2
+* * / -1 2 - -5 pow x 3 1
+/ - sin asin pow x 3 -5 2
+/ * -1 + * pow x 3 -1 -5 2
+* -1 / - -5 pow x 3 2
+* 1 * - pow x 3 -5 / 1 2
+* - pow x 3 -5 / 1 2
+/ - + 1 pow tan atan x 3 -4 2
+/ - pow / 1 / 1 x 3 -5 2
+/ - cos asec / 1 pow x 3 -5 2
+/ - + 1 sin asin pow x 3 -4 2
+/ - tan atan pow x 3 -5 2
+* / - pow cos acos x 3 -5 2 1
+* * -1 - pow x 3 -5 / -1 2
+/ - sin acsc sec acos pow x 3 -5 2
+/ - sin acsc / 1 pow x 3 -5 2
+/ - + pow x 3 1 -4 2
+/ - pow sin acsc cot atan x 3 -5 2
+/ - cos acos cos acos pow x 3 -5 2
+/ - sin acsc csc asin pow x 3 -5 2
+/ - cos acos pow sin asin x 3 -5 2
+/ - + 1 cos acos pow x 3 -4 2
+/ - / 1 pow sec acos x 3 -5 2
+* - + 1 pow x 3 -4 / 1 2
+/ - pow / 1 csc asin x 3 -5 2
+/ - cos asec sec acos pow x 3 -5 2
+/ - - 1 * pow x 3 -1 -4 2
+/ - pow cos asec cot atan x 3 -5 2
+/ - pow - + 1 x 1 3 -5 2
+/ - cos acos pow x 3 -5 2
+
