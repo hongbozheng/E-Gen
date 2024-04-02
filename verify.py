@@ -1,73 +1,15 @@
-#!/usr/bin/env python3
-
-
 import config
-import glob
-import itertools
 import logger
-import numpy
-import os
 import sympy as sp
-import tqdm
 from collections import OrderedDict
 from sympy import Expr, Interval, S, Symbol
 from sympy.calculus.util import continuous_domain
 from timeout import timeout
 
 
-OPERATORS = {
-    # Elementary functions
-    "add": 2,
-    "sub": 2,
-    "mul": 2,
-    "div": 2,
-    "d": 2,
-    "pow": 2,
-    "rac": 2,
-    "inv": 1,
-    "pow2": 1,
-    "pow3": 1,
-    "pow4": 1,
-    "pow5": 1,
-    "sqrt": 1,
-    "exp": 1,
-    "ln": 1,
-    "abs": 1,
-    "sign": 1,
-    # Trigonometric Functions
-    "sin": 1,
-    "cos": 1,
-    "tan": 1,
-    "cot": 1,
-    "sec": 1,
-    "csc": 1,
-    # Trigonometric Inverses
-    "asin": 1,
-    "acos": 1,
-    "atan": 1,
-    "acot": 1,
-    "asec": 1,
-    "acsc": 1,
-    # Hyperbolic Functions
-    "sinh": 1,
-    "cosh": 1,
-    "tanh": 1,
-    "coth": 1,
-    "sech": 1,
-    "csch": 1,
-    # Hyperbolic Inverses
-    "asinh": 1,
-    "acosh": 1,
-    "atanh": 1,
-    "acoth": 1,
-    "asech": 1,
-    "acsch": 1,
-}
-CONSTANTS = ["pi", "e"]
 VARIABLES = OrderedDict({
     "x": sp.Symbol("x", real=True, nonzero=True, positive=True),
 })
-SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
 SYMPY_OPERATORS = {
     # Elementary functions
     sp.Add: "add",
@@ -106,58 +48,11 @@ SYMPY_OPERATORS = {
     sp.asech: "asech",
     sp.acsch: "acsch",
 }
-SPECIAL_WORDS = ["SOE", "EOE", "PAD"]
-INT_BASE = 10
+
 COEFFICIENTS = OrderedDict({
     f'a{i}': sp.Symbol(f'a{i}', real=True)
     for i in range(10)
 })
-
-
-def prefix_to_sympy(expr, evaluate=True):
-    p, r = prefix_to_infix(expr)
-    if len(r) > 0:
-        raise Exception(f"Incorrect prefix expression \"{expr}\". \"{r}\" was not parsed.")
-
-    local_dict = get_sympy_local_dict()
-    expr = sp.parsing.sympy_parser.parse_expr(f'({p})', evaluate=evaluate, local_dict=local_dict)
-    return expr
-
-
-def get_sympy_local_dict() -> dict:
-    local_dict = {}
-    for k, v in list(VARIABLES.items()) + list(COEFFICIENTS.items()):
-        assert k not in local_dict
-        local_dict[k] = v
-    return local_dict
-
-
-def prefix_to_infix(expr):
-    return _prefix_to_infix(expr.split(" "))
-
-
-def _prefix_to_infix(expr):
-    """
-    Parse an expression in prefix mode, and output it in either:
-        - infix mode (returns human readable string)
-        - develop mode (returns a dictionary with the simplified expression)
-    """
-    if len(expr) == 0:
-        raise Exception("Empty prefix list.")
-    t = expr[0]
-
-    if t in OPERATORS: #OPERATOR dict, t is an operator
-        args = []
-        l1 = expr[1:]
-        for _ in range(OPERATORS[t]):
-            i1, l1 = _prefix_to_infix(l1)
-            args.append(i1)
-        return write_infix(t, args), l1
-    elif t in VARIABLES or t in COEFFICIENTS or t in CONSTANTS or t == 'I': #if t is variable 'x' or coefficient 'a1', 'a2'... , or constant "pi", "E", or 'I'
-        return t, expr[1:]
-    else: #else when t is INT+ INT-
-        val, i = parse_int(expr)
-        return str(val), expr[i:]
 
 
 def parse_int(lst):
@@ -168,17 +63,21 @@ def parse_int(lst):
     base = 10
     balanced = False
     val = 0
-    if not (balanced and lst[0] == 'INT' or base >= 2 and lst[0] in ['INT+', 'INT-'] or base <= -2 and lst[0] == 'INT'): #if first token is INT+ or INT-
+    # if first token is INT+ or INT-
+    if not (balanced and lst[0] == 'INT' or base >= 2 and lst[0] in ['INT+', 'INT-'] or base <= -2 and lst[0] == 'INT'):
         raise Exception(f"Invalid integer in prefix expression")
     i = 0
     for x in lst[1:]:
-        if not (x.isdigit() or x[0] == '-' and x[1:].isdigit()):#if the rest part of the list is not a number, break
+        # if the rest part of the list is not a number, break
+        if not (x.isdigit() or x[0] == '-' and x[1:].isdigit()):
             break
-        val = val * base + int(x)#otherwise, convert the str into int
+        # otherwise, convert the str into int
+        val = val * base + int(x)
         i += 1
     if base > 0 and lst[0] == 'INT-':
         val = -val
-    return val, i + 1#i+1 is the position number ends in the list
+    # i+1 is the position number ends in the list
+    return val, i + 1
 
 
 def write_infix(token, args):
@@ -220,7 +119,9 @@ def write_infix(token, args):
         return f'({args[0]})**4'
     elif token == 'pow5':
         return f'({args[0]})**5'
-    elif token in ['sign', 'sqrt', 'exp', 'ln', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'asin', 'acos', 'atan', 'acot', 'asec', 'acsc', 'sinh', 'cosh', 'tanh', 'coth', 'sech', 'csch', 'asinh', 'acosh', 'atanh', 'acoth', 'asech', 'acsch']:
+    elif token in ['sign', 'sqrt', 'exp', 'ln', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'asin', 'acos', 'atan',
+                   'acot', 'asec', 'acsc', 'sinh', 'cosh', 'tanh', 'coth', 'sech', 'csch', 'asinh', 'acosh', 'atanh',
+                   'acoth', 'asech', 'acsch']:
         return f'{token}({args[0]})'
     elif token == 'd':
         return f'Derivative({args[1]},{args[0]})'
@@ -234,186 +135,78 @@ def write_infix(token, args):
         return f'{token[-1]}{args[0]}'
     else:
         return token
-# ================================================================================
 
 
-# def create_pairs(equiv_exprs: list) -> list:
-#     expr_pairs = []
-#
-#     for expr_pair in itertools.permutations(iterable=equiv_exprs, r=2):
-#         expr_pairs.append(f"{expr_pair[0]}\t{expr_pair[1]}")
-#
-#     return expr_pairs
+def _prefix_to_infix(expr):
+    """
+    Parse an expression in prefix mode, and output it in either:
+        - infix mode (returns human readable string)
+        - develop mode (returns a dictionary with the simplified expression)
+    """
+    if len(expr) == 0:
+        raise Exception("Empty prefix list.")
+    t = expr[0]
+
+    # OPERATOR dict, t is an operator
+    if t in config.MATH_OPERATORS:
+        args = []
+        l1 = expr[1:]
+        for _ in range(config.MATH_OPERATORS[t]):
+            i1, l1 = _prefix_to_infix(l1)
+            args.append(i1)
+        return write_infix(t, args), l1
+    # if t is variable 'x' or coefficient 'a1', 'a2'... , or constant "pi", "E", or 'I'
+    elif t in VARIABLES or t in COEFFICIENTS or t in config.CONSTANTS or t == 'I':
+        return t, expr[1:]
+    # else when t is INT+ INT-
+    else:
+        val, i = parse_int(expr)
+        return str(val), expr[i:]
 
 
-def verify(expr_pair: list[str], n: int, tol: float, secs: int) -> bool:
-    @timeout(secs=secs)
-    def _simplify(expr: Expr) -> Expr:
-        return sp.simplify(expr=expr)
+def prefix_to_infix(expr):
+    return _prefix_to_infix(expr.split(" "))
 
+
+def get_sympy_local_dict() -> dict:
+    local_dict = {}
+    for k, v in list(VARIABLES.items()) + list(COEFFICIENTS.items()):
+        assert k not in local_dict
+        local_dict[k] = v
+    return local_dict
+
+
+def prefix_to_sympy(expr, evaluate=True):
+    p, r = prefix_to_infix(expr)
+    if len(r) > 0:
+        raise Exception(f"Incorrect prefix expression \"{expr}\". \"{r}\" was not parsed.")
+
+    local_dict = get_sympy_local_dict()
+    expr = sp.parsing.sympy_parser.parse_expr(f'({p})', evaluate=evaluate, local_dict=local_dict)
+    return expr
+
+
+def check_domain(expr: str, secs: int) -> bool:
     @timeout(secs=secs)
     def _cont_domain(expr: Expr, symbol: Symbol):
         return continuous_domain(f=expr, symbol=symbol,
                                  domain=Interval(start=0, end=10, left_open=True, right_open=False))
 
-    @timeout(secs=secs*2)
-    def _check_equiv(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
-        rand_nums = numpy.random.uniform(low=start, high=end, size=n)
-        for num in rand_nums:
-            val = expr.subs(x, num).evalf()
-            if val > tol:
-                return False
-
-        return True
-
-    @timeout(secs=secs*2)
-    def _check_equiv_compl(x: Symbol, expr: Expr, start: float, end: float, n: int, tol: float) -> bool:
-        i = 0
-        while i < n:
-            rand_num = numpy.random.uniform(low=start, high=end, size=1)
-            val = expr.subs(x, rand_num).evalf()
-            if val in S.Reals:
-                if val > tol:
-                    return False
-                i += 1
-
-        return True
-
     x = VARIABLES['x']
 
     try:
-        expr_0 = prefix_to_sympy(expr=expr_pair[0])
-        expr_1 = prefix_to_sympy(expr=expr_pair[1])
+        expr = prefix_to_sympy(expr=expr)
     except Exception as e:
-        logger.log_error(f"prefix_to_sympy exception {e}; {expr_pair[0]} & {expr_pair[1]}")
+        logger.log_error(f"{expr}; prefix_to_sympy exception {e}")
         return False
+
     try:
-        expr_0 = _simplify(expr=expr_0)
-        expr_1 = _simplify(expr=expr_1)
+        domain = _cont_domain(expr=expr, symbol=x)
+        if isinstance(domain, sp.sets.sets.EmptySet):
+            return False
+
     except Exception as e:
-        logger.log_error(f"simplify exception {e}; {expr_pair[0]} & {expr_pair[1]}")
+        logger.log_error(f"{expr}; continuous domain exception {e}")
         return False
 
-    expr = expr_0 - expr_1
-
-    if expr == 0:
-        logger.log_info(f" simplify  , equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
-        equiv = True
-    else:
-        try:
-            domain = _cont_domain(expr=expr, symbol=x)
-            try:
-                if isinstance(domain, sp.sets.sets.Union):
-                    if isinstance(domain.args[0], sp.sets.sets.Complement):
-                        case = "Union-Comp"
-                        equiv = _check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
-                    else:
-                        case = "Union"
-                        start = float(domain.args[0].start)
-                        end = float(domain.args[0].end)
-                        equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-                    if equiv:
-                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
-                    else:
-                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
-                elif isinstance(domain, sp.sets.sets.Complement):
-                    case = "Complement"
-                    equiv = _check_equiv_compl(x=x, expr=expr, start=1, end=10, n=n, tol=tol)
-                    if equiv:
-                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
-                    else:
-                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
-                elif isinstance(domain, sp.sets.sets.Interval):
-                    case = "Interval"
-                    start = float(domain.start)
-                    end = float(domain.end)
-                    equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
-                    if equiv:
-                        logger.log_info(f" {case:<10}, equivalent    ; {expr_pair[0]} & {expr_pair[1]}")
-                    else:
-                        logger.log_error(f"{case:<10}, non-equivalent; {expr_pair[0]} & {expr_pair[1]}")
-                else:
-                    logger.log_error(f"Invalid domain type {domain}")
-                    equiv = False
-
-            except Exception as e:
-                logger.log_error(f"{case:<10}, eval exception {e}; {expr_pair[0]} & {expr_pair[1]} ")
-                equiv = False
-        except Exception as e:
-            logger.log_error(f"continuous domain exception {e}; {expr_pair[0]} & {expr_pair[1]}")
-            equiv = False
-
-    return equiv
-
-
-def w_data(expr_pair: list[str], data_dir: str, cls: str, category: str) -> None:
-    path = os.path.join(data_dir, cls, category)
-
-    if not os.path.exists(path=path):
-        os.makedirs(name=path, exist_ok=True)
-
-    filepath = os.path.join(path, "equiv_exprs.txt")
-    file = open(file=filepath, mode='a')
-    file.write(f"{expr_pair[0]}\t{expr_pair[1]}\n")
-    file.close()
-
-    return
-
-
-def create_dataset(data_dir: str, n: int, tol: float, secs: int, verified_dir: str, incorrect_dir: str) -> None:
-    filepath = os.path.join(data_dir, "**", "equiv_exprs.txt")
-    filepaths = glob.glob(pathname=filepath, recursive=True)
-
-    n_corrects = 0
-    n_incorrects = 0
-
-    progbar = tqdm.tqdm(iterable=filepaths)
-
-    for filepath in progbar:
-        parts = filepath.split(os.path.sep)
-        cls = parts[-3]
-        category = parts[-2]
-        progbar.set_description(desc=f"[INFO]: Processing class '{cls}', category '{category}'", refresh=True)
-
-        file = open(file=filepath, mode='r')
-
-        for line in file:
-            expr_pair = line.strip().split(sep='\t')
-            equiv = verify(expr_pair=expr_pair, n=n, tol=tol, secs=secs)
-            if equiv:
-                w_data(expr_pair=expr_pair, data_dir=verified_dir, cls=cls, category=category)
-                n_corrects += 1
-            else:
-                w_data(expr_pair=expr_pair, data_dir=incorrect_dir, cls=cls, category=category)
-                n_incorrects += 1
-
-        file.close()
-
-    logger.log_info(f"Total number of correct expression pairs:   {n_corrects}")
-    logger.log_info(f"Total number of incorrect expression pairs: {n_incorrects}")
-    logger.log_info(f"Accuracy: {n_corrects/(n_corrects+n_incorrects)*100:.4f}%")
-
-    return
-
-
-def main() -> None:
-    if os.path.exists(path=config.DATA_VERIFIED_DIR):
-        logger.log_error(f"'{config.DATA_VERIFIED_DIR}' directory already exists!")
-        logger.log_error(f"Make sure to remove '{config.DATA_VERIFIED_DIR}' directory first.")
-        logger.log_error("Operation aborted.")
-        exit(1)
-    if not os.path.exists(path=config.DATA_FILTERED_DIR):
-        logger.log_error(f"'{config.DATA_FILTERED_DIR}' directory does not exist!")
-        logger.log_error(f"Make sure to run './create_dataset.py -f -n <n_exprs>' first to create "
-                         f"'{config.DATA_FILTERED_DIR}' directory.")
-        logger.log_error("Operation aborted.")
-        exit(1)
-
-    create_dataset(data_dir=config.DATA_FILTERED_DIR, verified_dir=config.DATA_VERIFIED_DIR,
-                   incorrect_dir=config.DATA_INCORRECT_DIR, n=3, tol=1e-6, secs=4)
-
-    return
-
-
-if __name__ == '__main__':
-    main()
+    return True

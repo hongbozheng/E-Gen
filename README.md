@@ -69,27 +69,29 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Generate Dataset (Python)
-#### Deduplication
+#### Preprocess
 ##### Check command line input help
 ```
-./deduplicate.py -h
+./preprocess.py -h
 ```
-##### Deduplicate (Refactor)
+##### Preprocess (deduplicate & refactor & verify)
 1. Make sure all generated equivalent expressions `.txt` files have 2 `'\n'` characters at the end of the file
 2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
 3. Then rename them to be `equiv_exprs_<index>.txt`. For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`,
 `equiv_exprs_2.txt`, ...
 4. Run the following command-line application
 ```
-./deduplication -d <equiv_exprs_dir> -r <refactor>
+./preprocess -d <equiv_exprs_dir> -r <refactor> -v <verify>
 ```
 - `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
 - `<refactor>` - flag to indicate whether to refactor the expressions
+- `<verify>` - flag to indicate whether to verify the expressions
 
 The script will create the following three `.txt` files
 1. `exprs.txt` - This file contains all the distinct generated original expressions
 2. `equiv_exprs.txt` - This file contains all the distinct generated equivalent expressions
 3. `duplicates.txt` - This file contains all the repetitive original expressions
+4. `invalids.txt` - This file contains all the expressions with invalid domain
 
 #### Create Dataset
 ##### Check command line input help
