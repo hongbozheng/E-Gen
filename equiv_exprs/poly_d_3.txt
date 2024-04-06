@@ -1,0 +1,447 @@
+d x pow x -9
+* -9 cos acos pow x -10
+* -9 cos acos sin acsc pow x 10
+* -9 cos * asec pow x 10 -1
+- 0 d x / -1 pow x 9
++ * pow x -10 -9 0
++ / -9 sec acos pow x -10 0
++ 0 / -9 csc acsc pow x 10
++ * sin asin pow x -10 -9 0
+* -9 cos acos / 1 pow x 10
+* -9 tan acot pow x 10
+* -9 / 1 csc asin pow x -10
++ 0 d x tan acot pow x 9
++ 0 / -9 cot acot pow x 10
+* -9 sin asin tan acot pow x 10
+- d x + 1 pow x -9 0
+* -9 sin asin sin acsc pow x 10
+* -9 sin asin sin asin pow x -10
+- 0 d x - 0 pow x -9
++ 0 / -9 sec asec pow x 10
+* -9 / 1 cot acot pow x 10
++ 0 / -9 pow x 10
++ 0 * cos acos pow x -10 -9
+* -9 cos acos cos asec pow x 10
+* -9 cos acos tan acot pow x 10
++ d x / 1 pow x 9 0
+* -9 cos asec pow x 10
++ 0 * -9 cos asec pow x 10
++ 0 d x sin acsc pow x 9
++ d x cos asec pow x 9 0
++ * tan acot pow x 10 -9 0
+* -9 pow x -10
+* -9 / 1 sec acos pow x -10
+* -9 sin asin pow x -10
++ 0 * -9 sin acsc pow x 10
++ * -9 / 1 pow x 10 0
+* -9 cos acos cos acos pow x -10
+* -9 sin acsc pow x 10
+* -9 sin asin cos asec pow x 10
+- 0 d x * pow x -9 -1
+* -9 tan + acot pow x 10 pi
++ 0 d x sin asin pow x -9
+* -9 / 1 sec asec pow x 10
+* -9 sin asin / 1 pow x 10
+* -9 / 1 csc acsc pow x 10
+* -9 sin asin cos acos pow x -10
++ 0 d x pow x -9
++ 0 d x cos acos pow x -9
++ 0 / -9 csc asin pow x -10
+* -9 cos * acos pow x -10 -1
+* -9 / 1 pow x 10
+
+d x + x -9
+1
+
+d x - x -6
+1
+
+d x * -2 x
+-2
+
+d x / x -7
++ cos asec -7 * 0 cos acsc -7
++ cos asec csc acsc csc acsc -7 0
++ - - 1 sin acsc 7 1 0
++ / / 1 sqrt 50 cos acot -7 0
++ sin atan tan - 0 acsc 7 0
++ cos asec -7 * sin asec -7 0
++ sin asin sin * acsc 7 -1 0
++ cos + asec -7 + pi pi 0
++ / 1 csc asin tan acot -7 0
++ d x / x cot acot -7 0
++ tan asec sec acot -7 0
++ / -1 cot * -1 acot -7 0
++ cos - acos sin acsc 7 pi 0
++ / sin asec -7 tan asec -7 0
++ cot + acot 7 * 0.5 pi 0
++ / sec acot -7 csc acot -7 0
++ tan acot sec * asec -7 -1 0
++ cos asec cot acos cos acot -7 0
++ sin * -1 asin / -1 -7 0
++ cos - * 1.5 pi acsc 7 0
++ cos asec sec - 0 asec -7 0
++ tan acot sec acos / 1 -7 0
++ tan acos cos acos / -7 sqrt 50 0
++ tan acot sec acos sin acsc -7 0
++ tan asec / 1 tanh asinh -7 0
++ / sec * -1 acot -7 sqrt 50 0
++ sin acsc cot asec sec acot -7 0
++ tan acot cot acos cos acot -7 0
++ cos acos * sin acsc 7 -1 0
++ sin acsc sec - asec 7 pi 0
++ cos acos tan acos sin atan -7 0
++ cos acos sin atan tan acsc -7 0
++ sin acsc csc asin cos asec -7 0
++ cos acos cos acos tan acot -7 0
++ cos acos tan acot csc acsc -7 0
++ - 0 tan acot 7 0
++ sin asin sin asin sin acsc -7 0
++ tan acot -7 * / sqrt 48 7 0
++ / sin acot -7 cos acot -7 0
++ tan acot csc - 0 acsc 7 0
++ * sec acot -7 sin acot -7 0
++ * -1 * / 1 -7 -1 0
++ sin acsc csc atan tan acsc -7 0
++ cos - 0 asec csc acsc -7 0
++ sin - 0 - 0 acsc -7 0
++ cot - * 1.5 pi acot -7 0
++ tan asec sec - acot 7 pi 0
++ sin acsc -7 * 0 cos acsc 7
++ sin acsc cot acos sin atan -7 0
++ sin acsc cot acos / -7 sqrt 50 0
++ / 1 -7 * / sqrt 48 7 0
++ cos + * 2 pi asec -7 0
++ / sec - acot 7 pi sqrt 50 0
++ sin asin tan acot csc acsc -7 0
++ / / sqrt 48 7 cot acsc -7 0
++ cos asec csc * acsc 7 -1 0
++ cos asec cot acos / -7 sqrt 50 0
++ sin atan tan acsc cot acot -7 0
++ tan asec / 1 / -7 sqrt 50 0
++ * / 2 2 tan acot -7 0
++ cos acos tan + pi acot -7 0
++ * * cos asec -7 -1 -1 0
++ cos - 0 acos sin acsc -7 0
++ * / 1 -7 / 2 2 0
++ tan acos tanh asinh -7 0
++ / 1 cot acot -7 0
++ sin asin cos asec -7 0
++ - - 1 / -1 -7 1 0
++ tan acot cot acos tanh asinh -7 0
++ cos asec -7 / 0 csc asec -7
++ / 1 / 1 tan acot -7 0
++ cos acos sin acsc csc acsc -7 0
++ / / sqrt 48 7 tan asec -7 0
++ / 1 / 1 / 1 -7 0
++ / 1 cot + pi acot -7 0
++ * tan * -1 acot -7 -1 0
++ sin acsc csc acsc sec asec -7 0
++ / 1 csc acsc csc acsc -7 0
++ / -1 csc asin / 1 7 0
++ tan acot cot acos / -7 sqrt 50 0
++ sin atan tan asin cos asec -7 0
++ cos asec sec asec -7 0
++ * sec acot -7 / 1 sqrt 50 0
++ / 1 -7 * 0 cos acsc -7
++ cos asec sec acos sin acsc -7 0
++ sin asin / -1 csc acsc 7 0
++ sin asin cos acos / 1 -7 0
++ sin acsc sec * -1 asec -7 0
++ * -1 * sin acsc -7 -1 0
++ / 1 cot acos tanh asinh -7 0
++ cos asec / 1 / 1 -7 0
++ sin atan tan asin / 1 -7 0
++ cos / * 3 asec -7 3 0
++ / * -2 sin acsc 7 2 0
++ / -1 csc acsc 7 0
++ sin asin tan - pi acot 7 0
++ d x / x csc acsc -7 0
++ cos - 0 asec cot acot -7 0
++ / 1 -7 * sin asec -7 0
++ sin * / acsc -7 2 2 0
++ tan acos sin asin sin atan -7 0
++ / 1 sec - 0 asec -7 0
++ sin atan tan acsc -7 0
++ / / 1 sqrt 50 sin atan -7 0
++ / 1 csc asin sin acsc -7 0
++ d x * x sin acsc -7 0
++ sin + * 0.5 pi asec -7 0
++ / 1 -7 / 0 csc asec -7
++ cos acos - 0 tan acot 7 0
++ cos acos cos acos / 1 -7 0
++ / 1 sec asec csc acsc -7 0
++ cos asec sec - pi asec 7 0
++ tan + * pi 2 acot -7 0
++ sin asin cos acos sin acsc -7 0
++ cos - * 3 pi asec 7 0
++ / 1 * sqrt 50 tanh asinh -7 0
++ cos asec csc acsc cot acot -7 0
++ cos * / 2 2 asec -7 0
++ sin * - 0 acsc -7 -1 0
++ sin acsc csc acsc -7 0
++ cos acos * / -1 -7 -1 0
++ tan - * 2 pi acot 7 0
++ / 1 -7 / 0 tan acsc -7
++ - 0 / -1 sec asec -7 0
++ cos acos tan acot sec asec -7 0
++ tan acot * -1 csc acsc 7 0
++ cos * -1 acos / 1 -7 0
++ sin acsc csc acsc csc acsc -7 0
++ cos - 0 acos tan acot -7 0
++ - 0 sin asin / 1 7 0
++ sin asin tan asec sec acot -7 0
++ d x / x sec asec -7 0
++ sin atan / 1 tan asec -7 0
++ cos acos tan acot -7 0
++ / 1 -7 / 0 sec acsc -7
++ tan acos sin asin tanh asinh -7 0
++ * sin acot -7 / sqrt 50 -7 0
++ cos acos tan acos tanh asinh -7 0
++ cos * asec -7 -1 0
++ - 0 * -1 / 1 -7 0
++ tan acot -7 0
++ sin acsc cot acot -7 0
++ * -1 / -1 sec asec -7 0
++ sin acsc csc acsc cot acot -7 0
++ / cos acsc -7 tan asec -7 0
++ cos asec sec asec csc acsc -7 0
++ * -1 / -1 -7 0
++ sin acsc csc * acsc 7 -1 0
++ tan asec sec asec sec acot -7 0
++ cos asec sec * -1 asec -7 0
++ cos * acos tan acot -7 -1 0
++ sin asin tan acos / -7 sqrt 50 0
++ sin asin cos acos tan acot -7 0
++ - 0 tan * acot -7 -1 0
++ / 1 -7 0
++ cos asec -7 / * sqrt 48 0 7
++ tan acot -7 / 0 tan acsc -7
++ sin acsc -7 / 0 tan acsc -7
++ tan * -1 - acot 7 pi 0
++ d x * tan acot -7 x 0
++ sin acsc cot acos tanh asinh -7 0
++ tan acot csc atan tan acsc -7 0
++ sin asin / sec acot -7 sqrt 50 0
++ tan acot -7 * 0 sin asec -7
++ sin acsc cot acos cos acot -7 0
++ / 1 csc asin / 1 -7 0
++ sin - 0 asin / -1 -7 0
++ cos asec sec asec sec asec -7 0
++ / cos acsc 7 cot acsc -7 0
++ tan acot csc asin tan acot -7 0
++ cos asec csc asin / 1 -7 0
++ tan acot -7 * 0 cos acsc 7
++ cos asec csc - 0 acsc 7 0
++ cot + * pi 1.5 acot 7 0
++ cos acos sin - 0 acsc 7 0
++ sin acsc sec - 0 asec -7 0
++ sin atan tan acsc sec asec -7 0
++ tan + acos / -7 sqrt 50 pi 0
++ tan acot csc acsc -7 0
++ sin acsc csc - 0 acsc 7 0
++ tan asec sec acos / -7 sqrt 50 0
++ cos asec cot acos sin atan -7 0
++ sin - asec 7 / pi 2 0
++ / 1 sec * asec -7 -1 0
++ tan + pi acos sin atan -7 0
++ cos * -1 - asec 7 pi 0
++ sin acsc / 1 tan acot -7 0
++ sin asin cos asec cot acot -7 0
++ sin + asin / 1 7 pi 0
++ sin - + pi pi acsc 7 0
++ / 1 csc acsc cot acot -7 0
++ - 0 / -1 -7 0
++ sin atan tan asin tan acot -7 0
++ tan acos sin * -1 atan 7 0
++ sin + * 2 pi acsc -7 0
++ * sin asin / 1 7 -1 0
++ cos acos cos asec -7 0
++ cos acos sin asin cos asec -7 0
++ cos acos tan - pi acot 7 0
++ * tan acsc -7 cos acsc 7 0
++ / 1 sec asec sec asec -7 0
++ sin asin sin atan tan acsc -7 0
++ cos acos sin + pi acsc 7 0
++ / -1 cot - acot 7 pi 0
++ tan acot csc acsc sec asec -7 0
++ tan - pi acos / 7 sqrt 50 0
++ / 1 cot acos / -7 sqrt 50 0
++ sin atan * -1 tan acsc 7 0
++ / sin asec -7 cot acsc -7 0
++ - 0 / -1 cot acot -7 0
++ sin acsc -7 * 0 cos acsc -7
++ / cos acsc 7 tan asec -7 0
++ - 0 tan - acot 7 pi 0
++ sin asin / 1 -7 0
++ / 1 cot - pi acot 7 0
++ cos asec csc acsc -7 0
++ tan - pi acot 7 0
++ sin / * 3 acsc -7 3 0
++ d x * / 1 -7 x 0
++ cos asec -7 / 0 sec acsc -7
++ cos * -1 asec csc acsc -7 0
++ tan acos * -1 / 7 sqrt 50 0
++ / / 2 sec asec -7 2 0
++ cos acos cos asec csc acsc -7 0
++ sin asin cos asec sec asec -7 0
++ sin atan tan + pi acsc -7 0
++ tan acot -7 / 0 sec acsc -7
++ tan asec sec acos sin atan -7 0
++ - + tan acot -7 1 1 0
++ cos - - pi asec -7 pi 0
++ tan acot csc acsc csc acsc -7 0
++ - + 1 / 1 -7 1 0
++ cos acos / 1 csc acsc -7 0
++ * -1 sin acsc 7 0
++ cos asec cot acot -7 0
++ tan - pi - acot 7 pi 0
++ tan + pi + acot -7 pi 0
++ sin asin / / 2 -7 2 0
++ d x / x -7 0
++ sin asin / 1 cot acot -7 0
++ sin acsc sec asec -7 0
++ / 1 -7 * 0 cos acsc 7
++ / / 2 csc acsc -7 2 0
++ / 1 * -1 csc acsc 7 0
++ cos acos cos acos sin acsc -7 0
++ / sec asec sec acot -7 sqrt 50 0
++ / sec acos cos acot -7 sqrt 50 0
++ cos acos / 1 -7 0
++ tan - / pi 2 atan -7 0
++ sin asin - 0 sin acsc 7 0
++ cos acos cos - pi asec 7 0
++ * / tan acsc -7 7 sqrt 48 0
++ tan acot cot asec sec acot -7 0
++ / 1 sec asec cot acot -7 0
++ tan acot / 1 tan acot -7 0
++ sin asin d x / x -7 0
++ tan acot csc acsc cot acot -7 0
++ sin acsc cot - pi acot 7 0
++ sin asin sin + acsc 7 pi 0
++ tan acos * sin acot -7 -7 0
++ cos acos / 1 cot acot -7 0
++ cos acos sin acsc -7 0
++ - 0 - 0 cos asec -7 0
++ tan acot csc asin cos asec -7 0
++ cos - asec 7 pi 0
++ d x * cos asec -7 x 0
++ cos asec -7 * cos acsc 7 0
++ sin acsc csc asin sin acsc -7 0
++ tan + acot -7 pi 0
++ tan acos / -7 sqrt 50 0
++ / sqrt 48 * 7 tan asec -7 0
++ / / 1 tanh asinh -7 sqrt 50 0
++ tan + asec sec acot -7 pi 0
++ - 0 sin acsc 7 0
++ sin atan tan atan tan acsc -7 0
++ - 0 / 1 csc acsc 7 0
++ / / 2 cot acot -7 2 0
++ sin asin sin acsc cot acot -7 0
++ / cos acsc -7 cot acsc -7 0
++ sin + pi * -1 acsc -7 0
++ sin + + pi pi acsc -7 0
++ cos asec csc asin cos asec -7 0
++ tan acot cot acot -7 0
++ sin asin tan + pi acot -7 0
++ sin + acsc 7 pi 0
++ cos asec cot - pi acot 7 0
++ cos asec / 1 sin acsc -7 0
++ cos - acsc -7 / pi 2 0
++ sin asin sin asin / 1 -7 0
++ sin acsc sec asec sec asec -7 0
++ sin asin tan acot cot acot -7 0
++ / 1 csc acsc -7 0
++ / / 1 -1 csc acsc 7 0
++ sin - * 2 pi acsc 7 0
++ sin + - 0 acsc -7 pi 0
++ sin asin cos - pi asec 7 0
++ sin acsc -7 0
++ - 0 - 0 tan acot -7 0
++ sin acsc sec acos / 1 -7 0
++ / sec acos sin atan -7 sqrt 50 0
++ tan acos * / 1 sqrt 50 -7 0
++ / 1 / 1 sin acsc -7 0
++ cos asec cot acos tanh asinh -7 0
++ / 1 * sqrt 50 sin atan -7 0
++ cos acos / / 2 -7 2 0
++ tan + acos tanh asinh -7 pi 0
++ / 1 csc atan tan acsc -7 0
++ * tan acsc -7 cos acsc -7 0
++ / 1 sec asec -7 0
++ cos - 0 acos cos asec -7 0
++ sin asin sin acsc sec asec -7 0
++ * -1 / -1 csc acsc -7 0
++ - + 1 sin acsc -7 1 0
++ cos asec / 1 cos asec -7 0
++ - 0 - 0 / 1 -7 0
++ cos - 0 - asec 7 pi 0
++ - + 1 cos asec -7 1 0
++ cos * -1 acos cos asec -7 0
++ sin acsc -7 / 0 csc asec -7
++ cos acos cos asec sec asec -7 0
++ sin - * 1.5 pi asec 7 0
++ cos asec cot + pi acot -7 0
++ cos acos d x / x -7 0
++ tan acot -7 / 0 csc asec -7
++ sin asin / 1 sec asec -7 0
++ sin acsc sec acos sin acsc -7 0
++ - 0 tan acos / 7 sqrt 50 0
++ sin asin cos * -1 asec -7 0
++ - 0 tan - pi acot -7 0
++ tan + pi - pi acot 7 0
++ sin acsc cot + pi acot -7 0
++ cos acos / 1 sec asec -7 0
++ cos - 0 asec -7 0
++ / 1 * sqrt 50 cos acot -7 0
++ sin asin cos - 0 asec -7 0
++ / 1 sec acos / 1 -7 0
++ cos - 0 acos / 1 -7 0
++ cos asec sec asec cot acot -7 0
++ / sin acot -7 sin atan -7 0
++ tan acot sec acos tan acot -7 0
++ / 1 cot acos sin atan -7 0
++ / sin acot -7 / -7 sqrt 50 0
++ tan acot cot - pi acot 7 0
++ cos - * pi 0.5 acsc -7 0
++ * sin asec -7 tan acsc -7 0
++ / -1 csc - 0 acsc -7 0
++ sin acsc -7 * sin asec -7 0
++ tan - pi - pi acot -7 0
++ sin asin tan acot -7 0
++ sin asin sin acsc -7 0
++ tan acot cot + acot -7 pi 0
++ cos asec -7 0
++ tan acos sin atan -7 0
++ / sin acot -7 tanh asinh -7 0
++ / 1 sec - pi asec 7 0
++ cos acos cos acos cos asec -7 0
++ sin acsc / 1 sin acsc -7 0
++ cos acos - 0 / -1 -7 0
++ sin - / pi 2 asec -7 0
++ sin acsc -7 / 0 sec acsc -7
++ cos asec csc atan tan acsc -7 0
++ tan acot cot acos sin atan -7 0
++ sin atan / 1 cot acsc -7 0
++ / tan acsc -7 csc asec -7 0
++ / sec acot -7 sqrt 50 0
++ / / 2 -7 2 0
++ / sec acos tanh asinh -7 sqrt 50 0
++ cos acos / -1 csc acsc 7 0
++ sin asin sin asin tan acot -7 0
++ cos - pi acos / 1 7 0
++ cos * acos sin acsc -7 -1 0
++ sin asin - 0 tan acot 7 0
++ cos asec / 1 tan acot -7 0
++ tan asec sec acos tanh asinh -7 0
++ * - 0 cos asec -7 -1 0
++ sin asin sin asin cos asec -7 0
++ sin acsc -7 / * sqrt 48 0 7
++ tan acot sec - 0 asec -7 0
++ / * -2 / -1 -7 2 0
++ tan - pi * -1 acot -7 0
++ / tan acsc -7 sec acsc -7 0
++ tan acot -7 * 0 cos acsc -7
++ cos - acos / -1 -7 pi 0
++ cos * -1 asec cot acot -7 0
+

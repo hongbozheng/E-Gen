@@ -1,0 +1,16 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 1.45s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 8 -m 8 -t 600 -i ../data/poly_d_1.txt -o ../data/poly_d_1_gen.txt`
+[INFO]: Expression: (d x x)
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  19
+[INFO]: Total # of e-node(s):    58
+[INFO]: Total # of init expr(s): 1
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1
+[INFO]: Total # of expression(s) after  postprocessing: 1
+[INFO]: -----------------------------------
+[INFO]: Token limit 9 reaches max token limit 8.
+[INFO]: Total run time: 0s
+

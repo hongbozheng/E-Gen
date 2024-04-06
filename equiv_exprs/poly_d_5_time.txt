@@ -1,0 +1,108 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.92s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 10 -m 10 -t 600 -i ../data/poly_d_5.txt -o ../data/poly_d_5_gen.txt`
+[INFO]: Expression: (d x (+ (pow x -2) -4))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3069
+[INFO]: Total # of e-node(s):    8963
+[INFO]: Total # of init expr(s): 164
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 55
+[INFO]: Total # of expression(s) after  postprocessing: 25
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (- (pow x 4) -9))
+[INFO]: E-graph saturation time: 5s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  203
+[INFO]: Total # of e-node(s):    3283
+[INFO]: Total # of init expr(s): 57
+[INFO]: Expression extraction time: 151s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 936
+[INFO]: Total # of expression(s) after  postprocessing: 232
+[INFO]: Total run time: 156s
+
+[INFO]: Expression: (d x (* 4 (pow x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  29
+[INFO]: Total # of e-node(s):    100
+[INFO]: Total # of init expr(s): 12
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 84
+[INFO]: Total # of expression(s) after  postprocessing: 12
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (/ (pow x -8) 5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3690
+[INFO]: Total # of e-node(s):    9106
+[INFO]: Total # of init expr(s): 90
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 41
+[INFO]: Total # of expression(s) after  postprocessing: 11
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (+ (* 8 x) 6))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  33
+[INFO]: Total # of e-node(s):    124
+[INFO]: Total # of init expr(s): 1
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1
+[INFO]: Total # of expression(s) after  postprocessing: 1
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (+ (/ x 6) 3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2992
+[INFO]: Total # of e-node(s):    8864
+[INFO]: Total # of init expr(s): 585
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 811
+[INFO]: Total # of expression(s) after  postprocessing: 431
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (- (* 9 x) 4))
+[INFO]: E-graph saturation time: 3s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  447
+[INFO]: Total # of e-node(s):    3115
+[INFO]: Total # of init expr(s): 1
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1
+[INFO]: Total # of expression(s) after  postprocessing: 1
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 4s
+
+[INFO]: Expression: (d x (- (/ x -9) 5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2900
+[INFO]: Total # of e-node(s):    8735
+[INFO]: Total # of init expr(s): 589
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 947
+[INFO]: Total # of expression(s) after  postprocessing: 379
+[INFO]: Total run time: 600s
+

@@ -1,5 +1,5 @@
     Finished dev [unoptimized + debuginfo] target(s) in 0.05s
-     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 11 -m 11 -t 600 -i ../data/poly_7.txt -o ../data/poly_7_gen_l11.txt`
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 40 -l 11 -m 11 -t 600 -i ../data/poly_7.txt -o ../data/poly_7_gen.txt`
 [INFO]: Expression: (+ (pow x 3) (* 5 x))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
