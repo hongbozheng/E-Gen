@@ -27,7 +27,7 @@ def preprocess(
     filepaths = [filepath for filepath in filepaths if not filepath.endswith("_time.txt")]
     filepaths.sort()
 
-    exprs = []
+    exprs = set()
 
     invalids_file = open(file=invalids_filepath, mode='w')
     equiv_exprs_file = open(file=equiv_exprs_filepath, mode='w')
@@ -64,7 +64,7 @@ def preprocess(
                     continue
 
                 if equiv_exprs[0] not in exprs:
-                    exprs.append(equiv_exprs[0])
+                    exprs.add(equiv_exprs[0])
 
                     for expr in equiv_exprs:
                         equiv_exprs_file.write(f"{expr}\n")
@@ -81,11 +81,12 @@ def preprocess(
             logger.log_error("Operation aborted.")
             exit(1)
 
-    assert len(set(exprs)) == len(exprs)
-
     invalids_file.close()
     equiv_exprs_file.close()
     duplicates_file.close()
+
+    exprs = list(exprs)
+    exprs.sort()
 
     exprs_file = open(file=exprs_filepath, mode='w')
     for expr in exprs:
@@ -96,9 +97,9 @@ def preprocess(
 
 
 def main() -> None:
-    if os.path.exists(path=config.EQUIV_EXPRS_FILEPATH):
-        logger.log_error(f"'{config.EQUIV_EXPRS_FILEPATH}' file already exists!")
-        logger.log_error(f"Make sure to delete '{config.EQUIV_EXPRS_FILEPATH}' file first.")
+    if os.path.exists(path=config.EQUIV_EXPRS_RAW_FILEPATH):
+        logger.log_error(f"'{config.EQUIV_EXPRS_RAW_FILEPATH}' file already exists!")
+        logger.log_error(f"Make sure to delete '{config.EQUIV_EXPRS_RAW_FILEPATH}' file first.")
         logger.log_error("Operation aborted.")
         exit(1)
 
@@ -117,13 +118,13 @@ def main() -> None:
     refactor = args.refactor
     verify = args.verify
 
-    logger.log_info(f"Creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_FILEPATH}', and "
-                    f"'{config.DUPLICATES_FILEPATH}'...")
+    logger.log_info(f"Creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
+                    f"'{config.DUPLICATES_FILEPATH}', and '{config.INVALIDS_FILEPATH}'...")
     preprocess(equiv_exprs_dir=equiv_exprs_dir, refactor=refactor, verify=verify, secs=2,
-               invalids_filepath=config.INVALIDS_FILEPATH, equiv_exprs_filepath=config.EQUIV_EXPRS_FILEPATH,
+               invalids_filepath=config.INVALIDS_FILEPATH, equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
                duplicates_filepath=config.DUPLICATES_FILEPATH, exprs_filepath=config.EXPRS_FILEPATH)
-    logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_FILEPATH}', and "
-                    f"'{config.DUPLICATES_FILEPATH}'.")
+    logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
+                    f"'{config.DUPLICATES_FILEPATH}', and '{config.INVALIDS_FILEPATH}'.")
 
     return
 

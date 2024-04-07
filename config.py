@@ -70,14 +70,20 @@ DATA_VERIFIED_DIR = DATA_DIR + "/verified"
 DATA_INCORRECT_DIR = DATA_DIR + "/incorrect"
 FUND_EXPRS_DIR = DATA_DIR + "/fund_exprs"
 
+# preprocess
 INVALIDS_FILEPATH = DATA_DIR + "/invalids.txt"
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
-EQUIV_EXPRS_FILEPATH = DATA_DIR + "/equiv_exprs.txt"
+EQUIV_EXPRS_RAW_FILEPATH = DATA_DIR + "/equiv_exprs_raw.txt"
 DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
 
+# filter
+EQUIV_EXPRS_FILTERED_FILEPATH = DATA_DIR + "/equiv_exprs_filtered.txt"
+
+# split
 EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"
 EXPRS_VAL_FILEPATH = DATA_DIR + "/exprs_val.txt"
 EXPRS_TEST_FILEPATH = DATA_DIR + "/exprs_test.txt"
 
 SEED = 42
+N_DENOMINATOR_DIGITS = 17
 LOG_LEVEL = logger.LogLevel.INFO
