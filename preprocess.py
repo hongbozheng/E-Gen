@@ -43,8 +43,9 @@ def preprocess(
         equiv_exprs = []
 
         for line in file:
-            if line.strip() and line not in equiv_exprs:
-                expr = line.strip()
+            expr = line.strip()
+
+            if expr and expr not in equiv_exprs:
                 if refactor and not verify:
                     expr = ref_expr(expr=expr)
                 elif verify:
@@ -56,16 +57,12 @@ def preprocess(
                         continue
                 equiv_exprs.append(expr)
 
-            elif not line.strip():
-                equiv_exprs.append(line.strip())
-
+            else:
                 if len(equiv_exprs) == 1:
                     equiv_exprs = []
                     continue
-
                 if equiv_exprs[0] not in exprs:
                     exprs.add(equiv_exprs[0])
-
                     for expr in equiv_exprs:
                         equiv_exprs_file.write(f"{expr}\n")
                 else:
