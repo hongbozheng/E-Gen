@@ -29,6 +29,15 @@ use thiserror::Error;
 /// See [`SymbolLang`] for quick-and-dirty use cases.
 #[allow(clippy::len_without_is_empty)]
 pub trait Language: Debug + Clone + Eq + Ord + Hash {
+    /// Type representing the cases of this language.
+    ///
+    /// Used for short-circuiting the search for equivalent nodes.
+    type Discriminant: Debug + Clone + Eq + Hash;
+
+    /// Return the `Discriminant` of this node.
+    #[allow(enum_intrinsics_non_enums)]
+    fn discriminant(&self) -> Self::Discriminant;
+
     /// Returns true if this enode matches another enode.
     /// This should only consider the operator, not the children `Id`s.
     fn matches(&self, other: &Self) -> bool;
@@ -52,9 +61,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// Runs a falliable function on each child, stopping if the function returns
     /// an error.
     fn try_for_each<E, F>(&self, mut f: F) -> Result<(), E>
-        where
-            F: FnMut(Id) -> Result<(), E>,
-            E: Clone,
+    where
+        F: FnMut(Id) -> Result<(), E>,
+        E: Clone,
     {
         self.fold(Ok(()), |res, id| res.and_then(|_| f(id)))
     }
@@ -85,9 +94,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
 
     /// Folds over the children, given an initial accumulator.
     fn fold<F, T>(&self, init: T, mut f: F) -> T
-        where
-            F: FnMut(T, Id) -> T,
-            T: Clone,
+    where
+        F: FnMut(T, Id) -> T,
+        T: Clone,
     {
         let mut acc = init;
         self.for_each(|id| acc = f(acc.clone(), id));
@@ -121,9 +130,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// assert_eq!(recexpr, "(* (+ a 2) (+ a 2))".parse().unwrap())
     /// ```
     fn join_recexprs<F, Expr>(&self, mut child_recexpr: F) -> RecExpr<Self>
-        where
-            F: FnMut(Id) -> Expr,
-            Expr: AsRef<[Self]>,
+    where
+        F: FnMut(Id) -> Expr,
+        Expr: AsRef<[Self]>,
     {
         fn build<L: Language>(to: &mut RecExpr<L>, from: &[L]) -> Id {
             let last = from.last().unwrap().clone();
@@ -161,8 +170,8 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// assert_eq!(expr, expr2)
     /// ```
     fn build_recexpr<F>(&self, mut get_node: F) -> RecExpr<Self>
-        where
-            F: FnMut(Id) -> Self,
+    where
+        F: FnMut(Id) -> Self,
     {
         self.try_build_recexpr::<_, std::convert::Infallible>(|id| Ok(get_node(id)))
             .unwrap()
@@ -170,8 +179,8 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
 
     /// Same as [`Language::build_recexpr`], but fallible.
     fn try_build_recexpr<F, Err>(&self, mut get_node: F) -> Result<RecExpr<Self>, Err>
-        where
-            F: FnMut(Id) -> Result<Self, Err>,
+    where
+        F: FnMut(Id) -> Result<Self, Err>,
     {
         let mut set = IndexSet::<Self>::default();
         let mut ids = HashMap::<Id, Id>::default();
@@ -360,7 +369,9 @@ impl LanguageChildren for Id {
 /// a list of enodes.
 ///
 /// [`RecExpr`]s must satisfy the invariant that enodes' children must refer to
-/// elements that come before it in the list.
+/// elements that come before it in the list. For example, the expression
+/// `(+ (* x 5) x)` could be represented by a recursive expression of the form
+/// `[Num(5), Var("x"), Mul(1, 0), Add(2, 1)]`.
 ///
 /// If the `serde-1` feature is enabled, this implements
 /// [`serde::Serialize`](https://docs.rs/serde/latest/serde/trait.Serialize.html).
@@ -372,8 +383,8 @@ pub struct RecExpr<L> {
 #[cfg(feature = "serde-1")]
 impl<L: Language + Display> serde::Serialize for RecExpr<L> {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: serde::Serializer,
+    where
+        S: serde::Serializer,
     {
         let s = self.to_sexp().to_string();
         serializer.serialize_str(&s)
@@ -395,6 +406,12 @@ impl<L> AsRef<[L]> for RecExpr<L> {
 impl<L> From<Vec<L>> for RecExpr<L> {
     fn from(nodes: Vec<L>) -> Self {
         Self { nodes }
+    }
+}
+
+impl<L> From<RecExpr<L>> for Vec<L> {
+    fn from(val: RecExpr<L>) -> Self {
+        val.nodes
     }
 }
 
@@ -605,8 +622,10 @@ impl BitOr for DidMerge {
 }
 
 /** Arbitrary data associated with an [`EClass`].
+
 `egg` allows you to associate arbitrary data with each eclass.
 The [`Analysis`] allows that data to behave well even across eclasses merges.
+
 [`Analysis`] can prove useful in many situtations.
 One common one is constant folding, a kind of partial evaluation.
 In that case, the metadata is basically `Option<L>`, storing
@@ -614,11 +633,15 @@ the cheapest constant expression (if any) that's equivalent to the
 enodes in this eclass.
 See the test files [`math.rs`] and [`prop.rs`] for more complex
 examples on this usage of [`Analysis`].
+
 If you don't care about [`Analysis`], `()` implements it trivally,
 just use that.
+
 # Example
+
 ```
 use egg::{*, rewrite as rw};
+
 define_language! {
     enum SimpleMath {
         "+" = Add([Id; 2]),
@@ -627,16 +650,19 @@ define_language! {
         Symbol(Symbol),
     }
 }
+
 // in this case, our analysis itself doesn't require any data, so we can just
 // use a unit struct and derive Default
 #[derive(Default)]
 struct ConstantFolding;
 impl Analysis<SimpleMath> for ConstantFolding {
     type Data = Option<i32>;
+
     fn merge(&mut self, to: &mut Self::Data, from: Self::Data) -> DidMerge {
         egg::merge_max(to, from)
     }
-    fn make(egraph: &EGraph<SimpleMath, Self>, enode: &SimpleMath) -> Self::Data {
+
+    fn make(egraph: &mut EGraph<SimpleMath, Self>, enode: &SimpleMath) -> Self::Data {
         let x = |i: &Id| egraph[*i].data;
         match enode {
             SimpleMath::Num(n) => Some(*n),
@@ -645,6 +671,7 @@ impl Analysis<SimpleMath> for ConstantFolding {
             _ => None,
         }
     }
+
     fn modify(egraph: &mut EGraph<SimpleMath, Self>, id: Id) {
         if let Some(i) = egraph[id].data {
             let added = egraph.add(SimpleMath::Num(i));
@@ -652,29 +679,40 @@ impl Analysis<SimpleMath> for ConstantFolding {
         }
     }
 }
+
 let rules = &[
     rw!("commute-add"; "(+ ?a ?b)" => "(+ ?b ?a)"),
     rw!("commute-mul"; "(* ?a ?b)" => "(* ?b ?a)"),
+
     rw!("add-0"; "(+ ?a 0)" => "?a"),
     rw!("mul-0"; "(* ?a 0)" => "0"),
     rw!("mul-1"; "(* ?a 1)" => "?a"),
 ];
+
 let expr = "(+ 0 (* (+ 4 -3) foo))".parse().unwrap();
 let mut runner = Runner::<SimpleMath, ConstantFolding, ()>::default().with_expr(&expr).run(rules);
 let just_foo = runner.egraph.add_expr(&"foo".parse().unwrap());
 assert_eq!(runner.egraph.find(runner.roots[0]), runner.egraph.find(just_foo));
 ```
+
 [`math.rs`]: https://github.com/egraphs-good/egg/blob/main/tests/math.rs
 [`prop.rs`]: https://github.com/egraphs-good/egg/blob/main/tests/prop.rs
- */
+*/
 pub trait Analysis<L: Language>: Sized {
     /// The per-[`EClass`] data for this analysis.
     type Data: Debug;
 
-    /// Makes a new [`Analysis`] for a given enode
-    /// [`Analysis`].
+    /// Makes a new [`Analysis`] data for a given e-node.
     ///
-    fn make(egraph: &EGraph<L, Self>, enode: &L) -> Self::Data;
+    /// Note the mutable `egraph` parameter: this is needed for some
+    /// advanced use cases, but most use cases will not need to mutate
+    /// the e-graph in any way.
+    /// It is **not** `make`'s responsiblity to insert the e-node;
+    /// the e-node is "being inserted" when this function is called.
+    /// Doing so will create an infinite loop.
+    ///
+    /// Note that `enode`'s children may not be canonical
+    fn make(egraph: &mut EGraph<L, Self>, enode: &L) -> Self::Data;
 
     /// An optional hook that allows inspection before a [`union`] occurs.
     /// When explanations are enabled, it gives two ids that represent the two particular terms being unioned, not the canonical ids for the two eclasses.
@@ -731,7 +769,7 @@ pub trait Analysis<L: Language>: Sized {
 
 impl<L: Language> Analysis<L> for () {
     type Data = ();
-    fn make(_egraph: &EGraph<L, Self>, _enode: &L) -> Self::Data {}
+    fn make(_egraph: &mut EGraph<L, Self>, _enode: &L) -> Self::Data {}
     fn merge(&mut self, _: &mut Self::Data, _: Self::Data) -> DidMerge {
         DidMerge(false, false)
     }
@@ -812,6 +850,12 @@ impl SymbolLang {
 }
 
 impl Language for SymbolLang {
+    type Discriminant = Symbol;
+
+    fn discriminant(&self) -> Self::Discriminant {
+        self.op
+    }
+
     fn matches(&self, other: &Self) -> bool {
         self.op == other.op && self.len() == other.len()
     }

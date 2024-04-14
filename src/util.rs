@@ -1,4 +1,4 @@
-use std::fmt;
+use std::{fmt, iter::FromIterator};
 use symbolic_expressions::Sexp;
 
 use fmt::{Debug, Display, Formatter};
@@ -118,20 +118,20 @@ impl<T: Display> Debug for DisplayAsDebug<T> {
 /** A data structure to maintain a queue of unique elements.
 
 Notably, insert/pop operations have O(1) expected amortized runtime complexity.
- */
+*/
 #[derive(Clone)]
 #[cfg_attr(feature = "serde-1", derive(Serialize, Deserialize))]
 pub(crate) struct UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     set: hashbrown::HashSet<T>,
     queue: std::collections::VecDeque<T>,
 }
 
 impl<T> Default for UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     fn default() -> Self {
         UniqueQueue {
@@ -142,8 +142,8 @@ impl<T> Default for UniqueQueue<T>
 }
 
 impl<T> UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     pub fn insert(&mut self, t: T) {
         if self.set.insert(t.clone()) {
@@ -152,8 +152,8 @@ impl<T> UniqueQueue<T>
     }
 
     pub fn extend<I>(&mut self, iter: I)
-        where
-            I: IntoIterator<Item = T>,
+    where
+        I: IntoIterator<Item = T>,
     {
         for t in iter.into_iter() {
             self.insert(t);
@@ -170,5 +170,31 @@ impl<T> UniqueQueue<T>
         let r = self.queue.is_empty();
         debug_assert_eq!(r, self.set.is_empty());
         r
+    }
+}
+
+impl<T> IntoIterator for UniqueQueue<T>
+where
+    T: Eq + std::hash::Hash + Clone,
+{
+    type Item = T;
+
+    type IntoIter = <std::collections::VecDeque<T> as IntoIterator>::IntoIter;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.queue.into_iter()
+    }
+}
+
+impl<A> FromIterator<A> for UniqueQueue<A>
+where
+    A: Eq + std::hash::Hash + Clone,
+{
+    fn from_iter<T: IntoIterator<Item = A>>(iter: T) -> Self {
+        let mut queue = UniqueQueue::default();
+        for t in iter {
+            queue.insert(t);
+        }
+        queue
     }
 }

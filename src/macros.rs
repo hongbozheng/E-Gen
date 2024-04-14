@@ -2,18 +2,27 @@
 use crate::*;
 
 /** A macro to easily create a [`Language`].
+
 `define_language` derives `Debug`, `PartialEq`, `Eq`, `PartialOrd`, `Ord`,
 `Hash`, and `Clone` on the given `enum` so it can implement [`Language`].
 The macro also implements [`Display`] and [`FromOp`] for the `enum`
 based on either the data of variants or the provided strings.
+
 The final variant **must have a trailing comma**; this is due to limitations in
 macro parsing.
+
+The language discriminant will use the cases of the enum (the enum discriminant).
+
 See [`LanguageChildren`] for acceptable types of children `Id`s.
+
 Note that you can always implement [`Language`] yourself by just not using this
 macro.
+
 Presently, the macro does not support data variant with children, but that may
 be added later.
+
 # Example
+
 The following macro invocation shows the the accepted forms of variants:
 ```
 # use egg::*;
@@ -21,18 +30,22 @@ define_language! {
     enum SimpleLanguage {
         // string variant with no children
         "pi" = Pi,
+
         // string variants with an array of child `Id`s (any static size)
         // any type that implements LanguageChildren may be used here
         "+" = Add([Id; 2]),
         "-" = Sub([Id; 2]),
         "*" = Mul([Id; 2]),
+
         // can also do a variable number of children in a boxed slice
         // this will only match if the lengths are the same
         "list" = List(Box<[Id]>),
+
         // string variants with a single child `Id`
         // note that this is distinct from `Sub`, even though it has the same
         // string, because it has a different number of children
         "-"  = Neg(Id),
+
         // data variants with a single field
         // this field must implement `FromStr` and `Display`
         Num(i32),
@@ -46,8 +59,9 @@ define_language! {
     }
 }
 ```
+
 [`Display`]: std::fmt::Display
- **/
+**/
 #[macro_export]
 macro_rules! define_language {
     ($(#[$meta:meta])* $vis:vis enum $name:ident $variants:tt) => {
@@ -67,6 +81,13 @@ macro_rules! __define_language {
         $vis enum $name $decl
 
         impl $crate::Language for $name {
+            type Discriminant = std::mem::Discriminant<Self>;
+
+            #[inline(always)]
+            fn discriminant(&self) -> Self::Discriminant {
+                std::mem::discriminant(self)
+            }
+
             #[inline(always)]
             fn matches(&self, other: &Self) -> bool {
                 ::std::mem::discriminant(self) == ::std::mem::discriminant(other) &&
@@ -188,23 +209,29 @@ macro_rules! __define_language {
 }
 
 /** A macro to easily make [`Rewrite`]s.
+
 The `rewrite!` macro greatly simplifies creating simple, purely
 syntactic rewrites while also allowing more complex ones.
+
 This panics if [`Rewrite::new`](Rewrite::new()) fails.
+
 The simplest form `rewrite!(a; b => c)` creates a [`Rewrite`]
 with name `a`, [`Searcher`] `b`, and [`Applier`] `c`.
 Note that in the `b` and `c` position, the macro only accepts a single
 token tree (see the [macros reference][macro] for more info).
 In short, that means you should pass in an identifier, literal, or
 something surrounded by parentheses or braces.
+
 If you pass in a literal to the `b` or `c` position, the macro will
 try to parse it as a [`Pattern`] which implements both [`Searcher`]
 and [`Applier`].
+
 The macro also accepts any number of `if <expr>` forms at the end,
 where the given expression should implement [`Condition`].
 For each of these, the macro will wrap the given applier in a
 [`ConditionalApplier`] with the given condition, with the first condition being
 the outermost, and the last condition being the innermost.
+
 # Example
 ```
 # use egg::*;
@@ -219,22 +246,29 @@ define_language! {
         "/" = Div([Id; 2]),
     }
 }
+
 type EGraph = egg::EGraph<SimpleLanguage, ()>;
+
 let mut rules: Vec<Rewrite<SimpleLanguage, ()>> = vec![
     rewrite!("commute-add"; "(+ ?a ?b)" => "(+ ?b ?a)"),
     rewrite!("commute-mul"; "(* ?a ?b)" => "(* ?b ?a)"),
+
     rewrite!("mul-0"; "(* ?a 0)" => "0"),
+
     rewrite!("silly"; "(* ?a 1)" => { MySillyApplier("foo") }),
+
     rewrite!("something_conditional";
              "(/ ?a ?b)" => "(* ?a (/ 1 ?b))"
              if is_not_zero("?b")),
 ];
+
 // rewrite! supports bidirectional rules too
 // it returns a Vec of length 2, so you need to concat
 rules.extend(vec![
     rewrite!("add-0"; "(+ ?a 0)" <=> "?a"),
     rewrite!("mul-1"; "(* ?a 1)" <=> "?a"),
 ].concat());
+
 #[derive(Debug)]
 struct MySillyApplier(&'static str);
 impl Applier<SimpleLanguage, ()> for MySillyApplier {
@@ -242,15 +276,20 @@ impl Applier<SimpleLanguage, ()> for MySillyApplier {
         panic!()
     }
 }
+
 // This returns a function that implements Condition
 fn is_not_zero(var: &'static str) -> impl Fn(&mut EGraph, Id, &Subst) -> bool {
     let var = var.parse().unwrap();
     let zero = SimpleLanguage::Num(0);
+    // note this check is just an example,
+    // checking for the absence of 0 is insufficient since 0 could be merged in later
+    // see https://github.com/egraphs-good/egg/issues/297
     move |egraph, _, subst| !egraph[subst[var]].nodes.contains(&zero)
 }
 ```
+
 [macro]: https://doc.rust-lang.org/stable/reference/macros-by-example.html#metavariables
- **/
+**/
 #[macro_export]
 macro_rules! rewrite {
     (
@@ -278,10 +317,12 @@ macro_rules! rewrite {
 }
 
 /** A macro to easily make [`Rewrite`]s using [`MultiPattern`]s.
+
 Similar to the [`rewrite!`] macro,
 this macro uses the form `multi_rewrite!(name; multipattern => multipattern)`.
 String literals will be parsed a [`MultiPattern`]s.
- **/
+
+**/
 #[macro_export]
 macro_rules! multi_rewrite {
     // limited multipattern support
