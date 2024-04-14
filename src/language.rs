@@ -61,9 +61,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// Runs a falliable function on each child, stopping if the function returns
     /// an error.
     fn try_for_each<E, F>(&self, mut f: F) -> Result<(), E>
-    where
-        F: FnMut(Id) -> Result<(), E>,
-        E: Clone,
+        where
+            F: FnMut(Id) -> Result<(), E>,
+            E: Clone,
     {
         self.fold(Ok(()), |res, id| res.and_then(|_| f(id)))
     }
@@ -94,9 +94,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
 
     /// Folds over the children, given an initial accumulator.
     fn fold<F, T>(&self, init: T, mut f: F) -> T
-    where
-        F: FnMut(T, Id) -> T,
-        T: Clone,
+        where
+            F: FnMut(T, Id) -> T,
+            T: Clone,
     {
         let mut acc = init;
         self.for_each(|id| acc = f(acc.clone(), id));
@@ -130,9 +130,9 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// assert_eq!(recexpr, "(* (+ a 2) (+ a 2))".parse().unwrap())
     /// ```
     fn join_recexprs<F, Expr>(&self, mut child_recexpr: F) -> RecExpr<Self>
-    where
-        F: FnMut(Id) -> Expr,
-        Expr: AsRef<[Self]>,
+        where
+            F: FnMut(Id) -> Expr,
+            Expr: AsRef<[Self]>,
     {
         fn build<L: Language>(to: &mut RecExpr<L>, from: &[L]) -> Id {
             let last = from.last().unwrap().clone();
@@ -170,8 +170,8 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
     /// assert_eq!(expr, expr2)
     /// ```
     fn build_recexpr<F>(&self, mut get_node: F) -> RecExpr<Self>
-    where
-        F: FnMut(Id) -> Self,
+        where
+            F: FnMut(Id) -> Self,
     {
         self.try_build_recexpr::<_, std::convert::Infallible>(|id| Ok(get_node(id)))
             .unwrap()
@@ -179,8 +179,8 @@ pub trait Language: Debug + Clone + Eq + Ord + Hash {
 
     /// Same as [`Language::build_recexpr`], but fallible.
     fn try_build_recexpr<F, Err>(&self, mut get_node: F) -> Result<RecExpr<Self>, Err>
-    where
-        F: FnMut(Id) -> Result<Self, Err>,
+        where
+            F: FnMut(Id) -> Result<Self, Err>,
     {
         let mut set = IndexSet::<Self>::default();
         let mut ids = HashMap::<Id, Id>::default();
@@ -383,8 +383,8 @@ pub struct RecExpr<L> {
 #[cfg(feature = "serde-1")]
 impl<L: Language + Display> serde::Serialize for RecExpr<L> {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
+        where
+            S: serde::Serializer,
     {
         let s = self.to_sexp().to_string();
         serializer.serialize_str(&s)
@@ -697,7 +697,7 @@ assert_eq!(runner.egraph.find(runner.roots[0]), runner.egraph.find(just_foo));
 
 [`math.rs`]: https://github.com/egraphs-good/egg/blob/main/tests/math.rs
 [`prop.rs`]: https://github.com/egraphs-good/egg/blob/main/tests/prop.rs
-*/
+ */
 pub trait Analysis<L: Language>: Sized {
     /// The per-[`EClass`] data for this analysis.
     type Data: Debug;

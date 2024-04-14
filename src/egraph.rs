@@ -49,7 +49,7 @@ You must call [`EGraph::rebuild`] after deserializing an e-graph!
 [dot]: Dot
 [extract]: Extractor
 [sound]: https://itinerarium.github.io/phoneme-synthesis/?w=/'igraf/
-**/
+ **/
 #[derive(Clone)]
 #[cfg_attr(feature = "serde-1", derive(Serialize, Deserialize))]
 pub struct EGraph<L: Language, N: Analysis<L>> {
@@ -70,11 +70,11 @@ pub struct EGraph<L: Language, N: Analysis<L>> {
     pending: Vec<Id>,
     analysis_pending: UniqueQueue<Id>,
     #[cfg_attr(
-        feature = "serde-1",
-        serde(bound(
-            serialize = "N::Data: Serialize",
-            deserialize = "N::Data: for<'a> Deserialize<'a>",
-        ))
+    feature = "serde-1",
+    serde(bound(
+    serialize = "N::Data: Serialize",
+    deserialize = "N::Data: for<'a> Deserialize<'a>",
+    ))
     )]
     pub(crate) classes: HashMap<Id, EClass<L, N::Data>>,
     #[cfg_attr(feature = "serde-1", serde(skip))]
@@ -600,9 +600,9 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
 /// Translates `EGraph<L, A>` into `EGraph<L2, A2>`. For common cases, you don't
 /// need to implement this manually. See the provided [`SimpleLanguageMapper`].
 pub trait LanguageMapper<L, A>
-where
-    L: Language,
-    A: Analysis<L>,
+    where
+        L: Language,
+        A: Analysis<L>,
 {
     /// The target language to translate into.
     type L2: Language;
@@ -771,13 +771,13 @@ impl<L, A> Default for SimpleLanguageMapper<L, A> {
 }
 
 impl<L, A, L2, A2> LanguageMapper<L, A> for SimpleLanguageMapper<L2, A2>
-where
-    L: Language,
-    A: Analysis<L>,
-    L2: Language + From<L>,
-    A2: Analysis<L2> + From<A>,
-    <L2 as Language>::Discriminant: From<<L as Language>::Discriminant>,
-    <A2 as Analysis<L2>>::Data: From<<A as Analysis<L>>::Data>,
+    where
+        L: Language,
+        A: Analysis<L>,
+        L2: Language + From<L>,
+        A2: Analysis<L2> + From<A>,
+        <L2 as Language>::Discriminant: From<<L as Language>::Discriminant>,
+        <A2 as Analysis<L2>>::Data: From<<A as Analysis<L>>::Data>,
 {
     type L2 = L2;
     type A2 = A2;
@@ -947,15 +947,15 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
     /// assert_eq!(node_f_ab, SymbolLang::new("f", vec![a, a]));
     /// ```
     pub fn lookup<B>(&self, enode: B) -> Option<Id>
-    where
-        B: BorrowMut<L>,
+        where
+            B: BorrowMut<L>,
     {
         self.lookup_internal(enode).map(|id| self.find(id))
     }
 
     fn lookup_internal<B>(&self, mut enode: B) -> Option<Id>
-    where
-        B: BorrowMut<L>,
+        where
+            B: BorrowMut<L>,
     {
         let enode = enode.borrow_mut();
         enode.update_children(|id| self.find(id));
