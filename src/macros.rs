@@ -11,6 +11,8 @@ based on either the data of variants or the provided strings.
 The final variant **must have a trailing comma**; this is due to limitations in
 macro parsing.
 
+The language discriminant will use the cases of the enum (the enum discriminant).
+
 See [`LanguageChildren`] for acceptable types of children `Id`s.
 
 Note that you can always implement [`Language`] yourself by just not using this
@@ -79,6 +81,13 @@ macro_rules! __define_language {
         $vis enum $name $decl
 
         impl $crate::Language for $name {
+            type Discriminant = std::mem::Discriminant<Self>;
+
+            #[inline(always)]
+            fn discriminant(&self) -> Self::Discriminant {
+                std::mem::discriminant(self)
+            }
+
             #[inline(always)]
             fn matches(&self, other: &Self) -> bool {
                 ::std::mem::discriminant(self) == ::std::mem::discriminant(other) &&
@@ -272,6 +281,9 @@ impl Applier<SimpleLanguage, ()> for MySillyApplier {
 fn is_not_zero(var: &'static str) -> impl Fn(&mut EGraph, Id, &Subst) -> bool {
     let var = var.parse().unwrap();
     let zero = SimpleLanguage::Num(0);
+    // note this check is just an example,
+    // checking for the absence of 0 is insufficient since 0 could be merged in later
+    // see https://github.com/egraphs-good/egg/issues/297
     move |egraph, _, subst| !egraph[subst[var]].nodes.contains(&zero)
 }
 ```

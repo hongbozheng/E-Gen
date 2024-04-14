@@ -101,7 +101,7 @@ pub use {
     ctx_gr::ContextGrammar,
     dot::Dot,
     eclass::EClass,
-    egraph::EGraph,
+    egraph::{EGraph, LanguageMapper, SimpleLanguageMapper},
     explain::{
         Explanation, FlatExplanation, FlatTerm, Justification, TreeExplanation, TreeTerm,
         UnionEqualities,
