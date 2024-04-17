@@ -64,7 +64,8 @@ def parse_int(lst):
     balanced = False
     val = 0
     # if first token is INT+ or INT-
-    if not (balanced and lst[0] == 'INT' or base >= 2 and lst[0] in ['INT+', 'INT-'] or base <= -2 and lst[0] == 'INT'):
+    if not (balanced and lst[0] == 'INT' or base >= 2 and
+            lst[0] in ['INT+', 'INT-'] or base <= -2 and lst[0] == 'INT'):
         raise Exception(f"Invalid integer in prefix expression")
     i = 0
     for x in lst[1:]:
@@ -119,8 +120,14 @@ def write_infix(token, args):
         return f'({args[0]})**4'
     elif token == 'pow5':
         return f'({args[0]})**5'
-    elif token in ['sign', 'sqrt', 'exp', 'ln', 'sin', 'cos', 'tan', 'cot', 'sec', 'csc', 'asin', 'acos', 'atan',
-                   'acot', 'asec', 'acsc', 'sinh', 'cosh', 'tanh', 'coth', 'sech', 'csch', 'asinh', 'acosh', 'atanh',
+    elif token in ['sign', 'sqrt', 'exp', 'ln',
+                   'sin', 'cos', 'tan',
+                   'csc', 'sec', 'cot',
+                   'sinh', 'cosh', 'tanh',
+                   'csch', 'sech', 'coth',
+                   'asin', 'acos', 'atan',
+                   'acsc', 'asec', 'acot',
+                   'asinh', 'acosh', 'atanh',
                    'acoth', 'asech', 'acsch']:
         return f'{token}({args[0]})'
     elif token == 'd':
@@ -155,8 +162,10 @@ def _prefix_to_infix(expr):
             i1, l1 = _prefix_to_infix(l1)
             args.append(i1)
         return write_infix(t, args), l1
-    # if t is variable 'x' or coefficient 'a1', 'a2'... , or constant "pi", "E", or 'I'
-    elif t in VARIABLES or t in COEFFICIENTS or t in config.CONSTANTS or t == 'I':
+    # if t is variable 'x' or coefficient 'a1', 'a2'... ,
+    # or constant "pi", "E", or 'I'
+    elif (t in VARIABLES or t in COEFFICIENTS or t in config.CONSTANTS
+          or t == 'I'):
         return t, expr[1:]
     # else when t is INT+ INT-
     else:
@@ -179,18 +188,27 @@ def get_sympy_local_dict() -> dict:
 def prefix_to_sympy(expr, evaluate=True):
     p, r = prefix_to_infix(expr)
     if len(r) > 0:
-        raise Exception(f"Incorrect prefix expression \"{expr}\". \"{r}\" was not parsed.")
+        raise Exception(
+            f"Incorrect prefix expression \"{expr}\". \"{r}\" was not parsed."
+        )
 
     local_dict = get_sympy_local_dict()
-    expr = sp.parsing.sympy_parser.parse_expr(f'({p})', evaluate=evaluate, local_dict=local_dict)
+    expr = sp.parsing.sympy_parser.parse_expr(
+        s=f'({p})',
+        evaluate=evaluate,
+        local_dict=local_dict
+    )
     return expr
 
 
 def check_domain(expr: str, secs: int) -> bool:
     @timeout(secs=secs)
     def _cont_domain(expr: Expr, symbol: Symbol):
-        return continuous_domain(f=expr, symbol=symbol,
-                                 domain=Interval(start=0, end=10, left_open=True, right_open=False))
+        return continuous_domain(
+            f=expr,
+            symbol=symbol,
+            domain=Interval(start=0, end=10, left_open=True, right_open=False)
+        )
 
     x = VARIABLES['x']
 

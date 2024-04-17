@@ -24,7 +24,9 @@ def preprocess(
     pathname = os.path.join(equiv_exprs_dir, "*.txt")
     filepaths = glob.glob(pathname=pathname)
 
-    filepaths = [filepath for filepath in filepaths if not filepath.endswith("_time.txt")]
+    filepaths = [
+        filepath for filepath in filepaths if not filepath.endswith("_time.txt")
+    ]
     filepaths.sort()
 
     exprs = set()
@@ -36,7 +38,10 @@ def preprocess(
     progbar = tqdm.tqdm(iterable=filepaths)
 
     for filepath in progbar:
-        progbar.set_description(desc=f"[INFO]: Processing file '{filepath}'", refresh=True)
+        progbar.set_description(
+            desc=f"[INFO]: Processing file '{filepath}'",
+            refresh=True
+        )
 
         file = open(file=filepath, mode='r')
 
@@ -73,8 +78,13 @@ def preprocess(
         file.close()
 
         if equiv_exprs:
-            logger.log_error(f"'{filepath}' file is missing a '\\n' character at the end of the file!")
-            logger.log_error(f"Make sure all equiv_exprs_*.txt files have 2 '\\n' characters at the end of the file!")
+            logger.log_error(
+                f"'{filepath}' file is missing a '\\n' character at the end of "
+                f"the file!"
+            )
+            logger.log_error(
+                f"Make sure all equiv_exprs_*.txt files have 2 '\\n' "
+                f"characters at the end of the file!")
             logger.log_error("Operation aborted.")
             exit(1)
 
@@ -95,33 +105,68 @@ def preprocess(
 
 def main() -> None:
     if os.path.exists(path=config.EQUIV_EXPRS_RAW_FILEPATH):
-        logger.log_error(f"'{config.EQUIV_EXPRS_RAW_FILEPATH}' file already exists!")
-        logger.log_error(f"Make sure to delete '{config.EQUIV_EXPRS_RAW_FILEPATH}' file first.")
+        logger.log_error(
+            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}' file already exists!"
+        )
+        logger.log_error(
+            f"Make sure to delete '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
+            f"file first."
+        )
         logger.log_error("Operation aborted.")
         exit(1)
 
-    parser = argparse.ArgumentParser(prog="preprocess",
-                                     description="remove repetitive original expressions and their equivalent "
-                                                 "expressions from generated equivalent expressions .txt files "
-                                                 "under a folder")
-    parser.add_argument("--equiv_exprs_dir", "-d", type=str, required=True, help="Equivalent expressions directory")
-    parser.add_argument("--refactor", "-r", action="store_true", default=False, required=False,
-                        help="Whether to refactor the expressions")
-    parser.add_argument("--verify", "-v", action="store_true", default=False, required=False,
-                        help="Whether to verify the domain of the expressions")
+    parser = argparse.ArgumentParser(
+        prog="preprocess",
+        description="remove repetitive original expressions and their "
+                    "equivalent expressions from generated equivalent "
+                    "expressions .txt files under a folder")
+    parser.add_argument(
+        "--equiv_exprs_dir",
+        "-d",
+        type=str,
+        required=True,
+        help="Equivalent expressions directory"
+    )
+    parser.add_argument(
+        "--refactor",
+        "-r",
+        action="store_true",
+        default=False,
+        required=False,
+        help="Whether to refactor the expressions"
+    )
+    parser.add_argument(
+        "--verify",
+        "-v",
+        action="store_true",
+        default=False,
+        required=False,
+        help="Whether to verify the domain of the expressions"
+    )
 
     args = parser.parse_args()
     equiv_exprs_dir = args.equiv_exprs_dir
     refactor = args.refactor
     verify = args.verify
 
-    logger.log_info(f"Creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
-                    f"'{config.DUPLICATES_FILEPATH}', and '{config.INVALIDS_FILEPATH}'...")
-    preprocess(equiv_exprs_dir=equiv_exprs_dir, refactor=refactor, verify=verify, secs=2,
-               invalids_filepath=config.INVALIDS_FILEPATH, equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
-               duplicates_filepath=config.DUPLICATES_FILEPATH, exprs_filepath=config.EXPRS_FILEPATH)
-    logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
-                    f"'{config.DUPLICATES_FILEPATH}', and '{config.INVALIDS_FILEPATH}'.")
+    logger.log_info(f"Creating files '{config.EXPRS_FILEPATH}', "
+                    f"'{config.EQUIV_EXPRS_RAW_FILEPATH}' "
+                    f"'{config.DUPLICATES_FILEPATH}', and "
+                    f"'{config.INVALIDS_FILEPATH}'...")
+    preprocess(
+        equiv_exprs_dir=equiv_exprs_dir,
+        refactor=refactor,
+        verify=verify,
+        secs=2,
+        invalids_filepath=config.INVALIDS_FILEPATH,
+        equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
+        duplicates_filepath=config.DUPLICATES_FILEPATH,
+        exprs_filepath=config.EXPRS_FILEPATH
+    )
+    logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', "
+                    f"'{config.EQUIV_EXPRS_RAW_FILEPATH}' "
+                    f"'{config.DUPLICATES_FILEPATH}', and "
+                    f"'{config.INVALIDS_FILEPATH}'.")
 
     return
 

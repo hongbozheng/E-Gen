@@ -28,7 +28,9 @@ def ref_expr(expr: str) -> str:
         elif token == '-':
             tokens[i] = "sub"
         elif '.' in token:
-            fraction = Fraction(token).limit_denominator(max_denominator=config.N_DENOMINATOR_DIGITS)
+            fraction = Fraction(token).limit_denominator(
+                max_denominator=config.N_DENOMINATOR_DIGITS
+            )
             numerator = ref_int(s=str(fraction.numerator))
             denominator = ref_int(s=str(fraction.denominator))
             tokens[i] = f"div {numerator} {denominator}"
