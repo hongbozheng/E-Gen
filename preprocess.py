@@ -50,17 +50,18 @@ def preprocess(
         for line in file:
             expr = line.strip()
 
-            if expr and expr not in equiv_exprs:
-                if refactor and not verify:
-                    expr = ref_expr(expr=expr)
-                elif verify:
-                    expr = ref_expr(expr=expr)
-                    if check_domain(expr=expr, secs=secs):
-                        equiv_exprs.append(expr)
-                    else:
-                        invalids_file.write(f"{expr}\n")
-                        continue
-                equiv_exprs.append(expr)
+            if expr:
+                if expr not in equiv_exprs:
+                    if refactor and not verify:
+                        expr = ref_expr(expr=expr)
+                    elif verify:
+                        expr = ref_expr(expr=expr)
+                        if check_domain(expr=expr, secs=secs):
+                            equiv_exprs.append(expr)
+                        else:
+                            invalids_file.write(f"{expr}\n")
+                            continue
+                    equiv_exprs.append(expr)
 
             else:
                 if len(equiv_exprs) == 1:
@@ -70,6 +71,7 @@ def preprocess(
                     exprs.add(equiv_exprs[0])
                     for expr in equiv_exprs:
                         equiv_exprs_file.write(f"{expr}\n")
+                    equiv_exprs_file.write("\n")
                 else:
                     duplicates_file.write(f"{equiv_exprs[0]}\n")
 
