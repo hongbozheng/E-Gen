@@ -91,7 +91,18 @@ The script will create the following 5 `.txt` files (depends on the cli(s) provi
 2. `equiv_exprs_raw.txt` - This file contains all the distinct generated equivalent expressions
 3. `duplicates.txt` - This file contains all the repetitive original expressions
 4. `invalids.txt` - This file contains all the expressions with invalid domain
-5. `equiv_exprs_filtered.txt` - This file contains all the filtered generated equivalent expressions
+5. `equiv_exprs_filtered.txt` - This file contains all the filtered equivalent expressions
+
+#### Statistics
+##### Check command line input help
+```
+./stats.py -h
+```
+##### Calculate dataset statistics
+```
+./stats.py -f <filter>
+```
+- `<filter>` - flag to indicate whether to calculate statistics of filtered equivalent expressions
 
 [//]: # (#### Create Dataset)
 
@@ -160,28 +171,6 @@ The script will create the following 5 `.txt` files (depends on the cli(s) provi
 
 [//]: # (```)
 
-[//]: # ()
-[//]: # (#### Statistics)
-
-[//]: # (##### Check command line input help)
-
-[//]: # (```)
-
-[//]: # (./stats.py -h)
-
-[//]: # (```)
-
-[//]: # (##### Calculate dataset statistics)
-
-[//]: # (```)
-
-[//]: # (./stats.py -d <dataset_dir>)
-
-[//]: # (```)
-
-[//]: # (- `<dataset_dir>` - dataset directory)
-
-[//]: # ()
 [//]: # (#### Create Train, Validation, and Test Sets)
 
 [//]: # (##### Check command line input help)
