@@ -69,6 +69,9 @@ MATH_OPERATORS = {
 }
 CONSTANTS = ["pi", "e"]
 SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
+N = 3
+TOL = 1e-5
+SECS = 2
 
 
 # ===================================
@@ -102,18 +105,19 @@ N_EXPRS = {
     "op_d_6": 50,
     "op_d_8": 50,
 }
-N_OPS = 3
+N_OPS_PER_EXPR = 3
+
+
+# ===================================
+# filter
+# ===================================
+N_OPS = 10000
 
 
 # ===================================
 # filepath
 # ===================================
 DATA_DIR = "data"
-DATA_RAW_DIR = DATA_DIR + "/raw"
-DATA_FILTERED_DIR = DATA_DIR + "/filtered"
-DATA_VERIFIED_DIR = DATA_DIR + "/verified"
-DATA_INCORRECT_DIR = DATA_DIR + "/incorrect"
-FUND_EXPRS_DIR = DATA_DIR + "/fund_exprs"
 
 # preprocess
 INVALIDS_FILEPATH = DATA_DIR + "/invalids.txt"
@@ -123,6 +127,10 @@ DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
 
 # filter
 EQUIV_EXPRS_FILTERED_FILEPATH = DATA_DIR + "/equiv_exprs_filtered.txt"
+
+# expr pairs
+EXPR_PAIRS_FILEPATH = DATA_DIR + "/expr_pairs.txt"
+INCORRECTS_FILEPATH = DATA_DIR + "/incorrects.txt"
 
 # split
 EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"

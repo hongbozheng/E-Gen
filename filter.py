@@ -1,4 +1,6 @@
 import editdistance
+from proc_exprs import _n_lines
+from tqdm import tqdm
 
 
 def _category(expr: str) -> str:
@@ -67,19 +69,25 @@ def _filter(
         return exprs
 
 
-def filter(
-        equiv_exprs_raw_filepath: str,
+def filter_exprs(
         n_exprs: dict,
         operators: list[str],
         n_ops: int,
+        equiv_exprs_raw_filepath: str,
         equiv_exprs_filtered_filepath: str,
 ) -> None:
     raw_file = open(file=equiv_exprs_raw_filepath, mode='r')
     filtered_file = open(file=equiv_exprs_filtered_filepath, mode='w')
 
+    n_lines = _n_lines(filepath=equiv_exprs_raw_filepath)
+
     equiv_exprs = []
 
-    for line in raw_file:
+    for line in tqdm(
+            iterable=raw_file,
+            desc=f"[INFO]: Reading file '{equiv_exprs_raw_filepath}'",
+            total=n_lines,
+    ):
         expr = line.strip()
 
         if expr:
