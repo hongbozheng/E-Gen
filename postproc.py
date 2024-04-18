@@ -4,6 +4,7 @@
 import argparse
 import config
 import logger
+import os
 from proc_exprs import postproc
 
 
@@ -23,27 +24,37 @@ def main():
     args = parser.parse_args()
     verify = args.verify
 
-    if verify:
-        logger.log_info(f"Verifying expression pairs and creating file "
-                        f"'{config.EXPR_PAIRS_FILEPATH}'...")
-    else:
-        logger.log_info(f"Creating file '{config.EXPR_PAIRS_FILEPATH}'...")
+    if not os.path.exists(path=config.EXPR_PAIRS_FILEPATH):
+        if verify:
+            logger.log_info(f"Verifying expression pairs and creating file "
+                            f"'{config.EXPR_PAIRS_FILEPATH}'...")
+        else:
+            logger.log_info(f"Creating file '{config.EXPR_PAIRS_FILEPATH}'...")
 
-    postproc(
-        verify=verify,
-        n=config.N,
-        tol=config.TOL,
-        secs=config.SECS,
-        equiv_exprs_filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
-        expr_pairs_filepath=config.EXPR_PAIRS_FILEPATH,
-        incorrects_filepath=config.INCORRECTS_FILEPATH,
-    )
+        postproc(
+            verify=verify,
+            n=config.N,
+            tol=config.TOL,
+            secs=config.SECS,
+            equiv_exprs_filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
+            expr_pairs_filepath=config.EXPR_PAIRS_FILEPATH,
+            incorrects_filepath=config.INCORRECTS_FILEPATH,
+        )
 
-    if verify:
-        logger.log_info(f"Finish verifying expression pairs and creating file "
-                        f"'{config.EXPR_PAIRS_FILEPATH}'.")
+        if verify:
+            logger.log_info(
+                f"Finish verifying expression pairs and creating file "
+                f"'{config.EXPR_PAIRS_FILEPATH}'."
+            )
+        else:
+            logger.log_info(
+                f"Finish creating file '{config.EXPR_PAIRS_FILEPATH}'."
+            )
     else:
-        logger.log_info(f"Finish creating file '{config.EXPR_PAIRS_FILEPATH}'.")
+        logger.log_info(
+            f"File '{config.EXPR_PAIRS_FILEPATH}' "
+            f"already exists!"
+        )
 
     return
 

@@ -54,10 +54,12 @@ def main() -> None:
     filter = args.filter
 
     if not os.path.exists(path=config.EQUIV_EXPRS_RAW_FILEPATH):
-        logger.log_info(f"Creating files '{config.EXPRS_FILEPATH}', "
-                        f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
-                        f"'{config.DUPLICATES_FILEPATH}', and "
-                        f"'{config.INVALIDS_FILEPATH}'...")
+        logger.log_info(
+            f"Creating files '{config.EXPRS_FILEPATH}', "
+            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
+            f"'{config.DUPLICATES_FILEPATH}', and "
+            f"'{config.INVALIDS_FILEPATH}'..."
+        )
 
         preproc(
             equiv_exprs_dir=equiv_exprs_dir,
@@ -70,18 +72,22 @@ def main() -> None:
             exprs_filepath=config.EXPRS_FILEPATH,
         )
 
-        logger.log_info(f"Finish creating files '{config.EXPRS_FILEPATH}', "
-                        f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
-                        f"'{config.DUPLICATES_FILEPATH}', and "
-                        f"'{config.INVALIDS_FILEPATH}'...")
+        logger.log_info(
+            f"Finish creating files '{config.EXPRS_FILEPATH}', "
+            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
+            f"'{config.DUPLICATES_FILEPATH}', and "
+            f"'{config.INVALIDS_FILEPATH}'..."
+        )
     else:
-        logger.log_error(f"File '{config.EQUIV_EXPRS_RAW_FILEPATH}' "
-                         f"already exists!")
+        logger.log_info(
+            f"File '{config.EQUIV_EXPRS_RAW_FILEPATH}' already exists!"
+        )
 
     if filter:
         if not os.path.exists(config.EQUIV_EXPRS_FILTERED_FILEPATH):
-            logger.log_info(f"Filtering file "
-                            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}'...")
+            logger.log_info(
+                f"Filtering file '{config.EQUIV_EXPRS_RAW_FILEPATH}'..."
+            )
             filter_exprs(
                 n_exprs=config.N_EXPRS,
                 operators=config.OPERATORS,
@@ -90,11 +96,15 @@ def main() -> None:
                 equiv_exprs_filtered_filepath=
                 config.EQUIV_EXPRS_FILTERED_FILEPATH,
             )
-            logger.log_info(f"Finish creating file "
-                            f"'{config.EQUIV_EXPRS_FILTERED_FILEPATH}'.")
+            logger.log_info(
+                f"Finish creating file "
+                f"'{config.EQUIV_EXPRS_FILTERED_FILEPATH}'."
+            )
         else:
-            logger.log_info(f"File '{config.EQUIV_EXPRS_FILTERED_FILEPATH}'"
-                            f" already exists!")
+            logger.log_info(
+                f"File '{config.EQUIV_EXPRS_FILTERED_FILEPATH}' "
+                f"already exists!"
+            )
 
     return
 
