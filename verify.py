@@ -1,5 +1,6 @@
 import config
 import logger
+import numpy as np
 import sympy as sp
 from collections import OrderedDict
 from sympy import Expr, Interval, S, Symbol
@@ -228,3 +229,179 @@ def check_domain(expr: str, secs: int) -> bool:
         return False
 
     return True
+
+
+def verify_pair(
+        expr_pair: tuple[str, str],
+        n: int,
+        tol: float,
+        secs: int,
+) -> bool:
+    @timeout(secs=secs)
+    def _simplify(expr: Expr) -> Expr:
+        return sp.simplify(expr=expr)
+
+    @timeout(secs=secs)
+    def _cont_domain(expr: Expr, symbol: Symbol):
+        return continuous_domain(
+            f=expr,
+            symbol=symbol,
+            domain=Interval(start=0, end=10, left_open=True, right_open=False)
+        )
+
+    @timeout(secs=secs*2)
+    def _check_equiv(
+            x: Symbol,
+            expr: Expr,
+            start: float,
+            end: float,
+            n: int,
+            tol: float
+    ) -> bool:
+        rand_nums = np.random.uniform(low=start, high=end, size=n)
+        for num in rand_nums:
+            val = expr.subs(x, num).evalf()
+            if val > tol:
+                return False
+
+        return True
+
+    @timeout(secs=secs*2)
+    def _check_equiv_compl(
+            x: Symbol,
+            expr: Expr,
+            start: float,
+            end: float,
+            n: int,
+            tol: float
+    ) -> bool:
+        i = 0
+        while i < n:
+            rand_num = np.random.uniform(low=start, high=end, size=1)
+            val = expr.subs(x, rand_num).evalf()
+            if val in S.Reals:
+                if val > tol:
+                    return False
+                i += 1
+
+        return True
+
+    x = VARIABLES['x']
+
+    try:
+        expr_0 = prefix_to_sympy(expr=expr_pair[0])
+        expr_1 = prefix_to_sympy(expr=expr_pair[1])
+    except Exception as e:
+        logger.log_error(
+            f"prefix_to_sympy exception {e}; "
+            f"{expr_pair[0]} & {expr_pair[1]}"
+        )
+        return False
+    try:
+        expr_0 = _simplify(expr=expr_0)
+        expr_1 = _simplify(expr=expr_1)
+    except Exception as e:
+        logger.log_error(
+            f"simplify exception {e}; "
+            f"{expr_pair[0]} & {expr_pair[1]}"
+        )
+        return False
+
+    expr = expr_0 - expr_1
+
+    if expr == 0:
+        logger.log_debug(
+            f" simplify  , equivalent    ; "
+            f"{expr_pair[0]} & {expr_pair[1]}"
+        )
+        equiv = True
+    else:
+        try:
+            domain = _cont_domain(expr=expr, symbol=x)
+            try:
+                if isinstance(domain, sp.sets.sets.Union):
+                    if isinstance(domain.args[0], sp.sets.sets.Complement):
+                        case = "Union-Comp"
+                        equiv = _check_equiv_compl(
+                            x=x,
+                            expr=expr,
+                            start=1,
+                            end=10,
+                            n=n,
+                            tol=tol
+                        )
+                    else:
+                        case = "Union"
+                        start = float(domain.args[0].start)
+                        end = float(domain.args[0].end)
+                        equiv = _check_equiv(
+                            x=x,
+                            expr=expr,
+                            start=start,
+                            end=end,
+                            n=n,
+                            tol=tol
+                        )
+                    if equiv:
+                        logger.log_debug(
+                            f" {case:<10}, equivalent    ; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                    else:
+                        logger.log_error(
+                            f"{case:<10}, non-equivalent; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                elif isinstance(domain, sp.sets.sets.Complement):
+                    case = "Complement"
+                    equiv = _check_equiv_compl(
+                        x=x,
+                        expr=expr,
+                        start=1,
+                        end=10,
+                        n=n,
+                        tol=tol
+                    )
+                    if equiv:
+                        logger.log_debug(
+                            f" {case:<10}, equivalent    ; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                    else:
+                        logger.log_error(
+                            f"{case:<10}, non-equivalent; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                elif isinstance(domain, sp.sets.sets.Interval):
+                    case = "Interval"
+                    start = float(domain.start)
+                    end = float(domain.end)
+                    equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                    if equiv:
+                        logger.log_debug(
+                            f" {case:<10}, equivalent    ; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                    else:
+                        logger.log_error(
+                            f"{case:<10}, non-equivalent; "
+                            f"{expr_pair[0]} & {expr_pair[1]}"
+                        )
+                else:
+                    logger.log_error(f"Invalid domain type {domain}")
+                    equiv = False
+
+            except Exception as e:
+                logger.log_error(
+                    f"eval exception {e}; "
+                    f"{expr_pair[0]} & {expr_pair[1]}"
+                )
+                equiv = False
+        except Exception as e:
+            logger.log_error(
+                f"continuous domain exception {e}; "
+                f"{expr_pair[0]} & {expr_pair[1]}"
+            )
+            equiv = False
+
+    return equiv
