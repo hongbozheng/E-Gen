@@ -1,5 +1,9 @@
 import logger
 
+
+# ===================================
+# fund expr
+# ===================================
 OPERATORS = ["ln",
              "sin", "cos", "tan",
              "csc", "sec", "cot",
@@ -9,9 +13,12 @@ OPERATORS = ["ln",
              "csch", "sech", "coth",
              "asinh", "acosh", "atanh",
              "acsch", "asech", "acoth",]
-
 CATEGORIES = ["general", "d",]
 
+
+# ===================================
+# sympy verify
+# ===================================
 MATH_OPERATORS = {
     # Elementary functions
     "add": 2,
@@ -63,6 +70,44 @@ MATH_OPERATORS = {
 CONSTANTS = ["pi", "e"]
 SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
 
+
+# ===================================
+# refactor
+# ===================================
+N_DENOMINATOR_DIGITS = 17
+
+
+# ===================================
+# filter
+# ===================================
+N_EXPRS = {
+    "poly_1": 50,
+    "poly_3": 50,
+    "poly_5": 50,
+    "poly_7": 50,
+    "poly_9": 50,
+    "poly_11": 50,
+    "poly_d_1": 50,
+    "poly_d_3": 50,
+    "poly_d_5": 50,
+    "poly_d_7": 50,
+    "poly_d_9": 50,
+    "poly_d_11": 50,
+    "op_2": 50,
+    "op_4": 50,
+    "op_6": 50,
+    "op_8": 50,
+    "op_d_2": 50,
+    "op_d_4": 50,
+    "op_d_6": 50,
+    "op_d_8": 50,
+}
+N_OPS = 3
+
+
+# ===================================
+# filepath
+# ===================================
 DATA_DIR = "data"
 DATA_RAW_DIR = DATA_DIR + "/raw"
 DATA_FILTERED_DIR = DATA_DIR + "/filtered"
@@ -84,6 +129,9 @@ EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"
 EXPRS_VAL_FILEPATH = DATA_DIR + "/exprs_val.txt"
 EXPRS_TEST_FILEPATH = DATA_DIR + "/exprs_test.txt"
 
+
+# ===================================
+# hyperparameter
+# ===================================
 SEED = 42
-N_DENOMINATOR_DIGITS = 17
 LOG_LEVEL = logger.LogLevel.INFO

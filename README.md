@@ -69,84 +69,137 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Generate Dataset (Python)
-#### Preprocess
+#### Process Expressions
 ##### Check command line input help
 ```
-./preprocess.py -h
+./proc_exprs.py -h
 ```
-##### Preprocess (deduplicate & refactor & verify)
-1. Make sure all generated equivalent expressions `.txt` files have 2 `'\n'` characters at the end of the file
+##### Preprocess (deduplicate & refactor & verify) & Filter
+1. Make sure all generated equivalent expressions `.txt` files (`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file
 2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
-3. Then rename them to be `equiv_exprs_<index>.txt`. For example, `equiv_exprs_0.txt`, `equiv_exprs_1.txt`,
-`equiv_exprs_2.txt`, ...
-4. Run the following command-line application
+3. Run the following command-line application
 ```
-./preprocess -d <equiv_exprs_dir> -r <refactor> -v <verify>
+./proc_exprs -d <equiv_exprs_dir> -r <refactor> -v <verify> -f <filter>
 ```
 - `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
 - `<refactor>` - flag to indicate whether to refactor the expressions
 - `<verify>` - flag to indicate whether to verify the expressions
+- `<filter>` - flag to indicate whether to filter the expressions
 
-The script will create the following three `.txt` files
+The script will create the following 5 `.txt` files (depends on the cli(s) provided)
 1. `exprs.txt` - This file contains all the distinct generated original expressions
-2. `equiv_exprs.txt` - This file contains all the distinct generated equivalent expressions
+2. `equiv_exprs_raw.txt` - This file contains all the distinct generated equivalent expressions
 3. `duplicates.txt` - This file contains all the repetitive original expressions
 4. `invalids.txt` - This file contains all the expressions with invalid domain
+5. `equiv_exprs_filtered.txt` - This file contains all the filtered generated equivalent expressions
 
-#### Create Dataset
-##### Check command line input help
-```
-./create_dataset.py -h
-```
-##### Create raw dataset
-Splitting all equivalent expression pairs into different classes & categories
-```
-./create_dataset.py
-```
-##### Create filtered dataset
-1. Remove expressions with `0` equivalent expressions
-2. Filter the ones with more than `<n_exprs>` equivalent
-expressions
-3. Create equivalent expression pairs
-4. Classify all equivalent expression pairs into different classes & categories
-```
-./create_dataset.py -f <filter> -n <n_exprs>
-```
-- `<filter>` - flag to indicate whether to filter all generated equivalent expressions
-- `<n_exprs>` - number of expressions to keep
+[//]: # (#### Create Dataset)
 
-#### Verify Dataset
-##### Check command line input help
-```
-./verify.py -h
-```
-##### Verify dataset & Create verified dataset
-1. Verify if an expression pair is equivalent **(Note: Verification is time consuming)**
-2. Create verified dataset
-3. Create incorrect dataset
-```
-./verify.py
-```
+[//]: # (##### Check command line input help)
 
-#### Statistics
-##### Check command line input help
-```
-./stats.py -h
-```
-##### Calculate dataset statistics
-```
-./stats.py -d <dataset_dir>
-```
-- `<dataset_dir>` - dataset directory
+[//]: # (```)
 
-#### Create Train, Validation, and Test Sets
-##### Check command line input help
-```
-./split.py -h
-```
-##### Split dataset into train, validation, and test sets
-```
-./split.py -t <test_pct> -v <val_pct>
-```
-- `<test_pct>` - test set percentage
-- `<val_pct>` - validation set percentage
+[//]: # (./create_dataset.py -h)
+
+[//]: # (```)
+
+[//]: # (##### Create raw dataset)
+
+[//]: # (Splitting all equivalent expression pairs into different classes & categories)
+
+[//]: # (```)
+
+[//]: # (./create_dataset.py)
+
+[//]: # (```)
+
+[//]: # (##### Create filtered dataset)
+
+[//]: # (1. Remove expressions with `0` equivalent expressions)
+
+[//]: # (2. Filter the ones with more than `<n_exprs>` equivalent)
+
+[//]: # (expressions)
+
+[//]: # (3. Create equivalent expression pairs)
+
+[//]: # (4. Classify all equivalent expression pairs into different classes & categories)
+
+[//]: # (```)
+
+[//]: # (./create_dataset.py -f <filter> -n <n_exprs>)
+
+[//]: # (```)
+
+[//]: # (- `<filter>` - flag to indicate whether to filter all generated equivalent expressions)
+
+[//]: # (- `<n_exprs>` - number of expressions to keep)
+
+[//]: # ()
+[//]: # (#### Verify Dataset)
+
+[//]: # (##### Check command line input help)
+
+[//]: # (```)
+
+[//]: # (./verify.py -h)
+
+[//]: # (```)
+
+[//]: # (##### Verify dataset & Create verified dataset)
+
+[//]: # (1. Verify if an expression pair is equivalent **&#40;Note: Verification is time consuming&#41;**)
+
+[//]: # (2. Create verified dataset)
+
+[//]: # (3. Create incorrect dataset)
+
+[//]: # (```)
+
+[//]: # (./verify.py)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (#### Statistics)
+
+[//]: # (##### Check command line input help)
+
+[//]: # (```)
+
+[//]: # (./stats.py -h)
+
+[//]: # (```)
+
+[//]: # (##### Calculate dataset statistics)
+
+[//]: # (```)
+
+[//]: # (./stats.py -d <dataset_dir>)
+
+[//]: # (```)
+
+[//]: # (- `<dataset_dir>` - dataset directory)
+
+[//]: # ()
+[//]: # (#### Create Train, Validation, and Test Sets)
+
+[//]: # (##### Check command line input help)
+
+[//]: # (```)
+
+[//]: # (./split.py -h)
+
+[//]: # (```)
+
+[//]: # (##### Split dataset into train, validation, and test sets)
+
+[//]: # (```)
+
+[//]: # (./split.py -t <test_pct> -v <val_pct>)
+
+[//]: # (```)
+
+[//]: # (- `<test_pct>` - test set percentage)
+
+[//]: # (- `<val_pct>` - validation set percentage)
