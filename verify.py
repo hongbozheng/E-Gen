@@ -204,11 +204,16 @@ def prefix_to_sympy(expr, evaluate=True):
 
 def check_domain(expr: str, secs: int) -> bool:
     @timeout(secs=secs)
-    def _cont_domain(expr: Expr, symbol: Symbol):
+    def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
         return continuous_domain(
             f=expr,
             symbol=symbol,
-            domain=Interval(start=0, end=10, left_open=True, right_open=False)
+            domain=Interval(
+                start=start,
+                end=end,
+                left_open=True,
+                right_open=False
+            )
         )
 
     x = VARIABLES['x']
@@ -233,6 +238,8 @@ def check_domain(expr: str, secs: int) -> bool:
 
 def verify_pair(
         expr_pair: tuple[str, str],
+        start: float,
+        end: float,
         n: int,
         tol: float,
         secs: int,
@@ -242,11 +249,16 @@ def verify_pair(
         return sp.simplify(expr=expr)
 
     @timeout(secs=secs)
-    def _cont_domain(expr: Expr, symbol: Symbol):
+    def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
         return continuous_domain(
             f=expr,
             symbol=symbol,
-            domain=Interval(start=0, end=10, left_open=True, right_open=False)
+            domain=Interval(
+                start=start,
+                end=end,
+                left_open=True,
+                right_open=False
+            )
         )
 
     @timeout(secs=secs*2)
@@ -325,20 +337,18 @@ def verify_pair(
                         equiv = _check_equiv_compl(
                             x=x,
                             expr=expr,
-                            start=1,
-                            end=10,
+                            start=start+1,
+                            end=end,
                             n=n,
                             tol=tol
                         )
                     else:
                         case = "Union"
-                        start = float(domain.args[0].start)
-                        end = float(domain.args[0].end)
                         equiv = _check_equiv(
                             x=x,
                             expr=expr,
-                            start=start,
-                            end=end,
+                            start=float(domain.args[0].start),
+                            end=float(domain.args[0].end),
                             n=n,
                             tol=tol
                         )
@@ -357,8 +367,8 @@ def verify_pair(
                     equiv = _check_equiv_compl(
                         x=x,
                         expr=expr,
-                        start=1,
-                        end=10,
+                        start=start+1,
+                        end=end,
                         n=n,
                         tol=tol
                     )
@@ -374,9 +384,14 @@ def verify_pair(
                         )
                 elif isinstance(domain, sp.sets.sets.Interval):
                     case = "Interval"
-                    start = float(domain.start)
-                    end = float(domain.end)
-                    equiv = _check_equiv(x=x, expr=expr, start=start, end=end, n=n, tol=tol)
+                    equiv = _check_equiv(
+                        x=x,
+                        expr=expr,
+                        start=float(domain.start),
+                        end=float(domain.end),
+                        n=n,
+                        tol=tol
+                    )
                     if equiv:
                         logger.log_debug(
                             f" {case:<10}, equivalent    ; "

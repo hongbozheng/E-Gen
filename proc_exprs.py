@@ -1,22 +1,11 @@
 import glob
 import logger
-import mmap
 import os
+from filter import get_n_lines
 from itertools import permutations
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_domain, verify_pair
-
-
-def _n_lines(filepath: str) -> int:
-    fp = open(file=filepath, mode='r+')
-    buf = mmap.mmap(fileno=fp.fileno(), length=0)
-    n_lines = 0
-    while buf.readline():
-        n_lines += 1
-    fp.close()
-
-    return n_lines
 
 
 def preproc(
@@ -111,14 +100,16 @@ def preproc(
 
 def postproc(
         verify: bool,
+        start: float,
+        end: float,
         n: int,
         tol: float,
         secs: int,
         equiv_exprs_filtered_filepath: str,
         expr_pairs_filepath: str,
         incorrects_filepath: str,
-):
-    n_lines = _n_lines(filepath=equiv_exprs_filtered_filepath)
+) -> None:
+    n_lines = get_n_lines(filepath=equiv_exprs_filtered_filepath)
 
     filtered_file = open(file=equiv_exprs_filtered_filepath, mode='r')
     incorrects_file = open(file=incorrects_filepath, mode='w')
@@ -141,6 +132,8 @@ def postproc(
                 if verify:
                     if not verify_pair(
                         expr_pair=expr_pair,
+                        start=start,
+                        end=end,
                         n=n,
                         tol=tol,
                         secs=secs,

@@ -65,7 +65,7 @@ def main() -> None:
             equiv_exprs_dir=equiv_exprs_dir,
             refactor=refactor,
             verify=verify,
-            secs=2,
+            secs=config.SECS,
             invalids_filepath=config.INVALIDS_FILEPATH,
             equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
             duplicates_filepath=config.DUPLICATES_FILEPATH,
@@ -90,11 +90,11 @@ def main() -> None:
             )
             filter_exprs(
                 n_exprs=config.N_EXPRS,
+                seed=config.SEED,
                 operators=config.OPERATORS,
                 n_ops=config.N_OPS_PER_EXPR,
-                equiv_exprs_raw_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
-                equiv_exprs_filtered_filepath=
-                config.EQUIV_EXPRS_FILTERED_FILEPATH,
+                raw_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
+                filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
             )
             logger.log_info(
                 f"Finish creating file "

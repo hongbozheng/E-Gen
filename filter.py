@@ -1,38 +1,32 @@
-import editdistance
-from proc_exprs import _n_lines
+import mmap
+import random
 from tqdm import tqdm
 
 
-def _category(expr: str) -> str:
+def get_n_lines(filepath: str) -> int:
+    fp = open(file=filepath, mode='r+')
+    buf = mmap.mmap(fileno=fp.fileno(), length=0)
+    n_lines = 0
+    while buf.readline():
+        n_lines += 1
+    fp.close()
+
+    return n_lines
+
+
+def _n_exprs(expr: str, n_exprs: dict[str, dict[str, int]]) -> int:
     tokens = expr.replace("INT+ ", "").replace("INT- ", "").split(sep=' ')
 
-    if tokens[0] == 'd':
-        if len(tokens[2:]) in [1, 3, 5, 7, 9, 11]:
-            return f"poly_d_{len(tokens[2:])}"
-        elif len(tokens[2:]) in [2, 4, 6, 8]:
-            return f"op_d_{len(tokens[2:])}"
+    if tokens[0] != 'd':
+        for token in tokens:
+            if token in n_exprs:
+                return n_exprs[token]['general']
+        return n_exprs['poly']['general']
     else:
-        if len(tokens) in [1, 3, 5, 7, 9, 11]:
-            return f"poly_{len(tokens)}"
-        elif len(tokens) in [2, 4, 6, 8]:
-            return f"op_{len(tokens)}"
-
-
-def _edit_dist(orig_expr: str, exprs: list[str], n: int) -> list[str]:
-    idx_dist = []
-
-    for i, expr in enumerate(exprs):
-        dist = editdistance.eval(a=orig_expr, b=expr)
-        idx_dist.append((i, dist))
-
-    idx_dist = sorted(idx_dist, key=lambda x: x[1], reverse=True)
-    idx_dist = idx_dist[:n]
-
-    exprs_filtered = [exprs[i] for (i, _) in idx_dist]
-
-    assert len(exprs_filtered) == n
-
-    return exprs_filtered
+        for token in tokens[2:]:
+            if token in n_exprs:
+                return n_exprs[token]['d']
+        return n_exprs['poly']['d']
 
 
 def _filter(
@@ -58,34 +52,34 @@ def _filter(
     if len(exprs) == n:
         return exprs
     elif len(exprs) > n:
-        exprs = _edit_dist(orig_expr=equiv_exprs[0], exprs=exprs[1:], n=n-1)
+        exprs = random.sample(population=exprs[1:], k=n-1)
         exprs.insert(0, equiv_exprs[0])
         return exprs
     else:
         exprs_op = list(set(equiv_exprs[1:])-set(exprs))
-        k = n-len(exprs)
-        exprs_op = _edit_dist(orig_expr=equiv_exprs[0], exprs=exprs_op, n=k)
+        exprs_op = random.sample(population=exprs_op, k=n-len(exprs))
         exprs.extend(exprs_op)
         return exprs
 
 
 def filter_exprs(
-        n_exprs: dict,
+        n_exprs:  dict[str, dict[str, int]],
+        seed: int,
         operators: list[str],
         n_ops: int,
-        equiv_exprs_raw_filepath: str,
-        equiv_exprs_filtered_filepath: str,
+        raw_filepath: str,
+        filtered_filepath: str,
 ) -> None:
-    raw_file = open(file=equiv_exprs_raw_filepath, mode='r')
-    filtered_file = open(file=equiv_exprs_filtered_filepath, mode='w')
+    random.seed(a=seed)
 
-    n_lines = _n_lines(filepath=equiv_exprs_raw_filepath)
+    n_lines = get_n_lines(filepath=raw_filepath)
+    raw_file = open(file=raw_filepath, mode='r')
 
     equiv_exprs = []
 
     for line in tqdm(
             iterable=raw_file,
-            desc=f"[INFO]: Reading file '{equiv_exprs_raw_filepath}'",
+            desc=f"[INFO]: Reading file '{raw_filepath}'",
             total=n_lines,
     ):
         expr = line.strip()
@@ -97,11 +91,10 @@ def filter_exprs(
                 equiv_exprs = []
                 continue
             else:
-                category = _category(expr=equiv_exprs[0])
-                n = n_exprs[category]
+                n = _n_exprs(expr=equiv_exprs[0], n_exprs=n_exprs)
 
                 if len(equiv_exprs) > n:
-                    if 'd' not in category:
+                    if 'd x' not in equiv_exprs[0]:
                         equiv_exprs = _filter(
                             equiv_exprs=equiv_exprs,
                             operators=operators,
@@ -118,13 +111,14 @@ def filter_exprs(
                             dx=True,
                         )
 
+                filtered_file = open(file=filtered_filepath, mode='a')
                 for expr in equiv_exprs:
                     filtered_file.write(f"{expr}\n")
                 filtered_file.write("\n")
+                filtered_file.close()
 
             equiv_exprs = []
 
     raw_file.close()
-    filtered_file.close()
 
     return

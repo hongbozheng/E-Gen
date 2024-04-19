@@ -69,6 +69,8 @@ MATH_OPERATORS = {
 }
 CONSTANTS = ["pi", "e"]
 SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
+START = 0.0
+END = 10.0
 N = 3
 TOL = 1e-5
 SECS = 2
@@ -84,26 +86,32 @@ N_DENOMINATOR_DIGITS = 17
 # filter
 # ===================================
 N_EXPRS = {
-    "poly_1": 50,
-    "poly_3": 50,
-    "poly_5": 50,
-    "poly_7": 50,
-    "poly_9": 50,
-    "poly_11": 50,
-    "poly_d_1": 50,
-    "poly_d_3": 50,
-    "poly_d_5": 50,
-    "poly_d_7": 50,
-    "poly_d_9": 50,
-    "poly_d_11": 50,
-    "op_2": 50,
-    "op_4": 50,
-    "op_6": 50,
-    "op_8": 50,
-    "op_d_2": 50,
-    "op_d_4": 50,
-    "op_d_6": 50,
-    "op_d_8": 50,
+    "ln":    {'general': 50, 'd': 50},
+    "sin":   {'general': 50, 'd': 50},
+    "cos":   {'general': 50, 'd': 50},
+    "tan":   {'general': 50, 'd': 50},
+    "csc":   {'general': 50, 'd': 50},
+    "sec":   {'general': 50, 'd': 50},
+    "cot":   {'general': 50, 'd': 50},
+    "asin":  {'general': 50, 'd': 50},
+    "acos":  {'general': 50, 'd': 50},
+    "atan":  {'general': 50, 'd': 50},
+    "acsc":  {'general': 50, 'd': 50},
+    "asec":  {'general': 50, 'd': 50},
+    "acot":  {'general': 50, 'd': 50},
+    "sinh":  {'general': 50, 'd': 50},
+    "cosh":  {'general': 50, 'd': 50},
+    "tanh":  {'general': 50, 'd': 50},
+    "csch":  {'general': 50, 'd': 50},
+    "sech":  {'general': 50, 'd': 50},
+    "coth":  {'general': 50, 'd': 50},
+    "asinh": {'general': 50, 'd': 50},
+    "acosh": {'general': 50, 'd': 50},
+    "atnah": {'general': 50, 'd': 50},
+    "acsch": {'general': 50, 'd': 50},
+    "asech": {'general': 50, 'd': 50},
+    "acoth": {'general': 50, 'd': 50},
+    "poly":  {'general': 50, 'd': 50},
 }
 N_OPS_PER_EXPR = 3
 
@@ -111,7 +119,7 @@ N_OPS_PER_EXPR = 3
 # ===================================
 # filter
 # ===================================
-N_OPS = 10000
+N_OPS = 100
 
 
 # ===================================

@@ -33,6 +33,8 @@ def main():
 
         postproc(
             verify=verify,
+            start=config.START,
+            end=config.END,
             n=config.N,
             tol=config.TOL,
             secs=config.SECS,
