@@ -2,7 +2,7 @@ import glob
 import logger
 import os
 from filter import get_n_lines
-from itertools import permutations
+from itertools import combinations, permutations
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_domain, verify_pair
@@ -47,16 +47,16 @@ def preproc(
             expr = line.strip()
 
             if expr:
+                if refactor and not verify:
+                    expr = ref_expr(expr=expr)
+                elif verify:
+                    expr = ref_expr(expr=expr)
+                    if check_domain(expr=expr, secs=secs):
+                        equiv_exprs.append(expr)
+                    else:
+                        invalids_file.write(f"{expr}\n")
+                        continue
                 if expr not in equiv_exprs:
-                    if refactor and not verify:
-                        expr = ref_expr(expr=expr)
-                    elif verify:
-                        expr = ref_expr(expr=expr)
-                        if check_domain(expr=expr, secs=secs):
-                            equiv_exprs.append(expr)
-                        else:
-                            invalids_file.write(f"{expr}\n")
-                            continue
                     equiv_exprs.append(expr)
             else:
                 if equiv_exprs[0] not in exprs:
@@ -105,20 +105,20 @@ def postproc(
         n: int,
         tol: float,
         secs: int,
-        equiv_exprs_filtered_filepath: str,
+        filtered_filepath: str,
         expr_pairs_filepath: str,
         incorrects_filepath: str,
 ) -> None:
-    n_lines = get_n_lines(filepath=equiv_exprs_filtered_filepath)
+    n_lines = get_n_lines(filepath=filtered_filepath)
 
-    filtered_file = open(file=equiv_exprs_filtered_filepath, mode='r')
+    filtered_file = open(file=filtered_filepath, mode='r')
     incorrects_file = open(file=incorrects_filepath, mode='w')
 
     exprs = []
 
     for line in tqdm(
             iterable=filtered_file,
-            desc=f"[INFO]: Reading file '{equiv_exprs_filtered_filepath}'",
+            desc=f"[INFO]: Reading file '{filtered_filepath}'",
             total=n_lines,
     ):
         expr = line.strip()
@@ -126,11 +126,13 @@ def postproc(
         if expr:
             exprs.append(expr)
         else:
-            expr_pairs = list(permutations(iterable=exprs, r=2))
-            expr_pairs_file = open(file=expr_pairs_filepath, mode='a')
-            for expr_pair in expr_pairs:
-                if verify:
-                    if not verify_pair(
+            if verify:
+                pairs = list(combinations(iterable=exprs, r=2))
+
+                expr_pairs = []
+
+                for expr_pair in pairs:
+                    if verify_pair(
                         expr_pair=expr_pair,
                         start=start,
                         end=end,
@@ -138,13 +140,18 @@ def postproc(
                         tol=tol,
                         secs=secs,
                     ):
+                        expr_pairs.append(expr_pair)
+                    else:
                         incorrects_file.write(
                             f"{expr_pair[0]}\t{expr_pair[1]}\n"
                         )
-                        continue
-                expr_pairs_file.write(
-                    f"{expr_pair[0]}\t{expr_pair[1]}\n"
-                )
+            else:
+                expr_pairs = list(combinations(iterable=exprs, r=2))
+
+            expr_pairs_file = open(file=expr_pairs_filepath, mode='a')
+            for expr_pair in expr_pairs:
+                expr_pairs_file.write(f"{expr_pair[0]}\t{expr_pair[1]}\n")
+                expr_pairs_file.write(f"{expr_pair[1]}\t{expr_pair[0]}\n")
             expr_pairs_file.write("\n")
             expr_pairs_file.close()
 

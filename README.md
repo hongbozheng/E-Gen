@@ -69,17 +69,17 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 
 ## Generate Dataset (Python)
-#### Process Expressions
+#### Preprocess
 ##### Check command line input help
 ```
-./proc_exprs.py -h
+./preproc.py -h
 ```
-##### Preprocess (deduplicate & refactor & verify) & Filter
+##### Deduplicate & Refactor & Verify (domain) & Filter
 1. Make sure all generated equivalent expressions `.txt` files (`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file
 2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
 3. Run the following command-line application
 ```
-./proc_exprs -d <equiv_exprs_dir> -r <refactor> -v <verify> -f <filter>
+./preproc -d <equiv_exprs_dir> -r <refactor> -v <verify> -f <filter>
 ```
 - `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
 - `<refactor>` - flag to indicate whether to refactor the expressions
@@ -92,6 +92,17 @@ The script will create the following 5 `.txt` files (depends on the cli(s) provi
 3. `duplicates.txt` - This file contains all the repetitive original expressions
 4. `invalids.txt` - This file contains all the expressions with invalid domain
 5. `equiv_exprs_filtered.txt` - This file contains all the filtered equivalent expressions
+
+#### Postprocess (For Train Set Only)
+##### Check command line input help
+```
+./postproc.py -h
+```
+##### Create Expression Pairs & Verify Equivalence
+```
+./postproc.py -v <verify>
+```
+- `<verify>` - flag to indicate whether to verify the expression pairs
 
 #### Statistics
 ##### Check command line input help

@@ -38,7 +38,7 @@ def main():
             n=config.N,
             tol=config.TOL,
             secs=config.SECS,
-            equiv_exprs_filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
+            filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
             expr_pairs_filepath=config.EXPR_PAIRS_FILEPATH,
             incorrects_filepath=config.INCORRECTS_FILEPATH,
         )
