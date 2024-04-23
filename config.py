@@ -127,6 +127,9 @@ N_OPS = 100
 # ===================================
 DATA_DIR = "data"
 
+# fund exprs
+FUND_EXPRS_DIR = DATA_DIR + "/fund_exprs"
+
 # preprocess
 INVALIDS_FILEPATH = DATA_DIR + "/invalids.txt"
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
