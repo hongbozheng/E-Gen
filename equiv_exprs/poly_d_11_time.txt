@@ -1,0 +1,1653 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 1.88s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_0.txt -o ../data/poly_d_11_0_gen.txt`
+[INFO]: Expression: (d x (+ (pow (+ (* 2 x) 5) -4) (* 7 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  34
+[INFO]: Total # of e-node(s):    159
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2720
+[INFO]: Total # of expression(s) after  postprocessing: 64
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (pow (+ (* 9 x) -6) 7) (/ x 8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  29
+[INFO]: Total # of e-node(s):    154
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 296
+[INFO]: Total # of expression(s) after  postprocessing: 15
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (pow (+ (/ x 4) 2) 9) (* 5 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  32
+[INFO]: Total # of e-node(s):    152
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 384
+[INFO]: Total # of expression(s) after  postprocessing: 16
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (pow (+ (/ x -7) 6) 9) (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  30
+[INFO]: Total # of e-node(s):    170
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 100
+[INFO]: Total # of expression(s) after  postprocessing: 10
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (pow (- (* -4 x) 8) -4) (* 7 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  44
+[INFO]: Total # of e-node(s):    301
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6616
+[INFO]: Total # of expression(s) after  postprocessing: 208
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (+ (pow (- (* -3 x) -2) -4) (/ x 8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  59
+[INFO]: Total # of e-node(s):    662
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3568
+[INFO]: Total # of expression(s) after  postprocessing: 174
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (+ (pow (- (/ x 5) -2) 8) (* 2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  61
+[INFO]: Total # of e-node(s):    698
+[INFO]: Total # of init expr(s): 18
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6272
+[INFO]: Total # of expression(s) after  postprocessing: 212
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (pow (- (/ x -8) 5) 9) (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  54
+[INFO]: Total # of e-node(s):    579
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 188s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 484
+[INFO]: Total # of expression(s) after  postprocessing: 60
+[INFO]: Total run time: 188s
+
+[INFO]: Expression: (d x (- (pow (+ (* 6 x) 3) -3) (* -9 x)))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  164
+[INFO]: Total # of e-node(s):    2469
+[INFO]: Total # of init expr(s): 30
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (- (pow (+ (* -2 x) -2) 5) (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1797
+[INFO]: Total # of e-node(s):    6704
+[INFO]: Total # of init expr(s): 42
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (pow (+ (/ x -7) -5) 7) (* 4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  537
+[INFO]: Total # of e-node(s):    4008
+[INFO]: Total # of init expr(s): 29
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3
+[INFO]: Total # of expression(s) after  postprocessing: 2
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (- (pow (+ (/ x -8) -3) -7) (/ x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1809
+[INFO]: Total # of e-node(s):    6549
+[INFO]: Total # of init expr(s): 47
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (pow (- (* 9 x) 2) 6) (* -4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1655
+[INFO]: Total # of e-node(s):    6682
+[INFO]: Total # of init expr(s): 50
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (pow (- (* -3 x) -7) -2) (/ x 4)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1199
+[INFO]: Total # of e-node(s):    5878
+[INFO]: Total # of init expr(s): 39
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (pow (- (/ x -7) 3) -5) (* -4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  550
+[INFO]: Total # of e-node(s):    3287
+[INFO]: Total # of init expr(s): 30
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (pow (- (/ x -9) -9) 7) (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1281
+[INFO]: Total # of e-node(s):    6514
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (* 4 (pow (+ x 5) -5)) (* 4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  41
+[INFO]: Total # of e-node(s):    242
+[INFO]: Total # of init expr(s): 10
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1504
+[INFO]: Total # of expression(s) after  postprocessing: 68
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (* 9 (pow (+ x 7) 9)) (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  32
+[INFO]: Total # of e-node(s):    181
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 400
+[INFO]: Total # of expression(s) after  postprocessing: 22
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (* 8 (pow (- x 9) -7)) (* 3 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  73
+[INFO]: Total # of e-node(s):    754
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 64089
+[INFO]: Total # of expression(s) after  postprocessing: 944
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (* -5 (pow (- x 6) 8)) (/ x -9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  65
+[INFO]: Total # of e-node(s):    662
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 156s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 17080
+[INFO]: Total # of expression(s) after  postprocessing: 455
+[INFO]: Total run time: 157s
+
+[INFO]: Expression: (d x (+ (/ (pow (+ x -9) -9) -2) (* -5 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  39
+[INFO]: Total # of e-node(s):    211
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1336
+[INFO]: Total # of expression(s) after  postprocessing: 42
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (+ (/ (pow (+ x -5) 7) 4) (/ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  32
+[INFO]: Total # of e-node(s):    187
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 328
+[INFO]: Total # of expression(s) after  postprocessing: 14
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (/ (pow (- x -2) -4) 7) (* -4 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  72
+[INFO]: Total # of e-node(s):    799
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 16724
+[INFO]: Total # of expression(s) after  postprocessing: 428
+[INFO]: Total run time: 301s
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.12s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_1.txt -o ../data/poly_d_11_1_gen.txt`
+[INFO]: Expression: (d x (+ (/ (pow (- x 3) 5) -6) (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  58
+[INFO]: Total # of e-node(s):    641
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 131s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3409
+[INFO]: Total # of expression(s) after  postprocessing: 111
+[INFO]: Total run time: 132s
+
+[INFO]: Expression: (d x (- (* 2 (pow (+ x -3) -3)) (* -7 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  713
+[INFO]: Total # of e-node(s):    6176
+[INFO]: Total # of init expr(s): 42
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 24
+[INFO]: Total # of expression(s) after  postprocessing: 6
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (- (* 8 (pow (+ x 8) -8)) (/ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1408
+[INFO]: Total # of e-node(s):    6064
+[INFO]: Total # of init expr(s): 42
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* -6 (pow (- x 9) 7)) (* 9 x)))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1849
+[INFO]: Total # of e-node(s):    7464
+[INFO]: Total # of init expr(s): 70
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 24
+[INFO]: Total # of expression(s) after  postprocessing: 3
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (- (* -8 (pow (- x 6) 6)) (/ x 6)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1943
+[INFO]: Total # of e-node(s):    6775
+[INFO]: Total # of init expr(s): 42
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (/ (pow (+ x 2) 7) -9) (* 8 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  996
+[INFO]: Total # of e-node(s):    5517
+[INFO]: Total # of init expr(s): 46
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (+ x -8) -8) -3) (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1632
+[INFO]: Total # of e-node(s):    5996
+[INFO]: Total # of init expr(s): 46
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (- x -7) -9) -3) (* -2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1640
+[INFO]: Total # of e-node(s):    6075
+[INFO]: Total # of init expr(s): 33
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6
+[INFO]: Total # of expression(s) after  postprocessing: 4
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (- x -9) -9) 5) (/ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  842
+[INFO]: Total # of e-node(s):    4620
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (* -8 (pow (* 6 x) -7)) (* -5 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  121
+[INFO]: Total # of e-node(s):    1032
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 8s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 58672
+[INFO]: Total # of expression(s) after  postprocessing: 570
+[INFO]: Total run time: 9s
+
+[INFO]: Expression: (d x (+ (* -7 (pow (* -3 x) 2)) (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  59
+[INFO]: Total # of e-node(s):    406
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 11528
+[INFO]: Total # of expression(s) after  postprocessing: 182
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (+ (* -7 (pow (/ x 6) 9)) (* -9 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  98
+[INFO]: Total # of e-node(s):    962
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 7s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 15432
+[INFO]: Total # of expression(s) after  postprocessing: 74
+[INFO]: Total run time: 7s
+
+[INFO]: Expression: (d x (+ (* 3 (pow (/ x -3) -8)) (/ x 8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  86
+[INFO]: Total # of e-node(s):    737
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 10s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 13624
+[INFO]: Total # of expression(s) after  postprocessing: 485
+[INFO]: Total run time: 10s
+
+[INFO]: Expression: (d x (+ (/ (pow (* -9 x) 7) -6) (* -7 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  75
+[INFO]: Total # of e-node(s):    628
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 3s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 18776
+[INFO]: Total # of expression(s) after  postprocessing: 70
+[INFO]: Total run time: 3s
+
+[INFO]: Expression: (d x (+ (/ (pow (* -7 x) -3) 7) (/ x 6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  116
+[INFO]: Total # of e-node(s):    1219
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 14s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 15862
+[INFO]: Total # of expression(s) after  postprocessing: 335
+[INFO]: Total run time: 15s
+
+[INFO]: Expression: (d x (+ (/ (pow (/ x 5) -5) -5) (* 6 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2064
+[INFO]: Total # of e-node(s):    5495
+[INFO]: Total # of init expr(s): 40
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (+ (/ (pow (/ x -2) 4) 7) (/ x 6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  81
+[INFO]: Total # of e-node(s):    845
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 8s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3408
+[INFO]: Total # of expression(s) after  postprocessing: 90
+[INFO]: Total run time: 8s
+
+[INFO]: Expression: (d x (- (* -2 (pow (* 7 x) 2)) (* 3 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  616
+[INFO]: Total # of e-node(s):    4733
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12496
+[INFO]: Total # of expression(s) after  postprocessing: 463
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* -4 (pow (* 4 x) -9)) (/ x -6)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  889
+[INFO]: Total # of e-node(s):    5426
+[INFO]: Total # of init expr(s): 37
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (* 3 (pow (/ x 4) 3)) (* -2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1394
+[INFO]: Total # of e-node(s):    5435
+[INFO]: Total # of init expr(s): 43
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* 2 (pow (/ x 9) -5)) (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  864
+[INFO]: Total # of e-node(s):    5165
+[INFO]: Total # of init expr(s): 31
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (* 8 x) -3) 8) (* -8 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  675
+[INFO]: Total # of e-node(s):    4633
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1783
+[INFO]: Total # of expression(s) after  postprocessing: 181
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (* -8 x) 3) -8) (/ x 3)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  779
+[INFO]: Total # of e-node(s):    5122
+[INFO]: Total # of init expr(s): 40
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+    Finished dev [unoptimized + debuginfo] target(s) in 1.58s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_2.txt -o ../data/poly_d_11_2_gen.txt`
+[INFO]: Expression: (d x (- (/ (pow (/ x 8) -6) -4) (* -6 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  652
+[INFO]: Total # of e-node(s):    4511
+[INFO]: Total # of init expr(s): 29
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 297
+[INFO]: Total # of expression(s) after  postprocessing: 34
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (- (/ (pow (/ x 7) 4) -3) (/ x -7)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  876
+[INFO]: Total # of e-node(s):    5588
+[INFO]: Total # of init expr(s): 40
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (* 2 (+ (* -2 (pow x -3)) (* -6 x))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  39
+[INFO]: Total # of e-node(s):    248
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 3s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 11834
+[INFO]: Total # of expression(s) after  postprocessing: 301
+[INFO]: Total run time: 3s
+
+[INFO]: Expression: (d x (* -5 (+ (* -3 (pow x 5)) (/ x 7))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  39
+[INFO]: Total # of e-node(s):    217
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 576
+[INFO]: Total # of expression(s) after  postprocessing: 22
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (* -7 (+ (/ (pow x 6) 2) (* 6 x))))
+[INFO]: E-graph saturation time: 5s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1590
+[INFO]: Total # of e-node(s):    4669
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 911
+[INFO]: Total # of expression(s) after  postprocessing: 22
+[INFO]: Total run time: 305s
+
+[INFO]: Expression: (d x (* -8 (+ (/ (pow x -6) 5) (/ x -9))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  46
+[INFO]: Total # of e-node(s):    287
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 596
+[INFO]: Total # of expression(s) after  postprocessing: 28
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (* 8 (- (* 2 (pow x -5)) (* 5 x))))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  452
+[INFO]: Total # of e-node(s):    3090
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 5935
+[INFO]: Total # of expression(s) after  postprocessing: 361
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (* 2 (- (* -3 (pow x -7)) (/ x -3))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  503
+[INFO]: Total # of e-node(s):    3477
+[INFO]: Total # of init expr(s): 81
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1693
+[INFO]: Total # of expression(s) after  postprocessing: 165
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (* 9 (- (/ (pow x 4) -9) (* -8 x))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  58
+[INFO]: Total # of e-node(s):    549
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 213s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 40216
+[INFO]: Total # of expression(s) after  postprocessing: 279
+[INFO]: Total run time: 214s
+
+[INFO]: Expression: (d x (* -4 (- (/ (pow x 7) -4) (/ x 2))))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1111
+[INFO]: Total # of e-node(s):    5077
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (+ (* -2 (pow x -8)) (* 9 x)) -8))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  267
+[INFO]: Total # of e-node(s):    3485
+[INFO]: Total # of init expr(s): 12
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 886
+[INFO]: Total # of expression(s) after  postprocessing: 96
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (+ (* -6 (pow x 8)) (/ x -8)) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  63
+[INFO]: Total # of e-node(s):    508
+[INFO]: Total # of init expr(s): 11
+[INFO]: Expression extraction time: 2s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2592
+[INFO]: Total # of expression(s) after  postprocessing: 58
+[INFO]: Total run time: 2s
+
+[INFO]: Expression: (d x (/ (+ (/ (pow x 2) -5) (* 8 x)) 2))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  915
+[INFO]: Total # of e-node(s):    4525
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 22490
+[INFO]: Total # of expression(s) after  postprocessing: 360
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (+ (/ (pow x 5) 6) (/ x 7)) -4))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  64
+[INFO]: Total # of e-node(s):    547
+[INFO]: Total # of init expr(s): 11
+[INFO]: Expression extraction time: 3s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2060
+[INFO]: Total # of expression(s) after  postprocessing: 75
+[INFO]: Total run time: 3s
+
+[INFO]: Expression: (d x (/ (- (* 4 (pow x -3)) (* 5 x)) -5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  600
+[INFO]: Total # of e-node(s):    4202
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 4300
+[INFO]: Total # of expression(s) after  postprocessing: 323
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (/ (- (* 8 (pow x -4)) (/ x -6)) 7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  485
+[INFO]: Total # of e-node(s):    4342
+[INFO]: Total # of init expr(s): 78
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (/ (- (/ (pow x 2) -2) (* -2 x)) -3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1181
+[INFO]: Total # of e-node(s):    4280
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3700
+[INFO]: Total # of expression(s) after  postprocessing: 196
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (- (/ (pow x -3) -2) (/ x 3)) -4))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1565
+[INFO]: Total # of e-node(s):    5891
+[INFO]: Total # of init expr(s): 19
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 43
+[INFO]: Total # of expression(s) after  postprocessing: 17
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (* -6 (+ (pow x 5) (* 3 x))) -9))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  38
+[INFO]: Total # of e-node(s):    183
+[INFO]: Total # of init expr(s): 9
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 264
+[INFO]: Total # of expression(s) after  postprocessing: 16
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (* 9 (+ (pow x 3) (/ x -2))) 7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  38
+[INFO]: Total # of e-node(s):    233
+[INFO]: Total # of init expr(s): 9
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 392
+[INFO]: Total # of expression(s) after  postprocessing: 28
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (* -4 (- (pow x 9) (* 6 x))) -8))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  837
+[INFO]: Total # of e-node(s):    5307
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 254
+[INFO]: Total # of expression(s) after  postprocessing: 48
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (+ (* 6 (- (pow x 7) (/ x -7))) -3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1801
+[INFO]: Total # of e-node(s):    5996
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 48
+[INFO]: Total # of expression(s) after  postprocessing: 11
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (+ (/ (+ (pow x -8) (* -5 x)) 3) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  64
+[INFO]: Total # of e-node(s):    598
+[INFO]: Total # of init expr(s): 13
+[INFO]: Expression extraction time: 2s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2538
+[INFO]: Total # of expression(s) after  postprocessing: 140
+[INFO]: Total run time: 2s
+
+   Compiling egg v0.9.5 (/home/suyuan2/dfs2)
+    Finished dev [unoptimized + debuginfo] target(s) in 26.48s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_5.txt -o ../data/poly_d_11_5_gen.txt`
+[INFO]: Expression: (d x (+ (* -7 (pow (- (/ x 3) 3) 5)) 6))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1401
+[INFO]: Total # of e-node(s):    8827
+[INFO]: Total # of init expr(s): 1543
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 206
+[INFO]: Total # of expression(s) after  postprocessing: 15
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (/ (pow (+ (* 7 x) -3) 8) -5) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  35
+[INFO]: Total # of e-node(s):    190
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 3s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2176
+[INFO]: Total # of expression(s) after  postprocessing: 22
+[INFO]: Total run time: 3s
+
+[INFO]: Expression: (d x (+ (/ (pow (+ (/ x 2) -6) -4) -2) 8))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  533
+[INFO]: Total # of e-node(s):    3958
+[INFO]: Total # of init expr(s): 73
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (/ (pow (- (* -8 x) 9) -5) -2) 3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1994
+[INFO]: Total # of e-node(s):    6039
+[INFO]: Total # of init expr(s): 110
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 300s
+
+[INFO]: Expression: (d x (+ (/ (pow (- (/ x 9) 9) -3) 2) -5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1544
+[INFO]: Total # of e-node(s):    5642
+[INFO]: Total # of init expr(s): 192
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (* -2 (pow (+ (* 8 x) 9) -8)) 9))
+[INFO]: E-graph saturation time: 3s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  273
+[INFO]: Total # of e-node(s):    3419
+[INFO]: Total # of init expr(s): 56
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 304s
+
+[INFO]: Expression: (d x (- (* 3 (pow (+ (/ x -6) 2) -6)) -5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  503
+[INFO]: Total # of e-node(s):    3988
+[INFO]: Total # of init expr(s): 115
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* 3 (pow (- (* -6 x) 4) 7)) 8))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  589
+[INFO]: Total # of e-node(s):    5380
+[INFO]: Total # of init expr(s): 45
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 264
+[INFO]: Total # of expression(s) after  postprocessing: 12
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* -2 (pow (- (/ x 2) 3) -5)) 6))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1222
+[INFO]: Total # of e-node(s):    5263
+[INFO]: Total # of init expr(s): 199
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (/ (pow (+ (* 6 x) 9) -4) 4) 8))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  378
+[INFO]: Total # of e-node(s):    3853
+[INFO]: Total # of init expr(s): 94
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12
+[INFO]: Total # of expression(s) after  postprocessing: 2
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (+ (/ x 7) -8) -7) -5) 5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1113
+[INFO]: Total # of e-node(s):    5464
+[INFO]: Total # of init expr(s): 140
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (- (* 2 x) 3) -3) 7) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  465
+[INFO]: Total # of e-node(s):    4118
+[INFO]: Total # of init expr(s): 90
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (pow (- (/ x 7) -9) 7) 4) -5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  340
+[INFO]: Total # of e-node(s):    3215
+[INFO]: Total # of init expr(s): 97
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+    Finished dev [unoptimized + debuginfo] target(s) in 2.39s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_3.txt -o ../data/poly_d_11_3_gen.txt`
+[INFO]: Expression: (d x (+ (/ (+ (pow x 4) (/ x -4)) 8) 8))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  59
+[INFO]: Total # of e-node(s):    572
+[INFO]: Total # of init expr(s): 12
+[INFO]: Expression extraction time: 2s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1556
+[INFO]: Total # of expression(s) after  postprocessing: 90
+[INFO]: Total run time: 2s
+
+[INFO]: Expression: (d x (+ (/ (- (pow x 8) (* -7 x)) 5) 7))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  106
+[INFO]: Total # of e-node(s):    1937
+[INFO]: Total # of init expr(s): 20
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12304
+[INFO]: Total # of expression(s) after  postprocessing: 251
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (/ (- (pow x 7) (/ x 2)) -6) -6))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1070
+[INFO]: Total # of e-node(s):    4845
+[INFO]: Total # of init expr(s): 16
+[INFO]: Expression extraction time: 302s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 19
+[INFO]: Total # of expression(s) after  postprocessing: 9
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (* -9 (+ (pow x -4) (* -5 x))) -9))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  386
+[INFO]: Total # of e-node(s):    4741
+[INFO]: Total # of init expr(s): 153
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (* -7 (+ (pow x 4) (/ x -7))) 7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1221
+[INFO]: Total # of e-node(s):    6428
+[INFO]: Total # of init expr(s): 33
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (* 7 (- (pow x 5) (* 7 x))) 2))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  662
+[INFO]: Total # of e-node(s):    5416
+[INFO]: Total # of init expr(s): 29
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (* 4 (- (pow x 9) (/ x -2))) 3))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  743
+[INFO]: Total # of e-node(s):    5562
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (+ (pow x 9) (* 6 x)) 4) 2))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  781
+[INFO]: Total # of e-node(s):    5392
+[INFO]: Total # of init expr(s): 41
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (+ (pow x 5) (/ x -8)) -4) 7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  660
+[INFO]: Total # of e-node(s):    5395
+[INFO]: Total # of init expr(s): 51
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (/ (- (pow x 9) (* -6 x)) 9) 4))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  654
+[INFO]: Total # of e-node(s):    4599
+[INFO]: Total # of init expr(s): 45
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (/ (- (pow x -7) (/ x 9)) 4) -3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  850
+[INFO]: Total # of e-node(s):    4736
+[INFO]: Total # of init expr(s): 30
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 186
+[INFO]: Total # of expression(s) after  postprocessing: 48
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (* -9 (+ (+ (pow x 7) (* -7 x)) 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  42
+[INFO]: Total # of e-node(s):    309
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 744
+[INFO]: Total # of expression(s) after  postprocessing: 20
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (* -4 (+ (+ (pow x -3) (/ x 7)) 7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  45
+[INFO]: Total # of e-node(s):    391
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 948
+[INFO]: Total # of expression(s) after  postprocessing: 57
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (* -8 (+ (- (pow x -6) (* 5 x)) -7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  83
+[INFO]: Total # of e-node(s):    1186
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 87907
+[INFO]: Total # of expression(s) after  postprocessing: 1612
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (* 7 (+ (- (pow x -3) (/ x -3)) 7)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  84
+[INFO]: Total # of e-node(s):    1459
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 10984
+[INFO]: Total # of expression(s) after  postprocessing: 578
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (* 5 (- (+ (pow x -9) (* 8 x)) 9)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  84
+[INFO]: Total # of e-node(s):    1211
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 79266
+[INFO]: Total # of expression(s) after  postprocessing: 1672
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (* -7 (- (+ (pow x -3) (/ x 3)) 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  86
+[INFO]: Total # of e-node(s):    1461
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 10998
+[INFO]: Total # of expression(s) after  postprocessing: 583
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (* -5 (- (- (pow x 7) (* 8 x)) 7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  78
+[INFO]: Total # of e-node(s):    1129
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 201s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 79824
+[INFO]: Total # of expression(s) after  postprocessing: 829
+[INFO]: Total run time: 202s
+
+[INFO]: Expression: (d x (* -9 (- (- (pow x 5) (/ x 9)) -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  80
+[INFO]: Total # of e-node(s):    1379
+[INFO]: Total # of init expr(s): 14
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 15207
+[INFO]: Total # of expression(s) after  postprocessing: 368
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (/ (+ (+ (pow x 9) (* -6 x)) -3) -4))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  632
+[INFO]: Total # of e-node(s):    3187
+[INFO]: Total # of init expr(s): 12
+[INFO]: Expression extraction time: 9s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3196
+[INFO]: Total # of expression(s) after  postprocessing: 94
+[INFO]: Total run time: 10s
+
+[INFO]: Expression: (d x (/ (+ (+ (pow x -7) (/ x -4)) -8) -7))
+[INFO]: E-graph saturation time: 5s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  467
+[INFO]: Total # of e-node(s):    3688
+[INFO]: Total # of init expr(s): 13
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 82
+[INFO]: Total # of expression(s) after  postprocessing: 25
+[INFO]: Total run time: 305s
+
+[INFO]: Expression: (d x (/ (+ (- (pow x 9) (* -5 x)) 4) 4))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  483
+[INFO]: Total # of e-node(s):    5115
+[INFO]: Total # of init expr(s): 20
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 8
+[INFO]: Total # of expression(s) after  postprocessing: 2
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (+ (- (pow x -3) (/ x 3)) 3) 5))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  505
+[INFO]: Total # of e-node(s):    4750
+[INFO]: Total # of init expr(s): 33
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+    Finished dev [unoptimized + debuginfo] target(s) in 2.11s
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_4.txt -o ../data/poly_d_11_4_gen.txt`
+[INFO]: Expression: (d x (/ (- (+ (pow x -2) (* -9 x)) -7) -6))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  253
+[INFO]: Total # of e-node(s):    3788
+[INFO]: Total # of init expr(s): 21
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 9482
+[INFO]: Total # of expression(s) after  postprocessing: 345
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (/ (- (+ (pow x 7) (/ x -4)) 7) -8))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  253
+[INFO]: Total # of e-node(s):    3862
+[INFO]: Total # of init expr(s): 28
+[INFO]: Expression extraction time: 302s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1634
+[INFO]: Total # of expression(s) after  postprocessing: 94
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (/ (- (- (pow x 3) (* -4 x)) -7) -7))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  469
+[INFO]: Total # of e-node(s):    4940
+[INFO]: Total # of init expr(s): 20
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6
+[INFO]: Total # of expression(s) after  postprocessing: 1
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (/ (- (- (pow x -5) (/ x 4)) -3) 8))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  181
+[INFO]: Total # of e-node(s):    3152
+[INFO]: Total # of init expr(s): 21
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2085
+[INFO]: Total # of expression(s) after  postprocessing: 174
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (+ (+ (* 5 (pow x 5)) (* -5 x)) 3))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  44
+[INFO]: Total # of e-node(s):    322
+[INFO]: Total # of init expr(s): 9
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 504
+[INFO]: Total # of expression(s) after  postprocessing: 24
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (+ (+ (* -8 (pow x -7)) (/ x 3)) 8))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  56
+[INFO]: Total # of e-node(s):    469
+[INFO]: Total # of init expr(s): 9
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1584
+[INFO]: Total # of expression(s) after  postprocessing: 109
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (+ (/ (pow x -9) -6) (* -8 x)) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  52
+[INFO]: Total # of e-node(s):    391
+[INFO]: Total # of init expr(s): 9
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1420
+[INFO]: Total # of expression(s) after  postprocessing: 78
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (+ (+ (/ (pow x -9) 3) (/ x 3)) 5))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  62
+[INFO]: Total # of e-node(s):    570
+[INFO]: Total # of init expr(s): 13
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2376
+[INFO]: Total # of expression(s) after  postprocessing: 200
+[INFO]: Total run time: 2s
+
+[INFO]: Expression: (d x (+ (- (* -7 (pow x 6)) (* -2 x)) -4))
+[INFO]: E-graph saturation time: 3s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  837
+[INFO]: Total # of e-node(s):    6674
+[INFO]: Total # of init expr(s): 31
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 908
+[INFO]: Total # of expression(s) after  postprocessing: 70
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (+ (- (* -5 (pow x -8)) (/ x -8)) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  637
+[INFO]: Total # of e-node(s):    4974
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1296
+[INFO]: Total # of expression(s) after  postprocessing: 111
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (- (/ (pow x 2) -9) (* 8 x)) -9))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  827
+[INFO]: Total # of e-node(s):    5983
+[INFO]: Total # of init expr(s): 55
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (+ (- (/ (pow x 6) -9) (/ x -9)) 4))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  637
+[INFO]: Total # of e-node(s):    4581
+[INFO]: Total # of init expr(s): 88
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 16
+[INFO]: Total # of expression(s) after  postprocessing: 2
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (+ (* -5 (pow x -3)) (* 8 x)) 8))
+[INFO]: E-graph saturation time: 3s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  404
+[INFO]: Total # of e-node(s):    3032
+[INFO]: Total # of init expr(s): 16
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2836
+[INFO]: Total # of expression(s) after  postprocessing: 271
+[INFO]: Total run time: 303s
+
+[INFO]: Expression: (d x (- (+ (* 7 (pow x 5)) (/ x 3)) 4))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  694
+[INFO]: Total # of e-node(s):    4758
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (+ (/ (pow x 6) 4) (* 2 x)) 3))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  792
+[INFO]: Total # of e-node(s):    5169
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (+ (/ (pow x 8) 4) (/ x -2)) 9))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  672
+[INFO]: Total # of e-node(s):    4303
+[INFO]: Total # of init expr(s): 17
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (- (* 4 (pow x -4)) (* 9 x)) -6))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  868
+[INFO]: Total # of e-node(s):    4451
+[INFO]: Total # of init expr(s): 18
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1901
+[INFO]: Total # of expression(s) after  postprocessing: 200
+[INFO]: Total run time: 302s
+
+[INFO]: Expression: (d x (- (- (* -4 (pow x -7)) (/ x 8)) -5))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  393
+[INFO]: Total # of e-node(s):    3331
+[INFO]: Total # of init expr(s): 17
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 619
+[INFO]: Total # of expression(s) after  postprocessing: 79
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (- (/ (pow x 2) 4) (* -8 x)) -3))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  808
+[INFO]: Total # of e-node(s):    4624
+[INFO]: Total # of init expr(s): 33
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 0
+[INFO]: Total # of expression(s) after  postprocessing: 0
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (- (- (/ (pow x -5) 9) (/ x -8)) -2))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  396
+[INFO]: Total # of e-node(s):    3605
+[INFO]: Total # of init expr(s): 16
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 22
+[INFO]: Total # of expression(s) after  postprocessing: 7
+[INFO]: -----------------------------------
+[INFO]: Token limit 16 reaches max token limit 15.
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (+ (* 2 (pow (+ (* 2 x) 5) -6)) -7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  40
+[INFO]: Total # of e-node(s):    251
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 2s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2928
+[INFO]: Total # of expression(s) after  postprocessing: 76
+[INFO]: Total run time: 2s
+
+[INFO]: Expression: (d x (+ (* -6 (pow (+ (/ x 8) 3) 7)) 9))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  40
+[INFO]: Total # of e-node(s):    204
+[INFO]: Total # of init expr(s): 22
+[INFO]: Expression extraction time: 1s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1640
+[INFO]: Total # of expression(s) after  postprocessing: 24
+[INFO]: Total run time: 1s
+
+[INFO]: Expression: (d x (+ (* 6 (pow (- (* 6 x) -3) -6)) 7))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  41
+[INFO]: Total # of e-node(s):    300
+[INFO]: Total # of init expr(s): 29
+[INFO]: Expression extraction time: 300s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 5492
+[INFO]: Total # of expression(s) after  postprocessing: 117
+[INFO]: Total run time: 300s
+

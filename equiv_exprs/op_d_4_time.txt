@@ -1,0 +1,1594 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 0.41s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 50 -l 10 -m 10 -t 600 -i ../data/op_d_4.txt -o ../data/op_d_4_gen.txt`
+[INFO]: Expression: (d x (pow (ln x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  27
+[INFO]: Total # of e-node(s):    135
+[INFO]: Total # of init expr(s): 15
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 212
+[INFO]: Total # of expression(s) after  postprocessing: 46
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (ln (+ x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  39
+[INFO]: Total # of e-node(s):    192
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 28
+[INFO]: Total # of expression(s) after  postprocessing: 10
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (ln (- x 6)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1010
+[INFO]: Total # of e-node(s):    6419
+[INFO]: Total # of init expr(s): 240
+[INFO]: Expression extraction time: 245s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 5148
+[INFO]: Total # of expression(s) after  postprocessing: 675
+[INFO]: Total run time: 247s
+
+[INFO]: Expression: (d x (ln (* -5 x)))
+[INFO]: E-graph saturation time: 2s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  832
+[INFO]: Total # of e-node(s):    7706
+[INFO]: Total # of init expr(s): 101
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 29933
+[INFO]: Total # of expression(s) after  postprocessing: 2369
+[INFO]: Total run time: 603s
+
+[INFO]: Expression: (d x (ln (/ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1945
+[INFO]: Total # of e-node(s):    6330
+[INFO]: Total # of init expr(s): 114
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6345
+[INFO]: Total # of expression(s) after  postprocessing: 1211
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (pow (sin x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2726
+[INFO]: Total # of e-node(s):    6820
+[INFO]: Total # of init expr(s): 61
+[INFO]: Expression extraction time: 386s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 831
+[INFO]: Total # of expression(s) after  postprocessing: 108
+[INFO]: Total run time: 387s
+
+[INFO]: Expression: (d x (sin (+ x -9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2924
+[INFO]: Total # of e-node(s):    7302
+[INFO]: Total # of init expr(s): 256
+[INFO]: Expression extraction time: 585s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 222
+[INFO]: Total # of expression(s) after  postprocessing: 59
+[INFO]: Total run time: 586s
+
+[INFO]: Expression: (d x (sin (- x -6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3100
+[INFO]: Total # of e-node(s):    8194
+[INFO]: Total # of init expr(s): 235
+[INFO]: Expression extraction time: 582s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 328
+[INFO]: Total # of expression(s) after  postprocessing: 95
+[INFO]: Total run time: 582s
+
+[INFO]: Expression: (d x (sin (* 8 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2796
+[INFO]: Total # of e-node(s):    7988
+[INFO]: Total # of init expr(s): 90
+[INFO]: Expression extraction time: 31s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 120
+[INFO]: Total # of expression(s) after  postprocessing: 31
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 32s
+
+[INFO]: Expression: (d x (sin (/ x -7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2796
+[INFO]: Total # of e-node(s):    7981
+[INFO]: Total # of init expr(s): 90
+[INFO]: Expression extraction time: 33s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 180
+[INFO]: Total # of expression(s) after  postprocessing: 62
+[INFO]: Total run time: 33s
+
+[INFO]: Expression: (d x (pow (cos x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2667
+[INFO]: Total # of e-node(s):    7788
+[INFO]: Total # of init expr(s): 138
+[INFO]: Expression extraction time: 272s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 800
+[INFO]: Total # of expression(s) after  postprocessing: 136
+[INFO]: Total run time: 272s
+
+[INFO]: Expression: (d x (cos (+ x -7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1746
+[INFO]: Total # of e-node(s):    6346
+[INFO]: Total # of init expr(s): 109
+[INFO]: Expression extraction time: 570s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 320
+[INFO]: Total # of expression(s) after  postprocessing: 78
+[INFO]: Total run time: 571s
+
+[INFO]: Expression: (d x (cos (- x -9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2578
+[INFO]: Total # of e-node(s):    7496
+[INFO]: Total # of init expr(s): 269
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 174
+[INFO]: Total # of expression(s) after  postprocessing: 52
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (cos (* -3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2768
+[INFO]: Total # of e-node(s):    6854
+[INFO]: Total # of init expr(s): 71
+[INFO]: Expression extraction time: 135s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 464
+[INFO]: Total # of expression(s) after  postprocessing: 71
+[INFO]: Total run time: 135s
+
+[INFO]: Expression: (d x (cos (/ x -6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2770
+[INFO]: Total # of e-node(s):    6850
+[INFO]: Total # of init expr(s): 71
+[INFO]: Expression extraction time: 140s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 696
+[INFO]: Total # of expression(s) after  postprocessing: 142
+[INFO]: Total run time: 141s
+
+[INFO]: Expression: (d x (pow (tan x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3470
+[INFO]: Total # of e-node(s):    7684
+[INFO]: Total # of init expr(s): 113
+[INFO]: Expression extraction time: 164s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 402
+[INFO]: Total # of expression(s) after  postprocessing: 111
+[INFO]: Total run time: 165s
+
+[INFO]: Expression: (d x (tan (+ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3341
+[INFO]: Total # of e-node(s):    7103
+[INFO]: Total # of init expr(s): 85
+[INFO]: Expression extraction time: 159s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 130
+[INFO]: Total # of expression(s) after  postprocessing: 32
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 160s
+
+[INFO]: Expression: (d x (tan (- x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3553
+[INFO]: Total # of e-node(s):    7477
+[INFO]: Total # of init expr(s): 234
+[INFO]: Expression extraction time: 211s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 158
+[INFO]: Total # of expression(s) after  postprocessing: 66
+[INFO]: Total run time: 211s
+
+[INFO]: Expression: (d x (tan (* -2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3172
+[INFO]: Total # of e-node(s):    8000
+[INFO]: Total # of init expr(s): 35
+[INFO]: Expression extraction time: 14s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 74
+[INFO]: Total # of expression(s) after  postprocessing: 18
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 15s
+
+[INFO]: Expression: (d x (tan (/ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3207
+[INFO]: Total # of e-node(s):    8161
+[INFO]: Total # of init expr(s): 35
+[INFO]: Expression extraction time: 15s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 111
+[INFO]: Total # of expression(s) after  postprocessing: 36
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 15s
+
+[INFO]: Expression: (d x (pow (csc x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1946
+[INFO]: Total # of e-node(s):    6950
+[INFO]: Total # of init expr(s): 153
+[INFO]: Expression extraction time: 361s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 397
+[INFO]: Total # of expression(s) after  postprocessing: 158
+[INFO]: Total run time: 362s
+
+[INFO]: Expression: (d x (csc (+ x -2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1801
+[INFO]: Total # of e-node(s):    6652
+[INFO]: Total # of init expr(s): 137
+[INFO]: Expression extraction time: 438s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 122
+[INFO]: Total # of expression(s) after  postprocessing: 26
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 439s
+
+[INFO]: Expression: (d x (csc (- x -6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2205
+[INFO]: Total # of e-node(s):    7447
+[INFO]: Total # of init expr(s): 191
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 42
+[INFO]: Total # of expression(s) after  postprocessing: 17
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (csc (* 7 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1929
+[INFO]: Total # of e-node(s):    6666
+[INFO]: Total # of init expr(s): 256
+[INFO]: Expression extraction time: 406s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 68
+[INFO]: Total # of expression(s) after  postprocessing: 21
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 406s
+
+[INFO]: Expression: (d x (csc (/ x 3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1915
+[INFO]: Total # of e-node(s):    6631
+[INFO]: Total # of init expr(s): 254
+[INFO]: Expression extraction time: 420s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 102
+[INFO]: Total # of expression(s) after  postprocessing: 42
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 421s
+
+[INFO]: Expression: (d x (pow (sec x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3048
+[INFO]: Total # of e-node(s):    7409
+[INFO]: Total # of init expr(s): 147
+[INFO]: Expression extraction time: 296s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 494
+[INFO]: Total # of expression(s) after  postprocessing: 120
+[INFO]: Total run time: 297s
+
+[INFO]: Expression: (d x (sec (+ x -2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4055
+[INFO]: Total # of e-node(s):    8333
+[INFO]: Total # of init expr(s): 111
+[INFO]: Expression extraction time: 172s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 78
+[INFO]: Total # of expression(s) after  postprocessing: 23
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 172s
+
+[INFO]: Expression: (d x (sec (- x 3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2607
+[INFO]: Total # of e-node(s):    7615
+[INFO]: Total # of init expr(s): 231
+[INFO]: Expression extraction time: 485s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 91
+[INFO]: Total # of expression(s) after  postprocessing: 37
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 486s
+
+[INFO]: Expression: (d x (sec (* 3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2873
+[INFO]: Total # of e-node(s):    7476
+[INFO]: Total # of init expr(s): 76
+[INFO]: Expression extraction time: 84s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 50
+[INFO]: Total # of expression(s) after  postprocessing: 18
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 85s
+
+[INFO]: Expression: (d x (sec (/ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2875
+[INFO]: Total # of e-node(s):    7471
+[INFO]: Total # of init expr(s): 76
+[INFO]: Expression extraction time: 88s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 75
+[INFO]: Total # of expression(s) after  postprocessing: 36
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 89s
+
+[INFO]: Expression: (d x (pow (cot x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2813
+[INFO]: Total # of e-node(s):    8074
+[INFO]: Total # of init expr(s): 97
+[INFO]: Expression extraction time: 142s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 61
+[INFO]: Total # of expression(s) after  postprocessing: 23
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 142s
+
+[INFO]: Expression: (d x (cot (+ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2817
+[INFO]: Total # of e-node(s):    7720
+[INFO]: Total # of init expr(s): 368
+[INFO]: Expression extraction time: 262s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 236
+[INFO]: Total # of expression(s) after  postprocessing: 78
+[INFO]: Total run time: 263s
+
+[INFO]: Expression: (d x (cot (- x -7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2626
+[INFO]: Total # of e-node(s):    7450
+[INFO]: Total # of init expr(s): 279
+[INFO]: Expression extraction time: 175s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 266
+[INFO]: Total # of expression(s) after  postprocessing: 92
+[INFO]: Total run time: 176s
+
+[INFO]: Expression: (d x (cot (* 5 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2571
+[INFO]: Total # of e-node(s):    7679
+[INFO]: Total # of init expr(s): 139
+[INFO]: Expression extraction time: 53s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 338
+[INFO]: Total # of expression(s) after  postprocessing: 86
+[INFO]: Total run time: 54s
+
+[INFO]: Expression: (d x (cot (/ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3046
+[INFO]: Total # of e-node(s):    8227
+[INFO]: Total # of init expr(s): 187
+[INFO]: Expression extraction time: 55s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 372
+[INFO]: Total # of expression(s) after  postprocessing: 107
+[INFO]: Total run time: 55s
+
+[INFO]: Expression: (d x (pow (asin x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2051
+[INFO]: Total # of e-node(s):    7170
+[INFO]: Total # of init expr(s): 177
+[INFO]: Expression extraction time: 266s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2166
+[INFO]: Total # of expression(s) after  postprocessing: 239
+[INFO]: Total run time: 266s
+
+[INFO]: Expression: (d x (asin (+ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2136
+[INFO]: Total # of e-node(s):    6691
+[INFO]: Total # of init expr(s): 206
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 117
+[INFO]: Total # of expression(s) after  postprocessing: 61
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (asin (- x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2670
+[INFO]: Total # of e-node(s):    7773
+[INFO]: Total # of init expr(s): 112
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 247
+[INFO]: Total # of expression(s) after  postprocessing: 116
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (asin (* 3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2082
+[INFO]: Total # of e-node(s):    6785
+[INFO]: Total # of init expr(s): 102
+[INFO]: Expression extraction time: 486s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2238
+[INFO]: Total # of expression(s) after  postprocessing: 856
+[INFO]: Total run time: 487s
+
+[INFO]: Expression: (d x (asin (/ x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2094
+[INFO]: Total # of e-node(s):    6529
+[INFO]: Total # of init expr(s): 155
+[INFO]: Expression extraction time: 398s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2336
+[INFO]: Total # of expression(s) after  postprocessing: 886
+[INFO]: Total run time: 398s
+
+[INFO]: Expression: (d x (pow (acos x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2497
+[INFO]: Total # of e-node(s):    7497
+[INFO]: Total # of init expr(s): 135
+[INFO]: Expression extraction time: 261s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1143
+[INFO]: Total # of expression(s) after  postprocessing: 98
+[INFO]: Total run time: 261s
+
+[INFO]: Expression: (d x (acos (+ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2049
+[INFO]: Total # of e-node(s):    6588
+[INFO]: Total # of init expr(s): 137
+[INFO]: Expression extraction time: 441s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 791
+[INFO]: Total # of expression(s) after  postprocessing: 218
+[INFO]: Total run time: 442s
+
+[INFO]: Expression: (d x (acos (- x 7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2106
+[INFO]: Total # of e-node(s):    6880
+[INFO]: Total # of init expr(s): 134
+[INFO]: Expression extraction time: 425s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 623
+[INFO]: Total # of expression(s) after  postprocessing: 275
+[INFO]: Total run time: 425s
+
+[INFO]: Expression: (d x (acos (* -4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2147
+[INFO]: Total # of e-node(s):    6595
+[INFO]: Total # of init expr(s): 225
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 88
+[INFO]: Total # of expression(s) after  postprocessing: 45
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acos (/ x 7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2165
+[INFO]: Total # of e-node(s):    6638
+[INFO]: Total # of init expr(s): 234
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 88
+[INFO]: Total # of expression(s) after  postprocessing: 45
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (pow (atan x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2532
+[INFO]: Total # of e-node(s):    7444
+[INFO]: Total # of init expr(s): 139
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 138
+[INFO]: Total # of expression(s) after  postprocessing: 36
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (atan (+ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1992
+[INFO]: Total # of e-node(s):    6551
+[INFO]: Total # of init expr(s): 186
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 349
+[INFO]: Total # of expression(s) after  postprocessing: 98
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (atan (- x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1804
+[INFO]: Total # of e-node(s):    6553
+[INFO]: Total # of init expr(s): 136
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 176
+[INFO]: Total # of expression(s) after  postprocessing: 84
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (atan (* -9 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2281
+[INFO]: Total # of e-node(s):    7129
+[INFO]: Total # of init expr(s): 143
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 371
+[INFO]: Total # of expression(s) after  postprocessing: 111
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (atan (/ x 6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2257
+[INFO]: Total # of e-node(s):    6944
+[INFO]: Total # of init expr(s): 164
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 460
+[INFO]: Total # of expression(s) after  postprocessing: 155
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (pow (acsc x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2150
+[INFO]: Total # of e-node(s):    6698
+[INFO]: Total # of init expr(s): 125
+[INFO]: Expression extraction time: 180s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 348
+[INFO]: Total # of expression(s) after  postprocessing: 142
+[INFO]: Total run time: 181s
+
+[INFO]: Expression: (d x (acsc (+ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2344
+[INFO]: Total # of e-node(s):    6591
+[INFO]: Total # of init expr(s): 123
+[INFO]: Expression extraction time: 268s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 620
+[INFO]: Total # of expression(s) after  postprocessing: 171
+[INFO]: Total run time: 268s
+
+[INFO]: Expression: (d x (acsc (- x 7)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2023
+[INFO]: Total # of e-node(s):    6583
+[INFO]: Total # of init expr(s): 227
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 17
+[INFO]: Total # of expression(s) after  postprocessing: 12
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acsc (* 2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2075
+[INFO]: Total # of e-node(s):    6606
+[INFO]: Total # of init expr(s): 249
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 69
+[INFO]: Total # of expression(s) after  postprocessing: 39
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acsc (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2493
+[INFO]: Total # of e-node(s):    7087
+[INFO]: Total # of init expr(s): 206
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 80
+[INFO]: Total # of expression(s) after  postprocessing: 48
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (pow (asec x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2222
+[INFO]: Total # of e-node(s):    6785
+[INFO]: Total # of init expr(s): 133
+[INFO]: Expression extraction time: 115s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 138
+[INFO]: Total # of expression(s) after  postprocessing: 41
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 115s
+
+[INFO]: Expression: (d x (asec (+ x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2693
+[INFO]: Total # of e-node(s):    7303
+[INFO]: Total # of init expr(s): 113
+[INFO]: Expression extraction time: 263s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 674
+[INFO]: Total # of expression(s) after  postprocessing: 186
+[INFO]: Total run time: 263s
+
+[INFO]: Expression: (d x (asec (- x 6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2628
+[INFO]: Total # of e-node(s):    7222
+[INFO]: Total # of init expr(s): 96
+[INFO]: Expression extraction time: 199s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 366
+[INFO]: Total # of expression(s) after  postprocessing: 166
+[INFO]: Total run time: 199s
+
+[INFO]: Expression: (d x (asec (* 8 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2466
+[INFO]: Total # of e-node(s):    6863
+[INFO]: Total # of init expr(s): 106
+[INFO]: Expression extraction time: 194s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1132
+[INFO]: Total # of expression(s) after  postprocessing: 382
+[INFO]: Total run time: 195s
+
+[INFO]: Expression: (d x (asec (/ x 3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2415
+[INFO]: Total # of e-node(s):    6867
+[INFO]: Total # of init expr(s): 119
+[INFO]: Expression extraction time: 385s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1300
+[INFO]: Total # of expression(s) after  postprocessing: 415
+[INFO]: Total run time: 386s
+
+[INFO]: Expression: (d x (pow (acot x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1973
+[INFO]: Total # of e-node(s):    6598
+[INFO]: Total # of init expr(s): 114
+[INFO]: Expression extraction time: 535s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 467
+[INFO]: Total # of expression(s) after  postprocessing: 201
+[INFO]: Total run time: 536s
+
+[INFO]: Expression: (d x (acot (+ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2977
+[INFO]: Total # of e-node(s):    7144
+[INFO]: Total # of init expr(s): 216
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 39
+[INFO]: Total # of expression(s) after  postprocessing: 18
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acot (- x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2784
+[INFO]: Total # of e-node(s):    6684
+[INFO]: Total # of init expr(s): 114
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 98
+[INFO]: Total # of expression(s) after  postprocessing: 53
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (acot (* 4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2982
+[INFO]: Total # of e-node(s):    7352
+[INFO]: Total # of init expr(s): 211
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 38
+[INFO]: Total # of expression(s) after  postprocessing: 17
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acot (/ x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3001
+[INFO]: Total # of e-node(s):    7356
+[INFO]: Total # of init expr(s): 205
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 55
+[INFO]: Total # of expression(s) after  postprocessing: 30
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (pow (sinh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2201
+[INFO]: Total # of e-node(s):    5990
+[INFO]: Total # of init expr(s): 109
+[INFO]: Expression extraction time: 234s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1030
+[INFO]: Total # of expression(s) after  postprocessing: 192
+[INFO]: Total run time: 235s
+
+[INFO]: Expression: (d x (sinh (+ x -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2047
+[INFO]: Total # of e-node(s):    5629
+[INFO]: Total # of init expr(s): 77
+[INFO]: Expression extraction time: 325s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 112
+[INFO]: Total # of expression(s) after  postprocessing: 38
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 326s
+
+[INFO]: Expression: (d x (sinh (- x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1965
+[INFO]: Total # of e-node(s):    5730
+[INFO]: Total # of init expr(s): 84
+[INFO]: Expression extraction time: 363s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 322
+[INFO]: Total # of expression(s) after  postprocessing: 100
+[INFO]: Total run time: 364s
+
+[INFO]: Expression: (d x (sinh (* -4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4049
+[INFO]: Total # of e-node(s):    9021
+[INFO]: Total # of init expr(s): 82
+[INFO]: Expression extraction time: 21s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 120
+[INFO]: Total # of expression(s) after  postprocessing: 31
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 22s
+
+[INFO]: Expression: (d x (sinh (/ x -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4048
+[INFO]: Total # of e-node(s):    9013
+[INFO]: Total # of init expr(s): 82
+[INFO]: Expression extraction time: 34s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 180
+[INFO]: Total # of expression(s) after  postprocessing: 62
+[INFO]: Total run time: 35s
+
+[INFO]: Expression: (d x (pow (cosh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4012
+[INFO]: Total # of e-node(s):    7937
+[INFO]: Total # of init expr(s): 129
+[INFO]: Expression extraction time: 257s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 980
+[INFO]: Total # of expression(s) after  postprocessing: 171
+[INFO]: Total run time: 257s
+
+[INFO]: Expression: (d x (cosh (+ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3544
+[INFO]: Total # of e-node(s):    6872
+[INFO]: Total # of init expr(s): 88
+[INFO]: Expression extraction time: 458s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 130
+[INFO]: Total # of expression(s) after  postprocessing: 44
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 458s
+
+[INFO]: Expression: (d x (cosh (- x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1957
+[INFO]: Total # of e-node(s):    5928
+[INFO]: Total # of init expr(s): 171
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 250
+[INFO]: Total # of expression(s) after  postprocessing: 75
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (cosh (* -2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3029
+[INFO]: Total # of e-node(s):    7658
+[INFO]: Total # of init expr(s): 55
+[INFO]: Expression extraction time: 117s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 142
+[INFO]: Total # of expression(s) after  postprocessing: 38
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 118s
+
+[INFO]: Expression: (d x (cosh (/ x -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3031
+[INFO]: Total # of e-node(s):    7654
+[INFO]: Total # of init expr(s): 55
+[INFO]: Expression extraction time: 122s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 213
+[INFO]: Total # of expression(s) after  postprocessing: 76
+[INFO]: Total run time: 123s
+
+[INFO]: Expression: (d x (pow (tanh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3663
+[INFO]: Total # of e-node(s):    7678
+[INFO]: Total # of init expr(s): 71
+[INFO]: Expression extraction time: 269s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 275
+[INFO]: Total # of expression(s) after  postprocessing: 41
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 270s
+
+[INFO]: Expression: (d x (tanh (+ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3415
+[INFO]: Total # of e-node(s):    7614
+[INFO]: Total # of init expr(s): 69
+[INFO]: Expression extraction time: 160s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 88
+[INFO]: Total # of expression(s) after  postprocessing: 24
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 161s
+
+[INFO]: Expression: (d x (tanh (- x -2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3926
+[INFO]: Total # of e-node(s):    8851
+[INFO]: Total # of init expr(s): 164
+[INFO]: Expression extraction time: 213s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 115
+[INFO]: Total # of expression(s) after  postprocessing: 48
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 214s
+
+[INFO]: Expression: (d x (tanh (* 9 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1774
+[INFO]: Total # of e-node(s):    8879
+[INFO]: Total # of init expr(s): 37
+[INFO]: Expression extraction time: 20s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 74
+[INFO]: Total # of expression(s) after  postprocessing: 18
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 21s
+
+[INFO]: Expression: (d x (tanh (/ x -3)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1773
+[INFO]: Total # of e-node(s):    8871
+[INFO]: Total # of init expr(s): 37
+[INFO]: Expression extraction time: 20s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 111
+[INFO]: Total # of expression(s) after  postprocessing: 36
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 22s
+
+[INFO]: Expression: (d x (pow (csch x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1885
+[INFO]: Total # of e-node(s):    7219
+[INFO]: Total # of init expr(s): 148
+[INFO]: Expression extraction time: 505s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 455
+[INFO]: Total # of expression(s) after  postprocessing: 168
+[INFO]: Total run time: 506s
+
+[INFO]: Expression: (d x (csch (+ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2073
+[INFO]: Total # of e-node(s):    7894
+[INFO]: Total # of init expr(s): 306
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 32
+[INFO]: Total # of expression(s) after  postprocessing: 11
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (csch (- x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2498
+[INFO]: Total # of e-node(s):    7942
+[INFO]: Total # of init expr(s): 214
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 52
+[INFO]: Total # of expression(s) after  postprocessing: 21
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (csch (* -3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2555
+[INFO]: Total # of e-node(s):    7772
+[INFO]: Total # of init expr(s): 313
+[INFO]: Expression extraction time: 245s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 68
+[INFO]: Total # of expression(s) after  postprocessing: 21
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 245s
+
+[INFO]: Expression: (d x (csch (/ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2571
+[INFO]: Total # of e-node(s):    7830
+[INFO]: Total # of init expr(s): 313
+[INFO]: Expression extraction time: 255s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 174
+[INFO]: Total # of expression(s) after  postprocessing: 47
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 256s
+
+[INFO]: Expression: (d x (pow (sech x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3285
+[INFO]: Total # of e-node(s):    8180
+[INFO]: Total # of init expr(s): 134
+[INFO]: Expression extraction time: 356s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 180
+[INFO]: Total # of expression(s) after  postprocessing: 70
+[INFO]: Total run time: 357s
+
+[INFO]: Expression: (d x (sech (+ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2757
+[INFO]: Total # of e-node(s):    7719
+[INFO]: Total # of init expr(s): 160
+[INFO]: Expression extraction time: 289s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 78
+[INFO]: Total # of expression(s) after  postprocessing: 26
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 290s
+
+[INFO]: Expression: (d x (sech (- x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3068
+[INFO]: Total # of e-node(s):    8388
+[INFO]: Total # of init expr(s): 358
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12
+[INFO]: Total # of expression(s) after  postprocessing: 5
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (sech (* -4 x)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2266
+[INFO]: Total # of e-node(s):    7967
+[INFO]: Total # of init expr(s): 584
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12
+[INFO]: Total # of expression(s) after  postprocessing: 3
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 602s
+
+[INFO]: Expression: (d x (sech (/ x 2)))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2281
+[INFO]: Total # of e-node(s):    8017
+[INFO]: Total # of init expr(s): 584
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 18
+[INFO]: Total # of expression(s) after  postprocessing: 6
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 602s
+
+[INFO]: Expression: (d x (pow (coth x) 2))
+[INFO]: E-graph saturation time: 1s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2829
+[INFO]: Total # of e-node(s):    7955
+[INFO]: Total # of init expr(s): 90
+[INFO]: Expression extraction time: 434s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 59
+[INFO]: Total # of expression(s) after  postprocessing: 22
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 435s
+
+[INFO]: Expression: (d x (coth (+ x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3947
+[INFO]: Total # of e-node(s):    7983
+[INFO]: Total # of init expr(s): 60
+[INFO]: Expression extraction time: 232s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 128
+[INFO]: Total # of expression(s) after  postprocessing: 34
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 233s
+
+[INFO]: Expression: (d x (coth (- x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2068
+[INFO]: Total # of e-node(s):    6293
+[INFO]: Total # of init expr(s): 176
+[INFO]: Expression extraction time: 291s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 92
+[INFO]: Total # of expression(s) after  postprocessing: 41
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 291s
+
+[INFO]: Expression: (d x (coth (* -4 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3189
+[INFO]: Total # of e-node(s):    7867
+[INFO]: Total # of init expr(s): 96
+[INFO]: Expression extraction time: 70s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 210
+[INFO]: Total # of expression(s) after  postprocessing: 45
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 70s
+
+[INFO]: Expression: (d x (coth (/ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3190
+[INFO]: Total # of e-node(s):    7862
+[INFO]: Total # of init expr(s): 96
+[INFO]: Expression extraction time: 72s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 315
+[INFO]: Total # of expression(s) after  postprocessing: 90
+[INFO]: Total run time: 72s
+
+[INFO]: Expression: (d x (pow (asinh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3644
+[INFO]: Total # of e-node(s):    8300
+[INFO]: Total # of init expr(s): 71
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1017
+[INFO]: Total # of expression(s) after  postprocessing: 217
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (asinh (+ x -9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2183
+[INFO]: Total # of e-node(s):    6648
+[INFO]: Total # of init expr(s): 104
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1230
+[INFO]: Total # of expression(s) after  postprocessing: 419
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (asinh (- x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2092
+[INFO]: Total # of e-node(s):    6426
+[INFO]: Total # of init expr(s): 84
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 743
+[INFO]: Total # of expression(s) after  postprocessing: 213
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (asinh (* 2 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3426
+[INFO]: Total # of e-node(s):    7426
+[INFO]: Total # of init expr(s): 77
+[INFO]: Expression extraction time: 285s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 4441
+[INFO]: Total # of expression(s) after  postprocessing: 1524
+[INFO]: Total run time: 285s
+
+[INFO]: Expression: (d x (asinh (/ x 5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2167
+[INFO]: Total # of e-node(s):    6122
+[INFO]: Total # of init expr(s): 74
+[INFO]: Expression extraction time: 519s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 4638
+[INFO]: Total # of expression(s) after  postprocessing: 1467
+[INFO]: Total run time: 519s
+
+[INFO]: Expression: (d x (pow (acosh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1906
+[INFO]: Total # of e-node(s):    7334
+[INFO]: Total # of init expr(s): 111
+[INFO]: Expression extraction time: 129s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 345
+[INFO]: Total # of expression(s) after  postprocessing: 52
+[INFO]: Total run time: 130s
+
+[INFO]: Expression: (d x (acosh (+ x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1985
+[INFO]: Total # of e-node(s):    7001
+[INFO]: Total # of init expr(s): 41
+[INFO]: Expression extraction time: 270s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2004
+[INFO]: Total # of expression(s) after  postprocessing: 740
+[INFO]: Total run time: 271s
+
+[INFO]: Expression: (d x (acosh (- x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2013
+[INFO]: Total # of e-node(s):    6797
+[INFO]: Total # of init expr(s): 52
+[INFO]: Expression extraction time: 243s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2359
+[INFO]: Total # of expression(s) after  postprocessing: 985
+[INFO]: Total run time: 244s
+
+[INFO]: Expression: (d x (acosh (* 6 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1672
+[INFO]: Total # of e-node(s):    6950
+[INFO]: Total # of init expr(s): 76
+[INFO]: Expression extraction time: 210s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1708
+[INFO]: Total # of expression(s) after  postprocessing: 784
+[INFO]: Total run time: 211s
+
+[INFO]: Expression: (d x (acosh (/ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1634
+[INFO]: Total # of e-node(s):    6742
+[INFO]: Total # of init expr(s): 46
+[INFO]: Expression extraction time: 202s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1721
+[INFO]: Total # of expression(s) after  postprocessing: 786
+[INFO]: Total run time: 202s
+
+[INFO]: Expression: (d x (pow (atanh x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2226
+[INFO]: Total # of e-node(s):    5992
+[INFO]: Total # of init expr(s): 91
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 154
+[INFO]: Total # of expression(s) after  postprocessing: 63
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (atanh (+ x -3)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2453
+[INFO]: Total # of e-node(s):    6492
+[INFO]: Total # of init expr(s): 124
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 457
+[INFO]: Total # of expression(s) after  postprocessing: 152
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (atanh (- x 2)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2891
+[INFO]: Total # of e-node(s):    7391
+[INFO]: Total # of init expr(s): 129
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 213
+[INFO]: Total # of expression(s) after  postprocessing: 85
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (atanh (* 5 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1758
+[INFO]: Total # of e-node(s):    6118
+[INFO]: Total # of init expr(s): 57
+[INFO]: Expression extraction time: 366s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3076
+[INFO]: Total # of expression(s) after  postprocessing: 965
+[INFO]: Total run time: 367s
+
+[INFO]: Expression: (d x (atanh (/ x -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1726
+[INFO]: Total # of e-node(s):    6106
+[INFO]: Total # of init expr(s): 51
+[INFO]: Expression extraction time: 274s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2939
+[INFO]: Total # of expression(s) after  postprocessing: 943
+[INFO]: Total run time: 274s
+
+[INFO]: Expression: (d x (pow (acsch x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3004
+[INFO]: Total # of e-node(s):    8207
+[INFO]: Total # of init expr(s): 180
+[INFO]: Expression extraction time: 487s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 492
+[INFO]: Total # of expression(s) after  postprocessing: 174
+[INFO]: Total run time: 487s
+
+[INFO]: Expression: (d x (acsch (+ x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2698
+[INFO]: Total # of e-node(s):    7627
+[INFO]: Total # of init expr(s): 67
+[INFO]: Expression extraction time: 352s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1250
+[INFO]: Total # of expression(s) after  postprocessing: 445
+[INFO]: Total run time: 352s
+
+[INFO]: Expression: (d x (acsch (- x -5)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1735
+[INFO]: Total # of e-node(s):    6672
+[INFO]: Total # of init expr(s): 67
+[INFO]: Expression extraction time: 432s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 529
+[INFO]: Total # of expression(s) after  postprocessing: 240
+[INFO]: Total run time: 433s
+
+[INFO]: Expression: (d x (acsch (* 3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2201
+[INFO]: Total # of e-node(s):    6846
+[INFO]: Total # of init expr(s): 66
+[INFO]: Expression extraction time: 374s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2856
+[INFO]: Total # of expression(s) after  postprocessing: 806
+[INFO]: Total run time: 374s
+
+[INFO]: Expression: (d x (acsch (/ x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2420
+[INFO]: Total # of e-node(s):    7044
+[INFO]: Total # of init expr(s): 62
+[INFO]: Expression extraction time: 356s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2731
+[INFO]: Total # of expression(s) after  postprocessing: 796
+[INFO]: Total run time: 357s
+
+[INFO]: Expression: (d x (pow (asech x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2633
+[INFO]: Total # of e-node(s):    7521
+[INFO]: Total # of init expr(s): 176
+[INFO]: Expression extraction time: 188s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 543
+[INFO]: Total # of expression(s) after  postprocessing: 131
+[INFO]: Total run time: 189s
+
+[INFO]: Expression: (d x (asech (+ x -4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2914
+[INFO]: Total # of e-node(s):    7692
+[INFO]: Total # of init expr(s): 34
+[INFO]: Expression extraction time: 74s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 330
+[INFO]: Total # of expression(s) after  postprocessing: 153
+[INFO]: Total run time: 74s
+
+[INFO]: Expression: (d x (asech (- x 6)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1405
+[INFO]: Total # of e-node(s):    6774
+[INFO]: Total # of init expr(s): 46
+[INFO]: Expression extraction time: 196s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 251
+[INFO]: Total # of expression(s) after  postprocessing: 158
+[INFO]: Total run time: 197s
+
+[INFO]: Expression: (d x (asech (* 6 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1661
+[INFO]: Total # of e-node(s):    6501
+[INFO]: Total # of init expr(s): 65
+[INFO]: Expression extraction time: 231s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1067
+[INFO]: Total # of expression(s) after  postprocessing: 498
+[INFO]: Total run time: 231s
+
+[INFO]: Expression: (d x (asech (/ x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1523
+[INFO]: Total # of e-node(s):    6456
+[INFO]: Total # of init expr(s): 56
+[INFO]: Expression extraction time: 316s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1075
+[INFO]: Total # of expression(s) after  postprocessing: 502
+[INFO]: Total run time: 316s
+
+[INFO]: Expression: (d x (pow (acoth x) 2))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3055
+[INFO]: Total # of e-node(s):    7981
+[INFO]: Total # of init expr(s): 173
+[INFO]: Expression extraction time: 341s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 649
+[INFO]: Total # of expression(s) after  postprocessing: 296
+[INFO]: Total run time: 342s
+
+[INFO]: Expression: (d x (acoth (+ x 9)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1752
+[INFO]: Total # of e-node(s):    6412
+[INFO]: Total # of init expr(s): 45
+[INFO]: Expression extraction time: 468s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1335
+[INFO]: Total # of expression(s) after  postprocessing: 537
+[INFO]: Total run time: 468s
+
+[INFO]: Expression: (d x (acoth (- x 4)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2095
+[INFO]: Total # of e-node(s):    6967
+[INFO]: Total # of init expr(s): 51
+[INFO]: Expression extraction time: 393s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 613
+[INFO]: Total # of expression(s) after  postprocessing: 291
+[INFO]: Total run time: 393s
+
+[INFO]: Expression: (d x (acoth (* -3 x)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2109
+[INFO]: Total # of e-node(s):    6934
+[INFO]: Total # of init expr(s): 65
+[INFO]: Expression extraction time: 301s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3118
+[INFO]: Total # of expression(s) after  postprocessing: 923
+[INFO]: Total run time: 301s
+
+[INFO]: Expression: (d x (acoth (/ x -8)))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2017
+[INFO]: Total # of e-node(s):    7072
+[INFO]: Total # of init expr(s): 55
+[INFO]: Expression extraction time: 304s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2955
+[INFO]: Total # of expression(s) after  postprocessing: 907
+[INFO]: Total run time: 305s
+

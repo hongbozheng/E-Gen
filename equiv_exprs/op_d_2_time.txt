@@ -1,0 +1,304 @@
+    Finished dev [unoptimized + debuginfo] target(s) in 1.74s
+     Running `/home/hongboz2/eeg/target/debug/egg -f -n 50 -l 10 -m 10 -t 600 -i ../data/op_d_2.txt -o ../data/op_d_2_gen.txt`
+[INFO]: Expression: (d x (ln x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  23
+[INFO]: Total # of e-node(s):    86
+[INFO]: Total # of init expr(s): 8
+[INFO]: Expression extraction time: 0s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 14
+[INFO]: Total # of expression(s) after  postprocessing: 10
+[INFO]: -----------------------------------
+[INFO]: Token limit 11 reaches max token limit 10.
+[INFO]: Total run time: 0s
+
+[INFO]: Expression: (d x (sin x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2578
+[INFO]: Total # of e-node(s):    7326
+[INFO]: Total # of init expr(s): 318
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 849
+[INFO]: Total # of expression(s) after  postprocessing: 228
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (cos x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1851
+[INFO]: Total # of e-node(s):    6605
+[INFO]: Total # of init expr(s): 113
+[INFO]: Expression extraction time: 554s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 2134
+[INFO]: Total # of expression(s) after  postprocessing: 415
+[INFO]: Total run time: 554s
+
+[INFO]: Expression: (d x (tan x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3335
+[INFO]: Total # of e-node(s):    7078
+[INFO]: Total # of init expr(s): 85
+[INFO]: Expression extraction time: 142s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 683
+[INFO]: Total # of expression(s) after  postprocessing: 232
+[INFO]: Total run time: 142s
+
+[INFO]: Expression: (d x (csc x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1991
+[INFO]: Total # of e-node(s):    7104
+[INFO]: Total # of init expr(s): 131
+[INFO]: Expression extraction time: 461s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1940
+[INFO]: Total # of expression(s) after  postprocessing: 326
+[INFO]: Total run time: 461s
+
+[INFO]: Expression: (d x (sec x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  4044
+[INFO]: Total # of e-node(s):    8293
+[INFO]: Total # of init expr(s): 111
+[INFO]: Expression extraction time: 229s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1868
+[INFO]: Total # of expression(s) after  postprocessing: 491
+[INFO]: Total run time: 230s
+
+[INFO]: Expression: (d x (cot x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2190
+[INFO]: Total # of e-node(s):    7510
+[INFO]: Total # of init expr(s): 280
+[INFO]: Expression extraction time: 289s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 826
+[INFO]: Total # of expression(s) after  postprocessing: 315
+[INFO]: Total run time: 289s
+
+[INFO]: Expression: (d x (asin x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2561
+[INFO]: Total # of e-node(s):    6972
+[INFO]: Total # of init expr(s): 206
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 863
+[INFO]: Total # of expression(s) after  postprocessing: 543
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (acos x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2291
+[INFO]: Total # of e-node(s):    6822
+[INFO]: Total # of init expr(s): 229
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 303
+[INFO]: Total # of expression(s) after  postprocessing: 150
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (atan x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2871
+[INFO]: Total # of e-node(s):    7461
+[INFO]: Total # of init expr(s): 139
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1329
+[INFO]: Total # of expression(s) after  postprocessing: 489
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (acsc x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2165
+[INFO]: Total # of e-node(s):    7000
+[INFO]: Total # of init expr(s): 109
+[INFO]: Expression extraction time: 525s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 9683
+[INFO]: Total # of expression(s) after  postprocessing: 2862
+[INFO]: Total run time: 526s
+
+[INFO]: Expression: (d x (asec x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2397
+[INFO]: Total # of e-node(s):    6967
+[INFO]: Total # of init expr(s): 126
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 874
+[INFO]: Total # of expression(s) after  postprocessing: 213
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acot x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2711
+[INFO]: Total # of e-node(s):    6728
+[INFO]: Total # of init expr(s): 205
+[INFO]: Expression extraction time: 601s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 371
+[INFO]: Total # of expression(s) after  postprocessing: 180
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (sinh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2886
+[INFO]: Total # of e-node(s):    7210
+[INFO]: Total # of init expr(s): 116
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1224
+[INFO]: Total # of expression(s) after  postprocessing: 305
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (cosh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3843
+[INFO]: Total # of e-node(s):    7514
+[INFO]: Total # of init expr(s): 89
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1208
+[INFO]: Total # of expression(s) after  postprocessing: 273
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (tanh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3409
+[INFO]: Total # of e-node(s):    7589
+[INFO]: Total # of init expr(s): 69
+[INFO]: Expression extraction time: 135s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 457
+[INFO]: Total # of expression(s) after  postprocessing: 172
+[INFO]: Total run time: 136s
+
+[INFO]: Expression: (d x (csch x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2079
+[INFO]: Total # of e-node(s):    7911
+[INFO]: Total # of init expr(s): 306
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 626
+[INFO]: Total # of expression(s) after  postprocessing: 161
+[INFO]: Total run time: 600s
+
+[INFO]: Expression: (d x (sech x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2950
+[INFO]: Total # of e-node(s):    8151
+[INFO]: Total # of init expr(s): 185
+[INFO]: Expression extraction time: 408s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 1672
+[INFO]: Total # of expression(s) after  postprocessing: 324
+[INFO]: Total run time: 408s
+
+[INFO]: Expression: (d x (coth x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  3942
+[INFO]: Total # of e-node(s):    7959
+[INFO]: Total # of init expr(s): 60
+[INFO]: Expression extraction time: 229s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 664
+[INFO]: Total # of expression(s) after  postprocessing: 251
+[INFO]: Total run time: 229s
+
+[INFO]: Expression: (d x (asinh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2598
+[INFO]: Total # of e-node(s):    6600
+[INFO]: Total # of init expr(s): 66
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 25873
+[INFO]: Total # of expression(s) after  postprocessing: 10237
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acosh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2259
+[INFO]: Total # of e-node(s):    7131
+[INFO]: Total # of init expr(s): 39
+[INFO]: Expression extraction time: 378s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 22140
+[INFO]: Total # of expression(s) after  postprocessing: 9638
+[INFO]: Total run time: 379s
+
+[INFO]: Expression: (d x (atanh x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2149
+[INFO]: Total # of e-node(s):    6886
+[INFO]: Total # of init expr(s): 123
+[INFO]: Expression extraction time: 600s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 3407
+[INFO]: Total # of expression(s) after  postprocessing: 1180
+[INFO]: Total run time: 601s
+
+[INFO]: Expression: (d x (acsch x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1697
+[INFO]: Total # of e-node(s):    6654
+[INFO]: Total # of init expr(s): 67
+[INFO]: Expression extraction time: 436s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 12293
+[INFO]: Total # of expression(s) after  postprocessing: 2502
+[INFO]: Total run time: 437s
+
+[INFO]: Expression: (d x (asech x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  2294
+[INFO]: Total # of e-node(s):    7498
+[INFO]: Total # of init expr(s): 29
+[INFO]: Expression extraction time: 220s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 6611
+[INFO]: Total # of expression(s) after  postprocessing: 2231
+[INFO]: Total run time: 220s
+
+[INFO]: Expression: (d x (acoth x))
+[INFO]: E-graph saturation time: 0s
+[INFO]: Grammar  creation  time: 0s
+[INFO]: Total # of e-class(es):  1395
+[INFO]: Total # of e-node(s):    6055
+[INFO]: Total # of init expr(s): 45
+[INFO]: Expression extraction time: 506s
+[INFO]: Expression postprocessing time: 0s
+[INFO]: Total # of expression(s) before postprocessing: 8835
+[INFO]: Total # of expression(s) after  postprocessing: 2554
+[INFO]: Total run time: 507s
+
