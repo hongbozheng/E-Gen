@@ -18,7 +18,7 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
     if token.chars().all(char::is_numeric) { return token.to_string(); }
 
     if token == "+" || token == "-" || token == "*" || token == "/" ||
-        token == "ln" || token == "exp" || token == "pow" || token == "sqrt" ||
+        token == "ln" || token == "exp" || token == "pow" || token == "sqrt" || token == "abs" ||
         token == "sin" || token == "cos" || token == "tan" ||
         token == "csc" || token == "sec" || token == "cot" ||
         token == "sinh" || token == "cosh" || token == "tanh" ||
@@ -134,9 +134,9 @@ pub fn refactor() {
             .replace("mul", "*")
             .replace("div", "/")
             .replace("INT+ ", "")
-            .replace("INT- ", "-");
-            // .replace("pi", "3.14")
-            // .replace("abs ", "");
+            .replace("INT- ", "-")
+            .replace("E", "e");
+            // .replace("pi", "3.14");
 
         new_expr = add_paren(&new_expr);
 
