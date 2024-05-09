@@ -36,11 +36,60 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
             let operand_1 = add_paren_recursive(tokens);
             let operand_2 = add_paren_recursive(tokens);
 
+            if operand_1.contains('-') {
+                if let Some(index) = operand_1.find('-') {
+                    let (first, second) = operand_1.split_at(index);
+                    if first.chars().all(char::is_numeric) && second[1..].chars().all(char::is_numeric) {
+                        if operand_2.contains('-') {
+                            if let Some(index) = operand_2.find('-') {
+                                let (first, second) = operand_2.split_at(index);
+                                if first.chars().all(char::is_numeric) && second[1..].chars().all(char::is_numeric) {
+                                    return "c".to_string();
+                                }
+                            }
+                        } else if operand_2.chars().all(char::is_numeric) {
+                            return "c".to_string();
+                        }
+                    }
+                }
+            } else if operand_1.chars().all(char::is_numeric) {
+                if operand_2.contains('-') {
+                    if let Some(index) = operand_2.find('-') {
+                        let (first, second) = operand_2.split_at(index);
+                        if first.chars().all(char::is_numeric) && second[1..].chars().all(char::is_numeric) {
+                            return "c".to_string();
+                        }
+                    }
+                } else if operand_2.chars().all(char::is_numeric) {
+                    return "c".to_string();
+                }
+            }
+
+            if (operand_1 == "c" && operand_2.chars().all(char::is_numeric)) ||
+                (operand_1.chars().all(char::is_numeric) && operand_2 == "c") ||
+                (operand_1 == "c" && operand_2 == "c") {
+                return "c".to_string();
+            }
+
             return format!("({} {} {})", operator, operand_1, operand_2);
         }
 
         let operand = add_paren_recursive(tokens);
 
+        if operand.contains('-') {
+            if let Some(index) = operand.find('-') {
+                let (first, second) = operand.split_at(index);
+                if first.chars().all(char::is_numeric) && second[1..].chars().all(char::is_numeric) {
+                    return "c".to_string();
+                }
+            }
+        } else if operand.chars().all(char::is_numeric) {
+            return "c".to_string();
+        }
+
+        if operand == "c" {
+            return "c".to_string();
+        }
         return format!("({} {})", operator, operand);
     }
 
@@ -134,9 +183,9 @@ pub fn refactor() {
             .replace("mul", "*")
             .replace("div", "/")
             .replace("INT+ ", "")
-            .replace("INT- ", "-");
+            .replace("INT- ", "-")
             // .replace("pi", "3.14")
-            // .replace("abs ", "");
+            .replace("abs ", "");
 
         new_expr = add_paren(&new_expr);
 
