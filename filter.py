@@ -47,6 +47,15 @@ def _filter(
         else:
             if op_cnt <= n_ops and "d x" not in expr:
                 exprs.append(expr)
+
+    if len(exprs) < n and dx:
+        exprs_op = list(set(equiv_exprs[1:])-set(exprs))
+        for expr in exprs_op:
+            tokens = expr.split(sep=' ')
+            op_cnt = sum(1 for token in tokens if token in operators)
+            if op_cnt <= n_ops:
+                exprs.append(expr)
+
     exprs.insert(0, equiv_exprs[0])
 
     if len(exprs) == n:

@@ -111,95 +111,18 @@ The script will create the following 5 `.txt` files (depends on the cli(s) provi
 ```
 ##### Calculate dataset statistics
 ```
-./stats.py -f <filter>
+./stats.py -d <dataset_dir>
 ```
-- `<filter>` - flag to indicate whether to calculate statistics of filtered equivalent expressions
+- `<dataset_dir>` - dataset directory
 
-[//]: # (#### Create Dataset)
-
-[//]: # (##### Check command line input help)
-
-[//]: # (```)
-
-[//]: # (./create_dataset.py -h)
-
-[//]: # (```)
-
-[//]: # (##### Create raw dataset)
-
-[//]: # (Splitting all equivalent expression pairs into different classes & categories)
-
-[//]: # (```)
-
-[//]: # (./create_dataset.py)
-
-[//]: # (```)
-
-[//]: # (##### Create filtered dataset)
-
-[//]: # (1. Remove expressions with `0` equivalent expressions)
-
-[//]: # (2. Filter the ones with more than `<n_exprs>` equivalent)
-
-[//]: # (expressions)
-
-[//]: # (3. Create equivalent expression pairs)
-
-[//]: # (4. Classify all equivalent expression pairs into different classes & categories)
-
-[//]: # (```)
-
-[//]: # (./create_dataset.py -f <filter> -n <n_exprs>)
-
-[//]: # (```)
-
-[//]: # (- `<filter>` - flag to indicate whether to filter all generated equivalent expressions)
-
-[//]: # (- `<n_exprs>` - number of expressions to keep)
-
-[//]: # ()
-[//]: # (#### Verify Dataset)
-
-[//]: # (##### Check command line input help)
-
-[//]: # (```)
-
-[//]: # (./verify.py -h)
-
-[//]: # (```)
-
-[//]: # (##### Verify dataset & Create verified dataset)
-
-[//]: # (1. Verify if an expression pair is equivalent **&#40;Note: Verification is time consuming&#41;**)
-
-[//]: # (2. Create verified dataset)
-
-[//]: # (3. Create incorrect dataset)
-
-[//]: # (```)
-
-[//]: # (./verify.py)
-
-[//]: # (```)
-
-[//]: # (#### Create Train, Validation, and Test Sets)
-
-[//]: # (##### Check command line input help)
-
-[//]: # (```)
-
-[//]: # (./split.py -h)
-
-[//]: # (```)
-
-[//]: # (##### Split dataset into train, validation, and test sets)
-
-[//]: # (```)
-
-[//]: # (./split.py -t <test_pct> -v <val_pct>)
-
-[//]: # (```)
-
-[//]: # (- `<test_pct>` - test set percentage)
-
-[//]: # (- `<val_pct>` - validation set percentage)
+#### Create Train, Validation, and Test Sets
+##### Check command line input help
+```
+./split.py -h
+```
+##### Split dataset into train, validation, and test sets
+```
+./split.py -t <test_pct> -v <val_pct>
+```
+- `<test_pct>` - test set percentage
+- `<val_pct>` - validation set percentage

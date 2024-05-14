@@ -19,10 +19,16 @@ def pt_stats(stats_: dict, stats_op: dict) -> None:
         writer.writerow([f"{op}", stats_[op][0], stats_[op][1]])
     file.close()
 
+    n_exprs = 0
+    n_expr_pairs = 0
+
     logger.log_info("========================================")
     logger.log_info("# of ops | Expression | Expression Pairs")
     for op in stats_op:
+        n_exprs += stats_op[op][0]
+        n_expr_pairs += stats_op[op][1]
         logger.log_info(f"{op:<8} | {stats_op[op][0]:<10} | {stats_op[op][1]}")
+    logger.log_info(f"Total    | {n_exprs:<10} | {n_expr_pairs}")
 
     return
 
