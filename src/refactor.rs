@@ -26,12 +26,13 @@ pub fn add_paren_recursive(tokens: &mut Vec<&str>) -> String {
         token == "asin" || token == "acos" || token == "atan" ||
         token == "acsc" || token == "asec" || token == "acot" ||
         token == "asinh" || token == "acosh" || token == "atanh" ||
-        token == "acsch" || token == "asech" || token == "acoth" {
+        token == "acsch" || token == "asech" || token == "acoth" ||
+        token == "d" {
 
         let operator = token;
 
         if operator == "+" || operator == "-" || operator == "*" ||
-            operator == "/" || operator == "pow" {
+            operator == "/" || operator == "pow" || operator == "d" {
 
             let operand_1 = add_paren_recursive(tokens);
             let operand_2 = add_paren_recursive(tokens);
@@ -98,7 +99,8 @@ pub fn refactor() {
     let reader = BufReader::new(input_file);
     let mut writer = BufWriter::new(ref_file);
 
-    let mut exprs = HashSet::default();
+    /* deduplicate */
+    // let mut exprs = HashSet::default();
 
     // Iterate over each line in the input file
     for expr in reader.lines() {
@@ -110,6 +112,17 @@ pub fn refactor() {
                 exit(1);
             },
         };
+
+        if expr.trim().is_empty() {
+            match write!(writer, "{}", expr) {
+                Ok(_) => {},
+                Err(e) => {
+                    log_error("Failed to write \"\n\" into buffer.\n");
+                    log_error(&format!("{}\n", e));
+                    exit(1);
+                },
+            };
+        }
 
         // Replace spaces between digits with no space
         let mut tokens = expr.split_whitespace().peekable();
@@ -131,6 +144,7 @@ pub fn refactor() {
         // Replace alphabetical operator to mathematical operator
         let mut new_expr = new_expr
             .replace("add", "+")
+            .replace("sub", "-")
             .replace("mul", "*")
             .replace("div", "/")
             .replace("INT+ ", "")
@@ -147,18 +161,21 @@ pub fn refactor() {
             new_expr = format!("{}", new_expr);
         }
 
-        let success = exprs.insert(new_expr.clone());
+        /* deduplicate */
+        // let success = exprs.insert(new_expr.clone());
+        //
+        // if success {
+        //
+        // }
 
-        if success{
-            match writeln!(writer, "{}", new_expr) {
-                Ok(_) => {},
-                Err(e) => {
-                    log_error("Failed to write new expression into buffer.\n");
-                    log_error(&format!("{}\n", e));
-                    exit(1);
-                },
-            };
-        }
+        match write!(writer, "{}\n", new_expr) {
+            Ok(_) => {},
+            Err(e) => {
+                log_error("Failed to write new expression into buffer.\n");
+                log_error(&format!("{}\n", e));
+                exit(1);
+            },
+        };
     }
 
     // Flush the writer to ensure that all data is written to the output file
