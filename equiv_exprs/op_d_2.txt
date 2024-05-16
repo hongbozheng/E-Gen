@@ -6,7 +6,6 @@ d x ln x
 pow / 1 x 1
 + 0 / 1 x
 pow d x ln x 1
-d x ln x
 / d x ln x 1
 / / 1 x 1
 
@@ -39,7 +38,7 @@ d x sin x
 * 1 * csc x / sin x sec x
 - - 0 d x / -1 csc x 0
 + 0 * * cos x cos x sec x
-* * -1 * -1 / 1 sec x 1
+* / 1 sec x 1
 * 1 / * cos x csc x csc x
 + * csc x / sin x sec x 0
 + / tan x / sec x cot x 0
@@ -74,7 +73,7 @@ d x sin x
 * sin x / / 1 sec x sin x
 + 0 / 1 / csc x cot x
 + / d x cos x cot x sec x
-+ 0 * -1 * -1 / 1 sec x
++ 0 / 1 sec x
 * csc x / pow cos x 2 cot x
 + * csc x / cos x csc x 0
 + 0 / / cos x cot x tan x
@@ -103,7 +102,7 @@ d x sin x
 * d x / 1 csc x 1
 - * csc x / sin x sec x 0
 + * - csc x sin x tan x 0
-* * -1 * -1 d x sin x 1
+* d x sin x 1
 - 0 * -1 cos x
 + 0 * tan x / cos x tan x
 - * cot x * tan x cos x 0
@@ -125,7 +124,7 @@ d x sin x
 - / / cot x sec x cot x 0
 * 1 - 0 d x * -1 sin x
 - / cot x / sec x tan x 0
-- 0 * -1 * -1 * cos x -1
+- 0 * cos x -1
 + * sin x cot x 0
 - * cot x / tan x sec x 0
 * / 1 / cot x cos x cot x
@@ -205,7 +204,7 @@ d x sin x
 * csc x / d x sin x csc x
 - / 1 / 1 / 1 sec x 0
 - 0 d x d x cos x
-+ * -1 * -1 cos x 0
++ cos x 0
 * * - csc x sin x tan x 1
 - / / csc x sec x csc x 0
 * 1 * cot x sin x
@@ -232,7 +231,7 @@ d x sin x
 * / d x sin x sin x sin x
 - cos x * sin x d x -1
 - * - csc x sin x tan x 0
-* 1 * -1 * -1 cos x
+* 1 cos x
 + * / tan x sec x cot x 0
 - 0 d x d x d x sin x
 - / 1 / tan x sin x 0
@@ -244,7 +243,7 @@ d x cos x
 - - 0 / 1 pow sin x -1 0
 * * / 1 csc x -1 1
 - 0 - 0 d x cos x
-- * -1 * -1 d x cos x 0
+- d x cos x 0
 / / -1 / 1 / 1 csc x 1
 / / -1 pow cos x -1 cot x
 * -1 * * sec x sin x cos x
@@ -264,9 +263,9 @@ d x / csc x * csc x sec x
 + 0 * * -1 d x cos x -1
 pow * tan x - 0 cos x 1
 / * / -1 sec x tan x 1
-- * * -1 * -1 sin x -1 0
+- * sin x -1 0
 / -1 / cot x d x sin x
-+ * -1 * -1 * -1 sin x 0
++ * -1 sin x 0
 - d x d x sin x 0
 pow - 0 / 1 / 1 sin x 1
 d x * pow tan x -1 sin x
@@ -319,7 +318,7 @@ d x * / cos x sec x sec x
 pow / -1 / cot x cos x 1
 * - 0 - 0 / -1 csc x 1
 / * * sin x tan x -1 tan x
-* -1 * -1 d x cos x
+d x cos x
 d x / 1 pow cos x -1
 - d x / 1 / 1 cos x 0
 * -1 / / sin x csc x sin x
@@ -369,7 +368,7 @@ d x d x - 0 d x cos x
 d x d x / 1 csc x
 / -1 / 1 * -1 / -1 csc x
 - - 0 sin x 0
-+ * -1 * -1 - 0 sin x 0
++ - 0 sin x 0
 / -1 / sin x pow sin x 2
 / d x * -1 / -1 sec x 1
 / * -1 / 1 pow sin x -1 1
@@ -401,7 +400,7 @@ pow / -1 / 1 sin x 1
 * * * - 0 sin x -1 -1 1
 * - 0 - 0 * sin x -1 1
 * -1 * / -1 csc x -1
-pow * -1 * -1 * -1 sin x 1
+pow * -1 sin x 1
 - * -1 - 0 / -1 csc x 0
 d x - 0 * -1 d x sin x
 / * -1 tan x sec x
@@ -519,7 +518,7 @@ d x * -1 / -1 sec x
 d x d x / 1 pow sin x -1
 / -1 pow / 1 / 1 sin x -1
 - 0 / cot x * csc x cot x
-* * -1 * -1 sin x -1
+* sin x -1
 / -1 csc x
 - / -1 * sec x cot x 0
 / -1 / sin x * sin x sin x
@@ -543,7 +542,6 @@ d x / 1 / tan x sin x
 - d x / sin x tan x 0
 / - 0 / cos x cot x 1
 + 0 * - 0 / -1 csc x -1
-d x cos x
 d x / / cos x csc x sin x
 / * -1 tan x / tan x sin x
 / -1 * sin x pow csc x 2
@@ -589,7 +587,7 @@ d x * / cos x sin x sin x
 * 1 * -1 * * -1 sin x -1
 d x / cot x csc x
 - 0 / sec x * sec x csc x
-* -1 * -1 d x / 1 sec x
+d x / 1 sec x
 pow d x - 0 / -1 sec x 1
 - 0 / 1 pow / 1 csc x -1
 + 0 / -1 / cot x cos x
@@ -616,7 +614,7 @@ pow * * - 0 sin x -1 -1 1
 * / cot x * cot x csc x -1
 - 0 / / sin x csc x sin x
 pow / -1 pow / 1 csc x -1 1
-pow d x * -1 * -1 cos x 1
+pow d x cos x 1
 / -1 pow - 0 / -1 csc x -1
 pow * / cos x cot x -1 1
 - * -1 / 1 / 1 sin x 0
@@ -812,7 +810,6 @@ pow pow sec x 2 1
 d x / / sin x cot x sin x
 / 1 pow / cot x csc x 2
 d x * cot x pow tan x 2
-d x tan x
 + * tan x tan x 1
 d x / 1 * cos x csc x
 pow + / 1 pow cot x 2 1 1
@@ -1030,7 +1027,7 @@ d x * sin x * csc x csc x
 - d x pow pow csc x -1 -1 0
 - * d x cot x cos x 0
 pow - 0 / csc x tan x 1
-pow * -1 * -1 d x csc x 1
+pow d x csc x 1
 * * pow tan x -1 csc x -1
 d x / 1 / tan x sec x
 / - 0 sec x pow cot x -2
@@ -1196,7 +1193,6 @@ d x / 1 sin x
 / -1 / pow csc x -1 cot x
 - 0 / cos x * sin x sin x
 * cos x / / -1 sin x sin x
-d x csc x
 + 0 / -1 / sin x cot x
 + 0 d x * sec x cot x
 * / pow sin x -1 tan x -1
@@ -1624,7 +1620,6 @@ pow pow / sec x cot x -1 -1
 pow / sin x * tan x tan x -1
 + * tan x / 1 cos x 0
 pow * csc x / tan x cot x 1
-d x sec x
 / sin x * cos x cos x
 / tan x pow * csc x tan x -1
 + d x pow d x sin x -1 0
@@ -1717,7 +1712,7 @@ pow - -1 + -1 pow csc x 2 1
 * - 0 * -1 d x cot x 1
 + * * -1 d x cot x -1 0
 pow d x pow / 1 cot x -1 1
-* 1 * -1 * -1 d x cot x
+* 1 d x cot x
 * / 1 * sin x sin x -1
 - + 1 d x pow tan x -1 1
 * -1 * / sec x tan x csc x
@@ -1844,7 +1839,6 @@ d x / 1 * sec x sin x
 * 1 d x / 1 tan x
 - 0 / / sec x tan x sin x
 / -1 pow / 1 pow sin x -1 2
-d x cot x
 / -1 / / cos x cot x csc x
 - 0 - 0 d x cot x
 pow / -1 / 1 pow csc x 2 1
@@ -1861,13 +1855,13 @@ pow * * -1 d x cot x -1 1
 d x / / sin x tan x sin x
 d x / / 1 sin x sec x
 pow - + d x cot x 1 1 1
-- * -1 * -1 d x cot x 0
+- d x cot x 0
 * -1 pow csc x 2
 - / -1 * sin x sin x 0
 pow d x * csc x cos x 1
 / -1 / / sin x sec x cot x
 d x / / sec x tan x sec x
-* -1 * -1 d x / 1 tan x
+d x / 1 tan x
 - -1 - -1 - 0 pow csc x 2
 * - 0 - 0 d x cot x 1
 d x pow / sin x cos x -1
@@ -2043,11 +2037,11 @@ d x asin x
 + / 1 sin acot cot acos x 0
 + * -1 - 0 cosh atanh x 0
 + csc asec sec acos x 0
-+ sec asin x d x * 0.5 pi
++ sec asin x d x * / 1 2 pi
 + cosh acoth coth acoth sec acos x 0
 + d x asin sin asin x 0
 + / 1 cos acsc sec acos x 0
-+ d x - asin x * -0.5 pi 0
++ d x - asin x * / -1 2 pi 0
 + cosh atanh cos acos cos acos x 0
 + d x acsc / 1 x 0
 + cosh atanh tanh acoth / 1 x 0
@@ -2129,7 +2123,7 @@ d x asin x
 + d x asin cos asec csc asin x 0
 + cosh asinh sinh acoth csc asin x 0
 + cosh asinh cot acos x 0
-+ csc acos x * d x pi 0.5
++ csc acos x * d x pi / 1 2
 + d sin asin x asin sin asin x 0
 + sec + - asin x pi pi 0
 + / * cosh atanh x x x 0
@@ -2189,7 +2183,7 @@ d x asin x
 + cosh asinh * sec asin x x 0
 + / cot acos x cos acos x 0
 + cosh acsch cot acsc coth atanh x 0
-+ d x + * pi 0.5 asin x 0
++ d x + * pi / 1 2 asin x 0
 + sec asin sin asin tanh atanh x 0
 + csc asec coth acoth coth atanh x 0
 + csc asec coth asinh tan asin x 0
@@ -2209,7 +2203,7 @@ d x asin x
 + cosh acsch csch acsch tan acos x 0
 + csc acos x 0
 + d x + pi * -1 acos x 0
-+ sec - * pi 0.5 acos x 0
++ sec - * pi / 1 2 acos x 0
 + * -1 / -1 sin acos x 0
 + csc acos / 1 coth atanh x 0
 + * coth atanh x sinh atanh x 0
@@ -2232,11 +2226,11 @@ d x asin x
 + cosh atanh tanh atanh x 0
 + / 1 cos asin cos acos x 0
 + / tan acsc sec acos x x 0
-+ d x asin x d x * 0.5 pi
++ d x asin x d x * / 1 2 pi
 + / 1 sin asec coth atanh x 0
 + cosh atanh x 0
 + / 1 cos atan tan asin x 0
-+ d x - asin x * pi 0.5 0
++ d x - asin x * pi / 1 2 0
 + d x acsc coth acoth coth atanh x 0
 + sec acsc coth atanh x 0
 + sec asin cos asec sec acos x 0
@@ -2271,7 +2265,7 @@ d x asin x
 + d tanh atanh x asin x 0
 + sqrt + pow cot acos x 2 1 0
 + d x acsc csc acsc / 1 x 0
-+ cosh atanh x d x * 0.5 pi
++ cosh atanh x d x * / 1 2 pi
 + csc acos sin acsc coth atanh x 0
 + cosh asinh / x sech atanh x 0
 + d x - asin x / pi 2 0
@@ -2417,7 +2411,7 @@ d x asin x
 + d / 1 csc asin x asin x 0
 + csc asec sec asec csc asin x 0
 + csc asec csc acsc sec acos x 0
-+ d x + * pi -0.5 asin x 0
++ d x + * pi / -1 2 asin x 0
 + cosh asinh tan asin x 0
 + cosh asinh / x cos asin x 0
 + csc asec csc asin sin asin x 0
@@ -2434,7 +2428,7 @@ d x asin x
 + cosh acoth sec acos cos acos x 0
 + sec acsc sec asec csc asin x 0
 + / cot asec sec acos x x 0
-+ d x - * 0.5 pi acos x 0
++ d x - * / 1 2 pi acos x 0
 + / abs csc asin x sinh asech x 0
 + cosh acoth coth acoth coth atanh x 0
 + cosh atanh cos acot sinh atanh x 0
@@ -2513,7 +2507,7 @@ d x asin x
 + cosh acoth / 1 cos acos x 0
 + cosh acoth csc asin cos acos x 0
 + / 1 * x tan acos x 0
-+ csc - * pi 0.5 asin x 0
++ csc - * pi / 1 2 asin x 0
 + csc asec csc asin x 0
 + / 1 sech atanh tanh atanh x 0
 + csc asec sec acos sin asin x 0
@@ -2596,7 +2590,7 @@ d x acos x
 + d x - + pi acos x pi 0
 + - 0 cosh atanh x 0
 + - 0 sec asin cos acos x 0
-+ d x + * pi -0.5 acos x 0
++ d x + * pi / -1 2 acos x 0
 + - 0 d x - 0 acos x 0
 + d x acos cos acos sin asin x 0
 + d x - acos x / pi 2 0
@@ -2643,7 +2637,7 @@ d x acos x
 + - d x pi cosh atanh x 0
 + d x * acsc / 1 x -1 0
 + - 0 sec acsc csc asin x 0
-+ d x - * 0.5 pi asin x 0
++ d x - * / 1 2 pi asin x 0
 + d x acos sin asin x 0
 + - 0 cosh asinh tan asin x 0
 + / -1 / x tan asin x 0
@@ -2665,7 +2659,7 @@ d x acos x
 + * -1 csc acos sin asin x 0
 + / -1 / -1 d x acos x 0
 + d x * -1 - asin x pi 0
-+ d x - acos x * pi 0.5 0
++ d x - acos x * pi / 1 2 0
 + d x asec sec acos x 0
 + / -1 sin acos sin asin x 0
 + * -1 d x acsc sec acos x 0
@@ -2677,7 +2671,7 @@ d x acos x
 + * csc acos cos acos x -1 0
 + d x - pi - pi acos x 0
 + * / tan asin x x -1 0
-+ d x - acos x * pi -0.5 0
++ d x - acos x * pi / -1 2 0
 + d x asec csc asin x 0
 + - 0 cosh acoth csc asin x 0
 + - 0 d cos acos x asin x 0
@@ -2709,7 +2703,7 @@ d x acos x
 + d x asec sec asec csc asin x 0
 + / -1 cos asin x 0
 + d x asec sec asec sec acos x 0
-+ d x + acos x * pi 0.5 0
++ d x + acos x * pi / 1 2 0
 + / -1 / 1 cosh atanh x 0
 + * -1 sec asin cos acos x 0
 + - 0 csc asec / 1 x 0
@@ -2732,7 +2726,7 @@ d x atan x
 - d x asin sin asin sin atan x 0
 + 0 * d x asinh x cos atan x
 + 0 pow sin acos sin atan x 2
-+ d x atan x d x * pi 0.5
++ d x atan x d x * pi / 1 2
 + pow d x asinh x 2 0
 - / 1 pow cosh asinh x 2 0
 + d x acsc / sec atan x x 0
@@ -2782,7 +2776,7 @@ d x atan x
 - d x atan x d x / pi 2
 + * -1 d x acos tanh asinh x 0
 + / sin acot x cosh asinh x 0
-- d x atan x * d x pi 0.5
+- d x atan x * d x pi / 1 2
 + 0 pow sin acot tan atan x 2
 + 0 pow d x asinh cot acot x 2
 - d x * acot x -1 0
@@ -2836,7 +2830,7 @@ d x atan x
 + d x asin tanh acsch csch asinh x 0
 + d x - 0 acos tanh asinh x 0
 + 0 pow / sin atan x x 2
-+ 0 d x - atan x * pi 0.5
++ 0 d x - atan x * pi / 1 2
 + 0 d x acsc / 1 cos acot x
 - d x - 0 asec sec acot x 0
 - d x acsc coth asinh cot acot x 0
@@ -2892,7 +2886,7 @@ d x atan x
 - * d cot acot x acot x -1 0
 + 0 d x asin sin atan cot acot x
 - d sinh acoth csc atan x atan x 0
-+ d x + atan x * 0.5 pi 0
++ d x + atan x * / 1 2 pi 0
 + pow sech acoth csc atan x 2 0
 + 0 d x asin cos asec sec acot x
 + d x asin / x csc acot x 0
@@ -2974,7 +2968,7 @@ d x atan x
 - pow sin acot x 2 0
 + 0 - 0 d x asec sec acot x
 + d x asin / x sec atan x 0
-- d x - * pi 0.5 acot x 0
+- d x - * pi / 1 2 acot x 0
 - d cot acot cot acot x atan x 0
 - d x acsc / 1 tanh asinh x 0
 - pow sech atanh tanh asinh x 2 0
@@ -3015,7 +3009,7 @@ d x atan x
 - pow d cot acot x asinh x 2 0
 - d x acsc csc acsc coth asinh x 0
 + 0 pow cos atan cot acot x 2
-+ 0 d x - * pi 0.5 acot x
++ 0 d x - * pi / 1 2 acot x
 + 0 d x asin tanh acoth coth asinh x
 - d x - 0 asec coth asinh x 0
 + / cos atan x csc acot x 0
@@ -3178,7 +3172,7 @@ d x atan x
 + d x acsc sec asec csc atan x 0
 + 0 d x - pi acos sin atan x
 + d sinh asinh x asin cos acot x 0
-- d x - atan x * pi 0.5 0
+- d x - atan x * pi / 1 2 0
 + pow sech asinh x 2 d x pi
 - pow / cos acot x x 2 0
 - d x acsc coth acoth csc atan x 0
@@ -3242,7 +3236,7 @@ d x + - 0 / pi 2 acsc x
 d x atan / csc acos / 1 x x
 d coth acoth x - atan cot asec x pi
 d x - - acsc x pi - 0 pi
-d x + - 0 asec x * pi -0.5
+d x + - 0 asec x * pi / -1 2
 d coth asinh sinh acsch cot acsc x acsc x
 d x atan sinh acoth coth asinh sinh acoth x
 d x atan sinh acsch csch atanh sin acsc x
@@ -3251,12 +3245,12 @@ d x atan tan asin tanh atanh cos asec x
 - d coth acsch csch acoth x acsc x 0
 d x asin cos acot / cosh acoth x x
 + d x * -1 asec x d x pi
-d x * -1 * -1 * -1 asec x
+d x * -1 asec x
 d x - asin tanh acoth coth acoth x pi
 * d x - + pi acsc x pi 1
 - d csc asin / 1 x acsc x 0
 / d csc acsc x * -1 asec x 1
-+ d x * -1 * -1 acsc x 0
++ d x acsc x 0
 / d x atan tan asin cos asec x 1
 d x - pi acos cos acot sinh acoth x
 / d x - pi asec coth acoth x 1
@@ -3281,16 +3275,16 @@ d x atan / 1 csch atanh / 1 x
 d x - 0 acot tan atan sinh acoth x
 * d coth acoth coth acoth x asec x -1
 d x atan sinh asinh cot acos cos asec x
-d csc acsc x - * -0.5 pi asec x
+d csc acsc x - * / -1 2 pi asec x
 d coth asinh sinh acoth csc acsc x acsc x
 d csc asin sin acsc x - acsc x pi
-d x + asin cos asec x * pi 0.5
+d x + asin cos asec x * pi / 1 2
 d x - pi asec coth atanh / 1 x
 d sec acos cos acos / 1 x acsc x
 d x - pi acot cot acot sinh acoth x
 pow d sec acos tanh acoth x acsc x 1
 * d csc asin / 1 x acsc x 1
-d x + * -0.5 pi atan sinh acoth x
+d x + * / -1 2 pi atan sinh acoth x
 * d x atan cot acot cot asec x 1
 d x asin / cos acsc x cot acsc x
 / d csc asin tanh acoth x acsc x 1
@@ -3298,7 +3292,7 @@ d x - asin cos asec x pi
 - 0 d x acot cot acot cot asec x
 d sec acot tan acsc x asin / 1 x
 d x atan tan acsc coth acsch tan asec x
-d x + * asec x -1 * 0.5 pi
+d x + * asec x -1 * / 1 2 pi
 + 0 * d x acos sin acsc x -1
 d x asin sin acsc sec acot cot asec x
 - d csc asin tanh acoth x acsc x 0
@@ -3353,7 +3347,7 @@ d x + pi - 0 acot sinh acoth x
 d x atan / 1 csch asinh sinh acoth x
 d x - acsc sec acos sin acsc x pi
 / / -1 sinh asech cos asec x abs x
-d x + acsc x * -0.5 + pi pi
+d x + acsc x * / -1 2 + pi pi
 pow d x - acsc x pi 1
 d x - - 0 - 0 acsc x pi
 / d csc atan tan acsc x acsc x 1
@@ -3380,13 +3374,13 @@ d x asin cos acos tanh acoth sec asec x
 d coth acsch csch acoth x - pi asec x
 d x atan tan acsc coth atanh tanh acoth x
 - * -1 d x acos sin acsc x 0
-+ 0 d x + acsc x * pi -0.5
++ 0 d x + acsc x * pi / -1 2
 pow d x asin cos acot cot asec x 1
 * -1 / 1 * abs x sinh acosh x
 d x * asec x -1
 d x atan cot acot cot acot sinh acoth x
 + * d x acos tanh acoth x -1 0
-d x asin cos - * 0.5 pi acsc x
+d x asin cos - * / 1 2 pi acsc x
 pow d coth acoth x acsc x 1
 * -1 d / 1 / 1 x asec x
 d x - acsc coth asinh cot asec x pi
@@ -3422,7 +3416,7 @@ d coth atanh tanh asinh tan acsc x acsc x
 - d x - 0 acot cot asec x 0
 * / -1 abs x csch asech cos asec x
 d x asin / cot asec x cosh acoth x
-d x + pi - acsc x * 0.5 pi
+d x + pi - acsc x * / 1 2 pi
 + * / csch acosh x abs x -1 0
 + d x atan cot asec x d x pi
 * csc asec x d x / 1 x
@@ -3432,19 +3426,19 @@ d sec acos / 1 x asin tanh acoth x
 + 0 d sec acos sin acsc x acsc x
 / d sec asec x atan cot asec x 1
 d x - asin sin acsc x / pi 2
-d x - * pi 0.5 acos tanh acoth x
+d x - * pi / 1 2 acos tanh acoth x
 d x acsc sec acos sin atan sinh acoth x
 * d x - asin tanh acoth x pi 1
 d coth acoth x - pi acos / 1 x
 d sec acos tanh acoth x - 0 asec x
-d x - - acsc x * pi -0.5 pi
+d x - - acsc x * pi / -1 2 pi
 - d x - pi acot sinh acoth x 0
 * - 0 d x asin sin acsc x -1
 d x acsc sec acos cos acos tanh acoth x
 / d sec asec x asin / 1 x 1
 / d x * -1 acos cos asec x 1
 / d x asin tanh acsch csch acoth x 1
-d x - acsc x * 2 * pi 0.5
+d x - acsc x * 2 * pi / 1 2
 d x asin sin acsc csc acsc x
 d x asin sin acsc sec acos tanh acoth x
 + 0 d csc acsc coth acoth x acsc x
@@ -3457,9 +3451,9 @@ pow d x atan cot acos tanh acoth x 1
 - d x asin cos acot cot asec x 0
 * d x atan tan asin sin acsc x 1
 d sec acot sinh acoth x acsc x
-+ d x - acsc x * -0.5 pi 0
++ d x - acsc x * / -1 2 pi 0
 - d x atan sinh acsch cot acsc x 0
-/ d x - * 0.5 pi asec x 1
+/ d x - * / 1 2 pi asec x 1
 pow d sec acos sin acsc x acsc x 1
 d x * - pi asin tanh acoth x -1
 * 1 d x atan sinh asinh sinh acoth x
@@ -3476,7 +3470,7 @@ d csc atan / sec acsc x x acsc x
 / d x asin tanh acsch cot acsc x 1
 * d x - asin / 1 x pi 1
 d x * -1 - pi atan sinh acoth x
-d x + atan tan acsc x * pi -0.5
+d x + atan tan acsc x * pi / -1 2
 d / 1 tanh atanh / 1 x acsc x
 d x acsc sec - 0 - 0 asec x
 pow d x atan tan asin tanh acoth x 1
@@ -3484,7 +3478,7 @@ d x atan / 1 cot asin cos asec x
 d x acsc coth asinh sinh acoth coth acoth x
 + 0 d x asin sin asin / 1 x
 d coth acoth x acsc coth asinh cot asec x
-d x - atan tan acsc x * pi 0.5
+d x - atan tan acsc x * pi / 1 2
 + d x atan sinh acoth x d x pi
 * 1 d x * -1 acot tan acsc x
 d coth acsch tan acos / 1 x acsc x
@@ -3496,7 +3490,7 @@ d sec asec x asin tanh asinh tan acsc x
 pow d x atan tan asin / 1 x 1
 / d sec acos sin acsc x acsc x 1
 - d x asin tanh acoth coth acoth x 0
-d x - asin sin acsc x * pi 0.5
+d x - asin sin acsc x * pi / 1 2
 d x + pi * acos cos asec x -1
 - 0 d x asec coth acoth sec asec x
 - * -1 d x asec csc acsc x 0
@@ -3522,10 +3516,10 @@ d sec asec x acsc sec asec sec asec x
 d coth atanh tanh acoth x asin cos asec x
 - d x asin tanh asinh cot asec x 0
 / * -1 d x acos / 1 x 1
-d x - asin cos asec x * 0.5 pi
+d x - asin cos asec x * / 1 2 pi
 pow d x * -1 acos cos asec x 1
 pow d x acsc coth acoth sec asec x 1
-d x - * pi 0.5 asec sec asec x
+d x - * pi / 1 2 asec sec asec x
 - 0 d x - acos sin acsc x pi
 d x atan sinh atanh cos asec x
 pow d x atan cot acot sinh acoth x 1
@@ -3558,20 +3552,20 @@ d x + pi - asin cos asec x pi
 d x acsc / 1 cos acot tan acsc x
 * d csc acsc coth acoth x asec x -1
 d csc acsc csc acsc x - pi asec x
-d x + acsc csc acsc x * -0.5 pi
+d x + acsc csc acsc x * / -1 2 pi
 / - 0 d x acos cos asec x 1
 d x - atan sinh asinh sinh acoth x pi
 / d coth acoth x asin sin acsc x 1
 d x atan tan atan cot acos cos asec x
 pow - d x acsc x d x pi 1
-d x + * pi -0.5 asin sin acsc x
-d x asin sin - * pi 0.5 asec x
+d x + * pi / -1 2 asin sin acsc x
+d x asin sin - * pi / 1 2 asec x
 / d x atan sinh acsch cot acsc x 1
 d csc acsc x acsc coth atanh tanh acoth x
 - - 0 d x acos tanh acoth x 0
 d x - - 0 * -1 pi asec x
 + d x asin tanh atanh sin acsc x 0
-* -1 d x - * pi 0.5 acsc x
+* -1 d x - * pi / 1 2 acsc x
 d x atan / tanh acoth x sech acoth x
 d x acsc coth acsch cot acsc csc acsc x
 + d coth acoth x - pi asec x 0
@@ -3610,11 +3604,11 @@ pow d x - acsc sec asec x pi 1
 * 1 d x asin cos acos cos asec x
 d x - 0 asec csc acsc coth acoth x
 d x - pi - pi asin tanh acoth x
-/ d x - * pi -0.5 asec x 1
+/ d x - * pi / -1 2 asec x 1
 d csc acsc x atan cot acot sinh acoth x
 + * -1 d x acos cos asec x 0
 d x + pi - 0 acos / 1 x
-d x + acsc csc acsc x * 0.5 pi
+d x + acsc csc acsc x * / 1 2 pi
 d x asin tanh acsch / 1 tan acsc x
 * d x acsc csc asin sin acsc x 1
 d x + - 0 asec x pi
@@ -3625,7 +3619,7 @@ d x atan tan acsc coth acoth x
 d sec acos cos asec x atan tan acsc x
 - 0 d x acot sinh asinh cot asec x
 / d x tanh acoth x sin asec x
-d x - acsc x * 0.5 pi
+d x - acsc x * / 1 2 pi
 * d x - asin sin acsc x pi 1
 - 0 d coth asinh tan acsc x asec x
 d x asin tanh atanh sin acsc x
@@ -3645,7 +3639,7 @@ d x - 0 * -1 acsc sec asec x
 / * -1 d x acos tanh acoth x 1
 / d x asin cos acos cos asec x 1
 d x * -1 acot cot acos sin acsc x
-d x - 0 - asec x * 0.5 pi
+d x - 0 - asec x * / 1 2 pi
 d x asin tanh acsch cot asin tanh acoth x
 d x atan tan atan cot acos / 1 x
 * 1 d x atan cot acot tan acsc x
@@ -3653,7 +3647,7 @@ d x atan tan atan cot acos / 1 x
 d csc acsc x acsc sec acos tanh acoth x
 d x asin sin atan / 1 csch acoth x
 / / -1 * sinh acosh x abs x 1
-d x + * pi -0.5 * asec x -1
+d x + * pi / -1 2 * asec x -1
 d x acsc coth acoth csc atan sinh acoth x
 d x acsc csc asin tanh atanh sin acsc x
 d x * -1 acot tan asin tanh acoth x
@@ -3682,7 +3676,7 @@ d x * -1 acos tanh acsch tan asec x
 pow d x acsc csc acsc csc acsc x 1
 d x asin cos acot cot acos cos asec x
 * 1 - d x acsc x d x pi
-d x - atan tan acsc x * pi -0.5
+d x - atan tan acsc x * pi / -1 2
 d x acsc sec asec coth acsch tan asec x
 d x atan / 1 csch acoth coth acoth x
 - 0 / csch acosh x abs csc acsc x
@@ -3695,7 +3689,7 @@ d coth acoth x atan / 1 cot acsc x
 d x asin sin asin sin acsc sec asec x
 pow d x + / pi 2 acsc x 1
 d x atan / * tan acsc x x x
-* -1 * -1 d x - pi asec x
+d x - pi asec x
 d x - pi acot sinh atanh / 1 x
 d x acsc / csch acoth x cos acsc x
 d x + acsc sec asec x / pi 2
@@ -3709,7 +3703,7 @@ d coth acoth x atan cot asec sec asec x
 d x acsc / sec acsc x sinh acoth x
 d x - atan tan atan cot asec x pi
 + d coth acoth x * -1 asec x 0
-d csc acsc x - acsc x * 0.5 pi
+d csc acsc x - acsc x * / 1 2 pi
 d x asin cos acot tan asin tanh acoth x
 d x atan cot acot tan asin tanh acoth x
 d x asin sin asin cos acot tan acsc x
@@ -3721,14 +3715,14 @@ d x atan cot acos tanh atanh cos asec x
 d sec asec x atan sinh acoth sec asec x
 d x asin sin atan sinh acoth sec asec x
 * -1 d x asec sec acos cos asec x
-+ 0 d x - acsc x * 0.5 pi
++ 0 d x - acsc x * / 1 2 pi
 d x + + acsc x * -1 pi pi
 d x atan cot acot sinh asinh tan acsc x
 d x * - acos / 1 x pi -1
 d x atan cot acot cot acos tanh acoth x
 pow * -1 d x acos / 1 x 1
 d x atan tan atan sinh acsch tan asec x
-* 1 d x - * 0.5 pi asec x
+* 1 d x - * / 1 2 pi asec x
 d x acsc csc atan cot acos / 1 x
 / d x cos asec x cos acsc x
 d x atan / cosh asinh tan acsc x x
@@ -3743,7 +3737,7 @@ d x - pi acos tanh asinh tan acsc x
 d x - atan / 1 csch acoth x pi
 d x acsc coth asinh sinh acoth x
 * -1 d x * - 0 asec x -1
-d x - * 0.5 pi acot cot asec x
+d x - * / 1 2 pi acot cot asec x
 d sec asec x + pi * asec x -1
 * d x acsc coth asinh sinh acoth x 1
 pow d x asin cos acos cos asec x 1
@@ -3756,7 +3750,7 @@ d x atan cot acos cos acos cos asec x
 d x - pi acot sinh atanh tanh acoth x
 d x - asin cos acos sin acsc x pi
 pow d x asin sin acsc sec asec x 1
-d x - * pi 1.5 - pi acsc x
+d x - * pi / 3 2 - pi acsc x
 d x - pi acos cos acos cos asec x
 d x acsc csc atan / 1 cot acsc x
 d csc acsc x atan tan acsc x
@@ -3884,7 +3878,7 @@ d x asin cos acot sinh asinh cot asec x
 d x asin * sinh acoth x cos acsc x
 pow d csc asin cos asec x acsc x 1
 - d x atan cot asec x 0
-* d x + acsc x * -0.5 pi 1
+* d x + acsc x * / -1 2 pi 1
 / d x / 1 x sech acoth x
 pow d coth acoth x asin / 1 x 1
 d x asin sin atan sinh atanh cos asec x
@@ -3903,7 +3897,7 @@ d x atan sinh asinh tan asin cos asec x
 d sec acos tanh asinh tan acsc x acsc x
 d x + acsc x * / pi 2 -1
 * d csc atan tan acsc x acsc x 1
-d coth acoth x - * pi 0.5 asec x
+d coth acoth x - * pi / 1 2 asec x
 d x acsc coth atanh tanh asinh sinh acoth x
 * -1 d x acot tan acsc x
 d x atan sinh asinh sinh atanh / 1 x
@@ -3965,7 +3959,7 @@ d x + * acos sin acsc x -1 pi
 * -1 d x - 0 - acsc x pi
 * 1 d x atan sinh acoth sec asec x
 * -1 * d x atan cot asec x -1
-d x - asin tanh acoth x * pi -0.5
+d x - asin tanh acoth x * pi / -1 2
 - d csc atan sinh acoth x acsc x 0
 * d x atan / csc asec x x 1
 * 1 d sec asec x acsc csc acsc x
@@ -4006,7 +4000,7 @@ d x acsc sec acos sin acsc sec asec x
 * d sec acot sinh acoth x acsc x 1
 d coth acsch csch asinh tan acsc x acsc x
 d csc acsc x * -1 acot tan acsc x
-d x + acsc x * * pi -1 0.5
+d x + acsc x * * pi -1 / 1 2
 * -1 d x - pi asin sin acsc x
 d x atan sinh asinh / 1 tan asec x
 d x acsc sec acos cos acos sin acsc x
@@ -4022,7 +4016,7 @@ d x asin tanh acsch cot asin cos asec x
 d x atan sinh acsch csch acsch cot acsc x
 / d x acsc sec acos / 1 x 1
 d x * acos sin atan tan acsc x -1
-d x - asin tanh acoth x * 0.5 pi
+d x - asin tanh acoth x * / 1 2 pi
 + 0 d x + pi * -1 asec x
 + 0 d / 1 sin acsc x acsc x
 d x atan tan acsc sec asec sec asec x
@@ -4037,7 +4031,7 @@ pow d x asin cos acos sin acsc x 1
 * 1 d sec asec x atan tan acsc x
 d coth acoth sec asec x acsc csc acsc x
 * + d x acsc x d x pi 1
-d x + * pi -0.5 acsc coth acoth x
+d x + * pi / -1 2 acsc coth acoth x
 d x - pi acot tan atan cot asec x
 + d x + * -1 pi acsc x 0
 d x acsc sec asec csc asin cos asec x
@@ -4055,7 +4049,7 @@ d x atan cot acot tan acsc x
 * d x acos tanh acsch cot acsc x -1
 d / 1 cos asec x asin cos asec x
 d coth acoth x atan tan atan tan acsc x
-d x + asin cos asec x * -0.5 pi
+d x + asin cos asec x * / -1 2 pi
 d x acsc coth asinh cot acot cot asec x
 d x acsc coth asinh tan acsc coth acoth x
 / d x atan tan acsc coth acoth x 1
@@ -4080,7 +4074,7 @@ d x atan cot acos cos acot cot asec x
 d x - atan sinh acsch tan asec x pi
 + d x asin cos acot tan acsc x 0
 d x atan cot acos tanh acoth coth acoth x
-d x + * pi -0.5 atan cot asec x
+d x + * pi / -1 2 atan cot asec x
 d x atan sinh asinh sinh acsch tan asec x
 + 0 d x atan sinh asinh sinh acoth x
 d x - asin tanh asinh sinh acoth x pi
@@ -4114,7 +4108,7 @@ d x - pi acos tanh acoth sec asec x
 d x acsc * cot acsc x cosh acoth x
 d x atan tan asin tanh acoth coth acoth x
 + d coth acoth x atan cot asec x 0
-* 1 d x + * pi 0.5 acsc x
+* 1 d x + * pi / 1 2 acsc x
 d sec acot cot acos tanh acoth x acsc x
 d x acsc coth acoth coth acoth csc acsc x
 d x - atan cot acos sin acsc x pi
@@ -4150,7 +4144,7 @@ d x atan sinh asinh tan asin sin acsc x
 d sec asec x - acsc x / pi 2
 d sec acos / 1 x acsc coth acoth x
 d * csch acoth x csc asec x acsc x
-d x + * pi 0.5 asin sin acsc x
+d x + * pi / 1 2 asin sin acsc x
 d x - - pi acot tan acsc x pi
 d x atan tan atan sinh asinh sinh acoth x
 - d x atan / sec acsc x x 0
@@ -4162,7 +4156,7 @@ pow d x atan / 1 tan asec x 1
 d x - pi acot sinh asinh tan acsc x
 * * d x atan tan acsc x -1 -1
 d x - pi acos / 1 sec asec x
-d x - * pi -0.5 acot tan acsc x
+d x - * pi / -1 2 acot tan acsc x
 d csc acsc x - 0 acos / 1 x
 - 0 d x acot tan acsc x
 d x acsc / tan asec x sin asec x
@@ -4181,7 +4175,7 @@ d sec acot sinh acoth x - acsc x pi
 d coth acoth x - 0 acot tan acsc x
 d x - acsc x - 0 / pi 2
 d x acsc coth asinh cot acos tanh acoth x
-d x - atan cot asec x * pi -0.5
+d x - atan cot asec x * pi / -1 2
 d x atan cot acos tanh asinh tan acsc x
 / d x asin cos acot cot asec x 1
 d x acsc csc asin cos acos sin acsc x
@@ -4193,12 +4187,12 @@ d x * acot sinh asinh cot asec x -1
 d x - pi acos sin atan sinh acoth x
 - d x atan / cosh acoth x x 0
 / d x - pi acos tanh acoth x 1
-d csc - * 0.5 pi asec x acsc x
+d csc - * / 1 2 pi asec x acsc x
 d x asin tanh atanh sin asin / 1 x
 d x atan / 1 / 1 cot asec x
 - d x atan cot acos cos asec x 0
 d x acsc coth atanh tanh atanh sin acsc x
-d x - * pi -0.5 acos tanh acoth x
+d x - * pi / -1 2 acos tanh acoth x
 d coth acsch csch acoth x asin cos asec x
 d coth acoth x atan sinh atanh tanh acoth x
 pow d x - pi acot tan acsc x 1
@@ -4214,11 +4208,11 @@ d x acsc csc acsc coth acoth x
 d csc acsc x + * pi -1 acsc x
 d coth acsch csch acoth x - 0 asec x
 - * / csch acosh x abs x -1 0
-pow d x - * -0.5 pi asec x 1
+pow d x - * / -1 2 pi asec x 1
 d x atan cot acot tan atan tan acsc x
 - d x asin sin acsc x d x pi
 * 1 d x - 0 acot tan acsc x
-d x + * * 2 pi -0.5 acsc x
+d x + * * 2 pi / -1 2 acsc x
 d x - pi acos tanh acsch tan asec x
 d x atan sinh acsch tan acos sin acsc x
 d x - - 0 asec x - 0 pi
@@ -4231,7 +4225,7 @@ pow d x asin sin asin tanh acoth x 1
 d sec acot sinh atanh tanh acoth x acsc x
 d x asin tanh asinh tan asin sin acsc x
 + 0 d x acsc coth acsch cot acsc x
-d sec asec x + acsc x * 0.5 pi
+d sec asec x + acsc x * / 1 2 pi
 d sec asec x asin cos asec x
 d x - / pi 2 acos tanh acoth x
 * 1 - 0 d coth acoth x asec x
@@ -4278,7 +4272,7 @@ d x asin cos acot cot acos sin acsc x
 * -1 d x acos / 1 csc acsc x
 d x asin tanh asinh sinh acsch csch acoth x
 + 0 d x asin cos acos / 1 x
-d x - acsc x * pi -0.5
+d x - acsc x * pi / -1 2
 d / 1 cos acos / 1 x acsc x
 / d x asin tanh acoth sec asec x 1
 d csc acsc x atan cot acot tan acsc x
@@ -4308,11 +4302,11 @@ d x - atan sinh acoth x pi
 d sec acos cos acos cos asec x acsc x
 d x asin tanh acoth csc asin tanh acoth x
 / * -1 d sec asec x asec x 1
-- d x acsc x d x * pi 0.5
+- d x acsc x d x * pi / 1 2
 d coth asinh cot asec x - pi asec x
 d x atan / 1 tan acos sin acsc x
 d x - pi acos tanh atanh cos asec x
-d x - asin sin acsc x * -0.5 pi
+d x - asin sin acsc x * / -1 2 pi
 d csc asin cos asec x acsc x
 * 1 d x atan sinh atanh cos asec x
 d coth acoth x atan cot acos sin acsc x
@@ -4322,13 +4316,13 @@ d x acsc coth acsch * cos acsc x x
 d x asin tanh acsch csch acoth sec asec x
 * sec acsc x d x sin acsc x
 d coth atanh sin acsc x - 0 asec x
-d sec asec x - * pi -0.5 asec x
+d sec asec x - * pi / -1 2 asec x
 * 1 d x - 0 acot sinh acoth x
 d / 1 tanh acoth x - pi asec x
 d x atan cot asec coth acoth x
-d x - atan sinh acoth x * pi -0.5
+d x - atan sinh acoth x * pi / -1 2
 / d x atan cot acos tanh acoth x 1
-- d x acsc x d x * pi -0.5
+- d x acsc x d x * pi / -1 2
 d x atan / sec atan cot asec x x
 - d x * acos / 1 x -1 0
 * d coth acoth x - pi asec x 1
@@ -4353,7 +4347,7 @@ d sec asec x - asin tanh acoth x pi
 d x - / pi 2 + asec x pi
 pow d x asin sin acsc x 1
 pow d x atan tan acsc coth acoth x 1
-d x - * pi 0.5 asec x
+d x - * pi / 1 2 asec x
 * -1 d sec asec x - asec x pi
 d x atan sinh acsch csch acoth sec asec x
 d x atan tan atan cot acot sinh acoth x
@@ -4411,11 +4405,11 @@ d x - asin sin atan sinh acoth x pi
 d x - acsc csc acsc x pi
 d x atan cot acot sinh acoth x
 d x asin / sech acoth x cot acsc x
-d x - acsc x + pi * pi -0.5
+d x - acsc x + pi * pi / -1 2
 d x - atan sinh asinh tan acsc x pi
 d x atan / sec asin tanh acoth x x
 + 0 d coth acoth x acsc sec asec x
-d x - * pi 0.5 acos sin acsc x
+d x - * pi / 1 2 acos sin acsc x
 pow d x - / pi 2 asec x 1
 d x asin cos - / pi 2 acsc x
 d coth acoth x acsc csc atan cot asec x
@@ -4437,10 +4431,10 @@ d x - acsc / 1 sin acsc x pi
 pow d x asin tanh asinh cot asec x 1
 d csc acsc x asin tanh asinh sinh acoth x
 d x atan tan asin tanh asinh tan acsc x
-/ d x - acsc x * pi -0.5 1
+/ d x - acsc x * pi / -1 2 1
 * 1 d x * acos sin acsc x -1
 d coth acsch csch acsch csch acoth x acsc x
-- * -1.5 d x pi d x asec x
+- * / -3 2 d x pi d x asec x
 + 0 d sec asec x acsc sec asec x
 d / 1 sin acsc x - pi asec x
 d x acsc coth asinh sinh asinh sinh acoth x
@@ -4450,7 +4444,7 @@ d x acsc / 1 cos asec csc acsc x
 / d coth acsch tan asec x acsc x 1
 d csc atan cot asec x asin tanh acoth x
 - d x atan tan asin / 1 x 0
-pow d x - * pi 0.5 asec x 1
+pow d x - * pi / 1 2 asec x 1
 + 0 d x asin cos acot cot asec x
 - 0 d x acos tanh atanh tanh acoth x
 d x - 0 acot / cosh acoth x x
@@ -4464,7 +4458,7 @@ pow d x - 0 asec sec asec x 1
 d coth acoth x + acsc x / pi 2
 pow d / 1 / 1 x acsc x 1
 d x - + atan sinh acoth x pi pi
-d x - acsc sec asec x * 0.5 pi
+d x - acsc sec asec x * / 1 2 pi
 - 0 d x acos tanh acsch cot acsc x
 d x + acsc x - pi + pi pi
 d x asin tanh asinh sinh asinh sinh acoth x
@@ -4483,7 +4477,7 @@ d x - acsc x pi
 d sec acot / 1 cot acsc x acsc x
 + d coth acsch tan asec x acsc x 0
 d x asin tanh asinh sinh atanh / 1 x
-+ d x + * 0.5 pi acsc x 0
++ d x + * / 1 2 pi acsc x 0
 d x atan cot asec / 1 cos asec x
 + 0 d x asin cos acos sin acsc x
 d x - asin sin asin / 1 x pi
@@ -4520,7 +4514,7 @@ d coth asinh sinh acsch csch acoth x acsc x
 / * csch asech / 1 x -1 abs x
 d x asin cos acot / 1 csch acoth x
 * cosh acoth x d x cos asec x
-pow d x + * 0.5 pi acsc x 1
+pow d x + * / 1 2 pi acsc x 1
 d x - 0 acot / 1 tan asec x
 d x atan / 1 csch acsch tan asec x
 + 0 d x - 0 asec x
@@ -4532,8 +4526,8 @@ d x * -1 acos sin acsc csc acsc x
 - d x - 0 acot tan acsc x 0
 d x acsc coth asinh tan atan tan acsc x
 / d x asin / 1 csc acsc x 1
-d x - * -0.5 pi acos / 1 x
-d x atan tan - * 0.5 pi asec x
+d x - * / -1 2 pi acos / 1 x
+d x atan tan - * / 1 2 pi asec x
 d x atan cot acos sin atan cot asec x
 - 0 d x acos cos asec coth acoth x
 pow d x asin tanh atanh cos asec x 1
@@ -4548,7 +4542,7 @@ d x - 0 - pi asin sin acsc x
 d x + * pi -1 acsc coth acoth x
 * -1 d x acos cos acot tan acsc x
 d x asin cos acos cos acot tan acsc x
-d x + atan cot asec x * 0.5 pi
+d x + atan cot asec x * / 1 2 pi
 d coth acsch / 1 tan acsc x acsc x
 d x + atan sinh acoth x / pi 2
 d x asin tanh atanh cos acos sin acsc x
@@ -4566,7 +4560,7 @@ pow d x - 0 acos tanh acoth x 1
 + d x acsc / 1 / 1 x 0
 d x asin cos acos sin asin / 1 x
 d x asin sin acsc csc atan tan acsc x
-- d x - * -0.5 pi asec x 0
+- d x - * / -1 2 pi asec x 0
 / -1 * sinh asech cos asec x abs x
 - d x * -1 asec sec asec x 0
 d x * -1 acot sinh atanh sin acsc x
@@ -4590,10 +4584,10 @@ d x atan sinh acoth x
 d x - pi asec coth acsch cot acsc x
 d x atan sinh acsch cot asin sin acsc x
 pow - d x pi d x asec x 1
-pow d x + acsc x * pi -0.5 1
+pow d x + acsc x * pi / -1 2 1
 - d sec asec x atan sinh acoth x 0
-d x - asin / 1 x * -0.5 pi
-d sec asec x - acsc x * pi -0.5
+d x - asin / 1 x * / -1 2 pi
+d sec asec x - acsc x * pi / -1 2
 d x * - 0 atan tan acsc x -1
 - d x asin / 1 x d x pi
 d x atan tan asin tanh atanh tanh acoth x
@@ -4604,12 +4598,12 @@ pow d x atan cot acos cos asec x 1
 d x atan cot acot cot asec x
 * 1 * d x acos tanh acoth x -1
 pow d x - asin tanh acoth x pi 1
-d x - pi + asec x * pi 0.5
+d x - pi + asec x * pi / 1 2
 d coth asinh cot asec x atan cot asec x
 d coth acoth x asin tanh acoth sec asec x
 / d x - pi acot cot asec x 1
 d x - - pi acot sinh acoth x pi
-- * 1.5 d x pi d x asec x
+- * / 3 2 d x pi d x asec x
 d x - pi acot / cosh acoth x x
 / -1 / abs csc acsc x csch acosh x
 / / -1 abs x abs csch acoth x
@@ -4619,7 +4613,7 @@ pow d x atan sinh asinh cot asec x 1
 d x - pi asec csc asin cos asec x
 / d x atan tan atan sinh acoth x 1
 d x - 0 acos sin asin tanh acoth x
-d x - atan sinh acoth x * pi 0.5
+d x - atan sinh acoth x * pi / 1 2
 d x asin cos acot sinh asinh tan acsc x
 / d coth acoth x asin cos asec x 1
 d x - pi acot sinh atanh cos asec x
@@ -4678,7 +4672,7 @@ d coth acoth x asin sin atan cot asec x
 / d x - pi acos cos asec x 1
 d coth atanh sin acsc x acsc x
 pow d x asin sin atan tan acsc x 1
-d x - - * pi 1.5 asec x pi
+d x - - * pi / 3 2 asec x pi
 d x - acsc coth acoth x pi
 * -1 d x acos tanh asinh cot asec x
 + d x - 0 acos cos asec x 0
@@ -4713,12 +4707,12 @@ d sec acot / 1 tan asec x acsc x
 + 0 d x asin sin atan cot asec x
 + d x asin sin acsc x d x pi
 pow d x - asin / 1 x pi 1
-d x + atan tan acsc x * 0.5 pi
+d x + atan tan acsc x * / 1 2 pi
 d coth atanh cos asec x atan cot asec x
 / d x asin cos acos sin acsc x 1
 - d x atan tan acsc coth acoth x 0
 d x - pi + pi acos sin acsc x
-d x - - pi asec x * 0.5 pi
+d x - - pi asec x * / 1 2 pi
 d x acsc coth acsch tan acot cot asec x
 * cosh acoth x d x tanh acoth x
 d x - atan tan acsc coth acoth x pi
@@ -4735,12 +4729,12 @@ d x atan cot acos sin asin / 1 x
 d x - pi acos tanh acsch csch acoth x
 d x atan / csc asec x x
 / d coth acoth x - 0 asec x 1
-d x - acsc x - * pi 0.5 pi
+d x - acsc x - * pi / 1 2 pi
 d x atan / cosh atanh sin acsc x x
 + d x acsc / 1 tanh acoth x 0
 d x atan tan atan / cosh acoth x x
 d x asin tanh atanh / 1 x
-d x - * -2 * pi -0.5 asec x
+d x - * -2 * pi / -1 2 asec x
 + d x atan cot asec x 0
 pow - 0 / csch acosh x abs x 1
 - d x acsc coth asinh cot asec x 0
@@ -4751,11 +4745,11 @@ pow d x atan sinh atanh tanh acoth x 1
 d x atan sinh atanh tanh asinh sinh acoth x
 / d x atan tan asin tanh acoth x 1
 d x - acsc coth acsch tan asec x pi
-d x - * -0.5 pi acot sinh acoth x
+d x - * / -1 2 pi acot sinh acoth x
 d x asin tanh atanh sin acsc sec asec x
 d x atan / 1 csch asinh cot asec x
 pow d x atan sinh acoth csc acsc x 1
-d x - * -0.5 pi asec coth acoth x
+d x - * / -1 2 pi asec coth acoth x
 d x atan sinh atanh tanh atanh cos asec x
 - 0 - 0 d x atan sinh acoth x
 d x * -1 acos sin asin tanh acoth x
@@ -4765,7 +4759,7 @@ d x asin cos acos cos asec x
 d x - + asin tanh acoth x pi pi
 d coth acoth x atan cot acot tan acsc x
 pow d csc acsc x acsc sec asec x 1
-d x - * 1.5 pi + asec x pi
+d x - * / 3 2 pi + asec x pi
 d x * * -1 asin tanh acoth x -1
 * abs sinh acoth x / -1 abs x
 d csc asin tanh acoth x - acsc x pi
@@ -4788,7 +4782,7 @@ d x atan sinh acoth sec acos cos asec x
 d x asin cos acos tanh acsch tan asec x
 * d x asin tanh acoth coth acoth x 1
 d x atan tan asin tanh acoth x
-d x - + pi * -0.5 pi asec x
+d x - + pi * / -1 2 pi asec x
 / - d x pi d x asec x 1
 * 1 d x acsc sec asec sec asec x
 d x atan cot asec coth acsch tan asec x
@@ -4800,7 +4794,7 @@ d x atan sinh acsch / x cosh acoth x
 d x acsc coth acsch csch acoth coth acoth x
 d sec asec x acsc sec asec coth acoth x
 d x - pi acos cos asec sec asec x
-d x + * pi 0.5 asin tanh acoth x
+d x + * pi / 1 2 asin tanh acoth x
 pow * -1 d coth acoth x asec x 1
 * d x - acot tan acsc x pi -1
 d coth atanh tanh acsch tan asec x acsc x
@@ -4818,12 +4812,12 @@ d x asin cos acos tanh acsch csch acoth x
 d x - atan tan asin cos asec x pi
 * d coth acoth x acsc csc acsc x 1
 d x - pi acot cot asec csc acsc x
-d x - * pi -0.5 asec x
+d x - * pi / -1 2 asec x
 * -1 d x acot tan atan sinh acoth x
 + 0 d x - + pi acsc x pi
 d x * - pi + pi acsc x -1
 d x atan / 1 tan acot sinh acoth x
-d x - atan cot asec x * pi 0.5
+d x - atan cot asec x * pi / 1 2
 pow d x atan cot acot cot asec x 1
 d x asin / 1 csc asin / 1 x
 d x - - pi acos cos asec x pi
@@ -4838,7 +4832,7 @@ d x * -1 acot cot acot cot asec x
 d x acsc * tan asec x cosh acoth x
 d x atan / cosh asinh sinh acoth x x
 + 0 d x - pi acos cos asec x
-+ * 1.5 d x pi d x acsc x
++ * / 3 2 d x pi d x acsc x
 - d csc acsc x atan tan acsc x 0
 d x atan cot acot cot acos / 1 x
 * d x atan tan asin cos asec x 1
@@ -4854,7 +4848,7 @@ d / 1 tanh asinh tan acsc x acsc x
 d x - * / pi 2 2 asec x
 d csc acsc x asin cos acos / 1 x
 d / csc asec x sinh acoth x acsc x
-d sec asec x + acsc x * -0.5 pi
+d sec asec x + acsc x * / -1 2 pi
 * d csc acsc x acsc x 1
 d x + asin cos asec x - 0 pi
 d x - pi acos tanh atanh / 1 x
@@ -4866,7 +4860,7 @@ pow d x - pi asec coth acoth x 1
 - 0 d x acos cos acos / 1 x
 d x - 0 acot cot acos sin acsc x
 d x atan / sin acsc x sech acoth x
-d x + * pi 0.5 acsc x
+d x + * pi / 1 2 acsc x
 d x asin cos acot cot asec sec asec x
 - 0 d csc asin sin acsc x asec x
 * d x atan sinh atanh / 1 x 1
@@ -4888,12 +4882,12 @@ d x asin tanh acsch csch acoth csc acsc x
 d x asin tanh acsch csch asinh cot asec x
 d sec acot sinh atanh cos asec x acsc x
 d x atan / * x cot asec x x
-+ d x acsc x d x * -0.5 pi
++ d x acsc x d x * / -1 2 pi
 d x asin tanh asinh tan asin tanh acoth x
 + 0 d x atan / cosh acoth x x
 - 0 d x acot tan asin cos asec x
 d x asin sin acsc sec acos cos asec x
-d x + - 0 asec x * 0.5 pi
+d x + - 0 asec x * / 1 2 pi
 / d coth atanh cos asec x acsc x 1
 d coth acsch tan asec x asin cos asec x
 d x atan sinh asinh / csc asec x x
@@ -4947,7 +4941,7 @@ d x * -1 asec sec acos / 1 x
 + 0 d x atan sinh atanh tanh acoth x
 / d x + pi - acsc x pi 1
 - - 0 d x pi d x asec x
-/ d x + acsc x * pi -0.5 1
+/ d x + acsc x * pi / -1 2 1
 - 0 d sec acos cos asec x asec x
 d coth asinh sinh atanh sin acsc x acsc x
 pow d x atan cot acos sin acsc x 1
@@ -4957,7 +4951,7 @@ d csc acsc x * acos cos asec x -1
 d sec acos sin acsc x - pi asec x
 - d x - 0 acos / 1 x 0
 d sec asec x - / pi 2 asec x
-d x - asin cos asec x * pi -0.5
+d x - asin cos asec x * pi / -1 2
 + d x atan cot acot tan acsc x 0
 * d x acot tan atan tan acsc x -1
 / d x atan sinh acoth x 1
@@ -4976,7 +4970,7 @@ d x + pi - asin / 1 x pi
 d x - atan tan asin tanh acoth x pi
 d sec acos tanh asinh cot asec x acsc x
 - - 0 d x asec x 0
-+ * -1.5 d x pi d x acsc x
++ * / -3 2 d x pi d x acsc x
 d x asin tanh atanh sin asin sin acsc x
 d x + / pi 2 asin sin acsc x
 - 0 d x acos tanh asinh sinh acoth x
@@ -5020,14 +5014,14 @@ d x atan sinh acoth coth acsch cot acsc x
 pow d x atan / csc asec x x 1
 - d sec acot tan acsc x acsc x 0
 - d x acsc x * 2 d x pi
-d x atan cot - * pi 0.5 acsc x
+d x atan cot - * pi / 1 2 acsc x
 / d sec acos tanh acoth x acsc x 1
 + 0 d x asin cos asec x
 / d x atan cot acot cot asec x 1
 d coth atanh tanh acoth x - acsc x pi
 d sec acot sinh acsch cot acsc x acsc x
 - d sec acos cos asec x acsc x 0
-d x - + acsc x pi * pi 1.5
+d x - + acsc x pi * pi / 3 2
 / d x tanh acoth x cos acsc x
 / d x asin sin atan sinh acoth x 1
 d x asin / sech acoth x csch acoth x
@@ -5084,13 +5078,13 @@ d x atan tan atan cot asec coth acoth x
 - 0 d sec asec x asec sec asec x
 * 1 d x - pi acos cos asec x
 / d x atan sinh acsch csch acoth x 1
-d x + acsc x * pi -0.5
+d x + acsc x * pi / -1 2
 d csc acsc x + - 0 pi acsc x
 d x atan / cos asec x sech acoth x
 d x - 0 acot tan atan tan acsc x
 d x acsc coth atanh tanh atanh cos asec x
 d x atan cot acot sinh asinh cot asec x
-d csc acsc x - acsc x * pi -0.5
+d csc acsc x - acsc x * pi / -1 2
 d sec asec x asin sin atan cot asec x
 pow d x acsc csc atan cot asec x 1
 d x asin cos acos sin atan sinh acoth x
@@ -5136,9 +5130,9 @@ d x asin cos acos cos acos sin acsc x
 pow d x asin sin atan cot asec x 1
 d x acsc / 1 sin atan tan acsc x
 d x - / pi 2 acos / 1 x
-d x - * -0.5 pi acos sin acsc x
+d x - * / -1 2 pi acos sin acsc x
 d x - asin cos asec coth acoth x pi
-- * d x pi 0.5 d x asec x
+- * d x pi / 1 2 d x asec x
 d x asin tanh atanh tanh acsch csch acoth x
 d sec asec x atan / 1 cot acsc x
 d sec acot cot asec x asin tanh acoth x
@@ -5153,7 +5147,7 @@ d x - 0 asec sec asec x
 / d x acsc coth atanh tanh acoth x 1
 pow d x atan cot asec x 1
 - d x asin sin atan cot asec x 0
-d x - * 2 * pi 0.5 asec x
+d x - * 2 * pi / 1 2 asec x
 d x asin cos acot sinh atanh / 1 x
 pow d x acsc coth asinh tan acsc x 1
 * - 0 d csc acsc x asec x 1
@@ -5174,7 +5168,7 @@ d x atan sinh atanh cos acos cos asec x
 d / 1 cos acos sin acsc x acsc x
 d x atan * cosh acoth x sin acsc x
 d x - acsc coth acoth x / pi 2
-- d x acsc x * -1.5 d x pi
+- d x acsc x * / -3 2 d x pi
 d csc acsc csc acsc x asin tanh acoth x
 d coth atanh cos acot sinh acoth x acsc x
 - 0 d x acos sin atan sinh acoth x
@@ -5195,9 +5189,9 @@ d x atan / / 1 sin asec x x
 d x - 0 asec csc asin / 1 x
 d x atan tan atan sinh acsch csch acoth x
 d x acsc csc asin tanh atanh / 1 x
-d x - * 0.5 pi acot tan acsc x
+d x - * / 1 2 pi acot tan acsc x
 d x acsc / 1 tanh acsch csch acoth x
-d x - * asec x -1 * -0.5 pi
+d x - * asec x -1 * / -1 2 pi
 d x atan cot acot / csc asec x x
 + d x atan tan atan tan acsc x 0
 d x atan sinh acsch / 1 cot asec x
@@ -5235,7 +5229,7 @@ d x - pi + acos tanh acoth x pi
 d x - - / pi 2 asec x pi
 + 0 d x acsc coth asinh tan acsc x
 d x atan sinh * atanh / -1 x -1
-d x + acsc x * -2 * pi 0.5
+d x + acsc x * -2 * pi / 1 2
 - d x acsc x d sec asec x pi
 d coth acsch cot acsc x acsc x
 d x - pi acos tanh atanh sin acsc x
@@ -5247,7 +5241,7 @@ d x - - * 2 pi pi asec x
 d x asin * sin asec x cot asec x
 d x asin tanh atanh tanh asinh cot asec x
 d x - 0 acot sinh asinh tan acsc x
-d x + acsc x * -1 * pi -0.5
+d x + acsc x * -1 * pi / -1 2
 + d x acsc coth acoth x 0
 d x * acos cos acos sin acsc x -1
 + d x * acot tan acsc x -1 0
@@ -5275,7 +5269,7 @@ pow + d x acsc x d x pi 1
 d x * acos sin acsc x -1
 d x asin tanh asinh sinh acoth x
 / d x - pi - pi acsc x 1
-* 1 d x - * pi -0.5 asec x
+* 1 d x - * pi / -1 2 asec x
 + 0 d x + - 0 pi acsc x
 pow d x atan / 1 cot acsc x 1
 d csc acsc x asin sin asin sin acsc x
@@ -5285,8 +5279,8 @@ d x - acsc / 1 tanh acoth x pi
 pow d x - pi acos tanh acoth x 1
 * d / 1 tanh acoth x asec x -1
 - d sec asec x acsc coth acoth x 0
-d x - acsc x * -2 * -0.5 pi
-pow d x - acsc x * pi 0.5 1
+d x - acsc x * -2 * / -1 2 pi
+pow d x - acsc x * pi / 1 2 1
 / - 0 d x asec sec asec x 1
 / -1 / abs x csch acosh coth acoth x
 - 0 d x acos cos asec x
@@ -5312,7 +5306,7 @@ pow - 0 d x - pi acsc x 1
 d x asin cos acot cot acos tanh acoth x
 d x asin tanh asinh cot acot cot asec x
 d x asin tanh atanh sin atan cot asec x
-d x + atan sinh acoth x * 0.5 pi
+d x + atan sinh acoth x * / 1 2 pi
 / -1 * sinh acosh x abs csc acsc x
 d x acsc coth acsch csch atanh sin acsc x
 d x atan / 1 csch acoth sec asec x
@@ -5350,7 +5344,7 @@ d x acsc sec acos sin acsc x
 d x asin sin acsc coth asinh cot asec x
 d x asin sin atan cot asec x
 + 0 d x atan sinh atanh cos asec x
-d x - * pi 0.5 acos cos asec x
+d x - * pi / 1 2 acos cos asec x
 pow d x - 0 acot cot asec x 1
 d x atan sinh asinh / sec acsc x x
 d x asin tanh asinh sinh asinh tan acsc x
@@ -5366,11 +5360,11 @@ d x asin tanh atanh cos acos tanh acoth x
 d x asin tanh acoth csc asin cos asec x
 + 0 d x - atan sinh acoth x pi
 d x atan / sin acsc x cos acsc x
-d x - acsc x * * -0.5 pi -1
+d x - acsc x * * / -1 2 pi -1
 + 0 d x atan tan acsc x
 * 1 d x - acsc x / pi 2
 / -1 / abs x csch asech tanh acoth x
-d x - * -0.5 pi - 0 acsc x
+d x - * / -1 2 pi - 0 acsc x
 + 0 d x asin tanh acoth sec asec x
 pow d x atan tan acsc x 1
 * -1 d x acos / 1 x
@@ -5409,7 +5403,7 @@ d x + pi - - pi asec x pi
 d x - acsc csc acsc csc acsc x pi
 d x - asin tanh atanh / 1 x pi
 * 1 d x atan cot asec x
-+ d x acsc x * 0.5 d x pi
++ d x acsc x * / 1 2 d x pi
 - d x atan sinh asinh tan acsc x 0
 * 1 d x * -1 acos / 1 x
 - 0 d / 1 tanh acoth x asec x
@@ -5417,7 +5411,7 @@ d x asin cos - pi - pi asec x
 * d x asin sin atan sinh acoth x 1
 - 0 d x - pi acsc x
 d x asin tanh acsch cot atan sinh acoth x
-d x - asin / 1 x * pi 0.5
+d x - asin / 1 x * pi / 1 2
 d x atan cot acos cos acot sinh acoth x
 d x - pi acos sin atan cot asec x
 d sec asec x asin cos acos cos asec x
@@ -5490,7 +5484,7 @@ d x acsc coth acsch csch acoth sec asec x
 d csc asin tanh atanh tanh acoth x acsc x
 d x * acot / sec acsc x x -1
 d x acsc coth atanh tanh atanh tanh acoth x
-d x - acsc coth acoth x * 0.5 pi
+d x - acsc coth acoth x * / 1 2 pi
 d x * asec csc asin sin acsc x -1
 d x - pi acos sin acsc coth acoth x
 d x * acot tan atan cot asec x -1
@@ -5506,7 +5500,7 @@ pow d x asin tanh acoth x 1
 d csc asin cos asec x asin cos asec x
 d x atan / tanh acoth x sin asec x
 * 1 d x asin tanh acsch csch acoth x
-d coth acoth x - acsc x * pi -0.5
+d coth acoth x - acsc x * pi / -1 2
 / d x - acsc csc acsc x pi 1
 d x asin sin atan sinh acoth x
 d x acsc coth acsch csch atanh / 1 x
@@ -5519,7 +5513,7 @@ d x + asin cos asec x / pi 2
 - d x acsc coth asinh tan acsc x 0
 d x acsc / 1 tanh asinh sinh acoth x
 d x atan cot acot sinh acsch tan asec x
-- d x acsc x * 1.5 d x pi
+- d x acsc x * / 3 2 d x pi
 d coth acoth x asin tanh acsch tan asec x
 + 0 d x + acsc x / pi 2
 d x acsc coth atanh / 1 x
@@ -5536,7 +5530,7 @@ d x * -1 acos sin asin / 1 x
 / d x atan cot acot sinh acoth x 1
 d x atan / sec atan sinh acoth x x
 d csc asin sin acsc x - pi asec x
-d sec - * pi 0.5 acsc x acsc x
+d sec - * pi / 1 2 acsc x acsc x
 pow d coth acoth x asin tanh acoth x 1
 d coth acsch tan asec x - 0 asec x
 d x atan / 1 csch atanh sin acsc x
@@ -5635,7 +5629,7 @@ d x atan tan asin sin acsc x
 d x - 0 acot sinh acsch tan asec x
 pow d x asin tanh acsch tan asec x 1
 / d x atan sinh acoth sec asec x 1
-d x - acsc x * - 0 pi 0.5
+d x - acsc x * - 0 pi / 1 2
 * / -1 abs x abs tan acsc x
 - d x - asin cos asec x pi 0
 d x - pi acos sin asin sin acsc x
@@ -5649,7 +5643,7 @@ d x * -1 - acos cos asec x pi
 d x asin tanh asinh cot acos sin acsc x
 pow d x asin tanh asinh tan acsc x 1
 d csc acsc coth acsch csch acoth x acsc x
-- d x * pi -0.5 d x asec x
+- d x * pi / -1 2 d x asec x
 * d csc acsc x atan cot asec x 1
 d x atan cot asec / 1 tanh acoth x
 d x acsc sec acot sinh asinh tan acsc x
@@ -5658,7 +5652,6 @@ d x acsc sec acot sinh asinh tan acsc x
 d x asin tanh acsch tan acos sin acsc x
 pow d x atan cot acos / 1 x 1
 d x atan / csc acos tanh acoth x x
-d x acsc x
 / d x asin tanh acoth x 1
 d coth acoth x asin sin atan tan acsc x
 d sec asec x asin sin asin / 1 x
@@ -5670,7 +5663,7 @@ d x atan / 1 cot acsc x
 pow d x - pi acos sin acsc x 1
 d coth atanh sin acsc csc acsc x acsc x
 d x asin tanh asinh / cosh acoth x x
-d x - * pi -0.5 acos cos asec x
+d x - * pi / -1 2 acos cos asec x
 - d x atan tan asin tanh acoth x 0
 d x acsc sec asec / 1 tanh acoth x
 d x asin sin atan cot acos sin acsc x
@@ -5685,7 +5678,7 @@ d csc atan sinh acoth x asin / 1 x
 d x atan cot acos cos asec coth acoth x
 d x asin sin atan sinh asinh sinh acoth x
 / d x * acos sin acsc x -1 1
-d x - * 0.5 pi acot sinh acoth x
+d x - * / 1 2 pi acot sinh acoth x
 d sec asec x atan tan atan cot asec x
 pow d coth acoth x - acsc x pi 1
 pow d x - 0 acos sin acsc x 1
@@ -5726,7 +5719,7 @@ d x - atan cot acot tan acsc x pi
 d x asin cos acot sinh acsch cot acsc x
 d x asin tanh acoth x
 d x atan tan asin sin atan sinh acoth x
-d x + * pi 0.5 asin / 1 x
+d x + * pi / 1 2 asin / 1 x
 d x asin tanh asinh / 1 csch acoth x
 * d x / 1 x cosh acoth x
 pow d x atan sinh asinh sinh acoth x 1
@@ -5761,7 +5754,7 @@ d x asin tanh atanh tanh acoth x
 d x atan / sec acsc coth acoth x x
 d x asin tanh acsch csch acoth coth acoth x
 pow d coth atanh sin acsc x acsc x 1
-d coth acoth x + acsc x * 0.5 pi
+d coth acoth x + acsc x * / 1 2 pi
 d x asin sin asin sin atan tan acsc x
 d x asin tanh atanh sin asin tanh acoth x
 d x asin cos acot sinh atanh cos asec x
@@ -5779,7 +5772,7 @@ d x asin / sin asec x cot acsc x
 / d x acsc / 1 sin acsc x 1
 d x asin tanh acsch tan acot tan acsc x
 d x atan sinh atanh sin atan cot asec x
-/ d x - acsc x * 0.5 pi 1
+/ d x - acsc x * / 1 2 pi 1
 d x atan tan atan sinh acoth x
 / d x / 1 x sin asec x
 d x - atan tan atan tan acsc x pi
@@ -5790,7 +5783,7 @@ d x atan / 1 cot asin / 1 x
 - d x atan tan acsc x d x pi
 d csc acsc x asin tanh atanh cos asec x
 d sec acos / 1 x atan tan acsc x
-d x + asin tanh acoth x * pi -0.5
+d x + asin tanh acoth x * pi / -1 2
 d x - pi asec csc atan sinh acoth x
 d x * -1 acot tan asin / 1 x
 d x asin sin atan sinh asinh cot asec x
@@ -5838,7 +5831,7 @@ d x atan sinh asinh sinh acoth x
 d x - - pi asec coth acoth x pi
 / -1 * abs x abs tan asec x
 - d x / pi 2 d x asec x
-d x - * pi -0.5 acot cot asec x
+d x - * pi / -1 2 acot cot asec x
 + d x acsc coth atanh tanh acoth x 0
 d x - pi acot cot acos tanh acoth x
 / d x atan sinh atanh / 1 x 1
@@ -5847,7 +5840,7 @@ d coth acoth x atan tan asin / 1 x
 d x asin tanh acsch csch atanh / 1 x
 d x - pi + pi acos / 1 x
 d x asin tanh atanh cos asec x
-d x + asin / 1 x * pi -0.5
+d x + asin / 1 x * pi / -1 2
 / d x asin sin asin tanh acoth x 1
 / d x asin cos asec x 1
 d x atan sinh atanh cos acot sinh acoth x
@@ -5864,7 +5857,7 @@ d x asin cos acos / 1 x
 / d x asin tanh atanh tanh acoth x 1
 * sec acsc x d x cos asec x
 - - 0 d x acos sin acsc x 0
-d x - * -0.5 pi - asec x pi
+d x - * / -1 2 pi - asec x pi
 d x - atan tan atan sinh acoth x pi
 d x atan cot asec sec acos cos asec x
 / d x asin tanh asinh cot asec x 1
@@ -5961,7 +5954,7 @@ d x atan sinh asinh / 1 cot acsc x
 d x atan * cos asec x sec acsc x
 + 0 d x asin tanh acsch tan asec x
 * d x asin tanh asinh tan acsc x 1
-d x - * 0.5 pi acos / 1 x
+d x - * / 1 2 pi acos / 1 x
 - * -1 d x acot tan acsc x 0
 * 1 d x asin sin asin sin acsc x
 pow d x atan sinh acoth x 1
@@ -5970,7 +5963,7 @@ d x acsc sec asec coth atanh cos asec x
 d csc asin tanh acoth x atan sinh acoth x
 d coth acoth x asin / 1 coth acoth x
 d x - atan sinh atanh sin acsc x pi
-* d x - acsc x * pi -0.5 1
+* d x - acsc x * pi / -1 2 1
 d x asin cos acot cot acot tan acsc x
 d sec acot / csc asec x x acsc x
 + d coth acoth x asin cos asec x 0
@@ -5980,7 +5973,7 @@ d x asin tanh acsch tan acot sinh acoth x
 * d x acot sinh acsch cot acsc x -1
 d x - pi acot tan asin cos asec x
 d x acsc sec acot sinh acsch csch acoth x
-/ d x + * pi 0.5 acsc x 1
+/ d x + * pi / 1 2 acsc x 1
 d x atan tan acsc coth atanh cos asec x
 d x asin tanh atanh tanh atanh tanh acoth x
 d x atan tan atan / 1 csch acoth x
@@ -6032,7 +6025,7 @@ d x asin cos acot tan asin cos asec x
 + 0 d x atan cot acot sinh acoth x
 d coth asinh cot acos cos asec x acsc x
 + d x atan sinh asinh tan acsc x 0
-* d x - acsc x * pi 0.5 1
+* d x - acsc x * pi / 1 2 1
 * * d x - pi acsc x -1 1
 d x * - pi acsc x -1
 d x atan / cosh atanh / -1 x x
@@ -6056,7 +6049,7 @@ d x - pi - pi asin sin acsc x
 - d x atan / 1 cot acsc x 0
 - d x - asin tanh acoth x pi 0
 / d x atan tan atan cot asec x 1
-pow d x - acsc x * -0.5 pi 1
+pow d x - acsc x * / -1 2 pi 1
 * - d x pi d x asec x 1
 d coth acoth x asin cos asec csc acsc x
 d x - pi acot tan asin tanh acoth x
@@ -6077,17 +6070,131 @@ d x asin tanh acoth / 1 tanh acoth x
 - 0 d x acot tan asin sin acsc x
 - d x asin tanh acsch csch acoth x 0
 d x atan tan asin tanh atanh / 1 x
-d x - * -1 asec x * pi 0.5
+d x - * -1 asec x * pi / 1 2
 d x acsc sec acot cot acos sin acsc x
 d x asin sin asin tanh asinh cot asec x
+* -1 * pow x -2 pow + 1 * -1 pow x -2 / -1 2
+* / 1 pow x 2 * -1 pow - / -1 pow x 2 -1 / -1 2
+* -1 * pow - * -1 pow x -2 -1 / -1 2 pow x -2
+* -1 * / 1 pow x 2 * * pow + * -1 pow x -2 1 * -1 / 1 2 -1 -1
+* -1 * / 1 pow x 2 pow - 1 * * / 1 pow x 2 -1 -1 / -1 2
+/ * pow * + / 1 pow x 2 -1 -1 * -1 / 1 2 -1 pow x 2
+* 1 * -1 * * * pow - 1 pow x -2 / -1 2 / 1 pow x 2 -1 -1
+* -1 * * -1 pow * * + 1 * -1 pow x -2 -1 -1 / -1 2 * -1 pow x -2
+* -1 * pow x -2 pow * - -1 * / 1 pow x 2 -1 -1 / -1 2
+* -1 * * -1 / pow * -1 + pow x -2 -1 * / 1 2 -1 pow x 2 -1
+* -1 * pow - 1 pow x -2 / -1 2 pow x -2
+* -1 * * * -1 * pow x -2 -1 -1 * -1 pow * - pow x -2 1 -1 / -1 2
+* -1 * / 1 pow x 2 pow * -1 * - * -1 pow x -2 -1 -1 * -1 / 1 2
+* -1 * * -1 * pow x -2 pow - 1 pow x -2 * / 1 2 -1 -1
+* -1 * / -1 pow x 2 * pow * -1 - / 1 pow x 2 1 * / 1 2 -1 -1
+* * * * -1 pow x -2 -1 -1 pow + / -1 pow x 2 1 / -1 2
+* 1 * -1 * / 1 pow x 2 pow * + pow x -2 -1 -1 / -1 2
+* pow x -2 * * -1 * pow - / -1 pow x 2 -1 * / 1 2 -1 -1 -1
+* 1 * -1 * pow * - pow x -2 1 -1 * / 1 2 -1 pow x -2
+* -1 / * * pow - / -1 pow x 2 -1 / -1 2 -1 -1 pow x 2
+* 1 * -1 * * -1 * pow + / -1 pow x 2 1 / -1 2 / 1 pow x 2 -1
+* -1 * * -1 / pow * + -1 * / -1 pow x 2 -1 -1 / -1 2 pow x 2 -1
+* * * pow x -2 -1 -1 * pow * + pow x -2 -1 -1 / -1 2 -1
+* pow x -2 * pow * -1 - pow x -2 1 / -1 2 -1
+* -1 * pow * + -1 pow x -2 -1 * -1 / 1 2 / 1 pow x 2
+* * * / -1 pow x 2 -1 pow * + pow x -2 -1 -1 / -1 2 -1
+* 1 * -1 * pow * -1 + pow x -2 -1 * -1 / 1 2 pow x -2
+* -1 * * pow * + -1 / 1 pow x 2 -1 / -1 2 / -1 pow x 2 -1
+* 1 * -1 * pow - 1 / 1 pow x 2 / -1 2 / 1 pow x 2
+* -1 * pow x -2 pow - * pow x -2 -1 -1 * -1 / 1 2
+* -1 * * -1 pow * -1 - pow x -2 1 * -1 / 1 2 / -1 pow x 2
+* -1 * pow - * pow x -2 -1 -1 / -1 2 * * * / -1 pow x 2 -1 -1 -1
+* -1 / pow - 1 pow x -2 / -1 2 pow x 2
+* pow x -2 * pow - * * -1 * pow x -2 -1 -1 -1 / -1 2 -1
+* pow x -2 * pow - * pow x -2 -1 -1 / -1 2 -1
+* / 1 pow x 2 * -1 pow - 1 * / -1 pow x 2 -1 / -1 2
+* 1 * -1 * pow * - / 1 pow x 2 1 -1 / -1 2 pow x -2
+* -1 / pow * -1 - -1 * * * pow x -2 -1 -1 -1 * / 1 2 -1 pow x 2
+* -1 * pow x -2 pow * + pow x -2 -1 -1 / -1 2
+* pow - 1 pow x -2 * / 1 2 -1 * * * -1 pow x -2 -1 -1
+* -1 / pow * - * -1 * * / -1 pow x 2 -1 -1 1 -1 / -1 2 pow x 2
+* / -1 pow x 2 pow - / -1 pow x 2 -1 / -1 2
+* -1 * * -1 pow x -2 * -1 pow * + pow x -2 -1 -1 * -1 / 1 2
+* 1 * -1 * * -1 * pow x -2 pow + / -1 pow x 2 1 / -1 2 -1
+* 1 * -1 * pow x -2 pow + * -1 pow x -2 1 * / 1 2 -1
+* pow x -2 * -1 pow * - -1 * pow x -2 -1 -1 / -1 2
+* 1 * -1 * / 1 pow x 2 pow - 1 * * / 1 pow x 2 -1 -1 / -1 2
+* -1 * / * -1 pow * + pow x -2 -1 -1 / -1 2 pow x 2 -1
+* pow x -2 * -1 pow * - pow x -2 1 -1 / -1 2
+* 1 * -1 * pow * -1 - pow x -2 1 * / 1 2 -1 * * pow x -2 -1 -1
+* pow + 1 * pow x -2 -1 * -1 / 1 2 * pow x -2 -1
+* -1 * pow * - / 1 pow x 2 1 -1 / -1 2 / 1 pow x 2
+* / 1 pow x 2 * pow * -1 - / 1 pow x 2 1 * -1 / 1 2 -1
+* * * -1 pow x -2 -1 * pow * -1 - / 1 pow x 2 1 * / 1 2 -1 -1
+* pow x -2 * -1 * * pow - 1 pow x -2 / -1 2 -1 -1
+* 1 * -1 * pow - 1 / 1 pow x 2 * -1 / 1 2 pow x -2
+* -1 * * -1 * * pow + / -1 pow x 2 1 / -1 2 -1 -1 / -1 pow x 2
+* -1 / pow - 1 / 1 pow x 2 / -1 2 pow x 2
+* -1 * pow * * -1 * - pow x -2 1 -1 -1 * -1 / 1 2 pow x -2
+* 1 * -1 * pow x -2 pow * -1 + * -1 * pow x -2 -1 -1 * / 1 2 -1
+* -1 / pow * - pow x -2 1 -1 / -1 2 pow x 2
+* -1 / pow * -1 + / 1 pow x 2 -1 / -1 2 pow x 2
+* 1 * -1 * * * pow + 1 * -1 pow x -2 * / 1 2 -1 -1 -1 pow x -2
+* -1 / pow * - / 1 pow x 2 1 -1 / -1 2 pow x 2
+* -1 * pow x -2 pow - 1 pow x -2 * -1 / 1 2
+* 1 * -1 * / 1 pow x 2 pow + 1 * -1 / 1 pow x 2 * -1 / 1 2
+* -1 / pow * * -1 + * -1 / 1 pow x 2 1 -1 / -1 2 pow x 2
+/ * pow - 1 pow x -2 / -1 2 -1 pow x 2
+* -1 * * * pow x -2 -1 pow - / -1 pow x 2 -1 / -1 2 -1
+* 1 * -1 * pow x -2 pow + 1 * / 1 pow x 2 -1 * / 1 2 -1
+* -1 * * / 1 pow x 2 * -1 pow - / -1 pow x 2 -1 * / 1 2 -1 -1
+* -1 * pow * -1 + -1 pow x -2 / -1 2 pow x -2
+* 1 * -1 * / 1 pow x 2 pow * -1 + -1 pow x -2 * -1 / 1 2
+* -1 * * / -1 pow x 2 pow * -1 - -1 * pow x -2 -1 / -1 2 -1
+* 1 * -1 * pow * -1 - / 1 pow x 2 1 * -1 / 1 2 / 1 pow x 2
+* 1 * pow - 1 / 1 pow x 2 * -1 / 1 2 * -1 pow x -2
+* -1 * / 1 pow x 2 pow + / -1 pow x 2 1 / -1 2
+* -1 * pow + 1 * pow x -2 -1 / -1 2 / 1 pow x 2
+* -1 * pow * -1 - pow x -2 1 * / 1 2 -1 pow x -2
+* / 1 pow x 2 * -1 pow * -1 + -1 pow x -2 / -1 2
+* -1 * pow x -2 pow * - -1 / -1 pow x 2 -1 / -1 2
+* -1 * pow - 1 / 1 pow x 2 / -1 2 / 1 pow x 2
+* -1 / pow * -1 - -1 * -1 / 1 pow x 2 / -1 2 pow x 2
+* 1 * -1 * pow x -2 pow - 1 pow x -2 * / 1 2 -1
+* / 1 pow x 2 * * * -1 pow - 1 pow x -2 / -1 2 -1 -1
+* -1 / pow * - -1 / -1 pow x 2 -1 / -1 2 pow x 2
+* 1 * * -1 pow - 1 pow x -2 * / 1 2 -1 pow x -2
+* / 1 pow x 2 * -1 pow + 1 / -1 pow x 2 * / 1 2 -1
+* -1 * pow * + / 1 pow x 2 -1 -1 * -1 / 1 2 / 1 pow x 2
+* 1 * -1 * pow x -2 pow + * / 1 pow x 2 -1 1 / -1 2
+* 1 * -1 * pow * + -1 / 1 pow x 2 -1 * -1 / 1 2 / 1 pow x 2
+* -1 * pow - / -1 pow x 2 -1 / -1 2 pow x -2
+* -1 / pow + 1 * -1 * * pow x -2 -1 -1 / -1 2 pow x 2
+* 1 * -1 * pow x -2 pow - 1 / 1 pow x 2 / -1 2
+* pow x -2 * pow + 1 / -1 pow x 2 / -1 2 -1
+* -1 / pow * -1 - pow x -2 1 * / 1 2 -1 pow x 2
+* pow x -2 * pow * -1 * + 1 * -1 pow x -2 -1 / -1 2 -1
+* 1 * -1 * pow * - pow x -2 1 -1 * -1 / 1 2 / 1 pow x 2
+* / 1 pow x 2 * pow * + -1 / 1 pow x 2 -1 / -1 2 -1
+/ * pow * -1 - -1 / -1 pow x 2 / -1 2 -1 pow x 2
+* -1 * * pow - / -1 pow x 2 -1 * -1 / 1 2 -1 / -1 pow x 2
+* pow x -2 * pow + 1 * pow x -2 -1 / -1 2 -1
+* -1 / pow + / -1 pow x 2 1 / -1 2 pow x 2
+* 1 * -1 * pow + * -1 / 1 pow x 2 1 / -1 2 / 1 pow x 2
+* -1 / pow * -1 + -1 * -1 / -1 pow x 2 / -1 2 pow x 2
+* -1 * pow x -2 pow + * pow x -2 -1 1 * / 1 2 -1
+* -1 * * -1 / -1 pow x 2 pow + 1 / -1 pow x 2 / -1 2
+* -1 * pow * + pow x -2 -1 -1 * / 1 2 -1 pow x -2
+* -1 / pow - / -1 pow x 2 -1 / -1 2 pow x 2
+* 1 * -1 * / 1 pow x 2 pow - 1 / 1 pow x 2 * -1 / 1 2
+* * -1 pow x -2 pow * - -1 * -1 pow x -2 -1 / -1 2
+* -1 / pow * -1 + pow x -2 -1 / -1 2 pow x 2
+* -1 / pow - 1 pow x -2 * / 1 2 -1 pow x 2
+* -1 * * -1 pow * -1 - / 1 pow x 2 1 / -1 2 / -1 pow x 2
 
 d x asec x
 + 0 * -1 d sec asec x acsc x
-- d x - asec x * pi -0.5 0
+- d x - asec x * pi / -1 2 0
 - - 0 d x acsc x 0
-- d x - * pi 1.5 acsc x 0
+- d x - * pi / 3 2 acsc x 0
 - d x + asec x - 0 pi 0
-- d x - * pi -0.5 acsc x 0
+- d x - * pi / -1 2 acsc x 0
 + 0 d x + acos sin acsc x pi
 - d x - pi - pi asec x 0
 - d x - 0 asin / 1 x 0
@@ -6108,7 +6215,7 @@ d x asec x
 - d x + pi acos / 1 x 0
 - d x * -1 acsc sec asec x 0
 - d x acos cos acos cos asec x 0
-+ 0 d x - * 1.5 pi acsc x
++ 0 d x - * / 3 2 pi acsc x
 + 0 d x asec / 1 cos asec x
 - d x - - pi acsc x pi 0
 + 0 d x - pi acsc x
@@ -6127,23 +6234,23 @@ d x asec x
 - / csch asech cos asec x abs x 0
 - d x - pi acsc sec asec x 0
 + d x acos sin asin / 1 x 0
-- d x asec x * d x pi 0.5
+- d x asec x * d x pi / 1 2
 - d csc acsc x acos sin acsc x 0
-+ d x + asec x * pi -0.5 0
++ d x + asec x * pi / -1 2 0
 - d x acos cos acos sin acsc x 0
 + d sec asec x asec x d x pi
-+ d x + * pi 0.5 asec x 0
++ d x + * pi / 1 2 asec x 0
 - d x * asin cos asec x -1 0
-+ d x asec x d x * pi -0.5
++ d x asec x d x * pi / -1 2
 + d x - pi asin cos asec x 0
 - * -1 d x acsc x 0
 + d x asec csc acsc csc acsc x 0
-+ 0 d x - * pi -0.5 acsc x
++ 0 d x - * pi / -1 2 acsc x
 - d x acos sin acsc x d x pi
 - d x - pi asin sin acsc x 0
 - / csch asech / 1 x abs x 0
 + / csch asech cos asec x abs x 0
-- d x + * 0.5 pi asec x 0
+- d x + * / 1 2 pi asec x 0
 - d csc acsc x acos / 1 x 0
 + 0 d x asec csc asin / 1 x
 + d x asec x d x pi
@@ -6170,11 +6277,11 @@ d x asec x
 + 0 d x + asec x * pi -1
 - d x acos / 1 x 0
 + d x / pi 2 d x asec x
-- d x + * pi -0.5 asec x 0
+- d x + * pi / -1 2 asec x 0
 + 0 d x acos / 1 csc acsc x
 + / csch asech sin acsc x abs x 0
 + d csc acsc x acos cos asec x 0
-+ * 1.5 d x pi d x asec x
++ * / 3 2 d x pi d x asec x
 + 0 d x + / pi 2 asec x
 + d x - pi asin sin acsc x 0
 - d x asec csc asin cos asec x 0
@@ -6205,8 +6312,8 @@ d x asec x
 - d x acos sin asin cos asec x 0
 - * -1 d x acsc x d x pi
 + 0 d x asec / 1 sin acsc x
-- d x asec x * -1.5 d x pi
-- d x asec x d x * -0.5 pi
+- d x asec x * / -3 2 d x pi
+- d x asec x d x * / -1 2 pi
 + d x asec x d x - 0 pi
 - d x acos sin asin sin acsc x 0
 - * d x - acsc x pi -1 0
@@ -6219,7 +6326,7 @@ d x asec x
 + d x - pi acsc sec asec x 0
 - d x acos cos asec csc acsc x 0
 - d x asec x d csc acsc x pi
-+ d x - * 0.5 pi acsc x 0
++ d x - * / 1 2 pi acsc x 0
 + 0 / 1 / abs x csch acosh x
 - / csch acosh x abs sec asec x 0
 + * d x asin sin acsc x -1 0
@@ -6240,7 +6347,7 @@ d x asec x
 - d x - 0 - acsc x pi 0
 + 0 d csc acsc x * acsc x -1
 - d x asec csc acsc x 0
-+ d x asec x d x * 0.5 pi
++ d x asec x d x * / 1 2 pi
 - d x + - asec x pi pi 0
 + d x acos cos acos sin acsc x 0
 + / / 1 sinh acosh x abs x 0
@@ -6260,7 +6367,7 @@ d x asec x
 - d x asec sec asec sec asec x 0
 - - 0 d x acsc sec asec x 0
 + d x - asec csc acsc x pi 0
-- d x - * 0.5 pi acsc x 0
+- d x - * / 1 2 pi acsc x 0
 - / csch acosh x abs x 0
 + 0 d x - 0 asin sin acsc x
 - d csc acsc x - asec x pi 0
@@ -6283,7 +6390,7 @@ d x asec x
 - / / 1 sinh acosh x abs x 0
 + d x asec csc acsc x 0
 + 0 / abs sinh acoth x abs x
-- d x - asec x * pi 0.5 0
+- d x - asec x * pi / 1 2 0
 - d x - asec x pi d x pi
 - d x asec x d x / pi 2
 - / csch asech sin acsc x abs x 0
@@ -6295,6 +6402,135 @@ d x asec x
 + d x acos cos asec x d x pi
 + d x acos cos acos cos asec x 0
 + d x acos sin asin sin acsc x 0
+* pow x -2 pow + 1 * -1 pow x -2 / -1 2
+* 1 * / 1 pow x 2 pow - 1 / 1 pow x 2 * -1 / 1 2
+* * * pow x -2 -1 -1 pow * * - 1 pow x -2 -1 -1 / -1 2
+* / 1 pow x 2 * * pow * -1 - / 1 pow x 2 1 * -1 / 1 2 -1 -1
+* pow x -2 pow * -1 + / 1 pow x 2 -1 / -1 2
+* 1 * pow x -2 pow * + -1 pow x -2 -1 / -1 2
+* -1 * * -1 * / 1 pow x 2 -1 * -1 pow - 1 pow x -2 / -1 2
+* * -1 * * / -1 pow x 2 -1 -1 pow - * -1 pow x -2 -1 * / 1 2 -1
+* * * -1 / 1 pow x 2 -1 pow + * / 1 pow x 2 -1 1 * -1 / 1 2
+* / 1 pow x 2 pow - 1 * -1 / -1 pow x 2 * / 1 2 -1
+* pow + * -1 pow x -2 1 * -1 / 1 2 pow x -2
+* / 1 pow x 2 pow * -1 - -1 * pow x -2 -1 * / 1 2 -1
+* pow x -2 pow - 1 pow x -2 * -1 / 1 2
+* 1 * / 1 pow x 2 pow * + -1 * * pow x -2 -1 -1 -1 / -1 2
+* 1 * * / -1 pow x 2 -1 pow * -1 + pow x -2 -1 / -1 2
+* 1 * * / pow - / -1 pow x 2 -1 / -1 2 pow x 2 -1 -1
+* pow x -2 pow - 1 / 1 pow x 2 / -1 2
+* 1 * pow x -2 pow - 1 / 1 pow x 2 * -1 / 1 2
+* 1 * * -1 pow - 1 pow x -2 * / 1 2 -1 * -1 * * -1 pow x -2 -1
+* 1 * / 1 pow x 2 pow * + pow x -2 -1 -1 * -1 / 1 2
+* 1 * pow x -2 * * -1 pow + * -1 pow x -2 1 * / 1 2 -1 -1
+* 1 * -1 * / pow + 1 * -1 pow x -2 / -1 2 pow x 2 -1
+* pow x -2 pow - * -1 pow x -2 -1 / -1 2
+* 1 * -1 * * pow * -1 - pow x -2 1 / -1 2 -1 * * -1 pow x -2 -1
+* 1 * pow * -1 - pow x -2 1 * -1 / 1 2 / 1 pow x 2
+* 1 * / 1 pow x 2 pow + 1 / -1 pow x 2 / -1 2
+* * -1 * pow x -2 -1 * -1 * pow * -1 - -1 / -1 pow x 2 / -1 2 -1
+* 1 * pow + 1 * / 1 pow x 2 -1 / -1 2 / 1 pow x 2
+* 1 * / 1 pow x 2 pow * -1 - -1 / -1 pow x 2 / -1 2
+* 1 / pow + / -1 pow x 2 1 / -1 2 pow x 2
+* pow x -2 pow - * -1 * * * -1 * pow x -2 -1 -1 -1 -1 / -1 2
+* / 1 pow x 2 pow - 1 / 1 pow x 2 / -1 2
+* 1 * * -1 * pow + 1 / -1 pow x 2 * / 1 2 -1 pow x -2 -1
+* pow x -2 pow * + -1 * / -1 pow x 2 -1 -1 / -1 2
+* * * -1 pow x -2 -1 pow * * - * pow x -2 -1 -1 -1 -1 * / 1 2 -1
+* * * -1 pow x -2 -1 pow * -1 - pow x -2 1 / -1 2
+* 1 * / -1 pow x 2 * * * -1 pow - 1 pow x -2 * -1 / 1 2 -1 -1
+* 1 / pow * -1 * * -1 - / 1 pow x 2 1 -1 / -1 2 pow x 2
+* 1 * * * -1 pow - 1 pow x -2 * / 1 2 -1 / 1 pow x 2 -1
+* 1 * pow x -2 pow * - pow x -2 1 -1 * -1 / 1 2
+* -1 * pow x -2 * -1 pow * -1 - * / -1 pow x 2 -1 1 / -1 2
+* / 1 pow x 2 pow * -1 + -1 * -1 / -1 pow x 2 / -1 2
+* 1 * pow x -2 pow - * pow x -2 -1 -1 * -1 / 1 2
+* 1 * pow * -1 * * -1 + -1 pow x -2 -1 / -1 2 pow x -2
+* 1 * * * -1 pow * -1 + pow x -2 -1 / -1 2 -1 pow x -2
+* pow x -2 pow * + * * pow x -2 -1 -1 -1 -1 / -1 2
+* 1 * / 1 pow x 2 pow + * -1 * * pow x -2 -1 -1 1 * / 1 2 -1
+* 1 * pow - 1 / 1 pow x 2 / -1 2 * * -1 / 1 pow x 2 -1
+* * / -1 pow x 2 -1 pow * -1 - -1 * -1 / 1 pow x 2 / -1 2
+* 1 * pow - / -1 pow x 2 -1 * / 1 2 -1 / 1 pow x 2
+* pow x -2 * * -1 pow * -1 + * * -1 pow x -2 -1 -1 / -1 2 -1
+* 1 * * * pow x -2 pow * + -1 / 1 pow x 2 -1 * / 1 2 -1 -1 -1
+* * -1 / -1 pow x 2 pow * * -1 - / -1 pow x 2 -1 -1 / -1 2
+* 1 * pow x -2 pow + * -1 * * pow x -2 -1 -1 1 / -1 2
+* * / -1 pow x 2 -1 pow - 1 / 1 pow x 2 / -1 2
+* 1 * pow - 1 pow x -2 * -1 / 1 2 pow x -2
+* pow x -2 pow - 1 pow x -2 / -1 2
+* * / -1 pow x 2 -1 pow + * -1 * * -1 pow x -2 -1 1 * / 1 2 -1
+* 1 * pow * + -1 pow x -2 -1 * / 1 2 -1 pow x -2
+* pow x -2 pow * -1 + -1 pow x -2 / -1 2
+* / 1 pow x 2 pow - 1 pow x -2 * -1 / 1 2
+* pow x -2 pow * - -1 * -1 pow x -2 -1 / -1 2
+* 1 * pow - 1 / 1 pow x 2 / -1 2 pow x -2
+* * -1 / -1 pow x 2 pow * * + 1 * pow x -2 -1 -1 -1 / -1 2
+* * * / 1 pow x 2 -1 -1 pow * - -1 / -1 pow x 2 -1 * -1 / 1 2
+* 1 * * * -1 pow - 1 / 1 pow x 2 * -1 / 1 2 / 1 pow x 2 -1
+* 1 * * * * -1 pow + 1 / -1 pow x 2 / -1 2 -1 -1 / -1 pow x 2
+* 1 * / 1 pow x 2 pow * - -1 * pow x -2 -1 -1 / -1 2
+* pow x -2 * * -1 pow * - -1 * pow x -2 -1 -1 / -1 2 -1
+* * / -1 pow x 2 -1 pow - / -1 pow x 2 -1 / -1 2
+* * / -1 pow x 2 -1 pow * -1 - pow x -2 1 / -1 2
+* / 1 pow x 2 pow * + / 1 pow x 2 -1 -1 * / 1 2 -1
+* 1 * pow * - pow x -2 1 -1 * -1 / 1 2 / 1 pow x 2
+* / 1 pow x 2 pow * + -1 / 1 pow x 2 -1 / -1 2
+* 1 * / 1 pow x 2 pow * -1 + * * -1 / 1 pow x 2 -1 -1 / -1 2
+* * * * -1 / -1 pow x 2 -1 -1 pow * + pow x -2 -1 -1 / -1 2
+* pow x -2 pow * - pow x -2 1 -1 / -1 2
+* 1 * pow x -2 pow + * pow x -2 -1 1 * / 1 2 -1
+* * -1 * pow x -2 -1 pow + 1 * pow x -2 -1 / -1 2
+* * * * -1 / -1 pow x 2 -1 -1 pow * - -1 / -1 pow x 2 -1 / -1 2
+* / 1 pow x 2 pow * - pow x -2 1 -1 / -1 2
+* / 1 pow x 2 pow - / -1 pow x 2 -1 / -1 2
+* pow x -2 pow + * -1 pow x -2 1 / -1 2
+* 1 * * / -1 pow x 2 pow + * / 1 pow x 2 -1 1 / -1 2 -1
+* pow x -2 pow * - pow x -2 1 -1 / -1 2
+* 1 / pow * - / 1 pow x 2 1 -1 * / 1 2 -1 pow x 2
+* pow x -2 * * pow * -1 - -1 / -1 pow x 2 / -1 2 -1 -1
+* / 1 pow x 2 pow - 1 / 1 pow x 2 * -1 / 1 2
+* * / -1 pow x 2 -1 pow + / -1 pow x 2 1 / -1 2
+* 1 * * * -1 pow - 1 pow x -2 * / 1 2 -1 pow x -2 -1
+* 1 * pow * -1 + pow x -2 -1 / -1 2 / 1 pow x 2
+* pow x -2 * * -1 pow * - -1 * pow x -2 -1 -1 / -1 2 -1
+* * -1 / -1 pow x 2 pow * + -1 * / -1 pow x 2 -1 -1 / -1 2
+* pow x -2 pow - / -1 pow x 2 -1 * -1 / 1 2
+* 1 / pow + / -1 pow x 2 1 / -1 2 pow x 2
+* 1 * * -1 / pow * + / 1 pow x 2 -1 -1 / -1 2 pow x 2 -1
+* pow x -2 pow - / -1 pow x 2 -1 / -1 2
+* 1 * -1 * pow x -2 * pow - / -1 pow x 2 -1 / -1 2 -1
+* 1 * pow * -1 + pow x -2 -1 * -1 / 1 2 pow x -2
+* 1 * pow + * -1 pow x -2 1 / -1 2 pow x -2
+* * -1 / -1 pow x 2 pow * -1 - -1 / -1 pow x 2 / -1 2
+* 1 / pow + 1 * pow x -2 -1 * -1 / 1 2 pow x 2
+* 1 * * -1 pow * -1 - pow x -2 1 * -1 / 1 2 * pow x -2 -1
+* 1 * pow + 1 * -1 / 1 pow x 2 * -1 / 1 2 / 1 pow x 2
+* pow x -2 pow + * pow x -2 -1 1 / -1 2
+* 1 / * * -1 pow * + pow x -2 -1 -1 / -1 2 -1 pow x 2
+* * * pow x -2 -1 -1 pow - 1 pow x -2 * -1 / 1 2
+* 1 / pow * -1 * - / -1 pow x 2 -1 -1 / -1 2 pow x 2
+* * * * -1 / -1 pow x 2 -1 -1 pow + 1 / -1 pow x 2 / -1 2
+* pow x -2 pow * * -1 - / -1 pow x 2 -1 -1 / -1 2
+* 1 * pow - * pow x -2 -1 -1 / -1 2 pow x -2
+* 1 * pow + * / 1 pow x 2 -1 1 * / 1 2 -1 pow x -2
+* 1 * / -1 pow x 2 * pow * - pow x -2 1 -1 * -1 / 1 2 -1
+* -1 * pow x -2 * pow * -1 - pow x -2 1 * -1 / 1 2 -1
+* / 1 pow x 2 pow - 1 * -1 / -1 pow x 2 / -1 2
+* 1 * pow * -1 - / 1 pow x 2 1 * -1 / 1 2 / 1 pow x 2
+* 1 * / 1 pow x 2 pow * -1 - pow x -2 1 / -1 2
+* pow x -2 pow + 1 / -1 pow x 2 / -1 2
+* pow x -2 pow * -1 - pow x -2 1 * -1 / 1 2
+* 1 / pow * -1 - / 1 pow x 2 1 / -1 2 pow x 2
+* 1 * / 1 pow x 2 pow * -1 + -1 / 1 pow x 2 * / 1 2 -1
+* pow x -2 pow * - -1 / -1 pow x 2 -1 / -1 2
+* pow x -2 pow - / -1 pow x 2 -1 / -1 2
+* / 1 pow x 2 pow * -1 - -1 / -1 pow x 2 / -1 2
+* 1 * pow x -2 pow + 1 / -1 pow x 2 / -1 2
+* * / -1 pow x 2 -1 pow * + / 1 pow x 2 -1 -1 / -1 2
+* pow x -2 pow - * pow x -2 -1 -1 / -1 2
+* / 1 pow x 2 pow - 1 pow x -2 / -1 2
+* -1 * pow x -2 * pow + / -1 pow x 2 1 / -1 2 -1
 
 d x acot x
 + d x * atan cot acot x -1 0
@@ -6314,7 +6550,7 @@ d x acot x
 + d x asec csc acsc sec acot x 0
 + d x asec sec asec csc atan x 0
 + - 0 pow sech asinh x 2 0
-+ d x + acot x * 0.5 pi 0
++ d x + acot x * / 1 2 pi 0
 + d / 1 / 1 x acot x 0
 + d sinh asinh x acot sinh asinh x 0
 + / -1 + 1 pow x 2 0
@@ -6360,7 +6596,7 @@ d x acot x
 + d x acos tanh asinh x 0
 + d x acot cot asec coth asinh x 0
 + d cot acot x acot x 0
-+ d x - acot x * pi 0.5 0
++ d x - acot x * pi / 1 2 0
 + d x asec coth acsch csch asinh x 0
 + d x acos cos acot sinh asinh x 0
 + d x acot x 0
@@ -6374,7 +6610,7 @@ d x acot x
 + d sinh acsch / 1 x acot x 0
 + * -1 pow d x asinh x 2 0
 + d x acos * x cos atan x 0
-+ d x + * pi -0.5 acot x 0
++ d x + * pi / -1 2 acot x 0
 + d tan acsc csc atan x acot x 0
 + d tan atan x asec csc atan x 0
 + d x asec sec acos sin atan x 0
@@ -6443,7 +6679,7 @@ d x acot x
 + d x asec / 1 sin atan x 0
 + d x asec csc asin cos acot x 0
 + - 0 pow d x asinh x 2 0
-+ d x - acot x * pi -0.5 0
++ d x - acot x * pi / -1 2 0
 + d x acos cos acos tanh asinh x 0
 + d x acot / 1 csch asinh x 0
 + d x * acsc csc atan x -1 0
@@ -6466,7 +6702,7 @@ d x acot x
 + d x acos tanh acoth sec acot x 0
 + / -1 + * x x 1 0
 + d x acot cot acos cos acot x 0
-+ d x - * pi 0.5 atan x 0
++ d x - * pi / 1 2 atan x 0
 + d x asec coth acsch / 1 x 0
 + d x asec csc asin tanh asinh x 0
 + d sinh atanh cos acot x acot x 0
@@ -6477,6 +6713,18 @@ d x acot x
 + - 0 pow cos atan x 2 0
 + d tan atan tan atan x acot x 0
 + d x - acot x / pi 2 0
+* -1 pow + 1 pow x 2 -1
+/ / -1 + pow x 2 1 1
+/ * -1 / 1 + pow x 2 1 1
+/ -1 + pow x 2 1
+pow * -1 pow + 1 pow x 2 -1 1
+/ * -1 pow + 1 pow x 2 -1 1
+* 1 * -1 / 1 + 1 pow x 2
+* * pow + 1 pow x 2 -1 -1 1
+pow * -1 / 1 + pow x 2 1 1
+* 1 / -1 + 1 pow x 2
+pow / -1 + 1 pow x 2 1
+* pow + 1 pow x 2 -1 -1
 
 d x sinh x
 / 1 / csch x coth x
@@ -7075,7 +7323,6 @@ d x * * tanh x csch x sinh x
 d x / / csch x coth x csch x
 + / 1 * cosh x cosh x 0
 / 1 * / 1 sech x cosh x
-d x tanh x
 * sech x / 1 / coth x csch x
 + pow / 1 / 1 sech x 2 0
 + 1 / d x sech x csch x
@@ -7373,7 +7620,7 @@ d x csch x
 - d x / coth x cosh x 0
 - 0 / cosh x / sinh x csch x
 * 1 / d x coth x sech x
-- d x * -1 * -1 csch x 0
+- d x csch x 0
 - 0 / pow sinh x -1 tanh x
 - 0 * / csch x sech x csch x
 - d x pow pow csch x -1 -1 0
@@ -7504,7 +7751,7 @@ d x * cosh x * sech x sech x
 - - 0 - 0 d x sech x 0
 + d x pow / 1 sech x -1 0
 - 0 / tanh x / coth x csch x
-/ * -1 * -1 d x sech x 1
+/ d x sech x 1
 d x / pow coth x -1 sinh x
 - 0 / / sinh x cosh x cosh x
 / -1 / pow cosh x 2 sinh x
@@ -7586,7 +7833,7 @@ pow / - 0 sech x coth x 1
 d x / cosh x pow cosh x 2
 d x / tanh x sinh x
 / -1 / 1 / tanh x cosh x
-* -1 * -1 d x sech x
+d x sech x
 d x / 1 cosh x
 - 0 / pow sech x 2 csch x
 / - 0 / tanh x sinh x coth x
@@ -7616,7 +7863,6 @@ pow * - 0 sech x tanh x 1
 d x / cosh x * cosh x cosh x
 / / -1 coth x / 1 sech x
 pow / -1 / cosh x tanh x 1
-d x sech x
 d x / / 1 coth x sinh x
 - 0 / 1 / coth x sech x
 / / -1 / csch x sech x cosh x
@@ -7657,7 +7903,7 @@ d x / csch x coth x
 d x pow pow pow cosh x -1 -1 -1
 d x * cosh x pow cosh x -2
 / -1 / cosh x pow coth x -1
-d x / 1 * -1 * -1 cosh x
+d x / 1 cosh x
 pow d x / csch x coth x 1
 d x * d x tanh x cosh x
 / / -1 coth x cosh x
@@ -7729,7 +7975,7 @@ d x * d x sinh x csch x
 d x * tanh x * coth x coth x
 d x / / coth x sinh x csch x
 - / -1 / sinh x csch x 0
-- 0 * -1 * -1 pow csch x 2
+- 0 pow csch x 2
 - 0 / * csch x coth x cosh x
 d x / csch x * tanh x csch x
 pow - 0 / 1 pow sinh x 2 1
@@ -7768,7 +8014,7 @@ d x / tanh x pow tanh x 2
 - * * d x coth x -1 -1 0
 * 1 - 0 pow pow sinh x -1 2
 d x / / cosh x tanh x cosh x
-* 1 * -1 * -1 d x coth x
+* 1 d x coth x
 * -1 * / -1 pow sinh x 2 -1
 + / -1 / 1 pow csch x 2 0
 d x * cosh x csch x
@@ -7851,7 +8097,7 @@ d x / cosh x sinh x
 / -1 / tanh x / csch x cosh x
 d x * pow coth x 2 tanh x
 + / d x csch x sech x 1
-pow * -1 * -1 d x coth x 1
+pow d x coth x 1
 d x / * sech x coth x sech x
 * / 1 pow / 1 csch x 2 -1
 d x / cosh x * cosh x tanh x
@@ -7950,11 +8196,10 @@ d x / / sech x tanh x sech x
 * 1 d x * cosh x csch x
 pow / -1 * sinh x sinh x 1
 d x / pow coth x 2 coth x
-* -1 * -1 d x coth x
+d x coth x
 - 0 pow / sech x tanh x 2
 - 0 / pow sinh x -1 sinh x
 d x / csch x / csch x coth x
-d x coth x
 - 0 - 0 d x coth x
 d x / / coth x tanh x coth x
 / -1 / cosh x * coth x csch x
@@ -8009,10 +8254,10 @@ cos acsc / 1 * x sin acot x
 sin asec coth acsch cot atan * -1 x
 / sech asinh sinh acsch / 1 x 1
 d x asinh / 1 / -1 * -1 x
-pow sin - * pi 0.5 atan x 1
+pow sin - * pi / 1 2 atan x 1
 sin acos / 1 coth asinh tan atan x
 cos - 0 - 0 atan x
-sech * -1 * -1 asinh tan atan x
+sech asinh tan atan x
 d x atanh tanh atanh sin asin sin atan x
 pow / cos acos cos acot x x 1
 + 0 cos atan cot acot / x -1
@@ -8145,7 +8390,7 @@ pow cos asin / -1 sec acot x 1
 / cos acot x tan asin cos acot x
 * * / -1 x -1 tanh asinh x
 cos asin d x sec acsc csc atan x
-cos * -1 - acot x * pi 0.5
+cos * -1 - acot x * pi / 1 2
 sin acot cot asec sec acos tanh asinh x
 pow sech * -1 acoth coth asinh x 1
 sin acos sin atan sinh acsch / 1 x
@@ -8406,7 +8651,7 @@ pow d tan atan x acsch csch asinh x 1
 cos atan cot asec / 1 cos acot x
 d x acsch cot asin sin acsc sec acot x
 + / 1 sqrt + 1 pow x 2 0
-cos atan tan - * pi 0.5 acot x
+cos atan tan - * pi / 1 2 acot x
 * / 1 x cos acos tanh asinh x
 pow - 0 / -1 sec atan x 1
 d x acoth / csc acot x cot acot x
@@ -8600,7 +8845,7 @@ sin asec coth * -1 atanh tanh asinh x
 d x asinh cot asec / 1 cos acot x
 d x asinh / sin atan x sin acot x
 cos asin - 0 d x sec atan x
-d x acsch cot * -1 * -1 atan x
+d x acsch cot atan x
 d / sec atan x coth asinh x asinh x
 pow cos atan sinh acsch tan acot x 1
 cos asin d x csc acot x
@@ -8663,7 +8908,7 @@ d x acsch tan asec coth asinh tan atan x
 * cos atan tan atan sinh asinh x 1
 cos acsc / cot atan x cos atan x
 pow sin asec sec acot / x -1 1
-* -1 * -1 sech acoth csc atan x
+sech acoth csc atan x
 d x atanh cos asec sec acot x
 d tan acsc csc atan x acsch csch asinh x
 sqrt - 1 pow sin asin sin atan x 2
@@ -8833,7 +9078,7 @@ sin asec coth acoth / 1 sin atan x
 pow sqrt - 1 pow tanh asinh x 2 1
 cos acsc sec asec * -1 coth asinh x
 d x acsch cot atan tan asin sin atan x
-sin - * 0.5 pi acsc csc atan x
+sin - * / 1 2 pi acsc csc atan x
 cos acsc csc asin * -1 cos acot x
 cos acsc coth * -1 acoth csc atan x
 cos atan cot asec csc atan * x -1
@@ -8954,7 +9199,7 @@ cos atan sinh acoth coth acsch cot atan x
 * / 1 x tanh acoth coth asinh x
 - sin acot cot acot * x -1 0
 * cos atan sinh acsch cot atan x 1
-sin + * 0.5 pi - 0 atan x
+sin + * / 1 2 pi - 0 atan x
 - - 0 - 0 d x asinh x 0
 - d tan atan sinh asinh x asinh x 0
 - d x atanh sin asin cos acot x 0
@@ -9290,7 +9535,7 @@ cos atan sinh atanh sin acsc csc atan x
 / sin acos sin asin tanh asinh x 1
 pow sech atanh * x cos atan x 1
 pow d x acsch cot atan sinh asinh x 1
-sin - 0 - atan x * 0.5 pi
+sin - 0 - atan x * / 1 2 pi
 sin acos d x * x coth asinh x
 d x atanh sin acsc / sec atan x x
 d x asinh tan acsc coth atanh cos acot x
@@ -9311,10 +9556,10 @@ sin asec coth asinh sinh acsch tan acot x
 / sech atanh tanh asinh tan atan x 1
 sin asec sec acot / 1 csch asinh x
 / d x atanh cos acos tanh asinh x 1
-sin acos cos - * 0.5 pi atan x
+sin acos cos - * / 1 2 pi atan x
 + 0 cos asin cos acot x
 sin asec coth acsch tan acos sin atan x
-/ cos - * pi 0.5 atan x x
+/ cos - * pi / 1 2 atan x x
 - d x atanh sin asin sin atan x 0
 / tanh acoth csc atan cot acot x x
 sin acot tan asin tanh asinh x
@@ -9391,7 +9636,7 @@ cos asin - 0 / 1 sec acot x
 / 1 sec atan cot acos sin atan x
 pow sech acoth sec acos cos acot x 1
 / 1 cosh atanh tanh asinh sinh asinh x
-cos - * pi 0.5 acot x
+cos - * pi / 1 2 acot x
 + / 1 cosh acsch / -1 x 0
 cos atan cot acos sin acsc sec acot x
 / sin atan cot acos cos acot x x
@@ -9412,7 +9657,7 @@ sin acot * * * -1 x -1 -1
 cos asin * x sech acsch tan acot x
 sin asec / csc atan x -1
 / 1 cosh * -1 asinh / x -1
-sin - * 0.5 pi asin cos acot x
+sin - * / 1 2 pi asin cos acot x
 d x acsch / 1 tan atan x
 / sech asinh cot acos cos acot x 1
 sin acos * sech acoth sec acot x x
@@ -9461,15 +9706,15 @@ sin asec sec acos sin asin cos acot x
 + 0 d x asinh sinh asinh x
 - sin asec csc atan cot acot x 0
 d x atanh / 1 coth asinh x
-* -1 * -1 sin acot x
+sin acot x
 d sinh asinh sinh asinh x acoth sec acot x
 cos acsc coth acoth coth asinh / x -1
 d x atanh tanh atanh tanh atanh tanh asinh x
 d x acsch csch atanh sin asin tanh asinh x
 cos acsc / -1 cos acos sin atan x
-* -1 * -1 sech acsch csch asinh x
+sech acsch csch asinh x
 d x acsch / -1 * tan atan x -1
-d x asinh cot - * 0.5 pi atan x
+d x asinh cot - * / 1 2 pi atan x
 * tanh asinh x tan asec csc atan x
 sin acot / -1 / -1 * x -1
 / 1 csc acot sinh * -1 asinh x
@@ -9562,14 +9807,14 @@ d x acsch cot asin d x sec atan x
 sin acot cot acot sinh * asinh x -1
 d sinh asinh cot acot x acsch cot atan x
 - d cot acot x acoth coth asinh x 0
-/ * -1 * -1 d x asinh x 1
+/ d x asinh x 1
 - cos * -1 - 0 atan x 0
 / sech asinh cot acot cot acot x 1
 + sin acos * sech asinh x x 0
 cos atan sinh atanh * x d x asinh x
 * cos asin tanh acsch csch asinh x 1
 sin acos / x cosh asinh x
-sin - * pi 0.5 atan * x -1
+sin - * pi / 1 2 atan * x -1
 sin acos tanh acoth / csc atan x -1
 cos acsc * csch asinh x sec atan x
 * 1 sin acot sinh asinh sinh asinh x
@@ -9656,7 +9901,7 @@ sin acos tanh * acsch csch asinh x -1
 / 1 cosh asinh tan atan * -1 x
 sin asec * -1 coth asinh tan atan x
 pow sin acos sin asin cos acot x 1
-sech * -1 * -1 asinh cot acot x
+sech asinh cot acot x
 - 0 * / 1 cosh asinh x -1
 + 0 cos acsc * csc atan x -1
 / tanh asinh x sinh atanh sin atan x
@@ -9703,7 +9948,7 @@ cos atan cot asec coth atanh tanh asinh x
 - cos atan tan acsc csc atan x 0
 / sech acoth coth acoth coth asinh x 1
 / * x cos acsc sec acot x x
-* -1 * -1 sech acoth coth asinh x
+sech acoth coth asinh x
 - 0 * -1 d sinh asinh x asinh x
 / cos acot x cot acot x
 * d x atanh * cos atan x x 1
@@ -9988,7 +10233,7 @@ d x acoth * csc acot x tan acot x
 d x atanh tanh atanh * x sech asinh x
 cos asin d x cosh acoth coth asinh x
 + 0 d x acsch tan acot cot acot x
-cos + * 0.5 pi - 0 acot x
+cos + * / 1 2 pi - 0 acot x
 d sinh acsch cot acsc sec acot x asinh x
 - * sin atan x / 1 x 0
 + sech acsch csch asinh tan atan x 0
@@ -9998,7 +10243,7 @@ d x acsch cot acsc sec acos sin atan x
 * - 0 - 0 sin acot x 1
 sin asec sec acos tanh asinh sinh asinh x
 * d x acoth csc atan tan atan x 1
-d x acoth sec - * 0.5 pi atan x
+d x acoth sec - * / 1 2 pi atan x
 cos atan * cot asec coth asinh x -1
 / 1 cosh atanh cos acot / x -1
 pow sin acos - 0 sin atan x 1
@@ -10147,7 +10392,7 @@ pow d x atanh tanh atanh tanh asinh x 1
 cos asin tanh acoth sec acos sin atan x
 + d x acsch tan acot x 0
 / * d x acoth coth asinh x x x
-* 1 sin - * pi 0.5 atan x
+* 1 sin - * pi / 1 2 atan x
 d cot acot x atanh / 1 sec acot x
 / 1 csc acos d x sec atan x
 sin asec / sec acot x -1
@@ -10197,12 +10442,12 @@ cos asin / -1 sec acot cot acot x
 d cot asec sec acot x acoth sec acot x
 + sech atanh - 0 cos acot x 0
 cos asin sin asin cos acot x
-- sin * -1 * -1 acot x 0
+- sin acot x 0
 d x atanh / x csc acot / x -1
 * sech atanh cos asec coth asinh x 1
 pow d tan atan sinh asinh x asinh x 1
 cos asin tanh asinh / cot acot x -1
-* cos - * pi 0.5 acot x 1
+* cos - * pi / 1 2 acot x 1
 cos asin sin acsc csc acsc coth asinh x
 sin acos d x cosh asinh x
 pow cos atan sinh asinh / x -1 1
@@ -10233,7 +10478,7 @@ sin acos / x cosh acsch / 1 x
 / 1 * sec asec coth asinh x x
 sin asec * -1 csc asin tanh asinh x
 / cos asec coth acsch tan acot x x
-sech * -1 * -1 acsch / 1 x
+sech acsch / 1 x
 d x asinh cot asec csc acsc sec acot x
 * 1 d x acoth / 1 cos acot x
 * * sin atan x tan acot x 1
@@ -10303,7 +10548,7 @@ sin acos / x * x csc atan x
 + 0 sin asec coth atanh cos acot x
 + 0 sin acot tan atan tan atan x
 * cos asec sec acot x cot atan x
-d x acsch cot - * pi 0.5 acot x
+d x acsch cot - * pi / 1 2 acot x
 / 1 / x / 1 csc atan x
 cos acsc / coth atanh cos acot x -1
 cos asin * sin asec coth asinh x x
@@ -10650,7 +10895,7 @@ d tan asin sin atan x atanh sin atan x
 cos asin tanh acoth sec asec sec acot x
 pow sin asec * coth asinh x -1 1
 * tanh asinh sinh asinh x tan acot x
-sin - * pi 0.5 asin sin atan x
+sin - * pi / 1 2 asin sin atan x
 d x asinh cot acos * x sech asinh x
 sin asec / -1 sin acsc sec acot x
 pow sin acos * sin atan x -1 1
@@ -10760,7 +11005,7 @@ cos acsc / -1 tanh acsch cot atan x
 / 1 cosh acoth csc atan / x -1
 d x atanh cos acos cos acot x
 pow sin asec csc atan x 1
-cos - * pi 0.5 asec csc atan x
+cos - * pi / 1 2 asec csc atan x
 pow sin acot sinh acsch / 1 x 1
 * / 1 cosh asinh sinh asinh x 1
 / 1 / 1 sech asinh cot acot x
@@ -10809,7 +11054,7 @@ d x asinh / csc acot x sec acot x
 / * sech atanh cos acot x x x
 pow cos asin sin atan sinh asinh x 1
 / 1 sec acsc coth * asinh x -1
-pow cos atan * -1 * -1 x 1
+pow cos atan x 1
 + sin asec sec acot cot acot x 0
 / / 1 cosh asinh tan atan x 1
 d x atanh sin acsc coth atanh cos acot x
@@ -10897,7 +11142,7 @@ cos asin tanh atanh sin atan / x -1
 d sinh asinh cot acot x acoth sec acot x
 sin asec csc acsc coth acsch csch asinh x
 / 1 cosh * -1 acsch csch asinh x
-sin - * pi 0.5 atan x
+sin - * pi / 1 2 atan x
 d x acsch / / cot atan x -1 -1
 - 0 * d x atanh tanh asinh x -1
 pow sech acsch csch asinh tan atan x 1
@@ -11328,7 +11573,7 @@ d x atanh tanh atanh d x csc acot x
 sin acot tan atan / 1 cot atan x
 cos asin tanh acsch tan asec coth asinh x
 cos asin sin acsc sec acot / x -1
-sin acot tan - * 0.5 pi acot x
+sin acot tan - * / 1 2 pi acot x
 + d x atanh tanh acsch csch asinh x 0
 sin asec coth acsch tan acot cot acot x
 * tan acos sin atan x sin atan x
@@ -11355,7 +11600,7 @@ cos asin sin atan cot acos cos acot x
 d x asinh sinh acoth csc acsc csc atan x
 * -1 * / 1 cosh asinh x -1
 sin asec coth asinh tan acsc coth asinh x
-pow cos - * pi 0.5 acot x 1
+pow cos - * pi / 1 2 acot x 1
 cos acsc / cosh asinh cot acot x x
 cos acsc csc acsc sec acot * x -1
 * d x asinh sinh acoth csc atan x 1
@@ -11518,7 +11763,7 @@ sin acot cot asec csc asin sin atan x
 sin asec coth acsch csch * -1 asinh x
 - sech atanh tanh acoth csc atan x 0
 cos acsc / coth asinh cot acot x -1
-/ cos - * 0.5 pi acot x 1
+/ cos - * / 1 2 pi acot x 1
 sin acos cos asec sec acot tan atan x
 d x acsch cot atan sinh acoth sec acot x
 * 1 sin asec sec acos tanh asinh x
@@ -11580,11 +11825,11 @@ pow cos asin cos acot * -1 x 1
 - d x atanh tanh atanh sin atan x 0
 / sin acsc coth atanh sin atan x x
 sin acos cos acos tanh asinh tan atan x
-cos - * pi 0.5 acot / x -1
+cos - * pi / 1 2 acot / x -1
 d x acsch csch atanh tanh atanh cos acot x
 / tanh acoth coth acoth csc atan x x
 cos acsc coth acoth coth atanh cos acot x
-d x atanh sin - * pi 0.5 acot x
+d x atanh sin - * pi / 1 2 acot x
 d x atanh cos asec coth asinh sinh asinh x
 sin asec coth acoth sec acot cot acot x
 sin acos * cos atan x x
@@ -11632,7 +11877,7 @@ sin acot sinh atanh cos acot x
 d cot acot x asinh x
 cos atan / cos acot x sin acot x
 pow sech asinh / -1 / 1 x 1
-cos - * pi 0.5 asec coth asinh x
+cos - * pi / 1 2 asec coth asinh x
 d x atanh cos acot tan atan x
 d * / -1 tan acot x -1 asinh x
 sin asec coth acsch csch asinh tan atan x
@@ -11718,7 +11963,7 @@ sin acos sin acsc csc atan cot acot x
 + d x acoth sec asec csc atan x 0
 cos acsc * coth acsch / 1 x -1
 d / 1 cot acsc coth asinh x asinh x
-sech * -1 * -1 acsch tan acot x
+sech acsch tan acot x
 cos acsc sec asec sec asec sec acot x
 + 0 d x atanh cos asec coth asinh x
 d x acsch cot asin sin acsc csc atan x
@@ -12044,7 +12289,7 @@ cos asin tanh acoth csc atan x
 sin asec sec acos cos acot / x -1
 - d x acoth sec asec coth asinh x 0
 d x asinh tan asin sin atan tan atan x
-sin - * pi 0.5 acsc coth asinh x
+sin - * pi / 1 2 acsc coth asinh x
 / sech asinh sinh acsch csch asinh x 1
 sin acos d x / 1 d x asinh x
 / cos atan cot acot cot acot x 1
@@ -12187,7 +12432,7 @@ sin acos tanh acsch cot atan x
 sin acot cot acos sin acsc coth asinh x
 sqrt - 1 pow / 1 sec acot x 2
 d x acoth coth acoth csc atan x
-/ sin acot * -1 * -1 x 1
+/ sin acot x 1
 sin acos / -1 coth asinh x
 / cos asin * x d x asinh x 1
 pow sech * -1 acoth sec acot x 1
@@ -12235,7 +12480,7 @@ pow d x asinh / 1 csch asinh x 1
 / / 1 coth atanh cos acot x x
 + 0 d x acoth coth asinh sinh asinh x
 d x acoth coth atanh tanh acsch / 1 x
-* -1 * -1 sech asinh * x -1
+sech asinh * x -1
 + 0 * tan acot x cos acot x
 cos acsc sec acot / 1 tan acot x
 sin asec sec acot tan asin tanh asinh x
@@ -12308,7 +12553,7 @@ sin asec csc atan cot acot * -1 x
 d cot acos tanh acsch cot atan x asinh x
 sin acos d x sec acsc coth asinh x
 cos atan tan acsc sec acos cos acot x
-sin - * pi 0.5 asin tanh asinh x
+sin - * pi / 1 2 asin tanh asinh x
 d x acsch cot acsc sec acos cos acot x
 pow sech atanh / -1 csc atan x 1
 * 1 d x acoth sec asec csc atan x
@@ -12535,7 +12780,7 @@ cos atan / sinh atanh cos acot x -1
 * 1 cos asin - 0 cos acot x
 cos asin cos asec csc acsc coth asinh x
 cos atan sinh asinh / 1 cot atan x
-cos atan cot - * 0.5 pi atan x
+cos atan cot - * / 1 2 pi atan x
 - 0 d x acsch / csch asinh x -1
 sin acos / x sec atan * -1 x
 sin acos tanh acsch csch acoth coth asinh x
@@ -12549,7 +12794,7 @@ d x acoth csc - / pi 2 acot x
 - sech asinh cot acot * x -1 0
 d x atanh * x sin acot * x -1
 * sin asec coth acsch tan acot x 1
-sin - * pi 0.5 atan cot acot x
+sin - * pi / 1 2 atan cot acot x
 / cos asin tanh acsch / 1 x 1
 + * / 1 x tanh asinh x 0
 d x acsch csch acoth / csc acot x x
@@ -13172,7 +13417,7 @@ pow cos acsc csc acsc coth asinh x 1
 cos atan cot acot cot acos cos acot x
 cos acsc * -1 csc atan x
 d x acsch csch acsch tan acos tanh asinh x
-d x acsch tan - * pi 0.5 atan x
+d x acsch tan - * pi / 1 2 atan x
 pow sin acot * -1 cot acot x 1
 sin asec sec acot sinh acsch cot atan x
 cos atan sinh atanh cos acos tanh asinh x
@@ -13307,7 +13552,7 @@ d x acoth / 1 tanh asinh cot acot x
 cos asin / x cosh acsch / -1 x
 sin acos / x sec asin cos acot x
 d tan atan x atanh tanh acsch cot atan x
-* -1 * -1 sech asinh sinh asinh x
+sech asinh sinh asinh x
 / 1 cosh acsch csch acsch csch asinh x
 cos asin tanh atanh tanh asinh / x -1
 pow cos asin cos acos sin atan x 1
@@ -13675,7 +13920,7 @@ cos atan / 1 / -1 / x -1
 / 1 cosh asinh cot asec csc atan x
 sin asec csc atan sinh acsch cot atan x
 * -1 / -1 csc acot cot acot x
-cos - * 0.5 pi asec sec acot x
+cos - * / 1 2 pi asec sec acot x
 cos asin tanh acoth / cosh asinh x x
 cos asin tanh acsch csch acoth sec acot x
 sin asec coth atanh tanh acoth coth asinh x
@@ -13757,7 +14002,7 @@ sin acos sin atan sinh asinh / x -1
 + sin acos / 1 sec acot x 0
 d x acsch / 1 cot acot x
 sin acot / 1 / 1 sinh asinh x
-sin - * 0.5 pi atan tan atan x
+sin - * / 1 2 pi atan tan atan x
 d x atanh d x sec acsc sec acot x
 - / * cos atan x x x 0
 cos - / pi 2 acot sinh asinh x
@@ -14105,7 +14350,7 @@ cos acsc sec asec coth acsch / -1 x
 * 1 sech acoth sec acos sin atan x
 d x acoth coth acoth csc asin sin atan x
 d x acsch cot asin tanh acoth coth asinh x
-cos - * pi 0.5 acos cos acot x
+cos - * pi / 1 2 acos cos acot x
 cos asin tanh atanh tanh asinh tan atan x
 d tan acsc csc atan x asinh sinh asinh x
 cos asin cos acot sinh acoth coth asinh x
@@ -14306,7 +14551,7 @@ d x acsch csch acsch / / -1 x -1
 cos atan cot acos / x cosh asinh x
 * sin acos tanh acoth sec acot x 1
 sqrt - 1 pow sin asin cos acot x 2
-/ sin - * pi 0.5 acot x x
+/ sin - * pi / 1 2 acot x x
 cos asin d x csc asec sec acot x
 / / x csc asec csc atan x x
 d x atanh / x csc acos tanh asinh x
@@ -14431,7 +14676,7 @@ pow sech acoth / 1 cos acot x 1
 / 1 cosh acoth / 1 tanh asinh x
 sin acot x
 pow sech acsch tan acot x 1
-cos - * pi 0.5 acot cot acot x
+cos - * pi / 1 2 acot cot acot x
 - - 0 d x acsch / -1 x 0
 cos acsc coth acsch tan acot x
 cos asin d x * x csc atan x
@@ -14556,7 +14801,7 @@ pow / cos acot tan atan x x 1
 - 0 / -1 cosh acsch tan acot x
 / sin asec sec acos tanh asinh x 1
 pow sech asinh cot acos cos acot x 1
-sin - * pi 0.5 atan / x -1
+sin - * pi / 1 2 atan / x -1
 sin asec coth atanh / 1 coth asinh x
 sin asec / cosh asinh sinh asinh x x
 d x acoth coth acsch cot asin cos acot x
@@ -15088,7 +15333,7 @@ d x acsch cot acsc coth asinh cot acot x
 d x acsch csch atanh / 1 coth asinh x
 d x atanh d x sec acsc csc atan x
 * sin atan x csch acoth sec acot x
-sin - * pi 0.5 atan sinh asinh x
+sin - * pi / 1 2 atan sinh asinh x
 sin acos * -1 cos asec sec acot x
 / * sech acoth coth asinh x x x
 / sin asec csc atan cot acot x 1
@@ -15213,7 +15458,7 @@ sin acot / -1 cot atan cot acot x
 - d x acsch cot asin cos acot x 0
 d sinh acsch cot atan x asinh x
 + sin asec coth acoth sec acot x 0
-cos + * -1 acot x * pi 0.5
+cos + * -1 acot x * pi / 1 2
 cos acsc / -1 sin atan cot acot x
 + 0 sech asinh / x -1
 / cos asec coth acoth coth asinh x x
@@ -15341,7 +15586,7 @@ pow / 1 cosh asinh tan atan x 1
 pow d cot acot x atanh tanh asinh x 1
 - cos atan cot acos cos acot x 0
 sin asec csc atan sinh acoth csc atan x
-sin asec csc - * 0.5 pi acot x
+sin asec csc - * / 1 2 pi acot x
 - sech * asinh / x -1 -1 0
 cos acsc / 1 cos acot sinh asinh x
 pow sin acos cos acot sinh asinh x 1
@@ -15590,7 +15835,6 @@ sin acos sin atan / 1 / 1 x
 / tanh acoth csc acsc csc atan x x
 * sin acos cos asec csc atan x 1
 * sech atanh cos acot cot acot x 1
-d x asinh x
 cos asin cos acot / 1 / 1 x
 / 1 / x sin acsc coth asinh x
 d tan acsc coth asinh x asinh x
@@ -16227,7 +16471,7 @@ cos asin tanh acsch csch acsch tan acot x
 / 1 sec acsc coth acsch / -1 x
 sin acot sinh acsch cot acsc coth asinh x
 sin acot tan acsc / csc acot x x
-cos - 0 - acot x * 0.5 pi
+cos - 0 - acot x * / 1 2 pi
 / d x / x cos acot x x
 d sinh atanh cos acot x acoth sec acot x
 - d x acsch / 1 cot acot x 0
@@ -16336,7 +16580,7 @@ sin asec coth atanh tanh acoth csc atan x
 sin acos tanh atanh tanh asinh tan atan x
 / 1 sec atan / cot acot x -1
 sin acos tanh asinh tan asin sin atan x
-sin asec sec - * 0.5 pi atan x
+sin asec sec - * / 1 2 pi atan x
 / cos atan tan asin sin atan x 1
 sin asec csc atan / 1 / 1 x
 d x atanh sin acsc coth acsch tan acot x
@@ -16389,7 +16633,7 @@ pow / d x sec atan x x 1
 * csch acoth csc atan x sin atan x
 / sin atan / x -1 / x -1
 pow sin acos sin atan tan atan x 1
-sin - * 0.5 pi acsc sec acot x
+sin - * / 1 2 pi acsc sec acot x
 sin acos sin asin sin asin cos acot x
 d x acsch tan acos tanh acoth sec acot x
 cos acsc csc asin * d x asinh x x
@@ -16600,7 +16844,7 @@ sin acos tanh atanh tanh atanh cos acot x
 cos acsc coth acoth csc atan x
 cos atan sinh acoth / -1 cos acot x
 sin acos cos acos * x cos atan x
-sin acos sin - * pi 0.5 acot x
+sin acos sin - * pi / 1 2 acot x
 d x atanh sin atan cot asec coth asinh x
 * -1 / -1 cosh asinh cot acot x
 sin acos tanh asinh tan atan x
@@ -16644,7 +16888,7 @@ cos asin tanh asinh cot acot x
 sin acos sin asin tanh acoth sec acot x
 cos asin tanh acsch / -1 sinh asinh x
 / / 1 coth acsch tan acot x x
-/ 1 csc - * 0.5 pi atan x
+/ 1 csc - * / 1 2 pi atan x
 cos acsc / -1 tanh asinh sinh asinh x
 cos asin tanh atanh tanh acsch tan acot x
 / cos asec coth acoth csc atan x x
@@ -16654,7 +16898,7 @@ sin acos d x cosh acoth sec acot x
 d x acsch csch acsch csch acsch / 1 x
 sin asec / 1 cos acot cot acot x
 d x acoth sec acos * cos atan x x
-/ sin - * 0.5 pi atan x 1
+/ sin - * / 1 2 pi atan x 1
 + 0 / sin asin tanh asinh x x
 / d x cosh atanh sin atan x x
 cos atan sinh acoth csc atan x
@@ -16773,7 +17017,7 @@ sin asec / x * tanh asinh x x
 / sin acot tan acsc coth asinh x 1
 / d x acoth csc asin cos acot x 1
 / 1 sec acsc / sec atan x x
-cos - * pi 0.5 acot sinh asinh x
+cos - * pi / 1 2 acot sinh asinh x
 / sin asec coth acsch csch asinh x 1
 - sech atanh sin acsc coth asinh x 0
 cos acsc csc acsc csc acsc sec acot x
@@ -16835,7 +17079,7 @@ cos asin / 1 / csc atan x -1
 sin asec coth acoth sec acos cos acot x
 sin asec csc asin tanh asinh tan atan x
 d x acsch tan acos sin acsc csc atan x
-d x acoth csc - * pi 0.5 acot x
+d x acoth csc - * pi / 1 2 acot x
 pow sin acos tanh atanh tanh asinh x 1
 sin asec coth atanh sin asin sin atan x
 / 1 cosh acoth coth asinh tan atan x
@@ -16919,7 +17163,7 @@ sin acos cos asec coth acsch cot atan x
 / sech asinh tan asin sin atan x 1
 - sech asinh sinh atanh tanh asinh x 0
 / cos asin tanh acsch cot atan x 1
-sin + * pi 0.5 * -1 atan x
+sin + * pi / 1 2 * -1 atan x
 cos asin d x cosh asinh / x -1
 cos asin tanh asinh / x -1
 d tan acsc sec acos tanh asinh x asinh x
@@ -16953,7 +17197,7 @@ pow cos atan / 1 csch asinh x 1
 cos asin / sin acot x cot atan x
 sin acot / -1 csch acsch cot atan x
 / - 0 / -1 coth asinh x x
-d x asinh tan - * 0.5 pi acot x
+d x asinh tan - * / 1 2 pi acot x
 * cos asin sin atan sinh asinh x 1
 * / 1 csc asec sec acot x 1
 sin asec csc acsc coth acsch / 1 x
@@ -17053,14 +17297,14 @@ sin acot tan asin tanh atanh sin atan x
 d x atanh / x sec acsc coth asinh x
 d x atanh / 1 coth acoth sec acot x
 * 1 sech atanh tanh asinh cot acot x
-d x atanh cos - * pi 0.5 atan x
+d x atanh cos - * pi / 1 2 atan x
 sin acot / -1 / -1 / x -1
 cos atan sinh acoth coth atanh sin atan x
 sin asec / -1 cos acot sinh asinh x
 cos acsc coth acoth coth acsch / -1 x
 pow d x acoth / 1 tanh asinh x 1
 - cos atan sinh acoth sec acot x 0
-cos - * pi 0.5 acos tanh asinh x
+cos - * pi / 1 2 acos tanh asinh x
 / 1 * tan atan x csc atan x
 - cos atan cot asec csc atan x 0
 cos atan / cot asec sec acot x -1
@@ -17198,7 +17442,7 @@ pow sin acos / -1 csc atan x 1
 sin acos tanh acsch csch asinh x
 cos asin sin asin - 0 sin atan x
 d tan asin cos acos sin atan x asinh x
-/ 1 sec - * pi 0.5 acot x
+/ 1 sec - * pi / 1 2 acot x
 pow d x acsch cot acsc coth asinh x 1
 cos acsc / -1 tanh acsch tan acot x
 * 1 cos atan tan asin cos acot x
@@ -17830,7 +18074,7 @@ sin acos sin asin cos acot sinh asinh x
 cos asin sin asin cos acos cos acot x
 cos asin sin asin / -1 coth asinh x
 - sin asec csc acsc coth asinh x 0
-cos asin cos - * pi 0.5 atan x
+cos asin cos - * pi / 1 2 atan x
 d x asinh tan atan x
 d x acoth coth acoth csc acsc sec acot x
 cos asin tanh asinh cot asec sec acot x
@@ -17847,7 +18091,7 @@ pow sech atanh / -1 sec acot x 1
 sin acos tanh atanh * x cos atan x
 d x acsch csch atanh sin asin sin atan x
 cos atan sinh acoth coth acoth csc atan x
-cos acsc csc - * 0.5 pi acot x
+cos acsc csc - * / 1 2 pi acot x
 sin acos tanh atanh cos acos cos acot x
 cos asin cos acos cos acot sinh asinh x
 * 1 sin acos cos acot tan atan x
@@ -18119,7 +18363,7 @@ pow d x acoth csc atan sinh asinh x 1
 / 1 csc acos tanh atanh cos acot x
 + 0 / 1 sec atan tan atan x
 * / 1 sec acsc coth asinh x 1
-cos acsc sec - * 0.5 pi atan x
+cos acsc sec - * / 1 2 pi atan x
 cos atan cot acos / -1 csc atan x
 - sech acsch cot asin cos acot x 0
 sin asec csc atan cot asec csc atan x
@@ -18326,9 +18570,9 @@ csch acosh coth asinh sinh acsch tan asec x
 abs / cos asec x sech asinh tan acsc x
 / d x asec x cos acot cot asec x
 abs * / 1 x * x cot asec x
-abs tan atan tan - * pi 0.5 asec x
+abs tan atan tan - * pi / 1 2 asec x
 / d sec acot cot asec x acosh x 1
-abs cot + * 0.5 pi * -1 acsc x
+abs cot + * / 1 2 pi * -1 acsc x
 abs sinh atanh * tan acsc x sech acoth x
 * csc acsc sec asec x d x asec x
 abs sinh acsch cot asin tanh atanh / 1 x
@@ -18345,7 +18589,7 @@ abs cot acos sin acsc sec acot tan acsc x
 d sec acot tan acsc x asech tanh acoth x
 abs tan atan / csc asec x sec asec x
 abs sinh acsch cot - 0 * acsc x -1
-* 1 * -1 * -1 csch acosh x
+* 1 csch acosh x
 abs cot asec csc asin tanh atanh sin acsc x
 abs * * x sinh acoth x / 1 x
 abs tan asin tanh acsch * sech acoth x x
@@ -18358,7 +18602,7 @@ abs tan acsc coth asinh sinh atanh / 1 x
 abs sinh atanh tanh atanh cos asec x
 / / 1 abs tan acot cot asec x 1
 abs tan asin tanh acoth sec acos tanh acoth x
-abs cot - + pi * -0.5 pi acsc x
+abs cot - + pi * / -1 2 pi acsc x
 / 1 abs csch atanh sin acsc coth acoth x
 abs cot acot cot asec coth atanh sin acsc x
 + abs cot asec coth asinh cot asec x 0
@@ -18370,7 +18614,7 @@ d x acosh csc atan / 1 cot acsc x
 * * -1 abs cot acot cot asec x -1
 d x acosh coth acsch csch asinh cot asec x
 / d x asec coth acoth x sin acsc x
-+ * -1 * -1 abs cot asec x 0
++ abs cot asec x 0
 / abs sinh atanh tanh asinh tan acsc x 1
 d x asech cos asec coth atanh tanh acoth x
 / abs cot acos sin acsc coth acoth x 1
@@ -18441,7 +18685,7 @@ abs cot asec * csch acoth x cosh acoth x
 / 1 abs tan acot / csc asec x x
 + abs cot asec x 0
 * * x -1 d x - acsc x pi
-* x d x + * pi -0.5 asec x
+* x d x + * pi / -1 2 asec x
 * d x asec coth acoth x x
 + abs sinh acoth csc asin sin acsc x 0
 d csc asin / 1 x asech / 1 x
@@ -18467,7 +18711,7 @@ abs * * sinh acoth x x tanh acoth x
 - d x asech tanh acsch tan asec x 0
 d x acosh csc atan / cosh acoth x x
 abs tan atan tan atan tan acsc x
-/ 1 abs cot - * 0.5 pi asec x
+/ 1 abs cot - * / 1 2 pi asec x
 abs / * sinh acoth x x csc acsc x
 * 1 d coth acsch cot acsc x acosh x
 + 0 abs cot asec coth acoth x
@@ -18530,7 +18774,7 @@ d x acosh coth asinh tan asin tanh acoth x
 csch asech / 1 coth acoth coth acoth x
 abs sinh acsch csch acsch / 1 cot asec x
 * d csc acsc x acos / 1 x x
-abs cot asec sec - * pi 0.5 acsc x
+abs cot asec sec - * pi / 1 2 acsc x
 abs * cosh acoth x cos acot sinh acoth x
 + 0 * sech acosh x coth acosh x
 + 0 abs sinh asinh cot acot sinh acoth x
@@ -18726,7 +18970,7 @@ abs cot - 0 * acot tan acsc x -1
 - / 1 sinh acosh csc acsc x 0
 csch asech tanh acoth / 1 tanh acoth x
 pow / 1 abs csch acoth csc acsc x 1
-abs cot * -1 * -1 acos tanh acoth x
+abs cot acos tanh acoth x
 * 1 csch asech cos asec coth acoth x
 / coth acosh x cosh acosh sec asec x
 abs cot - pi - pi acos / 1 x
@@ -19001,7 +19245,7 @@ d x asech sin atan cot acos tanh acoth x
 abs tan acsc csc asin sin atan tan acsc x
 abs tan asin cos acos tanh acsch csch acoth x
 abs sinh acoth csc atan cot asec coth acoth x
-abs cot - * 0.5 pi atan tan acsc x
+abs cot - * / 1 2 pi atan tan acsc x
 + 0 csch asech sin acsc coth acoth x
 abs cot acot tan asin tanh atanh sin acsc x
 + 0 abs * sec acsc x tanh acoth x
@@ -19024,7 +19268,7 @@ abs cot acot tan asin cos acot cot asec x
 d x asech cos acot tan asin / 1 x
 d x asech cos acos tanh acsch csch acoth x
 d x asech sin acsc coth acsch cot acsc x
-abs tan - * 0.5 pi asec sec asec x
+abs tan - * / 1 2 pi asec sec asec x
 abs sinh acsch cot atan tan acsc sec asec x
 abs / 1 tan acos tanh acoth coth acoth x
 d coth acsch csch acoth x asech cos asec x
@@ -19055,7 +19299,7 @@ csch asech cos asec sec acos cos asec x
 abs cot acot cot acos sin acsc sec asec x
 * x d x - acos sin acsc x pi
 / abs cot acot tan atan sinh acoth x 1
-abs sinh acsch tan - * pi 0.5 acsc x
+abs sinh acsch tan - * pi / 1 2 acsc x
 csch asech sin asin sin asin / 1 x
 abs / sec acsc x x
 abs / 1 tan acos cos asec coth acoth x
@@ -19145,7 +19389,7 @@ abs tan acsc * sec acsc x tan asec x
 + abs tan atan sinh acoth coth acoth x 0
 abs sinh acoth sec asec / 1 sin acsc x
 abs tan asin cos asec coth asinh sinh acoth x
-* abs tan - * 0.5 pi asec x 1
+* abs tan - * / 1 2 pi asec x 1
 abs / sin acsc x sin asec x
 abs sinh acsch tan asec sec acot tan acsc x
 abs sinh atanh tanh asinh / csc asec x x
@@ -19324,7 +19568,7 @@ abs cot acot cot asec csc asin / 1 x
 - csch asech / 1 x 0
 abs sinh acoth coth acoth coth acsch cot acsc x
 - csch acosh / 1 sin acsc x 0
-* d x - * pi 0.5 acsc x x
+* d x - * pi / 1 2 acsc x x
 abs cot acos cos acos sin acsc x
 abs tan acsc csc atan sinh acoth x
 * d x acosh csc acsc sec asec x 1
@@ -19463,7 +19707,7 @@ abs / sin atan cot asec x sin asec x
 * - 0 - 0 csch acosh x 1
 abs sinh asinh sinh atanh sin acsc csc acsc x
 abs tan atan cot asec csc asin cos asec x
-+ 0 abs tan * -1 * -1 acsc x
++ 0 abs tan acsc x
 abs sinh acoth csc atan sinh asinh sinh acoth x
 pow abs sinh atanh cos acot tan acsc x 1
 + 0 / 1 abs cot asin tanh acoth x
@@ -19483,7 +19727,7 @@ d coth asinh cot acot tan acsc x acosh x
 abs tan atan sinh acsch csch acoth sec asec x
 - csch asech tanh atanh tanh acoth x 0
 * -1 - 0 d x asech sin acsc x
-abs sinh acoth csc - * pi 0.5 asec x
+abs sinh acoth csc - * pi / 1 2 asec x
 abs tan asin sin asin cos asec sec asec x
 / 1 abs csch acoth csc asin / 1 x
 * d x asec x csc atan sinh acoth x
@@ -19513,7 +19757,7 @@ abs sinh atanh sin atan tan asin / 1 x
 / 1 abs / x csc asec sec asec x
 abs / 1 csch acoth coth acoth sec asec x
 abs tan * * -1 asin cos asec x -1
-abs tan * -1 - asec x * pi 0.5
+abs tan * -1 - asec x * pi / 1 2
 pow abs sinh asinh tan asin tanh acoth x 1
 d x asech / 1 sec acot tan acsc x
 * abs cot acot tan atan tan acsc x 1
@@ -19595,7 +19839,7 @@ csch acosh / 1 cos asec x
 csch acosh coth atanh tanh asinh tan acsc x
 / abs cot asec coth atanh cos asec x 1
 / d x acot sinh acoth x sin acsc x
-d x acosh csc - * pi 0.5 asec x
+d x acosh csc - * pi / 1 2 asec x
 abs / cosh atanh sin asin cos asec x x
 * d coth atanh / 1 x asec x x
 + abs sinh atanh tanh atanh / 1 x 0
@@ -19657,7 +19901,7 @@ d coth atanh / 1 x acosh x
 + abs cot asec csc acsc sec asec x 0
 abs cot asec csc - / pi 2 asec x
 / d x asech cos acos sin acsc x 1
-abs tan - * -1 asec x * -0.5 pi
+abs tan - * -1 asec x * / -1 2 pi
 abs / csc asec csc asin cos asec x x
 abs sinh acsch csch atanh / 1 csc acsc x
 d x acosh / 1 cos acos tanh acoth x
@@ -19712,9 +19956,9 @@ d x acosh coth atanh sin acsc x
 / 1 abs * / 1 cosh acoth x x
 abs tan asin sin asin cos asec coth acoth x
 pow abs sinh acsch cot asin cos asec x 1
-abs cot - - pi * pi 0.5 acsc x
+abs cot - - pi * pi / 1 2 acsc x
 pow abs tan acsc coth acoth coth acoth x 1
-abs tan atan cot * -1 * -1 asec x
+abs tan atan cot asec x
 + csch acosh sec asec x 0
 csch acosh coth atanh sin asin sin acsc x
 abs cot asec sec acos sin asin sin acsc x
@@ -19727,8 +19971,8 @@ csch acosh coth acoth coth acsch cot acsc x
 abs / * tan acsc sec asec x x x
 abs cot acos tanh acsch tan asec coth acoth x
 abs * sec acsc x sin atan cot asec x
-abs cot acot cot - * 0.5 pi acsc x
-abs cot + * 0.5 pi - 0 acsc x
+abs cot acot cot - * / 1 2 pi acsc x
+abs cot + * / 1 2 pi - 0 acsc x
 / 1 abs cot asin tanh acoth x
 d x asech sin asin sin atan sinh acoth x
 abs * tanh acoth x / 1 sin asec x
@@ -19755,7 +19999,7 @@ d x acosh csc atan / 1 tan asec x
 / abs tan atan sinh acoth sec asec x 1
 * d x acot sinh acoth coth acoth x x
 abs cot acos cos acot cot asec coth acoth x
-abs cot - * 1.5 pi + acsc x pi
+abs cot - * / 3 2 pi + acsc x pi
 + abs sinh asinh cot acos sin acsc x 0
 d x asech / cos acsc x cot acsc x
 d sec asec x asech cos acos sin acsc x
@@ -19799,7 +20043,7 @@ pow csch acosh coth asinh tan acsc x 1
 + abs tan acsc coth atanh tanh acoth x 0
 d x asech tanh acoth csc acsc csc acsc x
 abs sinh atanh cos acot sinh acoth coth acoth x
-* -1 * -1 abs tan acsc csc acsc x
+abs tan acsc csc acsc x
 abs sinh asinh sinh acoth coth asinh sinh acoth x
 / abs sinh atanh / 1 x 1
 abs / cos acot cot asec x sech acoth x
@@ -19831,7 +20075,7 @@ abs tan atan tan acsc / 1 sin acsc x
 / abs cot asec csc asin tanh acoth x 1
 abs sinh acsch / sin asec x sin acsc x
 abs / x * x cot acsc x
-abs cot - * 0.5 pi atan cot asec x
+abs cot - * / 1 2 pi atan cot asec x
 csch acosh sec acot sinh acsch csch acoth x
 d x acosh coth atanh sin asin cos asec x
 d x asech tanh atanh / 1 coth acoth x
@@ -19854,7 +20098,7 @@ abs tan atan sinh asinh / 1 cot acsc x
 pow abs / csc acos sin acsc x x 1
 * abs cot asec coth atanh cos asec x 1
 abs sinh asinh tan acsc sec acos sin acsc x
-abs tan + * pi -0.5 - pi asec x
+abs tan + * pi / -1 2 - pi asec x
 / 1 abs tan asec coth acoth coth acoth x
 abs / / x / x cosh acoth x x
 / 1 abs csch asinh cot asec sec asec x
@@ -19907,7 +20151,7 @@ abs sinh acoth / 1 sin asin / 1 x
 / d x asech / 1 sec asec x 1
 abs tan acsc coth acsch cot atan cot asec x
 abs sinh atanh * cot asec x sech acoth x
-+ abs tan - * pi 0.5 asec x 0
++ abs tan - * pi / 1 2 asec x 0
 abs tan acsc * csch acoth x sec acsc x
 abs cot asec sec asec coth acoth x
 abs cot acot / tanh acoth x cos acsc x
@@ -19931,7 +20175,7 @@ abs cot acot / csc acos sin acsc x x
 csch asech tanh acsch cot atan sinh acoth x
 * abs cot - + asec x pi pi 1
 abs cot asec coth acsch tan acos cos asec x
-abs cot acos sin - * 0.5 pi asec x
+abs cot acos sin - * / 1 2 pi asec x
 csch acosh coth acoth coth acsch tan asec x
 abs sinh acsch tan acos sin asin / 1 x
 csch asech cos acot tan asin tanh acoth x
@@ -19947,7 +20191,7 @@ abs cot asec / tan asec x cos acsc x
 * d x asec coth atanh tanh acoth x x
 d sec acot tan asin sin acsc x acosh x
 * 1 abs sinh acoth csc asin / 1 x
-- abs cot - * pi 0.5 acsc x 0
+- abs cot - * pi / 1 2 acsc x 0
 abs sinh atanh sin asin cos asec coth acoth x
 abs cot acos sin atan sinh atanh sin acsc x
 * d x + * -1 pi asec x x
@@ -19995,7 +20239,7 @@ abs cot acot cot acot sinh asinh cot asec x
 abs / csc asec sec acos tanh acoth x x
 * 1 csch asech cos asec sec asec x
 abs tan asin cos acos cos asec x
-csch asech sin - * 0.5 pi asec x
+csch asech sin - * / 1 2 pi asec x
 d coth acoth csc acsc x acosh x
 abs sinh * -1 atanh * -1 / 1 x
 abs / cos asec x sin acot sinh acoth x
@@ -20195,7 +20439,7 @@ abs sinh acsch tan - pi - pi asec x
 abs sinh acoth sec acos sin atan cot asec x
 abs sinh acsch csch acoth csc acsc x
 abs cot asec sec asec coth acsch csch acoth x
-csch asech cos - * pi 0.5 acsc x
+csch asech cos - * pi / 1 2 acsc x
 - d coth atanh / 1 x acosh x 0
 + 0 abs tan acsc sec acot sinh acoth x
 csch asech sin asin sin acsc coth acoth x
@@ -20240,7 +20484,7 @@ abs / cos asec x cos asin sin acsc x
 / abs cot acot tan asin / 1 x 1
 + 0 abs tan atan sinh asinh cot asec x
 / 1 abs cot acsc coth atanh sin acsc x
-abs sinh acoth sec - * pi 0.5 acsc x
+abs sinh acoth sec - * pi / 1 2 acsc x
 abs cot acos tanh acsch tan asec x
 abs / tanh acoth x cos acsc x
 pow abs sinh acoth csc acsc coth acoth x 1
@@ -20373,7 +20617,7 @@ abs * csc asec x tanh acsch csch acoth x
 d csc asin sin acsc x acosh x
 - abs cot acot / 1 csch acoth x 0
 + 0 csch asech cos acos / 1 x
-abs tan * -1 * -1 asin / 1 x
+abs tan asin / 1 x
 / 1 abs csch acoth sec acos tanh acoth x
 / abs sinh acsch cot asin / 1 x 1
 * * x d x * -1 acsc x 1
@@ -20382,7 +20626,7 @@ abs sinh atanh sin atan tan atan sinh acoth x
 d csc asin / 1 x acosh sec asec x
 abs sinh asinh sinh acsch tan acos sin acsc x
 + d x asech cos acot sinh acoth x 0
-* x d x + * 0.5 pi asec x
+* x d x + * / 1 2 pi asec x
 d coth acsch csch acoth coth acoth x acosh x
 csch acosh csc asin tanh acoth csc acsc x
 d csc asin tanh acoth csc acsc x acosh x
@@ -20427,7 +20671,7 @@ abs cot acot tan asin / 1 csc acsc x
 abs cot + pi - asec csc acsc x pi
 * abs sinh acoth sec acos tanh acoth x 1
 d csc acsc x asech tanh asinh cot asec x
-* x d x - * pi -0.5 acsc x
+* x d x - * pi / -1 2 acsc x
 abs sinh acsch csch atanh tanh acoth x
 abs sinh atanh cos - + asec x pi pi
 abs tan asin / 1 coth atanh cos asec x
@@ -20556,7 +20800,7 @@ abs / cosh acsch tan asec csc acsc x x
 d sec acos sin atan tan acsc x acosh x
 abs sinh acsch cot asin tanh acoth x
 abs / 1 cot atan / cosh acoth x x
-csch acosh csc - * 0.5 pi asec x
+csch acosh csc - * / 1 2 pi asec x
 abs sinh atanh sin acsc sec acos / 1 x
 + abs / cosh acsch tan asec x x 0
 * coth asinh sinh acoth x d x asec x
@@ -20608,9 +20852,9 @@ abs sinh asinh sinh acsch cot atan cot asec x
 + 0 abs sinh acoth sec acos / 1 x
 abs sinh asinh cot acos tanh asinh sinh acoth x
 abs tan asin sin acsc x
-abs tan + * -1 asec x * 0.5 pi
+abs tan + * -1 asec x * / 1 2 pi
 / coth acosh x cosh acosh x
-d x asech sin - * pi 0.5 asec x
+d x asech sin - * pi / 1 2 asec x
 abs tan acsc / 1 tanh atanh cos asec x
 csch asech sin - + acsc x pi pi
 pow csch acosh sec asec sec asec x 1
@@ -20785,7 +21029,7 @@ csch asech sin acsc csc acsc x
 abs sinh acsch cot - + pi acsc x pi
 - / 1 abs tan acos sin acsc x 0
 csch acosh coth acsch tan acos cos asec x
-- * -1 * -1 abs cot asec x 0
+- abs cot asec x 0
 - abs sinh asinh sinh acsch csch acoth x 0
 abs tan asin sin acsc csc asin sin acsc x
 d x asech sin asin sin acsc x
@@ -21003,12 +21247,12 @@ abs / cosh atanh sin acsc sec asec x x
 / 1 abs tan acot tan asin cos asec x
 * * -1 abs tan acsc sec asec x -1
 - abs sinh acsch tan acos cos asec x 0
-pow abs cot - * pi 0.5 acsc x 1
+pow abs cot - * pi / 1 2 acsc x 1
 csch asech / 1 csc acsc coth acoth x
 / csch acosh x 1
 abs / / 1 x cos asin cos asec x
 - d x acosh sec asec coth acoth x 0
-abs cot - 0 + * pi -0.5 acsc x
+abs cot - 0 + * pi / -1 2 acsc x
 * 1 abs cot acos tanh atanh / 1 x
 abs / csc acot tan asin / 1 x x
 pow abs tan asin tanh atanh tanh acoth x 1
@@ -21057,7 +21301,7 @@ abs tan asin sin atan cot acos cos asec x
 d csc asin tanh asinh sinh acoth x acosh x
 abs tan atan / csc asec x x
 / d x acosh coth asinh tan acsc x 1
-abs tan * + asec x * -0.5 pi -1
+abs tan * + asec x * / -1 2 pi -1
 * abs / sec acsc csc acsc x x 1
 abs / csc acos tanh acoth x csc acsc x
 abs cot asec csc acsc coth atanh sin acsc x
@@ -21182,9 +21426,8 @@ d sec acos / 1 x acosh coth acoth x
 / abs tan asin / 1 x 1
 d x acosh coth asinh cot acos sin acsc x
 / abs tan acsc csc atan sinh acoth x 1
-abs cot acot tan - * 0.5 pi asec x
+abs cot acot tan - * / 1 2 pi asec x
 pow abs sinh asinh / 1 cot acsc x 1
-d x acosh x
 + abs tan atan sinh acoth x 0
 abs sinh acoth csc acsc coth acoth x
 d csc acsc x acosh csc atan tan acsc x
@@ -21201,7 +21444,7 @@ abs tan asin / 1 coth acsch tan asec x
 - abs tan acsc coth acoth coth acoth x 0
 pow d coth asinh sinh acoth x acosh x 1
 / abs sinh atanh sin asin sin acsc x 1
-abs sinh acsch cot - * 0.5 pi asec x
+abs sinh acsch cot - * / 1 2 pi asec x
 abs cot asec sec acot tan asin sin acsc x
 pow / 1 abs csch acsch tan asec x 1
 / abs tan acsc coth acoth coth acoth x 1
@@ -21429,7 +21672,7 @@ csch asech sin asin cos acos sin acsc x
 abs sinh acoth csc acsc csc asin sin acsc x
 abs cot acos sin acsc coth acsch csch acoth x
 pow abs tan atan sinh acsch csch acoth x 1
-* -1 * -1 / 1 sinh acosh x
+/ 1 sinh acosh x
 d csc atan tan atan cot asec x acosh x
 / 1 abs cot atan sinh acoth coth acoth x
 + abs tan acsc coth atanh / 1 x 0
@@ -21537,7 +21780,7 @@ pow abs / 1 cot acsc csc acsc x 1
 csch asech cos asec csc asin / 1 x
 / abs tan acsc / 1 tanh acoth x 1
 * abs cot acos sin acsc coth acoth x 1
-abs tan atan tan * -1 * -1 acsc x
+abs tan atan tan acsc x
 * 1 csch asech sin atan tan acsc x
 abs cot acos / 1 sec asec sec asec x
 abs sinh asinh cot acos cos acos cos asec x
@@ -21688,7 +21931,7 @@ abs / cosh acsch / x cosh acoth x x
 / 1 abs csch atanh / 1 coth acoth x
 - abs sinh asinh tan asin / 1 x 0
 abs * tanh acoth x csc acos sin acsc x
-/ 1 abs tan - * 0.5 pi acsc x
+/ 1 abs tan - * / 1 2 pi acsc x
 + 0 abs / cosh acoth x csc acsc x
 + 0 abs cot acot sinh acsch cot acsc x
 abs cot acot sinh acoth sec acos / 1 x
@@ -22065,7 +22308,7 @@ abs tan asin sin asin tanh acoth coth acoth x
 pow csch acosh coth acsch tan asec x 1
 / abs tan asin cos asec x 1
 abs tan asin cos acos cos acos / 1 x
-abs cot - * 0.5 pi asin / 1 x
+abs cot - * / 1 2 pi asin / 1 x
 / abs sinh acoth csc asin sin acsc x 1
 - csch acosh csc asin / 1 x 0
 abs sinh acsch csch asinh cot asec sec asec x
@@ -22131,7 +22374,7 @@ abs sinh atanh / 1 / 1 sin acsc x
 * * -1 d x atan tan acsc x x
 abs / cosh acoth sec acos / 1 x x
 abs sinh atanh sin asin sin atan cot asec x
-abs cot - * -1 acsc x * -0.5 pi
+abs cot - * -1 acsc x * / -1 2 pi
 abs tan asin * cot asec x cos acsc x
 / / 1 abs * sech acoth x x 1
 abs / 1 / x csc acot sinh acoth x
@@ -22198,7 +22441,7 @@ abs / cosh acsch tan acos / 1 x x
 abs * cosh acoth x cos acos sin acsc x
 abs sinh acsch * sech atanh sin acsc x x
 csch asech / 1 coth acsch cot acsc x
-abs cot * -1 * -1 asec x
+abs cot asec x
 d x asech tanh asinh cot acos cos asec x
 d coth acsch tan acos / 1 x acosh x
 csch acosh sec - / pi 2 acsc x
@@ -22211,7 +22454,7 @@ csch asech sin asin tanh acoth x
 abs cot asec coth atanh / 1 x
 abs cot asec csc acsc csc acsc csc acsc x
 pow * * -1 abs tan acsc x -1 1
-abs tan asin cos - * 0.5 pi acsc x
+abs tan asin cos - * / 1 2 pi acsc x
 csch acosh / 1 tanh asinh sinh acoth x
 abs cot asec csc asin tanh acsch cot acsc x
 abs / * x tan acsc x x
@@ -22227,7 +22470,7 @@ abs / 1 / 1 cot asec sec asec x
 * 1 abs tan asin sin asin sin acsc x
 / d coth acoth sec asec x acosh x 1
 abs tan acsc sec acot sinh acoth csc acsc x
-abs cot asec csc - * pi 0.5 asec x
+abs cot asec csc - * pi / 1 2 asec x
 abs tan acsc / 1 / 1 csc acsc x
 d coth asinh sinh atanh cos asec x acosh x
 csch asech sin acsc coth asinh tan acsc x
@@ -22282,7 +22525,7 @@ abs cot acot / 1 csch acoth csc acsc x
 pow d coth atanh sin acsc x acosh x 1
 abs sinh asinh cot asec csc asin cos asec x
 pow abs sinh acsch csch atanh cos asec x 1
-abs tan - 0 + * -0.5 pi asec x
+abs tan - 0 + * / -1 2 pi asec x
 d coth acoth x acosh csc atan tan acsc x
 - d x acosh csc asin / 1 x 0
 abs / sin acsc x sech acoth coth acoth x
@@ -22745,7 +22988,7 @@ abs sinh acsch tan acos tanh asinh tan acsc x
 + abs sinh acoth coth atanh sin acsc x 0
 d csc acsc x asech tanh acoth coth acoth x
 abs tan atan / 1 tan acos tanh acoth x
-* -1 * -1 d x asech tanh acoth x
+d x asech tanh acoth x
 / d x asec coth acoth x cos asec x
 pow abs cot acos sin acsc x 1
 + 0 abs sinh acsch csch acoth sec asec x
@@ -22819,9 +23062,9 @@ abs / 1 csch atanh tanh acoth coth acoth x
 + 0 d x asech tanh acoth x
 abs tan acsc coth acsch tan acot tan acsc x
 abs tan asin sin atan cot asec x
-pow abs tan - * pi 0.5 asec x 1
+pow abs tan - * pi / 1 2 asec x 1
 pow abs cot acos cos acos sin acsc x 1
-* -1 * -1 d x acosh csc acsc x
+d x acosh csc acsc x
 pow - 0 - 0 d x acosh x 1
 * 1 d x acosh sec acos tanh acoth x
 / abs cot acot sinh acoth x 1
@@ -22877,7 +23120,7 @@ abs / 1 csch acsch csch atanh sin acsc x
 / csch acosh / 1 cos asec x 1
 csch asech cos acos cos asec coth acoth x
 abs sinh atanh sin acsc coth atanh sin acsc x
-abs cot - * 0.5 pi acsc csc acsc x
+abs cot - * / 1 2 pi acsc csc acsc x
 abs sinh acoth sec acot sinh asinh tan acsc x
 d coth asinh tan acsc x acosh x
 abs cot acos * cot asec x cos acsc x
@@ -23133,7 +23376,7 @@ csch asech tanh atanh cos asec sec asec x
 d x asech tanh acsch / 1 cot asec x
 - abs cot acos cos asec csc acsc x 0
 abs sinh atanh tanh atanh cos acot sinh acoth x
-abs cot acos cos - * pi 0.5 acsc x
+abs cot acos cos - * pi / 1 2 acsc x
 d coth asinh sinh acoth x acosh csc acsc x
 + * - 0 csch acosh x -1 0
 - abs sinh acsch / x cosh acoth x 0
@@ -23167,7 +23410,7 @@ abs * / x csch acoth x tanh acoth x
 * x d x acot cot acot tan acsc x
 - abs * cos asec x cosh acoth x 0
 abs tan asin sin acsc sec asec sec asec x
-abs tan - * pi 1.5 + pi asec x
+abs tan - * pi / 3 2 + pi asec x
 abs sinh atanh cos asec / 1 tanh acoth x
 abs sinh asinh sinh acoth sec acot sinh acoth x
 abs / 1 tan asec coth acsch cot acsc x
@@ -23178,7 +23421,7 @@ abs / tanh acsch tan asec x sin asec x
 d sec asec x acosh csc atan cot asec x
 abs / cos asec x sech atanh / 1 x
 / d x asec x tanh acsch cot acsc x
-* d x - asec x * -0.5 pi x
+* d x - asec x * / -1 2 pi x
 abs sinh atanh sin atan tan asin tanh acoth x
 - abs sinh atanh sin atan cot asec x 0
 / d x asech cos acos / 1 x 1
@@ -23297,7 +23540,7 @@ csch asech sin asin cos acot cot asec x
 d x acosh csc atan sinh acoth coth acoth x
 abs / sin acsc sec asec x sin asec x
 / d x acos / 1 x / 1 x
-abs cot - * pi -0.5 - acsc x pi
+abs cot - * pi / -1 2 - acsc x pi
 csch asech cos acot / cosh acoth x x
 - abs cot acos sin acsc csc acsc x 0
 abs tan atan * csc asec x tanh acoth x
@@ -23525,7 +23768,7 @@ abs sinh atanh tanh atanh cos acot cot asec x
 + 0 - 0 * -1 abs tan acsc x
 abs cot acos sin atan tan acsc x
 abs / sin acsc x sech asinh tan acsc x
-abs tan - * pi 0.5 acos cos asec x
+abs tan - * pi / 1 2 acos cos asec x
 / abs tan acsc csc acsc x 1
 abs * cosh acoth csc acsc x sin acsc x
 - / d x asec x tanh acoth x 0
@@ -23626,7 +23869,7 @@ pow abs sinh atanh cos acot sinh acoth x 1
 abs / / cot asec x sin acsc x x
 abs / sec acsc sec acot tan acsc x x
 abs cot asec sec asec sec acot sinh acoth x
-abs cot - - * pi 1.5 pi acsc x
+abs cot - - * pi / 3 2 pi acsc x
 abs sinh acsch csch acoth sec acos sin acsc x
 abs sinh asinh tan asin / 1 x
 + 0 abs tan acsc / 1 / 1 x
@@ -23689,7 +23932,7 @@ abs tan asin cos acot cot asec x
 * x d x acos cos acos cos asec x
 * d x acosh csc acsc x 1
 abs tan acsc / 1 cos acos tanh acoth x
-abs cot * -1 - acsc x * pi 0.5
+abs cot * -1 - acsc x * pi / 1 2
 abs tan asin sin asin / 1 sec asec x
 abs cot acos tanh acsch cot asin cos asec x
 * - 0 - 0 d x acosh x 1
@@ -23698,7 +23941,7 @@ abs sinh atanh * cot asec x sin asec x
 csch acosh coth asinh sinh atanh / 1 x
 abs cot acot sinh atanh cos acot tan acsc x
 / csch asech cos acot tan acsc x 1
-abs tan - * pi 0.5 acot sinh acoth x
+abs tan - * pi / 1 2 acot sinh acoth x
 abs sinh asinh sinh atanh / 1 sec asec x
 / abs sinh acsch csch acsch csch acoth x 1
 + 0 abs sinh acsch * x sech acoth x
@@ -23734,7 +23977,7 @@ csch acosh sec asec csc acsc x
 csch asech sin asin tanh asinh sinh acoth x
 csch asech tanh acsch tan acos tanh acoth x
 / abs cot acot tan atan tan acsc x 1
-abs tan - - pi asec x * 0.5 pi
+abs tan - - pi asec x * / 1 2 pi
 d x asech sin - pi - pi acsc x
 + 0 abs cot acos tanh asinh sinh acoth x
 d coth acsch csch acoth x asech / 1 x
@@ -23789,7 +24032,7 @@ abs cot acos sin asin cos acot tan acsc x
 abs cot acos sin acsc csc acsc csc acsc x
 abs sinh acoth / 1 cos acos cos asec x
 - abs sinh atanh / 1 csc acsc x 0
-/ abs cot - * pi 0.5 acsc x 1
+/ abs cot - * pi / 1 2 acsc x 1
 pow * d x - asec x pi x 1
 abs cot acot / / 1 x sech acoth x
 - abs / / 1 cos acsc x x 0
@@ -23823,7 +24066,7 @@ abs / / x tan acos / 1 x x
 abs sinh asinh cot acos tanh acsch cot acsc x
 abs sinh asinh tan asin sin atan sinh acoth x
 abs * tanh acsch csch acoth x sec acsc x
-abs / sec - * 0.5 pi asec x x
+abs / sec - * / 1 2 pi asec x x
 + 0 abs sinh acoth x
 pow abs / sec asin sin acsc x x 1
 - abs cot acos tanh acsch tan asec x 0
@@ -23836,7 +24079,7 @@ csch asech tanh acsch csch acsch cot acsc x
 + 0 abs cot acos tanh atanh tanh acoth x
 abs cot asec * csc asec x csch acoth x
 - abs tan asin tanh atanh cos asec x 0
-abs cot - - 0 acsc x * -0.5 pi
+abs cot - - 0 acsc x * / -1 2 pi
 abs tan atan cot acos tanh acoth x
 pow abs cot asec coth acsch tan asec x 1
 abs sinh asinh tan asin cos acot tan acsc x
@@ -23937,7 +24180,7 @@ abs sinh atanh / cos acsc x tan asec x
 pow d x asech cos acot tan acsc x 1
 abs / cosh asinh cot acot tan acsc x x
 / d x asech sin asin / 1 x 1
-abs cot - pi + * pi 0.5 acsc x
+abs cot - pi + * pi / 1 2 acsc x
 abs * cosh acoth x sin asin tanh acoth x
 / abs tan acsc / 1 sin acsc x 1
 abs sinh acoth * cosh acoth x csch acoth x
@@ -24039,7 +24282,7 @@ abs sinh atanh tanh atanh cos asec csc acsc x
 - / 1 abs csch acsch cot acsc x 0
 abs tan atan / 1 csch acsch tan asec x
 abs tan acsc csc acsc coth atanh tanh acoth x
-abs tan - - * 1.5 pi pi asec x
+abs tan - - * / 3 2 pi pi asec x
 abs / 1 * x sech acoth x
 abs tan asin tanh atanh tanh asinh cot asec x
 abs tan acsc / csch acoth x sin asec x
@@ -24075,7 +24318,7 @@ abs / cos asec x sech acoth csc acsc x
 csch asech sin acsc coth asinh sinh acoth x
 d sec acot tan asin / 1 x acosh x
 - 0 - 0 abs sinh acoth coth acoth x
-abs tan - * 0.5 pi acos sin acsc x
+abs tan - * / 1 2 pi acos sin acsc x
 abs / sec asin cos acos cos asec x x
 csch acosh / 1 cos acos sin acsc x
 abs sinh atanh sin acsc coth acoth x
@@ -24114,7 +24357,7 @@ abs sinh asinh cot asec csc atan cot asec x
 csch asech sin atan tan asin tanh acoth x
 csch acosh coth acsch tan acot tan acsc x
 abs cot acos / sinh acoth x sec acsc x
-abs cot - * 0.5 pi atan sinh acoth x
+abs cot - * / 1 2 pi atan sinh acoth x
 abs / 1 cot acsc csc acsc x
 abs tan acsc csc asin tanh acoth coth acoth x
 * x d x acos sin asin cos asec x
@@ -24376,7 +24619,7 @@ pow abs sinh atanh sin asin tanh acoth x 1
 abs tan atan / 1 csch atanh cos asec x
 abs sinh acsch csch acsch csch atanh cos asec x
 csch acosh sec acot cot acot cot asec x
-abs cot - * pi 0.5 asin sin acsc x
+abs cot - * pi / 1 2 asin sin acsc x
 * 1 abs sinh asinh tan asin sin acsc x
 pow abs / 1 tan asec x 1
 abs tan atan tan atan cot asec coth acoth x
@@ -24452,7 +24695,7 @@ d x acosh coth asinh sinh acsch csch acoth x
 abs / csc - pi - pi asec x x
 * x d x - 0 asin tanh acoth x
 csch acosh sec asec coth acoth sec asec x
-abs sinh asinh tan - * pi 0.5 asec x
+abs sinh asinh tan - * pi / 1 2 asec x
 - d csc acsc x asech sin acsc x 0
 abs sinh acsch cot asin cos acos / 1 x
 abs sinh asinh / sec atan cot asec x x
@@ -24738,7 +24981,7 @@ d x acosh csc atan sinh atanh tanh acoth x
 abs sinh asinh cot acos cos asec coth acoth x
 pow csch asech sin asin / 1 x 1
 + abs tan asin cos asec sec asec x 0
-d sec - * pi 0.5 acsc x acosh x
+d sec - * pi / 1 2 acsc x acosh x
 + 0 abs / cosh atanh sin acsc x x
 + 0 abs / csc acos sin acsc x x
 - csch asech sin asin / 1 x 0
@@ -24756,7 +24999,7 @@ d x asech tanh asinh cot acot sinh acoth x
 abs sinh atanh tanh acsch / x cosh acoth x
 - abs sinh asinh cot acot tan acsc x 0
 * 1 abs sinh acsch tan acos / 1 x
-abs tan - pi + asec x * 0.5 pi
+abs tan - pi + asec x * / 1 2 pi
 pow abs sinh acsch tan acot sinh acoth x 1
 abs cot acos cos - 0 - 0 asec x
 abs cot acos tanh asinh cot acot tan acsc x
@@ -24872,7 +25115,7 @@ abs / sin asin tanh acoth x sech acoth x
 abs tan atan cot asec csc acsc x
 abs sinh asinh tan atan sinh acoth x
 * d x - asec x pi x
-abs cot - * 0.5 pi acsc x
+abs cot - * / 1 2 pi acsc x
 / abs sinh acoth / 1 sin acsc x 1
 / 1 abs cot acsc sec acos cos asec x
 / abs tan asin tanh acsch csch acoth x 1
@@ -24960,7 +25203,7 @@ abs sinh acoth / csch acoth x sin asec x
 abs cot acos sin asin tanh acoth x
 / abs cot acos cos acos / 1 x 1
 * 1 csch acosh sec acos tanh acoth x
-abs cot - * 0.5 pi acsc coth acoth x
+abs cot - * / 1 2 pi acsc coth acoth x
 abs tan asin cos acot sinh asinh sinh acoth x
 * abs sinh acoth csc asin cos asec x 1
 + 0 abs cot asec / 1 sin acsc x
@@ -24979,7 +25222,7 @@ abs / csc acot / 1 cot acsc x x
 abs sinh atanh cos acos tanh atanh sin acsc x
 * abs tan atan sinh atanh sin acsc x 1
 pow * d x acos tanh acoth x x 1
-* abs cot - * pi 0.5 acsc x 1
+* abs cot - * pi / 1 2 acsc x 1
 abs / cosh atanh sin asin / 1 x x
 pow * x d x acos / 1 x 1
 abs tan atan cot acos cos asec sec asec x
@@ -25042,7 +25285,7 @@ csch asech / sinh acoth x cosh acoth x
 abs / / x csch asinh cot asec x x
 / abs tan acsc coth atanh tanh acoth x 1
 abs cot acos tanh asinh cot asec csc acsc x
-abs tan acsc sec - * 0.5 pi acsc x
+abs tan acsc sec - * / 1 2 pi acsc x
 abs / 1 tan acot sinh acoth x
 csch asech sin acsc coth asinh cot asec x
 abs / cos asec x sin acos tanh acoth x
@@ -25165,7 +25408,7 @@ abs cot acos cos acot tan acsc csc acsc x
 - / 1 abs cot acsc coth acoth x 0
 abs tan atan cot acos cos acos cos asec x
 + abs tan atan sinh atanh / 1 x 0
-abs cot * -1 + * -0.5 pi acsc x
+abs cot * -1 + * / -1 2 pi acsc x
 abs cot acos / 1 sec acos sin acsc x
 + d x acosh csc asin cos asec x 0
 / d x asech / 1 csc acsc x 1
@@ -25267,7 +25510,7 @@ abs sinh asinh sinh acoth csc asin cos asec x
 abs sinh acsch cot asin sin atan cot asec x
 abs cot acos cos acot tan atan tan acsc x
 csch acosh csc acsc coth asinh cot asec x
-abs sinh asinh cot - * 0.5 pi acsc x
+abs sinh asinh cot - * / 1 2 pi acsc x
 abs tan acsc csc acsc csc atan cot asec x
 csch acosh coth acsch csch acoth sec asec x
 abs tan atan / csc acos sin acsc x x
@@ -25337,7 +25580,7 @@ d x asech cos asec csc asin cos asec x
 - abs sinh asinh cot acos / 1 x 0
 abs sinh acsch * cos asin cos asec x x
 * abs cot acos tanh acoth coth acoth x 1
-abs tan - - 0 * pi -0.5 asec x
+abs tan - - 0 * pi / -1 2 asec x
 abs sinh acsch csch acsch tan acos cos asec x
 csch asech sin acsc coth acoth csc acsc x
 + abs cot asec csc acsc csc acsc x 0
@@ -25528,7 +25771,7 @@ d csc atan cot acot tan acsc x acosh x
 abs sinh acsch tan acos cos acos / 1 x
 abs / * sinh atanh cos asec x x x
 csch asech tanh acsch tan acos sin acsc x
-- abs tan - * pi 0.5 asec x 0
+- abs tan - * pi / 1 2 asec x 0
 abs tan asin tanh asinh / cosh acoth x x
 / d x asech cos acos cos asec x 1
 d x asech sin atan tan atan sinh acoth x
@@ -25668,7 +25911,7 @@ pow csch acosh sec acos / 1 x 1
 d sec acos tanh acsch cot acsc x acosh x
 / abs sinh asinh tan acsc csc acsc x 1
 abs cot - 0 - acsc x / pi 2
-abs tan - pi - asec x * pi -0.5
+abs tan - pi - asec x * pi / -1 2
 abs cot acot cot acos tanh atanh sin acsc x
 csch asech sin acsc sec acos tanh acoth x
 abs / cosh acsch cot asin sin acsc x x
@@ -25737,7 +25980,7 @@ abs cot asec coth acoth / 1 tanh acoth x
 d / 1 sin asin tanh acoth x acosh x
 + 0 abs tan asin cos acot sinh acoth x
 pow abs tan atan sinh acoth coth acoth x 1
-csch acosh sec - * pi 0.5 acsc x
+csch acosh sec - * pi / 1 2 acsc x
 abs tan acsc sec acos tanh atanh / 1 x
 - abs sinh asinh sinh acoth x 0
 d x acosh / 1 tanh atanh / 1 x
@@ -25782,7 +26025,7 @@ csch acosh coth acsch * sin asec x x
 + 0 abs cot asec coth atanh tanh acoth x
 csch asech sin asin cos acot sinh acoth x
 d sec - 0 - 0 asec x acosh x
-abs cot - * 0.5 pi asin tanh acoth x
+abs cot - * / 1 2 pi asin tanh acoth x
 abs * sin acsc x cosh atanh sin acsc x
 abs cot asec coth atanh cos acot tan acsc x
 abs sinh acsch / 1 sinh atanh sin acsc x
@@ -25811,7 +26054,7 @@ csch acosh sec asec x
 abs sinh acsch / sin asec x cos asec x
 abs sinh acoth sec acot sinh asinh cot asec x
 abs / sin acsc x / tan asec x x
-abs tan - * 0.5 pi asec x
+abs tan - * / 1 2 pi asec x
 / d x asech cos asec sec asec x 1
 / d x asech tanh asinh tan acsc x 1
 abs sinh acsch csch acsch csch acsch csch acoth x
@@ -26142,11 +26385,11 @@ abs sinh acsch / 1 sinh asinh sinh acoth x
 abs tan asin cos acos cos acot sinh acoth x
 / abs sinh atanh cos asec csc acsc x 1
 abs sinh acsch cot acsc csc acsc x
-abs sinh atanh cos - * pi 0.5 acsc x
+abs sinh atanh cos - * pi / 1 2 acsc x
 + abs cot asec coth acoth coth acoth x 0
 pow abs / x * x cot acsc x 1
 pow abs sinh atanh tanh acoth x 1
-* d x - asec x * 0.5 pi x
+* d x - asec x * / 1 2 pi x
 abs / sec asin / 1 x x
 csch acosh sec asec coth atanh tanh acoth x
 + 0 abs cot asec sec acos / 1 x
@@ -26220,7 +26463,7 @@ d sec acos cos acos sin acsc x acosh x
 * 1 abs sinh acsch cot asin / 1 x
 + d x asech tanh atanh tanh acoth x 0
 - abs tan atan cot acos cos asec x 0
-abs tan - * pi 0.5 asec coth acoth x
+abs tan - * pi / 1 2 asec coth acoth x
 * abs cot acot sinh acsch csch acoth x 1
 d x asech sin acsc csc asin / 1 x
 abs tan asin tanh acsch * x cos acsc x
@@ -26245,7 +26488,7 @@ abs tan asin tanh asinh / csc asec x x
 pow abs / 1 cot acsc x 1
 pow abs cot acot sinh acoth coth acoth x 1
 csch asech / 1 sec acot tan acsc x
-abs tan - * pi 0.5 acos / 1 x
+abs tan - * pi / 1 2 acos / 1 x
 / 1 sqrt - pow sec asec x 2 1
 - abs sinh acsch cot atan sinh acoth x 0
 abs / cos asec x sech acsch cot acsc x
@@ -26449,7 +26692,7 @@ abs sinh asinh sinh asinh / 1 cot acsc x
 / abs cot acos cos asec x 1
 abs sinh asinh cot asec csc asin / 1 x
 * / 1 sqrt - pow x 2 1 1
-abs tan asin sin - * 0.5 pi asec x
+abs tan asin sin - * / 1 2 pi asec x
 abs cot acot tan asin tanh acsch cot acsc x
 abs tan acsc / 1 tanh acsch csch acoth x
 / * d x asec x x 1
@@ -26570,7 +26813,7 @@ abs tan asin cos acos cos acos sin acsc x
 abs tan acsc / 1 cos acot tan acsc x
 d x asech / tan acsc x csc asec x
 abs / / x cot atan sinh acoth x x
-* x d x - * pi 1.5 acsc x
+* x d x - * pi / 3 2 acsc x
 abs cot - - pi / pi 2 acsc x
 csch acosh coth acoth coth acoth x
 csch acosh csc atan tan acsc x
@@ -26985,7 +27228,7 @@ abs sinh asinh sinh acsch cot acsc x
 - abs tan atan tan asin cos asec x 0
 abs cot acot / 1 csch atanh sin acsc x
 abs / 1 cot asin tanh atanh cos asec x
-abs sinh atanh sin - * pi 0.5 asec x
+abs sinh atanh sin - * pi / 1 2 asec x
 pow abs sinh acsch cot acsc csc acsc x 1
 - abs sinh acsch cot asin cos asec x 0
 abs tan atan sinh acoth sec acot tan acsc x
@@ -27022,7 +27265,7 @@ abs cot acot cot asec coth atanh tanh acoth x
 * d x acosh csc asin tanh acoth x 1
 abs tan acsc coth acsch / 1 tan acsc x
 d x asech sin atan tan asin cos asec x
-d x asech cos - * pi 0.5 acsc x
+d x asech cos - * pi / 1 2 acsc x
 / 1 abs csch asinh tan asin / 1 x
 abs tan asin cos acos cos asec coth acoth x
 abs sinh acsch / sec asec x csc asec x
@@ -27117,7 +27360,7 @@ abs tan atan sinh acsch tan acos cos asec x
 / csch acosh coth acoth coth acoth x 1
 / 1 sinh acosh sec acot sinh acoth x
 pow abs cot acot cot acot tan acsc x 1
-abs / csc - * pi 0.5 acsc x x
+abs / csc - * pi / 1 2 acsc x x
 abs sinh acsch tan asec x
 abs sinh atanh / tan acsc x csc asec x
 abs sinh acsch / cos acsc x sin acsc x
@@ -27271,7 +27514,7 @@ csch acosh sec + - asec x pi pi
 csch asech cos acot sinh acoth sec asec x
 abs sinh asinh cot asec coth asinh cot asec x
 abs sinh asinh cot acos cos acot sinh acoth x
-abs cot - * pi 0.5 asin cos asec x
+abs cot - * pi / 1 2 asin cos asec x
 abs tan - 0 - 0 atan tan acsc x
 / abs tan asin / 1 sec asec x 1
 / abs / 1 tan acot sinh acoth x 1
@@ -27284,13 +27527,13 @@ pow csch acosh sec acos sin acsc x 1
 csch asech tanh atanh sin asin tanh acoth x
 - abs sinh acoth coth atanh / 1 x 0
 csch asech / 1 sec asec coth acoth x
-/ abs tan - * 0.5 pi asec x 1
+/ abs tan - * / 1 2 pi asec x 1
 * abs sinh atanh cos asec sec asec x 1
 - abs / cosh acoth x csc acsc x 0
 - abs sinh asinh sinh atanh / 1 x 0
 pow csch asech tanh acsch csch acoth x 1
 - abs sinh acoth coth acsch cot acsc x 0
-abs tan - * pi 0.5 acos tanh acoth x
+abs tan - * pi / 1 2 acos tanh acoth x
 pow abs sinh atanh tanh asinh cot asec x 1
 / 1 sinh asech tanh atanh sin acsc x
 pow d x acosh / 1 sin acsc x 1
@@ -27527,7 +27770,7 @@ d x asech cos acos sin atan tan acsc x
 abs cot - pi - pi acos tanh acoth x
 d x asech / 1 sec acos tanh acoth x
 abs / cos asec csc acsc x sin asec x
-abs tan - * 0.5 pi acot tan acsc x
+abs tan - * / 1 2 pi acot tan acsc x
 abs tan acsc sec acot sinh asinh tan acsc x
 abs tan asin sin asin sin atan sinh acoth x
 abs sinh acsch csch asinh cot acos / 1 x
@@ -27758,14 +28001,14 @@ abs sinh acsch / x sec asin tanh acoth x
 / abs tan asin sin atan sinh acoth x 1
 / abs cot acot cot acot cot asec x 1
 d coth acsch csch acsch tan asec x acosh x
-abs tan - * pi 0.5 asec csc acsc x
+abs tan - * pi / 1 2 asec csc acsc x
 * csch acosh / 1 / 1 x 1
 csch asech tanh asinh sinh acoth sec asec x
 csch asech cos asec coth acsch csch acoth x
 * 1 abs sinh acsch / 1 tan acsc x
 csch acosh / 1 cos acos tanh acoth x
 abs * cos asec x cosh acsch csch acoth x
-* -1 * -1 d x acosh x
+d x acosh x
 + / d x asec x sin acsc x 0
 - abs sinh atanh / 1 x 0
 + 0 abs tan acsc x
@@ -28193,7 +28436,7 @@ d x atanh x
 + * cosh atanh x cosh atanh x 0
 * d x acsch / 1 tan asin x 1
 * pow d x asin tanh atanh x 2 1
-- * -1 * -1 d x atanh x 0
+- d x atanh x 0
 + d x asinh cot acos tanh atanh x 0
 * d x acsch csch atanh x 1
 - d x acoth csc acsc sec acos x 0
@@ -28267,7 +28510,7 @@ d x atanh x
 - pow cosh atanh x 2 0
 * 1 d x acoth csc acsc sec acos x
 * / tan asin x x d x asin x
-* 1 d * -1 * -1 x atanh x
+* 1 d x atanh x
 - pow sec atan tan asin x 2 0
 * 1 pow pow cos asin x -1 2
 * -1 d x acsch / -1 tan asin x
@@ -28385,7 +28628,7 @@ d x atanh x
 + pow * d x asin x -1 2 0
 - d sin asin x acoth / 1 x 0
 + 0 d x acoth sec asec sec acos x
-* -1 * -1 d x acoth sec acos x
+d x acoth sec acos x
 - 0 d x acoth / -1 tanh atanh x
 * 1 d x asinh cot acot cot acos x
 - pow cosh acsch tan acos x 2 0
@@ -28417,7 +28660,7 @@ d x atanh x
 * d x atan tan asin x sec asin x
 * d x acsch cot acsc sec acos x 1
 * sec asin x cosh acsch cot asin x
-* -1 * -1 pow d x acos x 2
+pow d x acos x 2
 - 0 d x asinh cot asec / -1 x
 + 0 d x acoth coth acoth coth atanh x
 * d x acsc csc asin x cosh atanh x
@@ -28513,7 +28756,7 @@ d x atanh x
 - d x atanh cos acot sinh atanh x 0
 * csc acos x cosh acsch cot asin x
 + d x acsch cot acsc sec acos x 0
-* -1 * -1 d x atanh x
+d x atanh x
 - / 1 - 1 pow x 2 0
 * 1 d sin asin x atanh x
 - 0 d x acsch / -1 cot acos x
@@ -29022,7 +29265,7 @@ d x atanh x
 + 0 d x asinh tan acsc coth atanh x
 * cos asin x d x sinh atanh x
 * sin acos x pow cosh atanh x 3
-* -1 * -1 pow d x asin x 2
+pow d x asin x 2
 - 0 - 0 d x acsch cot asin x
 * 1 * sec asin x sec asin x
 * csc asec sec acos x d x asin x
@@ -29156,7 +29399,7 @@ d x acoth csc atan csch atanh sin atan x
 d / 1 sinh acsch x asinh csch asinh x
 / -1 * cosh asinh / x -1 abs x
 d x asinh cot atan sinh asinh csch acsch x
-/ d * -1 * -1 x acsch x 1
+/ d x acsch x 1
 d / 1 tan atan cot atan x acsch x
 * 1 d x acsch csch acoth coth acsch x
 d cot atan / 1 x asinh sinh acsch x
@@ -29198,7 +29441,7 @@ d csch atanh sin atan / 1 x acsch x
 d x acsch tan asin tanh atanh tanh asinh x
 d x atanh cos acot cot atan x
 pow d x atanh / sech acsch x x 1
-d x asinh tan acot * -1 * -1 x
+d x asinh tan acot x
 + 0 d cot acot x atanh tanh acsch x
 d x asinh / * tan acot x -1 -1
 + d x acsch tan asin sin atan x 0
@@ -29441,7 +29684,6 @@ d x asinh cot acot sinh acsch x
 / / -1 abs x cosh asinh cot acot x
 / d x acoth coth atanh tanh acsch x 1
 pow d / 1 sinh acsch x acsch x 1
-d x acsch x
 d x acoth coth acsch / 1 csch asinh x
 d x acsch tan acsc coth atanh cos acot x
 pow d x acoth / 1 tanh acsch x 1
@@ -29586,7 +29828,7 @@ d x acoth sec acot cot atan csch acsch x
 - 0 d x asinh * -1 csch asinh x
 d x asinh csch acsch cot atan x
 - 0 / abs csch asinh x cosh asinh x
-d x asinh cot - * 0.5 pi acot x
+d x asinh cot - * / 1 2 pi acot x
 d x acsch tan acos tanh asinh csch asinh x
 d x * acsch tan acot / -1 x -1
 d x asinh / 1 cot asec coth asinh x
@@ -30593,7 +30835,7 @@ d x atanh / cos atan sinh acsch x x
 pow d x acsch tan acsc coth asinh x 1
 / / -1 abs x csc acos sin atan x
 - d x acoth csc atan sinh acsch x 0
-d x acsch cot - * 0.5 pi atan x
+d x acsch cot - * / 1 2 pi atan x
 d cot acot x acsch cot asin tanh acsch x
 - d sinh atanh sin atan x acsch x 0
 d x asinh / sin acot x cos acot x
@@ -31103,7 +31345,7 @@ d x asinh cot - / pi 2 acot x
 d x asinh csch atanh tanh asinh x
 d / cosh asinh x sec acot x acsch x
 d tan acot tan acot x acsch csch acsch x
-d tan - * 0.5 pi acot x acsch x
+d tan - * / 1 2 pi acot x acsch x
 / d x acoth * cosh acsch x x 1
 d x atanh sin asin cos acot / 1 x
 - 0 / sech acoth sec acot x abs x
@@ -31427,7 +31669,7 @@ d x acoth * csc acot sinh acsch x x
 / * -1 sech acsch tan acot x abs x
 - 0 / sin acos tanh asinh x abs x
 d x acoth coth acoth coth asinh tan acot x
-d x asinh tan - * 0.5 pi atan x
+d x asinh tan - * / 1 2 pi atan x
 / d x acoth coth asinh cot atan x 1
 pow / -1 / abs x sin acot x 1
 d x asinh csch asinh x
@@ -31657,7 +31899,7 @@ d sin asin x acosh coth acoth / 1 x
 + 0 d cos asec coth atanh x asech x
 d sin asin x acosh / 1 sin asin x
 d x acosh coth asinh tan asin x
-* -1 * -1 d x acosh csc asin x
+d x acosh csc asin x
 / d x acos tanh acoth pow x -1 x
 d x asech tanh acsch cot asin x
 d tanh acoth / 1 x asech tanh atanh x
@@ -31719,7 +31961,7 @@ pow d tanh atanh x asech x 1
 d cos acot tan asin x acosh csc asin x
 d tanh atanh x asech cos acot sinh atanh x
 / - 0 * -1 d x asech x 1
-d x acosh csc - * pi 0.5 acos x
+d x acosh csc - * pi / 1 2 acos x
 - 0 / csc asec csc asin x x
 d / * x x x asech tanh atanh x
 d x acosh sec acos sin acsc pow x -1
@@ -31774,7 +32016,7 @@ d cos acos x acosh csc asin cos acos x
 - d cos asec sec acos x asech x 0
 / -1 * cos asin tanh atanh x x
 * csc atan tan asin x d x acos x
-d x asech sin - * 0.5 pi acos x
+d x asech sin - * / 1 2 pi acos x
 / d tanh atanh x acot cot acos x x
 pow d / 1 pow x -1 asech x 1
 + 0 - 0 / d x asin x x
@@ -32425,7 +32667,7 @@ d x acosh / cot asin x sech atanh x
 - 0 / pow x -1 sech atanh x
 pow d cos acos x acosh csc asin x 1
 / d tanh atanh x acosh csc asin x 1
-pow * -1 * -1 d x asech x 1
+pow d x asech x 1
 pow * coth atanh x d x acos x 1
 * d x acos x coth asinh cot acos x
 d cos asec sec acos x acosh pow x -1
@@ -32505,7 +32747,7 @@ d x acosh * sec asin x tan acos x
 - d sin asin x acosh pow x -1 0
 / d x coth atanh x abs cot asin x
 * * -1 / d x acos x x -1
-/ d x - * pi 0.5 asin x x
+/ d x - * pi / 1 2 asin x x
 pow d x acosh coth atanh tanh atanh x 1
 - 0 / sec atan tan asin x x
 / - 0 sec atan cot acos x x
@@ -32819,7 +33061,7 @@ pow d x asech / 1 sec acos x 1
 d tanh acsch / sech atanh x x asech x
 / d x acos x sin atan cot acos x
 - d x asech cos acot cot acos x 0
-* -1 * -1 d x acosh coth atanh x
+d x acosh coth atanh x
 + / d x acos x tanh atanh x 0
 d sin atan cot acos x acosh pow x -1
 d x asech sin atan tan acsc coth atanh x
@@ -33243,7 +33485,6 @@ d cos asec / 1 x asech x
 d x asech sin acsc sec asec pow x -1
 d sin atan / x sin acos x asech x
 d sin atan tan asin x acosh / 1 x
-d x asech x
 d x asech sin atan tan atan cot acos x
 d / 1 pow x -1 acosh coth atanh x
 d x asech tanh acoth / x * x x
@@ -33353,7 +33594,7 @@ pow - 0 - 0 d x asech x 1
 d x acosh csc atan sinh asinh cot acos x
 / d / pow x 2 x acos x x
 d sin asin / 1 coth atanh x asech x
-d x asech cos - * 0.5 pi asin x
+d x asech cos - * / 1 2 pi asin x
 d x acosh / csc acos x cot acos x
 d x acosh csc acsc coth acoth coth atanh x
 d x acosh csc atan sinh acoth sec acos x
@@ -33476,7 +33717,7 @@ pow / d x acot cot acos x x 1
 - 0 / d x atan cot acos x x
 / -1 / x d x acsc sec acos x
 d cos acot cot acot tan asin x asech x
-d x acosh sec - * pi 0.5 asin x
+d x acosh sec - * pi / 1 2 asin x
 pow d x acosh coth acsch cot asin x 1
 * csch asech x d x / 1 x
 / / -1 cos asin x x
@@ -33773,6 +34014,180 @@ d x acosh coth acsch csch acoth csc asin x
 + d x acosh csc atan tan asin x 0
 * d x acosh pow sin asin x -1 1
 - d x acosh sec asec / 1 x 0
+* -1 * pow x -1 pow + 1 * -1 pow x 2 / -1 2
+pow / * pow * -1 - -1 * * -1 * pow x 2 -1 -1 / -1 2 -1 x 1
+* * pow x -1 * pow * -1 - pow x 2 1 * -1 / 1 2 -1 1
+* 1 * * / 1 x -1 pow - 1 pow x 2 * / 1 2 -1
+/ * pow * + pow x 2 -1 -1 * -1 / 1 2 * / 1 x -1 1
+/ * pow * * + 1 * pow x 2 -1 -1 -1 / -1 2 -1 x
+pow * * -1 pow x -1 pow * -1 + -1 pow x 2 / -1 2 1
+* * pow - * * * -1 pow x 2 -1 -1 -1 / -1 2 pow x -1 -1
+/ * * / 1 x pow - * -1 pow x 2 -1 * -1 / 1 2 -1 1
+* * -1 * / 1 x pow * - pow x 2 1 -1 / -1 2 1
+* 1 * pow * - -1 * -1 pow x 2 -1 / -1 2 / -1 x
+pow * pow * * * - pow x 2 1 -1 -1 -1 / -1 2 / -1 x 1
+* / -1 x pow * + -1 pow x 2 -1 / -1 2
+pow * / pow + * -1 * * pow x 2 -1 -1 1 / -1 2 x -1 1
+pow * * pow x -1 pow * + * * pow x 2 -1 -1 -1 -1 * -1 / 1 2 -1 1
+pow * / 1 x * -1 pow * -1 * - 1 pow x 2 -1 / -1 2 1
+* / 1 x * -1 pow * * -1 * * -1 - 1 pow x 2 -1 -1 / -1 2
+/ * / 1 x * -1 pow * * -1 - 1 pow x 2 -1 / -1 2 1
+/ / * -1 pow * - -1 * -1 pow x 2 -1 / -1 2 x 1
+* 1 / * pow * -1 * + * -1 pow x 2 1 -1 / -1 2 -1 x
+pow * -1 * pow + 1 * -1 * * pow x 2 -1 -1 / -1 2 pow x -1 1
+/ * -1 * pow + 1 * -1 * * pow x 2 -1 -1 * / 1 2 -1 / 1 x 1
+* * -1 * pow x -1 pow * -1 + -1 pow x 2 * / 1 2 -1 1
+pow * * -1 pow * -1 * - 1 pow x 2 -1 / -1 2 pow x -1 1
+* * pow x -1 -1 pow - * * -1 * pow x 2 -1 -1 -1 / -1 2
+pow * / pow - 1 pow x 2 * -1 / 1 2 x -1 1
+* -1 / pow * + pow x 2 -1 -1 / -1 2 x
+* pow + 1 * -1 pow x 2 * -1 / 1 2 * pow x -1 -1
+* * pow * -1 * * -1 * * -1 - pow x 2 1 -1 -1 / -1 2 -1 pow x -1
+pow * * pow * - pow x 2 1 -1 / -1 2 pow x -1 -1 1
+pow * -1 * pow x -1 pow - * pow x 2 -1 -1 / -1 2 1
+pow / * -1 pow * -1 + -1 * -1 * pow x 2 -1 / -1 2 x 1
+* / pow - * * -1 * pow x 2 -1 -1 -1 * / 1 2 -1 x -1
+/ * pow * * -1 - 1 pow x 2 -1 * -1 / 1 2 * / 1 x -1 1
+* -1 / pow * + * * pow x 2 -1 -1 -1 -1 * / 1 2 -1 x
+* / pow * + * * * * -1 pow x 2 -1 -1 -1 -1 -1 / -1 2 x -1
+* * pow x -1 -1 pow * * -1 - * pow x 2 -1 -1 -1 * -1 / 1 2
+pow * pow x -1 * -1 pow * * -1 + * -1 pow x 2 1 -1 * / 1 2 -1 1
+pow * -1 * pow + 1 * pow x 2 -1 * / 1 2 -1 / 1 x 1
+* 1 * pow * -1 - pow x 2 1 * / 1 2 -1 * -1 / 1 x
+* * pow * -1 - -1 * pow x 2 -1 * -1 / 1 2 -1 pow x -1
+* 1 * pow * + * * -1 pow x 2 -1 -1 -1 * -1 / 1 2 / -1 x
+* / * pow + * -1 * * -1 pow x 2 -1 1 * / 1 2 -1 -1 x 1
+* * pow * * * - pow x 2 1 -1 -1 -1 / -1 2 -1 / 1 x
+/ / * -1 pow * - -1 * -1 pow x 2 -1 / -1 2 x 1
+* 1 * * -1 pow * + pow x 2 -1 -1 / -1 2 pow x -1
+/ * * pow x -1 pow + 1 * -1 pow x 2 * -1 / 1 2 -1 1
+pow * * pow * -1 - pow x 2 1 * -1 / 1 2 pow x -1 -1 1
+pow * * -1 / 1 x pow * -1 * * + pow x 2 -1 -1 -1 / -1 2 1
+/ * / pow - * -1 * * -1 pow x 2 -1 -1 / -1 2 x -1 1
+/ * pow - * pow x 2 -1 -1 / -1 2 -1 x
+* / pow - 1 pow x 2 / -1 2 x -1
+/ * * -1 / 1 x pow - 1 pow x 2 * -1 / 1 2 1
+pow * pow + 1 * -1 pow x 2 * -1 / 1 2 * -1 / 1 x 1
+* pow * + -1 * * pow x 2 -1 -1 -1 / -1 2 * pow x -1 -1
+* pow * + pow x 2 -1 -1 * / 1 2 -1 * pow x -1 -1
+pow * * -1 pow * - -1 * pow x 2 -1 -1 / -1 2 / 1 x 1
+/ / * -1 pow + 1 * -1 * * pow x 2 -1 -1 / -1 2 x 1
+/ * pow * + -1 pow x 2 -1 / -1 2 * pow x -1 -1 1
+pow * pow * -1 + -1 pow x 2 * / 1 2 -1 * pow x -1 -1 1
+* 1 * / -1 x pow + * -1 pow x 2 1 / -1 2
+pow * -1 * pow + * -1 pow x 2 1 * -1 / 1 2 pow x -1 1
+* * -1 * pow x -1 pow * - * * -1 pow x 2 -1 1 -1 * -1 / 1 2 1
+* 1 * * / 1 x -1 pow - 1 * -1 * pow x 2 -1 * / 1 2 -1
+/ * pow * - -1 * -1 pow x 2 -1 / -1 2 * -1 / 1 x 1
+/ / * pow - 1 pow x 2 / -1 2 -1 x 1
+* * -1 pow * -1 - pow x 2 1 / -1 2 pow x -1
+* * pow * * * -1 - pow x 2 1 -1 -1 / -1 2 / 1 x -1
+/ * pow x -1 * pow * + * * pow x 2 -1 -1 -1 -1 / -1 2 -1 1
+/ * -1 pow * * -1 + 1 * -1 pow x 2 -1 / -1 2 x
+/ * pow * -1 - pow x 2 1 / -1 2 -1 x
+pow * * pow - 1 * * pow x 2 -1 -1 * / 1 2 -1 pow x -1 -1 1
+* * pow x -1 * pow * * -1 - 1 * * -1 pow x 2 -1 -1 / -1 2 -1 1
+* 1 * * pow x -1 -1 pow + 1 * -1 * * -1 pow x 2 -1 * / 1 2 -1
+pow * / -1 x pow * + pow x 2 -1 -1 * -1 / 1 2 1
+pow * * -1 pow x -1 pow * -1 - -1 * -1 pow x 2 / -1 2 1
+* * * pow + * -1 pow x 2 1 * -1 / 1 2 / 1 x -1 1
+pow * / pow * * - * -1 pow x 2 -1 -1 -1 / -1 2 x -1 1
+* * * pow * * - 1 pow x 2 -1 -1 * -1 / 1 2 pow x -1 -1 1
+* * -1 / 1 x pow * - pow x 2 1 -1 / -1 2
+* -1 * pow x -1 pow * -1 * * -1 + pow x 2 -1 -1 / -1 2
+pow * / 1 x * -1 pow * * - 1 pow x 2 -1 -1 * -1 / 1 2 1
+/ * * -1 pow x -1 pow + 1 * -1 * * -1 pow x 2 -1 * / 1 2 -1 1
+* pow * * -1 - * pow x 2 -1 -1 -1 / -1 2 / -1 x
+* pow * * * -1 - -1 * pow x 2 -1 -1 -1 / -1 2 / -1 x
+/ / * -1 pow * -1 + -1 pow x 2 / -1 2 x 1
+* pow * * - 1 pow x 2 -1 -1 * -1 / 1 2 * -1 / 1 x
+* pow x -1 * -1 pow + 1 * -1 pow x 2 / -1 2
+pow * pow + 1 * -1 pow x 2 / -1 2 * -1 / 1 x 1
+pow * pow * -1 - -1 * -1 pow x 2 / -1 2 * -1 pow x -1 1
+* 1 * * pow x -1 -1 pow * - -1 * -1 pow x 2 -1 * / 1 2 -1
+pow / * pow * + -1 pow x 2 -1 / -1 2 -1 x 1
+* * pow * -1 - pow x 2 1 * -1 / 1 2 pow x -1 -1
+pow * pow * * * - pow x 2 1 -1 -1 -1 / -1 2 * pow x -1 -1 1
+* 1 * * / 1 x pow + * pow x 2 -1 1 * -1 / 1 2 -1
+pow * * pow x -1 pow - 1 pow x 2 * / 1 2 -1 -1 1
+/ * pow x -1 * -1 pow - 1 pow x 2 / -1 2 1
+* * * / 1 x -1 pow - 1 pow x 2 / -1 2 1
+* * / 1 x * pow * -1 * * -1 - pow x 2 1 -1 * -1 / 1 2 -1 1
+/ * pow x -1 * -1 pow * * * -1 - -1 * pow x 2 -1 -1 -1 / -1 2 1
+* * * -1 / 1 x pow * * - 1 * * -1 pow x 2 -1 -1 -1 / -1 2 1
+/ * * pow * * * - pow x 2 1 -1 -1 -1 / -1 2 / 1 x -1 1
+pow * * / 1 x -1 pow * -1 * * - pow x 2 1 -1 -1 / -1 2 1
+* pow - * * * pow x 2 -1 -1 -1 -1 / -1 2 / -1 x
+pow / * pow * -1 + pow x 2 -1 / -1 2 -1 x 1
+pow * -1 / pow * - -1 * pow x 2 -1 -1 / -1 2 x 1
+* / -1 x pow * - -1 * -1 pow x 2 -1 / -1 2
+pow * pow * -1 - pow x 2 1 * / 1 2 -1 * -1 / 1 x 1
+* * pow - 1 pow x 2 * -1 / 1 2 * -1 pow x -1 1
+/ * / -1 x pow - * -1 * * -1 pow x 2 -1 -1 / -1 2 1
+* * * pow + 1 * -1 pow x 2 / -1 2 pow x -1 -1 1
+pow * -1 / pow + 1 * -1 pow x 2 / -1 2 x 1
+pow * pow x -1 * -1 pow * + -1 pow x 2 -1 / -1 2 1
+pow * / pow + 1 * pow x 2 -1 / -1 2 x -1 1
+pow / * -1 pow - * -1 pow x 2 -1 / -1 2 x 1
+* 1 * * pow x -1 -1 pow * * -1 - 1 pow x 2 -1 / -1 2
+/ * / -1 x pow - * pow x 2 -1 -1 / -1 2 1
+/ * * / 1 x pow + 1 * -1 pow x 2 * -1 / 1 2 -1 1
+* pow x -1 * pow * -1 * * -1 - -1 * pow x 2 -1 -1 / -1 2 -1
+/ / * pow - * -1 pow x 2 -1 * -1 / 1 2 -1 x 1
+* * pow * * -1 - * -1 pow x 2 -1 -1 / -1 2 / 1 x -1
+pow * * pow * * -1 - 1 pow x 2 -1 / -1 2 pow x -1 -1 1
+/ * pow + 1 * pow x 2 -1 / -1 2 -1 x
+/ * * pow * -1 * * -1 + -1 pow x 2 -1 * -1 / 1 2 -1 / 1 x 1
+/ * -1 * / 1 x pow + * pow x 2 -1 1 / -1 2 1
+* -1 / pow * -1 - pow x 2 1 / -1 2 x
+/ * -1 / pow * -1 * * -1 + -1 pow x 2 -1 * / 1 2 -1 x 1
+/ * pow * * + 1 * -1 * * -1 pow x 2 -1 -1 -1 / -1 2 / -1 x 1
+* * pow * -1 + pow x 2 -1 / -1 2 pow x -1 -1
+/ * -1 pow * * -1 * - -1 * pow x 2 -1 -1 -1 / -1 2 x
+pow * * -1 / 1 x pow * * -1 * - pow x 2 1 -1 -1 * -1 / 1 2 1
+/ * -1 / pow * + -1 * * pow x 2 -1 -1 -1 / -1 2 x 1
+* * * / 1 x -1 pow * -1 - pow x 2 1 / -1 2 1
+* * pow x -1 pow - 1 pow x 2 / -1 2 -1
+* 1 * -1 * pow x -1 pow + * pow x 2 -1 1 * / 1 2 -1
+* -1 * pow * + pow x 2 -1 -1 / -1 2 / 1 x
+pow * * pow * -1 - * -1 * pow x 2 -1 1 * / 1 2 -1 -1 pow x -1 1
+pow * * pow * - pow x 2 1 -1 / -1 2 / 1 x -1 1
+/ * -1 / pow * + -1 pow x 2 -1 / -1 2 x 1
+pow * pow x -1 * pow - * pow x 2 -1 -1 / -1 2 -1 1
+* * / 1 x pow + * -1 pow x 2 1 * -1 / 1 2 -1
+pow * * pow - 1 pow x 2 * -1 / 1 2 -1 / 1 x 1
+pow / * pow - 1 pow x 2 / -1 2 -1 x 1
+* * pow x -1 -1 pow - 1 pow x 2 * -1 / 1 2
+* / * pow - 1 pow x 2 / -1 2 -1 x 1
+/ * -1 * pow x -1 pow * * * -1 - pow x 2 1 -1 -1 / -1 2 1
+* * * pow * + pow x 2 -1 -1 * / 1 2 -1 / 1 x -1 1
+pow * * / 1 x -1 pow * * - 1 pow x 2 -1 -1 / -1 2 1
+/ * -1 pow * -1 + pow x 2 -1 * -1 / 1 2 x
+/ * / 1 x * -1 pow * -1 - * -1 * pow x 2 -1 1 * / 1 2 -1 1
+* 1 * -1 * / 1 x pow * -1 + * * pow x 2 -1 -1 -1 * / 1 2 -1
+/ * * pow * - pow x 2 1 -1 * -1 / 1 2 / 1 x -1 1
+* -1 * pow * -1 - -1 * -1 pow x 2 / -1 2 pow x -1
+/ * / -1 x pow * - pow x 2 1 -1 * -1 / 1 2 1
+* * pow x -1 -1 pow * * + * * * pow x 2 -1 -1 -1 1 -1 -1 / -1 2
+* * pow + 1 * * * pow x 2 -1 -1 -1 / -1 2 -1 pow x -1
+* 1 * -1 / pow * -1 + -1 pow x 2 * / 1 2 -1 x
+/ * / -1 x pow * -1 - -1 * pow x 2 -1 * / 1 2 -1 1
+* * -1 pow x -1 pow - * -1 pow x 2 -1 / -1 2
+pow * / -1 x pow - 1 * * -1 pow x 2 -1 / -1 2 1
+/ * / pow * -1 + pow x 2 -1 * -1 / 1 2 x -1 1
+* 1 * * pow * + -1 pow x 2 -1 * / 1 2 -1 -1 pow x -1
+/ * * / 1 x -1 pow - * pow x 2 -1 -1 / -1 2 1
+* -1 * pow - * -1 pow x 2 -1 * / 1 2 -1 / 1 x
+* * * pow - * -1 pow x 2 -1 / -1 2 pow x -1 -1 1
+/ * -1 * pow - 1 pow x 2 / -1 2 / 1 x 1
+/ * / -1 x pow + * pow x 2 -1 1 / -1 2 1
+* pow * * + * -1 pow x 2 1 -1 -1 * / 1 2 -1 / -1 x
+pow * -1 * pow x -1 pow + 1 * pow x 2 -1 / -1 2 1
+pow * * pow x -1 pow - 1 pow x 2 / -1 2 -1 1
+/ * * / 1 x -1 pow * -1 * + 1 * pow x 2 -1 -1 / -1 2 1
+pow * / -1 x pow + 1 * * -1 * pow x 2 -1 -1 * / 1 2 -1 1
+* -1 / pow - 1 * * pow x 2 -1 -1 / -1 2 x
+/ / * pow * - pow x 2 1 -1 / -1 2 -1 x 1
 
 d x acoth x
 / d x acsch cot asin / 1 x 1
@@ -34002,7 +34417,7 @@ pow d x acsch tan acot sinh acoth x 1
 d csc atan cot acot tan acsc x acoth x
 d x asinh cot acot / cosh acoth x x
 - d x atanh tanh atanh / 1 x 0
-d x acsch cot - * 0.5 pi asec x
+d x acsch cot - * / 1 2 pi asec x
 d x atanh sin asin tanh acoth coth acoth x
 / d x atanh sin asin cos asec x 1
 * d x acoth csc asin cos asec x 1
@@ -34563,7 +34978,7 @@ d / -1 / -1 x atanh sin acsc x
 + 0 d x acsch cot asin cos asec x
 d x asinh tan atan / csc asec x x
 * d csc acsc x acsc x cosh acoth x
-d x atanh cos - * pi 0.5 acsc x
+d x atanh cos - * pi / 1 2 acsc x
 d x acsch tan asec / 1 tanh acoth x
 - 0 - 0 d x acsch csch acoth x
 * d x atanh tanh acsch cot acsc x 1
@@ -34672,7 +35087,7 @@ d x acsch / x sec asin tanh acoth x
 d x acsch cot asin / 1 x
 - d x asinh cot acos cos asec x 0
 d / 1 cos acot cot asec x acoth x
-d x acoth csc - * pi 0.5 asec x
+d x acoth csc - * pi / 1 2 asec x
 d sec asec x acsch csch asinh cot asec x
 d sec asec coth acoth x acoth sec asec x
 d csc asin sin acsc x asinh cot asec x
@@ -34850,7 +35265,7 @@ d x acsch cot atan / sec acsc x x
 d csc atan sinh acoth x atanh sin acsc x
 + / / d x acoth x -1 -1 0
 d x atanh tanh atanh sin asin / 1 x
-d x asinh cot - * pi 0.5 acsc x
+d x asinh cot - * pi / 1 2 acsc x
 d x acoth / -1 cos acos / -1 x
 d x acoth sec acos sin atan sinh acoth x
 + d x asinh sinh acsch cot acsc x 0
@@ -35204,7 +35619,7 @@ d x asinh / sec acsc / x -1 x
 d x asinh sinh acsch tan acos tanh acoth x
 pow d csc asin / 1 x acoth x 1
 pow d x acsch / x csc asec x 1
-d sec - * pi 0.5 acsc x acoth x
+d sec - * pi / 1 2 acsc x acoth x
 d csc asin cos asec x asinh cot asec x
 d x acsch csch acsch csch asinh cot asec x
 d x atanh tanh atanh tanh acoth x
@@ -35246,7 +35661,7 @@ d x asinh sinh asinh sinh asinh tan acsc x
 d x acsch * x sech asinh cot asec x
 * d x acsc x cosh asinh sinh acoth x
 pow d x acoth coth acsch csch acoth x 1
-d x acsch tan - * pi 0.5 acsc x
+d x acsch tan - * pi / 1 2 acsc x
 d x atanh / sech acoth x tan asec x
 - d x atanh / 1 x 0
 * d x acsc x csc asec * -1 x
@@ -35942,7 +36357,7 @@ d x atanh sin asin cos acot cot asec x
 pow d x acsch csch atanh cos asec x 1
 - d x acsch * x sech acoth x 0
 - d x asinh sinh acsch cot acsc x 0
-d x asinh tan - * 0.5 pi asec x
+d x asinh tan - * / 1 2 pi asec x
 d x atanh cos acot / 1 csch acoth x
 d x atanh sin asin cos asec x
 d x asinh cot asec / 1 sin acsc x
@@ -36025,7 +36440,6 @@ d coth acsch / 1 sinh acoth x acoth x
 d / 1 sin asin sin acsc x acoth x
 d x acoth sec * - 0 asec x -1
 / d x asinh tan acsc sec asec x 1
-d x acoth x
 d x acsch cot acsc / 1 sin acsc x
 / 1 - 1 pow coth acoth x 2
 * 1 d sec asec x acoth x
@@ -36039,7 +36453,7 @@ d / csc asec x cot asec x acoth x
 d x acsch / cos acsc x cos asec x
 d x atanh tanh atanh / -1 / x -1
 d x acsch / 1 cot acos cos asec x
-d x atanh sin - * 0.5 pi asec x
+d x atanh sin - * / 1 2 pi asec x
 d csc atan tan asin tanh acoth x acoth x
 d coth acsch csch acsch csch acoth x acoth x
 d sec acot tan asin / 1 x acoth x
@@ -36329,4 +36743,231 @@ d x atanh cos acot / 1 cot acsc x
 d x atanh * cot asec x sin asec x
 d x atanh cos acot sinh acsch tan asec x
 - d x asinh tan atan cot asec x 0
+pow + 1 * -1 pow x 2 -1
+* 1 * -1 * / 1 -1 * pow - pow x 2 1 -1 -1
+* 1 * * * -1 * * / / -1 + pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * / 1 -1 * * * pow - 1 pow x 2 -1 -1 -1 / 1 -1
+* 1 * / 1 -1 pow * -1 * + * * -1 pow x 2 -1 -1 -1 -1
+* 1 * * / 1 * -1 + pow x 2 -1 -1 / 1 -1
+* 1 * * -1 / / -1 + 1 * -1 pow x 2 -1 -1
+* 1 * * -1 / * / 1 * - -1 * -1 pow x 2 -1 -1 -1 -1
+* 1 * -1 / 1 - pow x 2 1
+* 1 * / pow * + -1 pow x 2 -1 -1 -1 -1
+* 1 * * / -1 * * -1 * + * -1 pow x 2 1 -1 -1 -1 -1
+* 1 * -1 * / pow * -1 - * -1 pow x 2 -1 -1 -1 / 1 -1
+* 1 * * / / * / -1 + * -1 pow x 2 1 -1 -1 -1 -1 -1
+* 1 * -1 / * / / / 1 -1 + pow x 2 -1 -1 / 1 -1 -1
+* 1 * * / -1 - * * * -1 * pow x 2 -1 -1 -1 1 -1 -1
+* 1 * * -1 / * / -1 * - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * * / 1 -1 * / 1 -1 / 1 - pow x 2 1 / 1 -1
+* 1 * / 1 - -1 * -1 * * -1 pow x 2 -1 -1
+* 1 * -1 * * / / 1 - 1 pow x 2 -1 -1 -1
+* 1 * * / -1 - pow x 2 1 -1 -1
+* 1 * pow - pow x 2 1 -1 -1
+* 1 * -1 / / / / -1 - -1 * pow x 2 -1 -1 -1 -1
+* 1 * pow + pow x 2 -1 -1 -1
+* 1 * / 1 -1 * / 1 * -1 - pow x 2 1 / 1 -1
+* 1 * * -1 / / * / -1 * + pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * * -1 / * / 1 - * pow x 2 -1 -1 / 1 -1 -1 -1
+* 1 * * / 1 -1 pow - 1 pow x 2 -1 -1
+* 1 * -1 / / / / / / -1 - pow x 2 1 -1 -1 -1 -1 -1
+* 1 * * -1 / / -1 * + pow x 2 -1 -1 -1 / 1 -1
+* 1 * -1 / pow - 1 * -1 * pow x 2 -1 -1 -1
+* 1 * / / -1 - -1 * pow x 2 -1 -1 / 1 -1
+* 1 * / / pow + -1 pow x 2 -1 -1 -1 -1
+* 1 * -1 / 1 * + 1 * pow x 2 -1 -1
+* 1 * -1 / pow * -1 - pow x 2 1 -1 -1
+* 1 * / 1 -1 / / -1 * - * -1 pow x 2 -1 -1 -1
+* 1 * -1 pow - -1 * * * -1 pow x 2 -1 -1 -1
+* 1 * * * -1 / -1 - 1 pow x 2 / 1 -1 -1
+* 1 * * -1 * * -1 pow * -1 - -1 * pow x 2 -1 -1 -1 -1
+* 1 * -1 / * -1 / / / -1 + 1 * pow x 2 -1 -1 -1 -1
+* 1 * -1 * / / 1 -1 + * -1 * pow x 2 -1 -1 / 1 -1
+* 1 * -1 pow * - 1 pow x 2 -1 -1
+* 1 * * * / pow - * pow x 2 -1 -1 -1 -1 -1 -1 -1
+* 1 * / 1 -1 / / / pow - 1 pow x 2 -1 -1 -1 -1
+* 1 * / * pow * -1 * + pow x 2 -1 -1 -1 / 1 -1 -1 -1
+* 1 * -1 / -1 - 1 pow x 2
+* 1 * -1 * / / / pow * -1 - 1 pow x 2 -1 -1 -1 -1 -1
+* 1 * -1 / / / / -1 - pow x 2 1 -1 -1 -1
+* 1 * / 1 -1 / / 1 * * -1 + * pow x 2 -1 1 -1 -1
+* 1 * / -1 * -1 * - * pow x 2 -1 -1 -1 -1
+* 1 * * / 1 -1 / 1 - 1 pow x 2 / 1 -1
+* 1 * / 1 -1 pow + -1 pow x 2 -1
+* 1 * -1 * / 1 -1 * / -1 - 1 pow x 2 / 1 -1
+* 1 * / 1 * -1 - 1 * * * -1 * pow x 2 -1 -1 -1 -1
+* 1 * / / / / / / 1 -1 - 1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / * -1 pow + pow x 2 -1 -1 -1 / 1 -1
+* 1 * / 1 -1 * / 1 - 1 pow x 2 / 1 -1
+* 1 * * / 1 + 1 * pow x 2 -1 -1 -1
+* 1 * -1 / / / / -1 + pow x 2 -1 -1 -1 -1
+* 1 * / -1 * -1 * * + -1 * * pow x 2 -1 -1 -1 -1 -1
+* 1 * / 1 -1 / pow - 1 pow x 2 -1 -1
+* 1 * -1 / / / pow + * pow x 2 -1 1 -1 -1 -1 -1
+* 1 * -1 / / pow * - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * * -1 * * -1 pow - 1 * * -1 pow x 2 -1 -1 -1 -1
+* 1 * / / pow - -1 * -1 pow x 2 -1 -1 -1 -1
+* 1 / * / -1 * -1 + 1 * -1 pow x 2 -1 -1
+* 1 * * -1 / / / -1 * - * pow x 2 -1 -1 -1 -1 -1 -1
+* 1 / pow - -1 * pow x 2 -1 -1 -1
+* 1 * / 1 -1 * -1 / / 1 -1 + -1 pow x 2
+* 1 * * -1 / * -1 / -1 + -1 pow x 2 -1 -1
+* 1 * / 1 -1 / / / / 1 -1 + 1 * pow x 2 -1 -1 -1
+* 1 * * / pow - pow x 2 1 -1 -1 / 1 -1 / 1 -1
+* 1 * -1 / * * -1 / 1 + * pow x 2 -1 1 -1 -1
+* 1 * * * / 1 -1 / pow + 1 * -1 pow x 2 -1 -1 -1 -1
+* 1 * -1 / / -1 - pow x 2 1 -1
+* 1 * * / 1 + * -1 pow x 2 1 -1 / 1 -1
+* 1 * -1 / -1 * -1 * - 1 pow x 2 -1
+* 1 * / / -1 * -1 - 1 pow x 2 -1 -1
+* 1 * -1 / / / / / 1 -1 - -1 * -1 pow x 2 -1 -1 -1
+* 1 * * pow + * pow x 2 -1 1 -1 / 1 -1 / 1 -1
+* 1 * / / / * -1 / 1 - -1 * -1 pow x 2 -1 -1 -1 -1
+* 1 * / 1 -1 * / 1 -1 * pow + pow x 2 -1 -1 / 1 -1
+* 1 * / * -1 pow - -1 * -1 pow x 2 -1 -1 -1
+* 1 * -1 / 1 + -1 pow x 2
+* 1 * / 1 -1 pow * -1 + * pow x 2 -1 1 -1
+* 1 * / 1 -1 / / / -1 - 1 pow x 2 -1 -1
+* 1 * / 1 -1 / * / 1 -1 * -1 pow - 1 pow x 2 -1 -1
+* 1 * -1 / / * -1 / pow - -1 * -1 pow x 2 -1 -1 -1 -1
+* 1 * / 1 -1 / / pow - pow x 2 1 -1 -1 -1
+* 1 / -1 + -1 pow x 2
+* 1 * -1 * / / / 1 + 1 * pow x 2 -1 -1 -1 / 1 -1
+* 1 * / 1 - * -1 * pow x 2 -1 1 / 1 -1
+* 1 * / 1 -1 / 1 - pow x 2 1
+* 1 / 1 - 1 pow x 2
+* 1 * * * -1 * / -1 + -1 pow x 2 -1 -1 / 1 -1
+* 1 * * pow * - pow x 2 1 -1 -1 / 1 -1 -1
+* 1 * / 1 -1 * / / / 1 - 1 pow x 2 -1 -1 / 1 -1
+* 1 * / 1 -1 / / / 1 + -1 pow x 2 -1 -1
+* 1 * -1 / / / pow * - pow x 2 1 -1 -1 -1 -1 -1
+* 1 * / / * * -1 pow - pow x 2 1 -1 / 1 -1 -1 -1 -1
+* 1 * -1 / * -1 / -1 * * - 1 pow x 2 -1 -1 -1
+* 1 * -1 / / pow - pow x 2 1 -1 -1 -1
+* 1 * -1 pow * -1 - * pow x 2 -1 -1 -1
+* 1 * -1 / pow - * -1 pow x 2 -1 -1 -1
+* 1 * / * -1 / pow - 1 pow x 2 -1 -1 -1 -1
+* 1 * / 1 -1 / * pow + -1 pow x 2 -1 / 1 -1 -1
+* 1 * / 1 * * - pow x 2 1 -1 -1 -1
+* 1 * -1 / pow + 1 * pow x 2 -1 -1 -1
+* 1 * * / 1 -1 / / pow + 1 * pow x 2 -1 -1 -1 -1 -1
+* 1 * / 1 -1 / / / / 1 -1 - 1 pow x 2 -1 -1
+* 1 * / / / * pow + -1 pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * * / / / 1 - 1 pow x 2 -1 -1 -1 -1
+* 1 * -1 * * / 1 * * -1 + pow x 2 -1 -1 -1 -1
+* 1 * -1 * / * -1 / -1 - pow x 2 1 -1 / 1 -1
+* 1 * / 1 -1 / -1 + 1 * pow x 2 -1
+* 1 * -1 pow - pow x 2 1 -1
+* 1 * / pow + * -1 * * pow x 2 -1 -1 1 -1 -1 -1
+* 1 * / / pow * -1 * + pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * -1 / * / 1 -1 / / 1 - * pow x 2 -1 -1 -1 -1
+* 1 * / 1 + pow x 2 -1 / 1 -1
+* 1 * / 1 -1 / pow + 1 * -1 pow x 2 -1 -1
+* 1 * * * pow + pow x 2 -1 -1 / 1 -1 -1 -1
+* 1 * -1 * / / 1 * -1 * - pow x 2 1 -1 -1 -1
+* 1 * * / pow + pow x 2 -1 -1 -1 -1 -1
+* 1 * -1 * / pow - pow x 2 1 -1 -1 -1
+* 1 * -1 / / pow - pow x 2 1 -1 -1 -1
+* 1 * -1 / / / 1 + -1 pow x 2 -1 -1
+* 1 * / * -1 / * -1 pow + pow x 2 -1 -1 -1 -1 / 1 -1
+* 1 * * / 1 - 1 pow x 2 -1 -1
+* 1 * / / * / -1 - pow x 2 1 / 1 -1 -1 -1 -1
+* 1 * * * / 1 -1 * -1 / 1 * -1 - pow x 2 1 -1 -1
+* 1 * * * pow * -1 + * -1 pow x 2 1 -1 -1 -1 -1
+* 1 * -1 / / / -1 - 1 pow x 2 -1 -1
+* 1 * * / * / -1 - -1 * -1 pow x 2 -1 -1 -1 -1
+* 1 * / / -1 * -1 * - pow x 2 1 -1 -1 -1
+* 1 * / / 1 * -1 - pow x 2 1 -1 -1
+* 1 / / / -1 - -1 * pow x 2 -1 -1 -1
+* 1 * -1 / / / 1 -1 - -1 * -1 pow x 2 -1
+* 1 * * * / 1 + pow x 2 -1 / 1 -1 / 1 -1 / 1 -1
+* 1 * -1 / * / pow - 1 pow x 2 -1 -1 / 1 -1 -1
+* 1 * / 1 -1 / * * -1 / / 1 - pow x 2 1 -1 -1 -1
+* 1 * / 1 -1 / / / / pow - pow x 2 1 -1 -1 -1 -1 -1
+* 1 * -1 / / / * * / -1 + pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * / * / * pow - -1 * pow x 2 -1 -1 -1 -1 -1 -1 -1
+* 1 * -1 * * * / 1 - 1 pow x 2 -1 / 1 -1 -1
+* 1 * * -1 * * -1 / / 1 -1 - pow x 2 1 / 1 -1 -1
+* 1 * / 1 -1 / -1 * + pow x 2 -1 -1
+* 1 * -1 / / / / * / -1 + -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / / / / / -1 + 1 * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / 1 -1 * / / / pow + pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * / 1 -1 / / / 1 -1 - pow x 2 1 -1
+* 1 * * * -1 pow + -1 pow x 2 -1 -1 -1
+* 1 * / 1 -1 * / / -1 + 1 * -1 pow x 2 -1 -1
+* 1 * * -1 pow * - pow x 2 1 -1 -1 -1
+* 1 * / / / / pow - pow x 2 1 -1 -1 -1 -1 -1 -1
+* 1 * * -1 / 1 - 1 pow x 2 / 1 -1
+* 1 * * -1 / 1 * -1 - pow x 2 1 -1
+* 1 * / * * / 1 -1 / 1 - 1 pow x 2 -1 -1 / 1 -1
+* 1 * -1 * * / -1 * -1 - -1 * pow x 2 -1 -1 -1
+* 1 * / 1 + pow x 2 -1 / 1 -1
+* 1 * -1 * / / / 1 -1 - 1 pow x 2 -1 / 1 -1
+* 1 * * / 1 -1 / / / -1 + pow x 2 -1 -1 -1 -1
+* 1 * * / 1 -1 / pow - pow x 2 1 -1 -1 -1
+* 1 * -1 pow - -1 * -1 pow x 2 -1
+* 1 * / * / / -1 + -1 pow x 2 -1 -1 -1 -1
+* 1 * * * -1 / -1 - 1 pow x 2 -1 -1
+* 1 * / 1 -1 / / / / pow + -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * -1 / / / pow - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 pow - 1 pow x 2 -1
+* 1 * -1 / / / -1 + 1 * -1 pow x 2 -1 -1
+* 1 * / 1 -1 / * / 1 -1 / 1 + pow x 2 -1 -1
+* 1 * / / 1 + * -1 pow x 2 1 -1 / 1 -1
+* 1 * -1 * / / * / 1 + pow x 2 -1 / 1 -1 -1 -1 -1
+* 1 * * pow - 1 pow x 2 -1 -1 / 1 -1
+* 1 * -1 * pow + * pow x 2 -1 1 -1 / 1 -1
+* 1 * * -1 / 1 * -1 + pow x 2 -1 -1
+* 1 * / 1 -1 * * pow - pow x 2 1 -1 / 1 -1 -1
+* 1 * / / -1 - -1 * -1 pow x 2 -1 -1
+* 1 * -1 / -1 - * pow x 2 -1 -1
+* 1 * pow * + 1 * -1 pow x 2 -1 -1 -1
+* 1 * * * / 1 -1 pow + -1 pow x 2 -1 -1 / 1 -1
+* 1 * / 1 -1 / / pow + -1 pow x 2 -1 -1 -1
+* 1 * * pow - 1 pow x 2 -1 / 1 -1 / 1 -1
+* 1 * -1 / / / -1 - * pow x 2 -1 -1 -1 -1
+* 1 * / -1 - * -1 pow x 2 -1 -1
+* 1 * / 1 -1 / / / pow + * pow x 2 -1 1 -1 -1 -1 -1
+* 1 * * / 1 -1 * / 1 -1 pow - pow x 2 1 -1 / 1 -1
+* 1 * -1 / -1 * -1 + -1 pow x 2
+* 1 * -1 / / / / 1 + 1 * pow x 2 -1 -1 -1 -1
+* 1 * / 1 -1 pow - pow x 2 1 -1
+* 1 * -1 pow + -1 pow x 2 -1
+* 1 * -1 / / / / * pow - 1 pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * * -1 / / / / 1 - pow x 2 1 -1 -1 -1 / 1 -1
+* 1 * / / -1 - pow x 2 1 -1 / 1 -1
+* 1 * / pow - 1 pow x 2 -1 -1 -1
+* 1 * / / -1 + pow x 2 -1 -1 -1
+* 1 * / 1 -1 / / 1 * - pow x 2 1 -1 -1
+* 1 * / / / / pow + pow x 2 -1 -1 -1 -1 -1 -1 -1
+* 1 * / / / / / / -1 + -1 pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * / / / / / 1 + -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * -1 / pow - 1 pow x 2 -1 -1
+* 1 * / * -1 / -1 - * -1 pow x 2 -1 -1 -1
+* 1 * -1 / / 1 -1 - 1 pow x 2
+* 1 * / 1 -1 / / / / / 1 -1 + pow x 2 -1 -1 -1 -1
+* 1 * / / / / -1 * -1 - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * * / / 1 - pow x 2 1 -1 / 1 -1 / 1 -1
+* 1 * / 1 -1 / pow - 1 pow x 2 -1 -1
+* 1 * / 1 -1 / / / pow * -1 - pow x 2 1 -1 -1 -1 -1
+* 1 * -1 / / / / / 1 -1 - pow x 2 1 -1 -1 -1
+* 1 * * * / -1 + * -1 pow x 2 1 -1 -1 -1
+* 1 / -1 - -1 * -1 pow x 2
+* 1 * * * / 1 -1 / 1 + -1 pow x 2 / 1 -1 -1
+* 1 * / / / / / -1 - 1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / 1 -1 / / / / / 1 -1 - pow x 2 1 -1 -1 -1
+* 1 * -1 / / / pow - 1 pow x 2 -1 -1 -1 -1
+* 1 * / / / / pow - -1 * pow x 2 -1 -1 -1 -1 -1 -1 -1
+* 1 * / / / / -1 * -1 - 1 pow x 2 -1 -1 -1 -1
+* 1 * / * / pow - 1 pow x 2 -1 -1 / 1 -1 -1 / 1 -1
+* 1 * -1 / / / / / -1 - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / -1 + 1 * -1 pow x 2 -1
+* 1 * * / 1 -1 * -1 / * -1 pow - pow x 2 1 -1 -1 -1
+* 1 * / 1 -1 / / 1 - 1 pow x 2 -1
+* 1 * pow * * -1 * - * -1 pow x 2 -1 -1 -1 -1 -1
+* 1 * / / / * / / 1 -1 - 1 pow x 2 -1 -1 -1 -1 -1
+* 1 * -1 / / / / / pow - 1 pow x 2 -1 -1 -1 -1 -1 -1
+* 1 * -1 / / pow * + * pow x 2 -1 1 -1 -1 -1 -1
+* 1 * * / 1 + * -1 pow x 2 1 / 1 -1 / 1 -1
+* 1 * / 1 * -1 + 1 * * -1 * pow x 2 -1 -1 / 1 -1
 
