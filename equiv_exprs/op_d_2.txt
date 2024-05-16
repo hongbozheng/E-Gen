@@ -6,6 +6,7 @@ d x ln x
 pow / 1 x 1
 + 0 / 1 x
 pow d x ln x 1
+d x ln x
 / d x ln x 1
 / / 1 x 1
 
@@ -542,6 +543,7 @@ d x / 1 / tan x sin x
 - d x / sin x tan x 0
 / - 0 / cos x cot x 1
 + 0 * - 0 / -1 csc x -1
+d x cos x
 d x / / cos x csc x sin x
 / * -1 tan x / tan x sin x
 / -1 * sin x pow csc x 2
@@ -810,6 +812,7 @@ pow pow sec x 2 1
 d x / / sin x cot x sin x
 / 1 pow / cot x csc x 2
 d x * cot x pow tan x 2
+d x tan x
 + * tan x tan x 1
 d x / 1 * cos x csc x
 pow + / 1 pow cot x 2 1 1
@@ -1193,6 +1196,7 @@ d x / 1 sin x
 / -1 / pow csc x -1 cot x
 - 0 / cos x * sin x sin x
 * cos x / / -1 sin x sin x
+d x csc x
 + 0 / -1 / sin x cot x
 + 0 d x * sec x cot x
 * / pow sin x -1 tan x -1
@@ -1620,6 +1624,7 @@ pow pow / sec x cot x -1 -1
 pow / sin x * tan x tan x -1
 + * tan x / 1 cos x 0
 pow * csc x / tan x cot x 1
+d x sec x
 / sin x * cos x cos x
 / tan x pow * csc x tan x -1
 + d x pow d x sin x -1 0
@@ -1839,6 +1844,7 @@ d x / 1 * sec x sin x
 * 1 d x / 1 tan x
 - 0 / / sec x tan x sin x
 / -1 pow / 1 pow sin x -1 2
+d x cot x
 / -1 / / cos x cot x csc x
 - 0 - 0 d x cot x
 pow / -1 / 1 pow csc x 2 1
@@ -5652,6 +5658,7 @@ d x acsc sec acot sinh asinh tan acsc x
 d x asin tanh acsch tan acos sin acsc x
 pow d x atan cot acos / 1 x 1
 d x atan / csc acos tanh acoth x x
+d x acsc x
 / d x asin tanh acoth x 1
 d coth acoth x asin sin atan tan acsc x
 d sec asec x asin sin asin / 1 x
@@ -7323,6 +7330,7 @@ d x * * tanh x csch x sinh x
 d x / / csch x coth x csch x
 + / 1 * cosh x cosh x 0
 / 1 * / 1 sech x cosh x
+d x tanh x
 * sech x / 1 / coth x csch x
 + pow / 1 / 1 sech x 2 0
 + 1 / d x sech x csch x
@@ -7863,6 +7871,7 @@ pow * - 0 sech x tanh x 1
 d x / cosh x * cosh x cosh x
 / / -1 coth x / 1 sech x
 pow / -1 / cosh x tanh x 1
+d x sech x
 d x / / 1 coth x sinh x
 - 0 / 1 / coth x sech x
 / / -1 / csch x sech x cosh x
@@ -8200,6 +8209,7 @@ d x coth x
 - 0 pow / sech x tanh x 2
 - 0 / pow sinh x -1 sinh x
 d x / csch x / csch x coth x
+d x coth x
 - 0 - 0 d x coth x
 d x / / coth x tanh x coth x
 / -1 / cosh x * coth x csch x
@@ -15835,6 +15845,7 @@ sin acos sin atan / 1 / 1 x
 / tanh acoth csc acsc csc atan x x
 * sin acos cos asec csc atan x 1
 * sech atanh cos acot cot acot x 1
+d x asinh x
 cos asin cos acot / 1 / 1 x
 / 1 / x sin acsc coth asinh x
 d tan acsc coth asinh x asinh x
@@ -21428,6 +21439,7 @@ d x acosh coth asinh cot acos sin acsc x
 / abs tan acsc csc atan sinh acoth x 1
 abs cot acot tan - * / 1 2 pi asec x
 pow abs sinh asinh / 1 cot acsc x 1
+d x acosh x
 + abs tan atan sinh acoth x 0
 abs sinh acoth csc acsc coth acoth x
 d csc acsc x acosh csc atan tan acsc x
@@ -29684,6 +29696,7 @@ d x asinh cot acot sinh acsch x
 / / -1 abs x cosh asinh cot acot x
 / d x acoth coth atanh tanh acsch x 1
 pow d / 1 sinh acsch x acsch x 1
+d x acsch x
 d x acoth coth acsch / 1 csch asinh x
 d x acsch tan acsc coth atanh cos acot x
 pow d x acoth / 1 tanh acsch x 1
@@ -33485,6 +33498,7 @@ d cos asec / 1 x asech x
 d x asech sin acsc sec asec pow x -1
 d sin atan / x sin acos x asech x
 d sin atan tan asin x acosh / 1 x
+d x asech x
 d x asech sin atan tan atan cot acos x
 d / 1 pow x -1 acosh coth atanh x
 d x asech tanh acoth / x * x x
@@ -36440,6 +36454,7 @@ d coth acsch / 1 sinh acoth x acoth x
 d / 1 sin asin sin acsc x acoth x
 d x acoth sec * - 0 asec x -1
 / d x asinh tan acsc sec asec x 1
+d x acoth x
 d x acsch cot acsc / 1 sin acsc x
 / 1 - 1 pow coth acoth x 2
 * 1 d sec asec x acoth x

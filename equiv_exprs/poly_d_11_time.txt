@@ -1,5 +1,5 @@
     Finished dev [unoptimized + debuginfo] target(s) in 1.88s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_0.txt -o ../data/poly_d_11_0_gen.txt`
+     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11.txt -o ../data/poly_d_11_gen.txt`
 [INFO]: Expression: (d x (+ (pow (+ (* 2 x) 5) -4) (* 7 x)))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -292,8 +292,6 @@
 [INFO]: Total # of expression(s) after  postprocessing: 428
 [INFO]: Total run time: 301s
 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.12s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_1.txt -o ../data/poly_d_11_1_gen.txt`
 [INFO]: Expression: (d x (+ (/ (pow (- x 3) 5) -6) (/ x -4)))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -596,8 +594,6 @@
 [INFO]: Token limit 16 reaches max token limit 15.
 [INFO]: Total run time: 301s
 
-    Finished dev [unoptimized + debuginfo] target(s) in 1.58s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_2.txt -o ../data/poly_d_11_2_gen.txt`
 [INFO]: Expression: (d x (- (/ (pow (/ x 8) -6) -4) (* -6 x)))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -880,9 +876,6 @@
 [INFO]: Total # of expression(s) after  postprocessing: 140
 [INFO]: Total run time: 2s
 
-   Compiling egg v0.9.5 (/home/suyuan2/dfs2)
-    Finished dev [unoptimized + debuginfo] target(s) in 26.48s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_5.txt -o ../data/poly_d_11_5_gen.txt`
 [INFO]: Expression: (d x (+ (* -7 (pow (- (/ x 3) 3) 5)) 6))
 [INFO]: E-graph saturation time: 1s
 [INFO]: Grammar  creation  time: 0s
@@ -1059,8 +1052,6 @@
 [INFO]: Token limit 16 reaches max token limit 15.
 [INFO]: Total run time: 301s
 
-    Finished dev [unoptimized + debuginfo] target(s) in 2.39s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_3.txt -o ../data/poly_d_11_3_gen.txt`
 [INFO]: Expression: (d x (+ (/ (+ (pow x 4) (/ x -4)) 8) 8))
 [INFO]: E-graph saturation time: 0s
 [INFO]: Grammar  creation  time: 0s
@@ -1357,8 +1348,6 @@
 [INFO]: Token limit 16 reaches max token limit 15.
 [INFO]: Total run time: 302s
 
-    Finished dev [unoptimized + debuginfo] target(s) in 2.11s
-     Running `/home/suyuan2/dfs2/target/debug/egg -f -n 10 -l 15 -m 15 -t 300 -i ../data/poly_d_11_4.txt -o ../data/poly_d_11_4_gen.txt`
 [INFO]: Expression: (d x (/ (- (+ (pow x -2) (* -9 x)) -7) -6))
 [INFO]: E-graph saturation time: 1s
 [INFO]: Grammar  creation  time: 0s
