@@ -32,6 +32,7 @@ def main():
             logger.log_info(f"Creating file '{config.EXPR_PAIRS_FILEPATH}'...")
 
         postproc(
+            seed=config.SEED,
             verify=verify,
             start=config.START,
             end=config.END,

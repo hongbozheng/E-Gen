@@ -1,8 +1,9 @@
 import glob
 import logger
 import os
+import random
 from filter import get_n_lines
-from itertools import combinations, permutations
+from itertools import combinations
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_domain, verify_pair
@@ -99,6 +100,7 @@ def preproc(
 
 
 def postproc(
+        seed: int,
         verify: bool,
         start: float,
         end: float,
@@ -109,6 +111,8 @@ def postproc(
         expr_pairs_filepath: str,
         incorrects_filepath: str,
 ) -> None:
+    random.seed(a=seed)
+
     n_lines = get_n_lines(filepath=filtered_filepath)
 
     filtered_file = open(file=filtered_filepath, mode='r')
@@ -147,6 +151,8 @@ def postproc(
                         )
             else:
                 expr_pairs = list(combinations(iterable=exprs, r=2))
+
+            # random.shuffle(x=expr_pairs)
 
             expr_pairs_file = open(file=expr_pairs_filepath, mode='a')
             for expr_pair in expr_pairs:
