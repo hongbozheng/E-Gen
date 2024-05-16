@@ -66,6 +66,8 @@ def main() -> None:
             refactor=refactor,
             verify=verify,
             secs=config.SECS,
+            start=config.START,
+            end=config.END,
             invalids_filepath=config.INVALIDS_FILEPATH,
             equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
             duplicates_filepath=config.DUPLICATES_FILEPATH,

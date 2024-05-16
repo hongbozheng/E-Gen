@@ -202,7 +202,7 @@ def prefix_to_sympy(expr, evaluate=True):
     return expr
 
 
-def check_domain(expr: str, secs: int) -> bool:
+def check_domain(expr: str, start: float, end: float, secs: int) -> bool:
     @timeout(secs=secs)
     def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
         return continuous_domain(
@@ -225,7 +225,7 @@ def check_domain(expr: str, secs: int) -> bool:
         return False
 
     try:
-        domain = _cont_domain(expr=expr, symbol=x)
+        domain = _cont_domain(expr=expr, symbol=x, start=start, end=end)
         if isinstance(domain, sp.sets.sets.EmptySet):
             return False
 
@@ -329,7 +329,7 @@ def verify_pair(
         equiv = True
     else:
         try:
-            domain = _cont_domain(expr=expr, symbol=x)
+            domain = _cont_domain(expr=expr, symbol=x, start=start, end=end)
             try:
                 if isinstance(domain, sp.sets.sets.Union):
                     if isinstance(domain.args[0], sp.sets.sets.Complement):

@@ -14,6 +14,8 @@ def preproc(
         refactor: bool,
         verify: bool,
         secs: int,
+        start: int,
+        end: int,
         invalids_filepath,
         equiv_exprs_filepath: str,
         duplicates_filepath: str,
@@ -52,7 +54,7 @@ def preproc(
                     expr = ref_expr(expr=expr)
                 elif verify:
                     expr = ref_expr(expr=expr)
-                    if check_domain(expr=expr, secs=secs):
+                    if check_domain(expr=expr, secs=secs, start=start, end=end):
                         equiv_exprs.append(expr)
                     else:
                         invalids_file.write(f"{expr}\n")
