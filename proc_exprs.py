@@ -31,7 +31,6 @@ def preproc(
 
     exprs = set()
 
-    invalids_file = open(file=invalids_filepath, mode='w')
     duplicates_file = open(file=duplicates_filepath, mode='w')
 
     progbar = tqdm(iterable=filepaths, position=0)
@@ -43,6 +42,7 @@ def preproc(
         )
 
         file = open(file=filepath, mode='r')
+        invalids_file = open(file=invalids_filepath, mode='a')
 
         equiv_exprs = []
 
@@ -74,6 +74,7 @@ def preproc(
 
                 equiv_exprs = []
 
+        invalids_file.close()
         file.close()
 
         if equiv_exprs:
@@ -87,7 +88,6 @@ def preproc(
             logger.log_error("Operation aborted.")
             exit(1)
 
-    invalids_file.close()
     duplicates_file.close()
 
     exprs = list(exprs)

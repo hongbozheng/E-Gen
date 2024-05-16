@@ -86,32 +86,32 @@ N_DENOMINATOR_DIGITS = 17
 # filter
 # ===================================
 N_EXPRS = {
-    "ln":    {'general': 110, 'd': 110},
-    "sin":   {'general': 35, 'd': 35},
-    "cos":   {'general': 35, 'd': 35},
-    "tan":   {'general': 35, 'd': 35},
-    "csc":   {'general': 40, 'd': 40},
-    "sec":   {'general': 40, 'd': 40},
-    "cot":   {'general': 40, 'd': 40},
-    "asin":  {'general': 35, 'd': 35},
-    "acos":  {'general': 35, 'd': 35},
-    "atan":  {'general': 40, 'd': 40},
-    "acsc":  {'general': 35, 'd': 35},
-    "asec":  {'general': 35, 'd': 35},
-    "acot":  {'general': 50, 'd': 50},
-    "sinh":  {'general': 35, 'd': 35},
-    "cosh":  {'general': 60, 'd': 60},
-    "tanh":  {'general': 60, 'd': 60},
-    "csch":  {'general': 90, 'd': 90},
-    "sech":  {'general': 90, 'd': 90},
-    "coth":  {'general': 80, 'd': 80},
-    "asinh": {'general': 60, 'd': 60},
-    "acosh": {'general': 90, 'd': 90},
-    "atanh": {'general': 70, 'd': 70},
-    "acsch": {'general': 80, 'd': 80},
-    "asech": {'general': 100, 'd': 100},
-    "acoth": {'general': 80, 'd': 80},
-    "poly":  {'general': 50, 'd': 50},
+    "ln":    {'general': 50, 'd': 50},
+    "sin":   {'general': 10, 'd': 10},
+    "cos":   {'general': 10, 'd': 10},
+    "tan":   {'general': 10, 'd': 10},
+    "csc":   {'general': 15, 'd': 15},
+    "sec":   {'general': 15, 'd': 15},
+    "cot":   {'general': 15, 'd': 15},
+    "asin":  {'general': 10, 'd': 10},
+    "acos":  {'general': 10, 'd': 10},
+    "atan":  {'general': 10, 'd': 10},
+    "acsc":  {'general': 15, 'd': 15},
+    "asec":  {'general': 15, 'd': 15},
+    "acot":  {'general': 25, 'd': 25},
+    "sinh":  {'general': 15, 'd': 15},
+    "cosh":  {'general': 30, 'd': 30},
+    "tanh":  {'general': 30, 'd': 30},
+    "csch":  {'general': 45, 'd': 45},
+    "sech":  {'general': 45, 'd': 45},
+    "coth":  {'general': 40, 'd': 40},
+    "asinh": {'general': 30, 'd': 30},
+    "acosh": {'general': 45, 'd': 45},
+    "atanh": {'general': 35, 'd': 35},
+    "acsch": {'general': 40, 'd': 40},
+    "asech": {'general': 45, 'd': 45},
+    "acoth": {'general': 35, 'd': 35},
+    "poly":  {'general': 40, 'd': 40},
 }
 N_OPS_PER_EXPR = 3
 DX_PCT = 0.1
@@ -120,7 +120,7 @@ DX_PCT = 0.1
 # ===================================
 # balance
 # ===================================
-N_EXPRS_PER_OPS = 500000
+N_EXPRS_PER_OPS = 250000
 
 
 # ===================================
