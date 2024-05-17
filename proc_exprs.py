@@ -62,15 +62,16 @@ def preproc(
                 if expr not in equiv_exprs:
                     equiv_exprs.append(expr)
             else:
-                if equiv_exprs and equiv_exprs[0] not in exprs:
-                    exprs.add(equiv_exprs[0])
-                    equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
-                    for expr in equiv_exprs:
-                        equiv_exprs_file.write(f"{expr}\n")
-                    equiv_exprs_file.write("\n")
-                    equiv_exprs_file.close()
-                else:
-                    duplicates_file.write(f"{equiv_exprs[0]}\n")
+                if equiv_exprs:
+                    if equiv_exprs[0] not in exprs:
+                        exprs.add(equiv_exprs[0])
+                        equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
+                        for expr in equiv_exprs:
+                            equiv_exprs_file.write(f"{expr}\n")
+                        equiv_exprs_file.write("\n")
+                        equiv_exprs_file.close()
+                    else:
+                        duplicates_file.write(f"{equiv_exprs[0]}\n")
 
                 equiv_exprs = []
 
