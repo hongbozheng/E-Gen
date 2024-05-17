@@ -69,8 +69,8 @@ MATH_OPERATORS = {
 }
 CONSTANTS = ["pi", "e"]
 SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
-START = 0.0
-END = 10.0
+START = -100.0
+END = 100.0
 N = 3
 TOL = 1e-5
 SECS = 2

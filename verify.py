@@ -9,7 +9,7 @@ from timeout import timeout
 
 
 VARIABLES = OrderedDict({
-    "x": sp.Symbol("x", real=True, nonzero=True, positive=True),
+    "x": sp.Symbol("x", real=True, nonzero=True, positive=False),
 })
 SYMPY_OPERATORS = {
     # Elementary functions
