@@ -68,6 +68,8 @@ def main() -> None:
             secs=config.SECS,
             start=config.START,
             end=config.END,
+            n=config.N,
+            tol=config.TOL,
             invalids_filepath=config.INVALIDS_FILEPATH,
             equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
             duplicates_filepath=config.DUPLICATES_FILEPATH,

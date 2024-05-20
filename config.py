@@ -69,11 +69,11 @@ MATH_OPERATORS = {
 }
 CONSTANTS = ["pi", "e"]
 SYMBOLS = ["I", "INT+", "INT-", "INT", "FLOAT", "-", ".", "10^", "Y"]
-START = -100.0
-END = 100.0
+START = -25.0
+END = 25.0
 N = 3
 TOL = 1e-5
-SECS = 2
+SECS = 4
 
 
 # ===================================

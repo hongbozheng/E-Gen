@@ -6,16 +6,18 @@ from filter import get_n_lines
 from itertools import combinations
 from refactor import ref_expr
 from tqdm import tqdm
-from verify import check_domain, verify_pair
+from verify import check_equiv
 
 
 def preproc(
         equiv_exprs_dir: str,
         refactor: bool,
         verify: bool,
-        secs: int,
         start: int,
         end: int,
+        n: int,
+        tol: float,
+        secs: int,
         invalids_filepath,
         equiv_exprs_filepath: str,
         duplicates_filepath: str,
@@ -23,15 +25,12 @@ def preproc(
 ) -> None:
     pathname = os.path.join(equiv_exprs_dir, "*.txt")
     filepaths = glob.glob(pathname=pathname)
-
     filepaths = [
         filepath for filepath in filepaths if not filepath.endswith("_time.txt")
     ]
     filepaths.sort()
 
     exprs = set()
-
-    duplicates_file = open(file=duplicates_filepath, mode='w')
 
     progbar = tqdm(iterable=filepaths, position=0)
 
@@ -43,6 +42,8 @@ def preproc(
 
         file = open(file=filepath, mode='r')
         invalids_file = open(file=invalids_filepath, mode='a')
+        exprs_file = open(file=exprs_filepath, mode='a')
+        duplicates_file = open(file=duplicates_filepath, mode='a')
 
         equiv_exprs = []
 
@@ -50,32 +51,49 @@ def preproc(
             expr = line.strip()
 
             if expr:
-                if refactor and not verify:
-                    expr = ref_expr(expr=expr)
-                elif verify:
-                    expr = ref_expr(expr=expr)
-                    if check_domain(expr=expr, secs=secs, start=start, end=end):
-                        equiv_exprs.append(expr)
-                    else:
-                        invalids_file.write(f"{expr}\n")
-                        continue
+                if refactor or verify:
+                    expr = ref_expr(expr)
                 if expr not in equiv_exprs:
                     equiv_exprs.append(expr)
             else:
-                if equiv_exprs:
-                    if equiv_exprs[0] not in exprs:
-                        exprs.add(equiv_exprs[0])
-                        equiv_exprs_file = open(file=equiv_exprs_filepath, mode='a')
-                        for expr in equiv_exprs:
-                            equiv_exprs_file.write(f"{expr}\n")
-                        equiv_exprs_file.write("\n")
-                        equiv_exprs_file.close()
-                    else:
-                        duplicates_file.write(f"{equiv_exprs[0]}\n")
+                if equiv_exprs[0] not in exprs:
+                    exprs.add(equiv_exprs[0])
+                    exprs_file.write(f"{equiv_exprs[0]}\n")
+
+                    verified = []
+
+                    if verify and len(equiv_exprs) > 1:
+                        for expr in equiv_exprs[1:]:
+                            if check_equiv(
+                                expr_pair=(equiv_exprs[0], expr),
+                                start=start,
+                                end=end,
+                                n=n,
+                                tol=tol,
+                                secs=secs,
+                            ):
+                                verified.append(expr)
+                            else:
+                                invalids_file.write(f"{expr}\n")
+
+                    verified.insert(0, equiv_exprs[0])
+
+                    equiv_exprs_file = open(
+                        file=equiv_exprs_filepath,
+                        mode='a',
+                    )
+                    for expr in verified:
+                        equiv_exprs_file.write(f"{expr}\n")
+                    equiv_exprs_file.write("\n")
+                    equiv_exprs_file.close()
+                else:
+                    duplicates_file.write(f"{equiv_exprs[0]}\n")
 
                 equiv_exprs = []
 
         invalids_file.close()
+        exprs_file.close()
+        duplicates_file.close()
         file.close()
 
         if equiv_exprs:
@@ -88,16 +106,6 @@ def preproc(
                 f"characters at the end of the file!")
             logger.log_error("Operation aborted.")
             exit(1)
-
-    duplicates_file.close()
-
-    exprs = list(exprs)
-    exprs.sort()
-
-    exprs_file = open(file=exprs_filepath, mode='w')
-    for expr in exprs:
-        exprs_file.write(f"{expr}\n")
-    exprs_file.close()
 
     return
 
@@ -139,13 +147,13 @@ def postproc(
                 expr_pairs = []
 
                 for expr_pair in pairs:
-                    if verify_pair(
+                    if check_equiv(
                         expr_pair=expr_pair,
+                        secs=secs,
                         start=start,
                         end=end,
                         n=n,
                         tol=tol,
-                        secs=secs,
                     ):
                         expr_pairs.append(expr_pair)
                     else:

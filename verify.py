@@ -9,7 +9,7 @@ from timeout import timeout
 
 
 VARIABLES = OrderedDict({
-    "x": sp.Symbol("x", real=True, nonzero=True, positive=False),
+    "x": sp.Symbol("x", real=None, nonzero=True, positive=None),
 })
 SYMPY_OPERATORS = {
     # Elementary functions
@@ -202,7 +202,7 @@ def prefix_to_sympy(expr, evaluate=True):
     return expr
 
 
-def check_domain(expr: str, start: float, end: float, secs: int) -> bool:
+def check_domain(expr: str, secs: int, start: float, end: float) -> bool:
     @timeout(secs=secs)
     def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
         return continuous_domain(
@@ -236,13 +236,13 @@ def check_domain(expr: str, start: float, end: float, secs: int) -> bool:
     return True
 
 
-def verify_pair(
+def check_equiv(
         expr_pair: tuple[str, str],
+        secs: int,
         start: float,
         end: float,
         n: int,
         tol: float,
-        secs: int,
 ) -> bool:
     @timeout(secs=secs)
     def _simplify(expr: Expr) -> Expr:
@@ -273,7 +273,7 @@ def verify_pair(
         rand_nums = np.random.uniform(low=start, high=end, size=n)
         for num in rand_nums:
             val = expr.subs(x, num).evalf()
-            if val > tol:
+            if abs(val) > tol:
                 return False
 
         return True
@@ -291,10 +291,9 @@ def verify_pair(
         while i < n:
             rand_num = np.random.uniform(low=start, high=end, size=1)
             val = expr.subs(x, rand_num).evalf()
-            if val in S.Reals:
-                if val > tol:
-                    return False
-                i += 1
+            if abs(val) > tol:
+                return False
+            i += 1
 
         return True
 
