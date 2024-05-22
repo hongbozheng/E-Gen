@@ -261,7 +261,7 @@ def check_equiv(
     #         )
     #     )
 
-    @timeout(secs=secs*2)
+    @timeout(secs=secs)
     def _check_equiv(
             x: Symbol,
             expr: Expr,
