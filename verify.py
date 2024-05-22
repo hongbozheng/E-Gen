@@ -278,7 +278,6 @@ def check_equiv(
 
         return True
 
-
     x = VARIABLES['x']
 
     try:
