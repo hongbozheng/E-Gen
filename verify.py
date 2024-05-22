@@ -9,7 +9,7 @@ from timeout import timeout
 
 
 VARIABLES = OrderedDict({
-    "x": sp.Symbol("x", real=None, nonzero=True, positive=None),
+    "x": sp.Symbol("x", real=None, nonzero=None, positive=None),
 })
 SYMPY_OPERATORS = {
     # Elementary functions
@@ -211,7 +211,7 @@ def check_domain(expr: str, secs: int, start: float, end: float) -> bool:
             domain=Interval(
                 start=start,
                 end=end,
-                left_open=True,
+                left_open=False,
                 right_open=False
             )
         )
@@ -248,18 +248,18 @@ def check_equiv(
     def _simplify(expr: Expr) -> Expr:
         return sp.simplify(expr=expr)
 
-    @timeout(secs=secs)
-    def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
-        return continuous_domain(
-            f=expr,
-            symbol=symbol,
-            domain=Interval(
-                start=start,
-                end=end,
-                left_open=True,
-                right_open=False
-            )
-        )
+    # @timeout(secs=secs)
+    # def _cont_domain(expr: Expr, symbol: Symbol, start: float, end: float):
+    #     return continuous_domain(
+    #         f=expr,
+    #         symbol=symbol,
+    #         domain=Interval(
+    #             start=start,
+    #             end=end,
+    #             left_open=False,
+    #             right_open=False
+    #         )
+    #     )
 
     @timeout(secs=secs*2)
     def _check_equiv(
@@ -268,7 +268,7 @@ def check_equiv(
             start: float,
             end: float,
             n: int,
-            tol: float
+            tol: float,
     ) -> bool:
         rand_nums = np.random.uniform(low=start, high=end, size=n)
         for num in rand_nums:
@@ -278,24 +278,6 @@ def check_equiv(
 
         return True
 
-    @timeout(secs=secs*2)
-    def _check_equiv_compl(
-            x: Symbol,
-            expr: Expr,
-            start: float,
-            end: float,
-            n: int,
-            tol: float
-    ) -> bool:
-        i = 0
-        while i < n:
-            rand_num = np.random.uniform(low=start, high=end, size=1)
-            val = expr.subs(x, rand_num).evalf()
-            if abs(val) > tol:
-                return False
-            i += 1
-
-        return True
 
     x = VARIABLES['x']
 
@@ -304,8 +286,7 @@ def check_equiv(
         expr_1 = prefix_to_sympy(expr=expr_pair[1])
     except Exception as e:
         logger.log_error(
-            f"prefix_to_sympy exception {e}; "
-            f"{expr_pair[0]} & {expr_pair[1]}"
+            f"prefix_to_sympy exception {e}; {expr_pair[0]} & {expr_pair[1]}"
         )
         return False
     try:
@@ -313,8 +294,7 @@ def check_equiv(
         expr_1 = _simplify(expr=expr_1)
     except Exception as e:
         logger.log_error(
-            f"simplify exception {e}; "
-            f"{expr_pair[0]} & {expr_pair[1]}"
+            f"simplify exception {e}; {expr_pair[0]} & {expr_pair[1]}"
         )
         return False
 
@@ -322,100 +302,30 @@ def check_equiv(
 
     if expr == 0:
         logger.log_debug(
-            f" simplify  , equivalent    ; "
-            f"{expr_pair[0]} & {expr_pair[1]}"
+            f"simplify  , equiv    ; {expr_pair[0]} & {expr_pair[1]}"
         )
-        equiv = True
+        return True
     else:
         try:
-            domain = _cont_domain(expr=expr, symbol=x, start=start, end=end)
-            try:
-                if isinstance(domain, sp.sets.sets.Union):
-                    if isinstance(domain.args[0], sp.sets.sets.Complement):
-                        case = "Union-Comp"
-                        equiv = _check_equiv_compl(
-                            x=x,
-                            expr=expr,
-                            start=start+1,
-                            end=end,
-                            n=n,
-                            tol=tol
-                        )
-                    else:
-                        case = "Union"
-                        equiv = _check_equiv(
-                            x=x,
-                            expr=expr,
-                            start=float(domain.args[0].start),
-                            end=float(domain.args[0].end),
-                            n=n,
-                            tol=tol
-                        )
-                    if equiv:
-                        logger.log_debug(
-                            f" {case:<10}, equivalent    ; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                    else:
-                        logger.log_error(
-                            f"{case:<10}, non-equivalent; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                elif isinstance(domain, sp.sets.sets.Complement):
-                    case = "Complement"
-                    equiv = _check_equiv_compl(
-                        x=x,
-                        expr=expr,
-                        start=start+1,
-                        end=end,
-                        n=n,
-                        tol=tol
-                    )
-                    if equiv:
-                        logger.log_debug(
-                            f" {case:<10}, equivalent    ; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                    else:
-                        logger.log_error(
-                            f"{case:<10}, non-equivalent; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                elif isinstance(domain, sp.sets.sets.Interval):
-                    case = "Interval"
-                    equiv = _check_equiv(
-                        x=x,
-                        expr=expr,
-                        start=float(domain.start),
-                        end=float(domain.end),
-                        n=n,
-                        tol=tol
-                    )
-                    if equiv:
-                        logger.log_debug(
-                            f" {case:<10}, equivalent    ; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                    else:
-                        logger.log_error(
-                            f"{case:<10}, non-equivalent; "
-                            f"{expr_pair[0]} & {expr_pair[1]}"
-                        )
-                else:
-                    logger.log_error(f"Invalid domain type {domain}")
-                    equiv = False
-
-            except Exception as e:
-                logger.log_error(
-                    f"eval exception {e}; "
-                    f"{expr_pair[0]} & {expr_pair[1]}"
+            equiv = _check_equiv(
+                x=x,
+                expr=expr,
+                start=start,
+                end=end,
+                n=n,
+                tol=tol
+            )
+            if equiv:
+                logger.log_debug(
+                    f"subs_evalf, equiv    ; {expr_pair[0]} & {expr_pair[1]}"
                 )
-                equiv = False
+            else:
+                logger.log_error(
+                    f"subs_evalf, non-equiv; {expr_pair[0]} & {expr_pair[1]}"
+                )
+            return equiv
         except Exception as e:
             logger.log_error(
-                f"continuous domain exception {e}; "
-                f"{expr_pair[0]} & {expr_pair[1]}"
+                f"_check_equiv exception {e}; {expr_pair[0]} & {expr_pair[1]}"
             )
-            equiv = False
-
-    return equiv
+            return False
