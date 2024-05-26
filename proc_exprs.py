@@ -60,9 +60,9 @@ def preproc(
                     exprs.add(equiv_exprs[0])
                     exprs_file.write(f"{equiv_exprs[0]}\n")
 
-                    verified = []
-
                     if verify and len(equiv_exprs) > 1:
+                        verified = []
+
                         for expr in equiv_exprs[1:]:
                             if check_equiv(
                                 expr_pair=(equiv_exprs[0], expr),
@@ -76,13 +76,14 @@ def preproc(
                             else:
                                 invalids_file.write(f"{expr}\n")
 
-                    verified.insert(0, equiv_exprs[0])
+                        verified.insert(0, equiv_exprs[0])
+                        equiv_exprs = verified
 
                     equiv_exprs_file = open(
                         file=equiv_exprs_filepath,
                         mode='a',
                     )
-                    for expr in verified:
+                    for expr in equiv_exprs:
                         equiv_exprs_file.write(f"{expr}\n")
                     equiv_exprs_file.write("\n")
                     equiv_exprs_file.close()
