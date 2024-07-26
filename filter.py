@@ -1,6 +1,16 @@
+#!/usr/bin/env python3
+
+
+from typing import Dict, List
+
+import config as cfg
+import logger
 import mmap
+import os
 import random
+from logger import timestamp
 from tqdm import tqdm
+from write import write
 
 
 def get_n_lines(filepath: str) -> int:
@@ -14,7 +24,7 @@ def get_n_lines(filepath: str) -> int:
     return n_lines
 
 
-def _n_exprs(expr: str, n_exprs: dict[str, dict[str, int]]) -> int:
+def get_n_exprs(expr: str, n_exprs: Dict[str, Dict[str, int]]) -> int:
     tokens = expr.replace("INT+ ", "").replace("INT- ", "").split(sep=' ')
 
     if tokens[0] != 'd':
@@ -29,14 +39,14 @@ def _n_exprs(expr: str, n_exprs: dict[str, dict[str, int]]) -> int:
         return n_exprs['poly']['d']
 
 
-def _filter(
-        equiv_exprs: list[str],
-        operators: list[str],
+def filter(
+        equiv_exprs: List[str],
+        operators: List[str],
         n_ops: int,
         n: int,
         dx: bool,
-) -> list[str]:
-    exprs = []
+) -> List[str]:
+    exprs = [equiv_exprs[0]]
 
     for expr in equiv_exprs[1:]:
         tokens = expr.split(sep=' ')
@@ -56,8 +66,6 @@ def _filter(
             if op_cnt <= n_ops:
                 exprs.append(expr)
 
-    exprs.insert(0, equiv_exprs[0])
-
     if len(exprs) == n:
         return exprs
     elif len(exprs) > n:
@@ -71,25 +79,36 @@ def _filter(
         return exprs
 
 
-def filter_exprs(
-        n_exprs:  dict[str, dict[str, int]],
-        seed: int,
-        operators: list[str],
-        n_ops: int,
-        raw_filepath: str,
-        filtered_filepath: str,
-) -> None:
-    random.seed(a=seed)
+def main() -> None:
+    if os.path.exists(path=cfg.EQUIV_EXPRS_FILTER_FILEPATH):
+        logger.log_info(
+            f"File '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}' already exists!"
+        )
+        exit(1)
+    if not os.path.exists(path=cfg.EQUIV_EXPRS_PROC_FILEPATH):
+        logger.log_info(
+            f"File '{cfg.EQUIV_EXPRS_PROC_FILEPATH}' does not exist!"
+            "Run './preprocess' first to create file "
+            f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}'"
+        )
+        exit(1)
 
-    n_lines = get_n_lines(filepath=raw_filepath)
-    raw_file = open(file=raw_filepath, mode='r')
+    logger.log_info(
+        f"Creating file '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}'..."
+    )
+
+    file = open(file=cfg.EQUIV_EXPRS_PROC_FILEPATH, mode='r', encoding='utf-8')
+    n_lines = get_n_lines(filepath=cfg.EQUIV_EXPRS_PROC_FILEPATH)
 
     equiv_exprs = []
 
     for line in tqdm(
-            iterable=raw_file,
-            desc=f"[INFO]: Reading file '{raw_filepath}'",
-            total=n_lines,
+        iterable=file,
+        desc=f"[{timestamp()}] [INFO]: Reading file "
+             f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}'",
+        total=n_lines,
+        leave=True,
+        position=0,
     ):
         expr = line.strip()
 
@@ -99,35 +118,45 @@ def filter_exprs(
             if len(equiv_exprs) == 1:
                 equiv_exprs = []
                 continue
-            else:
-                n = _n_exprs(expr=equiv_exprs[0], n_exprs=n_exprs)
 
-                if len(equiv_exprs) > n:
-                    if 'd x' not in equiv_exprs[0]:
-                        equiv_exprs = _filter(
-                            equiv_exprs=equiv_exprs,
-                            operators=operators,
-                            n_ops=n_ops,
-                            n=n,
-                            dx=False,
-                        )
-                    else:
-                        equiv_exprs = _filter(
-                            equiv_exprs=equiv_exprs,
-                            operators=operators,
-                            n_ops=n_ops,
-                            n=n,
-                            dx=True,
-                        )
+            n = get_n_exprs(expr=equiv_exprs[0], n_exprs=cfg.N_EXPRS)
 
-                filtered_file = open(file=filtered_filepath, mode='a')
-                for expr in equiv_exprs:
-                    filtered_file.write(f"{expr}\n")
-                filtered_file.write("\n")
-                filtered_file.close()
+            if len(equiv_exprs) > n:
+                if 'd x' not in equiv_exprs[0]:
+                    equiv_exprs = filter(
+                        equiv_exprs=equiv_exprs,
+                        operators=cfg.OPERATORS,
+                        n_ops=cfg.N_OPS_PER_EXPR,
+                        n=n,
+                        dx=False,
+                    )
+                else:
+                    equiv_exprs = filter(
+                        equiv_exprs=equiv_exprs,
+                        operators=cfg.OPERATORS,
+                        n_ops=cfg.N_OPS_PER_EXPR,
+                        n=n,
+                        dx=True,
+                    )
+
+            write(
+                filepath=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
+                mode='a',
+                encoding='utf-8',
+                exprs=equiv_exprs,
+                newline=True,
+            )
 
             equiv_exprs = []
 
-    raw_file.close()
+    file.close()
 
+    logger.log_info(
+        f"Finish creating file '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}'."
+    )
+        
     return
+
+
+if __name__ == '__main__':
+    main()

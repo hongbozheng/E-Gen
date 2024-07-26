@@ -45,21 +45,29 @@ def preproc(
             refresh=True,
         )
 
-        file = open(file=filepath, mode='r')
-        exprs_file = open(file=exprs_filepath, mode='a')
-        invalids_file = open(file=invalids_filepath, mode='a')
-        duplicates_file = open(file=duplicates_filepath, mode='a')
+        file = open(file=filepath, mode='r', encoding="utf-8")
+        exprs_file = open(file=exprs_filepath, mode='a', encoding="utf-8")
+        invalids_file = open(
+            file=invalids_filepath,
+            mode='a',
+            encoding="utf-8",
+        )
+        duplicates_file = open(
+            file=duplicates_filepath,
+            mode='a',
+            encoding="utf-8",
+        )
 
         equiv_exprs = []
 
         n_lines = get_n_lines(filepath=filepath)
 
         for line in tqdm(
-                iterable=file,
-                desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
-                total=n_lines,
-                leave=False,
-                position=1,
+            iterable=file,
+            desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
+            total=n_lines,
+            leave=False,
+            position=1,
         ):
             expr = line.strip()
 

@@ -43,39 +43,40 @@ def main() -> None:
     refactor = args.refactor
     verify = args.verify
 
-    if not os.path.exists(path=cfg.EQUIV_EXPRS_PROC_FILEPATH):
-        logger.log_info(
-            f"Creating files '{cfg.EXPRS_FILEPATH}', "
-            f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
-            f"'{cfg.DUPLICATES_FILEPATH}', and "
-            f"'{cfg.INVALIDS_FILEPATH}'..."
-        )
-
-        preproc(
-            equiv_exprs_dir=equiv_exprs_dir,
-            refactor=refactor,
-            verify=verify,
-            secs=cfg.SECS,
-            start=cfg.START,
-            end=cfg.END,
-            n=cfg.N,
-            tol=cfg.TOL,
-            exprs_filepath=cfg.EXPRS_FILEPATH,
-            invalids_filepath=cfg.INVALIDS_FILEPATH,
-            duplicates_filepath=cfg.DUPLICATES_FILEPATH,
-            equiv_exprs_filepath=cfg.EQUIV_EXPRS_PROC_FILEPATH,
-        )
-
-        logger.log_info(
-            f"Finish creating files '{cfg.EXPRS_FILEPATH}', "
-            f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
-            f"'{cfg.DUPLICATES_FILEPATH}', and "
-            f"'{cfg.INVALIDS_FILEPATH}'..."
-        )
-    else:
+    if os.path.exists(path=cfg.EQUIV_EXPRS_PROC_FILEPATH):
         logger.log_info(
             f"File '{cfg.EQUIV_EXPRS_PROC_FILEPATH}' already exists!"
         )
+        exit(1)
+    
+    logger.log_info(
+        f"Creating files '{cfg.EXPRS_FILEPATH}', "
+        f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
+        f"'{cfg.DUPLICATES_FILEPATH}', and "
+        f"'{cfg.INVALIDS_FILEPATH}'..."
+    )
+
+    preproc(
+        equiv_exprs_dir=equiv_exprs_dir,
+        refactor=refactor,
+        verify=verify,
+        secs=cfg.SECS,
+        start=cfg.START,
+        end=cfg.END,
+        n=cfg.N,
+        tol=cfg.TOL,
+        exprs_filepath=cfg.EXPRS_FILEPATH,
+        invalids_filepath=cfg.INVALIDS_FILEPATH,
+        duplicates_filepath=cfg.DUPLICATES_FILEPATH,
+        equiv_exprs_filepath=cfg.EQUIV_EXPRS_PROC_FILEPATH,
+    )
+
+    logger.log_info(
+        f"Finish creating files '{cfg.EXPRS_FILEPATH}', "
+        f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
+        f"'{cfg.DUPLICATES_FILEPATH}', and "
+        f"'{cfg.INVALIDS_FILEPATH}'..."
+    )   
 
     return
 
