@@ -134,7 +134,7 @@ FUND_EXPRS_DIR = DATA_DIR + "/fund_exprs"
 # preprocess
 INVALIDS_FILEPATH = DATA_DIR + "/invalids.txt"
 EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
-EQUIV_EXPRS_RAW_FILEPATH = DATA_DIR + "/equiv_exprs_raw.txt"
+EQUIV_EXPRS_VERIFIED_FILEPATH = DATA_DIR + "/equiv_exprs_verified.txt"
 DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
 
 # filter

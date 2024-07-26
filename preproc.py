@@ -53,10 +53,10 @@ def main() -> None:
     verify = args.verify
     filter = args.filter
 
-    if not os.path.exists(path=config.EQUIV_EXPRS_RAW_FILEPATH):
+    if not os.path.exists(path=config.EQUIV_EXPRS_VERIFIED_FILEPATH):
         logger.log_info(
             f"Creating files '{config.EXPRS_FILEPATH}', "
-            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
+            f"'{config.EQUIV_EXPRS_VERIFIED_FILEPATH}', "
             f"'{config.DUPLICATES_FILEPATH}', and "
             f"'{config.INVALIDS_FILEPATH}'..."
         )
@@ -71,33 +71,33 @@ def main() -> None:
             n=config.N,
             tol=config.TOL,
             invalids_filepath=config.INVALIDS_FILEPATH,
-            equiv_exprs_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
+            equiv_exprs_filepath=config.EQUIV_EXPRS_VERIFIED_FILEPATH,
             duplicates_filepath=config.DUPLICATES_FILEPATH,
             exprs_filepath=config.EXPRS_FILEPATH,
         )
 
         logger.log_info(
             f"Finish creating files '{config.EXPRS_FILEPATH}', "
-            f"'{config.EQUIV_EXPRS_RAW_FILEPATH}', "
+            f"'{config.EQUIV_EXPRS_VERIFIED_FILEPATH}', "
             f"'{config.DUPLICATES_FILEPATH}', and "
             f"'{config.INVALIDS_FILEPATH}'..."
         )
     else:
         logger.log_info(
-            f"File '{config.EQUIV_EXPRS_RAW_FILEPATH}' already exists!"
+            f"File '{config.EQUIV_EXPRS_VERIFIED_FILEPATH}' already exists!"
         )
 
     if filter:
         if not os.path.exists(config.EQUIV_EXPRS_FILTERED_FILEPATH):
             logger.log_info(
-                f"Filtering file '{config.EQUIV_EXPRS_RAW_FILEPATH}'..."
+                f"Filtering file '{config.EQUIV_EXPRS_VERIFIED_FILEPATH}'..."
             )
             filter_exprs(
                 n_exprs=config.N_EXPRS,
                 seed=config.SEED,
                 operators=config.OPERATORS,
                 n_ops=config.N_OPS_PER_EXPR,
-                raw_filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
+                raw_filepath=config.EQUIV_EXPRS_VERIFIED_FILEPATH,
                 filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
             )
             logger.log_info(

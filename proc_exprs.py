@@ -7,6 +7,7 @@ from itertools import combinations
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_equiv
+from clean import clean_block, int_add_space
 
 
 def preproc(
@@ -59,6 +60,9 @@ def preproc(
                 if equiv_exprs[0] not in exprs:
                     exprs.add(equiv_exprs[0])
                     exprs_file.write(f"{equiv_exprs[0]}\n")
+
+                    equiv_exprs = clean_block(equiv_exprs)
+                    equiv_exprs = int_add_space(equiv_exprs)
 
                     verified = []
 

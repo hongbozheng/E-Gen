@@ -1,3 +1,4 @@
+from typing import Tuple
 import config
 import logger
 import numpy as np
@@ -237,7 +238,7 @@ def check_domain(expr: str, secs: int, start: float, end: float) -> bool:
 
 
 def check_equiv(
-        expr_pair: tuple[str, str],
+        expr_pair: Tuple[str, str],
         secs: int,
         start: float,
         end: float,
