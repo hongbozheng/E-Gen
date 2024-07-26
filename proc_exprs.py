@@ -1,13 +1,17 @@
+from typing import Dict, List
+
 import glob
 import logger
 import os
 import random
-from filter import get_n_lines
+from clean import clean_block, int_add_space
+from filter import get_n_lines, get_n_exprs, filter
 from itertools import combinations
+from logger import timestamp
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_equiv
-from clean import clean_block, int_add_space
+from write import write
 
 
 def preproc(
@@ -19,10 +23,10 @@ def preproc(
         n: int,
         tol: float,
         secs: int,
-        invalids_filepath,
-        equiv_exprs_filepath: str,
-        duplicates_filepath: str,
         exprs_filepath: str,
+        invalids_filepath: str,
+        duplicates_filepath: str,
+        equiv_exprs_filepath: str,
 ) -> None:
     pathname = os.path.join(equiv_exprs_dir, "*.txt")
     filepaths = glob.glob(pathname=pathname)
@@ -33,22 +37,30 @@ def preproc(
 
     exprs = set()
 
-    progbar = tqdm(iterable=filepaths, position=0)
+    progbar = tqdm(iterable=filepaths, leave=True, position=0)
 
     for filepath in progbar:
         progbar.set_description(
-            desc=f"[INFO]: Processing file '{filepath}'",
-            refresh=True
+            desc=f"[{timestamp()}] [INFO]: Processing file '{filepath}'",
+            refresh=True,
         )
 
         file = open(file=filepath, mode='r')
-        invalids_file = open(file=invalids_filepath, mode='a')
         exprs_file = open(file=exprs_filepath, mode='a')
+        invalids_file = open(file=invalids_filepath, mode='a')
         duplicates_file = open(file=duplicates_filepath, mode='a')
 
         equiv_exprs = []
 
-        for line in file:
+        n_lines = get_n_lines(filepath=filepath)
+
+        for line in tqdm(
+                iterable=file,
+                desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
+                total=n_lines,
+                leave=False,
+                position=1,
+        ):
             expr = line.strip()
 
             if expr:
@@ -61,13 +73,11 @@ def preproc(
                     exprs.add(equiv_exprs[0])
                     exprs_file.write(f"{equiv_exprs[0]}\n")
 
-                    equiv_exprs = clean_block(equiv_exprs)
+                    equiv_exprs = clean_block(equiv_exprs=equiv_exprs)
                     equiv_exprs = int_add_space(equiv_exprs)
 
-                    verified = []
-
                     if verify and len(equiv_exprs) > 1:
-                        verified = []
+                        verified = [equiv_exprs[0]]
 
                         for expr in equiv_exprs[1:]:
                             if check_equiv(
@@ -82,24 +92,22 @@ def preproc(
                             else:
                                 invalids_file.write(f"{expr}\n")
 
-                        verified.insert(0, equiv_exprs[0])
                         equiv_exprs = verified
 
-                    equiv_exprs_file = open(
-                        file=equiv_exprs_filepath,
+                    write(
+                        filepath=equiv_exprs_filepath,
                         mode='a',
+                        encoding='utf-8',
+                        exprs=equiv_exprs,
+                        newline=True,
                     )
-                    for expr in equiv_exprs:
-                        equiv_exprs_file.write(f"{expr}\n")
-                    equiv_exprs_file.write("\n")
-                    equiv_exprs_file.close()
                 else:
                     duplicates_file.write(f"{equiv_exprs[0]}\n")
 
                 equiv_exprs = []
 
-        invalids_file.close()
         exprs_file.close()
+        invalids_file.close()
         duplicates_file.close()
         file.close()
 
@@ -119,28 +127,25 @@ def preproc(
 
 def postproc(
         seed: int,
-        verify: bool,
-        start: float,
-        end: float,
-        n: int,
-        tol: float,
-        secs: int,
-        filtered_filepath: str,
+        n_exprs:  Dict[str, Dict[str, int]],
+        operators: List[str],
+        n_ops: int,
+        verified_filepath: str,
         expr_pairs_filepath: str,
         incorrects_filepath: str,
 ) -> None:
     random.seed(a=seed)
 
-    n_lines = get_n_lines(filepath=filtered_filepath)
+    n_lines = get_n_lines(filepath=verified_filepath)
 
-    filtered_file = open(file=filtered_filepath, mode='r')
+    verified_file = open(file=verified_filepath, mode='r')
     incorrects_file = open(file=incorrects_filepath, mode='w')
 
     exprs = []
 
     for line in tqdm(
-            iterable=filtered_file,
-            desc=f"[INFO]: Reading file '{filtered_filepath}'",
+            iterable=verified_file,
+            desc=f"[INFO]: Reading file '{verified_filepath}'",
             total=n_lines,
     ):
         expr = line.strip()
@@ -148,27 +153,31 @@ def postproc(
         if expr:
             exprs.append(expr)
         else:
-            if verify:
-                pairs = list(combinations(iterable=exprs, r=2))
-
-                expr_pairs = []
-
-                for expr_pair in pairs:
-                    if check_equiv(
-                        expr_pair=expr_pair,
-                        secs=secs,
-                        start=start,
-                        end=end,
-                        n=n,
-                        tol=tol,
-                    ):
-                        expr_pairs.append(expr_pair)
-                    else:
-                        incorrects_file.write(
-                            f"{expr_pair[0]}\t{expr_pair[1]}\n"
-                        )
+            if len(equiv_exprs) == 1:
+                equiv_exprs = []
+                continue
             else:
-                expr_pairs = list(combinations(iterable=exprs, r=2))
+                n = get_n_exprs(expr=equiv_exprs[0], n_exprs=n_exprs)
+
+                if len(equiv_exprs) > n:
+                    if 'd x' not in equiv_exprs[0]:
+                        equiv_exprs = filter(
+                            equiv_exprs=equiv_exprs,
+                            operators=operators,
+                            n_ops=n_ops,
+                            n=n,
+                            dx=False,
+                        )
+                    else:
+                        equiv_exprs = filter(
+                            equiv_exprs=equiv_exprs,
+                            operators=operators,
+                            n_ops=n_ops,
+                            n=n,
+                            dx=True,
+                        )
+
+            expr_pairs = list(combinations(iterable=exprs, r=2))
 
             # random.shuffle(x=expr_pairs)
 

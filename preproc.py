@@ -2,10 +2,9 @@
 
 
 import argparse
-import config
+import config as cfg
 import logger
 import os
-from filter import filter_exprs
 from proc_exprs import preproc
 
 
@@ -38,77 +37,45 @@ def main() -> None:
         required=False,
         help="Whether to verify the domain of the expressions"
     )
-    parser.add_argument(
-        "--filter",
-        "-f",
-        action="store_true",
-        default=False,
-        required=False,
-        help="Whether to filter the expressions"
-    )
 
     args = parser.parse_args()
     equiv_exprs_dir = args.equiv_exprs_dir
     refactor = args.refactor
     verify = args.verify
-    filter = args.filter
 
-    if not os.path.exists(path=config.EQUIV_EXPRS_VERIFIED_FILEPATH):
+    if not os.path.exists(path=cfg.EQUIV_EXPRS_PROC_FILEPATH):
         logger.log_info(
-            f"Creating files '{config.EXPRS_FILEPATH}', "
-            f"'{config.EQUIV_EXPRS_VERIFIED_FILEPATH}', "
-            f"'{config.DUPLICATES_FILEPATH}', and "
-            f"'{config.INVALIDS_FILEPATH}'..."
+            f"Creating files '{cfg.EXPRS_FILEPATH}', "
+            f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
+            f"'{cfg.DUPLICATES_FILEPATH}', and "
+            f"'{cfg.INVALIDS_FILEPATH}'..."
         )
 
         preproc(
             equiv_exprs_dir=equiv_exprs_dir,
             refactor=refactor,
             verify=verify,
-            secs=config.SECS,
-            start=config.START,
-            end=config.END,
-            n=config.N,
-            tol=config.TOL,
-            invalids_filepath=config.INVALIDS_FILEPATH,
-            equiv_exprs_filepath=config.EQUIV_EXPRS_VERIFIED_FILEPATH,
-            duplicates_filepath=config.DUPLICATES_FILEPATH,
-            exprs_filepath=config.EXPRS_FILEPATH,
+            secs=cfg.SECS,
+            start=cfg.START,
+            end=cfg.END,
+            n=cfg.N,
+            tol=cfg.TOL,
+            exprs_filepath=cfg.EXPRS_FILEPATH,
+            invalids_filepath=cfg.INVALIDS_FILEPATH,
+            duplicates_filepath=cfg.DUPLICATES_FILEPATH,
+            equiv_exprs_filepath=cfg.EQUIV_EXPRS_PROC_FILEPATH,
         )
 
         logger.log_info(
-            f"Finish creating files '{config.EXPRS_FILEPATH}', "
-            f"'{config.EQUIV_EXPRS_VERIFIED_FILEPATH}', "
-            f"'{config.DUPLICATES_FILEPATH}', and "
-            f"'{config.INVALIDS_FILEPATH}'..."
+            f"Finish creating files '{cfg.EXPRS_FILEPATH}', "
+            f"'{cfg.EQUIV_EXPRS_PROC_FILEPATH}', "
+            f"'{cfg.DUPLICATES_FILEPATH}', and "
+            f"'{cfg.INVALIDS_FILEPATH}'..."
         )
     else:
         logger.log_info(
-            f"File '{config.EQUIV_EXPRS_VERIFIED_FILEPATH}' already exists!"
+            f"File '{cfg.EQUIV_EXPRS_PROC_FILEPATH}' already exists!"
         )
-
-    if filter:
-        if not os.path.exists(config.EQUIV_EXPRS_FILTERED_FILEPATH):
-            logger.log_info(
-                f"Filtering file '{config.EQUIV_EXPRS_VERIFIED_FILEPATH}'..."
-            )
-            filter_exprs(
-                n_exprs=config.N_EXPRS,
-                seed=config.SEED,
-                operators=config.OPERATORS,
-                n_ops=config.N_OPS_PER_EXPR,
-                raw_filepath=config.EQUIV_EXPRS_VERIFIED_FILEPATH,
-                filtered_filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
-            )
-            logger.log_info(
-                f"Finish creating file "
-                f"'{config.EQUIV_EXPRS_FILTERED_FILEPATH}'."
-            )
-        else:
-            logger.log_info(
-                f"File '{config.EQUIV_EXPRS_FILTERED_FILEPATH}' "
-                f"already exists!"
-            )
 
     return
 
