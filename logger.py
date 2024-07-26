@@ -1,8 +1,10 @@
+from typing import Optional
 import config
-import enum
+from enum import Enum
+from datetime import datetime
 
 
-class LogLevel(enum.Enum):
+class LogLevel(Enum):
     ALL = 6
     TRACE = 5
     DEBUG = 4
@@ -33,79 +35,114 @@ class LogLevel(enum.Enum):
         return NotImplemented
 
 
+def timestamp() -> str:
+    time = datetime.now().strftime(format="%Y-%m-%d %H:%M:%S")
+    return time
+
+
+def log_msg(level: Optional[str], *args, **kwargs) -> None:
+    ts = timestamp()
+    if level:
+        print(f"[{ts}] [{level}]: ", end="")
+    else:
+        print(f"[{ts}] ", end="")
+    ts = timestamp()
+    print(f"[{ts}] ", end="")
+    print(*args, **kwargs)
+    return
+
+
 def log_trace(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.TRACE:
-        print("[TRACE]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [TRACE]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_debug(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.DEBUG:
-        print("[DEBUG]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [DEBUG]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_info(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.INFO:
-        print("[INFO]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [INFO]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_warn(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.WARN:
-        print("[WARN]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [WARN]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_error(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.ERROR:
-        print("[ERROR]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [ERROR]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_fatal(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.FATAL:
-        print("[FATAL]: ", end="")
+        ts = timestamp()
+        print(f"[{ts}] [FATAL]: ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_trace_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.TRACE:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_debug_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.DEBUG:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_info_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.INFO:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_warn_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.WARN:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_error_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.ERROR:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
 
 
 def log_fatal_raw(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.FATAL:
+        ts = timestamp()
+        print(f"[{ts}] ", end="")
         print(*args, **kwargs)
     return
