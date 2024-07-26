@@ -1,7 +1,7 @@
 import errno
+import functools
 import os
 import signal
-import functools
 
 
 class TimeoutError(Exception):

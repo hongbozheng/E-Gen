@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 
+from typing import List, Set
+
 import argparse
 import config
 import logger
@@ -8,21 +10,21 @@ import os
 import random
 
 
-    # sin(x+a)
-    # sin(ax)
-    # csin(ax)
-    # csin(x+a)
-    # csin(x)+a
-    # sin(ax+b)
-    # sin(ax)+b
-    # sin(x+a)+b
-    # csin(ax+b)
-    # csin(ax)+b
-    # csin(x+b)+c
-    # sin(ax+b)+c
+# sin(x+a)
+# sin(ax)
+# csin(ax)
+# csin(x+a)
+# csin(x)+a
+# sin(ax+b)
+# sin(ax)+b
+# sin(x+a)+b
+# csin(ax+b)
+# csin(ax)+b
+# csin(x+b)+c
+# sin(ax+b)+c
 
 
-def w_fund_exprs(fund_exprs: list[str], operators: set[str], op_flag: bool, op: str, fund_exprs_dir: str) -> None:
+def w_fund_exprs(fund_exprs: List[str], operators: Set[str], op_flag: bool, op: str, fund_exprs_dir: str) -> None:
     if not os.path.exists(path=fund_exprs_dir):
         os.makedirs(name=fund_exprs_dir, exist_ok=True)
 
@@ -55,7 +57,7 @@ def w_fund_exprs(fund_exprs: list[str], operators: set[str], op_flag: bool, op: 
     return
 
 
-def fund_expr() -> list[str]:
+def fund_expr() -> List[str]:
     exprs = []
 
     rand_num = lambda: random.randint(a=2, b=9) if random.choice([True, False]) else random.randint(a=-9, b=-2)
@@ -341,7 +343,7 @@ def fund_expr() -> list[str]:
     return exprs
 
 
-def fund_op_exprs(operators: list[str]) -> list[str]:
+def fund_op_exprs(operators: List[str]) -> List[str]:
     exprs = []
 
     rand_num = lambda: random.randint(a=2, b=9) if random.choice([True, False]) else random.randint(a=-9, b=-2)

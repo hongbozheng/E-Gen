@@ -1,4 +1,5 @@
 from typing import Tuple
+
 import config
 import logger
 import numpy as np
@@ -222,7 +223,7 @@ def check_domain(expr: str, secs: int, start: float, end: float) -> bool:
     try:
         expr = prefix_to_sympy(expr=expr)
     except Exception as e:
-        logger.log_error(f"{expr}; prefix_to_sympy exception {e}")
+        logger.log_debug(f"{expr}; prefix_to_sympy exception {e}")
         return False
 
     try:
@@ -231,7 +232,7 @@ def check_domain(expr: str, secs: int, start: float, end: float) -> bool:
             return False
 
     except Exception as e:
-        logger.log_error(f"{expr}; continuous domain exception {e}")
+        logger.log_debug(f"{expr}; continuous domain exception {e}")
         return False
 
     return True
@@ -285,7 +286,7 @@ def check_equiv(
         expr_0 = prefix_to_sympy(expr=expr_pair[0])
         expr_1 = prefix_to_sympy(expr=expr_pair[1])
     except Exception as e:
-        logger.log_error(
+        logger.log_debug(
             f"prefix_to_sympy exception {e}; {expr_pair[0]} & {expr_pair[1]}"
         )
         return False
@@ -293,7 +294,7 @@ def check_equiv(
         expr_0 = _simplify(expr=expr_0)
         expr_1 = _simplify(expr=expr_1)
     except Exception as e:
-        logger.log_error(
+        logger.log_debug(
             f"simplify exception {e}; {expr_pair[0]} & {expr_pair[1]}"
         )
         return False
@@ -320,12 +321,12 @@ def check_equiv(
                     f"subs_evalf, equiv    ; {expr_pair[0]} & {expr_pair[1]}"
                 )
             else:
-                logger.log_error(
+                logger.log_debug(
                     f"subs_evalf, non-equiv; {expr_pair[0]} & {expr_pair[1]}"
                 )
             return equiv
         except Exception as e:
-            logger.log_error(
+            logger.log_debug(
                 f"_check_equiv exception {e}; {expr_pair[0]} & {expr_pair[1]}"
             )
             return False

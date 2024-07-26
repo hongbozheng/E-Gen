@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 
+from typing import Dict, List, Tuple
+
 import argparse
 import config
 import csv
 import logger
 
 
-def pt_stats(stats_: dict, stats_op: dict) -> None:
+def pt_stats(stats_: Dict, stats_op: Dict) -> None:
     logger.log_info("Operator | Expression | Expression Pairs")
 
     file = open(file="stats.csv", mode='w', newline='')
@@ -33,7 +35,7 @@ def pt_stats(stats_: dict, stats_op: dict) -> None:
     return
 
 
-def stats(operators: list[str], filepath: str) -> tuple[dict, dict]:
+def stats(operators: List[str], filepath: str) -> Tuple[Dict, Dict]:
     stats_ = {op: [0, 0] for op in operators}
     stats_['poly'] = [0, 0]
     stats_['d'] = [0, 0]
