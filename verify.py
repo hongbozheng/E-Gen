@@ -4,7 +4,7 @@ import logger
 import numpy as np
 import sympy as sp
 from collections import OrderedDict
-from sympy import Expr, Interval, S, Symbol
+from sympy import Expr, Interval, Symbol
 from sympy.calculus.util import continuous_domain
 from timeout import timeout
 
@@ -262,7 +262,7 @@ def check_equiv(
     #         )
     #     )
 
-    @timeout(secs=secs*2)
+    @timeout(secs=secs)
     def _check_equiv(
             x: Symbol,
             expr: Expr,
@@ -278,7 +278,6 @@ def check_equiv(
                 return False
 
         return True
-
 
     x = VARIABLES['x']
 
