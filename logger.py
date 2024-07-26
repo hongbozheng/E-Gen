@@ -1,7 +1,8 @@
 from typing import Optional
+
 import config
-from enum import Enum
 from datetime import datetime
+from enum import Enum
 
 
 class LogLevel(Enum):
