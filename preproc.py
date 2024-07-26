@@ -5,7 +5,144 @@ import argparse
 import config as cfg
 import logger
 import os
-from proc_exprs import preproc
+from clean import clean_block, int_add_space
+from glob import glob
+from logger import timestamp
+from mmap import mmap
+from refactor import ref_expr
+from tqdm import tqdm
+from verify import check_equiv
+from write import write
+
+
+def get_n_lines(filepath: str) -> int:
+    fp = open(file=filepath, mode='r+')
+    buf = mmap(fileno=fp.fileno(), length=0)
+    n_lines = 0
+    while buf.readline():
+        n_lines += 1
+    fp.close()
+
+    return n_lines
+
+
+def preproc(
+        equiv_exprs_dir: str,
+        refactor: bool,
+        verify: bool,
+        start: int,
+        end: int,
+        n: int,
+        tol: float,
+        secs: int,
+        exprs_filepath: str,
+        invalids_filepath: str,
+        duplicates_filepath: str,
+        equiv_exprs_filepath: str,
+) -> None:
+    pathname = os.path.join(equiv_exprs_dir, "*.txt")
+    filepaths = glob(pathname=pathname)
+    filepaths = [
+        filepath for filepath in filepaths if not filepath.endswith("_time.txt")
+    ]
+    filepaths.sort()
+
+    exprs = set()
+
+    progbar = tqdm(iterable=filepaths, leave=True, position=0)
+
+    for filepath in progbar:
+        progbar.set_description(
+            desc=f"[{timestamp()}] [INFO]: Processing file '{filepath}'",
+            refresh=True,
+        )
+
+        file = open(file=filepath, mode='r', encoding="utf-8")
+        exprs_file = open(file=exprs_filepath, mode='a', encoding="utf-8")
+        invalids_file = open(
+            file=invalids_filepath,
+            mode='a',
+            encoding="utf-8",
+        )
+        duplicates_file = open(
+            file=duplicates_filepath,
+            mode='a',
+            encoding="utf-8",
+        )
+
+        equiv_exprs = []
+
+        n_lines = get_n_lines(filepath=filepath)
+
+        for line in tqdm(
+            iterable=file,
+            desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
+            total=n_lines,
+            leave=False,
+            position=1,
+        ):
+            expr = line.strip()
+
+            if expr:
+                if refactor or verify:
+                    expr = ref_expr(expr)
+                if expr not in equiv_exprs:
+                    equiv_exprs.append(expr)
+            else:
+                if equiv_exprs[0] not in exprs:
+                    exprs.add(equiv_exprs[0])
+                    exprs_file.write(f"{equiv_exprs[0]}\n")
+
+                    equiv_exprs = clean_block(equiv_exprs=equiv_exprs)
+                    equiv_exprs = int_add_space(equiv_exprs)
+
+                    if verify and len(equiv_exprs) > 1:
+                        verified = [equiv_exprs[0]]
+
+                        for expr in equiv_exprs[1:]:
+                            if check_equiv(
+                                expr_pair=(equiv_exprs[0], expr),
+                                start=start,
+                                end=end,
+                                n=n,
+                                tol=tol,
+                                secs=secs,
+                            ):
+                                verified.append(expr)
+                            else:
+                                invalids_file.write(f"{expr}\n")
+
+                        equiv_exprs = verified
+
+                    write(
+                        filepath=equiv_exprs_filepath,
+                        mode='a',
+                        encoding='utf-8',
+                        exprs=equiv_exprs,
+                        newline=True,
+                    )
+                else:
+                    duplicates_file.write(f"{equiv_exprs[0]}\n")
+
+                equiv_exprs = []
+
+        exprs_file.close()
+        invalids_file.close()
+        duplicates_file.close()
+        file.close()
+
+        if equiv_exprs:
+            logger.log_error(
+                f"'{filepath}' file is missing a '\\n' character at the end of "
+                f"the file!"
+            )
+            logger.log_error(
+                f"Make sure all equiv_exprs_*.txt files have 2 '\\n' "
+                f"characters at the end of the file!")
+            logger.log_error("Operation aborted.")
+            exit(1)
+
+    return
 
 
 def main() -> None:

@@ -5,23 +5,12 @@ from typing import Dict, List
 
 import config as cfg
 import logger
-import mmap
 import os
 import random
 from logger import timestamp
+from preproc import get_n_lines
 from tqdm import tqdm
 from write import write
-
-
-def get_n_lines(filepath: str) -> int:
-    fp = open(file=filepath, mode='r+')
-    buf = mmap.mmap(fileno=fp.fileno(), length=0)
-    n_lines = 0
-    while buf.readline():
-        n_lines += 1
-    fp.close()
-
-    return n_lines
 
 
 def get_n_exprs(expr: str, n_exprs: Dict[str, Dict[str, int]]) -> int:
