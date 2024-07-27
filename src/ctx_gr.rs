@@ -1,5 +1,5 @@
 use crate::*;
-use std::time::Instant;
+use quanta::Instant;
 
 /// Context Grammar Struct
 /// store information about initial expression,

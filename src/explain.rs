@@ -1,3 +1,4 @@
+#![allow(clippy::only_used_in_recursion)]
 use crate::Symbol;
 use crate::{
     util::pretty_print, Analysis, EClass, ENodeOrVar, FromOp, HashMap, HashSet, Id, Language,
@@ -124,7 +125,7 @@ type NodeExplanationCache<L> = HashMap<Id, Rc<TreeTerm<L>>>;
 There are two representations of explanations, each of which can be
 represented as s-expressions in strings.
 See [`Explanation`] for more details.
- **/
+**/
 pub struct Explanation<L: Language> {
     /// The tree representation of the explanation.
     pub explanation_trees: TreeExplanation<L>,
@@ -375,11 +376,11 @@ impl<L: Language> Explanation<L> {
 
     /// Check the validity of the explanation with respect to the given rules.
     /// This only is able to check rule applications when the rules are implement `get_pattern_ast`.
-    pub fn check_proof<'a, R, N: Analysis<L>>(&mut self, rules: R)
-        where
-            R: IntoIterator<Item = &'a Rewrite<L, N>>,
-            L: 'a,
-            N: 'a,
+    pub fn check_proof<'a, R, N>(&mut self, rules: R)
+    where
+        R: IntoIterator<Item = &'a Rewrite<L, N>>,
+        L: 'a,
+        N: Analysis<L> + 'a,
     {
         let rules: Vec<&Rewrite<L, N>> = rules.into_iter().collect();
         let rule_table = Explain::make_rule_table(rules.as_slice());
@@ -803,18 +804,18 @@ impl<L: Language> FlatTerm<L> {
     pub fn has_rewrite_forward(&self) -> bool {
         self.forward_rule.is_some()
             || self
-            .children
-            .iter()
-            .any(|child| child.has_rewrite_forward())
+                .children
+                .iter()
+                .any(|child| child.has_rewrite_forward())
     }
 
     /// Checks if this term or any child has a [`backward_rule`](FlatTerm::backward_rule).
     pub fn has_rewrite_backward(&self) -> bool {
         self.backward_rule.is_some()
             || self
-            .children
-            .iter()
-            .any(|child| child.has_rewrite_backward())
+                .children
+                .iter()
+                .any(|child| child.has_rewrite_backward())
     }
 
     fn from_pattern(
@@ -1407,8 +1408,7 @@ impl<'x, L: Language> ExplainNodes<'x, L> {
         let mut enodes = HashSet::default();
         let mut todo = vec![eclass];
 
-        while !todo.is_empty() {
-            let current = todo.pop().unwrap();
+        while let Some(current) = todo.pop() {
             if enodes.insert(current) {
                 for neighbor in &self.explainfind[usize::from(current)].neighbors {
                     todo.push(neighbor.next);

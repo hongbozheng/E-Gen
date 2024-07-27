@@ -1,5 +1,5 @@
 use crate::*;
-use std::time::Instant;
+use quanta::Instant;
 
 /// private global variable to store eclass(es) to skip during extraction
 static mut SKIP_ECLS: Option<HashMap<String, f64>> = None;

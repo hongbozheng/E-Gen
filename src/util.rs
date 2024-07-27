@@ -68,8 +68,8 @@ pub(crate) fn hashmap_with_capacity<K, V>(cap: usize) -> hashmap::HashMap<K, V> 
 pub(crate) type IndexMap<K, V> = indexmap::IndexMap<K, V, BuildHasher>;
 pub(crate) type IndexSet<K> = indexmap::IndexSet<K, BuildHasher>;
 
-pub(crate) type Instant = instant::Instant;
-pub(crate) type Duration = instant::Duration;
+pub(crate) type Instant = quanta::Instant;
+pub(crate) type Duration = std::time::Duration;
 
 pub(crate) fn concat_vecs<T>(to: &mut Vec<T>, mut from: Vec<T>) {
     if to.len() < from.len() {
@@ -122,20 +122,20 @@ impl<T: Display> Debug for DisplayAsDebug<T> {
 /** A data structure to maintain a queue of unique elements.
 
 Notably, insert/pop operations have O(1) expected amortized runtime complexity.
- */
+*/
 #[derive(Clone)]
 #[cfg_attr(feature = "serde-1", derive(Serialize, Deserialize))]
 pub(crate) struct UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     set: hashbrown::HashSet<T>,
     queue: std::collections::VecDeque<T>,
 }
 
 impl<T> Default for UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     fn default() -> Self {
         UniqueQueue {
@@ -146,8 +146,8 @@ impl<T> Default for UniqueQueue<T>
 }
 
 impl<T> UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     pub fn insert(&mut self, t: T) {
         if self.set.insert(t.clone()) {
@@ -156,8 +156,8 @@ impl<T> UniqueQueue<T>
     }
 
     pub fn extend<I>(&mut self, iter: I)
-        where
-            I: IntoIterator<Item = T>,
+    where
+        I: IntoIterator<Item = T>,
     {
         for t in iter.into_iter() {
             self.insert(t);
@@ -178,8 +178,8 @@ impl<T> UniqueQueue<T>
 }
 
 impl<T> IntoIterator for UniqueQueue<T>
-    where
-        T: Eq + std::hash::Hash + Clone,
+where
+    T: Eq + std::hash::Hash + Clone,
 {
     type Item = T;
 
@@ -191,8 +191,8 @@ impl<T> IntoIterator for UniqueQueue<T>
 }
 
 impl<A> FromIterator<A> for UniqueQueue<A>
-    where
-        A: Eq + std::hash::Hash + Clone,
+where
+    A: Eq + std::hash::Hash + Clone,
 {
     fn from_iter<T: IntoIterator<Item = A>>(iter: T) -> Self {
         let mut queue = UniqueQueue::default();

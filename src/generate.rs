@@ -1,8 +1,8 @@
 use crate::*;
+use quanta::Instant;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::process::exit;
-use std::time::Instant;
 
 /// ### private function generate equivalent expressions
 /// ### with 1 input expression

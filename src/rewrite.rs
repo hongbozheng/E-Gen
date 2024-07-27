@@ -25,9 +25,9 @@ pub struct Rewrite<L, N> {
 }
 
 impl<L, N> Debug for Rewrite<L, N>
-    where
-        L: Language + Display + 'static,
-        N: Analysis<L> + 'static,
+where
+    L: Language + Display + 'static,
+    N: Analysis<L> + 'static,
 {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let mut d = f.debug_struct("Rewrite");
@@ -129,11 +129,11 @@ pub(crate) fn search_eclasses_with_limit<'a, I, S, L, N>(
     eclasses: I,
     mut limit: usize,
 ) -> Vec<SearchMatches<'a, L>>
-    where
-        L: Language,
-        N: Analysis<L>,
-        S: Searcher<L, N> + ?Sized,
-        I: IntoIterator<Item = Id>,
+where
+    L: Language,
+    N: Analysis<L>,
+    S: Searcher<L, N> + ?Sized,
+    I: IntoIterator<Item = Id>,
 {
     let mut ms = vec![];
     for eclass in eclasses {
@@ -160,9 +160,9 @@ pub(crate) fn search_eclasses_with_limit<'a, I, S, L, N>(
 /// Right now the only significant [`Searcher`] is [`Pattern`].
 ///
 pub trait Searcher<L, N>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Search one eclass, returning None if no matches can be found.
     /// This should not return a SearchMatches with no substs.
@@ -317,9 +317,9 @@ pub trait Searcher<L, N>
 /// Runner::default().with_expr(&start).run(rules);
 /// ```
 pub trait Applier<L, N>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Apply many substitutions.
     ///
@@ -412,11 +412,11 @@ pub struct ConditionalApplier<C, A> {
 }
 
 impl<C, A, N, L> Applier<L, N> for ConditionalApplier<C, A>
-    where
-        L: Language,
-        C: Condition<L, N>,
-        A: Applier<L, N>,
-        N: Analysis<L>,
+where
+    L: Language,
+    C: Condition<L, N>,
+    A: Applier<L, N>,
+    N: Analysis<L>,
 {
     fn get_pattern_ast(&self) -> Option<&PatternAst<L>> {
         self.applier.get_pattern_ast()
@@ -455,9 +455,9 @@ impl<C, A, N, L> Applier<L, N> for ConditionalApplier<C, A>
 /// [`check`]: Condition::check()
 /// [`Fn`]: std::ops::Fn
 pub trait Condition<L, N>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     /// Check a condition.
     ///
@@ -478,10 +478,10 @@ pub trait Condition<L, N>
 }
 
 impl<L, F, N> Condition<L, N> for F
-    where
-        L: Language,
-        N: Analysis<L>,
-        F: Fn(&mut EGraph<L, N>, Id, &Subst) -> bool,
+where
+    L: Language,
+    N: Analysis<L>,
+    F: Fn(&mut EGraph<L, N>, Id, &Subst) -> bool,
 {
     fn check(&self, egraph: &mut EGraph<L, N>, eclass: Id, subst: &Subst) -> bool {
         self(egraph, eclass, subst)
@@ -519,9 +519,9 @@ impl<L: FromOp> ConditionEqual<L> {
 }
 
 impl<L, N> Condition<L, N> for ConditionEqual<L>
-    where
-        L: Language,
-        N: Analysis<L>,
+where
+    L: Language,
+    N: Analysis<L>,
 {
     fn check(&self, egraph: &mut EGraph<L, N>, _eclass: Id, subst: &Subst) -> bool {
         let mut id_buf_1 = vec![0.into(); self.p1.ast.as_ref().len()];
