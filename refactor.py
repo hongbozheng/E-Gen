@@ -1,4 +1,4 @@
-import config
+import config as cfg
 from fractions import Fraction
 
 
@@ -29,7 +29,7 @@ def ref_expr(expr: str) -> str:
             tokens[i] = "sub"
         elif '.' in token:
             fraction = Fraction(token).limit_denominator(
-                max_denominator=config.N_DENOMINATOR_DIGITS
+                max_denominator=cfg.N_DENOMINATOR_DIGITS
             )
             numerator = ref_int(s=str(fraction.numerator))
             denominator = ref_int(s=str(fraction.denominator))

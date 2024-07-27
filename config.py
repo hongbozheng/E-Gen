@@ -1,24 +1,27 @@
 import logger
+import random
 
 
-# ===================================
-# fund expr
-# ===================================
-OPERATORS = ["ln",
-             "sin", "cos", "tan",
-             "csc", "sec", "cot",
-             "asin", "acos", "atan",
-             "acsc", "asec", "acot",
-             "sinh", "cosh", "tanh",
-             "csch", "sech", "coth",
-             "asinh", "acosh", "atanh",
-             "acsch", "asech", "acoth",]
+# -----------------------------------------------------------------------------
+# Functions
+# -----------------------------------------------------------------------------
+OPERATORS = [
+    "ln",
+    "sin", "cos", "tan",
+    "csc", "sec", "cot",
+    "asin", "acos", "atan",
+    "acsc", "asec", "acot",
+    "sinh", "cosh", "tanh",
+    "csch", "sech", "coth",
+    "asinh", "acosh", "atanh",
+    "acsch", "asech", "acoth",
+]
 CATEGORIES = ["general", "d",]
 
 
-# ===================================
-# sympy verify
-# ===================================
+# -----------------------------------------------------------------------------
+# Sympy Verify
+# -----------------------------------------------------------------------------
 MATH_OPERATORS = {
     # Elementary functions
     "add": 2,
@@ -76,15 +79,15 @@ TOL = 1e-10
 SECS = 10
 
 
-# ===================================
-# refactor
-# ===================================
+# -----------------------------------------------------------------------------
+# Refactor
+# -----------------------------------------------------------------------------
 N_DENOMINATOR_DIGITS = 17
 
 
-# ===================================
-# filter
-# ===================================
+# -----------------------------------------------------------------------------
+# Filter
+# -----------------------------------------------------------------------------
 N_EXPRS = {
     "ln":    {'general': 50, 'd': 50},
     "sin":   {'general': 10, 'd': 10},
@@ -117,41 +120,34 @@ N_OPS_PER_EXPR = 3
 DX_PCT = 0.1
 
 
-# ===================================
-# balance
-# ===================================
-N_EXPRS_PER_OPS = 250000
-
-
-# ===================================
-# filepath
-# ===================================
-DATA_DIR = "data"
+# -----------------------------------------------------------------------------
+# Data
+# -----------------------------------------------------------------------------
+DATA_PATH = "data"
 
 # fund exprs
-FUND_EXPRS_DIR = DATA_DIR + "/fund_exprs"
+FUND_EXPRS_DIR = DATA_PATH + "/fund_exprs"
 
 # preprocess
-INVALIDS_FILEPATH = DATA_DIR + "/invalids.txt"
-EXPRS_FILEPATH = DATA_DIR + "/exprs.txt"
-EQUIV_EXPRS_VERIFIED_FILEPATH = DATA_DIR + "/equiv_exprs_verified.txt"
-DUPLICATES_FILEPATH = DATA_DIR + "/duplicates.txt"
+EXPRS_FILEPATH = DATA_PATH + "/exprs.txt"
+INVALIDS_FILEPATH = DATA_PATH + "/invalids.txt"
+DUPLICATES_FILEPATH = DATA_PATH + "/duplicates.txt"
+EQUIV_EXPRS_PROC_FILEPATH = DATA_PATH + "/equiv_exprs_proc.txt"
 
 # filter
-EQUIV_EXPRS_FILTERED_FILEPATH = DATA_DIR + "/equiv_exprs_filtered.txt"
-
-# expr pairs
-EXPR_PAIRS_FILEPATH = DATA_DIR + "/expr_pairs.txt"
-INCORRECTS_FILEPATH = DATA_DIR + "/incorrects.txt"
+EQUIV_EXPRS_FILTER_FILEPATH = DATA_PATH + "/equiv_exprs_filter.txt"
 
 # split
-EXPR_PAIRS_TRAIN_FILEPATH = DATA_DIR + "/expr_pairs_train.txt"
-EXPRS_VAL_FILEPATH = DATA_DIR + "/exprs_val.txt"
-EXPRS_TEST_FILEPATH = DATA_DIR + "/exprs_test.txt"
+EXPR_PAIRS_TRAIN_FILEPATH = DATA_PATH + "/expr_pairs.txt"
+EXPRS_VAL_FILEPATH = DATA_PATH + "/exprs_val.txt"
+EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
+EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
+EXPRS_ML_FILEPATH = DATA_PATH + "/exprs_ml.txt"
 
 
-# ===================================
-# hyperparameter
-# ===================================
+# -----------------------------------------------------------------------------
+# Hyperparams
+# -----------------------------------------------------------------------------
 SEED = 42
+random.seed(a=SEED)
 LOG_LEVEL = logger.LogLevel.INFO

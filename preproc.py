@@ -12,7 +12,6 @@ from mmap import mmap
 from refactor import ref_expr
 from tqdm import tqdm
 from verify import check_equiv
-from write import write
 
 
 def get_n_lines(filepath: str) -> int:
@@ -70,9 +69,9 @@ def preproc(
             encoding="utf-8",
         )
 
+        n_lines = get_n_lines(filepath=filepath)
         equiv_exprs = []
 
-        n_lines = get_n_lines(filepath=filepath)
 
         for line in tqdm(
             iterable=file,
@@ -85,7 +84,7 @@ def preproc(
 
             if expr:
                 if refactor or verify:
-                    expr = ref_expr(expr)
+                    expr = ref_expr(expr=expr)
                 if expr not in equiv_exprs:
                     equiv_exprs.append(expr)
             else:
@@ -114,13 +113,15 @@ def preproc(
 
                         equiv_exprs = verified
 
-                    write(
-                        filepath=equiv_exprs_filepath,
+                    equiv_exprs_file = open(
+                        file=equiv_exprs_filepath,
                         mode='a',
-                        encoding='utf-8',
-                        exprs=equiv_exprs,
-                        newline=True,
+                        encoding='utf-8'
                     )
+                    for expr in equiv_exprs:
+                        equiv_exprs_file.write(f"{expr}\n")
+                    equiv_exprs_file.write("\n")
+                    equiv_exprs_file.close()
                 else:
                     duplicates_file.write(f"{equiv_exprs[0]}\n")
 
@@ -150,7 +151,8 @@ def main() -> None:
         prog="preprocess",
         description="remove repetitive original expressions and their "
                     "equivalent expressions from generated equivalent "
-                    "expressions .txt files under a folder")
+                    "expressions .txt files under a folder"
+    )
     parser.add_argument(
         "--equiv_exprs_dir",
         "-d",

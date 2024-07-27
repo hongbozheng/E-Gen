@@ -1,6 +1,6 @@
 from typing import Tuple
 
-import config
+import config as cfg
 import logger
 import numpy as np
 import sympy as sp
@@ -158,16 +158,16 @@ def _prefix_to_infix(expr):
     t = expr[0]
 
     # OPERATOR dict, t is an operator
-    if t in config.MATH_OPERATORS:
+    if t in cfg.MATH_OPERATORS:
         args = []
         l1 = expr[1:]
-        for _ in range(config.MATH_OPERATORS[t]):
+        for _ in range(cfg.MATH_OPERATORS[t]):
             i1, l1 = _prefix_to_infix(l1)
             args.append(i1)
         return write_infix(t, args), l1
     # if t is variable 'x' or coefficient 'a1', 'a2'... ,
     # or constant "pi", "E", or 'I'
-    elif (t in VARIABLES or t in COEFFICIENTS or t in config.CONSTANTS
+    elif (t in VARIABLES or t in COEFFICIENTS or t in cfg.CONSTANTS
           or t == 'I'):
         return t, expr[1:]
     # else when t is INT+ INT-

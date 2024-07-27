@@ -10,7 +10,6 @@ import random
 from logger import timestamp
 from preproc import get_n_lines
 from tqdm import tqdm
-from write import write
 
 
 def get_n_exprs(expr: str, n_exprs: Dict[str, Dict[str, int]]) -> int:
@@ -128,13 +127,15 @@ def main() -> None:
                         dx=True,
                     )
 
-            write(
-                filepath=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
+            filtered_file = open(
+                file=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
                 mode='a',
-                encoding='utf-8',
-                exprs=equiv_exprs,
-                newline=True,
+                encoding='utf-8'
             )
+            for expr in equiv_exprs:
+                filtered_file.write(f"{expr}\n")
+            filtered_file.write("\n")
+            filtered_file.close()
 
             equiv_exprs = []
 
