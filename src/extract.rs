@@ -36,7 +36,7 @@ assert_eq!(best_cost, 1);
 assert_eq!(best, "10".parse().unwrap());
 ```
 
-**/
+ **/
 #[derive(Debug)]
 pub struct Extractor<'a, CF: CostFunction<L>, L: Language, N: Analysis<L>> {
     cost_function: CF,
@@ -112,7 +112,7 @@ might overflow `usize` if you implement a cost function like [`AstSize`],
 even if the actual [`RecExpr`] fits compactly in memory.
 You might want to use [`saturating_add`](u64::saturating_add) to
 ensure your cost function is still monotonic in this situation.
-**/
+ **/
 pub trait CostFunction<L: Language> {
     /// The `Cost` type. It only requires `PartialOrd` so you can use
     /// floating point types, but failed comparisons (`NaN`s) will
@@ -125,8 +125,8 @@ pub trait CostFunction<L: Language> {
     /// _monotonic_, i.e. `cost` should return a `Cost` greater than
     /// any of the child costs of the given enode.
     fn cost<C>(&mut self, enode: &L, costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost;
+        where
+            C: FnMut(Id) -> Self::Cost;
 
     /// Calculates the total cost of a [`RecExpr`].
     ///
@@ -153,14 +153,14 @@ let e: RecExpr<SymbolLang> = "(do_it foo bar baz)".parse().unwrap();
 assert_eq!(AstSize.cost_rec(&e), 4);
 ```
 
-**/
+ **/
 #[derive(Debug)]
 pub struct AstSize;
 impl<L: Language> CostFunction<L> for AstSize {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &L, mut costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost,
+        where
+            C: FnMut(Id) -> Self::Cost,
     {
         enode.fold(1, |sum, id| sum.saturating_add(costs(id)))
     }
@@ -174,14 +174,14 @@ let e: RecExpr<SymbolLang> = "(do_it foo bar baz)".parse().unwrap();
 assert_eq!(AstDepth.cost_rec(&e), 2);
 ```
 
-**/
+ **/
 #[derive(Debug)]
 pub struct AstDepth;
 impl<L: Language> CostFunction<L> for AstDepth {
     type Cost = usize;
     fn cost<C>(&mut self, enode: &L, mut costs: C) -> Self::Cost
-    where
-        C: FnMut(Id) -> Self::Cost,
+        where
+            C: FnMut(Id) -> Self::Cost,
     {
         1 + enode.fold(0, |max, id| max.max(costs(id)))
     }
@@ -198,10 +198,10 @@ fn cmp<T: PartialOrd>(a: &Option<T>, b: &Option<T>) -> Ordering {
 }
 
 impl<'a, CF, L, N> Extractor<'a, CF, L, N>
-where
-    CF: CostFunction<L>,
-    L: Language,
-    N: Analysis<L>,
+    where
+        CF: CostFunction<L>,
+        L: Language,
+        N: Analysis<L>,
 {
     /// Create a new `Extractor` given an `EGraph` and a
     /// `CostFunction`.
