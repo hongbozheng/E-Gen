@@ -11,16 +11,17 @@ cargo run
 ```
 ##### Provide 1 input expression and equivalent expressions will be printed to terminal
 ```
-cargo run -- -e <expression>
+cargo run --bin <bin> -- -e <expression>
 ```
 ##### Provide a file with multiple expressions and a file to store all equivalent expressions
 ```
-cargo run -- -i <input filepath> -o <output filepath>
+cargo run --bin <bin> -- -i <input filepath> -o <output filepath>
 ```
 ##### Other optional hyperparameters
 ```
-cargo run -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <n equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
+cargo run --bin <bin> -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <n equiv exprs> -l <token limit> -m <max token limit> -t <time limit>
 ```
+- `<bin>` - binary to run
 - `<n proc>` - number of process
 - `<thd pct>` - thread percentage
 - `<optim ext flag>` - optimized extraction flag
@@ -31,10 +32,10 @@ cargo run -- -p <n proc> -d <thd pct> -f <optim ext flag> -n <n equiv exprs> -l 
 
 ##### Example command line inputs
 ```
-cargo run -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -e "(cos x)"
+cargo run --bin egg -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -e "(cos x)"
 ```
 ```
-cargo run -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -i "input/filepath" -o "output/filepath"
+cargo run --bin egg -- -p 12 -d 0.8 -f -n 20 -l 10 -m 12 -t 300 -i "input/filepath" -o "output/filepath"
 ```
 
 ## Context-Grammar (Python)
