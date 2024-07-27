@@ -61,7 +61,7 @@ define_language! {
 ```
 
 [`Display`]: std::fmt::Display
- **/
+**/
 #[macro_export]
 macro_rules! define_language {
     ($(#[$meta:meta])* $vis:vis enum $name:ident $variants:tt) => {
@@ -289,7 +289,7 @@ fn is_not_zero(var: &'static str) -> impl Fn(&mut EGraph, Id, &Subst) -> bool {
 ```
 
 [macro]: https://doc.rust-lang.org/stable/reference/macros-by-example.html#metavariables
- **/
+**/
 #[macro_export]
 macro_rules! rewrite {
     (
@@ -322,7 +322,7 @@ Similar to the [`rewrite!`] macro,
 this macro uses the form `multi_rewrite!(name; multipattern => multipattern)`.
 String literals will be parsed a [`MultiPattern`]s.
 
- **/
+**/
 #[macro_export]
 macro_rules! multi_rewrite {
     // limited multipattern support

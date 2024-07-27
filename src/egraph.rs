@@ -70,11 +70,11 @@ pub struct EGraph<L: Language, N: Analysis<L>> {
     pending: Vec<Id>,
     analysis_pending: UniqueQueue<Id>,
     #[cfg_attr(
-    feature = "serde-1",
-    serde(bound(
-    serialize = "N::Data: Serialize",
-    deserialize = "N::Data: for<'a> Deserialize<'a>",
-    ))
+        feature = "serde-1",
+        serde(bound(
+            serialize = "N::Data: Serialize",
+            deserialize = "N::Data: for<'a> Deserialize<'a>",
+        ))
     )]
     pub(crate) classes: HashMap<Id, EClass<L, N::Data>>,
     #[cfg_attr(feature = "serde-1", serde(skip))]
