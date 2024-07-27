@@ -1,4 +1,5 @@
 use crate::*;
+use chrono::Local;
 use std::cmp::Ordering;
 
 /// log level for the environment
@@ -83,86 +84,132 @@ impl PartialOrd for LogLevel {
     }
 }
 
-/// ## function to print log level - trace
+/// ## function to get current timestamp
 /// ## Argument
-/// * `str` - msg to print
-/// ## Return
 /// * `None`
-pub fn log_trace(str: &str) { if LOG_LEVEL >= LogLevel::Trace { print!("[TRACE]: {}", str); } }
-
-/// ## function to print log level - debug
-/// ## Argument
-/// * `str` - msg to print
 /// ## Return
-/// * `None`
-pub fn log_debug(str: &str) { if LOG_LEVEL >= LogLevel::Debug { print!("[DEBUG]: {}", str); } }
-
-/// ## function to print log level - info
-/// ## Argument
-/// * `str` - msg to print
-/// ## Return
-/// * `None`
-pub fn log_info(str: &str) { if LOG_LEVEL >= LogLevel::Info { print!("[INFO]: {}", str); } }
-
-/// ## function to print log level - warn
-/// ## Argument
-/// * `str` - msg to print
-/// ## Return
-/// * `None`
-pub fn log_warn(str: &str) { if LOG_LEVEL >= LogLevel::Warn { print!("[WARN]: {}", str); } }
-
-/// ## function to print log level - error
-/// ## Argument
-/// * `str` - msg to print
-/// ## Return
-/// * `None`
-pub fn log_error(str: &str) { if LOG_LEVEL >= LogLevel::Error { print!("[ERROR]: {}", str); } }
-
-/// ## function to print log level - fatal
-/// ## Argument
-/// * `str` - msg to print
-/// ## Return
-/// * `None`
-pub fn log_fatal(str: &str) { if LOG_LEVEL >= LogLevel::Fatal { print!("[FATAL]: {}", str); } }
+/// * `time` - timestamp in String
+pub fn timestamp() -> String {
+    let time = Local::now().format("%Y-%m-%d %H:%M:%S").to_string();
+    return time
+}
 
 /// ## function to print log level - trace
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_trace_raw(str: &str) { if LOG_LEVEL >= LogLevel::Trace { print!("{}", str); } }
+pub fn log_trace(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Trace { print!("[{}] [TRACE]: {}", ts, str); }
+}
 
 /// ## function to print log level - debug
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_debug_raw(str: &str) { if LOG_LEVEL >= LogLevel::Debug { print!("{}", str); } }
+pub fn log_debug(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Debug { print!("[{}] [DEBUG]: {}", ts, str); }
+}
 
 /// ## function to print log level - info
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_info_raw(str: &str) { if LOG_LEVEL >= LogLevel::Info { print!("{}", str); } }
+pub fn log_info(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Info { print!("[{}] [INFO]: {}", ts, str); }
+}
 
 /// ## function to print log level - warn
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_warn_raw(str: &str) { if LOG_LEVEL >= LogLevel::Warn { print!("{}", str); } }
+pub fn log_warn(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Warn { print!("[{}] [WARN]: {}", ts, str); }
+}
 
 /// ## function to print log level - error
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_error_raw(str: &str) { if LOG_LEVEL >= LogLevel::Error { print!("{}", str); } }
+pub fn log_error(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Error { print!("[{}] [ERROR]: {}", ts, str); }
+}
 
 /// ## function to print log level - fatal
 /// ## Argument
 /// * `str` - msg to print
 /// ## Return
 /// * `None`
-pub fn log_fatal_raw(str: &str) { if LOG_LEVEL >= LogLevel::Fatal { print!("{:?}", str); } }
+pub fn log_fatal(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Fatal { print!("[{}] [FATAL]: {}", ts, str); }
+}
+
+/// ## function to print log level - trace
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_trace_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Trace { print!("[{}] {}", ts, str); }
+}
+
+/// ## function to print log level - debug
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_debug_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Debug { print!("[{}] {}", ts, str); }
+}
+
+/// ## function to print log level - info
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_info_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Info { print!("[{}] {}", ts, str); }
+}
+
+/// ## function to print log level - warn
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_warn_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Warn { print!("[{}] {}", ts, str); }
+}
+
+/// ## function to print log level - error
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_error_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Error { print!("[{}] {}", ts, str); }
+}
+
+/// ## function to print log level - fatal
+/// ## Argument
+/// * `str` - msg to print
+/// ## Return
+/// * `None`
+pub fn log_fatal_raw(str: &str) {
+    let ts = timestamp();
+    if LOG_LEVEL >= LogLevel::Fatal { print!("[{}] {}", ts, str); }
+}
