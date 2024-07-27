@@ -74,35 +74,36 @@ cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
 ```
 ./preproc.py -h
 ```
-##### Deduplicate & Refactor & Verify (domain) & Filter
+##### Deduplicate & Refactor & Verify
 1. Make sure all generated equivalent expressions `.txt` files (`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file
 2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
 3. Run the following command-line application
 ```
-./preproc -d <equiv_exprs_dir> -r <refactor> -v <verify> -f <filter>
+./preproc -d <equiv_exprs_dir> -r <refactor> -v <verify>
 ```
 - `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
 - `<refactor>` - flag to indicate whether to refactor the expressions
 - `<verify>` - flag to indicate whether to verify the expressions
-- `<filter>` - flag to indicate whether to filter the expressions
 
 The script will create the following 5 `.txt` files (depends on the cli(s) provided)
 1. `exprs.txt` - This file contains all the distinct generated original expressions
-2. `equiv_exprs_raw.txt` - This file contains all the distinct generated equivalent expressions
+2. `invalids.txt` - This file contains all the expressions with invalid domain
 3. `duplicates.txt` - This file contains all the repetitive original expressions
-4. `invalids.txt` - This file contains all the expressions with invalid domain
-5. `equiv_exprs_filtered.txt` - This file contains all the filtered equivalent expressions
+4. `equiv_exprs_proc.txt` - This file contains all the processed equivalent expressions
 
-#### Postprocess (For Train Set Only)
+#### Filter
+##### Filter each block of equivalent expressions
+```
+./filter.py
+```
+
+#### Split into Train Set and Val Set
 ##### Check command line input help
 ```
-./postproc.py -h
+./split.py -h
 ```
-##### Create Expression Pairs & Verify Equivalence
-```
-./postproc.py -v <verify>
-```
-- `<verify>` - flag to indicate whether to verify the expression pairs
+- `<pct>` - validation set percentage
+- `<form>` - train set format
 
 #### Statistics
 ##### Check command line input help
@@ -114,15 +115,3 @@ The script will create the following 5 `.txt` files (depends on the cli(s) provi
 ./stats.py -d <dataset_dir>
 ```
 - `<dataset_dir>` - dataset directory
-
-#### Create Train, Validation, and Test Sets
-##### Check command line input help
-```
-./split.py -h
-```
-##### Split dataset into train, validation, and test sets
-```
-./split.py -t <test_pct> -v <val_pct>
-```
-- `<test_pct>` - test set percentage
-- `<val_pct>` - validation set percentage
