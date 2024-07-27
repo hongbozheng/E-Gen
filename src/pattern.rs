@@ -333,9 +333,9 @@ impl<L: Language, A: Analysis<L>> Searcher<L, A> for Pattern<L> {
 }
 
 impl<L, A> Applier<L, A> for Pattern<L>
-    where
-        L: Language,
-        A: Analysis<L>,
+where
+    L: Language,
+    A: Analysis<L>,
 {
     fn get_pattern_ast(&self) -> Option<&PatternAst<L>> {
         Some(&self.ast)
