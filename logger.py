@@ -41,18 +41,6 @@ def timestamp() -> str:
     return time
 
 
-def log_msg(level: Optional[str], *args, **kwargs) -> None:
-    ts = timestamp()
-    if level:
-        print(f"[{ts}] [{level}]: ", end="")
-    else:
-        print(f"[{ts}] ", end="")
-    ts = timestamp()
-    print(f"[{ts}] ", end="")
-    print(*args, **kwargs)
-    return
-
-
 def log_trace(*args, **kwargs) -> None:
     if config.LOG_LEVEL >= LogLevel.TRACE:
         ts = timestamp()

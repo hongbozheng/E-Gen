@@ -1,6 +1,6 @@
 import config as cfg
 import logger
-from verify import VARIABLES, COEFFICIENTS
+from notation import VARIABLES, COEFFICIENTS
 
 
 def parse_int(lst):

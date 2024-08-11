@@ -5,10 +5,10 @@ from typing import List
 
 import argparse
 import config as cfg
-from itertools import permutations
 import logger
 import os
 import random
+from itertools import permutations
 
 
 def w_train_file(
@@ -198,6 +198,7 @@ def main() -> None:
             f"'{cfg.EXPRS_VAL_ML_FILEPATH}'."
         )
     else:
+        raise NotImplementedError
         logger.log_info(
             f"Finish creating files '{cfg.EXPR_TRIPLETS_FILEPATH}' and "
             f"'{cfg.EXPRS_ML_FILEPATH}'."

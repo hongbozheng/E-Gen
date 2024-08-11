@@ -9,7 +9,7 @@ from clean import clean_block, int_add_space
 from glob import glob
 from logger import timestamp
 from mmap import mmap
-from refactor import ref_expr
+from notation import ref_expr
 from tqdm import tqdm
 from verify import check_equiv
 
