@@ -143,6 +143,7 @@ EXPRS_VAL_FILEPATH = DATA_PATH + "/exprs_val.txt"
 EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
 EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
 EXPRS_ML_FILEPATH = DATA_PATH + "/exprs_ml.txt"
+EXPRS_DERI_FILEPATH = DATA_PATH + "/expr_deri.txt"
 
 
 # -----------------------------------------------------------------------------
