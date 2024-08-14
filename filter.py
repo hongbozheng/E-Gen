@@ -113,7 +113,7 @@ def main() -> None:
                 if 'd x' not in equiv_exprs[0]:
                     equiv_exprs = filter(
                         equiv_exprs=equiv_exprs,
-                        operators=cfg.OPERATORS,
+                        operators=cfg.FUNC_OPS,
                         n_ops=cfg.N_OPS_PER_EXPR,
                         n=n,
                         dx=False,
@@ -121,7 +121,7 @@ def main() -> None:
                 else:
                     equiv_exprs = filter(
                         equiv_exprs=equiv_exprs,
-                        operators=cfg.OPERATORS,
+                        operators=cfg.FUNC_OPS,
                         n_ops=cfg.N_OPS_PER_EXPR,
                         n=n,
                         dx=True,

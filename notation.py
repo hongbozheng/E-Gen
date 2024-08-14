@@ -313,6 +313,66 @@ def write_int(val):
         res.append('INT-' if neg else 'INT+')
     return res[::-1]
 
+def div(arg0, arg1):
+    parse_list = ['div']
+    parse_list += sympy_to_prefix_helper(arg0)
+    parse_list += sympy_to_prefix_helper(arg1.args[0])
+    return parse_list
+
+def mul(expr):
+    
+    n_args = len(expr.args)
+    if n_args == 2 and isinstance(expr.args[1], sp.Pow) \
+        and expr.args[1].args[1] == -1:
+        return div(expr.args[0], expr.args[1])
+    i = 0
+    parse_list = ['mul']
+    while i < n_args:
+        if i+1 < n_args and isinstance(expr.args[i+1], sp.Pow) \
+            and expr.args[i+1].args[1] == -1:
+            if i > 0 and i < n_args - 2:
+                parse_list.append('mul')
+            parse_list += div(expr.args[i], expr.args[i+1])
+            i+=2
+        else:
+            if i > 0 and i < n_args - 1:
+                parse_list.append('mul')
+            parse_list += sympy_to_prefix_helper(expr.args[i])
+            i+=1
+    return parse_list
+
+def sub(arg0, arg1):
+    # arg0 = expr.args[0]
+    # arg1 = expr.args[1]
+    if arg1.args[0] == -1:
+        parse_list = ['sub']
+        parse_list += sympy_to_prefix_helper(arg0)
+        parse_list += sympy_to_prefix_helper(arg1.args[1])
+    # elif isinstance(arg1.args[0], sp.Integer) and arg1.args[0] != -1:
+
+
+    return parse_list
+
+def add(expr):
+    n_args = len(expr.args)
+    if n_args == 2 and isinstance(expr.args[1], sp.Mul) \
+        and expr.args[1].args[0] == -1:
+        return sub(expr.args[0], expr.args[1])
+    i = 0
+    parse_list = ['add']
+    while i < n_args:
+        if i+1 < n_args and isinstance(expr.args[i+1], sp.Mul) \
+            and expr.args[i+1].args[0] == -1:
+            if i > 0 and i < n_args - 2:
+                parse_list.append('add')
+            parse_list += sub(expr.args[i], expr.args[i+1])
+            i+=2
+        else:
+            if i > 0 and i < n_args - 1:
+                parse_list.append('add')
+            parse_list += sympy_to_prefix_helper(expr.args[i])
+            i+=1
+    return parse_list
 
 def sympy_to_prefix_helper(expr):
     """
@@ -334,6 +394,10 @@ def sympy_to_prefix_helper(expr):
         return ['false']
     elif expr == sp.true:
         return ['true']
+    elif isinstance(expr, sp.Mul):
+        return mul(expr)
+    elif isinstance(expr, sp.Add):
+        return add(expr)
     # SymPy operator
     for op_type, op_name in SYMPY_OPERATORS.items():
         if isinstance(expr, op_type):

@@ -5,7 +5,7 @@ import random
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
-OPERATORS = [
+FUNC_OPS = [
     "ln",
     "sin", "cos", "tan",
     "csc", "sec", "cot",
@@ -16,6 +16,7 @@ OPERATORS = [
     "asinh", "acosh", "atanh",
     "acsch", "asech", "acoth",
 ]
+ARITH_OPS = ["add", "sub", "mul", "div", "pow",]
 CATEGORIES = ["general", "d",]
 
 

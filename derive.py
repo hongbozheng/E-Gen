@@ -11,34 +11,107 @@ from logger import timestamp
 from notation import prefix_to_sympy, sympy_to_prefix
 from preproc import get_n_lines
 from solver import TraverseSolver
+from sympy import Expr
 from tqdm import tqdm
 
 
-def general(expr: str, error: bool) -> List[str]:
+def hack(expr: str) -> Expr:
+    tokens = expr.split(sep=' ')
+    print("tokens", tokens)
+    id_op = {i: op for i, op in enumerate(tokens) if op in cfg.FUNC_OPS}
+    if id_op:
+        src_id = random.choice(seq=list(id_op.keys()))
+        tgt_ops = [op for op in cfg.FUNC_OPS if op != id_op[src_id]]
+        tgt_op = random.choice(seq=tgt_ops)
+        tokens[src_id] = tgt_op
+    else:
+        print("IN ELSE SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
+        id_op = {
+            i: op for i, op in enumerate(tokens) if op in cfg.ARITH_OPS
+        }
+        src_id = random.choice(seq=list(id_op.keys()))
+        tgt_ops = [op for op in cfg.ARITH_OPS if op != id_op[src_id]]
+        tgt_op = random.choice(seq=tgt_ops)
+        tokens[src_id] = tgt_op
+
+    expr_hack = ' '.join(tokens)
+    if expr_hack == expr:
+        print("SAME SAME SAME !!!!!!!!")
+
+    return expr_hack
+
+
+def general(expr: str, err: bool) -> List[str]:
     expr_sp = prefix_to_sympy(expr=expr, evaluate=False)
     ts = TraverseSolver(expr=expr_sp)
     steps = ts.solve(display_graph=False, nshape=(2, 3))
-    # steps.insert(0, expr)
 
-    print(steps)
-    print(len(steps))
+    # print(steps)
+    # print(len(steps))
 
-    i = 0
-    while i < len(steps)-1:
-        if steps[i] == steps[i+1]:
-            del steps[i+1]
-        else:
-            steps[i] = sympy_to_prefix(expr=steps[i])
-            i += 1
+    for i in range(len(steps)):
+        steps[i] = sympy_to_prefix(expr=steps[i])
 
-    steps[-1] = sympy_to_prefix(expr=steps[-1])
+    if len(steps) != len(set(steps)):
+        print("DUPLICATED STEPS 1")
 
-    print(steps)
-    print(len(steps))
+    # i = 0
+    # while i < len(steps)-1:
+    #     if steps[i] == steps[i+1]:
+    #         del steps[i+1]
+    #     else:
+    #         steps[i] = sympy_to_prefix(expr=steps[i])
+    #         i += 1
+    # steps[-1] = sympy_to_prefix(expr=steps[-1])
+
+    if len(steps) <= 1:
+        return steps[0] + "\t-1"
+
+    if err:
+        gt = random.randint(a=1, b=len(steps)-1)
+        # gt=4
+        # print("gt", gt)
+        steps = steps[:gt+1]
+        # print("keep", steps)
+        # print("original", steps[gt])
+        steps[gt] = hack(expr=steps[gt])
+        # print("hack    ", steps[gt])
+
+        step_sp = prefix_to_sympy(expr=steps[gt], evaluate=False)
+        # print(step_sp)
+
+        ts = TraverseSolver(expr=step_sp)
+        err_steps = ts.solve(display_graph=False, nshape=(2, 3))
+        # print(len(err_steps))
+
+        for i in range(len(err_steps)):
+            err_steps[i] = sympy_to_prefix(expr=err_steps[i])
+
+        if len(err_steps) != len(set(err_steps)):
+            print("DUPLICATED STEPS 2")
+
+        steps.extend(err_steps)
+
+        # i = gt
+        # while i < len(steps)-1:
+        #     if steps[i] == steps[i+1]:
+        #         del steps[i+1]
+        #     else:
+        #         steps[i] = sympy_to_prefix(expr=steps[i])
+        #         i += 1
+        # steps[-1] = sympy_to_prefix(expr=steps[-1])
+
+    if not err:
+        steps[0] += "\t-1"
+    else:
+        steps[0] += f"\t{gt-1}"
+
+    # print(steps)
+    # print(len(steps))
     return steps
 
 
-def derivative(expr: str, error: bool) -> List[str]:
+def derivative(expr: str, err: bool) -> List[str]:
     return
 
 
@@ -55,6 +128,8 @@ def main() -> None:
         )
         exit(1)
 
+    logger.log_info("Start generating derivations...")
+
     n_lines = get_n_lines(filepath=cfg.EXPRS_VAL_ML_FILEPATH)
 
     file = open(file=cfg.EXPRS_VAL_ML_FILEPATH, mode='r', encoding='utf-8')
@@ -67,17 +142,25 @@ def main() -> None:
         total=n_lines,
     ):
         expr = line.strip()
-
         if expr:
-            error = random.random() < 0.5
-            if "d x" not in expr:
-                derivation = general(expr=expr, error=error)
+            print("expr", expr)
+            err = random.random() < 1.0
+            if "d x " not in expr and "d " not in expr:
+                steps = general(expr=expr, err=err)
             else:
-                derivation = derivative(expr=expr, error=error)
+                pass
+                # steps = derivative(expr=expr, err=err)
+
+            # if len(steps) >= 4:
+            #     for step in steps:
+            #         deri_file.write(f"{step}\n")
+            #     deri_file.write('\n')
         exit()
 
     # deri_file.close()
     file.close()
+
+    logger.log_info("Finish generating derivations.")
 
     return
 

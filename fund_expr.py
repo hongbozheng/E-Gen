@@ -511,9 +511,9 @@ def main():
     func_exprs = []
     exprs = fund_expr()
     func_exprs.extend(exprs)
-    exprs = fund_op_exprs(operators=config.OPERATORS)
+    exprs = fund_op_exprs(operators=config.FUNC_OPS)
     func_exprs.extend(exprs)
-    w_fund_exprs(fund_exprs=func_exprs, operators=set(config.OPERATORS), op_flag=op_flag, op=op,
+    w_fund_exprs(fund_exprs=func_exprs, operators=set(config.FUNC_OPS), op_flag=op_flag, op=op,
                  fund_exprs_dir=config.FUND_EXPRS_DIR)
     logger.log_info(f"Finished generating fundamental expressions to '{config.FUND_EXPRS_DIR}' directory.")
 

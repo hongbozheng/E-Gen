@@ -387,6 +387,7 @@ def clean_block(equiv_exprs: list):
     for expr in equiv_exprs:
         # print(f'raw: {expr}')
         try:
+            # TODO: random here
             expr = clean(expr)
             # print(f'clean: {expr}')
             if expr not in equiv_exprs_after_cleaning:

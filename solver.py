@@ -105,4 +105,8 @@ class TraverseSolver():
             # if display_graph:
             #     self.display_graph(fig, n=len(solutionSteps), nshape=nshape)
         # plt.show()
+
+        # step = F(solutionSteps[-1].func(*solutionSteps[-1].args))
+        # solutionSteps.append(step)
+
         return solutionSteps

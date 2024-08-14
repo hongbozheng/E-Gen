@@ -97,12 +97,12 @@ def main() -> None:
 
     if filter:
         stats_, stats_op = stats(
-            operators=config.OPERATORS,
+            operators=config.FUNC_OPS,
             filepath=config.EQUIV_EXPRS_FILTERED_FILEPATH,
         )
     else:
         stats_, stats_op = stats(
-            operators=config.OPERATORS,
+            operators=config.FUNC_OPS,
             filepath=config.EQUIV_EXPRS_RAW_FILEPATH,
         )
     pt_stats(stats_=stats_, stats_op=stats_op)
