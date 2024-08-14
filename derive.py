@@ -17,7 +17,7 @@ from tqdm import tqdm
 
 def hack(expr: str) -> Expr:
     tokens = expr.split(sep=' ')
-    print("tokens", tokens)
+    # print("tokens", tokens)
     id_op = {i: op for i, op in enumerate(tokens) if op in cfg.FUNC_OPS}
     if id_op:
         src_id = random.choice(seq=list(id_op.keys()))
@@ -36,7 +36,7 @@ def hack(expr: str) -> Expr:
 
     expr_hack = ' '.join(tokens)
     if expr_hack == expr:
-        print("SAME SAME SAME !!!!!!!!")
+        print("SAME SAME SAME !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     return expr_hack
 
@@ -133,7 +133,7 @@ def main() -> None:
     n_lines = get_n_lines(filepath=cfg.EXPRS_VAL_ML_FILEPATH)
 
     file = open(file=cfg.EXPRS_VAL_ML_FILEPATH, mode='r', encoding='utf-8')
-    # deri_file = open(file=cfg.EXPRS_DERI_FILEPATH, mode='a', encoding='utf-8')
+    deri_file = open(file=cfg.EXPRS_DERI_FILEPATH, mode='a', encoding='utf-8')
 
     for line in tqdm(
         iterable=file,
@@ -143,7 +143,7 @@ def main() -> None:
     ):
         expr = line.strip()
         if expr:
-            print("expr", expr)
+            # print("expr", expr)
             err = random.random() < 1.0
             if "d x " not in expr and "d " not in expr:
                 steps = general(expr=expr, err=err)
@@ -151,13 +151,13 @@ def main() -> None:
                 pass
                 # steps = derivative(expr=expr, err=err)
 
-            # if len(steps) >= 4:
-            #     for step in steps:
-            #         deri_file.write(f"{step}\n")
-            #     deri_file.write('\n')
-        exit()
+            if len(steps) >= 4:
+                for step in steps:
+                    deri_file.write(f"{step}\n")
+                deri_file.write('\n')
+        # exit()
 
-    # deri_file.close()
+    deri_file.close()
     file.close()
 
     logger.log_info("Finish generating derivations.")
