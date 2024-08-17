@@ -1,5 +1,6 @@
 import config as cfg
 import logger
+import random
 from notation import VARIABLES, COEFFICIENTS
 
 
@@ -387,13 +388,13 @@ def clean_block(equiv_exprs: list):
     for expr in equiv_exprs:
         # print(f'raw: {expr}')
         try:
-            # TODO: random here
-            expr = clean(expr)
+            if random.random() < 0.5:
+                expr = clean(expr)
             # print(f'clean: {expr}')
             if expr not in equiv_exprs_after_cleaning:
                 equiv_exprs_after_cleaning.append(expr)
         except Exception as e:
-            logger.log_error(
+            logger.log_debug(
                 f"can not clean expression {e};"
             ) 
     return equiv_exprs_after_cleaning

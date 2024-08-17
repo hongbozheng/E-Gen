@@ -83,6 +83,11 @@ def preproc(
             expr = line.strip()
 
             if expr:
+                tokens = expr.split(sep=' ')
+                if 'd' in tokens:
+                    i = tokens.index('d')
+                    if tokens[i+1] != 'x':
+                        continue
                 if refactor or verify:
                     expr = ref_expr(expr=expr)
                 if expr not in equiv_exprs:
