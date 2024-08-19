@@ -65,7 +65,7 @@ def general(expr: str, err: bool) -> List[str]:
     # steps[-1] = sympy_to_prefix(expr=steps[-1])
 
     if len(steps) <= 1:
-        return steps[0] + "\t-1"
+        return [steps[0] + "\t-1"]
 
     if err:
         gt = random.randint(a=1, b=len(steps)-1)
@@ -147,8 +147,13 @@ def main() -> None:
             err = random.random() < 1.0
             if "d x " not in expr and "d " not in expr:
                 steps = general(expr=expr, err=err)
+                # print(steps[0])
+                # print("after", len(steps))
             else:
-                pass
+                steps = []
+            # else:
+            #     print("herere")
+            #     pass
                 # steps = derivative(expr=expr, err=err)
 
             if len(steps) >= 4:
