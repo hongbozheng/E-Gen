@@ -144,7 +144,7 @@ def main() -> None:
     logger.log_info(
         f"Finish creating file '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}'."
     )
-        
+
     return
 
 

@@ -388,7 +388,7 @@ def clean_block(equiv_exprs: list):
     for expr in equiv_exprs:
         # print(f'raw: {expr}')
         try:
-            if random.random() < 0.5:
+            if random.random() < 0.9:
                 expr = clean(expr)
             # print(f'clean: {expr}')
             if expr not in equiv_exprs_after_cleaning:
