@@ -91,10 +91,12 @@ def plt_stats(
     colors = {
         "Arithmetic": '#377eb8',  # blue
         "Logarithmic": '#ff7f00',  # orange
-        "Trigonometric": '#f781bf',  # pink
-        "Inverse Trigonometric": "#4daf4a",  # green
-        "Hyperbolic": '#dede00',  # yellow
-        "Inverse Hyperbolic": '#984ea3',  # purple
+        "Trigonometric": '#4daf4a',  # green
+        "Inverse Trigonometric": '#f781bf',  # pink
+        "Hyperbolic": "#984ea3",  # purple
+        "Inverse Hyperbolic": '#999999',  # gray
+        "Polynomial": '#e41a1c',  # red
+        "Derivative": '#dede00',  # yellow
     }
     bar_colors = (
         [colors["Arithmetic"]]*5 +
@@ -102,7 +104,9 @@ def plt_stats(
         [colors["Trigonometric"]]*6 +
         [colors["Inverse Trigonometric"]]*6 +
         [colors["Hyperbolic"]]*6 +
-        [colors["Inverse Hyperbolic"]]*6
+        [colors["Inverse Hyperbolic"]]*6 +
+        [colors["Polynomial"]]*1 +
+        [colors["Derivative"]]*1
     )
 
     legend = [
@@ -117,15 +121,32 @@ def plt_stats(
         for color in colors.values()
     ]
 
-    plt.figure(figsize=(15, 10))
-    plt.bar(x, y, color=bar_colors)
+    plt.rc(group="font", family="serif")
+    plt.rc(group="text", usetex=True)
 
-    plt.xlabel(xlabel="Operator")
-    plt.xticks(rotation=-90)
-    plt.ylabel(ylabel="Number of Expressions")
-    plt.legend(handles=legend, labels=colors.keys(), loc=1)
+    fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(15, 10))
+    ax.bar(x, y, color=bar_colors)
+
+    ax.set_xlabel(xlabel=r"Operator")
+    ax.set_xticks(range(len(x)))
+    ax.set_xticklabels(labels=x, rotation=-90)
+    ax.set_ylabel(ylabel=r"Number of Expressions")
+    ax.legend(
+        handles=legend,
+        labels=colors.keys(),
+        loc=1,
+        framealpha=0.0,
+        title="Operator Type",
+        alignment="left",
+        borderpad=0.5,
+        labelspacing=0.6,
+    )
+    ax.margins(x=0.01, tight=True)
+    ax.spines["top"].set_visible(b=False)
+    ax.spines["right"].set_visible(b=False)
 
     plt.tight_layout()
+    # plt.show()
     plt.savefig(fname="a.svg", transparent=True, dpi=500, format="svg")
 
     return
