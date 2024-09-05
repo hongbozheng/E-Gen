@@ -8,7 +8,7 @@ import config as cfg
 import logger
 import os
 import random
-from itertools import permutations
+from itertools import combinations, permutations
 
 
 def w_train_file(
@@ -33,6 +33,51 @@ def w_train_file(
     file.close()
 
     return
+
+
+def w_train_file_ml(
+        blks: List[List[str]],
+        indices: List[int],
+        n_neg: int,
+        filepath: str,
+) -> None:
+    expr_pair_blks = []
+    for i in indices:
+        exprs = blks[i]
+        expr_pair_blk = list(combinations(iterable=exprs, r=2))
+        expr_pair_blks.append(expr_pair_blk)
+
+    assert len(indices) == len(expr_pair_blks)
+
+    expr_triplets = []
+    for _ in range(n_neg):
+        for id, expr_pair_blk in zip(indices, expr_pair_blks):
+            indices_ = indices.copy()
+            indices_.remove(id)
+            indices_ = random.sample(population=indices_, k=len(expr_pair_blk))
+
+            assert len(indices_) == len(expr_pair_blk)
+
+            for i, k in enumerate(indices_):
+                blk = blks[k].copy()
+                neg_ex = random.choice(seq=blk)
+                blk.remove(neg_ex)
+                expr_triplets.append(
+                    (expr_pair_blk[i][0], expr_pair_blk[i][1], neg_ex)
+                )
+                neg_ex = random.choice(seq=blk)
+                expr_triplets.append(
+                    (expr_pair_blk[i][1], expr_pair_blk[i][0], neg_ex)
+                )
+
+    indices = list(range(len(expr_triplets)))
+    random.shuffle(x=indices)
+
+    file = open(file=filepath, mode='w', encoding="utf-8")
+    for i in indices:
+        file.write(f"{expr_triplets[i][0]}\t{expr_triplets[i][1]}\t"
+                   f"{expr_triplets[i][2]}\n")
+    file.close()
 
 
 def w_val_file(
@@ -80,6 +125,8 @@ def split(
         train_filepath: str,
         val_filepath: str,
         val_ml_filepath: str,
+        train_ml_filepath: str,
+        val_ml_filepath_: str,
 ) -> None:
     blks = []
 
@@ -105,8 +152,9 @@ def split(
         w_train_file(blks=blks, indices=train_indices, filepath=train_filepath)
         w_val_file(blks=blks, indices=val_indices, filepath=val_filepath)
         w_file(blks=blks, indices=val_indices, filepath=val_ml_filepath)
-    else:
-        raise NotImplemented
+    elif form == "triplet":
+        w_train_file_ml(blks=blks, indices=train_indices, n_neg=1, filepath=train_ml_filepath)
+        # w_file(blks=blks, indices=val_indices, filepath=val_ml_filepath_)
 
     return
 
@@ -186,19 +234,20 @@ def main() -> None:
         pct=pct,
         form=form,
         filepath=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
-        train_filepath=cfg.EXPR_PAIRS_TRAIN_FILEPATH,
+        train_filepath=cfg.EXPR_PAIRS_FILEPATH,
         val_filepath=cfg.EXPRS_VAL_FILEPATH,
         val_ml_filepath=cfg.EXPRS_VAL_ML_FILEPATH,
+        train_ml_filepath=cfg.EXPR_TRIPLETS_FILEPATH,
+        val_ml_filepath_=cfg.EXPRS_ML_FILEPATH,
     )
 
     if form == "pair":
         logger.log_info(
-            f"Finish creating files '{cfg.EXPR_PAIRS_TRAIN_FILEPATH}', "
+            f"Finish creating files '{cfg.EXPR_PAIRS_FILEPATH}', "
             f"'{cfg.EXPRS_VAL_FILEPATH}', and "
             f"'{cfg.EXPRS_VAL_ML_FILEPATH}'."
         )
-    else:
-        raise NotImplementedError
+    elif form == "triplet":
         logger.log_info(
             f"Finish creating files '{cfg.EXPR_TRIPLETS_FILEPATH}' and "
             f"'{cfg.EXPRS_ML_FILEPATH}'."
