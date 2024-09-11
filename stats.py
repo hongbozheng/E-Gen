@@ -10,11 +10,17 @@ import logger
 import matplotlib.pyplot as plt
 
 
-def stats(operators: List[str], filepath: str) -> Tuple[Dict, Dict]:
-    stats_ = {op: [0, 0] for op in operators}
+def stats(
+        arith_ops: List[str],
+        func_ops: List[str],
+        filepath: str
+) -> Tuple[Dict[str, List[int]], Dict[int, List[int]], Dict[int, int], Dict[int, int]]:
+    stats_ = {op: [0, 0] for op in arith_ops+func_ops}
     stats_['poly'] = [0, 0]
     stats_['d'] = [0, 0]
     stats_op = {}
+    cluster_size = {}
+    seq_len = {}
 
     file = open(file=filepath, mode='r')
 
@@ -28,8 +34,17 @@ def stats(operators: List[str], filepath: str) -> Tuple[Dict, Dict]:
             for expr in exprs:
                 n_ops = 0
                 tokens = expr.split(sep=' ')
+
+                if len(tokens) not in seq_len:
+                    seq_len[len(tokens)] = 1
+                else:
+                    seq_len[len(tokens)] += 1
+
                 for token in tokens:
-                    if token in operators:
+                    if token in arith_ops:
+                        stats_[token][0] += 1
+                        stats_[token][1] += len(exprs)-1
+                    if token in func_ops:
                         stats_[token][0] += 1
                         stats_[token][1] += len(exprs)-1
                         n_ops += 1
@@ -45,16 +60,24 @@ def stats(operators: List[str], filepath: str) -> Tuple[Dict, Dict]:
                     stats_op[n_ops][0] += 1
                     stats_op[n_ops][1] += len(exprs)-1
 
+            if len(exprs) not in cluster_size:
+                cluster_size[len(exprs)] = 1
+            else:
+                cluster_size[len(exprs)] += 1
+
             exprs = []
 
     file.close()
 
-    return stats_, dict(sorted(stats_op.items()))
+    return (stats_, dict(sorted(stats_op.items())),
+            dict(sorted(cluster_size.items())), dict(sorted(seq_len.items())))
 
 
 def pt_stats(
         stats_: Dict[str, List[int]],
         stats_op: Dict[int, List[int]],
+        cluster_size: Dict[int, int],
+        seq_len: Dict[int, int],
 ) -> None:
     logger.log_info("Operator | Expression | Expression Pairs")
 
@@ -78,6 +101,26 @@ def pt_stats(
         logger.log_info(f"{op:<8} | {stats_op[op][0]:<10} | {stats_op[op][1]}")
     logger.log_info(f"Total    | {n_exprs:<10} | {n_expr_pairs}")
 
+    tot_size = sum(size*freq for size, freq in cluster_size.items())
+    tot_freq = sum(cluster_size.values())
+    largest = max(cluster_size.keys())
+    smallest = min(cluster_size.keys())
+    avg_size = tot_size // tot_freq
+    logger.log_info(f"Average Cluster Size: {avg_size} {largest} {smallest}")
+
+    # logger.log_info("========================================")
+    # logger.log_info("Cluster Size | Frequency")
+    # for size in cluster_size:
+    #     logger.log_info(f"{size:<12} | {cluster_size[size]}")
+    # logger.log_info("========================================")
+
+    tot_size = sum(size * freq for size, freq in seq_len.items())
+    tot_freq = sum(seq_len.values())
+    largest = max(seq_len.keys())
+    smallest = min(seq_len.keys())
+    avg_size = tot_size // tot_freq
+    logger.log_info(f"Average Sequence Length: {avg_size} {largest} {smallest}")
+
     return
 
 
@@ -85,21 +128,20 @@ def plt_stats(
         stats_: Dict[str, List[int]],
         stats_op: Dict[int, List[int]],
 ) -> None:
-    x = list(stats_.keys())
-    y = [vals[0] for vals in stats_.values()]
+    x = list(stats_.keys())[7:]
+    y = [vals[1] for vals in stats_.values()][7:]
 
     colors = {
-        "Arithmetic": '#377eb8',  # blue
-        "Logarithmic": '#ff7f00',  # orange
-        "Trigonometric": '#4daf4a',  # green
-        "Inverse Trigonometric": '#f781bf',  # pink
-        "Hyperbolic": "#984ea3",  # purple
-        "Inverse Hyperbolic": '#999999',  # gray
+        "Logarithmic": '#377eb8',  # blue
+        "Trigonometric": '#ff7f00',  # orange
+        "Inverse Trigonometric": '#4daf4a',  # green
+        "Hyperbolic": '#f781bf',  # pink
+        "Inverse Hyperbolic": "#984ea3",  # purple
         "Polynomial": '#e41a1c',  # red
         "Derivative": '#dede00',  # yellow
     }
     bar_colors = (
-        [colors["Arithmetic"]]*5 +
+        # [colors["Arithmetic"]]*7 +
         [colors["Logarithmic"]]*1 +
         [colors["Trigonometric"]]*6 +
         [colors["Inverse Trigonometric"]]*6 +
@@ -131,6 +173,7 @@ def plt_stats(
     ax.set_xticks(range(len(x)))
     ax.set_xticklabels(labels=x, rotation=-90)
     ax.set_ylabel(ylabel=r"Number of Expressions")
+    # ax.set_yscale("log")
     ax.legend(
         handles=legend,
         labels=colors.keys(),
@@ -147,7 +190,7 @@ def plt_stats(
 
     plt.tight_layout()
     # plt.show()
-    plt.savefig(fname="a.svg", transparent=True, dpi=500, format="svg")
+    plt.savefig(fname="dataset_stats.svg", transparent=True, dpi=500, format="svg")
 
     return
 
@@ -169,12 +212,18 @@ def main() -> None:
     args = parser.parse_args()
     filepath = args.filepath
 
-    stats_, stats_op = stats(
-        operators=cfg.ARITH_OPS+cfg.FUNC_OPS,
+    stats_, stats_op, cluster_size, seq_len = stats(
+        arith_ops=cfg.ARITH_OPS,
+        func_ops=cfg.FUNC_OPS,
         filepath=filepath,
     )
 
-    pt_stats(stats_=stats_, stats_op=stats_op)
+    pt_stats(
+        stats_=stats_,
+        stats_op=stats_op,
+        cluster_size=cluster_size,
+        seq_len=seq_len,
+    )
 
     plt_stats(stats_=stats_, stats_op=stats_op)
 

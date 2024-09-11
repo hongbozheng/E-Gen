@@ -5,6 +5,7 @@ import random
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
+ARITH_OPS = ["add", "sub", "mul", "div", "pow", "sqrt", "abs",]
 FUNC_OPS = [
     "ln",
     "sin", "cos", "tan",
@@ -16,7 +17,6 @@ FUNC_OPS = [
     "asinh", "acosh", "atanh",
     "acsch", "asech", "acoth",
 ]
-ARITH_OPS = ["add", "sub", "mul", "div", "pow",]
 CATEGORIES = ["general", "d",]
 
 
@@ -90,35 +90,43 @@ N_DENOMINATOR_DIGITS = 17
 # Filter
 # -----------------------------------------------------------------------------
 N_EXPRS = {
-    "ln":    {'general': 50, 'd': 50},
-    "sin":   {'general': 10, 'd': 10},
-    "cos":   {'general': 10, 'd': 10},
-    "tan":   {'general': 10, 'd': 10},
-    "csc":   {'general': 15, 'd': 15},
-    "sec":   {'general': 15, 'd': 15},
-    "cot":   {'general': 15, 'd': 15},
-    "asin":  {'general': 10, 'd': 10},
-    "acos":  {'general': 10, 'd': 10},
-    "atan":  {'general': 10, 'd': 10},
-    "acsc":  {'general': 15, 'd': 15},
-    "asec":  {'general': 15, 'd': 15},
-    "acot":  {'general': 25, 'd': 25},
-    "sinh":  {'general': 15, 'd': 15},
-    "cosh":  {'general': 30, 'd': 30},
-    "tanh":  {'general': 30, 'd': 30},
-    "csch":  {'general': 45, 'd': 45},
-    "sech":  {'general': 45, 'd': 45},
-    "coth":  {'general': 40, 'd': 40},
-    "asinh": {'general': 30, 'd': 30},
-    "acosh": {'general': 45, 'd': 45},
-    "atanh": {'general': 35, 'd': 35},
-    "acsch": {'general': 40, 'd': 40},
-    "asech": {'general': 45, 'd': 45},
-    "acoth": {'general': 35, 'd': 35},
-    "poly":  {'general': 40, 'd': 40},
+    "ln":    {'general': 30000000, 'd': 3000000},
+    "sin":   {'general': 15000000, 'd': 1500000},
+    "cos":   {'general': 15000000, 'd': 1500000},
+    "tan":   {'general': 20000000, 'd': 2000000},
+    "csc":   {'general': 30000000, 'd': 3000000},
+    "sec":   {'general': 30000000, 'd': 3000000},
+    "cot":   {'general': 30000000, 'd': 3000000},
+    "asin":  {'general': 15000000, 'd': 1500000},
+    "acos":  {'general': 10000000, 'd': 1000000},
+    "atan":  {'general': 20000000, 'd': 2000000},
+    "acsc":  {'general': 30000000, 'd': 3000000},
+    "asec":  {'general': 30000000, 'd': 3000000},
+    "acot":  {'general': 30000000, 'd': 3000000},
+    "sinh":  {'general': 25000000, 'd': 2500000},
+    "cosh":  {'general': 25000000, 'd': 2500000},
+    "tanh":  {'general': 30000000, 'd': 3000000},
+    "csch":  {'general': 30000000, 'd': 3000000},
+    "sech":  {'general': 20000000, 'd': 2000000},
+    "coth":  {'general': 30000000, 'd': 3000000},
+    "asinh": {'general': 10000000, 'd': 1000000},
+    "acosh": {'general': 30000000, 'd': 3000000},
+    "atanh": {'general': 10000000, 'd': 1000000},
+    "acsch": {'general': 15000000, 'd': 1500000},
+    "asech": {'general': 30000000, 'd': 3000000},
+    "acoth": {'general': 15000000, 'd': 1500000},
+    "poly":  {'general': 30000000, 'd': 3000000},
 }
 N_OPS_PER_EXPR = 3
 DX_PCT = 0.1
+
+
+# -----------------------------------------------------------------------------
+# Split
+# -----------------------------------------------------------------------------
+N_EXPRS_MIN = 20
+N_EXPRS_MAX = 40
+TRAIN_SIZE = 50000000
 
 
 # -----------------------------------------------------------------------------
@@ -139,11 +147,11 @@ EQUIV_EXPRS_PROC_FILEPATH = DATA_PATH + "/equiv_exprs_proc.txt"
 EQUIV_EXPRS_FILTER_FILEPATH = DATA_PATH + "/equiv_exprs_filter.txt"
 
 # split
+EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
+EXPRS_ML_FILEPATH = DATA_PATH + "/exprs_ml.txt"
 EXPR_PAIRS_FILEPATH = DATA_PATH + "/expr_pairs.txt"
 EXPRS_VAL_FILEPATH = DATA_PATH + "/exprs_val.txt"
 EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
-EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
-EXPRS_ML_FILEPATH = DATA_PATH + "/exprs_ml.txt"
 EXPRS_DERI_FILEPATH = DATA_PATH + "/expr_deri.txt"
 
 

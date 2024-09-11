@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from typing import List
+from typing import List, Tuple
 
 import argparse
 import config as cfg
@@ -9,93 +9,30 @@ import logger
 import os
 import random
 from itertools import combinations, permutations
+from logger import timestamp
+from preproc import get_n_lines
+from tqdm import tqdm
 
 
-def w_train_file(
-        blks: List[List[str]],
-        indices: List[int],
-        filepath: str,
-) -> None:
-    expr_pairs = []
-
-    for i in indices:
-        exprs = blks[i]
-        blk_pairs = list(permutations(iterable=exprs, r=2))
-        expr_pairs.extend(blk_pairs)
-
-    indices = list(range(len(expr_pairs)))
-    random.shuffle(x=indices)
-
+def w_file(clusters: List[List[str]], filepath: str) -> None:
     file = open(file=filepath, mode='w', encoding='utf-8')
-    for i in indices:
-        file.write(f"{expr_pairs[i][0]}\t{expr_pairs[i][1]}\n")
-    file.write("\n")
+    for cluster in clusters:
+        for expr in cluster:
+            file.write(f"{expr}\n")
+        file.write('\n')
     file.close()
 
     return
 
 
-def w_train_file_ml(
-        blks: List[List[str]],
-        indices: List[int],
-        n_neg: int,
-        filepath: str,
-) -> None:
-    expr_pair_blks = []
-    for i in indices:
-        exprs = blks[i]
-        expr_pair_blk = list(combinations(iterable=exprs, r=2))
-        expr_pair_blks.append(expr_pair_blk)
+def w_val_file(clusters: List[List[str]], filepath: str) -> None:
+    exprs = [s for cluster in clusters for s in clusters]
 
-    assert len(indices) == len(expr_pair_blks)
-
-    expr_triplets = []
-    for _ in range(n_neg):
-        for id, expr_pair_blk in zip(indices, expr_pair_blks):
-            indices_ = indices.copy()
-            indices_.remove(id)
-            indices_ = random.sample(population=indices_, k=len(expr_pair_blk))
-
-            assert len(indices_) == len(expr_pair_blk)
-
-            for i, k in enumerate(indices_):
-                blk = blks[k].copy()
-                neg_ex = random.choice(seq=blk)
-                blk.remove(neg_ex)
-                expr_triplets.append(
-                    (expr_pair_blk[i][0], expr_pair_blk[i][1], neg_ex)
-                )
-                neg_ex = random.choice(seq=blk)
-                expr_triplets.append(
-                    (expr_pair_blk[i][1], expr_pair_blk[i][0], neg_ex)
-                )
-
-    indices = list(range(len(expr_triplets)))
-    random.shuffle(x=indices)
-
-    file = open(file=filepath, mode='w', encoding="utf-8")
-    for i in indices:
-        file.write(f"{expr_triplets[i][0]}\t{expr_triplets[i][1]}\t"
-                   f"{expr_triplets[i][2]}\n")
-    file.close()
-
-
-def w_val_file(
-        blks: List[List[str]],
-        indices: List[int],
-        filepath: str,
-) -> None:
-    exprs = []
-
-    for i in indices:
-        blk = blks[i]
-        exprs.extend(blk)
-
-    indices = list(range(len(exprs)))
-    random.shuffle(x=indices)
+    ids = list(range(len(exprs)))
+    random.shuffle(x=ids)
 
     file = open(file=filepath, mode='w', encoding='utf-8')
-    for i in indices:
+    for i in ids:
         file.write(f"{exprs[i]}\n")
     file.write("\n")
     file.close()
@@ -103,58 +40,186 @@ def w_val_file(
     return
 
 
-def w_file(
-        blks: List[List[str]],
-        indices: List[int],
+def val(
         filepath: str,
-) -> None:
-    file = open(file=filepath, mode='w', encoding='utf-8')
-    for i in indices:
-        for expr in blks[i]:
-            file.write(f"{expr}\n")
-        file.write("\n")
+        n_min: int,
+        n_max: int,
+        n_exprs: int,
+) -> Tuple[List[List[str]], List[int]]:
+    n_lines = get_n_lines(filepath=filepath)
+
+    exprs = []
+    val_ids = []
+    val_set = []
+    val_len = []
+
+    file = open(file=filepath, mode='r', encoding='utf-8')
+    for i, line in enumerate(tqdm(
+            iterable=file,
+            desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
+            total=n_lines,
+            leave=True,
+            position=0,
+    )):
+        expr = line.strip()
+        if expr:
+            exprs.append(expr)
+        else:
+            if n_min <= len(exprs) <= n_max:
+                val_ids.append(i)
+                val_set.append(exprs)
+                val_len.append(len(exprs))
+            exprs = []
+    file.close()
+
+    n = n_exprs // max(val_len)
+    while True:
+        ids = random.sample(population=range(len(val_len)), k=n)
+        lens = [val_len[i] for i in ids]
+        if sum(lens) >= n_exprs:
+            break
+        n += 1
+
+    val_set = [val_set[i] for i in ids]
+    val_ids = [val_ids[i] for i in ids]
+
+    return val_set, val_ids
+
+
+def w_ml_file(clusters: List[List[str]], min_neg: int, filepath: str) -> None:
+    n_clusters = len(clusters)
+
+    triplets = []
+    for i in range(n_clusters):
+        pos = list(permutations(iterable=clusters[i], r=2))
+
+        ids = list(set(range(n_clusters)) - {i})
+        if len(ids) > min_neg:
+            ids = random.sample(population=ids, k=min_neg)
+        elif len(ids) < min_neg:
+            quotient, remainder = divmod(min_neg, len(ids))
+            samples = random.sample(population=ids, k=remainder)
+            ids = ids * quotient + samples
+
+        neg = [random.sample(population=clusters[i], k=1)[0] for i in ids]
+
+        if len(pos) > min_neg:
+            pos = random.sample(population=pos, k=min_neg)
+        elif len(pos) < min_neg:
+            quotient, remainder = divmod(min_neg, len(pos))
+            samples = random.sample(population=pos, k=remainder)
+            pos = pos * quotient + samples
+
+        assert min_neg == len(pos) == len(neg)
+
+        for p, n in zip(pos, neg):
+            triplets.append((p[0], p[1], n))
+
+    ids = list(range(len(triplets)))
+    random.shuffle(x=ids)
+
+    file = open(file=filepath, mode='w', encoding="utf-8")
+    for i in ids:
+        file.write(f"{triplets[i][0]}\t{triplets[i][1]}\t{triplets[i][2]}\n")
     file.close()
 
     return
 
 
-def split(
-        pct: float,
-        form: str,
-        filepath: str,
-        train_filepath: str,
-        val_filepath: str,
-        val_ml_filepath: str,
-        train_ml_filepath: str,
-        val_ml_filepath_: str,
-) -> None:
-    blks = []
+def w_train_file(clusters: List[List[str]], filepath: str) -> None:
+    expr_pairs = []
+
+    for cluster in clusters:
+        cluster_pairs = list(permutations(iterable=cluster, r=2))
+        expr_pairs.extend(cluster_pairs)
+
+    ids = list(range(len(expr_pairs)))
+    random.shuffle(x=ids)
+
+    file = open(file=filepath, mode='w', encoding='utf-8')
+    for i in ids:
+        file.write(f"{expr_pairs[i][0]}\t{expr_pairs[i][1]}\n")
+    file.write("\n")
+    file.close()
+
+    return
+
+
+def train(filepath: str, val_ids: List[int]) -> List[List[str]]:
+    n_lines = get_n_lines(filepath=filepath)
+
+    exprs = []
+    train_set = []
 
     file = open(file=filepath, mode='r', encoding='utf-8')
-    exprs = []
-    for line in file:
+    for i, line in enumerate(tqdm(
+            iterable=file,
+            desc=f"[{timestamp()}] [INFO]: Reading file '{filepath}'",
+            total=n_lines,
+            leave=True,
+            position=0,
+    )):
         expr = line.strip()
         if expr:
             exprs.append(expr)
         else:
-            blks.append(exprs)
+            if i not in val_ids:
+                train_set.append(exprs)
             exprs = []
     file.close()
 
-    size = len(blks) 
-    indices = list(range(size))
-    random.shuffle(x=indices)
+    return train_set
 
-    val_indices = indices[:int(size*pct)]
-    train_indices = indices[int(size*pct):]
 
-    if form == "pair":
-        w_train_file(blks=blks, indices=train_indices, filepath=train_filepath)
-        w_val_file(blks=blks, indices=val_indices, filepath=val_filepath)
-        w_file(blks=blks, indices=val_indices, filepath=val_ml_filepath)
-    elif form == "triplet":
-        w_train_file_ml(blks=blks, indices=train_indices, n_neg=1, filepath=train_ml_filepath)
-        # w_file(blks=blks, indices=val_indices, filepath=val_ml_filepath_)
+def split(
+        form: str,
+        n_min: int,
+        n_max: int,
+        n_exprs: int,
+        train_size: int,
+        filepath: str,
+        triplets_filepath: str,
+        ml_filepath: str,
+        pairs_filepath: str,
+        val_filepath: str,
+) -> None:
+    if form == "triplet":
+        logger.log_info(f"Creating file '{ml_filepath}'...")
+    elif form == "pair":
+        logger.log_info(f"Creating file '{val_filepath}'...")
+
+    val_set, val_ids = val(
+        filepath=filepath,
+        n_min=n_min,
+        n_max=n_max,
+        n_exprs=n_exprs
+    )
+
+    if form == "triplet":
+        w_file(clusters=val_set, filepath=ml_filepath)
+        logger.log_info(f"Finish creating file '{ml_filepath}'.")
+    elif form == "pair":
+        w_val_file(clusters=val_set, filepath=val_filepath)
+        logger.log_info(f"Finish creating file '{val_filepath}'.")
+
+    if form == "triplet":
+        logger.log_info(f"Creating file '{triplets_filepath}'...")
+    elif form == "pair":
+        logger.log_info(f"Creating file '{pairs_filepath}'...")
+
+    train_set = train(filepath=filepath, val_ids=val_ids)
+
+    if form == "triplet":
+        min_neg = train_size // len(train_set) + 1
+        w_ml_file(
+            clusters=train_set,
+            min_neg=min_neg,
+            filepath=triplets_filepath
+        )
+        logger.log_info(f"Finish creating file '{triplets_filepath}'.")
+    elif form == "pair":
+        w_train_file(clusters=train_set, filepath=pairs_filepath)
+        logger.log_info(f"Finish creating file '{pairs_filepath}'.")
 
     return
 
@@ -162,7 +227,7 @@ def split(
 def main() -> None:
     if not os.path.exists(path=cfg.EQUIV_EXPRS_FILTER_FILEPATH):
         logger.log_info(
-            f"File '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}' does not exist!"
+            f"File '{cfg.EQUIV_EXPRS_FILTER_FILEPATH}' does not exist! "
             "Run './filter' first to create file "
             f"'{cfg.EQUIV_EXPRS_FILTER_FILEPATH}'"
         )
@@ -174,11 +239,11 @@ def main() -> None:
                     "train & val set "
     )
     parser.add_argument(
-        "--pct",
-        "-p",
-        type=float,
+        "--val",
+        "-v",
+        type=int,
         required=True,
-        help="Validation set percentage",
+        help="Number of expressions for validation",
     )
     parser.add_argument(
         "--form",
@@ -190,13 +255,13 @@ def main() -> None:
     )
 
     args = parser.parse_args()
-    pct = args.pct
+    n_exprs = args.val
     form = args.form
 
     if form == "pair":
-        if os.path.exists(path=cfg.EXPR_PAIRS_TRAIN_FILEPATH):
+        if os.path.exists(path=cfg.EXPR_PAIRS_FILEPATH):
             logger.log_info(
-                f"File '{cfg.EXPR_PAIRS_TRAIN_FILEPATH}' already exists!"
+                f"File '{cfg.EXPR_PAIRS_FILEPATH}' already exists!"
             )
             exit(1)
         if os.path.exists(path=cfg.EXPRS_VAL_FILEPATH):
@@ -209,11 +274,6 @@ def main() -> None:
                 f"File '{cfg.EXPRS_VAL_ML_FILEPATH}' already exists!"
             )
             exit(1)
-        logger.log_info(
-            f"Creating files '{cfg.EXPR_PAIRS_TRAIN_FILEPATH}', "
-            f"'{cfg.EXPRS_VAL_FILEPATH}', and "
-            f"'{cfg.EXPRS_VAL_ML_FILEPATH}'..."
-        )
     else:
         if os.path.exists(path=cfg.EXPR_TRIPLETS_FILEPATH):
             logger.log_info(
@@ -225,33 +285,19 @@ def main() -> None:
                 f"File '{cfg.EXPRS_ML_FILEPATH}' already exists!"
             )
             exit(1)
-        logger.log_info(
-            f"Creating files '{cfg.EXPR_TRIPLETS_FILEPATH}' and "
-            f"'{cfg.EXPRS_ML_FILEPATH}'..."
-        )
 
     split(
-        pct=pct,
         form=form,
+        n_min=cfg.N_EXPRS_MIN,
+        n_max=cfg.N_EXPRS_MAX,
+        n_exprs=n_exprs,
+        train_size=cfg.TRAIN_SIZE,
         filepath=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
-        train_filepath=cfg.EXPR_PAIRS_FILEPATH,
+        triplets_filepath=cfg.EXPR_TRIPLETS_FILEPATH,
+        ml_filepath=cfg.EXPRS_ML_FILEPATH,
+        pairs_filepath=cfg.EXPR_PAIRS_FILEPATH,
         val_filepath=cfg.EXPRS_VAL_FILEPATH,
-        val_ml_filepath=cfg.EXPRS_VAL_ML_FILEPATH,
-        train_ml_filepath=cfg.EXPR_TRIPLETS_FILEPATH,
-        val_ml_filepath_=cfg.EXPRS_ML_FILEPATH,
     )
-
-    if form == "pair":
-        logger.log_info(
-            f"Finish creating files '{cfg.EXPR_PAIRS_FILEPATH}', "
-            f"'{cfg.EXPRS_VAL_FILEPATH}', and "
-            f"'{cfg.EXPRS_VAL_ML_FILEPATH}'."
-        )
-    elif form == "triplet":
-        logger.log_info(
-            f"Finish creating files '{cfg.EXPR_TRIPLETS_FILEPATH}' and "
-            f"'{cfg.EXPRS_ML_FILEPATH}'."
-        )
 
     return
 
