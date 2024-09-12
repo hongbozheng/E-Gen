@@ -26,7 +26,7 @@ def w_file(clusters: List[List[str]], filepath: str) -> None:
 
 
 def w_val_file(clusters: List[List[str]], filepath: str) -> None:
-    exprs = [s for cluster in clusters for s in clusters]
+    exprs = [s for cluster in clusters for s in cluster]
 
     ids = list(range(len(exprs)))
     random.shuffle(x=ids)
@@ -258,7 +258,18 @@ def main() -> None:
     n_exprs = args.val
     form = args.form
 
-    if form == "pair":
+    if form == "triplet":
+        if os.path.exists(path=cfg.EXPR_TRIPLETS_FILEPATH):
+            logger.log_info(
+                f"File '{cfg.EXPR_TRIPLETS_FILEPATH}' already exists!"
+            )
+            exit(1)
+        if os.path.exists(path=cfg.EXPRS_ML_FILEPATH):
+            logger.log_info(
+                f"File '{cfg.EXPRS_ML_FILEPATH}' already exists!"
+            )
+            exit(1)
+    else:
         if os.path.exists(path=cfg.EXPR_PAIRS_FILEPATH):
             logger.log_info(
                 f"File '{cfg.EXPR_PAIRS_FILEPATH}' already exists!"
@@ -272,17 +283,6 @@ def main() -> None:
         if os.path.exists(path=cfg.EXPRS_VAL_ML_FILEPATH):
             logger.log_info(
                 f"File '{cfg.EXPRS_VAL_ML_FILEPATH}' already exists!"
-            )
-            exit(1)
-    else:
-        if os.path.exists(path=cfg.EXPR_TRIPLETS_FILEPATH):
-            logger.log_info(
-                f"File '{cfg.EXPR_TRIPLETS_FILEPATH}' already exists!"
-            )
-            exit(1)
-        if os.path.exists(path=cfg.EXPRS_ML_FILEPATH):
-            logger.log_info(
-                f"File '{cfg.EXPRS_ML_FILEPATH}' already exists!"
             )
             exit(1)
 
