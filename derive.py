@@ -116,10 +116,10 @@ def derivative(expr: str, err: bool) -> List[str]:
 
 
 def main() -> None:
-    if not os.path.exists(path=cfg.EXPRS_VAL_ML_FILEPATH):
+    if not os.path.exists(path=cfg.EXPRS_ML_FILEPATH):
         logger.log_info(
-            f"File '{cfg.EXPRS_VAL_ML_FILEPATH}' does not exist! "
-            f"Run './split' first to create file '{cfg.EXPRS_VAL_ML_FILEPATH}'."
+            f"File '{cfg.EXPRS_ML_FILEPATH}' does not exist! "
+            f"Run './split' first to create file '{cfg.EXPRS_ML_FILEPATH}'."
         )
         exit(1)
     if os.path.exists(path=cfg.EXPRS_DERI_FILEPATH):
@@ -130,15 +130,15 @@ def main() -> None:
 
     logger.log_info("Start generating derivations...")
 
-    n_lines = get_n_lines(filepath=cfg.EXPRS_VAL_ML_FILEPATH)
+    n_lines = get_n_lines(filepath=cfg.EXPRS_ML_FILEPATH)
 
-    file = open(file=cfg.EXPRS_VAL_ML_FILEPATH, mode='r', encoding='utf-8')
+    file = open(file=cfg.EXPRS_ML_FILEPATH, mode='r', encoding='utf-8')
     deri_file = open(file=cfg.EXPRS_DERI_FILEPATH, mode='a', encoding='utf-8')
 
     for line in tqdm(
         iterable=file,
         desc=f"[{timestamp()}] [INFO]: Reading file "
-             f"'{cfg.EXPRS_VAL_ML_FILEPATH}'",
+             f"'{cfg.EXPRS_ML_FILEPATH}'",
         total=n_lines,
     ):
         expr = line.strip()

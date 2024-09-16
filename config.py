@@ -153,6 +153,8 @@ EXPR_PAIRS_FILEPATH = DATA_PATH + "/expr_pairs.txt"
 EXPRS_VAL_FILEPATH = DATA_PATH + "/exprs_val.txt"
 EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
 EXPRS_DERI_FILEPATH = DATA_PATH + "/expr_deri.txt"
+EMB_ALGEBRA_FILEPATH = DATA_PATH + "/emb_algebra.txt"
+POOL_FILEPATH = DATA_PATH + "/pool.txt"
 
 
 # -----------------------------------------------------------------------------
