@@ -6,6 +6,8 @@ import random
 # Functions
 # -----------------------------------------------------------------------------
 ARITH_OPS = ["add", "sub", "mul", "div", "pow", "sqrt", "abs",]
+UNARY_ARITH_OPS = ["sqrt", "abs",]
+BINARY_ARITH_OPS = ["add", "sub", "mul", "div", "pow",]
 FUNC_OPS = [
     "ln",
     "sin", "cos", "tan",

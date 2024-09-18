@@ -30,8 +30,19 @@ def hack(expr: str) -> Expr:
             i: op for i, op in enumerate(tokens) if op in cfg.ARITH_OPS
         }
         src_id = random.choice(seq=list(id_op.keys()))
-        tgt_ops = [op for op in cfg.ARITH_OPS if op != id_op[src_id]]
+        if id_op[src_id] in cfg.UNARY_ARITH_OPS:
+            tgt_ops = [op for op in cfg.UNARY_ARITH_OPS if op != id_op[src_id]]
+        elif id_op[src_id] in cfg.BINARY_ARITH_OPS:
+            tgt_ops = [op for op in cfg.BINARY_ARITH_OPS if op != id_op[src_id]]
+        else:
+            logger.log_error("Invalid operator!")
         tgt_op = random.choice(seq=tgt_ops)
+        if tgt_op == "pow" and tokens[src_id+1] in ["INT+", "INT-"]:
+            tgt_ops = [
+                op for op in cfg.BINARY_ARITH_OPS if op != id_op[src_id]
+                and op != "pow"
+            ]
+            tgt_op = random.choice(seq=tgt_ops)
         tokens[src_id] = tgt_op
 
     expr_hack = ' '.join(tokens)
