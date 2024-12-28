@@ -1,4 +1,4 @@
-use egg::{refactor};
+use eeg::{refactor};
 
 fn main() {
     refactor();

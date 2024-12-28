@@ -1,117 +1,129 @@
 # Dataset
 
 ## Expressions Preparation
-#### Refactor Expressions from Expembtx Syntax to Egg Syntax (Rust)
-##### Build the command-line application
+
+#### Prefix Notation to Infix Notation (Rust)
+Build the command-line application.
 ```
 cargo clean && cargo build
 ```
-The above command will create a binary executable files `egg` under `/target/debug`
+The above command will create a binary executable files `eeg` under `/target/debug`.
 
-##### Check command line input help
+Check command line input help.
 ```
 cargo run
 ```
-##### Provide operator flag, operator, input filepath and refactor filepath
+Convert from prefix notation to infix notation.
 ```
-cargo run -- -f <operator flag> -o <operator> -i <input filepath> -r <refactor filepath>
+cargo run -- -f <op flag> -o <op> -i <input filepath> -c <convert filepath>
 ```
-- `<operator flag>` - operator flag
-- `<operator>` - operator
+- `<op flag>` - operator flag
+- `<op>` - operator
 - `<input filepath>` - input filepath
-- `<refactor filepath>` - refactor filepath
+- `<convert filepath>` - convert filepath
 
-##### Example command line inputs
-- Refactor from `expembtx` syntax to `egg` syntax
+Example command line inputs.
+- Convert from prefix notation to infix notation.
 ```
-cargo run -- -i "input/filepath" -r "refactor/filepath"
+cargo run -- -i "input/filepath" -r "convert/filepath"
 ```
-- Refactor from `expembtx` syntax to `egg` syntax with an additional operator
+- Convert from prefix notation to infix notation with an additional operator.
 ```
-cargo run -- -f -o "d x" -i "input/filepath" -r "refactor/filepath"
+cargo run -- -f -o "d x" -i "input/filepath" -r "convert/filepath"
 ```
 
 #### Replace character 'c' with random integer from 0-9
-##### Check command line input help
+Check command line input help.
 ```
 ./const.py -h
 ```
-##### Replace 'c' & any integer have more than 2 digits with random integer from 0-9
+Replace 'c' & any integer have more than 2 digits with random integer from 0-9.
 ```
-./const.py -i <input_filepath> -o <output_filepath>
+./const.py -i <input filepath> -o <output filepath>
 ```
-- `<input_filepath>` - input filepath
-- `<output_filepath>` - output filepath
+- `<input filepath>` - input filepath
+- `<output filepath>` - output filepath
 
 #### Generate fundamental expressions
-##### Check command line input help
+Check command line input help.
 ```
 ./fund_expr.py -h
 ```
-##### Generate fundamental expressions
+Generate fundamental expressions.
 ```
-./fund_expr.py -s <seed> -f <op_flag> -o <operator>
+./fund_expr.py -s <seed> -f <op flag> -o <op>
 ```
 - `<seed>` - random seed
   - general: `42`
   - d: `84`
-- `op_flag` - operator flag
-- `operator` - operator str
+- `<op flag>` - operator flag
+- `<op>` - operator
 
-##### Example command line inputs
-- Generate general fundamental expressions
+Example command line inputs.
+- Generate general fundamental expressions.
 ```
 ./fund_expr.py -s 42
 ```
-- Generate derivative fundamental expressions
+- Generate derivative fundamental expressions.
 ```
 ./fund_expr.py -s 84 -f -o "d x"
 ```
 
 ## Generate Dataset (Python)
+
+#### Generated Equivalent Expressions
+- Make sure all generated equivalent expressions `.txt` files 
+(`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file.
+- Move all generated equivalent expressions `.txt` files in a directory 
+`<directory path>`.
+
 #### Preprocess
-##### Check command line input help
+Check command line input help.
 ```
 ./preproc.py -h
 ```
-##### Deduplicate & Refactor & Verify
-1. Make sure all generated equivalent expressions `.txt` files (`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file
-2. Move all generated equivalent expressions `.txt` files in a folder `<folder_name>`
-3. Run the following command-line application
+Deduplicate & Convert & Verify.
 ```
-./preproc -d <equiv_exprs_dir> -r <refactor> -v <verify>
+./preproc -d <equiv exprs dir> -c <convert> -v <verify>
 ```
-- `<equiv_exprs_dir>` - folder `<folder_name>` that contains all generated equivalent expressions `.txt` files
-- `<refactor>` - flag to indicate whether to refactor the expressions
+- `<equiv exprs dir>` - directory `<directory path>` that contains all generated 
+equivalent expressions `.txt` files
+- `<convert>` - flag to indicate whether to convert from symbolic operators 
+('+', '*', ...) to string operators ('add', 'mul', ...)
 - `<verify>` - flag to indicate whether to verify the expressions
 
-The script will create the following 5 `.txt` files (depends on the cli(s) provided)
-1. `exprs.txt` - This file contains all the distinct generated original expressions
-2. `invalids.txt` - This file contains all the expressions with invalid domain
-3. `duplicates.txt` - This file contains all the repetitive original expressions
-4. `equiv_exprs_proc.txt` - This file contains all the processed equivalent expressions
+The script will create the following 4 `.txt` files
+(depends on the cli(s) provided)
+1. `exprs.txt` - This file contains all the distinct generated original 
+expressions.
+2. `invalids.txt` - This file contains all the in-equivalent or invalid 
+expressions.
+3. `duplicates.txt` - This file contains all the repetitive original expressions.
+4. `equiv_exprs_proc.txt` - This file contains all the processed equivalent 
+expressions.
 
 #### Filter
-##### Filter each block of equivalent expressions
+Filter each group of equivalent expressions.
 ```
 ./filter.py
 ```
 
-#### Split into Train Set and Val Set
-##### Check command line input help
+#### Split
+Check command line input help.
 ```
 ./split.py -h
 ```
+Split the dataset into train set and validation set.
 - `<pct>` - validation set percentage
-- `<form>` - train set format
+- `<form>` - train set format (pair, triplet)
 
 #### Statistics
-##### Check command line input help
+Check command line input help.
 ```
 ./stats.py -h
 ```
-##### Calculate dataset statistics
+Calculate dataset statistics.
 ```
-./stats.py -d <dataset_dir>
+./stats.py -f <filepath>
 ```
-- `<dataset_dir>` - dataset directory
+- `<filepath>` - dataset filepath (e.g. `equiv_exprs_filter.txt`)

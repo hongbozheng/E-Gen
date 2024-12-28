@@ -86,7 +86,7 @@ def val(
     return val_set, val_ids
 
 
-def w_ml_file(clusters: List[List[str]], min_neg: int, filepath: str) -> None:
+def w_cl_file(clusters: List[List[str]], min_neg: int, filepath: str) -> None:
     n_clusters = len(clusters)
 
     triplets = []
@@ -179,12 +179,12 @@ def split(
         train_size: int,
         filepath: str,
         triplets_filepath: str,
-        ml_filepath: str,
+        cl_filepath: str,
         pairs_filepath: str,
         val_filepath: str,
 ) -> None:
     if form == "triplet":
-        logger.log_info(f"Creating file '{ml_filepath}'...")
+        logger.log_info(f"Creating file '{cl_filepath}'...")
     elif form == "pair":
         logger.log_info(f"Creating file '{val_filepath}'...")
 
@@ -195,23 +195,23 @@ def split(
         n_exprs=n_exprs
     )
 
-    if form == "triplet":
-        w_file(clusters=val_set, filepath=ml_filepath)
-        logger.log_info(f"Finish creating file '{ml_filepath}'.")
-    elif form == "pair":
+    if form == "pair":
         w_val_file(clusters=val_set, filepath=val_filepath)
         logger.log_info(f"Finish creating file '{val_filepath}'.")
+    elif form == "triplet":
+        w_file(clusters=val_set, filepath=cl_filepath)
+        logger.log_info(f"Finish creating file '{cl_filepath}'.")
 
-    if form == "triplet":
-        logger.log_info(f"Creating file '{triplets_filepath}'...")
-    elif form == "pair":
+    if form == "pair":
         logger.log_info(f"Creating file '{pairs_filepath}'...")
+    elif form == "triplet":
+        logger.log_info(f"Creating file '{triplets_filepath}'...")
 
     train_set = train(filepath=filepath, val_ids=val_ids)
 
     if form == "triplet":
         min_neg = train_size // len(train_set) + 1
-        w_ml_file(
+        w_cl_file(
             clusters=train_set,
             min_neg=min_neg,
             filepath=triplets_filepath
@@ -264,9 +264,9 @@ def main() -> None:
                 f"File '{cfg.EXPR_TRIPLETS_FILEPATH}' already exists!"
             )
             exit(1)
-        if os.path.exists(path=cfg.EXPRS_ML_FILEPATH):
+        if os.path.exists(path=cfg.EXPR_CL_FILEPATH):
             logger.log_info(
-                f"File '{cfg.EXPRS_ML_FILEPATH}' already exists!"
+                f"File '{cfg.EXPR_CL_FILEPATH}' already exists!"
             )
             exit(1)
     else:
@@ -280,11 +280,11 @@ def main() -> None:
                 f"File '{cfg.EXPRS_VAL_FILEPATH}' already exists!"
             )
             exit(1)
-        if os.path.exists(path=cfg.EXPRS_VAL_ML_FILEPATH):
-            logger.log_info(
-                f"File '{cfg.EXPRS_VAL_ML_FILEPATH}' already exists!"
-            )
-            exit(1)
+        # if os.path.exists(path=cfg.EXPRS_VAL_ML_FILEPATH):
+        #     logger.log_info(
+        #         f"File '{cfg.EXPRS_VAL_ML_FILEPATH}' already exists!"
+        #     )
+        #     exit(1)
 
     split(
         form=form,
@@ -294,7 +294,7 @@ def main() -> None:
         train_size=cfg.TRAIN_SIZE,
         filepath=cfg.EQUIV_EXPRS_FILTER_FILEPATH,
         triplets_filepath=cfg.EXPR_TRIPLETS_FILEPATH,
-        ml_filepath=cfg.EXPRS_ML_FILEPATH,
+        cl_filepath=cfg.EXPR_CL_FILEPATH,
         pairs_filepath=cfg.EXPR_PAIRS_FILEPATH,
         val_filepath=cfg.EXPRS_VAL_FILEPATH,
     )

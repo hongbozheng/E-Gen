@@ -27,7 +27,7 @@ def get_n_lines(filepath: str) -> int:
 
 def preproc(
         equiv_exprs_dir: str,
-        refactor: bool,
+        convert: bool,
         verify: bool,
         start: int,
         end: int,
@@ -88,7 +88,7 @@ def preproc(
                     i = tokens.index('d')
                     if tokens[i+1] != 'x':
                         continue
-                if refactor or verify:
+                if convert or verify:
                     expr = ref_expr(expr=expr)
                 if expr not in equiv_exprs:
                     equiv_exprs.append(expr)
@@ -166,12 +166,12 @@ def main() -> None:
         help="Equivalent expressions directory"
     )
     parser.add_argument(
-        "--refactor",
-        "-r",
+        "--convert",
+        "-c",
         action="store_true",
         default=False,
         required=False,
-        help="Whether to refactor the expressions"
+        help="Whether to convert the expressions"
     )
     parser.add_argument(
         "--verify",
@@ -184,7 +184,7 @@ def main() -> None:
 
     args = parser.parse_args()
     equiv_exprs_dir = args.equiv_exprs_dir
-    refactor = args.refactor
+    convert = args.convert
     verify = args.verify
 
     if os.path.exists(path=cfg.EQUIV_EXPRS_PROC_FILEPATH):
@@ -202,7 +202,7 @@ def main() -> None:
 
     preproc(
         equiv_exprs_dir=equiv_exprs_dir,
-        refactor=refactor,
+        convert=convert,
         verify=verify,
         secs=cfg.SECS,
         start=cfg.START,

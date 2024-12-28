@@ -149,12 +149,12 @@ EQUIV_EXPRS_PROC_FILEPATH = DATA_PATH + "/equiv_exprs_proc.txt"
 EQUIV_EXPRS_FILTER_FILEPATH = DATA_PATH + "/equiv_exprs_filter.txt"
 
 # split
-EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
-EXPRS_ML_FILEPATH = DATA_PATH + "/exprs_ml.txt"
 EXPR_PAIRS_FILEPATH = DATA_PATH + "/expr_pairs.txt"
 EXPRS_VAL_FILEPATH = DATA_PATH + "/exprs_val.txt"
-EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
-EXPRS_DERI_FILEPATH = DATA_PATH + "/expr_deri.txt"
+EXPR_TRIPLETS_FILEPATH = DATA_PATH + "/expr_triplets.txt"
+EXPR_CL_FILEPATH = DATA_PATH + "/exprs_cl.txt"
+# EXPRS_VAL_ML_FILEPATH = DATA_PATH + "/exprs_val_ml.txt"
+DERI_FILEPATH = DATA_PATH + "/derivations.txt"
 EMB_ALGEBRA_FILEPATH = DATA_PATH + "/emb_algebra.txt"
 POOL_FILEPATH = DATA_PATH + "/pool.txt"
 
