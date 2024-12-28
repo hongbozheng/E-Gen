@@ -1,6 +1,11 @@
 use crate::*;
 use std::collections::HashMap;
 
+/// ### private function to check whether tokens contain eclass
+/// #### Arguments
+/// * `tokens` - tokens (expression)
+/// #### Return
+/// * `bool` - whether eclass exists in tokens or not
 fn contain_ecls(tokens: &Vec<String>) -> bool {
     for token in tokens {
         if token.len() >= 2 && token.starts_with('e') && token.chars().nth(1).unwrap().is_ascii_digit() {
@@ -10,6 +15,13 @@ fn contain_ecls(tokens: &Vec<String>) -> bool {
     return false;
 }
 
+/// ### private function to check whether tokens contain eclass
+/// #### Arguments
+/// * `grammar` - grammar
+/// * `levels` - number of levels to extract
+/// * `init_exprs` - initial expressions
+/// #### Return
+/// * `HashSet<String>` - equivalent expressions
 pub fn bfs_ext(grammar: &HashMap<String, Vec<String>>, levels: &u8, init_exprs: &Vec<String>) -> HashSet<String> {
     let mut equiv_exprs: HashSet<String> = Default::default();
     let mut tokens_prev_level: HashSet<Vec<String>> = init_exprs
@@ -19,7 +31,7 @@ pub fn bfs_ext(grammar: &HashMap<String, Vec<String>>, levels: &u8, init_exprs: 
 
     for _ in 1..*levels {
         let mut tokens_level: HashSet<Vec<String>> = Default::default();
-        for mut tokens in &tokens_prev_level {
+        for tokens in &tokens_prev_level {
             if tokens.len() == 1 {
                 let final_expr = tokens.join(" ");
                 equiv_exprs.insert(final_expr);
@@ -32,7 +44,7 @@ pub fn bfs_ext(grammar: &HashMap<String, Vec<String>>, levels: &u8, init_exprs: 
                 let rw_vec = grammar.get(op).unwrap();
 
                 log_debug(&format!("[RWVEC]: {:?}\n", rw_vec));
-                for (k, rw) in rw_vec.iter().enumerate() {
+                for rw in rw_vec {
                     log_debug(&format!("[RW]: {}\n", rw));
                     let rw_tokens: Vec<String> = rw.split_whitespace().map(String::from).collect();
                     /* context-free of context-sensitive, change here */

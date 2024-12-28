@@ -1,15 +1,17 @@
 /*! Utilities for testing / benchmarking egg.
-These are not considered part of the public api.
- */
 
+These are not considered part of the public api.
+*/
+
+use num_traits::identities::Zero;
 use std::{fmt::Display, fs::File, io::Write, path::PathBuf};
 
 use crate::*;
 
 pub fn env_var<T>(s: &str) -> Option<T>
-    where
-        T: std::str::FromStr,
-        T::Err: std::fmt::Debug,
+where
+    T: std::str::FromStr,
+    T::Err: std::fmt::Debug,
 {
     use std::env::VarError;
     match std::env::var(s) {
@@ -101,14 +103,14 @@ pub fn test_runner<L, A>(
                 let flattened = explained.make_flat_explanation().clone();
                 let vanilla_len = flattened.len();
                 explained.check_proof(rules);
-                assert!(explained.get_tree_size() > 0);
+                assert!(!explained.get_tree_size().is_zero());
 
                 runner = runner.with_explanation_length_optimization();
                 let mut explained_short = runner.explain_matches(&start, &goal.ast, &subst);
                 explained_short.get_string_with_let();
                 let short_len = explained_short.get_flat_strings().len();
                 assert!(short_len <= vanilla_len);
-                assert!(explained_short.get_tree_size() > 0);
+                assert!(!explained_short.get_tree_size().is_zero());
                 explained_short.check_proof(rules);
             }
         }
@@ -133,9 +135,9 @@ pub fn bench_egraph<L, N>(
     exprs: &[&str],
     extra_patterns: &[&str],
 ) -> EGraph<L, N>
-    where
-        L: Language + FromOp + 'static + Display,
-        N: Analysis<L> + Default + 'static,
+where
+    L: Language + FromOp + 'static + Display,
+    N: Analysis<L> + Default + 'static,
 {
     let mut patterns: Vec<Pattern<L>> = vec![];
     for rule in &rules {

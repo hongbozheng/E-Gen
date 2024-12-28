@@ -1,14 +1,7 @@
 use crate::*;
-use bincode::{serialize, deserialize};
-use num_cpus;
-use serde::{Serialize, Deserialize};
-use std::collections::HashMap;
-use std::fmt::format;
 use std::fs::File;
-use std::io::{BufRead, BufReader, BufWriter, Read, Write};
-use std::mem::{size_of, zeroed};
-use std::net::TcpListener;
-use std::process::{Child, Command, exit};
+use std::io::{BufRead, BufReader, BufWriter, Write};
+use std::process::exit;
 use std::time::Instant;
 
 /// ### private function generate equivalent expressions
@@ -34,8 +27,7 @@ fn generate_exprs(cli: &mut Vec<CmdLineArg>) -> HashSet<String> {
         }
     };
 
-    let mut equiv_exprs: HashSet<String> = HashSet::default();
-    equiv_exprs = bfs_ext(grammar, levels, init_exprs);
+    let equiv_exprs = bfs_ext(grammar, levels, init_exprs);
 
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
@@ -152,8 +144,9 @@ fn generate_file(cli: &mut Vec<CmdLineArg>) {
     }
 
     /* clean up file descriptors */
+    drop(writer);
     drop(input_file);
-    drop(&output_file);
+    drop(output_file);
 
     return;
 }
@@ -177,9 +170,6 @@ pub fn generate(args: &Vec<String>) {
     let end_time = Instant::now();
     let elapsed_time = end_time.duration_since(start_time).as_secs();
     log_info(&format!("Total run time {}s\n", elapsed_time));
-
-    return;
-
 
     return;
 }

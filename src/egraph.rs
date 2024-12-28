@@ -33,9 +33,7 @@ same e-class.
 
 You can use the `egraph[id]` syntax to get an [`EClass`] from an [`Id`], because
 [`EGraph`] implements
-[`Index`](struct.EGraph.html#impl-Index<Id>)
-and
-[`IndexMut`](struct.EGraph.html#impl-IndexMut<Id>).
+`Index` and `IndexMut`.
 
 Enabling the `serde-1` feature on this crate will allow you to
 de/serialize [`EGraph`]s using [`serde`](https://serde.rs/).
@@ -49,7 +47,7 @@ You must call [`EGraph::rebuild`] after deserializing an e-graph!
 [dot]: Dot
 [extract]: Extractor
 [sound]: https://itinerarium.github.io/phoneme-synthesis/?w=/'igraf/
- **/
+**/
 #[derive(Clone)]
 #[cfg_attr(feature = "serde-1", derive(Serialize, Deserialize))]
 pub struct EGraph<L: Language, N: Analysis<L>> {
@@ -79,7 +77,7 @@ pub struct EGraph<L: Language, N: Analysis<L>> {
     pub(crate) classes: HashMap<Id, EClass<L, N::Data>>,
     #[cfg_attr(feature = "serde-1", serde(skip))]
     #[cfg_attr(feature = "serde-1", serde(default = "default_classes_by_op"))]
-    pub(crate) classes_by_op: HashMap<L::Discriminant, HashSet<Id>>,
+    classes_by_op: HashMap<L::Discriminant, HashSet<Id>>,
     /// Whether or not reading operation are allowed on this e-graph.
     /// Mutating operations will set this to `false`, and
     /// [`EGraph::rebuild`] will set it to true.
@@ -135,6 +133,22 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
     /// Returns an mutating iterator over the eclasses in the egraph.
     pub fn classes_mut(&mut self) -> impl ExactSizeIterator<Item = &mut EClass<L, N::Data>> {
         self.classes.values_mut()
+    }
+
+    /// Returns an iterator over the eclasses that contain a given op.
+    pub fn classes_for_op(
+        &self,
+        op: &L::Discriminant,
+    ) -> Option<impl ExactSizeIterator<Item = Id> + '_> {
+        self.classes_by_op.get(&op).map(|s| s.iter().copied())
+    }
+
+    /// Exposes the actual nodes in the egraph.
+    ///
+    /// Un-canonical id's can be used to index into this.
+    /// In normal circumstances, you should not need to use this.
+    pub fn nodes(&self) -> &[L] {
+        &self.nodes
     }
 
     /// Returns `true` if the egraph is empty
@@ -600,9 +614,9 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
 /// Translates `EGraph<L, A>` into `EGraph<L2, A2>`. For common cases, you don't
 /// need to implement this manually. See the provided [`SimpleLanguageMapper`].
 pub trait LanguageMapper<L, A>
-    where
-        L: Language,
-        A: Analysis<L>,
+where
+    L: Language,
+    A: Analysis<L>,
 {
     /// The target language to translate into.
     type L2: Language;
@@ -765,19 +779,19 @@ pub struct SimpleLanguageMapper<L2, A2> {
 impl<L, A> Default for SimpleLanguageMapper<L, A> {
     fn default() -> Self {
         SimpleLanguageMapper {
-            _phantom: PhantomData::default(),
+            _phantom: PhantomData,
         }
     }
 }
 
 impl<L, A, L2, A2> LanguageMapper<L, A> for SimpleLanguageMapper<L2, A2>
-    where
-        L: Language,
-        A: Analysis<L>,
-        L2: Language + From<L>,
-        A2: Analysis<L2> + From<A>,
-        <L2 as Language>::Discriminant: From<<L as Language>::Discriminant>,
-        <A2 as Analysis<L2>>::Data: From<<A as Analysis<L>>::Data>,
+where
+    L: Language,
+    A: Analysis<L>,
+    L2: Language + From<L>,
+    A2: Analysis<L2> + From<A>,
+    <L2 as Language>::Discriminant: From<<L as Language>::Discriminant>,
+    <A2 as Analysis<L2>>::Data: From<<A as Analysis<L>>::Data>,
 {
     type L2 = L2;
     type A2 = A2;
@@ -947,15 +961,15 @@ impl<L: Language, N: Analysis<L>> EGraph<L, N> {
     /// assert_eq!(node_f_ab, SymbolLang::new("f", vec![a, a]));
     /// ```
     pub fn lookup<B>(&self, enode: B) -> Option<Id>
-        where
-            B: BorrowMut<L>,
+    where
+        B: BorrowMut<L>,
     {
         self.lookup_internal(enode).map(|id| self.find(id))
     }
 
     fn lookup_internal<B>(&self, mut enode: B) -> Option<Id>
-        where
-            B: BorrowMut<L>,
+    where
+        B: BorrowMut<L>,
     {
         let enode = enode.borrow_mut();
         enode.update_children(|id| self.find(id));

@@ -1,4 +1,4 @@
-use egg::generate;
+use eeg::generate;
 use std::env;
 
 fn main() {
