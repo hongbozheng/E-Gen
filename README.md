@@ -29,7 +29,7 @@ equivalent expressions.
 ```
 cargo run -- -i <input filepath> -o <output filepath>
 ```
-Other optional hyperparameters
+Other optional hyperparameters.
 ```
 cargo run -- -f <optim ext flag> -n <n equiv exprs> -l <init token limit> -m <max token limit> -t <init time limit>
 ```
@@ -45,7 +45,7 @@ and the time limit will +300s to keep generating equivalent expressions.
 When the max token limit (`<max token limit>`) is reached, the generation 
 will stop.
 
-Example command line inputs
+Example command line inputs.
 ```
 cargo run -- -f -n 20 -l 10 -m 12 -t 300 -e "(cos x)"
 ```
