@@ -64,7 +64,7 @@ pub fn add_paren(expr: &str) -> String {
 /// * `output_filename` - output filename
 /// ## Return
 /// * `std::io::Result<()>`
-pub fn refactor() {
+pub fn convert() {
     let cli = parse_args();
     let add_op = &cli.flag;
     let op = match &cli.op {

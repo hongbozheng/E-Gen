@@ -51,7 +51,7 @@ mod lp_extract;
 mod machine;
 mod multipattern;
 mod pattern;
-mod refactor;
+mod convert;
 mod rewrite;
 mod run;
 mod subst;
@@ -106,7 +106,7 @@ pub use {
     logger::*,
     multipattern::*,
     pattern::{ENodeOrVar, Pattern, PatternAst, SearchMatches},
-    refactor::refactor,
+    convert::convert,
     rewrite::{Applier, Condition, ConditionEqual, ConditionalApplier, Rewrite, Searcher},
     run::*,
     subst::{Subst, Var},

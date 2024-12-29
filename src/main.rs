@@ -1,6 +1,6 @@
-use eeg::{refactor};
+use eeg::{convert};
 
 fn main() {
-    refactor();
+    convert();
     return;
 }
