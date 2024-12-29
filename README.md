@@ -2,7 +2,7 @@
 
 ## Expressions Preparation
 
-#### Prefix Notation to Infix Notation (Rust)
+### Prefix Notation to Infix Notation (Rust)
 Build the command-line application.
 ```
 cargo clean && cargo build
@@ -32,7 +32,7 @@ cargo run -- -i "input/filepath" -r "convert/filepath"
 cargo run -- -f -o "d x" -i "input/filepath" -r "convert/filepath"
 ```
 
-#### Replace character 'c' with random integer from 0-9
+### Replace character 'c' with random integer from 0-9
 Check command line input help.
 ```
 ./const.py -h
@@ -44,7 +44,7 @@ Replace 'c' & any integer have more than 2 digits with random integer from 0-9.
 - `<input filepath>` - input filepath
 - `<output filepath>` - output filepath
 
-#### Generate fundamental expressions
+### Generate fundamental expressions
 Check command line input help.
 ```
 ./fund_expr.py -h
@@ -71,13 +71,13 @@ Example command line inputs.
 
 ## Generate Dataset (Python)
 
-#### Generated Equivalent Expressions
+### Generated Equivalent Expressions
 - Make sure all generated equivalent expressions `.txt` files 
 (`poly_1.txt`, `op_2.txt`, ...) have 2 `'\n'` characters at the end of the file.
 - Move all generated equivalent expressions `.txt` files in a directory 
 `<directory path>`.
 
-#### Preprocess
+### Preprocess
 Check command line input help.
 ```
 ./preproc.py -h
@@ -102,13 +102,13 @@ expressions.
 4. `equiv_exprs_proc.txt` - This file contains all the processed equivalent 
 expressions.
 
-#### Filter
+### Filter
 Filter each group of equivalent expressions.
 ```
 ./filter.py
 ```
 
-#### Split
+### Split
 Check command line input help.
 ```
 ./split.py -h
@@ -117,7 +117,7 @@ Split the dataset into train set and validation set.
 - `<pct>` - validation set percentage
 - `<form>` - train set format (pair, triplet)
 
-#### Statistics
+### Statistics
 Check command line input help.
 ```
 ./stats.py -h
