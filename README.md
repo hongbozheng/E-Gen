@@ -5,10 +5,10 @@ Install Rust using [`rustup`](https://www.rust-lang.org/tools/install).
 
 ## Equivalent Expressions Generation
 
-#### Generation Configuration
+### Generation Configuration
 To modify generation configuration, check `config.py` file.
 
-#### Generation
+### Generation
 Build the command-line application.
 ```
 cargo clean && cargo build
