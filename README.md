@@ -6,7 +6,7 @@ Install Rust using [`rustup`](https://www.rust-lang.org/tools/install).
 ## Equivalent Expressions Generation
 
 ### Generation Configuration
-To modify generation configuration, check `config.py` file.
+To modify generation configuration, check `config.rs` file.
 
 ### Generation
 Build the command-line application.
