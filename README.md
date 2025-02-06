@@ -1,5 +1,9 @@
 # E-Gen: Leveraging E-Graphs to Improve Continuous Representations of Symbolic Expressions
 
+## Model
+The transformer training and inference code can be found
+[here](https://github.com/hongbozheng/transformer).
+
 ## Environment Setup
 Install Rust using [`rustup`](https://www.rust-lang.org/tools/install).
 
