@@ -1,8 +1,8 @@
 [package]
 authors = ["Hongbo Zheng <hongboz2@illinois.edu>"]
 categories = ["data-structures"]
-description = "Equivalent Expression Generation"
-edition = "2024"
+description = "Multiprocess Equivalent Expression Generation"
+edition = "2021"
 keywords = ["e-gen"]
 license = "MIT"
 name = "egen"
