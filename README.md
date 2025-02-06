@@ -4,6 +4,13 @@
 The transformer training and inference code can be found
 [here](https://github.com/hongbozheng/transformer).
 
+## Dataset
+Checkout `dataset` branch.
+```
+git checkout dataset
+```
+The dataset is in `equiv_exprs` directory.
+
 ## Environment Setup
 Install Rust using [`rustup`](https://www.rust-lang.org/tools/install).
 
