@@ -2,7 +2,7 @@
 authors = ["Hongbo Zheng <hongboz2@illinois.edu>"]
 categories = ["data-structures"]
 description = "Equivalent Expression Generation"
-edition = "2021"
+edition = "2024"
 keywords = ["e-gen"]
 license = "MIT"
 name = "egen"
