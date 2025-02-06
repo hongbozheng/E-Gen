@@ -1,4 +1,4 @@
-use eeg::{convert};
+use cvt::{convert};
 
 fn main() {
     convert();

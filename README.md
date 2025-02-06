@@ -7,7 +7,7 @@ Build the command-line application.
 ```
 cargo clean && cargo build
 ```
-The above command will create a binary executable files `eeg` under `/target/debug`.
+The above command will create a binary executable files `cvt` under `/target/debug`.
 
 Check command line input help.
 ```

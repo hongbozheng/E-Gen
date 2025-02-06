@@ -1,11 +1,11 @@
 [package]
 authors = ["Hongbo Zheng <hongboz2@illinois.edu>"]
-categories = ["data-structures"]
-description = "Equivalent Expression Generation"
+categories = ["algorithms"]
+description = "Prefix Notation to Infix Notation with Parentheses"
 edition = "2021"
-keywords = ["e-graphs"]
+keywords = ["convert"]
 license = "MIT"
-name = "eeg"
+name = "cvt"
 readme = "README.md"
 repository = "https://github.com/hongbozheng/E-Gen"
 version = "0.0.1"
