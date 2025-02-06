@@ -1,4 +1,4 @@
-use eeg::{generate};
+use egen::{generate};
 
 fn main() {
     generate();
