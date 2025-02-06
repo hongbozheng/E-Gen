@@ -1,4 +1,4 @@
-use egg::generate;
+use egen::generate;
 
 fn main() {
     generate();
