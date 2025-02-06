@@ -271,7 +271,7 @@ impl CliDtype {
 /// #### Return
 /// * `None`
 fn help() {
-    log_info_raw("[USAGE]: cargo run [-p] <n proc>           [-?] <thd pct>\n");
+    log_info_raw("[USAGE]: cargo run [-p] <n proc>           [-d] <thd pct>\n");
     log_info_raw("[USAGE]:           [-f] <optim ext flag>   [-n] <n equiv exprs>\n");
     log_info_raw("[USAGE]:           [-l] <init token limit> [-m] <max token limit>\n");
     log_info_raw("[USAGE]:           [-t] <init time limit>  [-e] <expr>\n");
