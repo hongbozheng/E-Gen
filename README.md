@@ -21,21 +21,21 @@ The above command will create a binary executable files `egen` under `/target/de
 
 Check command line input help.
 ```
-cargo run --bin eeg
+cargo run --bin egen
 ```
 Provide 1 input expression and the generated equivalent expressions will be
 printed to terminal.
 ```
-cargo run --bin eeg -e <expression>
+cargo run --bin egen -e <expression>
 ```
 Provide a file with multiple expressions and a file to store all generated
 equivalent expressions.
 ```
-cargo run --bin eeg -i <input filepath> -o <output filepath>
+cargo run --bin egen -i <input filepath> -o <output filepath>
 ```
 Other optional hyperparameters.
 ```
-cargo run --bin eeg -t <thd pct> -l <token limit> -f <exhaustive flag>
+cargo run --bin egen -t <thd pct> -l <token limit> -f <exhaustive flag>
 ```
 * `<thd pct>` - OS thread percentage
 * `<token limit>` - token limit
@@ -43,8 +43,8 @@ cargo run --bin eeg -t <thd pct> -l <token limit> -f <exhaustive flag>
 
 Example command line inputs.
 ```
-cargo run --bin eeg -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
+cargo run --bin egen -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
 ```
 ```
-cargo run --bin eeg -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run --bin egen -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
 ```
