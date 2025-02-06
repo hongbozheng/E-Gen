@@ -35,16 +35,20 @@ cargo run --bin egen -i <input filepath> -o <output filepath>
 ```
 Other optional hyperparameters.
 ```
-cargo run --bin egen -t <thd pct> -l <token limit> -f <exhaustive flag>
+cargo run --bin egen -f <optim ext flag> -n <n equiv exprs> -l <init token limit> -m <max token limit> -t <init time limit>
 ```
-* `<thd pct>` - OS thread percentage
-* `<token limit>` - token limit
-* `<exhaustive>` - exhaustive extraction (slow) flag
+- `<n proc>` - number of processes
+- `<thd pct>` - OS thread percentage
+- `<optim ext flag>` - optimized (faster) extraction flag
+- `<n equiv exprs>` - number of equivalent expressions
+- `<init token limit>` - initial token limit
+- `<max token limit>` - maximum token limit
+- `<init time limit>` - initial time limit
 
 Example command line inputs.
 ```
-cargo run --bin egen -t <thd pct> -l <token limit> -f <csg flag> -e <expression>
+cargo run --bin egen -f <optim ext flag> -n <n equiv exprs> -l <init token limit> -m <max token limit> -t <init time limit> -e <expression>
 ```
 ```
-cargo run --bin egen -t <thd pct> -l <token limit> -f <csg flag> -i <input filepath> -o <output filepath>
+cargo run --bin egen -f <optim ext flag> -n <n equiv exprs> -l <init token limit> -m <max token limit> -t <init time limit> -i <input filepath> -o <output filepath>
 ```
