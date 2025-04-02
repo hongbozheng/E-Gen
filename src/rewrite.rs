@@ -398,7 +398,7 @@ where
 ///
 /// [`apply_one`]: Applier::apply_one()
 /// [`check`]: Condition::check()
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ConditionalApplier<C, A> {
     /// The [`Condition`] to [`check`] before calling [`apply_one`] on
     /// `applier`.
@@ -493,7 +493,7 @@ where
 /// This condition adds its two [`Pattern`] to the egraph and passes
 /// if and only if they are equivalent (in the same eclass).
 ///
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ConditionEqual<L> {
     p1: Pattern<L>,
     p2: Pattern<L>,
@@ -524,10 +524,10 @@ where
     N: Analysis<L>,
 {
     fn check(&self, egraph: &mut EGraph<L, N>, _eclass: Id, subst: &Subst) -> bool {
-        let mut id_buf_1 = vec![0.into(); self.p1.ast.as_ref().len()];
-        let mut id_buf_2 = vec![0.into(); self.p2.ast.as_ref().len()];
-        let a1 = apply_pat(&mut id_buf_1, self.p1.ast.as_ref(), egraph, subst);
-        let a2 = apply_pat(&mut id_buf_2, self.p2.ast.as_ref(), egraph, subst);
+        let mut id_buf_1 = vec![0.into(); self.p1.ast.len()];
+        let mut id_buf_2 = vec![0.into(); self.p2.ast.len()];
+        let a1 = apply_pat(&mut id_buf_1, &self.p1.ast, egraph, subst);
+        let a2 = apply_pat(&mut id_buf_2, &self.p2.ast, egraph, subst);
         a1 == a2
     }
 
